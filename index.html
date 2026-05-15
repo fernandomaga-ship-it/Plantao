@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#0f766e" />
+    <meta
+      name="description"
+      content="Dashboard estático para organizar e navegar pelos arquivos de plantão publicados via GitHub Pages."
+    />
+    <title>Plantão | Dashboard médico</title>
+    <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="./assets/images/rmc-mark-256.png" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="Menu lateral">
+        <a class="brand" href="./index.html" aria-label="Plantão - página inicial">
+          <span class="brand-mark">P</span>
+          <span>
+            <strong>Plantão</strong>
+            <small>Dashboard médico</small>
+          </span>
+        </a>
+
+        <nav class="side-nav" aria-label="Categorias">
+          <a class="nav-link active" href="#todos" data-filter="all">
+            <span>Todos</span>
+            <strong id="count-all">0</strong>
+          </a>
+          <a class="nav-link" href="#uti" data-filter="uti">
+            <span>UTI</span>
+            <strong id="count-uti">0</strong>
+          </a>
+          <a class="nav-link" href="#enfermaria" data-filter="enfermaria">
+            <span>Enfermaria</span>
+            <strong id="count-enfermaria">0</strong>
+          </a>
+          <a class="nav-link" href="#centro-cirurgico" data-filter="centro-cirurgico">
+            <span>Centro cirúrgico</span>
+            <strong id="count-centro-cirurgico">0</strong>
+          </a>
+          <a class="nav-link" href="#outros" data-filter="outros">
+            <span>Outros</span>
+            <strong id="count-outros">0</strong>
+          </a>
+        </nav>
+
+        <div class="sidebar-card">
+          <span class="status-dot"></span>
+          <div>
+            <strong>GitHub Pages ready</strong>
+            <small>HTML, CSS e JS estáticos</small>
+          </div>
+        </div>
+      </aside>
+
+      <main class="workspace">
+        <header class="topbar">
+          <button class="icon-button menu-toggle" type="button" aria-label="Abrir menu" data-menu-toggle>
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+          <div>
+            <p class="eyebrow">Visão geral</p>
+            <h1>Plantões publicados</h1>
+          </div>
+          <button class="theme-toggle" type="button" data-theme-toggle aria-label="Alternar dark mode">
+            <span aria-hidden="true">◐</span>
+            <strong>Dark mode</strong>
+          </button>
+        </header>
+
+        <section class="hero-panel" aria-labelledby="dashboard-title">
+          <div class="hero-copy">
+            <p class="eyebrow">GitHub Pages</p>
+            <h2 id="dashboard-title">Central limpa para consultar pacientes, leitos e arquivos de plantão.</h2>
+            <p>
+              A página inicial lê um manifesto estático gerado a partir dos HTMLs do repositório,
+              organiza por categoria e mantém links prontos para iPhone, iPad e desktop.
+            </p>
+          </div>
+          <div class="summary-grid" aria-label="Resumo dos arquivos">
+            <article>
+              <span id="summary-total">0</span>
+              <small>HTMLs</small>
+            </article>
+            <article>
+              <span id="summary-categories">0</span>
+              <small>Categorias</small>
+            </article>
+            <article>
+              <span id="summary-updated">Hoje</span>
+              <small>Atualizado</small>
+            </article>
+          </div>
+        </section>
+
+        <section class="controls-panel" aria-label="Busca e filtros">
+          <label class="search-box">
+            <span>Buscar</span>
+            <input
+              id="search"
+              type="search"
+              autocomplete="off"
+              placeholder="Paciente, plantão, leito, pasta ou arquivo..."
+            />
+          </label>
+          <div class="chip-row" id="category-chips" aria-label="Filtros rápidos"></div>
+        </section>
+
+        <section class="content-grid">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Arquivos</p>
+              <h2 id="result-title">Todos os plantões</h2>
+            </div>
+            <span id="result-count" class="result-count">0 resultados</span>
+          </div>
+
+          <div id="cards" class="cards-grid" aria-live="polite"></div>
+
+          <div id="empty-state" class="empty-state" hidden>
+            <strong>Nenhum arquivo encontrado</strong>
+            <p>Tente buscar por outro paciente, leito, categoria ou trecho do nome do arquivo.</p>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <div class="backdrop" data-menu-toggle></div>
+
+    <script src="./assets/site-data.js"></script>
+    <script src="./assets/app.js"></script>
+  </body>
+</html>
