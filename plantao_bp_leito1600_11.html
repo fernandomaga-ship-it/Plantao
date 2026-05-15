@@ -1,0 +1,164 @@
+
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+.lc { font-family: var(--font-sans); font-size: 14px; color: var(--color-text-primary); background: transparent; }
+.lh { background: #E6F1FB; border-bottom: 1.5px solid #185FA5; padding: 10px 18px; display: flex; align-items: flex-start; gap: 12px; border-radius: 12px 12px 0 0; }
+.lb-badge { background: #185FA5; color: #E6F1FB; font-size: 12px; font-weight: 500; padding: 4px 10px; border-radius: 8px; white-space: nowrap; flex-shrink:0; }
+.lp { font-size: 15px; font-weight: 500; color: #0C447C; }
+.lsub { font-size: 12px; color: #185FA5; }
+.body { padding: 14px 18px; }
+.st { font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.8px; color: var(--color-text-secondary); border-bottom: 0.5px solid var(--color-border-tertiary); padding-bottom: 4px; margin-bottom: 8px; margin-top: 14px; }
+.st:first-child { margin-top: 0; }
+.tag { display: inline-block; font-size: 12px; padding: 3px 8px; border-radius: 4px; margin: 2px 3px 2px 0; font-weight: 500; }
+.tag-r { background: #FCEBEB; color: #A32D2D; }
+.tag-y { background: #FAEEDA; color: #BA7517; }
+.tag-b { background: #E6F1FB; color: #0C447C; }
+.g2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 8px; }
+.g3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-top: 8px; }
+.mc { background: var(--color-background-secondary); border-radius: 8px; padding: 8px 12px; }
+.mc .lb { font-size: 11px; color: var(--color-text-secondary); margin-bottom: 3px; }
+.mc .vl { font-size: 14px; font-weight: 500; }
+.mc .vl.ok { color: #3B6D11; }
+.mc .vl.warn { color: #BA7517; }
+.mc .vl.bad { color: #A32D2D; }
+.il { display: flex; gap: 6px; align-items: flex-start; padding: 4px 0; border-bottom: 0.5px solid var(--color-border-tertiary); font-size: 13px; line-height: 1.5; }
+.il:last-child { border-bottom: none; }
+.bul { flex-shrink: 0; margin-top: 1px; font-weight: 700; }
+.bul.r { color: #A32D2D; }
+.bul.y { color: #BA7517; }
+.bul.g { color: #3B6D11; }
+.bul.b { color: #185FA5; }
+.bold { font-weight: 500; }
+.impressao { background: #E6F1FB; border-left: 3px solid #185FA5; border-radius: 0 8px 8px 0; padding: 10px 14px; font-size: 13px; line-height: 1.6; color: #0C447C; }
+.conduta { background: var(--color-background-secondary); border-radius: 8px; padding: 10px 14px; font-size: 13px; line-height: 1.6; }
+.inter { background: #FAECE7; border-left: 3px solid #D85A30; border-radius: 0 8px 8px 0; padding: 10px 14px; font-size: 13px; line-height: 1.6; color: #993C1D; }
+.bundle { display: inline-flex; align-items: center; gap: 3px; background: #EAF3DE; color: #3B6D11; font-size: 10px; font-weight: 500; padding: 2px 6px; border-radius: 4px; margin-left: 6px; border: 0.5px solid #639922; }
+.atb { display: inline-block; background: #EAF3DE; color: #3B6D11; font-size: 11px; padding: 2px 7px; border-radius: 4px; margin: 2px 3px 2px 0; font-weight: 500; }
+.pill-warn { display: inline-block; background: #FAEEDA; color: #BA7517; font-size: 11px; padding: 2px 7px; border-radius: 4px; margin: 2px 3px 2px 0; font-weight: 500; border: 0.5px solid #EF9F27; }
+</style>
+
+<h2 class="sr-only">Leito 1600-11 — Luis Carlos da Silva — Plantão 15/05/2026</h2>
+
+<div class="lc">
+  <div style="border: 0.5px solid var(--color-border-secondary); border-radius: 12px; margin-bottom: 20px; overflow: hidden;">
+
+    <div class="lh">
+      <div class="lb-badge">Leito 1600-11</div>
+      <div style="flex:1;">
+        <div class="lp">Luis Carlos da Silva</div>
+        <div class="lsub">68 anos · Masculino · DIH: 07/05/2026 · PO 7 (ATC DA) · Internação: 9 dias</div>
+        <div class="lsub" style="margin-top:2px;">Cardiologia — Dr. Fernando Faglioni Ribas | Endocrinologia — Dr. Adriano Cury</div>
+      </div>
+    </div>
+
+    <div class="body">
+
+      <div class="st">Diagnósticos</div>
+      <span class="tag tag-r">🔴 IAMCSST anterior (07/05)</span>
+      <span class="tag tag-r">🔴 PO ATC de ADA (07/05)</span>
+      <span class="tag tag-r">🔴 FA com RVR (FAARV — diagnóstico prévio)</span>
+      <span class="tag tag-y">🟡 EAP (08/05) — resolvido</span>
+      <span class="tag tag-y">🟡 Novo episódio FAARV + congestão (11/05)</span>
+      <span class="tag tag-b">🔵 ICpFEr (FE 39%) pós-IAM</span>
+      <span class="tag tag-b">🔵 DM2 insulino-dependente (HbA1c 10,6%) | HAS | DLP | Obesidade grau I</span>
+
+      <div class="st">Antecedentes</div>
+      <div class="il"><span class="bul b">•</span><span>DM2 há 15 anos — insulina NPH + metformina; IAM há 9 anos (ATC ADA prévia)</span></div>
+      <div class="il"><span class="bul b">•</span><span>HAS | DLP | Tabagista/ex | Obesidade Grau I (IMC 32,9) | HPB | DPOC presumido</span></div>
+      <div class="il"><span class="bul b">•</span><span>MUC: Exforge HCT 160/25/10mg | Sinvastatina 20mg | Metformina 850mg 3x/dia | NPH 34UI manhã</span></div>
+
+      <div class="st">Dispositivos / Suporte</div>
+      <div class="g2">
+        <div>
+          <div class="il"><span class="bul g">✓</span><span><span class="bold">Neurológico:</span> Glasgow 15, lúcido, orientado, calmo</span></div>
+          <div class="il"><span class="bul g">✓</span><span><span class="bold">VM:</span> Eupneico em AA / CNO₂ 2 L/min (SpO₂ 93–94%)</span></div>
+          <div class="il"><span class="bul y">!</span><span><span class="bold">DVA:</span> Amiodarona 900 mg/dia EV (controle FC/FA) — em BIC</span></div>
+          <div class="il"><span class="bul g">✓</span><span><span class="bold">Sedoanalgesia:</span> Não em uso | Dor: EVA 0</span></div>
+        </div>
+        <div>
+          <div class="il"><span class="bul g">✓</span><span><span class="bold">Nutrição:</span> VO dieta pastosa laxativa DM — boa aceitação</span></div>
+          <div class="il"><span class="bul g">✓</span><span><span class="bold">TRS:</span> Não em uso</span></div>
+          <div class="il"><span class="bul y">!</span><span><span class="bold">CVC triplo-lúmen JD</span> — discreta hiperemia na inserção; curativo com película transparente</span></div>
+          <div class="il"><span class="bul g">✓</span><span><span class="bold">Fralda descartável</span> — eliminações espontâneas | Pulso pedioso presente</span></div>
+        </div>
+      </div>
+
+      <div class="st">Sinais vitais — últimas 24h</div>
+      <div class="g3">
+        <div class="mc"><div class="lb">PA / PAM</div><div class="vl warn">150×90 mmHg | PAM 101–128</div></div>
+        <div class="mc"><div class="lb">FC</div><div class="vl warn">76–106 bpm (FA com RVR)</div></div>
+        <div class="mc"><div class="lb">SpO₂ / FR</div><div class="vl warn">93–94% / eupneico (CNO₂ 2L)</div></div>
+        <div class="mc"><div class="lb">Temperatura</div><div class="vl ok">Afebril</div></div>
+        <div class="mc"><div class="lb">BH 14/05</div><div class="vl warn">+620 mL (meta: −500 mL)</div></div>
+        <div class="mc"><div class="lb">Diurese 14/05</div><div class="vl ok">2.215 mL</div></div>
+      </div>
+
+      <div class="st">Exames recentes — 15/05/2026</div>
+      <div class="g2">
+        <div>
+          <div class="il"><span class="bul g">✓</span><span><span class="bold">Gasometria venosa:</span> pH 7,41 | pCO₂ 40 | HCO₃ 25 | BE 0,7 | SatO₂v 58%</span></div>
+          <div class="il"><span class="bul y">!</span><span><span class="bold">Hemograma:</span> Hb 12,3 g/dL | Ht 35,3% | Leuco 10.880 | Neut 7.880 (72,4%) | Plaq 312.000/mm³</span></div>
+          <div class="il"><span class="bul y">!</span><span><span class="bold">Bioquímica:</span> Na 136 | K 4,0 | Mg 2,0 | Ca 1,12 mmol/L | P 3,2 | Lactato 14 mg/dL (normal)</span></div>
+          <div class="il"><span class="bul y">!</span><span><span class="bold">Cr 1,32</span> (prévia 1,29→1,15) | Ur 45 | TFG CKD-EPI: 55–59 mL/min (limítrofe)</span></div>
+        </div>
+        <div>
+          <div class="il"><span class="bul g">✓</span><span><span class="bold">PCR 15/05:</span> 22,8 mg/L (2,28 mg/dL) — queda vs 14/05 (40 mg/dL) ✅</span></div>
+          <div class="il"><span class="bul y">!</span><span><span class="bold">Coagulação:</span> INR 1,1 | TTPa 1,09×N | Fibrinogênio pendente</span></div>
+          <div class="il"><span class="bul b">•</span><span><span class="bold">ECO 11/05:</span> FE 39% | Hipocinesia septo total + segm médio-apical parede inferior | VD OK | PSAP 30 mmHg | Sem valvopatia importante</span></div>
+          <div class="il"><span class="bul b">•</span><span><span class="bold">CATE:</span> DA ocluída em 3º médio — stent proximal pérvio (residual mínimo) | DAD triarterial: ACx 30–50% | ACD calc. irregular | Sem indicação de nova intervenção</span></div>
+        </div>
+      </div>
+      <div class="il" style="margin-top:6px;"><span class="bul y">!</span><span><span class="bold">RX tórax (14/05):</span> Congestão pulmonar persistente. Estertores audíveis até terço médio bilateralmente.</span></div>
+      <div class="il"><span class="bul y">!</span><span><span class="bold">Controle glicêmico (14/05):</span> AC 169 / DC 253 — hiperglicemia persistente. HbA1c 10,6% (08/05). Insulina: NPH 14-14-0-10 UI + Lispro 6-6-6 UI.</span></div>
+
+      <div class="st">Antimicrobianos / Drogas vasoativas</div>
+      <span class="atb">Amiodarona 900 mg/dia EV (BIC) — controle FA/RVR</span>
+      <span class="pill-warn">Sem antibióticos em uso</span>
+
+      <div class="st">Profilaxias <span class="bundle">✔ BUNDLES</span></div>
+      <div class="il"><span class="bul y">!</span><span><span class="bold">TEV:</span> Enoxaparina plena (FA crônica) — INR 1,1. Monitorar função renal (Cr 1,32 / TFG ~57 mL/min → ajuste de dose enoxaparina: avaliar anti-Xa se TFG &lt; 30)</span></div>
+      <div class="il"><span class="bul g">✓</span><span><span class="bold">Gástrica:</span> Pantoprazol | DAPT: AAS + Clopidogrel (pós-ATC) | Estatina potente</span></div>
+      <div class="il"><span class="bul g">✓</span><span>LPP | BCA | Queda | Mobilização precoce (fisio: sedestação em poltrona, ortostatismo)</span></div>
+      <div class="il"><span class="bul y">!</span><span><span class="bold">Glicemia:</span> Meta 140–180 mg/dL (DM2 + IAM). Protocolo insulínico: NPH 14-14-0-10 + Lispro 6-6-6 UI + correção pré-refeição (FS 40 se glicemia > 180)</span></div>
+
+      <div class="st">Condutas / Pendências — com base em diretrizes e bundles UTI/pós-IAM</div>
+      <div class="conduta">
+        <div class="il"><span class="bul r">★</span><span><span class="bold">[FA + RVR — Bundle FA pós-IAM]</span> Manter Amiodarona 900 mg/dia EV. Meta FC 60–100 bpm. Avaliar transição para Amiodarona VO nas próximas 24h conforme euvolemia e FC estável. K > 4,0 e Mg > 2,0 obrigatórios para controle de FA. Anticoagulação plena com Enoxaparina (FA crônica + FE 39% + IAM).</span></div>
+        <div class="il"><span class="bul r">★</span><span><span class="bold">[Congestão / ICpFEr pós-IAM — Bundle IC/UTI]</span> BH meta −500 mL/dia. Ajuste de furosemida. BH 14/05 foi +620 mL — não atingiu meta. Aumentar dose de furosemida hoje. Mononitrato de isossorbida + Hidralazina (Tridil desligado às 02h/14/05). Otimizar IECA conforme tolerância hemodinâmica e função renal (Cr 1,32 — monitorar). NÃO otimizar BB hoje (BH ainda positivo). Meta: euvolemia, então iniciar/otimizar beta-bloqueador (Selozok).</span></div>
+        <div class="il"><span class="bul r">★</span><span><span class="bold">[Pós-IAM / ATC — Bundle ACS pós-revascularização]</span> DAPT obrigatória (AAS + Clopidogrel). Estatina de alta potência (trocar sinvastatina 20mg → rosuvastatina 40mg ou atorvastatina 80mg — evidência pós-IAM). Manter IECA com TFG > 30. LDL-alvo &lt; 50 mg/dL (pós-IAM de alto risco). Monitorar ECG diário (FA + pós-IAM).</span></div>
+        <div class="il"><span class="bul y">!</span><span><span class="bold">[DM2 — Controle glicêmico]</span> HbA1c 10,6% — mal controlado cronicamente. Insulinoterapia intensificada em curso (NPH + Lispro). Avaliar perfil glicêmico coletado em 11/05. Aferir glicemia antes e 2h após refeições. Evitar SG (amiodarona diluída em SG — avaliar troca para SF 0,9%). Endocrinologia: considerar ISGLT-2 (dapagliflozina/empagliflozina) após euvolemia — benefício cardiovascular e renal evidenciado em DM2 + ICpFEr pós-IAM (ADA/ESC 2024). Meta HbA1c &lt; 8% (contextualizado ao paciente).</span></div>
+        <div class="il"><span class="bul y">!</span><span><span class="bold">[Renal / DHE]</span> Cr 1,32 (↑ em relação a 1,15) — monitorar diariamente. Ajuste de doses conforme TFG. Na 136 (limite inferior). Repor K se &lt; 4,0 e Mg se &lt; 2,0 (crucial para controle de FA). Enoxaparina: avaliar anti-Xa se Cr continuar subindo.</span></div>
+        <div class="il"><span class="bul y">!</span><span><span class="bold">[CVC — BCA bundle]</span> Hiperemia discreta na inserção — avaliar necessidade de troca se progressão de sinais flogísticos. Documentar data de inserção. Curativo com CHG se disponível.</span></div>
+        <div class="il"><span class="bul b">•</span><span><span class="bold">[Respiratório / DPOC presumido]</span> CNO₂ 2 L/min, SpO₂ 93–94%. Fisioterapia respiratória diária. Cinesioterapia + mobilização precoce (sedestação, ortostatismo). VNI se deterioração. Meta SpO₂ 94–98%.</span></div>
+        <div class="il"><span class="bul b">•</span><span><span class="bold">[Estatina]</span> Trocar sinvastatina 20mg → rosuvastatina 40mg ou atorvastatina 80mg (diretriz ACC/AHA 2022 — alta intensidade obrigatória pós-IAM). LDL basal 60 mg/dL — pode precisar ezetimiba para atingir &lt; 50.</span></div>
+        <div class="il"><span class="bul b">•</span><span><span class="bold">[Mobilização]</span> Fisio: EMU real 5 → meta 10. Ortostatismo e deambulação assim que BH negativo e FC controlada.</span></div>
+      </div>
+
+      <div class="st">Intercorrências</div>
+      <div class="inter">
+        <div class="il"><span class="bul r">⚠</span><span><span class="bold">BH 14/05 positivo (+620 mL)</span> — meta não atingida (alvo −500 mL). Ajuste de furosemida necessário hoje.</span></div>
+        <div class="il"><span class="bul y">!</span><span>FA com RVR em controle parcial — FC 76–106 bpm. K 4,0 / Mg 2,0 (no limiar — repor ativamente).</span></div>
+        <div class="il"><span class="bul y">!</span><span>Cr 1,32 com leve tendência de elevação — acompanhar nefrotoxicidade (furosemida + IECA + amiodarona EV em SG).</span></div>
+        <div class="il"><span class="bul y">!</span><span>Hiperemia discreta em inserção de CVC — monitorar progressão.</span></div>
+      </div>
+
+      <div class="st">Impressão clínica — progressão do caso</div>
+      <div class="impressao">
+        <span class="bold">Progressão:</span> Paciente admitido em 07/05 via protocolo supra-ST anterior, trombolisado com critério de reperfusão aparente, porém chegou à BP com DA ocluída — ATC realizada com sucesso. No 1º PO evoluiu com EAP (08/05), manejado com tridil e diuréticos. FAARV identificada como diagnóstico prévio, com novo episódio em 11/05 associado a congestão. Em uso de Amiodarona EV desde então.
+        <br><br>
+        <span class="bold">Situação atual (15/05):</span> Clinicamente compensado. FA com controle parcial de FC (76–106 bpm) após correção de DHE. Congestão em melhora, porém BH ainda positivo ontem. PCR em queda (22,8 mg/L). Creatinina levemente elevada (1,32) — atenção à nefrotoxicidade com furosemida + IECA. DM2 com controle glicêmico em ajuste (HbA1c 10,6%). <span style="font-weight:500;color:#A32D2D;">Prioridades do plantão: atingir BH −500 mL, manter K > 4,0 e Mg > 2,0, avaliar transição de Amiodarona para VO, e considerar troca de estatina para alta potência.</span>
+      </div>
+
+      <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:12px; font-size:12px; color:var(--color-text-secondary); border-top: 0.5px solid var(--color-border-tertiary); padding-top:10px;">
+        <span><strong>Protocolos:</strong> LPP | BCA | TEV | Queda</span>
+        <span>•</span>
+        <span><strong>DAPT:</strong> AAS + Clopidogrel</span>
+        <span>•</span>
+        <span><strong>Enoxa plena</strong> (FA crônica)</span>
+        <span>•</span>
+        <span><strong>Fisio:</strong> Mobilização diária</span>
+      </div>
+
+    </div>
+  </div>
+</div>
