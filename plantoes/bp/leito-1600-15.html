@@ -1,0 +1,183 @@
+
+<style>
+:root { --font-sans: Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif; --color-text-primary: #17201f; --color-text-secondary: #5f6f6c; --color-background-primary: #ffffff; --color-border-secondary: #d8e2df; --color-border-tertiary: #e9efed; --border-radius-lg: 12px; --border-radius-md: 8px; } html { background: #f6faf9; } body { max-width: 1120px; margin: 0 auto; padding: 16px; } .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+.lc { font-family: var(--font-sans); font-size: 14px; color: var(--color-text-primary); }
+.lh { background: #E6F1FB; border-bottom: 1.5px solid #185FA5; padding: 10px 18px; display: flex; align-items: flex-start; gap: 12px; border-radius: 12px 12px 0 0; }
+.lb-badge { background: #185FA5; color: #E6F1FB; font-size: 12px; font-weight: 500; padding: 4px 10px; border-radius: 8px; white-space: nowrap; flex-shrink: 0; }
+.lp { font-size: 15px; font-weight: 500; color: #0C447C; }
+.lsub { font-size: 12px; color: #185FA5; }
+.body { padding: 14px 18px; }
+.st { font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.8px; color: var(--color-text-secondary); border-bottom: 0.5px solid var(--color-border-tertiary); padding-bottom: 4px; margin-bottom: 8px; margin-top: 14px; }
+.st:first-child { margin-top: 0; }
+.tag { display: inline-block; font-size: 12px; padding: 3px 8px; border-radius: 4px; margin: 2px 3px 2px 0; font-weight: 500; }
+.tag-r { background: #FCEBEB; color: #A32D2D; }
+.tag-y { background: #FAEEDA; color: #BA7517; }
+.tag-b { background: #E6F1FB; color: #0C447C; }
+.tag-p { background: #EEEDFE; color: #3C3489; }
+.g2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 8px; }
+.g3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-top: 8px; }
+.mc { background: var(--color-background-secondary); border-radius: 8px; padding: 8px 12px; }
+.mc .lb { font-size: 11px; color: var(--color-text-secondary); margin-bottom: 3px; }
+.mc .vl { font-size: 14px; font-weight: 500; }
+.mc .vl.ok { color: #3B6D11; }
+.mc .vl.warn { color: #BA7517; }
+.mc .vl.bad { color: #A32D2D; }
+.il { display: flex; gap: 6px; align-items: flex-start; padding: 4px 0; border-bottom: 0.5px solid var(--color-border-tertiary); font-size: 13px; line-height: 1.5; }
+.il:last-child { border-bottom: none; }
+.bul { flex-shrink: 0; margin-top: 1px; font-weight: 700; }
+.bul.r { color: #A32D2D; }
+.bul.y { color: #BA7517; }
+.bul.g { color: #3B6D11; }
+.bul.b { color: #185FA5; }
+.bul.p { color: #6B4FA0; }
+.bold { font-weight: 500; }
+.impressao { background: #E6F1FB; border-left: 3px solid #185FA5; border-radius: 0 8px 8px 0; padding: 10px 14px; font-size: 13px; line-height: 1.6; color: #0C447C; }
+.conduta { background: var(--color-background-secondary); border-radius: 8px; padding: 10px 14px; font-size: 13px; line-height: 1.6; }
+.inter { background: #FAECE7; border-left: 3px solid #D85A30; border-radius: 0 8px 8px 0; padding: 10px 14px; font-size: 13px; line-height: 1.6; color: #993C1D; }
+.atb-pill { display: inline-block; background: #EAF3DE; color: #3B6D11; font-size: 11px; padding: 2px 7px; border-radius: 4px; margin: 2px 3px 2px 0; font-weight: 500; }
+.bundle { display: inline-flex; align-items: center; gap: 3px; background: #EAF3DE; color: #3B6D11; font-size: 10px; font-weight: 500; padding: 2px 6px; border-radius: 4px; margin-left: 6px; border: 0.5px solid #639922; }
+.paliativo-tag { display: inline-flex; align-items: center; background: #F3F0FA; color: #6B4FA0; font-size: 11px; font-weight: 500; padding: 3px 8px; border-radius: 4px; margin-left: 8px; border: 0.5px solid #8B6CC4; }
+.warn-box { background: #FAEEDA; border-left: 3px solid #EF9F27; border-radius: 0 8px 8px 0; padding: 10px 14px; font-size: 13px; line-height: 1.6; color: #6B3A00; margin-bottom: 8px; }
+</style>
+
+<div class="lc">
+  <div style="border: 0.5px solid var(--color-border-secondary); border-radius: 12px; margin-bottom: 20px; overflow: hidden;">
+
+    <div class="lh">
+      <div class="lb-badge">Leito 1600-15</div>
+      <div style="flex:1;">
+        <div class="lp">Paulo Celso Lavieri Gomes
+          <span class="paliativo-tag">🕊 Cuidados Paliativos — PAC em construção</span>
+        </div>
+        <div class="lsub">77 anos · Masculino · DIH: 19/03/2026 · 58 dias · PO 24 (Cistoprostatectomia Radical 21/04)</div>
+        <div class="lsub" style="margin-top:2px;">Oncologia — Dra. Camilla Yamada | Infecto — Dr. Heber / Dra. Eliane | Cardio — Dr. Fernando Ribas | Arritmia | Urologia — Dr. Campagnari | Endocrino — Eq. Pamplona | Paliativos — Dra. Fátima Paula</div>
+      </div>
+    </div>
+
+    <div class="body">
+
+      <div class="st">Diagnósticos</div>
+      <span class="tag tag-r">🔴 Carcinoma urotelial músculo-invasivo (pouco diferenciado, extensamente necrótico)</span>
+      <span class="tag tag-r">🔴 Sepse de foco pulmonar (novo episódio — 09/05)</span>
+      <span class="tag tag-r">🔴 PO 24 Cistoprostatectomia Radical + Linfadenectomia Pélvica/Retroperitoneal + Ureterectomia + Duplo J bilateral (21/04)</span>
+      <span class="tag tag-r">🔴 Delirium — hipoativo / misto — em manejo</span>
+      <span class="tag tag-y">🟡 PO 31 MP definitivo (SD Bradi-taqui, 14/04) — programado para 80 bpm</span>
+      <span class="tag tag-y">🟡 FA com RVR recorrente — aguarda oclusão de apêndice atrial (Cardiologia)</span>
+      <span class="tag tag-y">🟡 Anemia (Hb 8 g/dL) — necessidade transfusional recorrente</span>
+      <span class="tag tag-y">🟡 Hiperpotassemia (K 5,2) | DRC G3b (TFG 46–50) | Hiperfosfatemia limítrofe (P 4,6)</span>
+      <span class="tag tag-b">🔵 Hipoproteinemia grave (Prot. 4,4 g/dL) | Em NPT</span>
+      <span class="tag tag-b">🔵 LPP estágio 3 sacral em tratamento | DM2 | HAS | IAM 1999</span>
+      <span class="tag tag-p">🟣 PPS 30% — declínio funcional progressivo. PAC em construção com Paliativos</span>
+
+      <div class="st">Antecedentes</div>
+      <div class="il"><span class="bul b">•</span><span>HAS | DM2 | IAM 1999 | Ex-tabagista 30 AM (parou 1999) | Médico anestesista aposentado</span></div>
+      <div class="il"><span class="bul b">•</span><span>Histórico oncológico: Ca bexiga confirmado 01/26 → biópsia 10/02/26 (carcinoma pouco diferenciado, necrótico; GATA-3 neg / uroplakin neg — sítio primário incerto) → C1D1 Enfortumabe + Pembrolizumabe 30/03 → Cistoprostatectomia radical 21/04</span></div>
+      <div class="il"><span class="bul b">•</span><span>Complicações durante internação: choque séptico, síndrome de realimentação (resolvida), melena (resolvida — úlcera Forrest IIc), arritmia + MP definitivo, sepse recorrente</span></div>
+      <div class="il"><span class="bul b">•</span><span>MUC: Gliclazida 60mg | Indapen 1,5mg | Metoprolol 50mg 12/12h | Atorvastatina 40mg | Rivaroxabana 15mg | Ciprofibrato 100mg</span></div>
+
+      <div class="st">Dispositivos / Suporte</div>
+      <div class="g2">
+        <div>
+          <div class="il"><span class="bul y">!</span><span><span class="bold">Neurológico:</span> Glasgow 14 — algo confuso, sonolento, desorientado em tempo. Sem contenção mecânica. Quetiapina 25mg/noite iniciada.</span></div>
+          <div class="il"><span class="bul g">✓</span><span><span class="bold">VM:</span> Eupneico em AA / CN O₂ 2 L/min | SpO₂ 93–96%</span></div>
+          <div class="il"><span class="bul g">✓</span><span><span class="bold">DVA:</span> Sem DVA no momento (instabilidade recorrente — vigilância)</span></div>
+          <div class="il"><span class="bul p">▸</span><span><span class="bold">Analgesia/Delirium:</span> Fentanil transdérmico 15 mcg/h (10+5) | Dipirona 2g 6/6h | Morfina 2mg EV resgate | Quetiapina 25mg/noite + 12,5mg resgate</span></div>
+        </div>
+        <div>
+          <div class="il"><span class="bul r">▲</span><span><span class="bold">Nutrição:</span> NPT 70 mL/h (CVC JD — via exclusiva). SNE fechada. Sem VO (vigilância Hb)</span></div>
+          <div class="il"><span class="bul g">✓</span><span><span class="bold">TRS:</span> Não em uso</span></div>
+          <div class="il"><span class="bul y">!</span><span><span class="bold">CVC JD:</span> CHG sem sinais flogísticos. Cistostomia flanco D — débito 750 mL/12h (urina clara)</span></div>
+          <div class="il"><span class="bul y">!</span><span><span class="bold">MP definitivo</span> programado 80 bpm | Oclusão apêndice atrial pendente (Cardio)</span></div>
+        </div>
+      </div>
+
+      <div class="st">Sinais vitais — últimas 24h</div>
+      <div class="g3">
+        <div class="mc"><div class="lb">FC / PA / PAM</div><div class="vl ok">74–80 bpm | PAM 53–77 mmHg</div></div>
+        <div class="mc"><div class="lb">SpO₂</div><div class="vl warn">93–96% (CN O₂ 2L) — SpO₂ 93% notada</div></div>
+        <div class="mc"><div class="lb">Temperatura</div><div class="vl ok">Afebril</div></div>
+        <div class="mc"><div class="lb">Glasgow</div><div class="vl warn">14 — confuso, sonolento</div></div>
+        <div class="mc"><div class="lb">BH 15/05 (manhã parcial)</div><div class="vl warn">+226 mL | Acumulado 58d: positivo expressivo</div></div>
+        <div class="mc"><div class="lb">Diurese (cistostomia)</div><div class="vl ok">750 mL/12h — urina clara</div></div>
+      </div>
+
+      <div class="st">Exames recentes — 15/05/2026</div>
+      <div class="g2">
+        <div>
+          <div class="il"><span class="bul r">▲</span><span><span class="bold">Hemograma:</span> Hb <span style="color:#A32D2D;font-weight:500;">8 g/dL</span> | Ht 24% | Eritrócitos 2,67 mi | Leuco 5.720 | Neut 3.550 (62%) | Plaq 209.000 | Macrocitose acentuada | RDW 18,3%</span></div>
+          <div class="il"><span class="bul r">▲</span><span><span class="bold">K 5,2 mEq/L</span> — hiperpotassemia leve (monitorar) | Na 138 | Mg 2,2 | Ca 1,19 mmol/L | Cl 109</span></div>
+          <div class="il"><span class="bul r">▲</span><span><span class="bold">Proteínas totais 4,4 g/dL</span> (hipoproteinemia grave) | Globulinas 2,3 | Albumina pendente</span></div>
+          <div class="il"><span class="bul y">!</span><span><span class="bold">Cr 1,45 mg/dL</span> | TFG 46–50 mL/min (DRC G3b) | Ur 179 mg/dL — uremia elevada</span></div>
+        </div>
+        <div>
+          <div class="il"><span class="bul y">!</span><span><span class="bold">Fósforo 4,6 mg/dL</span> — limítrofe superior | Lactato pendente | PCR pendente</span></div>
+          <div class="il"><span class="bul y">!</span><span><span class="bold">HMC 09/05:</span> Parciais negativas | HMC 28/04: negativa | URC 28/04: negativa</span></div>
+          <div class="il"><span class="bul g">✓</span><span><span class="bold">TC crânio 14/05:</span> Sem lesão expansiva ou hemorragia. Atrofia difusa + microangiopatia leve. Sem causa estrutural para delirium.</span></div>
+          <div class="il"><span class="bul g">✓</span><span><span class="bold">TC tórax 11/05:</span> Sem pneumonia ativa. Sem metástases pulmonares. Derrame pericárdico laminar.</span></div>
+        </div>
+      </div>
+
+      <div class="st">Antimicrobianos em curso</div>
+      <span class="atb-pill">Meropenem 1g 8/8h — DI 09/05 (reinício)</span>
+      <span class="atb-pill">Teicoplanina 400mg — DI 09/05 (reinício)</span>
+      <div style="margin-top:6px; font-size:12px; color:var(--color-text-secondary);">Histórico extenso: Levofloxacino → Cipro → Linezolida → Tazocin → Teicoplanina → Meropenem + Teicoplanina. URC: Klebsiella oxytoca multiS (19/03) | Enterococcus faecium multiR (25/03) | E.coli multiS resistente a genta/cipro (01/04).</div>
+
+      <div class="st">Profilaxias <span class="bundle">✔ BUNDLES</span></div>
+      <div class="il"><span class="bul g">✓</span><span><span class="bold">TEV:</span> Medicamentosa ativa | Colchão pneumático em uso</span></div>
+      <div class="il"><span class="bul y">!</span><span><span class="bold">LPP:</span> Estágio 3 sacral — Aquacel conforme GAPE. Hiperemia glútea. Placas Proximel em trocânteres e calcâneos. Colchão pneumático. Braden 12 (alto risco). NAS 98,9.</span></div>
+      <div class="il"><span class="bul y">!</span><span><span class="bold">Glicemia:</span> DM2 — vigilância (gliclazida suspensa em UTI?). Meta 140–180 mg/dL. Avaliar insulinoterapia endocrinologia (Eq. Pamplona).</span></div>
+      <div class="il"><span class="bul g">✓</span><span>BCA | Pantoprazol (profilaxia gástrica — úlcera Forrest IIc prévia) | Queda | Flebite</span></div>
+
+      <div class="st">Condutas / Pendências — Bundles UTI / Sepse / Oncologia / Paliativos</div>
+      <div class="conduta">
+        <div class="il"><span class="bul r">★</span><span><span class="bold">[DELIRIUM — Bundle UTI/ABCDEF]</span> Causa estrutural excluída (TC CE normal). Causas prováveis: sepse + uremia (Ur 179) + imobilismo + privação sensorial. Medidas: sem contenção mecânica, reorientação frequente, ciclo sono-vigília, presença de familiar, mobilização precoce. Farmacológico: Quetiapina 25mg/noite (iniciada) + resgate 12,5mg. Morfina resgate 2mg EV se dor moderada-intensa. Reavaliar sedativos que possam piorar delirium. SAOS: recusou VNI — considerar reavaliação se piora de SpO₂ noturna.</span></div>
+        <div class="il"><span class="bul r">★</span><span><span class="bold">[SEPSE — Bundle Sepsis-3]</span> Meropenem + Teicoplanina reiniciados em 09/05 (foco pulmonar). TC tórax 11/05 sem pneumonia ativa — reavaliar foco. HMC parciais negativas. Culturas de vigilância se febre. Lactato pendente — solicitar. Avaliar desescalonamento após HMC finais e estabilidade clínica (Infecto: Dr. Heber / Dra. Eliane). Reavaliar cobertura para Enterococcus faecium multiR prévio se deterioração.</span></div>
+        <div class="il"><span class="bul r">★</span><span><span class="bold">[ANEMIA]</span> Hb 8,0 g/dL | Macrocitose acentuada — componente de anemia de doença crônica + desnutrição (B12/folato? — verificar em contexto de NPT prolongada). Transfundir 1 CH se Hb &lt; 7,0 ou sintomático (PAM limítrofe, confusão). Último CH: 14/05 — avaliar resposta. Monitorar Hb/Ht de 12/12h.</span></div>
+        <div class="il"><span class="bul y">!</span><span><span class="bold">[HIPERPOTASSEMIA K 5,2]</span> Em contexto de DRC G3b + NPT. Revisar aporte de K na NPT. Monitorar ECG. Se K > 5,5 ou sintomático: gluconato de cálcio + insulina + glicose + kayexalate. Controle de K nas próximas 6h.</span></div>
+        <div class="il"><span class="bul y">!</span><span><span class="bold">[HEMODINÂMICA — PAM limítrofe]</span> PAM mínima 53 mmHg registrada — abaixo de meta (≥ 65 mmHg). Sem DVA no momento. Monitorar de perto: PAM < 65 por > 30min → iniciar noradrenalina. Avaliar volemia (hipoalbuminemia + NPT). Lactato pendente — solicitar.</span></div>
+        <div class="il"><span class="bul y">!</span><span><span class="bold">[NUTRIÇÃO]</span> NPT 70 mL/h — hipoproteinemia grave (4,4 g/dL). Avaliar adequação da NPT com nutrologia (meta proteica 1,5 g/kg/dia = ~105 g/dia). SNE fechada — considerar ativação enteral trófica se tolerância GI. Pantoprazol obrigatório (úlcera prévia).</span></div>
+        <div class="il"><span class="bul y">!</span><span><span class="bold">[FA / MP / Apêndice atrial]</span> MP programado 80 bpm. FA com RVR recorrente. Oclusão de apêndice atrial pendente (Dr. Fernando Ribas). Rivaroxabana em MUC — verificar se está sendo administrada e com que dose (15mg = dose reduzida para DRC). Avaliar manutenção em contexto de sangramento prévio e plaquetas adequadas.</span></div>
+        <div class="il"><span class="bul y">!</span><span><span class="bold">[SpO₂ 93%]</span> No limite inferior. CN O₂ 2L. Verificar se necessita aumento de O₂ ou VNI (recusou). Fisioterapia respiratória diária: tosse produtiva presente. Monitorar deterioração — acionar se SpO₂ &lt; 90%.</span></div>
+        <div class="il"><span class="bul p">▸</span><span><span class="bold">[PALIATIVOS — PAC em construção]</span> PPS 30% — prognóstico reservado. Conversa com filhas Paula e Patrícia antes de alta da UTI (ansiedade familiar). Alta para enfermaria: preferência bloco V (oncologia). Suporte psicológico (Psicóloga Vanessa) ativo para família. Dra. Fátima Paula — tel: 11 98158-8888. Sintomas prioritários: dor (fentanil 15 mcg/h + resgate morfina) e delirium (quetiapina).</span></div>
+        <div class="il"><span class="bul b">•</span><span><span class="bold">[LPP SACRAL — estágio 3]</span> Aquacel + placas Proximel + colchão pneumático + decúbito 2/2h. Braden 12. GAPE acompanhando. Hipoproteinemia como fator agravante — otimizar NPT.</span></div>
+        <div class="il"><span class="bul b">•</span><span><span class="bold">[ONCOLOGIA — Pós-operatório]</span> Cistoprostatectomia radical PO 24. Urostomia (cistostomia flanco D) com débito adequado. Sem previsão de alta hospitalar. Discussão sobre continuidade de tratamento oncológico após recuperação clínica.</span></div>
+      </div>
+
+      <div class="st">Intercorrências</div>
+      <div class="inter">
+        <div class="il"><span class="bul r">⚠</span><span><span class="bold">PAM mínima 53 mmHg</span> — abaixo de meta. Sem DVA no momento. Monitorar continuamente.</span></div>
+        <div class="il"><span class="bul r">⚠</span><span><span class="bold">SpO₂ 93%</span> registrada (CN 2L) — limite inferior. Recusou VNI e fisioterapia motora na última avaliação.</span></div>
+        <div class="il"><span class="bul r">⚠</span><span><span class="bold">K 5,2 mEq/L + Ur 179 mg/dL</span> — hiperpotassemia e uremia contribuindo para delirium e instabilidade.</span></div>
+        <div class="il"><span class="bul y">!</span><span>Anemia persistente (Hb 8,0) — 1 CH transfundido em 14/05. Monitorar resposta.</span></div>
+        <div class="il"><span class="bul y">!</span><span>Delirium hipoativo/misto em manejo. Glasgow 14. Desorientação temporal. Recusa de intervenções fisioterápicas.</span></div>
+        <div class="il"><span class="bul y">!</span><span>Lactato não coletado nas últimas horas — solicitar urgente (PAM limítrofe).</span></div>
+      </div>
+
+      <div class="st">Impressão clínica — progressão do caso</div>
+      <div class="impressao">
+        <span class="bold">Progressão:</span> Paciente de 77 anos com carcinoma urotelial músculo-invasivo (sítio primário incerto — GATA-3/uroplakin negativos; HER2 neg, NTRK neg), em internação prolongada de 58 dias marcada por múltiplas complicações: choque séptico, síndrome de realimentação, melena, passagem de MP definitivo (SD bradi-taqui), cistoprostatectomia radical com urostomia, e novo episódio de sepse de foco pulmonar (09/05) com reinício de Meropenem + Teicoplanina. Após C1D1 Enfortumabe + Pembrolizumabe (30/03), sem ciclos adicionais.
+        <br><br>
+        <span class="bold">Situação atual (15/05):</span> Hemodinamicamente limítrofe (PAM mínima 53 mmHg sem DVA), Glasgow 14 com delirium em manejo, SpO₂ 93% em CN O₂, Hb 8,0, hipoproteinemia grave, uremia (Ur 179) e K 5,2. TC CE sem causa estrutural para delirium. TC tórax 11/05 sem pneumonia ativa — foco séptico a esclarecer. <span style="font-weight:500;color:#A32D2D;">Prioridades do plantão: monitorar PAM (iniciar DVA se &lt; 65 por &gt; 30min), coletar lactato, controlar K, otimizar O₂ e progredir manejo de delirium. PAC em construção — alinhamento com família antes de alta UTI.</span> PPS 30% com declínio progressivo.
+      </div>
+
+      <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:12px; font-size:12px; color:var(--color-text-secondary); border-top: 0.5px solid var(--color-border-tertiary); padding-top:10px;">
+        <span><strong>Braden:</strong> 12 (alto risco)</span>
+        <span>•</span>
+        <span><strong>NAS:</strong> 98,9</span>
+        <span>•</span>
+        <span><strong>ATB:</strong> Meropenem + Teicoplanina DI 09/05</span>
+        <span>•</span>
+        <span><strong>MP:</strong> 80 bpm</span>
+        <span>•</span>
+        <span><strong>Candidato a medidas invasivas:</strong> Sim (conforme equipe)</span>
+        <span>•</span>
+        <span><strong>PAC:</strong> Em construção</span>
+        <span>•</span>
+        <span><strong>Protocolos:</strong> TEV | LPP | BCA | Queda | Flebite</span>
+      </div>
+
+    </div>
+  </div>
+</div>

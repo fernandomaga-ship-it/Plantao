@@ -1,0 +1,10 @@
+.DS_Store
+*.zip
+output/
+tmp/
+site-rmc/
+site-rmc 2/
+assets/docs/
+assets/media/
+assets/images/*
+!assets/images/rmc-mark-256.png

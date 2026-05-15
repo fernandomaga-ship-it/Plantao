@@ -1,0 +1,4 @@
+# Para usar domínio personalizado no GitHub Pages:
+# 1. Renomeie este arquivo para CNAME.
+# 2. Substitua esta linha pelo domínio, por exemplo: plantao.seudominio.com.br
+# 3. Configure o DNS no provedor do domínio apontando para GitHub Pages.
