@@ -1,0 +1,176 @@
+
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+.lc { font-family: var(--font-sans); font-size: 14px; color: var(--color-text-primary); }
+.lh { background: #E6F1FB; border-bottom: 1.5px solid #185FA5; padding: 10px 18px; display: flex; align-items: flex-start; gap: 12px; border-radius: 12px 12px 0 0; }
+.lb-badge { background: #185FA5; color: #E6F1FB; font-size: 12px; font-weight: 500; padding: 4px 10px; border-radius: 8px; white-space: nowrap; flex-shrink: 0; }
+.lp { font-size: 15px; font-weight: 500; color: #0C447C; }
+.lsub { font-size: 12px; color: #185FA5; }
+.body { padding: 14px 18px; }
+.st { font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.8px; color: var(--color-text-secondary); border-bottom: 0.5px solid var(--color-border-tertiary); padding-bottom: 4px; margin-bottom: 8px; margin-top: 14px; }
+.st:first-child { margin-top: 0; }
+.tag { display: inline-block; font-size: 12px; padding: 3px 8px; border-radius: 4px; margin: 2px 3px 2px 0; font-weight: 500; }
+.tag-r { background: #FCEBEB; color: #A32D2D; }
+.tag-y { background: #FAEEDA; color: #BA7517; }
+.tag-b { background: #E6F1FB; color: #0C447C; }
+.tag-g { background: #EAF3DE; color: #3B6D11; }
+.g2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 8px; }
+.g3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-top: 8px; }
+.mc { background: var(--color-background-secondary); border-radius: 8px; padding: 8px 12px; }
+.mc .lb { font-size: 11px; color: var(--color-text-secondary); margin-bottom: 3px; }
+.mc .vl { font-size: 14px; font-weight: 500; }
+.mc .vl.ok { color: #3B6D11; }
+.mc .vl.warn { color: #BA7517; }
+.mc .vl.bad { color: #A32D2D; }
+.il { display: flex; gap: 6px; align-items: flex-start; padding: 4px 0; border-bottom: 0.5px solid var(--color-border-tertiary); font-size: 13px; line-height: 1.5; }
+.il:last-child { border-bottom: none; }
+.bul { flex-shrink: 0; margin-top: 1px; font-weight: 700; }
+.bul.r { color: #A32D2D; }
+.bul.y { color: #BA7517; }
+.bul.g { color: #3B6D11; }
+.bul.b { color: #185FA5; }
+.bold { font-weight: 500; }
+.impressao { background: #E6F1FB; border-left: 3px solid #185FA5; border-radius: 0 8px 8px 0; padding: 10px 14px; font-size: 13px; line-height: 1.6; color: #0C447C; }
+.conduta { background: var(--color-background-secondary); border-radius: 8px; padding: 10px 14px; font-size: 13px; line-height: 1.6; }
+.inter { background: #FAECE7; border-left: 3px solid #D85A30; border-radius: 0 8px 8px 0; padding: 10px 14px; font-size: 13px; line-height: 1.6; color: #993C1D; }
+.atb-pill { display: inline-block; background: #EAF3DE; color: #3B6D11; font-size: 11px; padding: 2px 7px; border-radius: 4px; margin: 2px 3px 2px 0; font-weight: 500; }
+.pill-warn { display: inline-block; background: #FAEEDA; color: #BA7517; font-size: 11px; padding: 2px 7px; border-radius: 4px; margin: 2px 3px 2px 0; font-weight: 500; border: 0.5px solid #EF9F27; }
+.bundle { display: inline-flex; align-items: center; gap: 3px; background: #EAF3DE; color: #3B6D11; font-size: 10px; font-weight: 500; padding: 2px 6px; border-radius: 4px; margin-left: 6px; border: 0.5px solid #639922; }
+.alerta-hema { background: #FCEBEB; border-left: 3px solid #A32D2D; border-radius: 0 8px 8px 0; padding: 10px 14px; font-size: 13px; line-height: 1.6; color: #7A1E1E; margin-bottom: 8px; }
+</style>
+
+<div class="lc">
+  <div style="border: 0.5px solid var(--color-border-secondary); border-radius: 12px; margin-bottom: 20px; overflow: hidden;">
+
+    <div class="lh">
+      <div class="lb-badge">Leito 1600-17</div>
+      <div style="flex:1;">
+        <div class="lp">Aricia das Neves Monteiro Salvioni</div>
+        <div class="lsub">38 anos · Feminino · DIH: 11/05/2026 · 5 dias · POI FAV Braquiocefálica ESQ (14/05)</div>
+        <div class="lsub" style="margin-top:2px;">Nefrologia — Dra. Anita Leme da Rocha Saldanha | Vascular — Dr. Caio Focassio | Hematologia (ponte HNF)</div>
+      </div>
+    </div>
+
+    <div class="body">
+
+      <div class="st">Diagnósticos</div>
+      <span class="tag tag-r">🔴 DRC dialítica — TFG 6–8 mL/min (diálise 2ª/4ª/6ª às 12h)</span>
+      <span class="tag tag-r">🔴 Síndrome do Anticorpo Antifosfolipídeo (SAAF) — Anticoagulação plena obrigatória</span>
+      <span class="tag tag-r">🔴 POI FAV Braquiocefálica ESQ (14/05) — bom frêmito ao final</span>
+      <span class="tag tag-y">🟡 LES em uso de prednisona 10mg + hidroxicloroquina 400mg</span>
+      <span class="tag tag-y">🟡 Creatinina 7,32 mg/dL | Ureia 97 mg/dL | K 5,1 mEq/L</span>
+      <span class="tag tag-y">🟡 Leucocitose (15.810) com granulações tóxicas — reação inflamatória pós-op</span>
+      <span class="tag tag-y">🟡 Policitemia / Hemoconcentração (Hb 16,1 / Ht 52,7%) — investigar</span>
+      <span class="tag tag-b">🔵 HAS | TVP + TEP prévios | Alergia: AAS</span>
+      <span class="tag tag-b">🔵 Lactato elevado (24 mg/dL — 2,0 mmol/L) — limítrofe superior</span>
+
+      <div class="st">Antecedentes</div>
+      <div class="il"><span class="bul r">▲</span><span><span class="bold">SAAF:</span> TVP + TEP prévios — anticoagulação plena crônica com varfarina (suspensa 08/05, ponte com HNF 18 UI/kg/h)</span></div>
+      <div class="il"><span class="bul b">•</span><span>LES: prednisona 10mg/dia + hidroxicloroquina 400mg/dia</span></div>
+      <div class="il"><span class="bul b">•</span><span>DRC dialítica (etiologia a confirmar — LES/SAAF?) | TRS 2ª/4ª/6ª às 12h</span></div>
+      <div class="il"><span class="bul b">•</span><span>HAS | Alergia: AAS | Sobrepeso (IMC 29,3)</span></div>
+
+      <div class="st">Dispositivos / Suporte</div>
+      <div class="g2">
+        <div>
+          <div class="il"><span class="bul g">✓</span><span><span class="bold">Neurológico:</span> Glasgow 15, orientada, contactuante, colaborativa</span></div>
+          <div class="il"><span class="bul g">✓</span><span><span class="bold">VM:</span> Eupneica em AA | SpO₂ 96–100%</span></div>
+          <div class="il"><span class="bul g">✓</span><span><span class="bold">DVA:</span> Sem DVA — hemodinamicamente estável</span></div>
+          <div class="il"><span class="bul g">✓</span><span><span class="bold">Sedoanalgesia:</span> Sem uso | EVA 0</span></div>
+        </div>
+        <div>
+          <div class="il"><span class="bul g">✓</span><span><span class="bold">Nutrição:</span> VO dieta geral pobre em potássio + módulo proteico 15g 2×/dia | Boa aceitação (>75%)</span></div>
+          <div class="il"><span class="bul y">!</span><span><span class="bold">TRS:</span> HD 2ª/4ª/6ª às 12h | Última sessão: 14/05 (hipotensão que reverteu ao desligar a HD)</span></div>
+          <div class="il"><span class="bul r">▲</span><span><span class="bold">HNF BIC:</span> 18 UI/kg/h — ponte pré/pós-operatória (SAAF). TTPa 70,1 / normal 30,7 = <span style="color:#A32D2D;font-weight:500;">ratio 2,28 (alvo: 1,5–2,5 ✅)</span></span></div>
+          <div class="il"><span class="bul g">✓</span><span><span class="bold">Permcath SCD</span> — CHG íntegro, sem sinais flogísticos | CVP MSD | FAV MSE — curativo limpo e seco</span></div>
+        </div>
+      </div>
+
+      <div class="st">Sinais vitais — últimas 24–48h</div>
+      <div class="g3">
+        <div class="mc"><div class="lb">FC / PA / PAM</div><div class="vl warn">54–103 bpm | PAM 50–112 mmHg (oscilação importante)</div></div>
+        <div class="mc"><div class="lb">SpO₂ / FR</div><div class="vl ok">96–100% / 20 irpm (AA)</div></div>
+        <div class="mc"><div class="lb">Temperatura</div><div class="vl ok">Afebril (36,1–36,3°C)</div></div>
+        <div class="mc"><div class="lb">BH 15/05 (manhã)</div><div class="vl ok">+91 mL (neutro)</div></div>
+        <div class="mc"><div class="lb">BH 14/05</div><div class="vl ok">+265 mL</div></div>
+        <div class="mc"><div class="lb">Glicemia</div><div class="vl ok">87–102 mg/dL</div></div>
+      </div>
+
+      <div class="st">Exames recentes — 15/05/2026</div>
+      <div class="alerta-hema">
+        <div class="il"><span class="bul r">⚠</span><span><span class="bold">Hb 16,1 g/dL / Ht 52,7% / Eritrócitos 6,65 mi</span> — policitemia / hemoconcentração. Em DRC dialítica com uso de EPO? Verificar EPO em uso e hematócrito-alvo de HD. Monitorar risco de trombose (SAAF + policitemia = risco trombótico muito elevado).</span></div>
+        <div class="il"><span class="bul r">⚠</span><span><span class="bold">TTPa 2,28× normal</span> — HNF em alvo terapêutico (1,5–2,5). Manter infusão atual. Próximo controle de TTPa conforme protocolo (6/6h ou 8/8h).</span></div>
+        <div class="il"><span class="bul r">▲</span><span><span class="bold">Leucocitose 15.810</span> com granulações tóxicas (neut 85%, bast 2%) — reação inflamatória pós-operatória esperada. Monitorar febre e sinais de infecção da ferida.</span></div>
+      </div>
+      <div class="g2">
+        <div>
+          <div class="il"><span class="bul y">!</span><span><span class="bold">Cr 7,32 mg/dL</span> | TFG 6–8 mL/min (DRC estadio 5D) | Ur 97 mg/dL</span></div>
+          <div class="il"><span class="bul y">!</span><span><span class="bold">K 5,1 mEq/L</span> — hiperpotassemia leve (pré-HD). Monitorar.</span></div>
+          <div class="il"><span class="bul y">!</span><span><span class="bold">Lactato 24 mg/dL</span> (≈ 2,0 mmol/L) — limítrofe superior. Repetir para confirmar tendência.</span></div>
+        </div>
+        <div>
+          <div class="il"><span class="bul g">✓</span><span><span class="bold">Bioquímica:</span> Na 138 | Mg 2,3 | Ca 1,2 | P 3,9 | Cl 105 | CK 25 / CK-MB 0,8 — sem lesão miocárdica</span></div>
+          <div class="il"><span class="bul g">✓</span><span><span class="bold">Função hepática:</span> TGO 18 / TGP 15 / BT 0,36 — normais</span></div>
+          <div class="il"><span class="bul g">✓</span><span><span class="bold">ECO (data):</span> FE 69% | Disfunção diastólica leve (alteração do relaxamento) | Sem valvopatia significativa | Sem derrame pericárdico | VDs normais</span></div>
+        </div>
+      </div>
+
+      <div class="st">Antimicrobianos</div>
+      <span class="pill-warn">Sem antibióticos em uso</span>
+      <span class="atb-pill">Prednisona 10mg/dia (LES) — manter</span>
+      <span class="atb-pill">Hidroxicloroquina 400mg/dia (LES) — manter</span>
+      <div style="margin-top:6px; font-size:12px; color:var(--color-text-secondary);">Varfarina suspensa em 08/05 (4 dias pré-op). Ponte com HNF 18 UI/kg/h em BIC — religar pós-op conforme liberação vascular (Dr. Caio). Reinício de varfarina: programar sobreposição.</div>
+
+      <div class="st">Profilaxias <span class="bundle">✔ BUNDLES</span></div>
+      <div class="il"><span class="bul g">✓</span><span><span class="bold">TEV:</span> HNF terapêutica (SAAF — anticoagulação plena, não apenas profilaxia). TTPa 2,28× em alvo. Próximo controle TTPa: conforme protocolo (6h após qualquer ajuste).</span></div>
+      <div class="il"><span class="bul g">✓</span><span><span class="bold">LPP:</span> Braden 18 (sem risco) | Pele íntegra | Colchão pneumático em uso</span></div>
+      <div class="il"><span class="bul g">✓</span><span>Pantoprazol | BCA | Queda | ICS (Permcath CHG)</span></div>
+      <div class="il"><span class="bul y">!</span><span><span class="bold">Constipação:</span> Sem evacuação há > 3 dias (desde 11/05). Avaliar laxativo. Dieta pobre em potássio (sem fibras suficientes → constipação esperada em DRC).</span></div>
+
+      <div class="st">Condutas / Pendências — Bundles UTI / SAAF / DRC / Pós-FAV</div>
+      <div class="conduta">
+        <div class="il"><span class="bul r">★</span><span><span class="bold">[FAV — VIGILÂNCIA VASCULAR]</span> FAV braquiocefálica ESQ confeccionada em 14/05 com bom frêmito ao final. Verificar frêmito a cada turno. Inspecionar sítio cirúrgico: sinais de sangramento, hematoma expansivo ou perda de frêmito. Atenção redobrada: HNF terapêutica em SAAF aumenta risco de sangramento na ferida operatória. Comprimir levemente se sangramento (orientação do Dr. Caio). Acionar vascular imediatamente se perda de frêmito (trombose da FAV).</span></div>
+        <div class="il"><span class="bul r">★</span><span><span class="bold">[SAAF — ANTICOAGULAÇÃO]</span> HNF 18 UI/kg/h em BIC — TTPa 2,28× normal (em alvo). Controlar TTPa a cada 6h. Varfarina deve ser reintroduzida conforme liberação vascular (Dr. Caio): "retornar com anticoagulação plena amanhã" — ou seja, hoje (15/05). Iniciar varfarina com dose habitual + manter HNF até INR ≥ 2,0 por 2 dias consecutivos. Atenção: em DRC grave (TFG 6–8), metabolismo da varfarina é imprevisível — iniciar com dose mais baixa e monitorar INR 2× por semana.</span></div>
+        <div class="il"><span class="bul r">★</span><span><span class="bold">[POLICITEMIA / HEMOCONCENTRAÇÃO]</span> Hb 16,1 / Ht 52,7% em DRC dialítica — muito acima dos alvos de HD (Hb 10–12 g/dL / Ht 30–36%). Verificar: uso de EPO e dose atual, hidratação do paciente, hemoconcentração por perda de volume (BH levemente positivo, ausência de DHE). Ht > 50% + SAAF = risco trombótico extremamente elevado. Comunicar nefrologia para ajuste de EPO e avaliação de sangria terapêutica se hemoconcentração confirmada. Investigar policitemia vera (JAK2?) se não há EPO em uso.</span></div>
+        <div class="il"><span class="bul y">!</span><span><span class="bold">[HD — PRÓXIMA SESSÃO]</span> HD 2ª/4ª/6ª. Hoje é sexta (15/05) → HD programada. Hipotensão durante última sessão (14/05) que reverteu ao desligar — avaliar peso seco, programa de UF e ajuste de condutividade. Sesssão via Permcath SCD (FAV ainda não maturada para HD).</span></div>
+        <div class="il"><span class="bul y">!</span><span><span class="bold">[K 5,1 + Ur 97]</span> Hiperpotassemia leve. Monitorar até HD. Dieta pobre em potássio. Se K ≥ 6,0: gluconato de cálcio + insulina + glicose + kayexalate.</span></div>
+        <div class="il"><span class="bul y">!</span><span><span class="bold">[LACTATO 24 mg/dL (~2,0 mmol/L)]</span> Limítrofe superior. Pode ser elevação por metabolização reduzida em DRC (lactato é clareado pelo fígado e rim). Repetir após HD para verificar tendência. Se > 2,0 mmol/L após HD: investigar hipoperfusão.</span></div>
+        <div class="il"><span class="bul y">!</span><span><span class="bold">[PAM OSCILANTE — 50–112 mmHg]</span> Amplitude pressórica importante. PAM mínima de 50 mmHg registrada — monitorar com atenção. Em SAAF + DRC, hipotensão aumenta risco de trombose de FAV. Meta PAM ≥ 65 mmHg. Avaliar causa de hipotensão (HD? hipovolemia? vasoplegia por LES?).</span></div>
+        <div class="il"><span class="bul y">!</span><span><span class="bold">[CONSTIPAÇÃO]</span> Sem evacuação desde 11/05 (4 dias). Em DRC com dieta pobre em potássio/fósforo e fibras restritas. Prescrever laxativo osmótico (lactulose ou polietilenoglicol) ajustado à DRC (evitar laxativos com magnésio ou fosfato).</span></div>
+        <div class="il"><span class="bul b">•</span><span><span class="bold">[LES — IMUNOSSUPRESSÃO]</span> Prednisona 10mg + hidroxicloroquina 400mg em manutenção. Leucocitose provavelmente pós-operatória (corticoide desmargina neutrófilos). Sem sinais de flare de LES no momento. Monitorar.</span></div>
+        <div class="il"><span class="bul b">•</span><span><span class="bold">[ALTA DA UTI]</span> Dr. Caio orienta "programar alta conforme condições clínicas." Critérios para saída: frêmito estável na FAV, anticoagulação retomada (HNF → reinício varfarina), hemodinâmica estável, sem complicações pós-op. Avaliar nas próximas 24–48h.</span></div>
+      </div>
+
+      <div class="st">Intercorrências</div>
+      <div class="inter">
+        <div class="il"><span class="bul r">⚠</span><span><span class="bold">Policitemia documentada (Hb 16,1 / Ht 52,7%)</span> — muito acima dos alvos em DRC. Risco trombótico elevado em SAAF. Acionar nefrologia hoje.</span></div>
+        <div class="il"><span class="bul r">⚠</span><span><span class="bold">PAM mínima de 50 mmHg</span> registrada nas últimas 24h — PAM abaixo de meta (≥ 65). Hipotensão durante HD ontem. Monitorar na próxima sessão de HD (hoje).</span></div>
+        <div class="il"><span class="bul y">!</span><span>TTPa 2,28× normal (HNF em alvo) — manter infusão e controlar a cada 6h conforme protocolo.</span></div>
+        <div class="il"><span class="bul y">!</span><span>Constipação há 4 dias — prescrever laxativo.</span></div>
+        <div class="il"><span class="bul y">!</span><span>Hematoma em região umbilical (anotado pela enfermagem) — em anticoagulação plena. Monitorar expansão. Sem sangramento ativo.</span></div>
+      </div>
+
+      <div class="st">Impressão clínica — progressão do caso</div>
+      <div class="impressao">
+        <span class="bold">Progressão:</span> Paciente de 38 anos com DRC dialítica, LES e SAAF (TVP + TEP prévios), admitida para confecção de FAV braquiocefálica ESQ, com necessidade de internação hospitalar para ponte anticoagulante com HNF (varfarina suspensa 08/05). FAV realizada em 14/05 sem intercorrências, com bom frêmito ao final.
+        <br><br>
+        <span class="bold">Situação atual (15/05 — POI 1):</span> Estável, eupneica, sem DVA. HNF em alvo terapêutico (TTPa 2,28×). Frêmito da FAV a verificar. <span style="font-weight:500; color:#A32D2D;">Achado crítico: Hb 16,1 / Ht 52,7% — policitemia em DRC dialítica muito acima dos alvos, com risco trombótico amplificado pelo SAAF.</span> PAM com episódios de 50 mmHg, especialmente durante HD. Leucocitose com granulações tóxicas (pós-op esperado). Varfarina deve ser reintroduzida hoje conforme liberação vascular. Alta prevista nas próximas 24–48h se FAV funcionante e anticoagulação em ajuste.
+      </div>
+
+      <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:12px; font-size:12px; color:var(--color-text-secondary); border-top: 0.5px solid var(--color-border-tertiary); padding-top:10px;">
+        <span><strong>Braden:</strong> 18 (sem risco)</span>
+        <span>•</span>
+        <span><strong>NAS:</strong> 71,6</span>
+        <span>•</span>
+        <span><strong>HNF:</strong> 18 UI/kg/h | TTPa 2,28×</span>
+        <span>•</span>
+        <span><strong>HD:</strong> 2ª/4ª/6ª — sessão prevista hoje</span>
+        <span>•</span>
+        <span><strong>Alergia:</strong> AAS</span>
+        <span>•</span>
+        <span><strong>Protocolos:</strong> TEV | LP | BCA | Queda | ICS</span>
+      </div>
+
+    </div>
+  </div>
+</div>
