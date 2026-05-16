@@ -1,4 +1,4 @@
-# Plantão
+# DR. FERNANDO
 
 Website estático para GitHub Pages com dashboard médico, busca, dark mode e navegação entre arquivos HTML de plantão.
 
