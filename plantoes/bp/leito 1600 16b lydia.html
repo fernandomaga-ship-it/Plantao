@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>1600-16 | Lydia Bocater — Nova Admissão</title>
+<style>
+:root{--azul:#0C447C;--azul-m:#185FA5;--azul-cl:#E6F1FB;--verm:#A32D2D;--verm-cl:#FCEBEB;--amar:#936010;--amar-cl:#FDF3E3;--verd:#2D6A0A;--verd-cl:#EBF5E0;--roxo:#5B3FA0;--roxo-cl:#F0EDFB;--cinza:#6B6B6B;--cinza-cl:#F5F4F0;--border:#E2DED6;--texto:#1A1A1A;--bg:#F7F5F1;}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+body{font-family:'Georgia','Times New Roman',serif;background:var(--bg);color:var(--texto);font-size:15px;line-height:1.6;padding-bottom:60px;}
+.header{background:linear-gradient(135deg,#1A3A0A 0%,#2D6A0A 100%);padding:20px 18px 16px;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(0,0,0,0.3);}
+.nova-adm{display:inline-flex;align-items:center;gap:5px;background:rgba(255,255,255,0.25);border:1px solid rgba(255,255,255,0.5);color:#fff;font-size:11px;font-weight:700;letter-spacing:1px;padding:3px 10px;border-radius:20px;font-family:'Courier New',monospace;margin-bottom:8px;}
+.header-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px;}
+.leito-badge{background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.3);color:#fff;font-family:'Courier New',monospace;font-size:11px;font-weight:700;letter-spacing:1.5px;padding:3px 10px;border-radius:20px;}
+.data-badge{color:rgba(255,255,255,0.7);font-size:11px;font-family:'Courier New',monospace;}
+.paciente-nome{color:#fff;font-size:20px;font-weight:700;line-height:1.2;margin-bottom:4px;}
+.paciente-sub{color:rgba(255,255,255,0.75);font-size:12px;font-family:'Courier New',monospace;}
+.equipes{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px;}
+.equipe-chip{background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.25);color:rgba(255,255,255,0.85);font-size:10px;padding:3px 9px;border-radius:20px;font-family:'Courier New',monospace;}
+.alerta-banner{margin-top:10px;background:rgba(255,255,255,0.2);border:1px solid rgba(255,255,255,0.4);border-radius:8px;padding:8px 12px;}
+.alerta-banner span{color:#fff;font-size:12px;font-weight:700;}
+.tabs{background:linear-gradient(135deg,#1A3A0A 0%,#2D6A0A 100%);padding:0 18px;display:flex;gap:0;overflow-x:auto;scrollbar-width:none;border-top:1px solid rgba(255,255,255,0.1);}
+.tabs::-webkit-scrollbar{display:none;}
+.tab{color:rgba(255,255,255,0.55);font-size:11px;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;padding:10px 14px;white-space:nowrap;cursor:pointer;border-bottom:2px solid transparent;transition:all 0.2s;font-family:'Courier New',monospace;}
+.tab.active{color:#fff;border-bottom-color:#fff;}
+.content{padding:0 18px;}
+.section{display:none;padding-top:16px;}
+.section.active{display:block;animation:fadeUp 0.2s ease;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
+.secao-titulo{font-family:'Courier New',monospace;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--cinza);border-bottom:1px solid var(--border);padding-bottom:6px;margin-bottom:10px;margin-top:18px;}
+.secao-titulo:first-child{margin-top:0;}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:4px;}
+.tag{font-size:12px;font-weight:600;padding:4px 10px;border-radius:20px;line-height:1.3;}
+.tag-r{background:var(--verm-cl);color:var(--verm);}
+.tag-y{background:var(--amar-cl);color:var(--amar);}
+.tag-b{background:var(--azul-cl);color:var(--azul-m);}
+.tag-g{background:var(--verd-cl);color:var(--verd);}
+.vitals{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:4px;}
+.vital-card{background:#fff;border:1px solid var(--border);border-radius:10px;padding:10px 12px;}
+.vital-label{font-size:10px;color:var(--cinza);text-transform:uppercase;letter-spacing:0.8px;font-family:'Courier New',monospace;margin-bottom:3px;}
+.vital-value{font-size:14px;font-weight:700;line-height:1.3;}
+.v-ok{color:var(--verd);}.v-warn{color:var(--amar);}.v-bad{color:var(--verm);}.v-neu{color:var(--azul-m);}
+.lista{margin-bottom:4px;}
+.item{display:flex;gap:8px;padding:7px 0;border-bottom:1px solid var(--border);font-size:14px;line-height:1.5;}
+.item:last-child{border-bottom:none;}
+.bullet{flex-shrink:0;font-size:15px;width:20px;text-align:center;margin-top:1px;}
+.item-txt{flex:1;}
+.caixa{border-radius:10px;padding:12px 14px;margin-bottom:8px;font-size:14px;line-height:1.6;}
+.caixa-azul{background:var(--azul-cl);border-left:3px solid var(--azul-m);color:var(--azul);}
+.caixa-verm{background:var(--verm-cl);border-left:3px solid var(--verm);color:var(--verm);}
+.caixa-amar{background:var(--amar-cl);border-left:3px solid var(--amar);color:var(--amar);}
+.caixa-verd{background:var(--verd-cl);border-left:3px solid var(--verd);color:var(--verd);}
+.caixa-cinza{background:var(--cinza-cl);border-left:3px solid var(--cinza);}
+.caixa strong{display:block;font-size:13px;margin-bottom:2px;}
+.conduta-item{background:#fff;border:1px solid var(--border);border-radius:12px;padding:12px 14px;margin-bottom:8px;display:flex;gap:10px;}
+.prio{flex-shrink:0;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;}
+.prio-1{background:var(--verm-cl);color:var(--verm);}
+.prio-2{background:var(--amar-cl);color:var(--amar);}
+.prio-3{background:var(--verd-cl);color:var(--verd);}
+.conduta-body{flex:1;font-size:13.5px;line-height:1.55;}
+.atb-pills{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:4px;}
+.atb-pill{font-size:12px;font-weight:600;padding:5px 12px;border-radius:20px;font-family:'Courier New',monospace;}
+.pill-g{background:var(--verd-cl);color:var(--verd);}
+.pill-y{background:var(--amar-cl);color:var(--amar);}
+.impressao{background:var(--verd-cl);border-left:4px solid var(--verd);border-radius:0 12px 12px 0;padding:14px 16px;font-size:14px;line-height:1.7;color:var(--verd);margin-top:4px;}
+.impressao .prog-label{font-family:'Courier New',monospace;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--verd);margin-bottom:6px;display:block;}
+.ttr-badge{background:var(--verm-cl);border:1px solid var(--verm);border-radius:8px;padding:8px 12px;margin-bottom:10px;font-size:13px;color:var(--verm);font-weight:600;}
+.med-rec{background:#fff;border:1px solid var(--border);border-radius:10px;padding:12px 14px;margin-bottom:8px;}
+.med-rec .med-nome{font-size:13px;font-weight:700;color:var(--texto);margin-bottom:4px;}
+.med-rec .med-detail{font-size:12px;color:var(--cinza);line-height:1.5;}
+.med-rec .ok{color:var(--verd);font-size:11px;font-weight:700;}
+.bottom-bar{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--border);padding:10px 18px;display:flex;justify-content:space-between;align-items:center;z-index:100;}
+.bottom-bar span{font-size:11px;color:var(--cinza);font-family:'Courier New',monospace;}
+.bottom-bar .nas{background:var(--verd-cl);color:var(--verd);font-weight:700;font-size:11px;padding:3px 10px;border-radius:20px;font-family:'Courier New',monospace;}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="nova-adm">⚡ NOVA ADMISSÃO — 13/05/2026</div>
+  <div class="header-top">
+    <span class="leito-badge">Leito 1600-16</span>
+    <span class="data-badge">15/05/2026 · UTI BP</span>
+  </div>
+  <div class="paciente-nome">Lydia Christina Marotti Bocater</div>
+  <div class="paciente-sub">75 anos · Feminino · DIH 13/05/2026 · 2 dias · Precaução por contato</div>
+  <div class="equipes">
+    <span class="equipe-chip">Cirurgia Digestiva — Dr. Luiz Arnaldo Szutan</span>
+    <span class="equipe-chip">Equipe Dr. Edwin</span>
+  </div>
+  <div class="alerta-banner">
+    <span>⚠ TRR acionado 2× · PCR 247,9 mg/L · Cr 1,52 (TFG 33) · Acidose metabólica</span>
+  </div>
+</div>
+
+<div class="tabs">
+  <div class="tab active" onclick="showTab('overview')">Geral</div>
+  <div class="tab" onclick="showTab('vitals')">Sinais / Labs</div>
+  <div class="tab" onclick="showTab('condutas')">Condutas</div>
+  <div class="tab" onclick="showTab('meds')">Medicações</div>
+  <div class="tab" onclick="showTab('impressao')">Impressão</div>
+</div>
+
+<div class="content">
+
+  <!-- TAB: GERAL -->
+  <div class="section active" id="tab-overview">
+
+    <div class="ttr-badge">
+      ⚠ TRR acionado 2 vezes — segue em vigilância na UTI
+    </div>
+
+    <div class="secao-titulo">Diagnósticos</div>
+    <div class="tags">
+      <span class="tag tag-r">🔴 Diarreia pós-colectomia esquerda (neo sigmoide)</span>
+      <span class="tag tag-r">🔴 PCR 247,9 mg/L — processo inflamatório/infeccioso ativo</span>
+      <span class="tag tag-r">🔴 IRA funcional — Cr 1,52 / TFG 33 / Acidose metabólica</span>
+      <span class="tag tag-y">🟡 Anemia Hb 8,7 g/dL (poiquilocitose discreta)</span>
+      <span class="tag tag-y">🟡 Desidratação / Hipotensão (PA 80/50 na admissão)</span>
+      <span class="tag tag-b">🔵 Neo mama bilateral + Cólon sigmoide + LLC</span>
+      <span class="tag tag-b">🔵 Hipotireoidismo · DLP · Depressão</span>
+    </div>
+
+    <div class="secao-titulo">Antecedentes</div>
+    <div class="lista">
+      <div class="item"><span class="bullet">🔴</span><span class="item-txt"><strong>Neoplasia:</strong> Ca mama bilateral + Ca cólon sigmoide (PO colectomia esquerda) + LLC</span></div>
+      <div class="item"><span class="bullet">•</span><span class="item-txt">Hipotireoidismo · DLP · Depressão · Alergia: corante</span></div>
+      <div class="item"><span class="bullet">•</span><span class="item-txt">MUC: Escitalopram 20mg · Levotiroxina 75mcg · Amitriptilina 25mg · Rosuvastatina 5mg</span></div>
+    </div>
+
+    <div class="secao-titulo">Dispositivos / Suporte</div>
+    <div class="lista">
+      <div class="item"><span class="bullet">✅</span><span class="item-txt"><strong>Neurológico:</strong> Glasgow — contactuante, sonolenta, calma · Deambula com aux</span></div>
+      <div class="item"><span class="bullet">✅</span><span class="item-txt"><strong>VM / DVA:</strong> Eupneica em AA · SpO₂ 97% · Sem DVA</span></div>
+      <div class="item"><span class="bullet">⚠️</span><span class="item-txt"><strong>AVP MSE:</strong> Reposição de Mg EV em BIC (15/05) · Expansão SF 0,9% MSD</span></div>
+      <div class="item"><span class="bullet">⚠️</span><span class="item-txt"><strong>Eliminações:</strong> Diarreia líquida (pós-colectomia) · Fralda descartável</span></div>
+      <div class="item"><span class="bullet">⚠️</span><span class="item-txt"><strong>Dieta:</strong> Inapetente · Via oral preservada</span></div>
+    </div>
+
+    <div class="secao-titulo">Antimicrobianos</div>
+    <div class="atb-pills">
+      <span class="atb-pill pill-g">Ceftriaxona (início internação)</span>
+      <span class="atb-pill pill-g">Metronidazol (início internação)</span>
+    </div>
+
+    <div class="secao-titulo">Profilaxias</div>
+    <div class="lista">
+      <div class="item"><span class="bullet">✅</span><span class="item-txt"><strong>TEV:</strong> Clexane 40mg — alto risco (cirurgia oncológica prévia + acamada)</span></div>
+      <div class="item"><span class="bullet">✅</span><span class="item-txt"><strong>Gástrica:</strong> Pantoprazol 40mg</span></div>
+      <div class="item"><span class="bullet">⚠️</span><span class="item-txt"><strong>Queda:</strong> Alto risco · Flebite (AVP) · LPP: hiperemia em glúteo D com pápulas</span></div>
+    </div>
+  </div>
+
+  <!-- TAB: SINAIS E LABS -->
+  <div class="section" id="tab-vitals">
+
+    <div class="secao-titulo">Sinais vitais — admissão e atuais</div>
+    <div class="caixa caixa-verm">
+      <strong>⚠ PA 80/50 mmHg na admissão</strong>
+      Hipotensão detectada na chegada. Pós-hidratação EV. Monitorar PAM. FC 92 bpm. SpO₂ 97%. FR 22 irpm.
+    </div>
+    <div class="vitals">
+      <div class="vital-card"><div class="vital-label">FC atual</div><div class="vital-value v-warn">92 bpm</div></div>
+      <div class="vital-card"><div class="vital-label">SpO₂ / FR</div><div class="vital-value v-ok">97% / 22 irpm</div></div>
+      <div class="vital-card"><div class="vital-label">PA admissão</div><div class="vital-value v-bad">80/50 mmHg ⚠</div></div>
+      <div class="vital-card"><div class="vital-label">Temperatura</div><div class="vital-value v-warn">Subfebril</div></div>
+    </div>
+
+    <div class="secao-titulo">Laboratório — 15/05</div>
+    <div class="vitals">
+      <div class="vital-card"><div class="vital-label">Hb / Ht</div><div class="vital-value v-bad">8,7 g/dL<br>Ht 27,2%</div></div>
+      <div class="vital-card"><div class="vital-label">Leuco / Neut</div><div class="vital-value v-ok">8.900 / 5.520<br>(62% — normal)</div></div>
+      <div class="vital-card"><div class="vital-label">Plaq</div><div class="vital-value v-ok">167.000</div></div>
+      <div class="vital-card"><div class="vital-label">PCR</div><div class="vital-value v-bad">247,9 mg/L ⚠</div></div>
+      <div class="vital-card"><div class="vital-label">Cr / TFG</div><div class="vital-value v-bad">1,52 mg/dL<br>TFG 33 mL/min</div></div>
+      <div class="vital-card"><div class="vital-label">Ureia</div><div class="vital-value v-warn">47 mg/dL</div></div>
+      <div class="vital-card"><div class="vital-label">Na / K</div><div class="vital-value v-warn">137 / 3,7</div></div>
+      <div class="vital-card"><div class="vital-label">Fósforo</div><div class="vital-value v-warn">2,5 mg/dL (limiar)</div></div>
+      <div class="vital-card"><div class="vital-label">Ca iônico</div><div class="vital-value v-ok">1,14 mmol/L ✓</div></div>
+      <div class="vital-card"><div class="vital-label">Lactato</div><div class="vital-value v-warn">15 mg/dL (limiar)</div></div>
+    </div>
+
+    <div class="secao-titulo">Gasometria venosa — 15/05</div>
+    <div class="caixa caixa-verm">
+      <strong>⚠ Acidose metabólica significativa</strong>
+      pH 7,29 · pCO₂ 37 · HCO₃ 18 mmol/L · BE −8,1<br>
+      Causa provável: diarreia volumosa (perda de bicarbonato) + desidratação<br>
+      SatO₂ venosa 39% — possivelmente amostra comprometida; repetir se necessário.
+    </div>
+
+    <div class="secao-titulo">Coagulação</div>
+    <div class="vitals">
+      <div class="vital-card"><div class="vital-label">INR</div><div class="vital-value v-ok">1,1 ✓</div></div>
+      <div class="vital-card"><div class="vital-label">TTPa ratio</div><div class="vital-value v-ok">0,84×N ✓</div></div>
+    </div>
+  </div>
+
+  <!-- TAB: CONDUTAS -->
+  <div class="section" id="tab-condutas">
+
+    <div class="caixa caixa-verm">
+      <strong>🔴 PRIORIDADES DESTE PLANTÃO</strong>
+      • Monitorar PAM — hipotensão PA 80/50 na admissão<br>
+      • Repor eletrólitos: Mg EV em curso · Repor K se &lt; 3,5<br>
+      • Acidose metabólica (pH 7,29 · HCO₃ 18) — corrigir desidratação<br>
+      • PCR 247,9 — investigar foco infeccioso + HMC se subfebril/febril<br>
+      • Anemia Hb 8,7 — monitorar (transfundir se &lt; 7,5 ou sintomática)
+    </div>
+
+    <div class="secao-titulo">Condutas por prioridade</div>
+
+    <div class="conduta-item">
+      <div class="prio prio-1">★</div>
+      <div class="conduta-body">
+        <b>[HIPOTENSÃO / DESIDRATAÇÃO]</b><br>
+        PA 80/50 mmHg na admissão. Expansão com SF 0,9% em curso. Monitorar PAM (meta ≥ 65 mmHg) e resposta à hidratação. Se PAM &lt; 65 persistente após 2 bolus: iniciar Noradrenalina e chamar equipe.
+      </div>
+    </div>
+
+    <div class="conduta-item">
+      <div class="prio prio-1">★</div>
+      <div class="conduta-body">
+        <b>[ACIDOSE METABÓLICA — pH 7,29]</b><br>
+        Causa: diarreia volumosa (perda de HCO₃). Tratar causa base: hidratação + reposição eletrolítica. Monitorar gasometria após reposição. Se pH &lt; 7,25 com comprometimento hemodinâmico: avaliar bicarbonato EV (com cuidado em DRC — TFG 33).
+      </div>
+    </div>
+
+    <div class="conduta-item">
+      <div class="prio prio-1">★</div>
+      <div class="conduta-body">
+        <b>[PCR 247,9 mg/L — INVESTIGAR FOCO]</b><br>
+        Subfebril. Diarreia pós-colectomia esquerda. Considerar: (1) infecção de sítio cirúrgico; (2) peritonite; (3) <em>Clostridioides difficile</em> (alto risco: ATB + cirurgia colorretal recente). Solicitar toxina C. difficile nas fezes URGENTE. HMC se febre. Ceftriaxona + Metronidazol em curso — adequado para C. difficile (metronidazol coberto).
+      </div>
+    </div>
+
+    <div class="conduta-item">
+      <div class="prio prio-2">!</div>
+      <div class="conduta-body">
+        <b>[IRA — Cr 1,52 / TFG 33]</b><br>
+        IRA pré-renal provável (desidratação + diarreia). Hidratação agressiva. Monitorar Cr 12/12h. Ajustar doses de medicamentos conforme TFG. Suspender Rosuvastatina até melhora renal. Evitar AINEs e contrastes iodados.
+      </div>
+    </div>
+
+    <div class="conduta-item">
+      <div class="prio prio-2">!</div>
+      <div class="conduta-body">
+        <b>[ANEMIA Hb 8,7 g/dL]</b><br>
+        Poiquilocitose discreta. Anemia de doença crônica + perda por diarreia. Transfundir 1 CH se Hb &lt; 7,5 g/dL ou sintomática (hipotensão + taquicardia). Monitorar Hb 12/12h.
+      </div>
+    </div>
+
+    <div class="conduta-item">
+      <div class="prio prio-2">!</div>
+      <div class="conduta-body">
+        <b>[C. DIFFICILE — Suspeita alta]</b><br>
+        Diarreia líquida pós-cirurgia colorretal + ATB de amplo espectro = risco máximo. Coletar toxina A/B nas fezes HOJE. Se positivo: escalar para vancomicina oral 125mg 4×/dia ou fidaxomicina (metronidazol já cobre casos leves-moderados).
+      </div>
+    </div>
+
+    <div class="conduta-item">
+      <div class="prio prio-2">!</div>
+      <div class="conduta-body">
+        <b>[RECONCILIAÇÃO MEDICAMENTOSA]</b><br>
+        Verificar: Levotiroxina — dose hospitalar 75mcg em jejum (confirmar prescrição correta). Escitalopram 20mg/dia ✓. Amitriptilina 25mg ✓. Rosuvastatina: SUSPENDER até melhora renal (TFG 33).
+      </div>
+    </div>
+
+    <div class="conduta-item">
+      <div class="prio prio-2">!</div>
+      <div class="conduta-body">
+        <b>[LPP — Hiperemia glúteo D com pápulas]</b><br>
+        Avaliar: dermatite associada à incontinência (DAI) × LPP estágio 1. Usar barreira cutânea (Cavilon ou similar). Decúbito 2/2h. Fraldas trocadas prontamente após evacuação.
+      </div>
+    </div>
+
+    <div class="conduta-item">
+      <div class="prio prio-3">•</div>
+      <div class="conduta-body">
+        <b>[NUTRIÇÃO]</b><br>
+        Inapetente. Via oral preservada. Tentar dieta leve com baixo resíduo. Se aceitação &lt; 50% por 48h: considerar NE. Nutrição — metas: 25 kcal/kg/dia, 1,2–1,5 g/kg/dia de proteína (oncológica + pós-cirúrgica).
+      </div>
+    </div>
+
+    <div class="conduta-item">
+      <div class="prio prio-3">•</div>
+      <div class="conduta-body">
+        <b>[TRR — 2 acionamentos prévios]</b><br>
+        Segue em UTI para vigilância. Definir critérios claros para novo acionamento: PAM &lt; 60 por > 15 min, SpO₂ &lt; 90%, FR &gt; 30, alteração súbita de consciência.
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB: MEDICAÇÕES -->
+  <div class="section" id="tab-meds">
+    <div class="secao-titulo">Reconciliação medicamentosa — 15/05</div>
+
+    <div class="med-rec">
+      <div class="med-nome">Escitalopram</div>
+      <div class="med-detail">
+        Domiciliar: 20 mg 1×/dia<br>
+        Hospitalar: 10mg 2 comprimidos 1×/dia (= 20mg) <span class="ok">✅ CORRETO</span>
+      </div>
+    </div>
+
+    <div class="med-rec">
+      <div class="med-nome">Levotiroxina (Puran T4)</div>
+      <div class="med-detail">
+        Domiciliar: 75 mcg 1×/dia em jejum<br>
+        Hospitalar: 25mcg · 3 comprimidos (= 75 mcg) <span class="ok">✅ CORRETO</span><br>
+        <span style="color:var(--amar);font-size:12px;">⚠ Confirmar se está sendo administrada em jejum</span>
+      </div>
+    </div>
+
+    <div class="med-rec">
+      <div class="med-nome">Amitriptilina</div>
+      <div class="med-detail">
+        Domiciliar: 25 mg 1×/dia<br>
+        Hospitalar: 25 mg 1×/dia <span class="ok">✅ CORRETO</span>
+      </div>
+    </div>
+
+    <div class="med-rec">
+      <div class="med-nome" style="color:var(--amar);">Rosuvastatina ⚠</div>
+      <div class="med-detail">
+        Domiciliar: 5 mg em dias alternados<br>
+        Hospitalar: 10mg 1×/dia (5mg prescrito)<br>
+        <span style="color:var(--verm);font-size:12px;font-weight:700;">⛔ SUSPENDER enquanto TFG &lt; 45 (TFG atual 33 mL/min)</span>
+      </div>
+    </div>
+
+    <div class="secao-titulo">Antimicrobianos em curso</div>
+    <div class="atb-pills">
+      <span class="atb-pill pill-g">Ceftriaxona EV</span>
+      <span class="atb-pill pill-g">Metronidazol EV</span>
+      <span class="atb-pill" style="background:var(--cinza-cl);color:var(--cinza);">Pantoprazol 40mg</span>
+      <span class="atb-pill" style="background:var(--cinza-cl);color:var(--cinza);">Clexane 40mg</span>
+    </div>
+
+    <div class="secao-titulo">Reposições em curso</div>
+    <div class="lista">
+      <div class="item"><span class="bullet">💊</span><span class="item-txt"><strong>Magnésio EV:</strong> BIC em AVP MSE (Mg não disponível no lab de hoje — solicitar após reposição)</span></div>
+      <div class="item"><span class="bullet">💊</span><span class="item-txt"><strong>SF 0,9%:</strong> Expansão EV para desidratação / hipotensão</span></div>
+    </div>
+  </div>
+
+  <!-- TAB: IMPRESSÃO -->
+  <div class="section" id="tab-impressao">
+    <div class="secao-titulo">Progressão do caso</div>
+    <div class="impressao">
+      <span class="prog-label">▸ Contexto</span>
+      Paciente de 75 anos com múltiplas neoplasias (mama bilateral + cólon sigmoide + LLC), pós-colectomia esquerda por neo sigmoide, hipotireoidismo, DLP e depressão.
+    </div>
+    <div style="height:10px"></div>
+    <div class="impressao">
+      <span class="prog-label">▸ Situação atual — 15/05 (admissão 13/05)</span>
+      Admitida por diarreia pós-colectomia com desidratação grave (PA 80/50 mmHg na chegada), TRR acionado 2 vezes.
+      <br><br>
+      Achados preocupantes: <strong>PCR 247,9 mg/L</strong> + subfebril + Cr 1,52 (TFG 33 — IRA provável pré-renal) + <strong>acidose metabólica pH 7,29</strong> (HCO₃ 18, BE −8,1).
+      <br><br>
+      Leuco normal (8.900) — processo inflamatório sem leucocitose franca. Diarreia pós-colectomia + ATB = risco muito alto de <strong>C. difficile</strong>.
+      <br><br>
+      Prioridades: hidratação, correção da acidose, investigação de C. difficile e vigilância hemodinâmica. Rosuvastatina deve ser suspensa.
+    </div>
+    <div style="height:8px"></div>
+    <div class="caixa caixa-cinza" style="font-size:12px;">
+      <strong style="font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--cinza);">Protocolos ativos</strong><br>
+      Queda (alto risco) · LPP (hiperemia glúteo D) · TEV (Clexane) · Flebite (AVP) · BCA · Precaução por contato
+    </div>
+    <div style="height:8px"></div>
+    <div class="caixa caixa-amar" style="font-size:12px;">
+      <strong>! Alerta de reconciliação</strong>
+      Rosuvastatina: verificar se está sendo administrada — SUSPENDER (TFG 33).<br>
+      Levotiroxina: confirmar administração em jejum.
+    </div>
+  </div>
+
+</div>
+
+<div class="bottom-bar">
+  <span>UTI BP · Nova admissão 13/05</span>
+  <span class="nas">PCR 247,9 · pH 7,29 · TFG 33</span>
+</div>
+
+<script>
+function showTab(id){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  event.target.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+</script>
+</body>
+</html>
