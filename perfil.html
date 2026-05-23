@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#0f766e" />
+    <title>DR. FERNANDO | Perfil</title>
+    <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="./assets/images/rmc-mark-256.png" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="Menu lateral">
+        <a class="brand" href="./index.html" aria-label="DR. FERNANDO - página inicial">
+          <span class="brand-mark">F</span>
+          <span>
+            <strong>DR. FERNANDO</strong>
+            <small>Dashboard médico</small>
+          </span>
+        </a>
+
+        <nav class="side-nav" aria-label="Categorias">
+          <a class="nav-link" href="./index.html">
+            <span>Plantões</span>
+          </a>
+          <a class="nav-link active" href="./perfil.html">
+            <span>Perfil</span>
+          </a>
+        </nav>
+
+        <div class="sidebar-card">
+          <span class="status-dot"></span>
+          <div>
+            <strong>GitHub Pages ready</strong>
+            <small>HTML, CSS e JS estáticos</small>
+          </div>
+        </div>
+      </aside>
+
+      <main class="workspace">
+        <header class="topbar">
+          <button class="icon-button menu-toggle" type="button" aria-label="Abrir menu" data-menu-toggle>
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+          <div>
+            <p class="eyebrow">Sobre</p>
+            <h1>Perfil do médico</h1>
+          </div>
+          <button class="theme-toggle" type="button" data-theme-toggle aria-label="Alternar dark mode">
+            <span aria-hidden="true">◐</span>
+            <strong>Dark mode</strong>
+          </button>
+        </header>
+
+        <section class="hero-panel" aria-labelledby="perfil-title" style="margin-bottom:0;">
+          <div class="hero-copy">
+            <p class="eyebrow">Medicina Intensiva</p>
+            <h2 id="perfil-title">Dr. Fernando Magalhães</h2>
+            <p>Médico intensivista atuando na UTI de Cardiologia e Neurologia do Hospital Beneficência Portuguesa de São Paulo.</p>
+          </div>
+          <div class="summary-grid" aria-label="Resumo">
+            <article>
+              <span>4</span>
+              <small>Unidades</small>
+            </article>
+            <article>
+              <span>TEMI</span>
+              <small>Em finalização</small>
+            </article>
+            <article>
+              <span>BP SP</span>
+              <small>Hospital</small>
+            </article>
+          </div>
+        </section>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:24px; padding:24px 32px 0; max-width:1040px;">
+
+          <!-- Informações profissionais -->
+          <section aria-labelledby="sec-profissional">
+            <div class="section-heading" style="margin-bottom:12px;">
+              <div>
+                <p class="eyebrow">Dados</p>
+                <h2 id="sec-profissional">Informações profissionais</h2>
+              </div>
+            </div>
+            <div class="plantao-card" style="background:var(--color-bg-card, #fff); border:1px solid var(--color-border, #e2e8f0); border-radius:12px; padding:20px; display:flex; flex-direction:column; gap:14px;">
+              <div class="info-row">
+                <span class="info-label">Nome</span>
+                <span class="info-value">Dr. Fernando Magalhães</span>
+              </div>
+              <div class="info-row">
+                <span class="info-label">Especialidade</span>
+                <span class="info-value">Medicina Intensiva (UTI)</span>
+              </div>
+              <div class="info-row">
+                <span class="info-label">Hospital principal</span>
+                <span class="info-value">Hospital Beneficência Portuguesa — BP Paulista</span>
+              </div>
+              <div class="info-row">
+                <span class="info-label">Unidades</span>
+                <span class="info-value">UTI 6A · UTI 8A · UTI 8B · BP Mirante</span>
+              </div>
+              <div class="info-row">
+                <span class="info-label">Foco clínico</span>
+                <span class="info-value">Cardiologia Intensiva · Neurointensivismo</span>
+              </div>
+              <div class="info-row">
+                <span class="info-label">E-mail profissional</span>
+                <span class="info-value">drfernandomagalahes@gmail.com</span>
+              </div>
+              <div class="info-row">
+                <span class="info-label">GitHub</span>
+                <span class="info-value">fernandomaga-ship-it</span>
+              </div>
+            </div>
+          </section>
+
+          <!-- Certificações -->
+          <section aria-labelledby="sec-cert">
+            <div class="section-heading" style="margin-bottom:12px;">
+              <div>
+                <p class="eyebrow">Qualificação</p>
+                <h2 id="sec-cert">Certificações</h2>
+              </div>
+            </div>
+            <div style="display:flex; flex-direction:column; gap:12px;">
+              <div class="cert-card cert-active">
+                <div class="cert-header">
+                  <strong>TEMI — Título de Especialista em Medicina Intensiva (AMIB)</strong>
+                  <span class="cert-badge cert-badge-warn">Em finalização</span>
+                </div>
+                <p class="cert-detail">Plano de estudos intensivo de 8 semanas concluído em mai/2026. Temas: Choque e hemodinâmica, Sepse, Ventilação mecânica, Neurointensivismo, IRA/ácido-base/TRS.</p>
+              </div>
+              <div class="cert-card">
+                <div class="cert-header">
+                  <strong>ACLS — Advanced Cardiovascular Life Support</strong>
+                  <span class="cert-badge cert-badge-ok">Renovação 26/05/2026</span>
+                </div>
+                <p class="cert-detail">Renovação agendada — American Heart Association.</p>
+              </div>
+            </div>
+          </section>
+
+          <!-- Plantões regulares -->
+          <section aria-labelledby="sec-plantoes">
+            <div class="section-heading" style="margin-bottom:12px;">
+              <div>
+                <p class="eyebrow">Agenda</p>
+                <h2 id="sec-plantoes">Plantões recorrentes</h2>
+              </div>
+            </div>
+            <div style="display:flex; flex-direction:column; gap:10px;">
+              <div class="plantao-row">
+                <span class="plantao-dot" style="background:#185FA5;"></span>
+                <div>
+                  <strong>UTI 8B — 24h Fixo</strong>
+                  <p>Semanal · Escala passada pela Simone · Hospital BP</p>
+                </div>
+              </div>
+              <div class="plantao-row">
+                <span class="plantao-dot" style="background:#185FA5;"></span>
+                <div>
+                  <strong>UTI 8A — 24h</strong>
+                  <p>Quinzenal · Escala passada pela Estela · Hospital BP</p>
+                </div>
+              </div>
+              <div class="plantao-row">
+                <span class="plantao-dot" style="background:#3B6D11;"></span>
+                <div>
+                  <strong>UTI 6A — 12h Dia e Noite</strong>
+                  <p>2º e 4º sábados do mês · Hospital BP</p>
+                </div>
+              </div>
+              <div class="plantao-row">
+                <span class="plantao-dot" style="background:#9A3412;"></span>
+                <div>
+                  <strong>BP Mirante — 12h Noite</strong>
+                  <p>Quinzenal/mensal · Hospital BP Mirante</p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Próximos plantões -->
+          <section aria-labelledby="sec-proximos">
+            <div class="section-heading" style="margin-bottom:12px;">
+              <div>
+                <p class="eyebrow">Calendário</p>
+                <h2 id="sec-proximos">Próximas escalas</h2>
+              </div>
+            </div>
+            <div style="display:flex; flex-direction:column; gap:8px;" id="proximas-escalas">
+              <div class="escala-item">
+                <span class="escala-data">23/05</span>
+                <span class="escala-desc">UTI 6A 12h Noite Fixo — 14h às 03h</span>
+              </div>
+              <div class="escala-item">
+                <span class="escala-data">24/05</span>
+                <span class="escala-desc">UTI 6A 12h Dia Fixo — 07h às 19h</span>
+              </div>
+              <div class="escala-item escala-highlight">
+                <span class="escala-data">26/05</span>
+                <span class="escala-desc">Renovação ACLS</span>
+              </div>
+              <div class="escala-item">
+                <span class="escala-data">28-29/05</span>
+                <span class="escala-desc">UTI 8B 24H Fixo</span>
+              </div>
+              <div class="escala-item">
+                <span class="escala-data">29-30/05</span>
+                <span class="escala-desc">UTI 8A 24H</span>
+              </div>
+              <div class="escala-item">
+                <span class="escala-data">30-31/05</span>
+                <span class="escala-desc">BP Mirante 12h Noite</span>
+              </div>
+              <div class="escala-item">
+                <span class="escala-data">04/06</span>
+                <span class="escala-desc">Aniversário Bruno</span>
+              </div>
+              <div class="escala-item">
+                <span class="escala-data">04-05/06</span>
+                <span class="escala-desc">UTI 8B 24H Fixo</span>
+              </div>
+            </div>
+          </section>
+
+        </div>
+
+        <div style="height:32px;"></div>
+      </main>
+    </div>
+
+    <div class="backdrop" data-menu-toggle></div>
+
+    <style>
+      .info-row {
+        display: flex;
+        gap: 12px;
+        align-items: baseline;
+        font-size: 14px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid var(--color-border-tertiary, #e9efed);
+      }
+      .info-row:last-child { border-bottom: none; padding-bottom: 0; }
+      .info-label {
+        font-size: 11px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.6px;
+        color: var(--color-text-secondary, #5f6f6c);
+        min-width: 120px;
+        flex-shrink: 0;
+      }
+      .info-value { font-weight: 500; color: var(--color-text-primary, #17201f); }
+
+      .cert-card {
+        background: var(--color-bg-card, #fff);
+        border: 1px solid var(--color-border, #e2e8f0);
+        border-radius: 10px;
+        padding: 14px 16px;
+      }
+      .cert-header {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-bottom: 6px;
+      }
+      .cert-header strong { font-size: 13px; }
+      .cert-badge {
+        font-size: 11px;
+        font-weight: 600;
+        padding: 2px 8px;
+        border-radius: 4px;
+        white-space: nowrap;
+      }
+      .cert-badge-warn { background: #FAEEDA; color: #BA7517; }
+      .cert-badge-ok { background: #EAF3DE; color: #3B6D11; }
+      .cert-detail { font-size: 12px; color: var(--color-text-secondary, #5f6f6c); line-height: 1.5; }
+
+      .plantao-row {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        background: var(--color-bg-card, #fff);
+        border: 1px solid var(--color-border, #e2e8f0);
+        border-radius: 10px;
+        padding: 12px 14px;
+      }
+      .plantao-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        margin-top: 4px;
+        flex-shrink: 0;
+      }
+      .plantao-row strong { font-size: 13px; }
+      .plantao-row p { font-size: 12px; color: var(--color-text-secondary, #5f6f6c); margin-top: 2px; }
+
+      .escala-item {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 8px 14px;
+        border-radius: 8px;
+        background: var(--color-bg-card, #fff);
+        border: 1px solid var(--color-border, #e2e8f0);
+        font-size: 13px;
+      }
+      .escala-item.escala-highlight {
+        background: #EAF3DE;
+        border-color: #639922;
+      }
+      .escala-data {
+        font-size: 11px;
+        font-weight: 700;
+        color: var(--color-text-secondary, #5f6f6c);
+        min-width: 52px;
+        text-align: right;
+      }
+      .escala-desc { color: var(--color-text-primary, #17201f); }
+
+      @media (max-width: 768px) {
+        div[style*="grid-template-columns:1fr 1fr"] {
+          grid-template-columns: 1fr !important;
+          padding: 16px !important;
+        }
+      }
+    </style>
+
+    <script src="./assets/app.js"></script>
+  </body>
+</html>
