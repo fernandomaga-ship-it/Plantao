@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#0f766e" />
+    <title>DR. FERNANDO | Publicações</title>
+    <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="./assets/images/rmc-mark-256.png" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="Menu lateral">
+        <a class="brand" href="./index.html" aria-label="DR. FERNANDO - página inicial">
+          <span class="brand-mark">F</span>
+          <span>
+            <strong>DR. FERNANDO</strong>
+            <small>Dashboard médico</small>
+          </span>
+        </a>
+
+        <nav class="side-nav" aria-label="Categorias">
+          <a class="nav-link" href="./index.html">
+            <span>Plantões</span>
+          </a>
+          <a class="nav-link" href="./perfil.html">
+            <span>Perfil</span>
+          </a>
+          <a class="nav-link active" href="./publicacoes.html">
+            <span>Publicações</span>
+          </a>
+        </nav>
+
+        <div class="sidebar-card">
+          <span class="status-dot"></span>
+          <div>
+            <strong>GitHub Pages ready</strong>
+            <small>HTML, CSS e JS estáticos</small>
+          </div>
+        </div>
+      </aside>
+
+      <main class="workspace">
+        <header class="topbar">
+          <button class="icon-button menu-toggle" type="button" aria-label="Abrir menu" data-menu-toggle>
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+          <div>
+            <p class="eyebrow">Instagram</p>
+            <h1>Publicações médicas</h1>
+          </div>
+          <button class="theme-toggle" type="button" data-theme-toggle aria-label="Alternar dark mode">
+            <span aria-hidden="true">◐</span>
+            <strong>Dark mode</strong>
+          </button>
+        </header>
+
+        <section class="hero-panel" aria-labelledby="pub-title">
+          <div class="hero-copy">
+            <p class="eyebrow">Educação médica</p>
+            <h2 id="pub-title">Conteúdo de Medicina Intensiva</h2>
+            <p>Posts educativos sobre UTI, diretrizes e casos clínicos publicados no Instagram
+              <a href="https://www.instagram.com/fernandomagalhaescoutinho/" target="_blank" rel="noreferrer" style="color:inherit; font-weight:600;">@fernandomagalhaescoutinho</a>.
+            </p>
+          </div>
+          <div class="summary-grid" aria-label="Resumo">
+            <article>
+              <span id="pub-count">1</span>
+              <small>Posts</small>
+            </article>
+            <article>
+              <span>UTI</span>
+              <small>Tema principal</small>
+            </article>
+            <article>
+              <span>2026</span>
+              <small>Início</small>
+            </article>
+          </div>
+        </section>
+
+        <section style="padding: 0 32px 32px;" aria-labelledby="posts-heading">
+          <div class="section-heading" style="margin-bottom: 20px;">
+            <div>
+              <p class="eyebrow">Feed</p>
+              <h2 id="posts-heading">Posts publicados</h2>
+            </div>
+            <a
+              href="https://www.instagram.com/fernandomagalhaescoutinho/"
+              target="_blank"
+              rel="noreferrer"
+              class="viewer-button"
+              style="font-size:13px; padding: 6px 14px;"
+            >Ver perfil no Instagram</a>
+          </div>
+
+          <div class="posts-grid" id="posts-grid">
+
+            <!-- POST 1 -->
+            <article class="post-card">
+              <div class="post-meta">
+                <span class="post-tag">Diretriz</span>
+                <span class="post-date">24 mai 2026</span>
+              </div>
+              <h3 class="post-title">Choque Cardiogênico — ESC/AHA 2024</h3>
+              <p class="post-excerpt">Classificação SCAI, vasopressores, inotropia, suporte mecânico circulatório e revascularização em IAM+CS.</p>
+              <div class="post-embed-wrap">
+                <blockquote
+                  class="instagram-media"
+                  data-instgrm-captioned
+                  data-instgrm-permalink="https://www.instagram.com/fernandomagalhaescoutinho/p/DYvBAtwjvkH/"
+                  data-instgrm-version="14"
+                  style="
+                    background:#FFF;
+                    border:0;
+                    border-radius:3px;
+                    box-shadow:0 0 1px 0 rgba(0,0,0,.5),0 1px 10px 0 rgba(0,0,0,.15);
+                    margin:0;
+                    min-width:326px;
+                    padding:0;
+                    width:100%;
+                  "
+                ></blockquote>
+              </div>
+            </article>
+
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <div class="backdrop" data-menu-toggle></div>
+
+    <style>
+      .posts-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+        gap: 28px;
+      }
+      .post-card {
+        background: var(--color-bg-card, #fff);
+        border: 1px solid var(--color-border, #e2e8f0);
+        border-radius: 14px;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .post-meta {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .post-tag {
+        font-size: 11px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.6px;
+        background: #E6F1FB;
+        color: #0C447C;
+        padding: 2px 8px;
+        border-radius: 4px;
+      }
+      .post-date {
+        font-size: 12px;
+        color: var(--color-text-secondary, #5f6f6c);
+      }
+      .post-title {
+        font-size: 15px;
+        font-weight: 600;
+        color: var(--color-text-primary, #17201f);
+        margin: 0;
+      }
+      .post-excerpt {
+        font-size: 13px;
+        color: var(--color-text-secondary, #5f6f6c);
+        line-height: 1.5;
+        margin: 0;
+      }
+      .post-embed-wrap {
+        margin-top: 6px;
+      }
+      @media (max-width: 600px) {
+        .posts-grid { grid-template-columns: 1fr; }
+        section[aria-labelledby="posts-heading"] { padding: 0 16px 24px; }
+      }
+    </style>
+
+    <script async src="//www.instagram.com/embed.js"></script>
+    <script src="./assets/app.js"></script>
+  </body>
+</html>

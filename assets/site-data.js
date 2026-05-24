@@ -1,5 +1,5 @@
 window.PLANTAO_DATA = {
-  "generatedAt": "2026-05-23",
+  "generatedAt": "2026-05-24",
   "pages": [
     {
       "title": "Perfil do médico",
@@ -130,6 +130,16 @@ window.PLANTAO_DATA = {
       "categoryLabel": "UTI",
       "summary": "Mohamad Khalil Zaher. Passagem de plantão UTI BP Paulista — 15 de maio de 2026 📋 Plantão BP Hospital Beneficência Portuguesa • UTI Cardiologia / Neurologia 15 ",
       "updated": "2026-05-23"
+    },
+    {
+      "title": "Publicações médicas",
+      "path": "publicacoes.html",
+      "href": "publicacoes.html",
+      "folder": "",
+      "category": "uti",
+      "categoryLabel": "UTI",
+      "summary": "DR. FERNANDO | Publicações F DR. FERNANDO Dashboard médico Plantões Perfil Publicações GitHub Pages ready HTML, CSS e JS estáticos Instagram Publicações médicas ◐ Dark ",
+      "updated": "2026-05-24"
     }
   ]
 };
