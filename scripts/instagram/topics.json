@@ -1,0 +1,86 @@
+[
+  {
+    "id": "sepse",
+    "titulo": "Sepse e Choque Séptico",
+    "subtitulo": "Surviving Sepsis Campaign 2021",
+    "cor": "#0C447C",
+    "pontos": [
+      "Sepsis-3: disfunção orgânica + SOFA ≥ 2",
+      "Choque séptico: PAM < 65 mmHg + lactato > 2 mmol/L",
+      "Bundle 1h: lactato · hemoculturas · ATB · 30 mL/kg · vasopressor",
+      "1ª escolha vasopressor: Noradrenalina (meta PAM ≥ 65)",
+      "Hidrocortisona 200 mg/dia se NE ≥ 0,25 mcg/kg/min por > 4h"
+    ],
+    "hashtags": "#sepse #choqueseptico #UTI #medicinaintensiva #AMIB #TEMI #intensivismo #residencia #medresumo"
+  },
+  {
+    "id": "ventilacao",
+    "titulo": "Ventilação Mecânica e SDRA",
+    "subtitulo": "ARDSNet · Ventilação Protetora",
+    "cor": "#185FA5",
+    "pontos": [
+      "SDRA grave (Berlim): P/F < 100 com PEEP ≥ 5 cmH₂O",
+      "VC 6 mL/kg peso predito · Pplatô ≤ 30 cmH₂O",
+      "Driving pressure ΔP ≤ 15 cmH₂O (melhor preditor de mortalidade)",
+      "Prona ≥ 16h/dia em SDRA grave: reduz mortalidade (PROSEVA)",
+      "Hipercapnia permissiva: pH > 7,20 é aceitável"
+    ],
+    "hashtags": "#ventilacaomecanica #SDRA #ARDSNet #UTI #medicinaintensiva #AMIB #TEMI #intensivismo #medresumo"
+  },
+  {
+    "id": "choque",
+    "titulo": "Choque e Hemodinâmica",
+    "subtitulo": "Fisiopatologia · Diagnóstico · Manejo",
+    "cor": "#0C447C",
+    "pontos": [
+      "Tipos: distributivo · cardiogênico · hipovolêmico · obstrutivo",
+      "Choque distributivo (sepse): DC ↑ / RVS ↓ / SvcO2 ↑",
+      "Gap CO2 > 6 mmHg com SvcO2 normal = baixo débito cardíaco",
+      "Dobutamina para disfunção miocárdica: SvcO2 < 65% ou gap CO2 > 6",
+      "PLR, PPV e VVS — avaliação dinâmica de responsividade a fluidos"
+    ],
+    "hashtags": "#choque #hemodinamica #UTI #medicinaintensiva #AMIB #TEMI #intensivismo #medresumo"
+  },
+  {
+    "id": "acido-base",
+    "titulo": "Distúrbios Ácido-Base",
+    "subtitulo": "Interpretação Sistemática na UTI",
+    "cor": "#3B6D11",
+    "pontos": [
+      "Passo 1: pH → acidemia (< 7,35) ou alcalemia (> 7,45)",
+      "Passo 2: distúrbio primário → HCO3 (metabólico) ou PaCO2 (respiratório)",
+      "Passo 3: compensação esperada — checar se é adequada ou mista",
+      "AG = Na − (Cl + HCO3) · normal 8–12 mEq/L (com albumina normal)",
+      "Delta-delta: AG elevado + HCO3 alto = distúrbio misto (AG + alcalose metabólica)"
+    ],
+    "hashtags": "#acidobase #gazometria #UTI #medicinaintensiva #AMIB #TEMI #intensivismo #medresumo"
+  },
+  {
+    "id": "ira",
+    "titulo": "Insuficiência Renal Aguda",
+    "subtitulo": "KDIGO · Terapia de Substituição Renal",
+    "cor": "#BA7517",
+    "pontos": [
+      "KDIGO: creatinina × 1,5 em 7 dias ou ↑ 0,3 mg/dL em 48h ou DU < 0,5 mL/kg/h × 6h",
+      "IRA pré-renal: FeNa < 1%, BUN/Cr > 20, responde a fluidos",
+      "Necrose tubular aguda: FeNa > 2%, cilindros granulosos",
+      "TSR: K > 6,5 refrátário · acidose grave · sobrecarga volêmica · uremia",
+      "TCRR vs hemodiálise: TCRR preferida em instabilidade hemodinâmica"
+    ],
+    "hashtags": "#insuficienciarenal #IRA #KDIGO #UTI #medicinaintensiva #AMIB #TEMI #medresumo"
+  },
+  {
+    "id": "neurointensivismo",
+    "titulo": "Neurointensivismo",
+    "subtitulo": "HIC · TCE · AVE Isquêmico",
+    "cor": "#993C1D",
+    "pontos": [
+      "HIC: PIC > 20 mmHg · PPC = PAM − PIC · meta PPC 60–70 mmHg",
+      "Tratamento HIC: HOB 30° · manitol 0,5–1 g/kg · NaCl 3% · hiperventilação temporária",
+      "TCE grave: PAS ≥ 90 mmHg + SaO2 ≥ 90% como metas mínimas imediatas",
+      "AVE isquêmico: tPA IV até 4,5h do início dos sintomas",
+      "Trombectomia mecânica até 24h em oclusão de grande vaso (DAWN/DEFUSE-3)"
+    ],
+    "hashtags": "#neurointensivismo #TCE #AVE #HIC #UTI #medicinaintensiva #AMIB #TEMI #medresumo"
+  }
+]

@@ -1,0 +1,55 @@
+name: Instagram Daily Post
+
+on:
+  schedule:
+    # 06:00 BRT = 09:00 UTC (BRT = UTC-3)
+    - cron: '0 9 * * *'
+  workflow_dispatch:
+    inputs:
+      topic_index:
+        description: 'Índice do tópico (0-5). Vazio = rotação automática.'
+        required: false
+        default: ''
+
+jobs:
+  post:
+    name: Gerar e publicar card AMIB
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Playwright + dependencies
+        run: |
+          npm install playwright
+          npx playwright install chromium --with-deps
+
+      - name: Generate card PNG
+        id: generate
+        run: |
+          node scripts/instagram/generate-card.mjs ${{ github.event.inputs.topic_index }} > /tmp/card-data.json
+          echo "Card data: $(cat /tmp/card-data.json)"
+        env:
+          IG_HANDLE: ${{ secrets.IG_HANDLE }}
+
+      - name: Post to Instagram
+        run: cat /tmp/card-data.json | node scripts/instagram/post.mjs
+        env:
+          CLOUDINARY_CLOUD_NAME: ${{ secrets.CLOUDINARY_CLOUD_NAME }}
+          CLOUDINARY_UPLOAD_PRESET: ${{ secrets.CLOUDINARY_UPLOAD_PRESET }}
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+
+      - name: Upload card as artifact (debug)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: instagram-card-${{ github.run_number }}
+          path: /tmp/instagram-card.png
+          retention-days: 7

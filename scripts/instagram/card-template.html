@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1080">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    width: 1080px;
+    height: 1080px;
+    overflow: hidden;
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Inter, sans-serif;
+    background: var(--cor, #0C447C);
+  }
+
+  .card {
+    width: 1080px;
+    height: 1080px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(145deg, var(--cor, #0C447C) 0%, color-mix(in srgb, var(--cor, #0C447C) 70%, #000) 100%);
+    padding: 60px;
+  }
+
+  /* Background decorative elements */
+  .bg-circle-1 {
+    position: absolute;
+    top: -120px;
+    right: -120px;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.04);
+    pointer-events: none;
+  }
+  .bg-circle-2 {
+    position: absolute;
+    bottom: -80px;
+    left: -80px;
+    width: 380px;
+    height: 380px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.04);
+    pointer-events: none;
+  }
+  .bg-line {
+    position: absolute;
+    bottom: 180px;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: rgba(255,255,255,0.08);
+  }
+
+  /* Header */
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 52px;
+  }
+  .badge-amib {
+    background: rgba(255,255,255,0.15);
+    border: 1.5px solid rgba(255,255,255,0.3);
+    color: #fff;
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 10px 24px;
+    border-radius: 10px;
+  }
+  .badge-temi {
+    background: rgba(255,255,255,0.10);
+    border: 1.5px solid rgba(255,255,255,0.2);
+    color: rgba(255,255,255,0.75);
+    font-size: 20px;
+    font-weight: 600;
+    padding: 10px 24px;
+    border-radius: 10px;
+  }
+
+  /* Title block */
+  .title-block {
+    margin-bottom: 48px;
+  }
+  .subtitulo {
+    font-size: 26px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.65);
+    letter-spacing: 0.5px;
+    margin-bottom: 14px;
+    text-transform: uppercase;
+  }
+  .titulo {
+    font-size: 72px;
+    font-weight: 800;
+    color: #ffffff;
+    line-height: 1.1;
+    letter-spacing: -1px;
+  }
+
+  /* Divider */
+  .divider {
+    width: 80px;
+    height: 5px;
+    background: rgba(255,255,255,0.4);
+    border-radius: 3px;
+    margin-bottom: 48px;
+  }
+
+  /* Points */
+  .pontos {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+  .ponto {
+    display: flex;
+    align-items: flex-start;
+    gap: 18px;
+    background: rgba(255,255,255,0.09);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 14px;
+    padding: 18px 24px;
+  }
+  .ponto-num {
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.18);
+    color: #fff;
+    font-size: 18px;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1px;
+  }
+  .ponto-text {
+    font-size: 28px;
+    color: rgba(255,255,255,0.92);
+    line-height: 1.45;
+    font-weight: 400;
+  }
+
+  /* Footer */
+  .footer {
+    margin-top: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .footer-handle {
+    font-size: 24px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.55);
+    letter-spacing: 0.5px;
+  }
+  .footer-logo {
+    font-size: 22px;
+    font-weight: 700;
+    color: rgba(255,255,255,0.35);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+</style>
+</head>
+<body>
+<div class="card" id="card">
+  <div class="bg-circle-1"></div>
+  <div class="bg-circle-2"></div>
+  <div class="bg-line"></div>
+
+  <div class="header">
+    <div class="badge-amib">AMIB</div>
+    <div class="badge-temi">TEMI</div>
+  </div>
+
+  <div class="title-block">
+    <div class="subtitulo" id="subtitulo">Surviving Sepsis Campaign 2021</div>
+    <div class="titulo" id="titulo">Sepse e Choque Séptico</div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="pontos" id="pontos"></div>
+
+  <div class="footer">
+    <div class="footer-handle" id="handle">@drfernandomaga</div>
+    <div class="footer-logo">Plantão · Medicina Intensiva</div>
+  </div>
+</div>
+
+<script>
+  const data = window.__TOPIC_DATA__;
+  if (data) {
+    document.getElementById('titulo').textContent = data.titulo;
+    document.getElementById('subtitulo').textContent = data.subtitulo;
+    document.querySelector('.card').style.setProperty('--cor', data.cor);
+    document.querySelector('body').style.background = data.cor;
+
+    const pontosEl = document.getElementById('pontos');
+    data.pontos.forEach((p, i) => {
+      pontosEl.innerHTML += `
+        <div class="ponto">
+          <div class="ponto-num">${i + 1}</div>
+          <div class="ponto-text">${p}</div>
+        </div>`;
+    });
+
+    if (data.handle) {
+      document.getElementById('handle').textContent = data.handle;
+    }
+  }
+</script>
+</body>
+</html>
