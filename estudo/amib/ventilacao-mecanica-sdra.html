@@ -1,0 +1,473 @@
+
+<style>
+:root {
+  --font-sans: Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif;
+  --azul: #0C447C; --azul-claro: #E6F1FB; --azul-medio: #185FA5;
+  --verde: #3B6D11; --verde-claro: #EAF3DE;
+  --vermelho: #A32D2D; --vermelho-claro: #FCEBEB;
+  --amarelo: #BA7517; --amarelo-claro: #FAEEDA;
+  --cinza: #444441; --cinza-claro: #F1EFE8;
+  --coral: #993C1D; --coral-claro: #FAECE7;
+  --border: #D8E2DF; --border-light: #E9EFED;
+  --bg: #ffffff; --text: #17201f; --text-sec: #5f6f6c;
+  --radius: 12px; --radius-sm: 8px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { background: #f6faf9; }
+body {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  color: var(--text);
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 16px;
+  background: transparent;
+}
+.sr-only { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0,0,0,0); }
+.estudo-header {
+  background: var(--azul);
+  color: #E6F1FB;
+  padding: 14px 20px;
+  border-radius: var(--radius);
+  margin-bottom: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.estudo-header h1 { font-size: 16px; font-weight: 600; letter-spacing: 0.4px; }
+.estudo-header .meta { font-size: 12px; opacity: 0.8; margin-top: 2px; }
+.semana-badge {
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 6px;
+  padding: 4px 10px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.card {
+  background: var(--bg);
+  border: 0.5px solid var(--border);
+  border-radius: var(--radius);
+  margin-bottom: 16px;
+  overflow: hidden;
+}
+.card-header {
+  background: var(--azul-claro);
+  border-bottom: 1.5px solid var(--azul-medio);
+  padding: 10px 18px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.card-badge {
+  background: var(--azul-medio);
+  color: #E6F1FB;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 9px;
+  border-radius: 6px;
+  white-space: nowrap;
+}
+.card-title { font-size: 14px; font-weight: 600; color: var(--azul); }
+.card-body { padding: 14px 18px; }
+.secao { margin-bottom: 14px; }
+.secao-titulo {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--text-sec);
+  border-bottom: 0.5px solid var(--border-light);
+  padding-bottom: 4px;
+  margin-bottom: 10px;
+}
+.item {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  padding: 5px 0;
+  border-bottom: 0.5px solid var(--border-light);
+  font-size: 13px;
+  line-height: 1.55;
+}
+.item:last-child { border-bottom: none; }
+.bullet { flex-shrink: 0; margin-top: 1px; font-weight: 700; }
+.bullet.green { color: var(--verde); }
+.bullet.red { color: var(--vermelho); }
+.bullet.warn { color: var(--amarelo); }
+.bullet.blue { color: var(--azul-medio); }
+strong.dest { font-weight: 600; }
+.tag {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 4px;
+  margin: 2px 3px 2px 0;
+}
+.tag.ok { background: var(--verde-claro); color: var(--verde); }
+.tag.alerta { background: var(--vermelho-claro); color: var(--vermelho); }
+.tag.info { background: var(--azul-claro); color: var(--azul); }
+.tag.warn { background: var(--amarelo-claro); color: var(--amarelo); }
+.perola-box {
+  background: var(--azul-claro);
+  border-left: 3px solid var(--azul-medio);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  padding: 10px 14px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--azul);
+  margin-bottom: 8px;
+}
+.erro-box {
+  background: var(--coral-claro);
+  border-left: 3px solid #D85A30;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  padding: 10px 14px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--coral);
+  margin-bottom: 8px;
+}
+.algoritmo-box {
+  background: var(--cinza-claro);
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+  font-size: 13px;
+  line-height: 1.7;
+  margin-bottom: 8px;
+}
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+.mini-card { background: var(--cinza-claro); border-radius: var(--radius-sm); padding: 8px 12px; }
+.mini-card .label { font-size: 11px; color: var(--text-sec); margin-bottom: 3px; }
+.mini-card .value { font-size: 13px; font-weight: 600; }
+.mini-card .value.ok { color: var(--verde); }
+.mini-card .value.alerta { color: var(--vermelho); }
+.mini-card .value.warn { color: var(--amarelo); }
+.questao-card {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 14px 16px;
+  margin-bottom: 12px;
+}
+.questao-num { font-size: 11px; font-weight: 700; color: var(--text-sec); text-transform: uppercase; margin-bottom: 6px; }
+.questao-enunciado { font-size: 13px; line-height: 1.6; margin-bottom: 10px; }
+.opcao {
+  font-size: 13px;
+  padding: 5px 10px;
+  border-radius: 6px;
+  margin-bottom: 4px;
+  display: flex;
+  gap: 8px;
+}
+.opcao.correta { background: var(--verde-claro); color: var(--verde); font-weight: 600; }
+.opcao.errada { background: var(--vermelho-claro); color: var(--vermelho); opacity: 0.6; }
+.questao-justificativa {
+  margin-top: 10px;
+  font-size: 12px;
+  color: var(--text-sec);
+  background: var(--cinza-claro);
+  border-radius: 6px;
+  padding: 8px 12px;
+  line-height: 1.6;
+}
+@media (max-width: 600px) {
+  .grid-2, .grid-3 { grid-template-columns: 1fr; }
+  .estudo-header { flex-direction: column; align-items: flex-start; }
+}
+</style>
+
+<h2 class="sr-only">AMIB — Ventilação Mecânica e SDRA — TEMI</h2>
+
+<div class="estudo-header">
+  <div>
+    <h1>📚 TEMI — Ventilação Mecânica e SDRA</h1>
+    <div class="meta">Bloco AMIB · ARDSNet · Ventilação Protetora · Desmame</div>
+  </div>
+  <div style="text-align:right;">
+    <div class="semana-badge">Semana 6</div>
+    <div style="font-size:11px; opacity:0.7; margin-top:4px;">25/05/2026</div>
+  </div>
+</div>
+
+<!-- MODOS VENTILATÓRIOS -->
+<div class="card">
+  <div class="card-header">
+    <div class="card-badge">Mapa Conceitual</div>
+    <div class="card-title">Parâmetros e Modos Ventilatórios</div>
+  </div>
+  <div class="card-body">
+    <div class="secao">
+      <div class="secao-titulo">Pressões — o que cada uma mede</div>
+      <div class="item">
+        <span class="bullet blue">▸</span>
+        <span><strong class="dest">Pressão de pico (Ppico):</strong> pressão máxima gerada pelo ventilador. Influenciada por resistência de VA e compliance. Pico elevado com platô normal = problema na via aérea (secreção, broncoespasmo, tubo dobrado).</span>
+      </div>
+      <div class="item">
+        <span class="bullet blue">▸</span>
+        <span><strong class="dest">Pressão de platô (Pplatô):</strong> medida com pausa inspiratória. Reflete compliance do sistema respiratório. <strong class="dest">Meta: ≤ 30 cmH₂O.</strong> Pplatô elevado = pulmão/tórax com baixa complacência.</span>
+      </div>
+      <div class="item">
+        <span class="bullet blue">▸</span>
+        <span><strong class="dest">Driving pressure (ΔP):</strong> Pplatô − PEEP. <strong class="dest">Meta: ≤ 15 cmH₂O.</strong> ΔP elevada = maior mortalidade em SDRA (Amato 2015, NEJM). É o parâmetro mais associado a desfecho.</span>
+      </div>
+      <div class="item">
+        <span class="bullet blue">▸</span>
+        <span><strong class="dest">PEEP:</strong> pressão positiva ao final da expiração. Mantém alvéolos abertos, melhora oxigenação, reduz atelectrauma. Não elimina VILI isoladamente.</span>
+      </div>
+    </div>
+    <div class="secao">
+      <div class="secao-titulo">Modo VCV × PCV × PSV</div>
+      <div class="grid-3">
+        <div class="mini-card">
+          <div class="label">VCV (volume controlado)</div>
+          <div class="value" style="font-size:12px;">VC fixo; pressão varia conforme compliance</div>
+        </div>
+        <div class="mini-card">
+          <div class="label">PCV (pressão controlada)</div>
+          <div class="value" style="font-size:12px;">Pressão fixa; VC varia conforme compliance</div>
+        </div>
+        <div class="mini-card">
+          <div class="label">PSV (pressão suporte)</div>
+          <div class="value" style="font-size:12px;">Paciente inicia, ventilador suporta. Desmame.</div>
+        </div>
+      </div>
+    </div>
+    <div class="secao">
+      <div class="secao-titulo">PSV — Questão clássica TEMI</div>
+      <div class="item">
+        <span class="bullet warn">▸</span>
+        <span><strong class="dest">Ciclagem no PSV:</strong> por padrão, cicla quando o fluxo cai a 25% do fluxo de pico. Se reduzir o % de ciclagem (ex: 50% → 20%) → tempo inspiratório aumenta (cicla mais tarde). Diminuir trigger de ciclagem = aumentar Ti.</span>
+      </div>
+      <div class="item">
+        <span class="bullet blue">▸</span>
+        <span><strong class="dest">VC no PSV:</strong> aumentar PEEP (com DP fixa) aumenta pressão de suporte efetivo → aumenta VC. Aumentar PS diretamente → aumenta VC.</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SDRA -->
+<div class="card">
+  <div class="card-header">
+    <div class="card-badge">SDRA</div>
+    <div class="card-title">Síndrome do Desconforto Respiratório Agudo — Berlim 2012</div>
+  </div>
+  <div class="card-body">
+    <div class="secao">
+      <div class="secao-titulo">Classificação — Berlim 2012</div>
+      <div class="grid-3">
+        <div class="mini-card">
+          <div class="label">Leve</div>
+          <div class="value warn">P/F 200–300 com PEEP ≥ 5</div>
+        </div>
+        <div class="mini-card">
+          <div class="label">Moderada</div>
+          <div class="value warn">P/F 100–200 com PEEP ≥ 5</div>
+        </div>
+        <div class="mini-card">
+          <div class="label">Grave</div>
+          <div class="value alerta">P/F &lt; 100 com PEEP ≥ 5</div>
+        </div>
+      </div>
+    </div>
+    <div class="secao">
+      <div class="secao-titulo">Critérios diagnósticos</div>
+      <div class="item">
+        <span class="bullet green">1.</span>
+        <span>Início agudo (≤ 1 semana) ou nova piora respiratória</span>
+      </div>
+      <div class="item">
+        <span class="bullet green">2.</span>
+        <span>Infiltrados bilaterais à radiografia/TC (não totalmente explicados por derrame, colapso ou nódulos)</span>
+      </div>
+      <div class="item">
+        <span class="bullet green">3.</span>
+        <span>Insuficiência respiratória NÃO explicada por IC ou sobrecarga hídrica (usar ecocardiograma se dúvida)</span>
+      </div>
+      <div class="item">
+        <span class="bullet green">4.</span>
+        <span>P/F ≤ 300 com PEEP ≥ 5 cmH₂O (ou CPAP ≥ 5 para SDRA leve)</span>
+      </div>
+    </div>
+    <div class="secao">
+      <div class="secao-titulo">Ventilação Protetora — ARDSNet</div>
+      <div class="item">
+        <span class="bullet green">▸</span>
+        <span><strong class="dest">Volume corrente: 6 mL/kg de peso predito</strong> (não peso real). Pode reduzir para 4-5 mL/kg se Pplatô &gt; 30 cmH₂O.</span>
+      </div>
+      <div class="item">
+        <span class="bullet green">▸</span>
+        <span><strong class="dest">Pplatô ≤ 30 cmH₂O</strong> — se elevado: reduzir VC e/ou PEEP.</span>
+      </div>
+      <div class="item">
+        <span class="bullet green">▸</span>
+        <span><strong class="dest">Driving pressure ≤ 15 cmH₂O</strong> — melhor preditor de mortalidade (Amato 2015). Se ΔP elevada, PEEP alta não compensa VC alto.</span>
+      </div>
+      <div class="item">
+        <span class="bullet warn">▸</span>
+        <span><strong class="dest">PEEP:</strong> titular conforme tabela ARDSNet PEEP/FiO2 (baixa PEEP vs alta PEEP). SDRA grave: PEEP ≥ 10-14 cmH₂O.</span>
+      </div>
+      <div class="item">
+        <span class="bullet warn">▸</span>
+        <span><strong class="dest">FR:</strong> até 35 irpm para compensar hipercapnia permissiva (pH &gt; 7,20 aceitável).</span>
+      </div>
+    </div>
+    <div class="secao">
+      <div class="secao-titulo">Estratégias de resgate na SDRA Grave (P/F &lt; 150)</div>
+      <div class="item">
+        <span class="bullet green">1º</span>
+        <span><strong class="dest">Decúbito ventral (prona):</strong> ≥ 16h/dia. Reduz mortalidade em SDRA grave. <span class="tag info">PROSEVA trial 2013</span>. Melhora V/Q ao recrutar regiões dorsais. Indicar precocemente (≤ 36h).</span>
+      </div>
+      <div class="item">
+        <span class="bullet blue">2º</span>
+        <span><strong class="dest">Bloqueio neuromuscular (BNM):</strong> cisatracúrio 48h em SDRA grave. <span class="tag info">ACURASYS 2010</span>. Mecanismo: elimina esforço respiratório assíncrono, reduz VILI.</span>
+      </div>
+      <div class="item">
+        <span class="bullet warn">3º</span>
+        <span><strong class="dest">ECMO veno-venosa:</strong> considerar se P/F &lt; 80 refratário, ou hipercapnia com pH &lt; 7,20 apesar de VM protetora.</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DESMAME -->
+<div class="card">
+  <div class="card-header">
+    <div class="card-badge">Desmame</div>
+    <div class="card-title">Critérios de Prontidão e TRE</div>
+  </div>
+  <div class="card-body">
+    <div class="secao">
+      <div class="secao-titulo">Critérios de prontidão para desmame</div>
+      <div class="item"><span class="bullet green">▸</span><span>Causa da VM em resolução/controlada</span></div>
+      <div class="item"><span class="bullet green">▸</span><span>FiO₂ ≤ 0,40 com SpO₂ ≥ 90% (ou PaO₂ ≥ 60 mmHg)</span></div>
+      <div class="item"><span class="bullet green">▸</span><span>PEEP ≤ 8 cmH₂O</span></div>
+      <div class="item"><span class="bullet green">▸</span><span>Hemodinâmica estável (sem vasopressor ou dose baixa de NE)</span></div>
+      <div class="item"><span class="bullet green">▸</span><span>Paciente acordado, cooperativo (RASS 0 a −1)</span></div>
+      <div class="item"><span class="bullet green">▸</span><span>Tosse eficaz e proteção de via aérea</span></div>
+    </div>
+    <div class="secao">
+      <div class="secao-titulo">Teste de respiração espontânea (TRE)</div>
+      <div class="item">
+        <span class="bullet blue">▸</span>
+        <span><strong class="dest">TRE em PSV (8/5 cmH₂O) ou tubo T:</strong> 30–120 minutos. Critérios de falha: FR &gt; 35, SpO₂ &lt; 90%, FC &gt; 140 ou variação &gt; 20%, PA &gt; 180 ou &lt; 90, agitação, diaforese.</span>
+      </div>
+      <div class="item">
+        <span class="bullet warn">▸</span>
+        <span><strong class="dest">Índice de Tobin (IRRS = FR/VC em litros):</strong> &gt; 105 → falha do desmame (alta sensibilidade). Pouco usado na prática atual.</span>
+      </div>
+    </div>
+    <div class="secao">
+      <div class="secao-titulo">VNI pós-extubação</div>
+      <div class="item">
+        <span class="bullet green">▸</span>
+        <span><strong class="dest">VNI profilática:</strong> indicada em pacientes de alto risco de falha de extubação (DPOC, IC, obesos, SDRA resolvida). Iniciar ≤ 30min após extubação. Reduz reintubação e mortalidade.</span>
+      </div>
+      <div class="item">
+        <span class="bullet red">✗</span>
+        <span><strong class="dest">VNI curativa:</strong> NÃO indicada como resgate após insuficiência respiratória pós-extubação já instalada. Aumenta mortalidade (Esteban 2004).</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- QUESTÕES TEMI -->
+<div class="card">
+  <div class="card-header">
+    <div class="card-badge">Questões TEMI</div>
+    <div class="card-title">Prática — VM e SDRA</div>
+  </div>
+  <div class="card-body">
+
+    <div class="questao-card">
+      <div class="questao-num">Questão 38 — TEMI 2019</div>
+      <div class="questao-enunciado">Ventilando paciente com SDRA grave em volume controlado. Assinale a alternativa correta:</div>
+      <div class="opcao errada"><span>A)</span><span>Quanto maior o fluxo inspiratório, maior a pressão alveolar.</span></div>
+      <div class="opcao errada"><span>B)</span><span>A pressão de pico diminui com o aumento do fluxo inspiratório.</span></div>
+      <div class="opcao errada"><span>C)</span><span>Quanto maior a driving pressure, menor será a mortalidade.</span></div>
+      <div class="opcao correta"><span>D)</span><span>Quanto maior o volume corrente, maior a pressão alveolar.</span></div>
+      <div class="questao-justificativa">
+        <strong>Gabarito: D.</strong> No VCV, VC fixo → pressão alveolar (platô) depende da complacência. Maior VC = maior pressão alveolar. Maior fluxo → maior Ppico (resistência), mas NÃO altera Pplatô (pressão alveolar). Driving pressure elevada = MAIOR mortalidade (não menor) — Amato 2015.
+      </div>
+    </div>
+
+    <div class="questao-card">
+      <div class="questao-num">Questão 65 — TEMI 2019</div>
+      <div class="questao-enunciado">Paciente intubado em VCV com VC 6 mL/kg peso predito. Assinale a alternativa correta sobre o manejo das pressões:</div>
+      <div class="opcao errada"><span>A)</span><span>Se driving pressure &gt; 15 cmH₂O → reduzir fluxo inspiratório.</span></div>
+      <div class="opcao errada"><span>B)</span><span>Se Pplatô entre 25-30 cmH₂O → reduzir volume corrente.</span></div>
+      <div class="opcao correta"><span>C)</span><span>Se driving pressure &gt; 15 cmH₂O → reduzir VC e aumentar FR.</span></div>
+      <div class="opcao errada"><span>D)</span><span>Se Pplatô &gt; 25 cmH₂O → aumentar PEEP.</span></div>
+      <div class="questao-justificativa">
+        <strong>Gabarito: C.</strong> Driving pressure &gt; 15 cmH₂O → reduzir VC (de 6 para 4-5 mL/kg) e compensar com aumento de FR para manter ventilação-minuto. Pplatô limite é 30 cmH₂O (não 25). Fluxo não altera Pplatô. Aumentar PEEP quando Pplatô está alto piora a situação.
+      </div>
+    </div>
+
+    <div class="questao-card">
+      <div class="questao-num">Questão 21 — TEMI 2019</div>
+      <div class="questao-enunciado">No modo PSV, assinale a alternativa correta:</div>
+      <div class="opcao errada"><span>A)</span><span>O fluxo inspiratório é fixo.</span></div>
+      <div class="opcao correta"><span>B)</span><span>A mudança da ciclagem expiratória de 50% para 20% aumenta o tempo inspiratório.</span></div>
+      <div class="opcao errada"><span>C)</span><span>Sua ciclagem ocorre quando o fluxo inspiratório atinge o zero.</span></div>
+      <div class="opcao errada"><span>D)</span><span>O VC aumenta com o aumento da PEEP.</span></div>
+      <div class="questao-justificativa">
+        <strong>Gabarito: B.</strong> No PSV, a ciclagem ocorre quando o fluxo cai a um % do fluxo de pico (default 25%). Se reduzir de 50% para 20%: o ventilador espera o fluxo cair mais antes de ciclar → Ti maior. Em DPOC, ciclagem precoce (% maior) evita auto-PEEP. Em pulmão restritivo, ciclagem tardia (% menor) pode causar auto-PEEP.
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- PÉROLAS -->
+<div class="card">
+  <div class="card-header">
+    <div class="card-badge">Pérolas TEMI</div>
+    <div class="card-title">Macetes e Armadilhas de Prova</div>
+  </div>
+  <div class="card-body">
+    <div class="perola-box">
+      <strong>Pérola 1 — Driving pressure:</strong> ΔP = Pplatô − PEEP. É o fator mais importante para prognóstico na SDRA (Amato, NEJM 2015). Aumentar PEEP sem reduzir VC não melhora ΔP se a complacência for baixa. ΔP &gt; 15 → reduzir VC.
+    </div>
+    <div class="perola-box">
+      <strong>Pérola 2 — Pplatô vs Ppico:</strong> Pico alto + platô normal = problema na via aérea (resistência aumentada). Pico alto + platô alto = problema pulmonar (baixa compliance). Use a pausa inspiratória para diferenciar.
+    </div>
+    <div class="perola-box">
+      <strong>Pérola 3 — Prona 16h:</strong> PROSEVA: prona ≥ 16h/dia em SDRA grave (P/F &lt; 150) reduziu mortalidade de 32% para 16%. Indicar precocemente, antes de 36h. Complicações: extubação acidental, úlceras de pressão faciais, obstrução do TOT.
+    </div>
+    <div class="erro-box">
+      <strong>Erro clássico 1 — Peso real no cálculo do VC:</strong> VC de 6 mL/kg usa PESO PREDITO (fórmula: homem = 50 + 2,3 × (altura em polegadas − 60); mulher = 45,5 + 2,3 × mesma fórmula). Usar peso real superestima VC em obesos → volutrauma.
+    </div>
+    <div class="erro-box">
+      <strong>Erro clássico 2 — VNI curativa pós-extubação:</strong> VNI para tratar falha de extubação já instalada → aumenta mortalidade. Usar apenas como profilática (antes do problema) em pacientes de risco. Extubação de falha → reintubação.
+    </div>
+    <div class="erro-box">
+      <strong>Erro clássico 3 — PEEP alta = sempre melhor:</strong> PEEP alta melhora oxigenação mas pode distender alvéolos saudáveis (sobredistensão), reduzir DC e aumentar ΔP. Guiar PEEP por driving pressure e resposta hemodinâmica.
+    </div>
+  </div>
+</div>
+
+<!-- ALGORITMO -->
+<div class="card">
+  <div class="card-header">
+    <div class="card-badge">Algoritmo</div>
+    <div class="card-title">Fluxo de Manejo da SDRA — TEMI</div>
+  </div>
+  <div class="card-body">
+    <div class="algoritmo-box">
+      <strong>1. Diagnóstico SDRA (Berlim 2012):</strong> início agudo + infiltrado bilateral + não IC + P/F ≤ 300 com PEEP ≥ 5<br>
+      <strong>2. Classificar:</strong> Leve (200-300) / Moderada (100-200) / Grave (&lt;100)<br>
+      <strong>3. VM protetora:</strong> VC 6 mL/kg PP · Pplatô ≤ 30 · ΔP ≤ 15 · PEEP ≥ 5 (titular)<br>
+      <strong>4. Hipercapnia permissiva:</strong> pH &gt; 7,20 aceito. FR até 35 irpm para compensar.<br>
+      <strong>5. Se P/F &lt; 150:</strong> Prona ≥ 16h + BNM (cisatracúrio) 48h<br>
+      <strong>6. Se refratário:</strong> Avaliar ECMO veno-venosa (P/F &lt; 80 ou pH &lt; 7,20)<br>
+      <strong>7. Desmame:</strong> Quando causa controlada → TRE (PSV 8/5 ou tubo T 30-120 min)<br>
+      <strong>8. Extubação:</strong> TRE aprovado + tosse eficaz + protege VA → extuba + VNI profilática se alto risco
+    </div>
+  </div>
+</div>

@@ -1,0 +1,451 @@
+
+<style>
+:root {
+  --font-sans: Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif;
+  --azul: #0C447C; --azul-claro: #E6F1FB; --azul-medio: #185FA5;
+  --verde: #3B6D11; --verde-claro: #EAF3DE;
+  --vermelho: #A32D2D; --vermelho-claro: #FCEBEB;
+  --amarelo: #BA7517; --amarelo-claro: #FAEEDA;
+  --cinza: #444441; --cinza-claro: #F1EFE8;
+  --coral: #993C1D; --coral-claro: #FAECE7;
+  --border: #D8E2DF; --border-light: #E9EFED;
+  --bg: #ffffff; --text: #17201f; --text-sec: #5f6f6c;
+  --radius: 12px; --radius-sm: 8px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { background: #f6faf9; }
+body {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  color: var(--text);
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 16px;
+  background: transparent;
+}
+.sr-only { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0,0,0,0); }
+
+.estudo-header {
+  background: var(--azul);
+  color: #E6F1FB;
+  padding: 14px 20px;
+  border-radius: var(--radius);
+  margin-bottom: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.estudo-header h1 { font-size: 16px; font-weight: 600; letter-spacing: 0.4px; }
+.estudo-header .meta { font-size: 12px; opacity: 0.8; margin-top: 2px; }
+.semana-badge {
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 6px;
+  padding: 4px 10px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.card {
+  background: var(--bg);
+  border: 0.5px solid var(--border);
+  border-radius: var(--radius);
+  margin-bottom: 16px;
+  overflow: hidden;
+}
+.card-header {
+  background: var(--azul-claro);
+  border-bottom: 1.5px solid var(--azul-medio);
+  padding: 10px 18px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.card-badge {
+  background: var(--azul-medio);
+  color: #E6F1FB;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 9px;
+  border-radius: 6px;
+  white-space: nowrap;
+}
+.card-title { font-size: 14px; font-weight: 600; color: var(--azul); }
+.card-body { padding: 14px 18px; }
+
+.secao { margin-bottom: 14px; }
+.secao-titulo {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--text-sec);
+  border-bottom: 0.5px solid var(--border-light);
+  padding-bottom: 4px;
+  margin-bottom: 10px;
+}
+
+.item {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  padding: 5px 0;
+  border-bottom: 0.5px solid var(--border-light);
+  font-size: 13px;
+  line-height: 1.55;
+}
+.item:last-child { border-bottom: none; }
+.bullet { flex-shrink: 0; margin-top: 1px; font-weight: 700; }
+.bullet.green { color: var(--verde); }
+.bullet.red { color: var(--vermelho); }
+.bullet.warn { color: var(--amarelo); }
+.bullet.blue { color: var(--azul-medio); }
+strong.dest { font-weight: 600; }
+
+.tag {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 4px;
+  margin: 2px 3px 2px 0;
+}
+.tag.ok { background: var(--verde-claro); color: var(--verde); }
+.tag.alerta { background: var(--vermelho-claro); color: var(--vermelho); }
+.tag.info { background: var(--azul-claro); color: var(--azul); }
+.tag.warn { background: var(--amarelo-claro); color: var(--amarelo); }
+
+.perola-box {
+  background: var(--azul-claro);
+  border-left: 3px solid var(--azul-medio);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  padding: 10px 14px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--azul);
+  margin-bottom: 8px;
+}
+.erro-box {
+  background: var(--coral-claro);
+  border-left: 3px solid #D85A30;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  padding: 10px 14px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--coral);
+  margin-bottom: 8px;
+}
+.algoritmo-box {
+  background: var(--cinza-claro);
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+  font-size: 13px;
+  line-height: 1.7;
+  margin-bottom: 8px;
+}
+
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.mini-card { background: var(--cinza-claro); border-radius: var(--radius-sm); padding: 8px 12px; }
+.mini-card .label { font-size: 11px; color: var(--text-sec); margin-bottom: 3px; }
+.mini-card .value { font-size: 13px; font-weight: 600; }
+.mini-card .value.ok { color: var(--verde); }
+.mini-card .value.alerta { color: var(--vermelho); }
+.mini-card .value.warn { color: var(--amarelo); }
+
+.questao-card {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 14px 16px;
+  margin-bottom: 12px;
+}
+.questao-num { font-size: 11px; font-weight: 700; color: var(--text-sec); text-transform: uppercase; margin-bottom: 6px; }
+.questao-enunciado { font-size: 13px; line-height: 1.6; margin-bottom: 10px; }
+.opcao {
+  font-size: 13px;
+  padding: 5px 10px;
+  border-radius: 6px;
+  margin-bottom: 4px;
+  display: flex;
+  gap: 8px;
+}
+.opcao.correta { background: var(--verde-claro); color: var(--verde); font-weight: 600; }
+.opcao.errada { background: var(--vermelho-claro); color: var(--vermelho); opacity: 0.6; }
+.opcao.neutra { background: var(--cinza-claro); }
+.questao-justificativa {
+  margin-top: 10px;
+  font-size: 12px;
+  color: var(--text-sec);
+  background: var(--cinza-claro);
+  border-radius: 6px;
+  padding: 8px 12px;
+  line-height: 1.6;
+}
+
+@media (max-width: 600px) {
+  .grid-2 { grid-template-columns: 1fr; }
+  .estudo-header { flex-direction: column; align-items: flex-start; }
+}
+</style>
+
+<h2 class="sr-only">AMIB — Sepse e Choque Séptico — TEMI</h2>
+
+<div class="estudo-header">
+  <div>
+    <h1>📚 TEMI — Sepse e Choque Séptico</h1>
+    <div class="meta">Bloco AMIB · Surviving Sepsis Campaign 2021 · Diagnóstico · Manejo</div>
+  </div>
+  <div style="text-align:right;">
+    <div class="semana-badge">Semana 5</div>
+    <div style="font-size:11px; opacity:0.7; margin-top:4px;">25/05/2026</div>
+  </div>
+</div>
+
+<!-- DIAGNÓSTICO: Sepsis-3 -->
+<div class="card">
+  <div class="card-header">
+    <div class="card-badge">Definições</div>
+    <div class="card-title">Sepsis-3 (JAMA 2016) — Critérios que caem na prova</div>
+  </div>
+  <div class="card-body">
+    <div class="secao">
+      <div class="secao-titulo">Definições fundamentais</div>
+      <div class="item">
+        <span class="bullet blue">▸</span>
+        <span><strong class="dest">Sepse:</strong> disfunção orgânica ameaçadora à vida causada por resposta desregulada do hospedeiro à infecção. <span class="tag info">SOFA ≥ 2 pontos</span></span>
+      </div>
+      <div class="item">
+        <span class="bullet blue">▸</span>
+        <span><strong class="dest">Choque séptico:</strong> sepse + hipotensão refratária a volume <strong class="dest">E</strong> lactato &gt; 2 mmol/L (18 mg/dL) apesar de ressuscitação adequada. Necessita de vasopressor para PAM ≥ 65 mmHg. Mortalidade &gt; 40%.</span>
+      </div>
+      <div class="item">
+        <span class="bullet warn">▸</span>
+        <span><strong class="dest">qSOFA (triagem na enfermaria):</strong> FR ≥ 22 irpm + alteração de consciência + PAS ≤ 100 mmHg. Score ≥ 2 → alta probabilidade de desfecho adverso. <span class="tag warn">Não substitui SOFA para diagnóstico</span></span>
+      </div>
+    </div>
+    <div class="secao">
+      <div class="secao-titulo">SOFA — O que mede</div>
+      <div class="grid-2">
+        <div class="mini-card"><div class="label">Respiratório</div><div class="value">PaO2/FiO2 &lt; 400</div></div>
+        <div class="mini-card"><div class="label">Coagulação</div><div class="value">Plaquetas &lt; 150.000</div></div>
+        <div class="mini-card"><div class="label">Fígado</div><div class="value">Bilirrubina &gt; 1,2 mg/dL</div></div>
+        <div class="mini-card"><div class="label">Cardiovascular</div><div class="value">PAM &lt; 70 ou vasopressor</div></div>
+        <div class="mini-card"><div class="label">SNC</div><div class="value">Glasgow &lt; 15</div></div>
+        <div class="mini-card"><div class="label">Renal</div><div class="value">Creatinina &gt; 1,2 mg/dL</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- HEMODINÂMICA DO CHOQUE SÉPTICO -->
+<div class="card">
+  <div class="card-header">
+    <div class="card-badge">Fisiopatologia</div>
+    <div class="card-title">Perfil Hemodinâmico do Choque Séptico</div>
+  </div>
+  <div class="card-body">
+    <div class="secao">
+      <div class="secao-titulo">Padrão clássico (fase hiperdinâmica)</div>
+      <div class="grid-2">
+        <div class="mini-card"><div class="label">Débito Cardíaco (DC)</div><div class="value ok">↑ Aumentado</div></div>
+        <div class="mini-card"><div class="label">RVS</div><div class="value alerta">↓ Diminuída</div></div>
+        <div class="mini-card"><div class="label">PVC / PCP</div><div class="value warn">↓ Baixas (hipovolemia)</div></div>
+        <div class="mini-card"><div class="label">SvcO2 / SvO2</div><div class="value warn">↑ ou normal (shunt)</div></div>
+      </div>
+    </div>
+    <div class="secao">
+      <div class="secao-titulo">Por que o DC cai com piora do choque</div>
+      <div class="item">
+        <span class="bullet red">▸</span>
+        <span>Disfunção miocárdica séptica → cardiomiopatia séptica → diminui FE. Ocorre em até 40% dos choques sépticos.</span>
+      </div>
+      <div class="item">
+        <span class="bullet red">▸</span>
+        <span>Hipovolemia grave não tratada → reduz pré-carga → reduz DC.</span>
+      </div>
+      <div class="item">
+        <span class="bullet blue">▸</span>
+        <span><strong class="dest">Gap de CO2 (PCO2 venosa − arterial):</strong> normal &lt; 6 mmHg. Elevado (&gt; 6 mmHg) + SVcO2 normal = baixo débito cardíaco ("sepse fria com SvcO2 normal"). Indicação de dobutamina.</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- BUNDLE SSC 2021 -->
+<div class="card">
+  <div class="card-header">
+    <div class="card-badge">Surviving Sepsis 2021</div>
+    <div class="card-title">Bundle da 1ª Hora — O que cai na prova</div>
+  </div>
+  <div class="card-body">
+    <div class="secao">
+      <div class="secao-titulo">Bundle da 1ª hora (SSC 2021)</div>
+      <div class="item">
+        <span class="bullet green">1.</span>
+        <span><strong class="dest">Lactato:</strong> dosar. Se &gt; 2 mmol/L → repetir em 2h para avaliar clearance ≥ 10%.</span>
+      </div>
+      <div class="item">
+        <span class="bullet green">2.</span>
+        <span><strong class="dest">Hemoculturas:</strong> colher 2 pares (aeróbio + anaeróbio, sítios diferentes) <em>antes</em> do antibiótico.</span>
+      </div>
+      <div class="item">
+        <span class="bullet green">3.</span>
+        <span><strong class="dest">Antibiótico de largo espectro:</strong> iniciar em 1 hora (choque séptico) / 3 horas (sepse sem choque). Não atrasar por aguardar exames.</span>
+      </div>
+      <div class="item">
+        <span class="bullet green">4.</span>
+        <span><strong class="dest">Fluidos:</strong> cristaloide 30 mL/kg se hipoperfusão. Monitorar responsividade a volume (PLR, PPV, VVS, ecocardiograma). <span class="tag warn">PVC NÃO prediz responsividade (abandonar)</span></span>
+      </div>
+      <div class="item">
+        <span class="bullet green">5.</span>
+        <span><strong class="dest">Vasopressor:</strong> iniciar se PAM &lt; 65 após fluidos. <strong class="dest">Noradrenalina</strong> como 1ª escolha. Meta: PAM ≥ 65 mmHg.</span>
+      </div>
+    </div>
+    <div class="secao">
+      <div class="secao-titulo">Vasopressores — hierarquia TEMI</div>
+      <div class="item">
+        <span class="bullet green">1ª</span>
+        <span><strong class="dest">Noradrenalina:</strong> 0,01–3 mcg/kg/min. Agonista α1 e β1. Padrão ouro no choque séptico.</span>
+      </div>
+      <div class="item">
+        <span class="bullet blue">2ª</span>
+        <span><strong class="dest">Vasopressina:</strong> 0,03–0,04 U/min (dose fixa). Adicionar quando NE ≥ 0,25 mcg/kg/min para poupar NE e reduzir risco de FA. <span class="tag info">VASST trial</span></span>
+      </div>
+      <div class="item">
+        <span class="bullet warn">3ª</span>
+        <span><strong class="dest">Adrenalina:</strong> se refratário à NE + vasopressina, OU se disfunção miocárdica predominante.</span>
+      </div>
+      <div class="item">
+        <span class="bullet red">✗</span>
+        <span><strong class="dest">Dopamina:</strong> NÃO é 1ª escolha. Maior risco de arritmias (FA). Usar apenas como alternativa em bradicardia.</span>
+      </div>
+    </div>
+    <div class="secao">
+      <div class="secao-titulo">Corticosteroide</div>
+      <div class="item">
+        <span class="bullet blue">▸</span>
+        <span><strong class="dest">Hidrocortisona 200 mg/dia</strong> (em infusão contínua ou 50 mg 6/6h): indicada se NE ≥ 0,25 mcg/kg/min após 2-4h de ressuscitação. <span class="tag info">ADRENAL trial 2018</span></span>
+      </div>
+      <div class="item">
+        <span class="bullet warn">▸</span>
+        <span>Não usar dexametasona (não preserva eixo HHA). Não usar dosagem de cortisol para decidir (CORTICUS, ADRENAL).</span>
+      </div>
+    </div>
+    <div class="secao">
+      <div class="secao-titulo">Antibiótico — princípios</div>
+      <div class="item">
+        <span class="bullet green">▸</span>
+        <span><strong class="dest">Cobertura empírica ampla:</strong> carbapenêmico ou β-lactâmico antipseudomonas ± vancomicina (risco de MRSA). Descalar conforme culturas.</span>
+      </div>
+      <div class="item">
+        <span class="bullet warn">▸</span>
+        <span><strong class="dest">Foco biliar/abdominal:</strong> não esquecer anaeróbios — usar metronidazol ou piperacilina-tazobactam.</span>
+      </div>
+      <div class="item">
+        <span class="bullet red">▸</span>
+        <span><strong class="dest">Controle de foco:</strong> drenagem, desbridamento, remoção de cateter — obrigatório nas primeiras 12h se viável.</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- QUESTÕES TEMI -->
+<div class="card">
+  <div class="card-header">
+    <div class="card-badge">Questões TEMI</div>
+    <div class="card-title">Prática — Sepse e Choque Séptico</div>
+  </div>
+  <div class="card-body">
+
+    <div class="questao-card">
+      <div class="questao-num">Questão 05 — TEMI 2019</div>
+      <div class="questao-enunciado">Paciente em choque séptico que evolui sem clarear lactato e sem redução de vasopressor. Qual a melhor conduta?</div>
+      <div class="opcao errada"><span>A)</span><span>A monitoração de SVcO2 não auxilia a condução do paciente.</span></div>
+      <div class="opcao correta"><span>B)</span><span>Obter SVcO2 e gap de CO2 venoso-arterial para definir uso de inotrópico.</span></div>
+      <div class="opcao errada"><span>C)</span><span>PVC estática ou VCI à USG pode predizer responsividade a fluidos.</span></div>
+      <div class="opcao errada"><span>D)</span><span>Sedação e ventilação mecânica para aumentar a oferta de O2.</span></div>
+      <div class="questao-justificativa">
+        <strong>Gabarito: B.</strong> No choque séptico refratário, a SVcO2 e o gap de CO2 (&gt; 6 mmHg) orientam a decisão de inotrópico (dobutamina). Gap CO2 elevado + SVcO2 normal = DC insuficiente. PVC estática não prediz responsividade a fluidos (evidência consolidada). Sedação e VM não aumentam oferta de O2.
+      </div>
+    </div>
+
+    <div class="questao-card">
+      <div class="questao-num">Questão 34 — TEMI 2019</div>
+      <div class="questao-enunciado">Assinale a alternativa correta quanto ao manejo do choque séptico na fase aguda (3 primeiras horas), segundo a Surviving Sepsis Campaign (2017):</div>
+      <div class="opcao errada"><span>A)</span><span>Infundir alíquotas de 500 mL e avaliar status volêmico de forma estática ou dinâmica.</span></div>
+      <div class="opcao errada"><span>B)</span><span>O objetivo é PVC de 8-12 mmHg.</span></div>
+      <div class="opcao correta"><span>C)</span><span>Infusão inicial de 30 mL/kg; ofertar fluidos adicionais se responsividade confirmada por método dinâmico.</span></div>
+      <div class="opcao errada"><span>D)</span><span>A oferta de fluidos deve ser cautelosa em portadores de IC, nem sempre sendo possível ofertar 30 mL/kg.</span></div>
+      <div class="questao-justificativa">
+        <strong>Gabarito: C.</strong> O bundle da SSC 2021 mantém 30 mL/kg como dose inicial. Após, avaliar responsividade com PLR, PPV, Δ PPmax, ecocardiograma. PVC como meta foi abandonado. Pacientes com IC também recebem 30 mL/kg inicialmente — guiado por responsividade dinâmica.
+      </div>
+    </div>
+
+    <div class="questao-card">
+      <div class="questao-num">Questão 17 — TEMI 2019</div>
+      <div class="questao-enunciado">Após iniciar dobutamina em choque, o DC e PA permanecem inalterados. Sem evidências de sangramento. Como justificar queda na SvO2 mista?</div>
+      <div class="opcao errada"><span>A)</span><span>Artefato por alcalose metabólica ou respiratória.</span></div>
+      <div class="opcao errada"><span>B)</span><span>Sedação excessiva ou hipotermia.</span></div>
+      <div class="opcao correta"><span>C)</span><span>Redistribuição do fluxo sanguíneo ou aumento do metabolismo por estímulo de receptores β-adrenérgicos.</span></div>
+      <div class="opcao errada"><span>D)</span><span>Bloqueio no aproveitamento mitocondrial de O2 (fenômeno precoce do choque séptico).</span></div>
+      <div class="questao-justificativa">
+        <strong>Gabarito: C.</strong> A dobutamina aumenta o metabolismo tecidual (β1 e β2) e pode redistribuir o fluxo, aumentando o consumo de O2 (VO2) sem elevar proporcionalmente a oferta. Isso reduz a SvO2. O bloqueio mitocondrial causaria SvO2 elevada (não baixa).
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- PÉROLAS -->
+<div class="card">
+  <div class="card-header">
+    <div class="card-badge">Pérolas TEMI</div>
+    <div class="card-title">Macetes e Armadilhas de Prova</div>
+  </div>
+  <div class="card-body">
+    <div class="perola-box">
+      <strong>Pérola 1 — Gap de CO2:</strong> Gap CO2 (PCO2v − PCO2a) &gt; 6 mmHg com SvcO2 normal ou elevada = DC insuficiente apesar de saturação adequada. Indicação de dobutamina. Conceito muito cobrado no TEMI.
+    </div>
+    <div class="perola-box">
+      <strong>Pérola 2 — qSOFA não é diagnóstico:</strong> qSOFA triagem, SOFA faz diagnóstico. qSOFA ≥ 2 em qualquer cenário (enfermaria, pronto-socorro) → suspeitar de sepse e iniciar propedêutica. Na UTI, usar SOFA.
+    </div>
+    <div class="perola-box">
+      <strong>Pérola 3 — Vasopressina:</strong> dose fixa 0,03 U/min, não titular. Indicada como 2ª droga quando NE ≥ 0,25 mcg/kg/min. Benefício de reduzir NE e o risco de FA (VASST). Não usar como monoterapia.
+    </div>
+    <div class="erro-box">
+      <strong>Erro clássico 1 — PVC como meta:</strong> PVC de 8-12 mmHg foi meta nas diretrizes antigas (Rivers 2001). Abandonado. PVC não prediz responsividade nem se correlaciona com volemia. Não usar.
+    </div>
+    <div class="erro-box">
+      <strong>Erro clássico 2 — Atraso no antibiótico:</strong> cada hora de atraso no antibiótico aumenta mortalidade em choque séptico. Não aguardar resultado de culturas, imagem ou outros exames para iniciar. Hemoculturas colher em paralelo (não antes de).
+    </div>
+    <div class="erro-box">
+      <strong>Erro clássico 3 — SvcO2 elevada = adequada:</strong> SvcO2 elevada no choque séptico pode significar shunt microcirculatório ou disfunção mitocondrial — não necessariamente adequação de oferta. Checar gap de CO2 para diferenciar.
+    </div>
+  </div>
+</div>
+
+<!-- ALGORITMO -->
+<div class="card">
+  <div class="card-header">
+    <div class="card-badge">Algoritmo</div>
+    <div class="card-title">Fluxo de Manejo do Choque Séptico — TEMI</div>
+  </div>
+  <div class="card-body">
+    <div class="algoritmo-box">
+      <strong>1. Suspeita clínica</strong> → qSOFA ≥ 2 (fora UTI) ou SOFA ≥ 2 (UTI)<br>
+      <strong>2. Dosar lactato</strong> → &gt; 2 mmol/L = critério de choque séptico mesmo sem hipotensão<br>
+      <strong>3. Hemoculturas × 2</strong> → em vias diferentes, antes do ATB<br>
+      <strong>4. ATB empírico</strong> → em &lt; 1h no choque (carbapenêmico ou β-lactâmico AP ± vancomicina)<br>
+      <strong>5. Ressuscitação</strong> → cristaloide 30 mL/kg + avaliar responsividade (PLR, PPV, eco)<br>
+      <strong>6. Vasopressor</strong> → Noradrenalina se PAM &lt; 65. Meta: PAM ≥ 65 mmHg<br>
+      <strong>7. Refratário (NE ≥ 0,25)</strong> → adicionar Vasopressina 0,03 U/min<br>
+      <strong>8. Disfunção miocárdica</strong> → Dobutamina 2–20 mcg/kg/min (SVcO2 &lt; 65% ou gap CO2 &gt; 6 mmHg)<br>
+      <strong>9. NE ≥ 0,25 mcg/kg/min por &gt; 4h</strong> → Hidrocortisona 200 mg/dia em IC<br>
+      <strong>10. Controle de foco</strong> → drenagem/desbridamento em &lt; 12h se viável<br>
+      <strong>11. Descalar ATB</strong> → após 48-96h, conforme culturas e evolução
+    </div>
+  </div>
+</div>

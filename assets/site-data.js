@@ -12,6 +12,26 @@ window.PLANTAO_DATA = {
       "updated": "2026-05-25"
     },
     {
+      "title": "📚 TEMI — Sepse e Choque Séptico",
+      "path": "estudo/amib/sepse-choque-septico.html",
+      "href": "estudo/amib/sepse-choque-septico.html",
+      "folder": "estudo/amib",
+      "category": "amib",
+      "categoryLabel": "AMIB",
+      "summary": "AMIB — Sepse e Choque Séptico — TEMI 📚 TEMI — Sepse e Choque Séptico Bloco AMIB · Surviving Sepsis Campaign 2021 · Diagnóstico · Manejo Semana 5 25/05/2026 Definições ",
+      "updated": "2026-05-25"
+    },
+    {
+      "title": "📚 TEMI — Ventilação Mecânica e SDRA",
+      "path": "estudo/amib/ventilacao-mecanica-sdra.html",
+      "href": "estudo/amib/ventilacao-mecanica-sdra.html",
+      "folder": "estudo/amib",
+      "category": "amib",
+      "categoryLabel": "AMIB",
+      "summary": "AMIB — Ventilação Mecânica e SDRA — TEMI 📚 TEMI — Ventilação Mecânica e SDRA Bloco AMIB · ARDSNet · Ventilação Protetora · Desmame Semana 6 25/05/2026 Mapa Conceitual ",
+      "updated": "2026-05-25"
+    },
+    {
       "title": "Perfil do médico",
       "path": "perfil.html",
       "href": "perfil.html",
