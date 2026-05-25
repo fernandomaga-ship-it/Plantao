@@ -45,6 +45,10 @@
             <span>Outros</span>
             <strong id="count-outros">0</strong>
           </a>
+          <a class="nav-link nav-link-route" href="./perfil.html">
+            <span>Perfil</span>
+            <strong>Ir</strong>
+          </a>
         </nav>
 
         <div class="sidebar-card">
@@ -76,10 +80,11 @@
         <section class="hero-panel" aria-labelledby="dashboard-title">
           <div class="hero-copy">
             <p class="eyebrow">GitHub Pages</p>
-            <h2 id="dashboard-title">Central limpa para consultar pacientes, leitos e arquivos de plantão.</h2>
+            <h2 id="dashboard-title">Central limpa para consultar pacientes, leitos e arquivos de plantão por data.</h2>
             <p>
               A página inicial lê um manifesto estático gerado a partir dos HTMLs do repositório,
-              organiza por categoria e mantém links prontos para iPhone, iPad e desktop.
+              organiza por categoria, mantém o histórico diário dos plantões e deixa os links prontos
+              para iPhone, iPad e desktop.
             </p>
           </div>
           <div class="summary-grid" aria-label="Resumo dos arquivos">
@@ -93,7 +98,11 @@
             </article>
             <article>
               <span id="summary-updated">Hoje</span>
-              <small>Atualizado</small>
+              <small>Último plantão</small>
+            </article>
+            <article>
+              <span id="summary-shifts">0</span>
+              <small>Dias arquivados</small>
             </article>
           </div>
         </section>
@@ -105,7 +114,7 @@
               id="search"
               type="search"
               autocomplete="off"
-              placeholder="Paciente, plantão, leito, pasta ou arquivo..."
+              placeholder="Paciente, plantão, data, leito, pasta ou arquivo..."
             />
           </label>
           <div class="chip-row" id="category-chips" aria-label="Filtros rápidos"></div>
@@ -144,6 +153,20 @@
             <p>Tente buscar por outro paciente, leito, categoria ou trecho do nome do arquivo.</p>
           </div>
         </section>
+
+        <footer class="site-footer" aria-label="Informações do site">
+          <div class="site-footer-copy">
+            <p class="eyebrow">Rodapé</p>
+            <strong>Visitas registradas nesta página</strong>
+            <p id="visit-counter-note">
+              O contador é atualizado automaticamente quando o site está publicado.
+            </p>
+          </div>
+          <div class="visit-badge" aria-live="polite">
+            <span>Total de visitas</span>
+            <strong id="visit-counter">Carregando...</strong>
+          </div>
+        </footer>
       </main>
     </div>
 

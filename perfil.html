@@ -20,12 +20,14 @@
           </span>
         </a>
 
-        <nav class="side-nav" aria-label="Categorias">
-          <a class="nav-link" href="./index.html">
-            <span>Plantões</span>
+        <nav class="side-nav" aria-label="Navegação principal">
+          <a class="nav-link nav-link-route" href="./index.html">
+            <span>Dashboard</span>
+            <strong>Plantões</strong>
           </a>
-          <a class="nav-link active" href="./perfil.html">
+          <a class="nav-link nav-link-route active" href="./perfil.html" aria-current="page">
             <span>Perfil</span>
+            <strong>Atual</strong>
           </a>
         </nav>
 
@@ -61,7 +63,7 @@
             <h2 id="perfil-title">Dr. Fernando Magalhães</h2>
             <p>Médico intensivista atuando na UTI de Cardiologia e Neurologia do Hospital Beneficência Portuguesa de São Paulo.</p>
           </div>
-          <div class="summary-grid" aria-label="Resumo">
+          <div class="summary-grid profile-summary" aria-label="Resumo">
             <article>
               <span>4</span>
               <small>Unidades</small>
@@ -74,6 +76,41 @@
               <span>BP SP</span>
               <small>Hospital</small>
             </article>
+          </div>
+        </section>
+
+        <section class="content-grid hub-panel" aria-labelledby="hub-title">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Central</p>
+              <h2 id="hub-title">Acessos principais</h2>
+            </div>
+          </div>
+          <div class="cards-grid hub-grid">
+            <a class="plantao-card hub-card" href="./index.html">
+              <div class="card-topline">
+                <span class="category-badge">Pacientes</span>
+                <span class="date-badge">Ativo</span>
+              </div>
+              <h3>Dashboard de plantões</h3>
+              <p>Buscar pacientes, leitos, datas e arquivos HTML publicados no GitHub Pages.</p>
+            </a>
+            <a class="plantao-card hub-card" href="./perfil.html">
+              <div class="card-topline">
+                <span class="category-badge">Perfil</span>
+                <span class="date-badge">Atual</span>
+              </div>
+              <h3>Perfil profissional</h3>
+              <p>Informações profissionais, certificações e escalas principais em um só lugar.</p>
+            </a>
+            <a class="plantao-card hub-card" href="#sec-cert">
+              <div class="card-topline">
+                <span class="category-badge">Estudos</span>
+                <span class="date-badge">TEMI</span>
+              </div>
+              <h3>Prova de título</h3>
+              <p>Espaço preparado para receber resumos, materiais de estudo e revisões futuras.</p>
+            </a>
           </div>
         </section>
 
@@ -325,10 +362,33 @@
       }
       .escala-desc { color: var(--color-text-primary, #17201f); }
 
+      .hub-panel {
+        margin-top: 18px;
+        padding: 24px;
+      }
+
+      .hub-card {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .hub-card:hover {
+        border-color: rgba(15, 118, 110, 0.32);
+        transform: translateY(-1px);
+      }
+
+      .profile-summary {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
       @media (max-width: 768px) {
         div[style*="grid-template-columns:1fr 1fr"] {
           grid-template-columns: 1fr !important;
           padding: 16px !important;
+        }
+
+        .profile-summary {
+          grid-template-columns: 1fr;
         }
       }
     </style>
