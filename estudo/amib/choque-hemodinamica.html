@@ -1,0 +1,394 @@
+
+<style>
+:root {
+  --font-sans: Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif;
+  --azul: #0C447C; --azul-claro: #E6F1FB; --azul-medio: #185FA5;
+  --verde: #3B6D11; --verde-claro: #EAF3DE;
+  --vermelho: #A32D2D; --vermelho-claro: #FCEBEB;
+  --amarelo: #BA7517; --amarelo-claro: #FAEEDA;
+  --cinza: #444441; --cinza-claro: #F1EFE8;
+  --coral: #993C1D; --coral-claro: #FAECE7;
+  --border: #D8E2DF; --border-light: #E9EFED;
+  --bg: #ffffff; --text: #17201f; --text-sec: #5f6f6c;
+  --radius: 12px; --radius-sm: 8px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { background: #f6faf9; }
+body {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  color: var(--text);
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 16px;
+  background: transparent;
+}
+.sr-only { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0,0,0,0); }
+
+/* HEADER */
+.estudo-header {
+  background: var(--azul);
+  color: #E6F1FB;
+  padding: 14px 20px;
+  border-radius: var(--radius);
+  margin-bottom: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.estudo-header h1 { font-size: 16px; font-weight: 600; letter-spacing: 0.4px; }
+.estudo-header .meta { font-size: 12px; opacity: 0.8; margin-top: 2px; }
+.semana-badge {
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 6px;
+  padding: 4px 10px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* CARDS */
+.card {
+  background: var(--bg);
+  border: 0.5px solid var(--border);
+  border-radius: var(--radius);
+  margin-bottom: 16px;
+  overflow: hidden;
+}
+.card-header {
+  background: var(--azul-claro);
+  border-bottom: 1.5px solid var(--azul-medio);
+  padding: 10px 18px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.card-badge {
+  background: var(--azul-medio);
+  color: #E6F1FB;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 9px;
+  border-radius: 6px;
+  white-space: nowrap;
+}
+.card-title { font-size: 14px; font-weight: 600; color: var(--azul); }
+.card-body { padding: 14px 18px; }
+
+/* SEÇÃO */
+.secao { margin-bottom: 14px; }
+.secao-titulo {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--text-sec);
+  border-bottom: 0.5px solid var(--border-light);
+  padding-bottom: 4px;
+  margin-bottom: 10px;
+}
+
+/* ITEM */
+.item {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  padding: 5px 0;
+  border-bottom: 0.5px solid var(--border-light);
+  font-size: 13px;
+  line-height: 1.55;
+}
+.item:last-child { border-bottom: none; }
+.bullet { flex-shrink: 0; margin-top: 1px; font-weight: 700; }
+.bullet.green { color: var(--verde); }
+.bullet.red { color: var(--vermelho); }
+.bullet.warn { color: var(--amarelo); }
+.bullet.blue { color: var(--azul-medio); }
+strong.dest { font-weight: 600; }
+
+/* TAGS */
+.tag {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 4px;
+  margin: 2px 3px 2px 0;
+}
+.tag.ok { background: var(--verde-claro); color: var(--verde); }
+.tag.alerta { background: var(--vermelho-claro); color: var(--vermelho); }
+.tag.info { background: var(--azul-claro); color: var(--azul); }
+.tag.warn { background: var(--amarelo-claro); color: var(--amarelo); }
+
+/* PEROLA / CONDUTA BOX */
+.perola-box {
+  background: var(--azul-claro);
+  border-left: 3px solid var(--azul-medio);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  padding: 10px 14px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--azul);
+  margin-bottom: 8px;
+}
+.erro-box {
+  background: var(--coral-claro);
+  border-left: 3px solid #D85A30;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  padding: 10px 14px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--coral);
+  margin-bottom: 8px;
+}
+.algoritmo-box {
+  background: var(--cinza-claro);
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+  font-size: 13px;
+  line-height: 1.7;
+  margin-bottom: 8px;
+}
+
+/* GRID */
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.mini-card { background: var(--cinza-claro); border-radius: var(--radius-sm); padding: 8px 12px; }
+.mini-card .label { font-size: 11px; color: var(--text-sec); margin-bottom: 3px; }
+.mini-card .value { font-size: 13px; font-weight: 600; }
+.mini-card .value.ok { color: var(--verde); }
+.mini-card .value.alerta { color: var(--vermelho); }
+.mini-card .value.warn { color: var(--amarelo); }
+
+/* QUESTÃO */
+.questao-card {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 14px 16px;
+  margin-bottom: 12px;
+}
+.questao-num { font-size: 11px; font-weight: 700; color: var(--text-sec); text-transform: uppercase; margin-bottom: 6px; }
+.questao-enunciado { font-size: 13px; line-height: 1.6; margin-bottom: 10px; }
+.opcao {
+  font-size: 13px;
+  padding: 5px 10px;
+  border-radius: 6px;
+  margin-bottom: 4px;
+  display: flex;
+  gap: 8px;
+}
+.opcao.correta { background: var(--verde-claro); color: var(--verde); font-weight: 600; }
+.opcao.errada { background: var(--vermelho-claro); color: var(--vermelho); opacity: 0.6; }
+.opcao.neutra { background: var(--cinza-claro); }
+.questao-justificativa {
+  margin-top: 10px;
+  font-size: 12px;
+  color: var(--text-sec);
+  background: var(--cinza-claro);
+  border-radius: 6px;
+  padding: 8px 12px;
+  line-height: 1.6;
+}
+
+@media (max-width: 600px) {
+  .grid-2 { grid-template-columns: 1fr; }
+  .estudo-header { flex-direction: column; align-items: flex-start; }
+}
+</style>
+
+<h2 class="sr-only">AMIB — Choque e Hemodinâmica — Semana 8</h2>
+
+<div class="estudo-header">
+  <div>
+    <h1>📚 TEMI — Choque e Hemodinâmica</h1>
+    <div class="meta">Bloco AMIB · Fisiopatologia · Diagnóstico · Manejo</div>
+  </div>
+  <div style="text-align:right;">
+    <div class="semana-badge">Semana 8</div>
+    <div style="font-size:11px; opacity:0.7; margin-top:4px;">04/05/2026</div>
+  </div>
+</div>
+
+<!-- RESUMO DO TEMA -->
+<div class="card">
+  <div class="card-header">
+    <div class="card-badge">Mapa conceitual</div>
+    <div class="card-title">Choque — Classificação e Fisiopatologia</div>
+  </div>
+  <div class="card-body">
+    <div class="secao">
+      <div class="secao-titulo">Tipos de choque</div>
+      <div class="grid-2">
+        <div class="mini-card">
+          <div class="label">Distributivo</div>
+          <div class="value">Sepse, anafilaxia, neurogênico</div>
+        </div>
+        <div class="mini-card">
+          <div class="label">Hipovolêmico</div>
+          <div class="value">Hemorrágico, perdas GI/urinária</div>
+        </div>
+        <div class="mini-card">
+          <div class="label">Cardiogênico</div>
+          <div class="value">IAM, IC aguda, arritmia, miocardite</div>
+        </div>
+        <div class="mini-card">
+          <div class="label">Obstrutivo</div>
+          <div class="value">TEP, tamponamento, pneumotórax</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="secao">
+      <div class="secao-titulo">Parâmetros hemodinâmicos-chave</div>
+      <div class="item"><span class="bullet blue">→</span><span><strong class="dest">DC/IC:</strong> débito cardíaco (&lt;4L/min) / índice cardíaco (&lt;2,2L/min/m²) — baixo no cardiogênico e obstrutivo</span></div>
+      <div class="item"><span class="bullet blue">→</span><span><strong class="dest">PVC / POAP:</strong> elevada no cardiogênico (POAP &gt;18mmHg); baixa no hipovolêmico</span></div>
+      <div class="item"><span class="bullet blue">→</span><span><strong class="dest">RVS:</strong> elevada no cardiogênico e hipovolêmico; baixa no distributivo</span></div>
+      <div class="item"><span class="bullet blue">→</span><span><strong class="dest">SvO₂:</strong> baixa no cardiogênico/hipovolêmico (&lt;65%); elevada no distributivo (&gt;75%)</span></div>
+      <div class="item"><span class="bullet warn">!</span><span><strong class="dest">Lactato &gt;2mmol/L</strong> = hipoperfusão tecidual — limpar lactato é meta terapêutica</span></div>
+    </div>
+
+    <div class="secao">
+      <div class="secao-titulo">Perfis hemodinâmicos — Forrester (IC × POAP)</div>
+      <div class="grid-2">
+        <div class="mini-card">
+          <div class="label">Quente-Seco (I)</div>
+          <div class="value ok">Normal — otimizar VO</div>
+        </div>
+        <div class="mini-card">
+          <div class="label">Quente-Úmido (II)</div>
+          <div class="value warn">Congesto → diurético</div>
+        </div>
+        <div class="mini-card">
+          <div class="label">Frio-Seco (III)</div>
+          <div class="value warn">Depleto → volume</div>
+        </div>
+        <div class="mini-card">
+          <div class="label">Frio-Úmido (IV)</div>
+          <div class="value alerta">IC grave → inotrópico + diurético</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- QUESTÕES RESOLVIDAS -->
+<div class="card">
+  <div class="card-header">
+    <div class="card-badge">Questões TEMI</div>
+    <div class="card-title">10 questões — Choque e Hemodinâmica</div>
+  </div>
+  <div class="card-body">
+
+    <div class="questao-card">
+      <div class="questao-num">Questão 1</div>
+      <div class="questao-enunciado">Paciente pós-IAM extenso com PA 80×50 mmHg, extremidades frias, diurese &lt;20mL/h, lactato 4,8mmol/L e IC 1,8L/min/m². Qual o vasopressor de 1ª escolha?</div>
+      <div class="opcao errada"><span>A)</span> Dopamina</div>
+      <div class="opcao errada"><span>B)</span> Fenilefrina</div>
+      <div class="opcao correta"><span>C)</span> Noradrenalina ✓</div>
+      <div class="opcao errada"><span>D)</span> Vasopressina</div>
+      <div class="questao-justificativa">
+        <strong>Justificativa:</strong> Noradrenalina é o vasopressor de 1ª linha no choque cardiogênico (e séptico). Estudo SOAP-II demonstrou menor mortalidade e menos arritmias vs dopamina. Fenilefrina aumenta RVS pura sem efeito inotrópico — piora IC. Vasopressina pode ser usada adjuvante, mas não 1ª linha no cardiogênico.
+      </div>
+    </div>
+
+    <div class="questao-card">
+      <div class="questao-num">Questão 2</div>
+      <div class="questao-enunciado">Sobre o estudo IABP-SHOCK II, qual das afirmativas é correta?</div>
+      <div class="opcao errada"><span>A)</span> IABP reduziu mortalidade em 30 dias em IAM + choque cardiogênico</div>
+      <div class="opcao correta"><span>B)</span> IABP não reduziu mortalidade em 30 dias vs tratamento convencional ✓</div>
+      <div class="opcao errada"><span>C)</span> IABP deve ser usado rotineiramente antes da ICP</div>
+      <div class="opcao errada"><span>D)</span> IABP melhorou índice cardíaco de forma significativa</div>
+      <div class="questao-justificativa">
+        <strong>Justificativa:</strong> IABP-SHOCK II (NEJM 2012, n=600) não demonstrou benefício em mortalidade em 30 dias (39,7% vs 41,3%, p=0,69). O IABP melhora modestamente a PAM e reduz pós-carga, mas sem impacto clínico significativo. Diretrizes atuais: uso seletivo (IIb/III), não rotineiro.
+      </div>
+    </div>
+
+    <div class="questao-card">
+      <div class="questao-num">Questão 3</div>
+      <div class="questao-enunciado">Em paciente com choque séptico refratário a volume e noradrenalina, qual a 2ª droga vasoativa recomendada pelas diretrizes SSC 2021?</div>
+      <div class="opcao errada"><span>A)</span> Dopamina</div>
+      <div class="opcao errada"><span>B)</span> Fenilefrina</div>
+      <div class="opcao errada"><span>C)</span> Dobutamina</div>
+      <div class="opcao correta"><span>D)</span> Vasopressina ✓</div>
+      <div class="questao-justificativa">
+        <strong>Justificativa:</strong> SSC 2021 recomenda vasopressina como 2ª droga vasoativa (para reduzir dose de NE ou quando NE &gt;0,25mcg/kg/min). Poupar NE reduz efeitos adrenérgicos. Dose: 0,03–0,04 UI/min (dose fixa). VANISH trial: vasopressina + corticoide = menor uso de TRS.
+      </div>
+    </div>
+
+    <div class="questao-card">
+      <div class="questao-num">Questão 4 — 5 — 6 — 7 — 8 — 9 — 10</div>
+      <div class="questao-enunciado" style="color:var(--text-sec); font-style:italic;">Questões 4 a 10 registradas no caderno físico de erros — temas: delta CO₂, SvO₂ no distributivo, PICCO vs Swan, DanGer Shock 2024, CULPRIT-SHOCK, SMC no cardiogênico, levosimendan vs dobutamina.</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- PÉROLAS DE PROVA -->
+<div class="card">
+  <div class="card-header">
+    <div class="card-badge">Pérolas</div>
+    <div class="card-title">3 pérolas do dia</div>
+  </div>
+  <div class="card-body">
+    <div class="perola-box">
+      💎 <strong>Pérola 1:</strong> Delta CO₂ (PvCO₂ − PaCO₂) &gt; 6mmHg indica baixo débito cardíaco mesmo com SvO₂ normal — use-o para detectar hipoperfusão oculta.
+    </div>
+    <div class="perola-box">
+      💎 <strong>Pérola 2:</strong> No choque cardiogênico, diferencie o perfil hemodinâmico ANTES de iniciar inotrópico. Frio-Seco (III) = depleto → volume primeiro; Frio-Úmido (IV) → inotrópico + diurético.
+    </div>
+    <div class="perola-box">
+      💎 <strong>Pérola 3:</strong> DanGer Shock 2024 (NEJM): Impella CP pré-ICP reduziu mortalidade em 30 dias em IAM + CS (45% vs 58%, HR 0,74). Primeiro trial positivo de SMC percutâneo nesse cenário.
+    </div>
+  </div>
+</div>
+
+<!-- CADERNO DE ERROS -->
+<div class="card">
+  <div class="card-header">
+    <div class="card-badge">Erros</div>
+    <div class="card-title">3 erros clássicos — não repetir</div>
+  </div>
+  <div class="card-body">
+    <div class="erro-box">
+      ⚠️ <strong>Erro 1:</strong> Usar fenilefrina no choque cardiogênico — aumenta RVS sem inotropia, piora DC. Noradrenalina tem efeito alfa + beta discreto, melhor tolerada.
+    </div>
+    <div class="erro-box">
+      ⚠️ <strong>Erro 2:</strong> Indicar IABP rotineiramente em IAM + CS antes da ICP — IABP-SHOCK II não mostrou benefício. Discutir caso a caso.
+    </div>
+    <div class="erro-box">
+      ⚠️ <strong>Erro 3:</strong> Confundir SvO₂ baixa com baixo débito sem avaliar contexto — no choque distributivo a SvO₂ pode estar elevada por shunt e má extração. Integrar lactato + delta CO₂ + clínica.
+    </div>
+  </div>
+</div>
+
+<!-- ALGORITMO DE CONDUTA -->
+<div class="card">
+  <div class="card-header">
+    <div class="card-badge">Algoritmo</div>
+    <div class="card-title">Conduta no Choque — Árvore decisória</div>
+  </div>
+  <div class="card-body">
+    <div class="algoritmo-box">
+      <strong>1. Identificar o tipo</strong> → História clínica + Eco point-of-care + Swan/PiCCO<br>
+      ↳ Distributivo: PVC↓, IC↑, RVS↓ → Fluido + NE + Foco infeccioso<br>
+      ↳ Hipovolêmico: PVC↓, IC↓, RVS↑ → Fluido + controle do sangramento<br>
+      ↳ Cardiogênico: PVC↑, IC↓, RVS↑, POAP↑ → NE + Dobutamina + SMC<br>
+      ↳ Obstrutivo: PVC↑, IC↓ → Tratar a causa (TEP → anticoag/trombólise; Tamponamento → pericardiocentese)<br><br>
+      <strong>2. Metas de ressuscitação</strong><br>
+      ↳ PAM ≥ 65 mmHg (≥75 se coronariopata/cerebrovascular)<br>
+      ↳ Diurese &gt; 0,5mL/kg/h<br>
+      ↳ Lactato em queda (clearance ≥ 10%/2h)<br>
+      ↳ SvO₂ &gt; 65% | Delta CO₂ &lt; 6mmHg<br><br>
+      <strong>3. Desescalada</strong><br>
+      ↳ Reduzir vasopressor quando PAM estável, lactato &lt; 2, clínica favorável<br>
+      ↳ Evitar hipervolemia — BH neutro a levemente negativo após estabilização
+    </div>
+  </div>
+</div>
+
+<div style="text-align:center; font-size:11px; color:var(--text-sec); padding:10px; border-top:0.5px solid var(--border-light); margin-top:8px;">
+  TEMI — Plano de 8 semanas · Semana 8 · Choque e Hemodinâmica · 04/05/2026
+</div>

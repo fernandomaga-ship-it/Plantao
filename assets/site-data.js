@@ -1,13 +1,23 @@
 window.PLANTAO_DATA = {
-  "generatedAt": "2026-05-24",
+  "generatedAt": "2026-05-25",
   "pages": [
+    {
+      "title": "📚 TEMI — Choque e Hemodinâmica",
+      "path": "estudo/amib/choque-hemodinamica.html",
+      "href": "estudo/amib/choque-hemodinamica.html",
+      "folder": "estudo/amib",
+      "category": "amib",
+      "categoryLabel": "AMIB",
+      "summary": "AMIB — Choque e Hemodinâmica — Semana 8 📚 TEMI — Choque e Hemodinâmica Bloco AMIB · Fisiopatologia · Diagnóstico · Manejo Semana 8 04/05/2026 Mapa conceitual Choque — ",
+      "updated": "2026-05-25"
+    },
     {
       "title": "Perfil do médico",
       "path": "perfil.html",
       "href": "perfil.html",
       "folder": "",
-      "category": "uti",
-      "categoryLabel": "UTI",
+      "category": "amib",
+      "categoryLabel": "AMIB",
       "summary": "DR. FERNANDO | Perfil F DR. FERNANDO Dashboard médico Plantões Perfil GitHub Pages ready HTML, CSS e JS estáticos Sobre Perfil do médico ◐ Dark mode Medicina Intensiva ",
       "updated": "2026-05-23"
     },
@@ -86,8 +96,8 @@ window.PLANTAO_DATA = {
       "path": "plantoes/bp/leito-1600-14.html",
       "href": "plantoes/bp/leito-1600-14.html",
       "folder": "plantoes/bp",
-      "category": "uti",
-      "categoryLabel": "UTI",
+      "category": "amib",
+      "categoryLabel": "AMIB",
       "summary": "Juarez Ribeiro de Roma. Leito 1600-14 Juarez Ribeiro de Roma 59 anos · Masculino · DIH: 12/05/2026 · POI Trombectomia FAV PTFE MSE (15/05) · 3 dias de internação ",
       "updated": "2026-05-23"
     },
@@ -96,8 +106,8 @@ window.PLANTAO_DATA = {
       "path": "plantoes/bp/leito-1600-15.html",
       "href": "plantoes/bp/leito-1600-15.html",
       "folder": "plantoes/bp",
-      "category": "uti",
-      "categoryLabel": "UTI",
+      "category": "amib",
+      "categoryLabel": "AMIB",
       "summary": "Paulo Celso Lavieri Gomes. Leito 1600-15 Paulo Celso Lavieri Gomes 🕊 Cuidados Paliativos — PAC em construção 77 anos · Masculino · DIH: 19/03/2026 · 58 dias · PO 24",
       "updated": "2026-05-23"
     },
@@ -116,8 +126,8 @@ window.PLANTAO_DATA = {
       "path": "plantoes/bp/leito-1600-17.html",
       "href": "plantoes/bp/leito-1600-17.html",
       "folder": "plantoes/bp",
-      "category": "uti",
-      "categoryLabel": "UTI",
+      "category": "amib",
+      "categoryLabel": "AMIB",
       "summary": "Aricia das Neves Monteiro Salvioni. Leito 1600-17 Aricia das Neves Monteiro Salvioni 38 anos · Feminino · DIH: 11/05/2026 · 5 dias · POI FAV Braquiocefálica ESQ (14/05) Nefro",
       "updated": "2026-05-23"
     },
@@ -136,8 +146,8 @@ window.PLANTAO_DATA = {
       "path": "publicacoes.html",
       "href": "publicacoes.html",
       "folder": "",
-      "category": "uti",
-      "categoryLabel": "UTI",
+      "category": "amib",
+      "categoryLabel": "AMIB",
       "summary": "DR. FERNANDO | Publicações F DR. FERNANDO Dashboard médico Plantões Perfil Publicações GitHub Pages ready HTML, CSS e JS estáticos Instagram Publicações médicas ◐ Dark ",
       "updated": "2026-05-24"
     }

@@ -39,6 +39,8 @@ function titleFromPath(filePath) {
 
 function categoryFor(text) {
   const value = text.toLowerCase();
+  if (value.includes("estudo/amib")) return "amib";
+  if (/(amib|temi|medicina intensiva|prova|questao|questões|gabarito|perola|pérola)/.test(value)) return "amib";
   if (value.includes("plantoes/bp")) return "uti";
   if (/(uti|intensiv|cti|icu)/.test(value)) return "uti";
   if (/(enfermaria|ward|ala|posto|quarto)/.test(value)) return "enfermaria";
@@ -51,6 +53,7 @@ function categoryLabel(category) {
     uti: "UTI",
     enfermaria: "Enfermaria",
     "centro-cirurgico": "Centro cirúrgico",
+    amib: "AMIB",
     outros: "Outros",
   }[category] || "Outros";
 }
