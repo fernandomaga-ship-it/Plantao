@@ -1,0 +1,754 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#0f766e" />
+    <title>DR. FERNANDO | AMIB · TEMI</title>
+    <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="./assets/images/rmc-mark-256.png" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <!-- ── Sidebar ─────────────────────────────────────────── -->
+      <aside class="sidebar" aria-label="Menu lateral">
+        <a class="brand" href="./index.html" aria-label="DR. FERNANDO - página inicial">
+          <span class="brand-mark">F</span>
+          <span>
+            <strong>DR. FERNANDO</strong>
+            <small>Dashboard médico</small>
+          </span>
+        </a>
+
+        <nav class="side-nav" aria-label="Navegação principal">
+          <a class="nav-link nav-link-route" href="./index.html">
+            <span>Dashboard</span>
+            <strong>Plantões</strong>
+          </a>
+          <a class="nav-link nav-link-route" href="./perfil.html">
+            <span>Perfil</span>
+            <strong>Médico</strong>
+          </a>
+          <a class="nav-link nav-link-route active" href="./amib-temi.html" aria-current="page">
+            <span>AMIB</span>
+            <strong>TEMI</strong>
+          </a>
+        </nav>
+
+        <!-- progresso rápido -->
+        <div class="sidebar-card" style="flex-direction:column; align-items:flex-start; gap:8px;">
+          <div style="display:flex; align-items:center; gap:8px; width:100%;">
+            <span class="status-dot"></span>
+            <strong style="font-size:13px;">Prova Prática AMIB</strong>
+          </div>
+          <div style="width:100%; background:var(--line); border-radius:99px; height:6px; overflow:hidden;">
+            <div style="width:72%; height:100%; background:linear-gradient(90deg,var(--brand),var(--brand-2)); border-radius:99px;"></div>
+          </div>
+          <small style="color:var(--muted); font-size:11px;">5 eixos mapeados · 31 notas</small>
+        </div>
+      </aside>
+
+      <!-- ── Workspace ──────────────────────────────────────── -->
+      <main class="workspace">
+        <!-- Topbar -->
+        <header class="topbar">
+          <button class="icon-button menu-toggle" type="button" aria-label="Abrir menu" data-menu-toggle>
+            <span></span><span></span><span></span>
+          </button>
+          <div>
+            <p class="eyebrow">TEMI · AMIB 2025</p>
+            <h1>Prova de Título — Material de Estudo</h1>
+          </div>
+          <button class="theme-toggle" type="button" data-theme-toggle aria-label="Alternar dark mode">
+            <span aria-hidden="true">◐</span>
+            <strong>Dark mode</strong>
+          </button>
+        </header>
+
+        <!-- Hero -->
+        <section class="hero-panel" aria-labelledby="amib-title">
+          <div class="hero-copy">
+            <p class="eyebrow">Medicina Intensiva</p>
+            <h2 id="amib-title">Prova Prática AMIB</h2>
+            <p>
+              A 2ª fase não cobra memorização pura — cobra <strong>raciocínio clínico aplicado, execução de
+              procedimentos e tomada de decisão à beira-leito.</strong> Preparação ideal: teoria direcionada + simulação prática.
+            </p>
+          </div>
+          <div class="summary-grid" aria-label="Visão geral">
+            <article>
+              <span>5</span>
+              <small>Eixos avaliados</small>
+            </article>
+            <article>
+              <span>2024</span>
+              <small>Cartilha oficial</small>
+            </article>
+            <article>
+              <span>31</span>
+              <small>Notas no acervo</small>
+            </article>
+          </div>
+        </section>
+
+        <!-- ════════════════════════════════════════════════════
+             SEÇÃO 1 · Estações Prova Prática 2024
+        ═══════════════════════════════════════════════════════ -->
+        <section class="content-grid" aria-labelledby="sec-estacoes" style="padding:24px 32px 0;">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Cartilha do Avaliador 2024</p>
+              <h2 id="sec-estacoes">Estações da Prova Prática</h2>
+            </div>
+            <span class="t-badge t-badge-warn">Hemodinâmica</span>
+          </div>
+
+          <div class="temi-stations-grid">
+            <!-- Estação 1 -->
+            <div class="station-card station-blue">
+              <div class="station-num">01</div>
+              <div class="station-body">
+                <h3>Calibração da Oximetria</h3>
+                <p class="station-sub">Plataforma Hemosphere · Cateter de Artéria Pulmonar</p>
+                <ul class="station-list">
+                  <li>Fibra óptica em embalagem original</li>
+                  <li>Janela de calibração <em>in vitro</em> já selecionada no monitor</li>
+                  <li>Executar calibração antes da passagem do cateter</li>
+                  <li>Avaliador não fornece passos — candidato age de forma independente</li>
+                </ul>
+                <div class="station-tip">
+                  <strong>Foco do avaliador:</strong> identificar e executar a tarefa corretamente de forma autônoma.
+                </div>
+              </div>
+            </div>
+
+            <!-- Estação 2 -->
+            <div class="station-card station-teal">
+              <div class="station-num">02</div>
+              <div class="station-body">
+                <h3>Marca-Passo Temporário</h3>
+                <p class="station-sub">Monitor Mindray · Traçado de ECG ativo</p>
+                <ul class="station-list">
+                  <li>Reconhecer ritmo no ECG do monitor multiparamétrico</li>
+                  <li>Identificar problema relacionado ao MP ou outros componentes</li>
+                  <li>Realizar ações corretivas necessárias</li>
+                  <li>Sem dicas sobre a origem do problema</li>
+                </ul>
+                <div class="station-tip">
+                  <strong>Foco do avaliador:</strong> raciocínio diagnóstico + correção autônoma do problema.
+                </div>
+              </div>
+            </div>
+
+            <!-- Estação 3 -->
+            <div class="station-card station-blue">
+              <div class="station-num">03</div>
+              <div class="station-body">
+                <h3>Interpretação de ECG</h3>
+                <p class="station-sub">Monitor Mindray multiparamétrico</p>
+                <ul class="station-list">
+                  <li>Observar traçado de ECG ativo</li>
+                  <li>Identificar problema e tomar medidas corretivas</li>
+                  <li>Demonstrar capacidade de interpretar traçados à beira-leito</li>
+                </ul>
+                <div class="station-tip">
+                  <strong>Objetivo:</strong> interpretar ECG e tomar decisão necessária para corrigir o problema.
+                </div>
+              </div>
+            </div>
+
+            <!-- Estação 4 -->
+            <div class="station-card station-teal">
+              <div class="station-num">04</div>
+              <div class="station-body">
+                <h3>PAP — Pressão de Artéria Pulmonar</h3>
+                <p class="station-sub">Monitor multiparamétrico · Curvas AD e AP em tempo real</p>
+                <ul class="station-list">
+                  <li>Analisar curvas de pressão do átrio direito (AD) e artéria pulmonar (AP)</li>
+                  <li>Candidato responde: "Qual é o problema na curva de pressão da AP?"</li>
+                  <li>Descrever como resolveria a questão</li>
+                </ul>
+                <div class="station-tip">
+                  <strong>Pergunta-chave:</strong> "Observe as curvas de pressão exibidas, em particular a curva da artéria pulmonar."
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ════════════════════════════════════════════════════
+             SEÇÃO 2 · Eixos de Competência (recorrentes)
+        ═══════════════════════════════════════════════════════ -->
+        <section class="content-grid" aria-labelledby="sec-eixos" style="padding:32px 32px 0;">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Histórico das provas anteriores</p>
+              <h2 id="sec-eixos">Eixos de Competência Avaliados</h2>
+            </div>
+          </div>
+
+          <div class="cards-grid" style="grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));">
+            <div class="plantao-card eixo-card eixo-a">
+              <div class="card-topline">
+                <span class="category-badge">Eixo 1</span>
+                <span class="date-badge">20–24%</span>
+              </div>
+              <h3>🫁 Ventilação Mecânica</h3>
+              <p>Interpretação de curvas, assincronia, driving pressure, obstrução, vazamento, modos VC vs PC vs PSV.</p>
+            </div>
+            <div class="plantao-card eixo-card eixo-b">
+              <div class="card-topline">
+                <span class="category-badge">Eixo 2</span>
+                <span class="date-badge">20%</span>
+              </div>
+              <h3>🩺 USG à Beira-Leito</h3>
+              <p>e-FAST, VCI, ecocardiograma básico, avaliação de choque, derrames, função cardíaca.</p>
+            </div>
+            <div class="plantao-card eixo-card eixo-c">
+              <div class="card-topline">
+                <span class="category-badge">Eixo 3</span>
+                <span class="date-badge">RCP</span>
+              </div>
+              <h3>❤️ Reanimação e Emergências</h3>
+              <p>Ritmos chocáveis, desfibrilação, sequência de compressões, suporte avançado de vida.</p>
+            </div>
+            <div class="plantao-card eixo-card eixo-d">
+              <div class="card-topline">
+                <span class="category-badge">Eixo 4</span>
+                <span class="date-badge">Crítico</span>
+              </div>
+              <h3>🔧 Procedimentos Críticos</h3>
+              <p>IOT, via aérea difícil, máscara laríngea, marcapasso transvenoso, drenagem torácica.</p>
+            </div>
+            <div class="plantao-card eixo-card eixo-e">
+              <div class="card-topline">
+                <span class="category-badge">Eixo 5</span>
+                <span class="date-badge">Cenários</span>
+              </div>
+              <h3>🏥 Cenários Clínicos Complexos</h3>
+              <p>Choque séptico, tamponamento, DOM, insuficiência hepática, sepse guiada por metas.</p>
+            </div>
+            <div class="plantao-card eixo-card eixo-f">
+              <div class="card-topline">
+                <span class="category-badge">Eixo 6</span>
+                <span class="date-badge">🫀</span>
+              </div>
+              <h3>📊 Hemodinâmica Avançada</h3>
+              <p>Cateter de Swan-Ganz, PAP, PCWP, calibração de oximetria, BIA — fenômenos de insuflação/desinsuflação.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- ════════════════════════════════════════════════════
+             SEÇÃO 3 · Análise AMIB 2019-2024
+        ═══════════════════════════════════════════════════════ -->
+        <section class="content-grid" aria-labelledby="sec-analise" style="padding:32px 32px 0;">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Integrado — Provas 2019, 2020, 2021, 2023 e Teste de Progresso 2024</p>
+              <h2 id="sec-analise">Análise das Provas AMIB (2019–2024)</h2>
+            </div>
+          </div>
+
+          <div class="temi-table-wrap">
+            <table class="temi-table">
+              <thead>
+                <tr>
+                  <th>Tema Principal</th>
+                  <th>Nº de Questões</th>
+                  <th>% Médio</th>
+                  <th>Tendência</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="row-high">
+                  <td><strong>Ventilação Mecânica / SDRA / Modos Ventilatórios</strong></td>
+                  <td>18–22</td>
+                  <td><span class="pct-badge pct-high">20–24%</span></td>
+                  <td>Alta e constante — presente em todas as provas</td>
+                </tr>
+                <tr class="row-high">
+                  <td><strong>Sepse / Choque Séptico / Hemodinâmica / Vasopressores</strong></td>
+                  <td>15–18</td>
+                  <td><span class="pct-badge pct-high">18–20%</span></td>
+                  <td>Tendência crescente — foco em individualização e Surviving Sepsis</td>
+                </tr>
+                <tr class="row-mid">
+                  <td><strong>Distúrbios Ácido-Base / Metabólicos / Nutrição / IRA / TRS</strong></td>
+                  <td>10–12</td>
+                  <td><span class="pct-badge pct-mid">12–14%</span></td>
+                  <td>Frequente — acidose, TRS contínua e nutrição precoce</td>
+                </tr>
+                <tr class="row-mid">
+                  <td><strong>Neurointensivismo / TCE / AVC / Morte Encefálica</strong></td>
+                  <td>8–10</td>
+                  <td><span class="pct-badge pct-mid">10–11%</span></td>
+                  <td>Constante — diagnóstico e conduta à beira-leito</td>
+                </tr>
+                <tr class="row-mid">
+                  <td><strong>Cardiologia / Arritmias / IAM / Pós-operatório Cardíaco</strong></td>
+                  <td>7–9</td>
+                  <td><span class="pct-badge pct-mid">8–10%</span></td>
+                  <td>Moderada — FA pós-cirurgia, BIA, suporte mecânico (ECMO)</td>
+                </tr>
+                <tr>
+                  <td><strong>Infectologia / Antibióticos / PBE / Infecção hospitalar</strong></td>
+                  <td>6–8</td>
+                  <td><span class="pct-badge pct-low">7–9%</span></td>
+                  <td>Crescente — espectros e resistência bacteriana</td>
+                </tr>
+                <tr>
+                  <td><strong>VNI / Oxigenoterapia / Cateter de Alto Fluxo</strong></td>
+                  <td>4–6</td>
+                  <td><span class="pct-badge pct-low">6–7%</span></td>
+                  <td>Aumentou muito após pandemia (2021–2023)</td>
+                </tr>
+                <tr>
+                  <td><strong>Renal / Hídrico / TRS contínua / Hepatorrenal</strong></td>
+                  <td>4–5</td>
+                  <td><span class="pct-badge pct-low">5–6%</span></td>
+                  <td>Constante — anticoagulação regional e uso de citrato</td>
+                </tr>
+                <tr>
+                  <td><strong>Endocrinologia / Metabologia Crítica (CAD, tireoidiana, adrenal)</strong></td>
+                  <td>3–4</td>
+                  <td><span class="pct-badge pct-low">4–5%</span></td>
+                  <td>Reaparecendo nas provas mais recentes</td>
+                </tr>
+                <tr>
+                  <td><strong>Trauma / Emergência / Cirúrgicos / Queimados / TRALI</strong></td>
+                  <td>3–4</td>
+                  <td><span class="pct-badge pct-low">4%</span></td>
+                  <td>Mantém presença — mais teórico-descritivo</td>
+                </tr>
+                <tr>
+                  <td><strong>Obstetrícia / Gestante Crítica / Hemorragia obstétrica</strong></td>
+                  <td>2–3</td>
+                  <td><span class="pct-badge pct-low">3%</span></td>
+                  <td>Tópico fixo — geralmente 1 caso clínico extenso</td>
+                </tr>
+                <tr>
+                  <td><strong>Ética / Comunicação / Terminalidade / Segurança do Paciente</strong></td>
+                  <td>2–3</td>
+                  <td><span class="pct-badge pct-low">3%</span></td>
+                  <td>Passou a aparecer mais em 2023–2024</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- ════════════════════════════════════════════════════
+             SEÇÃO 4 · Mnemônicos
+        ═══════════════════════════════════════════════════════ -->
+        <section class="content-grid" aria-labelledby="sec-mnemonicos" style="padding:32px 32px 0;">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Ferramentas de memorização</p>
+              <h2 id="sec-mnemonicos">Mnemônicos-Chave</h2>
+            </div>
+          </div>
+
+          <div class="cards-grid" style="grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));">
+
+            <!-- V-PADRE -->
+            <div class="plantao-card mnem-card">
+              <div class="card-topline">
+                <span class="category-badge">VM · SDRA · 20-24%</span>
+              </div>
+              <h3 class="mnem-title">V-PADRE</h3>
+              <dl class="mnem-list">
+                <div><dt>V</dt><dd>Volume corrente · 6 mL/kg (peso predito)</dd></div>
+                <div><dt>P</dt><dd>Pressão de platô &lt; 30 cmH₂O</dd></div>
+                <div><dt>A</dt><dd>Ajuste de PEEP / FiO₂</dd></div>
+                <div><dt>D</dt><dd>Driving pressure &lt; 15 cmH₂O</dd></div>
+                <div><dt>R</dt><dd>Recrutamento alveolar seletivo</dd></div>
+                <div><dt>E</dt><dd>ECMO ou prona se P/F &lt; 150</dd></div>
+              </dl>
+            </div>
+
+            <!-- SEPSE-6H -->
+            <div class="plantao-card mnem-card">
+              <div class="card-topline">
+                <span class="category-badge">Choque Séptico · 18-20%</span>
+              </div>
+              <h3 class="mnem-title">SEPSE – 6H</h3>
+              <dl class="mnem-list">
+                <div><dt>H₁</dt><dd><strong>H</strong>ipoperfusão / reconhecer sinais</dd></div>
+                <div><dt>H₂</dt><dd><strong>H</strong>ipotensão / PAM &lt; 65</dd></div>
+                <div><dt>H₃</dt><dd><strong>H</strong>iperlactato / dosar lactato</dd></div>
+                <div><dt>H₄</dt><dd><strong>H</strong>emodinâmica / expansão volêmica</dd></div>
+                <div><dt>H₅</dt><dd><strong>H</strong>emocultura / antes do ATB</dd></div>
+                <div><dt>H₆</dt><dd><strong>H</strong>ora zero / noradrenalina ± vasopressina</dd></div>
+              </dl>
+            </div>
+
+            <!-- ÁGUA -->
+            <div class="plantao-card mnem-card">
+              <div class="card-topline">
+                <span class="category-badge">Metabólico · TRS · 12-14%</span>
+              </div>
+              <h3 class="mnem-title">ÁGUA</h3>
+              <dl class="mnem-list">
+                <div><dt>A</dt><dd>Acidose (tipo, gap, compensação)</dd></div>
+                <div><dt>G</dt><dd>Gap de CO₂ / SvCO₂</dd></div>
+                <div><dt>U</dt><dd>Ureia e Creatinina (função renal)</dd></div>
+                <div><dt>A</dt><dd>Albumina e Avaliação nutricional</dd></div>
+              </dl>
+            </div>
+
+            <!-- TCE-ABC -->
+            <div class="plantao-card mnem-card">
+              <div class="card-topline">
+                <span class="category-badge">Neurointensivismo · 10-11%</span>
+              </div>
+              <h3 class="mnem-title">TCE – ABC</h3>
+              <dl class="mnem-list">
+                <div><dt>A</dt><dd>Assegurar via aérea / IOT precoce</dd></div>
+                <div><dt>B</dt><dd>Brain perfusion · PAM − PIC ≥ 60 mmHg</dd></div>
+                <div><dt>C</dt><dd>Controle de CO₂ + sedação + osmoterapia</dd></div>
+              </dl>
+              <p style="font-size:11px; color:var(--muted); margin-top:8px;">Ondas de PIC: P1 (percussão) · P2 (tidal) · P3 (dícrota) — P2 &gt; P1 = hipertensão intracraniana</p>
+            </div>
+
+            <!-- 4H4T -->
+            <div class="plantao-card mnem-card">
+              <div class="card-topline">
+                <span class="category-badge">Choque · PCR · Algoritmo</span>
+              </div>
+              <h3 class="mnem-title">4H – 4T (Choque + PCR)</h3>
+              <dl class="mnem-list">
+                <div><dt>4H</dt><dd>Hipóxia · Hipotermia · Hipo/Hipercalemia · Hipovolemia</dd></div>
+                <div><dt>4T</dt><dd>Tamponamento · Tensão (pneumotórax) · Trombose · Tóxicos</dd></div>
+              </dl>
+              <p style="font-size:11px; color:var(--muted); margin-top:8px;">USG à beira-leito para diferenciar: VCI túrgida sem pneumotórax → tamponamento</p>
+            </div>
+
+            <!-- RCP -->
+            <div class="plantao-card mnem-card">
+              <div class="card-topline">
+                <span class="category-badge">RCP · Via Aérea · Procedimentos</span>
+              </div>
+              <h3 class="mnem-title">Algoritmos Mentais</h3>
+              <dl class="mnem-list">
+                <div><dt>VM</dt><dd>Sempre: Ppico vs. Pplatô → obstrução vs. complacência</dd></div>
+                <div><dt>RCP</dt><dd>Ritmo → FV/TV sem pulso → choque imediato + compressões</dd></div>
+                <div><dt>IOT</dt><dd>3 tentativas → máscara laríngea → cricotireoidostomia</dd></div>
+                <div><dt>ECG</dt><dd>Reconhecer ritmo → FC → eixo → bloqueios → isquemia</dd></div>
+              </dl>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- ════════════════════════════════════════════════════
+             SEÇÃO 5 · Como se Preparar
+        ═══════════════════════════════════════════════════════ -->
+        <section class="content-grid" aria-labelledby="sec-preparo" style="padding:32px 32px 0;">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Estratégia de estudo</p>
+              <h2 id="sec-preparo">Como se Preparar — 6 Passos</h2>
+            </div>
+          </div>
+
+          <div style="display:grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap:16px;">
+
+            <div class="plantao-card prep-step">
+              <div class="step-num">01</div>
+              <h3>Mapeie os eixos</h3>
+              <ul>
+                <li>Ventilação mecânica — curvas, cálculos, condutas</li>
+                <li>Ultrassom à beira-leito — FAST, VCI, função cardíaca</li>
+                <li>Reanimação e emergências — RCP, ritmos chocáveis</li>
+                <li>Procedimentos críticos — IOT, MP, drenagem</li>
+                <li>Cenários clínicos — choque, sepse, DOM</li>
+              </ul>
+            </div>
+
+            <div class="plantao-card prep-step">
+              <div class="step-num">02</div>
+              <h3>Treine com simuladores e checklists</h3>
+              <ul>
+                <li>VM: pratique no ventilador real os cálculos (Ppico, Pplatô, ΔP)</li>
+                <li>USG: <em>hands-on</em> em pacientes estáveis</li>
+                <li>Procedimentos: repita a sequência da IOT e marcapasso até ser automático</li>
+                <li>RCP: manequim com ritmo, profundidade e pausas corretas</li>
+              </ul>
+            </div>
+
+            <div class="plantao-card prep-step">
+              <div class="step-num">03</div>
+              <h3>Use as provas anteriores como guia</h3>
+              <ul>
+                <li>Roteiros de resposta são <strong>objetivos e previsíveis</strong></li>
+                <li>O avaliador quer ver passo a passo <strong>lógico, organizado e seguro</strong></li>
+                <li>Fale em voz alta durante a execução</li>
+              </ul>
+            </div>
+
+            <div class="plantao-card prep-step">
+              <div class="step-num">04</div>
+              <h3>Monte algoritmos mentais curtos</h3>
+              <ul>
+                <li>Choque: 4Hs e 4Ts → USG para definir causa</li>
+                <li>VM: sempre Ppico vs. Pplatô</li>
+                <li>RCP: reconhecer ritmo → choque se FV/TV</li>
+                <li>Via aérea difícil: 3 tentativas → ML → cricotireoidostomia</li>
+              </ul>
+            </div>
+
+            <div class="plantao-card prep-step">
+              <div class="step-num">05</div>
+              <h3>Treine a apresentação oral</h3>
+              <ul>
+                <li>Na prova você precisa <strong>falar o raciocínio em voz alta</strong></li>
+                <li>Exemplo: <em>"Paciente em choque, VCI túrgida, sem pneumotórax → penso em tamponamento, vou realizar pericardiocentese guiada por USG…"</em></li>
+                <li>Organize o raciocínio antes de executar</li>
+              </ul>
+            </div>
+
+            <div class="plantao-card prep-step">
+              <div class="step-num">06</div>
+              <h3>Simule o ambiente da prova</h3>
+              <ul>
+                <li>Treine em tempo cronometrado: 1 min por questão curta, 5–7 min por cenário clínico</li>
+                <li>Responda de forma clara, sem enrolar, mesmo sem saber tudo</li>
+                <li>O avaliador quer ver <strong>segurança e raciocínio estruturado</strong></li>
+              </ul>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- ════════════════════════════════════════════════════
+             SEÇÃO 6 · Dica Final
+        ═══════════════════════════════════════════════════════ -->
+        <section style="padding:32px 32px 40px;">
+          <div class="plantao-card" style="
+            background: linear-gradient(135deg, rgba(15,118,110,0.1), rgba(11,79,108,0.08));
+            border: 1px solid rgba(15,118,110,0.25);
+            border-radius: 14px;
+            padding: 28px 32px;
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+          ">
+            <div style="font-size:2rem; line-height:1;">👆</div>
+            <div>
+              <p class="eyebrow" style="margin-bottom:4px;">Resumo final</p>
+              <h2 style="font-size:1.15rem; margin:0 0 10px;">O que diferencia quem passa</h2>
+              <p style="color:var(--muted); line-height:1.7; max-width:680px;">
+                O melhor preparo para a 2ª fase prática é <strong>treino repetitivo de habilidades críticas</strong>
+                (VM, USG, RCP, IOT, marcapasso) combinado com
+                <strong>raciocínio clínico estruturado aplicado em cenários simulados.</strong>
+                O que diferencia quem passa é <strong>saber executar, mas principalmente organizar o
+                raciocínio e transmiti-lo de forma clara e segura para o avaliador.</strong>
+              </p>
+            </div>
+          </div>
+        </section>
+
+      </main>
+    </div>
+
+    <div class="backdrop" data-menu-toggle></div>
+
+    <!-- ── Page-specific styles ──────────────────────────── -->
+    <style>
+      /* === Stations grid === */
+      .temi-stations-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 16px;
+        margin-top: 4px;
+      }
+      .station-card {
+        display: flex;
+        gap: 16px;
+        border-radius: var(--radius);
+        padding: 20px;
+        border: 1px solid var(--line);
+        background: var(--panel);
+        transition: transform 0.15s, box-shadow 0.15s;
+      }
+      .station-card:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow);
+      }
+      .station-blue { border-left: 4px solid var(--brand); }
+      .station-teal { border-left: 4px solid var(--brand-2); }
+      .station-num {
+        font-size: 1.8rem;
+        font-weight: 800;
+        color: var(--line);
+        line-height: 1;
+        flex-shrink: 0;
+        padding-top: 2px;
+        font-variant-numeric: tabular-nums;
+      }
+      .station-body h3 {
+        font-size: 0.95rem;
+        font-weight: 700;
+        margin: 0 0 4px;
+      }
+      .station-sub {
+        font-size: 11px;
+        color: var(--muted);
+        margin: 0 0 10px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.4px;
+      }
+      .station-list {
+        margin: 0 0 12px;
+        padding-left: 16px;
+        font-size: 13px;
+        color: var(--muted);
+        line-height: 1.7;
+      }
+      .station-tip {
+        font-size: 12px;
+        padding: 8px 12px;
+        background: var(--panel-soft);
+        border-radius: 6px;
+        color: var(--text);
+        border-left: 3px solid var(--accent);
+      }
+
+      /* === Eixo cards === */
+      .eixo-card { cursor: default; }
+      .eixo-a { border-top: 3px solid #0f766e; }
+      .eixo-b { border-top: 3px solid #0b4f6c; }
+      .eixo-c { border-top: 3px solid #b91c1c; }
+      .eixo-d { border-top: 3px solid #d97706; }
+      .eixo-e { border-top: 3px solid #7c3aed; }
+      .eixo-f { border-top: 3px solid #db2777; }
+
+      /* === Table === */
+      .temi-table-wrap {
+        overflow-x: auto;
+        border-radius: var(--radius);
+        border: 1px solid var(--line);
+        margin-top: 4px;
+      }
+      .temi-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 13px;
+        background: var(--panel);
+      }
+      .temi-table th {
+        padding: 12px 16px;
+        text-align: left;
+        font-size: 11px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        color: var(--muted);
+        background: var(--panel-soft);
+        border-bottom: 1px solid var(--line);
+      }
+      .temi-table td {
+        padding: 11px 16px;
+        border-bottom: 1px solid var(--line);
+        color: var(--text);
+        vertical-align: middle;
+      }
+      .temi-table tr:last-child td { border-bottom: none; }
+      .temi-table tr.row-high { background: rgba(15,118,110,0.05); }
+      .temi-table tr.row-mid  { background: rgba(11,79,108,0.04); }
+      .temi-table tr:hover { background: var(--panel-soft); }
+
+      .pct-badge {
+        display: inline-block;
+        padding: 2px 8px;
+        border-radius: 99px;
+        font-size: 11px;
+        font-weight: 700;
+        white-space: nowrap;
+      }
+      .pct-high { background: #d1fae5; color: #065f46; }
+      .pct-mid  { background: #dbeafe; color: #1e40af; }
+      .pct-low  { background: var(--panel-soft); color: var(--muted); }
+      [data-theme="dark"] .pct-high { background: #064e3b; color: #6ee7b7; }
+      [data-theme="dark"] .pct-mid  { background: #1e3a5f; color: #93c5fd; }
+
+      /* === Mnemônico cards === */
+      .mnem-card { cursor: default; }
+      .mnem-title {
+        font-size: 1.4rem;
+        font-weight: 800;
+        color: var(--brand);
+        letter-spacing: 0.5px;
+        margin: 8px 0 12px;
+      }
+      .mnem-list {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        font-size: 13px;
+      }
+      .mnem-list > div {
+        display: flex;
+        gap: 10px;
+        align-items: baseline;
+        padding-bottom: 6px;
+        border-bottom: 1px solid var(--line);
+      }
+      .mnem-list > div:last-child { border-bottom: none; padding-bottom: 0; }
+      .mnem-list dt {
+        font-weight: 800;
+        color: var(--brand);
+        min-width: 28px;
+        flex-shrink: 0;
+        font-size: 14px;
+      }
+      .mnem-list dd { color: var(--muted); margin: 0; line-height: 1.5; }
+
+      /* === Prep steps === */
+      .prep-step { cursor: default; }
+      .step-num {
+        font-size: 2rem;
+        font-weight: 800;
+        color: var(--line);
+        line-height: 1;
+        margin-bottom: 6px;
+      }
+      .prep-step h3 {
+        font-size: 0.95rem;
+        margin: 0 0 10px;
+        color: var(--text);
+      }
+      .prep-step ul {
+        margin: 0;
+        padding-left: 16px;
+        font-size: 13px;
+        color: var(--muted);
+        line-height: 1.7;
+      }
+      .prep-step ul li { margin-bottom: 4px; }
+
+      /* === Badge === */
+      .t-badge {
+        display: inline-block;
+        font-size: 11px;
+        font-weight: 700;
+        padding: 4px 10px;
+        border-radius: 99px;
+        letter-spacing: 0.3px;
+      }
+      .t-badge-warn { background: #FAEEDA; color: #BA7517; }
+
+      /* === Responsive === */
+      @media (max-width: 768px) {
+        .temi-stations-grid { grid-template-columns: 1fr; }
+        section[style*="padding:32px 32px"] { padding: 20px 16px 0 !important; }
+        section[style*="padding:32px 32px 40px"] { padding: 20px 16px 32px !important; }
+      }
+    </style>
+
+    <script src="./assets/app.js"></script>
+  </body>
+</html>
