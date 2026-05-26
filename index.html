@@ -1,186 +1,808 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-BR">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <meta name="theme-color" content="#0f766e" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dr. Fernando Magalhães Coutinho | Cirurgia Cardiovascular</title>
     <meta
       name="description"
-      content="Dashboard estático para organizar e navegar pelos arquivos de plantão publicados via GitHub Pages."
+      content="Dr. Fernando Magalhães Coutinho, médico com atuação em cirurgia cardiovascular e medicina intensiva em São Paulo."
     />
-    <title>DR. FERNANDO | Dashboard médico</title>
-    <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml" />
-    <link rel="apple-touch-icon" href="./assets/images/rmc-mark-256.png" />
+    <link rel="icon" type="image/png" href="./assets/images/rmc-mark-256.png" />
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
-    <div class="app-shell">
-      <aside class="sidebar" aria-label="Menu lateral">
-        <a class="brand" href="./index.html" aria-label="DR. FERNANDO - página inicial">
-          <span class="brand-mark">F</span>
-          <span>
-            <strong>DR. FERNANDO</strong>
-            <small>Dashboard médico</small>
+    <div class="page-shell">
+      <header class="site-header">
+        <a class="brand" href="#top" aria-label="Página inicial">
+          <span class="brand-mark">
+            <img src="./assets/images/rmc-mark.png" alt="" />
+          </span>
+          <span class="brand-copy">
+            <strong>Dr. Fernando Magalhães Coutinho</strong>
+            <span>Cirurgia Cardiovascular • Medicina Intensiva</span>
           </span>
         </a>
 
-        <nav class="side-nav" aria-label="Categorias">
-          <a class="nav-link active" href="#todos" data-filter="all">
-            <span>Todos</span>
-            <strong id="count-all">0</strong>
-          </a>
-          <a class="nav-link" href="#uti" data-filter="uti">
-            <span>UTI</span>
-            <strong id="count-uti">0</strong>
-          </a>
-          <a class="nav-link" href="#enfermaria" data-filter="enfermaria">
-            <span>Enfermaria</span>
-            <strong id="count-enfermaria">0</strong>
-          </a>
-          <a class="nav-link" href="#centro-cirurgico" data-filter="centro-cirurgico">
-            <span>Centro cirúrgico</span>
-            <strong id="count-centro-cirurgico">0</strong>
-          </a>
-          <a class="nav-link" href="#rotinas" data-filter="rotinas">
-            <span>Rotinas</span>
-            <strong id="count-rotinas">0</strong>
-          </a>
-          <a class="nav-link" href="#outros" data-filter="outros">
-            <span>Outros</span>
-            <strong id="count-outros">0</strong>
-          </a>
-          <a class="nav-link nav-link-route" href="./perfil.html">
-            <span>Perfil</span>
-            <strong>Ir</strong>
-          </a>
-          <a class="nav-link nav-link-route" href="./amib-temi.html">
-            <span>AMIB</span>
-            <strong>TEMI</strong>
-          </a>
+        <nav class="site-nav" aria-label="Navegação principal">
+          <a href="#sobre">Sobre</a>
+          <a href="#atuacao">Atuação</a>
+          <a href="#videos">Conteúdo</a>
+          <a href="#instagram">Instagram</a>
+          <a href="#atualizacao">Atualização</a>
+          <a href="#trajetoria">Trajetória</a>
+          <a href="#acesso-hospitalar">Área hospitalar</a>
+          <a href="#faq">FAQ</a>
+          <a href="#contato">Contato</a>
         </nav>
+      </header>
 
-        <div class="sidebar-card">
-          <span class="status-dot"></span>
-          <div>
-            <strong>GitHub Pages ready</strong>
-            <small>HTML, CSS e JS estáticos</small>
-          </div>
-        </div>
-      </aside>
-
-      <main class="workspace">
-        <header class="topbar">
-          <button class="icon-button menu-toggle" type="button" aria-label="Abrir menu" data-menu-toggle>
-            <span></span>
-            <span></span>
-            <span></span>
-          </button>
-          <div>
-            <p class="eyebrow">Visão geral</p>
-            <h1>Plantões publicados</h1>
-          </div>
-          <button class="theme-toggle" type="button" data-theme-toggle aria-label="Alternar dark mode">
-            <span aria-hidden="true">◐</span>
-            <strong>Dark mode</strong>
-          </button>
-        </header>
-
-        <section class="hero-panel" aria-labelledby="dashboard-title">
+      <main id="top">
+        <section class="hero">
           <div class="hero-copy">
-            <p class="eyebrow">GitHub Pages</p>
-            <h2 id="dashboard-title">Central limpa para consultar pacientes, leitos e arquivos de plantão por data.</h2>
-            <p>
-              A página inicial lê um manifesto estático gerado a partir dos HTMLs do repositório,
-              organiza por categoria, mantém o histórico diário dos plantões e deixa os links prontos
-              para iPhone, iPad e desktop.
+            <div class="hero-ribbon">
+              <img
+                class="hero-ribbon-mark"
+                src="./assets/images/rmc-mark.png"
+                alt=""
+              />
+              <div class="hero-ribbon-copy">
+                <span class="hero-ribbon-label">Marca oficial da clínica</span>
+                <strong>RMC: identidade construída a partir das iniciais de Rodrigo Magalhães Coutinho</strong>
+              </div>
+            </div>
+            <p class="eyebrow">São Paulo, SP • Alta complexidade • Cuidado perioperatório completo</p>
+            <h1>
+              Cirurgia cardiovascular com visão integrada de centro cirúrgico, UTI
+              e seguimento clínico.
+            </h1>
+            <p class="lead">
+              Atendimento médico orientado por evidências, segurança assistencial e
+              comunicação clara em cada etapa do cuidado do paciente cardiopata.
             </p>
-          </div>
-          <div class="summary-grid" aria-label="Resumo dos arquivos">
-            <article>
-              <span id="summary-total">0</span>
-              <small>HTMLs</small>
-            </article>
-            <article>
-              <span id="summary-categories">0</span>
-              <small>Categorias</small>
-            </article>
-            <article>
-              <span id="summary-updated">Hoje</span>
-              <small>Último plantão</small>
-            </article>
-            <article>
-              <span id="summary-shifts">0</span>
-              <small>Dias arquivados</small>
-            </article>
-          </div>
-        </section>
 
-        <section class="controls-panel" aria-label="Busca e filtros">
-          <label class="search-box">
-            <span>Buscar</span>
-            <input
-              id="search"
-              type="search"
-              autocomplete="off"
-              placeholder="Paciente, plantão, data, leito, pasta ou arquivo..."
-            />
-          </label>
-          <div class="chip-row" id="category-chips" aria-label="Filtros rápidos"></div>
-        </section>
-
-        <section class="viewer-panel" id="viewer-panel" aria-label="Visualizador de plantão" hidden>
-          <div class="viewer-toolbar">
-            <div>
-              <p class="eyebrow">Paciente aberto</p>
-              <h2 id="viewer-title">Selecione um plantão</h2>
-              <span id="viewer-subtitle">Use os cards abaixo para abrir um arquivo.</span>
+            <div class="hero-actions">
+              <a class="button button-primary" href="#contato">Solicitar informações</a>
+              <a class="button button-secondary" href="#videos">Ver conteúdo educativo</a>
+              <a class="button button-secondary" href="./internados/">Acesso hospitalar restrito</a>
             </div>
-            <div class="viewer-actions">
-              <button class="viewer-button" type="button" data-prev>Anterior</button>
-              <button class="viewer-button" type="button" data-next>Próximo</button>
-              <a class="viewer-button" id="viewer-open" href="#" target="_blank" rel="noreferrer">Abrir arquivo</a>
-              <button class="viewer-button ghost" type="button" data-close-viewer>Fechar</button>
-            </div>
+
+            <ul class="hero-points" aria-label="Destaques">
+              <li>Cirurgia cardiovascular</li>
+              <li>Medicina intensiva</li>
+              <li>Assistência perioperatória estruturada</li>
+            </ul>
           </div>
-          <iframe id="plantao-frame" title="Arquivo de plantão selecionado"></iframe>
+
+          <aside class="hero-panel" aria-label="Resumo profissional">
+            <figure class="media-card media-card-portrait">
+              <img
+                class="hero-portrait"
+                src="./assets/images/fernando-portrait-secondary.jpeg"
+                alt="Dr. Fernando Magalhães Coutinho em ambiente hospitalar"
+              />
+              <figcaption>
+                <span class="panel-label">Imagem institucional</span>
+                <strong>Dr. Fernando Magalhães Coutinho</strong>
+              </figcaption>
+            </figure>
+
+            <div class="brand-note-card">
+              <img
+                class="brand-note-logo"
+                src="./assets/images/rmc-mark.png"
+                alt="Marca oficial RMC"
+              />
+              <div>
+                <p class="panel-label">Marca e posicionamento</p>
+                <h2>RMC como assinatura institucional</h2>
+                <p>
+                  A marca oficial RMC parte das iniciais de Rodrigo Magalhães
+                  Coutinho e organiza a presença institucional da clínica com uma
+                  linguagem visual cardiovascular, técnica e contemporânea.
+                </p>
+              </div>
+            </div>
+
+            <div class="panel-card panel-card-accent">
+              <p class="panel-label">Atuação principal</p>
+              <h2>Paciente cardiovascular em toda a jornada assistencial</h2>
+              <p>
+                Avaliação pré-operatória, condução intraoperatória, acompanhamento
+                pós-operatório e suporte intensivo quando necessário.
+              </p>
+            </div>
+
+            <div class="metric-grid">
+              <article class="metric-card">
+                <span class="metric-value">2</span>
+                <span class="metric-label">áreas centrais de atuação</span>
+              </article>
+              <article class="metric-card">
+                <span class="metric-value">2015–2019</span>
+                <span class="metric-label">residência em cirurgia cardiovascular</span>
+              </article>
+              <article class="metric-card">
+                <span class="metric-value">SP</span>
+                <span class="metric-label">base profissional em São Paulo</span>
+              </article>
+              <article class="metric-card">
+                <span class="metric-value">UTI</span>
+                <span class="metric-label">experiência em pacientes críticos</span>
+              </article>
+            </div>
+          </aside>
         </section>
 
-        <section class="content-grid">
+        <section class="section section-highlight" id="acesso-hospitalar">
           <div class="section-heading">
-            <div>
-              <p class="eyebrow">Arquivos</p>
-              <h2 id="result-title">Todos os plantões</h2>
-            </div>
-            <span id="result-count" class="result-count">0 resultados</span>
+            <p class="eyebrow">Área restrita</p>
+            <h2>Central interna para acompanhamento de pacientes internados</h2>
           </div>
 
-          <div id="cards" class="cards-grid" aria-live="polite"></div>
+          <p class="section-intro">
+            O site institucional permanece público para pacientes, familiares e
+            visitantes. A área de manejo intra-hospitalar fica em uma subpasta
+            protegida por senha, separada do conteúdo institucional aberto.
+          </p>
 
-          <div id="empty-state" class="empty-state" hidden>
-            <strong>Nenhum arquivo encontrado</strong>
-            <p>Tente buscar por outro paciente, leito, categoria ou trecho do nome do arquivo.</p>
+          <div class="contact-layout">
+            <article class="contact-card">
+              <h3>Entrada da central hospitalar</h3>
+              <p>
+                A central reúne o dashboard médico com organização por plantão,
+                setor e arquivos de acompanhamento. O acesso é restrito e solicita
+                autenticação antes de abrir qualquer conteúdo interno.
+              </p>
+              <p class="contact-status">Uso interno para pacientes internados e manejo assistencial.</p>
+              <div class="hero-actions">
+                <a class="button button-primary" href="./internados/">Entrar na área restrita</a>
+              </div>
+            </article>
+
+            <article class="contact-card contact-card-muted">
+              <h3>Como o fluxo ficou organizado</h3>
+              <ul class="contact-list">
+                <li>O domínio principal continua público.</li>
+                <li>A área interna agora fica separada em uma subpasta protegida.</li>
+                <li>A senha só é solicitada ao acessar o dashboard hospitalar.</li>
+                <li>O conteúdo institucional segue acessível sem bloqueio para o público geral.</li>
+              </ul>
+            </article>
           </div>
         </section>
 
-        <footer class="site-footer" aria-label="Informações do site">
-          <div class="site-footer-copy">
-            <p class="eyebrow">Rodapé</p>
-            <strong>Visitas registradas nesta página</strong>
-            <p id="visit-counter-note">
-              O contador é atualizado automaticamente quando o site está publicado.
+        <section class="section" id="sobre">
+          <div class="section-heading">
+            <p class="eyebrow">Sobre</p>
+            <h2>Perfil profissional</h2>
+          </div>
+
+          <div class="about-grid">
+            <article class="content-card">
+              <p>
+                Fernando Magalhães Coutinho é médico com atuação em
+                <strong>Cirurgia Cardiovascular</strong> e
+                <strong>Medicina Intensiva</strong>, com experiência em ambientes
+                hospitalares de alta complexidade.
+              </p>
+              <p>
+                Sua prática concentra-se no cuidado completo do paciente cardiopata,
+                desde a avaliação clínica e o preparo pré-operatório até o
+                acompanhamento pós-operatório e o manejo intensivo dos casos mais
+                graves.
+              </p>
+            </article>
+
+            <article class="content-card tone-card">
+              <h3>Princípios de trabalho</h3>
+              <ul class="list">
+                <li>Tomada de decisão baseada em evidências</li>
+                <li>Comunicação objetiva com pacientes e familiares</li>
+                <li>Padronização assistencial e segurança do paciente</li>
+                <li>Foco em eficiência, clareza e resultado clínico</li>
+              </ul>
+            </article>
+          </div>
+        </section>
+
+        <section class="section section-alt" id="atuacao">
+          <div class="section-heading">
+            <p class="eyebrow">Áreas de atuação</p>
+            <h2>Assistência estruturada do pré ao pós-operatório</h2>
+          </div>
+
+          <div class="service-grid">
+            <article class="service-card">
+              <h3>Cirurgia cardiovascular</h3>
+              <p>
+                Avaliação, preparo e seguimento do paciente cirúrgico com atenção à
+                segurança do procedimento, organização do plano terapêutico e
+                continuidade do cuidado.
+              </p>
+            </article>
+
+            <article class="service-card">
+              <h3>Medicina intensiva</h3>
+              <p>
+                Experiência em UTI de alta complexidade, incluindo condução de
+                pacientes críticos, suporte hemodinâmico e protocolos assistenciais.
+              </p>
+            </article>
+
+            <article class="service-card">
+              <h3>Cuidado perioperatório</h3>
+              <p>
+                Integração entre avaliação pré-operatória, período intraoperatório e
+                recuperação pós-operatória para reduzir riscos e melhorar desfechos.
+              </p>
+            </article>
+
+            <article class="service-card">
+              <h3>Qualidade e protocolos</h3>
+              <p>
+                Atuação com foco em bundles baseados em evidências, padronização de
+                condutas e segurança assistencial em ambiente hospitalar.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section class="section" id="videos">
+          <div class="section-heading">
+            <p class="eyebrow">Conteúdo Educativo</p>
+            <h2>Vídeos explicativos com base em diretrizes oficiais</h2>
+          </div>
+
+          <p class="section-intro">
+            Esta área organiza vídeos e resumos editoriais curtos para educação em
+            saúde. O texto abaixo foi escrito a partir de documentos primários e
+            páginas oficiais de guidelines, para servir como base de roteiro. As
+            referências foram conferidas em 16 de março de 2026.
+          </p>
+
+          <div class="education-grid">
+            <article class="education-card">
+              <img
+                class="education-video"
+                src="./assets/images/video-posters/o-que-e-ecmo.mp4.png"
+                alt="Imagem ilustrativa do conteúdo sobre ECMO"
+              />
+              <div class="education-body">
+                <p class="panel-label">ECMO</p>
+                <h3>O que é ECMO?</h3>
+                <p>
+                  ECMO é um suporte extracorpóreo temporário usado em insuficiência
+                  respiratória e/ou circulatória refratária, quando as medidas
+                  convencionais não são suficientes.
+                </p>
+                <ul class="education-points">
+                  <li>Não substitui o tratamento da causa de base.</li>
+                  <li>Exige centro experiente, equipe treinada e monitorização intensiva.</li>
+                  <li>Indicação, canulação, anticoagulação e desmame precisam ser individualizados.</li>
+                </ul>
+                <p class="source-note">
+                  Base editorial: ELSO Guideline for Adult Respiratory Failure
+                  Managed with Venovenous ECMO, última atualização em junho de
+                  2021, e ELSO Interim Guidelines for Venoarterial Extracorporeal
+                  Membrane Oxygenation in Adult Cardiac Patients, última
+                  atualização em agosto de 2021.
+                </p>
+                <p class="source-links">
+                  <a href="https://www.elso.org/ecmo-resources/elso-ecmo-guidelines.aspx" target="_blank" rel="noreferrer">ELSO Guidelines</a>
+                </p>
+              </div>
+            </article>
+
+            <article class="education-card">
+              <img
+                class="education-video"
+                src="./assets/images/video-posters/tratamento-cirurgico-valvopatias-aorticas.mp4.png"
+                alt="Imagem ilustrativa do conteúdo sobre valvopatias aórticas"
+              />
+              <div class="education-body">
+                <p class="panel-label">Valvopatias aórticas</p>
+                <h3>Quando pensar em tratamento cirúrgico</h3>
+                <p>
+                  Nas valvopatias aórticas, a decisão de intervir depende da
+                  gravidade da lesão, da presença de sintomas, da função ventricular
+                  e da discussão em Heart Team.
+                </p>
+                <ul class="education-points">
+                  <li>Doença grave sintomática costuma exigir intervenção.</li>
+                  <li>Disfunção ventricular, progressão rápida e anatomia valvar importam na decisão.</li>
+                  <li>A escolha entre cirurgia e abordagem transcateter deve ser individualizada.</li>
+                </ul>
+                <p class="source-note">
+                  Base editorial: 2025 ESC/EACTS Valvular Heart Disease Guidelines e
+                  2020 ACC/AHA Valvular Heart Disease Guideline.
+                </p>
+                <p class="source-links">
+                  <a href="https://www.escardio.org/Guidelines/Clinical-Practice-Guidelines/Valvular-Heart-Disease" target="_blank" rel="noreferrer">ESC/EACTS 2025</a>
+                  <a href="https://www.acc.org/guidelines/hubs/valvular-heart-disease" target="_blank" rel="noreferrer">ACC/AHA 2020</a>
+                </p>
+              </div>
+            </article>
+
+            <article class="education-card">
+              <video
+                class="education-video"
+                controls
+                preload="none"
+                poster="./assets/images/hero-video-poster.png"
+              >
+                <source src="./assets/media/hero-video.mp4" type="video/mp4" />
+              </video>
+              <div class="education-body">
+                <p class="panel-label">Sinais de alerta</p>
+                <h3>Sintomas que não devem ser ignorados</h3>
+                <p>
+                  Dor ou pressão no peito, falta de ar, sudorese, náusea, síncope e
+                  irradiação para braço, mandíbula ou dorso são sinais que podem
+                  sugerir síndrome coronariana aguda.
+                </p>
+                <ul class="education-points">
+                  <li>Sintomas em repouso ou progressivos merecem avaliação imediata.</li>
+                  <li>Apresentações atípicas existem, especialmente em idosos, mulheres e diabéticos.</li>
+                  <li>Em contexto de urgência, a orientação é buscar serviço de emergência sem demora.</li>
+                </ul>
+                <p class="source-note">
+                  Base editorial: 2021 AHA/ACC Chest Pain Guideline e 2023 ESC
+                  Guidelines for Acute Coronary Syndromes.
+                </p>
+                <p class="source-links">
+                  <a href="https://professional.heart.org/en/guidelines-statements/2021-ahaaccasechestsaemscctscmr-guideline-for-the-evaluation-and-diagnosis-ofcir0000000000001029" target="_blank" rel="noreferrer">AHA/ACC 2021</a>
+                  <a href="https://www.escardio.org/Guidelines/Clinical-Practice-Guidelines/Acute-Coronary-Syndromes-ACS-Guidelines" target="_blank" rel="noreferrer">ESC ACS 2023</a>
+                </p>
+              </div>
+            </article>
+          </div>
+
+          <p class="section-note">
+            Conteúdo educativo e institucional. Não substitui avaliação médica,
+            consulta presencial ou atendimento de urgência.
+          </p>
+        </section>
+
+        <section class="section section-highlight" id="instagram">
+          <div class="section-heading">
+            <p class="eyebrow">Instagram</p>
+            <h2>Estrutura pronta para conteúdos visuais e atualização automática</h2>
+          </div>
+
+          <div class="social-grid">
+            <article class="social-card">
+              <img
+                class="social-preview"
+                src="./assets/images/instagram-heart-visual.jpeg"
+                alt="Visual educativo sobre cirurgia de revascularização do miocárdio"
+              />
+              <div class="social-body">
+                <p class="panel-label">Revascularização do miocárdio</p>
+                <h3>Explicação visual do procedimento para pacientes</h3>
+                <p>
+                  Este conteúdo foi pensado para ajudar pacientes e familiares a
+                  entenderem, de forma visual, como é realizada a cirurgia de
+                  revascularização do miocárdio e qual é o objetivo do
+                  procedimento.
+                </p>
+                <ul class="social-points">
+                  <li>A cirurgia pode utilizar um enxerto de veia safena, geralmente retirado do membro inferior direito, após preparo adequado do vaso.</li>
+                  <li>A circulação extracorpórea permite manter o coração parado durante a confecção do enxerto com segurança técnica.</li>
+                  <li>O objetivo é aumentar o fluxo de sangue para o coração, melhorando a perfusão do miocárdio.</li>
+                </ul>
+              </div>
+            </article>
+
+            <article class="social-note-card panel-card">
+              <p class="panel-label">Próxima etapa</p>
+              <h3>Integração com Instagram profissional</h3>
+              <p>
+                Como sua conta já está em modo profissional e conectada a uma
+                página do Facebook, esta seção pode evoluir para mostrar os posts
+                mais recentes automaticamente no site.
+              </p>
+              <p>
+                A publicação no Instagram continuará sendo o ponto de origem, e o
+                site passará a refletir novos destaques visuais e conteúdos
+                complementares sem duplicação manual da vitrine.
+              </p>
+              <span class="social-status">Integração visual preparada</span>
+            </article>
+          </div>
+        </section>
+
+        <section class="section section-alt" id="atualizacao">
+          <div class="section-heading">
+            <p class="eyebrow">Atualização Médica</p>
+            <h2>Biblioteca em expansão para médicos e pacientes</h2>
+          </div>
+
+          <div class="update-intro">
+            <p class="section-intro">
+              Esta área reúne materiais de estudo e atualização em medicina
+              intensiva, organizados dentro do próprio site para consulta
+              rápida. Neste primeiro momento, a base está composta por PDFs
+              técnicos; na próxima etapa, ela pode receber textos de apoio,
+              resumos clínicos e versões explicativas em linguagem mais acessível
+              para pacientes e familiares.
             </p>
+
+            <div class="update-callout panel-card">
+              <p class="panel-label">Estrutura editorial</p>
+              <h3>Base pronta para crescer por tema</h3>
+              <p>
+                Cada tema pode combinar PDF original, resumo escrito, pontos-chave,
+                atualização por guideline e material educativo complementar.
+              </p>
+            </div>
           </div>
-          <div class="visit-badge" aria-live="polite">
-            <span>Total de visitas</span>
-            <strong id="visit-counter">Carregando...</strong>
+
+          <div class="update-grid">
+            <article class="update-card">
+              <img
+                class="update-preview"
+                src="./assets/images/pdf-previews/teste-de-apneia-e-morte-encefalica.png"
+                alt="Prévia do PDF sobre teste de apneia e morte encefálica"
+              />
+              <div class="update-body">
+                <p class="panel-label">Neurointensivismo</p>
+                <h3>Teste de apneia e morte encefálica</h3>
+                <p>
+                  Material técnico introdutório para revisão do exame clínico,
+                  critérios e racional do teste de apneia no contexto de morte
+                  encefálica.
+                </p>
+                <ul class="update-meta">
+                  <li>Formato: PDF</li>
+                  <li>Extensão: 7 páginas</li>
+                  <li>Público principal: médicos</li>
+                </ul>
+                <div class="update-actions">
+                  <a class="button button-secondary" href="./assets/docs/atualizacao-medica/teste-de-apneia-e-morte-encefalica.pdf" target="_blank" rel="noreferrer">Abrir PDF</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="update-card">
+              <img
+                class="update-preview"
+                src="./assets/images/pdf-previews/ventilacao-mecanica-na-sdra.png"
+                alt="Prévia do PDF sobre ventilação mecânica na SDRA"
+              />
+              <div class="update-body">
+                <p class="panel-label">Ventilação</p>
+                <h3>Ventilação mecânica na SDRA</h3>
+                <p>
+                  Aula de revisão focada em estratégia ventilatória, proteção
+                  pulmonar e raciocínio prático na síndrome do desconforto
+                  respiratório agudo.
+                </p>
+                <ul class="update-meta">
+                  <li>Formato: PDF</li>
+                  <li>Extensão: 7 páginas</li>
+                  <li>Público principal: médicos</li>
+                </ul>
+                <div class="update-actions">
+                  <a class="button button-secondary" href="./assets/docs/atualizacao-medica/ventilacao-mecanica-na-sdra.pdf" target="_blank" rel="noreferrer">Abrir PDF</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="update-card">
+              <img
+                class="update-preview"
+                src="./assets/images/pdf-previews/protocolo-de-morte-encefalica-pos-dbs.png"
+                alt="Prévia do PDF sobre protocolo de morte encefálica pós-DBS"
+              />
+              <div class="update-body">
+                <p class="panel-label">Neurointensivismo</p>
+                <h3>Protocolo de morte encefálica pós-DBS</h3>
+                <p>
+                  Consulta clínica sobre sedação, Doppler e conformidade com a
+                  Resolução CFM 2.073/2017 em situação complexa de avaliação.
+                </p>
+                <ul class="update-meta">
+                  <li>Formato: PDF</li>
+                  <li>Extensão: 6 páginas</li>
+                  <li>Público principal: médicos</li>
+                </ul>
+                <div class="update-actions">
+                  <a class="button button-secondary" href="./assets/docs/atualizacao-medica/protocolo-de-morte-encefalica-pos-dbs.pdf" target="_blank" rel="noreferrer">Abrir PDF</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="update-card">
+              <img
+                class="update-preview"
+                src="./assets/images/pdf-previews/delirium-na-uti.png"
+                alt="Prévia do PDF sobre delirium na UTI"
+              />
+              <div class="update-body">
+                <p class="panel-label">UTI</p>
+                <h3>Delirium na UTI</h3>
+                <p>
+                  Revisão prática sobre reconhecimento, fatores associados,
+                  prevenção e abordagem do delirium em pacientes críticos.
+                </p>
+                <ul class="update-meta">
+                  <li>Formato: PDF</li>
+                  <li>Extensão: 7 páginas</li>
+                  <li>Público principal: médicos</li>
+                </ul>
+                <div class="update-actions">
+                  <a class="button button-secondary" href="./assets/docs/atualizacao-medica/delirium-na-uti.pdf" target="_blank" rel="noreferrer">Abrir PDF</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="update-card">
+              <img
+                class="update-preview"
+                src="./assets/images/pdf-previews/ventilacao-nao-invasiva-vni.png"
+                alt="Prévia do PDF sobre ventilação não invasiva"
+              />
+              <div class="update-body">
+                <p class="panel-label">Ventilação</p>
+                <h3>Ventilação não invasiva (VNI)</h3>
+                <p>
+                  Material de estudo sobre indicações, seleção de interface,
+                  monitorização e limites da VNI na medicina intensiva.
+                </p>
+                <ul class="update-meta">
+                  <li>Formato: PDF</li>
+                  <li>Extensão: 9 páginas</li>
+                  <li>Público principal: médicos</li>
+                </ul>
+                <div class="update-actions">
+                  <a class="button button-secondary" href="./assets/docs/atualizacao-medica/ventilacao-nao-invasiva-vni.pdf" target="_blank" rel="noreferrer">Abrir PDF</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="update-card">
+              <img
+                class="update-preview"
+                src="./assets/images/pdf-previews/insuficiencia-renal-aguda-em-pacientes-criticos.png"
+                alt="Prévia do PDF sobre insuficiência renal aguda em pacientes críticos"
+              />
+              <div class="update-body">
+                <p class="panel-label">Nefrointensivismo</p>
+                <h3>Insuficiência renal aguda em pacientes críticos</h3>
+                <p>
+                  Revisão voltada ao reconhecimento da IRA, estratificação clínica
+                  e discussão de condutas no ambiente de terapia intensiva.
+                </p>
+                <ul class="update-meta">
+                  <li>Formato: PDF</li>
+                  <li>Extensão: 9 páginas</li>
+                  <li>Público principal: médicos</li>
+                </ul>
+                <div class="update-actions">
+                  <a class="button button-secondary" href="./assets/docs/atualizacao-medica/insuficiencia-renal-aguda-em-pacientes-criticos.pdf" target="_blank" rel="noreferrer">Abrir PDF</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="update-card">
+              <img
+                class="update-preview"
+                src="./assets/images/pdf-previews/atualizacao-medicina-intensiva-abril-2026.png"
+                alt="Prévia do PDF de atualização em medicina intensiva"
+              />
+              <div class="update-body">
+                <p class="panel-label">Revisão integrada</p>
+                <h3>Atualização em medicina intensiva</h3>
+                <p>
+                  Documento consolidado para revisão complementar, útil como
+                  material de apoio em uma futura área de textos comentados.
+                </p>
+                <ul class="update-meta">
+                  <li>Formato: PDF</li>
+                  <li>Extensão: 8 páginas</li>
+                  <li>Público principal: médicos</li>
+                </ul>
+                <div class="update-actions">
+                  <a class="button button-secondary" href="./assets/docs/atualizacao-medica/atualizacao-medicina-intensiva-abril-2026.pdf" target="_blank" rel="noreferrer">Abrir PDF</a>
+                </div>
+              </div>
+            </article>
           </div>
-        </footer>
+
+          <p class="section-note">
+            Próxima etapa sugerida: adicionar um texto curto para cada tema com
+            resumo clínico, pontos-chave, referências e uma versão em linguagem
+            simplificada quando o conteúdo também for direcionado a pacientes.
+          </p>
+        </section>
+
+        <section class="section" id="trajetoria">
+          <div class="section-heading">
+            <p class="eyebrow">Trajetória</p>
+            <h2>Formação e desenvolvimento profissional</h2>
+          </div>
+
+          <div class="timeline">
+            <article class="timeline-item">
+              <span class="timeline-period">2006–2012</span>
+              <div>
+                <h3>Graduação em Medicina</h3>
+                <p>Universidad del Valle, Campus Tiquipaya, Bolívia.</p>
+              </div>
+            </article>
+
+            <article class="timeline-item">
+              <span class="timeline-period">2012–2013</span>
+              <div>
+                <h3>Complementação acadêmica no Brasil</h3>
+                <p>Universidade Federal Fluminense (UFF).</p>
+              </div>
+            </article>
+
+            <article class="timeline-item">
+              <span class="timeline-period">2015–2019</span>
+              <div>
+                <h3>Residência médica em Cirurgia Cardiovascular</h3>
+                <p>
+                  Real e Benemérita Associação Portuguesa de Beneficência de São
+                  Paulo, com dedicação exclusiva.
+                </p>
+              </div>
+            </article>
+
+            <article class="timeline-item">
+              <span class="timeline-period">Atual</span>
+              <div>
+                <h3>Atuação em alta complexidade</h3>
+                <p>
+                  Cirurgia cardíaca, seguimento perioperatório e medicina intensiva
+                  em São Paulo.
+                </p>
+              </div>
+            </article>
+          </div>
+
+          <div class="credentials-grid">
+            <article class="credential-card">
+              <h3>Idiomas</h3>
+              <p>Espanhol fluente e inglês intermediário.</p>
+            </article>
+
+            <article class="credential-card">
+              <h3>Currículo acadêmico</h3>
+              <p>Currículo Lattes: ID 4391937680379287.</p>
+            </article>
+
+            <article class="credential-card">
+              <h3>Contexto assistencial</h3>
+              <p>
+                Experiência em assistência a pacientes graves e em UTI de isolamento
+                Covid-19.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section class="section section-highlight">
+          <div class="section-heading">
+            <p class="eyebrow">Diferenciais</p>
+            <h2>Uma prática orientada por processo, evidência e acompanhamento</h2>
+          </div>
+
+          <div class="pillars">
+            <article class="pillar-card">
+              <span>01</span>
+              <h3>Visão longitudinal do caso</h3>
+              <p>
+                O cuidado não se limita ao ato cirúrgico. A proposta é acompanhar o
+                caso em toda a linha assistencial.
+              </p>
+            </article>
+
+            <article class="pillar-card">
+              <span>02</span>
+              <h3>Clareza na comunicação</h3>
+              <p>
+                Explicações diretas, linguagem compreensível e alinhamento de
+                expectativas com pacientes e familiares.
+              </p>
+            </article>
+
+            <article class="pillar-card">
+              <span>03</span>
+              <h3>Conduta baseada em evidências</h3>
+              <p>
+                Decisões clínicas fundamentadas em protocolos e raciocínio
+                estruturado, com foco em segurança e desfecho.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section class="section" id="faq">
+          <div class="section-heading">
+            <p class="eyebrow">Perguntas frequentes</p>
+            <h2>Como a atuação é apresentada neste site</h2>
+          </div>
+
+          <div class="faq-grid">
+            <article class="faq-card">
+              <h3>Este site é para consultas ambulatoriais ou perfil institucional?</h3>
+              <p>
+                A estrutura atual é institucional, mas já passou a incorporar uma
+                área de conteúdo. Ela apresenta o perfil profissional, a formação,
+                as áreas de atuação, a identidade da clínica RMC e uma biblioteca
+                inicial de atualização médica.
+              </p>
+            </article>
+
+            <article class="faq-card">
+              <h3>O foco está apenas em cirurgia cardíaca?</h3>
+              <p>
+                Não. O conteúdo também destaca medicina intensiva, cuidado
+                perioperatório, assistência em alta complexidade e tomada de
+                decisão baseada em evidências.
+              </p>
+            </article>
+
+            <article class="faq-card">
+              <h3>Como essa biblioteca pode evoluir?</h3>
+              <p>
+                A próxima expansão natural é anexar textos autorais para cada PDF,
+                com resumo prático, comentários clínicos, referências e eventual
+                adaptação do conteúdo para pacientes e familiares.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section class="section" id="contato">
+          <div class="section-heading">
+            <p class="eyebrow">Contato</p>
+            <h2>Base pronta para receber os canais oficiais de atendimento</h2>
+          </div>
+
+          <div class="contact-layout">
+            <article class="contact-card">
+              <h3>Informações disponíveis</h3>
+              <ul class="contact-list">
+                <li><strong>Nome profissional:</strong> Dr. Fernando Magalhães Coutinho</li>
+                <li><strong>Base:</strong> São Paulo, SP</li>
+                <li><strong>Áreas:</strong> Cirurgia Cardiovascular e Medicina Intensiva</li>
+                <li><strong>Lattes:</strong> 4391937680379287</li>
+              </ul>
+            </article>
+
+            <article class="contact-card contact-card-muted">
+              <h3>Itens finais antes da publicação pública</h3>
+              <ul class="contact-list">
+                <li>CRM e UF</li>
+                <li>Telefone e WhatsApp</li>
+                <li>E-mail profissional</li>
+                <li>Hospitais, clínicas e convênios</li>
+              </ul>
+              <p class="contact-status">Versão pronta para preview local.</p>
+              <p class="contact-note">
+                Assim que esses dados forem definidos, esta home pode sair do modo
+                de apresentação local para publicação pública sem refazer a
+                estrutura.
+              </p>
+            </article>
+          </div>
+        </section>
       </main>
+
+      <footer class="site-footer">
+        <p>
+          Conteúdo institucional em desenvolvimento para o Dr. Fernando Magalhães
+          Coutinho.
+        </p>
+        <p>
+          Antes da publicação final, confirme nome profissional, CRM, canais de
+          contato e locais de atendimento.
+        </p>
+      </footer>
     </div>
-
-    <div class="backdrop" data-menu-toggle></div>
-
-    <script src="./assets/site-data.js"></script>
-    <script src="./assets/app.js"></script>
   </body>
 </html>
