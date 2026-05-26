@@ -1,12 +1,14 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard de Mercado — Plantão</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#0f766e" />
+  <title>Mercado — Dr. Fernando</title>
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../styles.css" />
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
+    /* ── Market-specific tokens & overrides ── */
     :root {
       --navy:    #0f1e2e;
       --navy2:   #162233;
@@ -18,97 +20,35 @@
       --ink:     #1a2332;
       --sub:     #4b5e72;
       --border:  #dde4ed;
-      --bg:      #f0f4f8;
+      --bg-mkt:  #f0f4f8;
       --white:   #ffffff;
       --card-sh: 0 2px 8px rgba(0,0,0,.07);
     }
 
-    html { font-size: 15px; }
-    body {
-      font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-      background: var(--bg);
-      color: var(--ink);
-      line-height: 1.6;
-    }
-
-    /* ── NAV ── */
-    .nav {
-      background: var(--navy);
-      padding: 0 24px;
-      display: flex;
-      align-items: center;
-      height: 52px;
-      gap: 0;
-    }
-    .nav-brand {
-      color: #fff;
-      font-weight: 700;
-      font-size: .9rem;
-      text-decoration: none;
-      margin-right: 28px;
-      display: flex; align-items: center; gap: 8px;
-    }
-    .nav-brand::before {
-      content: '';
-      width: 8px; height: 8px;
-      background: var(--red);
-      border-radius: 50%;
-      display: inline-block;
-    }
-    .nav-links { display: flex; gap: 4px; }
-    .nav-links a {
-      color: rgba(255,255,255,.55);
-      text-decoration: none;
-      font-size: .8rem;
-      padding: 5px 12px;
-      border-radius: 4px;
-      transition: .15s;
-    }
-    .nav-links a:hover  { color:#fff; background:rgba(255,255,255,.08); }
-    .nav-links a.active { color:#fff; background:rgba(255,255,255,.12); }
-    .nav-date {
-      margin-left: auto;
-      color: rgba(255,255,255,.4);
-      font-size: .75rem;
-    }
-
-    /* ── STAT BAR ── */
+    /* ── Stat bar ── */
     .stat-bar {
       background: var(--navy2);
-      padding: 0 24px;
+      padding: 0 20px;
       display: flex;
       align-items: center;
-      gap: 28px;
-      height: 40px;
+      gap: 24px;
+      height: 38px;
       overflow-x: auto;
       -webkit-overflow-scrolling: touch;
+      margin-bottom: 20px;
+      border-radius: var(--radius, 8px);
+      flex-shrink: 0;
     }
     .stat-bar::-webkit-scrollbar { display: none; }
-    .stat-item {
-      display: flex; align-items: center; gap: 7px;
-      white-space: nowrap; flex-shrink: 0;
-    }
-    .stat-label { color: rgba(255,255,255,.4); font-size: .72rem; text-transform: uppercase; letter-spacing: .05em; }
-    .stat-val   { color: #fff; font-size: .82rem; font-weight: 600; }
-    .stat-chg   { font-size: .72rem; font-weight: 600; }
+    .stat-item { display: flex; align-items: center; gap: 6px; white-space: nowrap; flex-shrink: 0; }
+    .stat-label { color: rgba(255,255,255,.4); font-size: .68rem; text-transform: uppercase; letter-spacing: .05em; }
+    .stat-val   { color: #fff; font-size: .8rem; font-weight: 600; }
+    .stat-chg   { font-size: .7rem; font-weight: 600; }
     .stat-chg.up   { color: #4ade80; }
     .stat-chg.down { color: #f87171; }
-    .stat-sep { width: 1px; height: 18px; background: rgba(255,255,255,.1); }
+    .stat-sep { width: 1px; height: 16px; background: rgba(255,255,255,.1); }
 
-    /* ── LAYOUT ── */
-    .wrap {
-      max-width: 1260px;
-      margin: 0 auto;
-      padding: 24px 16px;
-      display: grid;
-      grid-template-columns: 1fr 220px;
-      gap: 20px;
-      align-items: start;
-    }
-
-    /* ── MAIN ── */
-    .main { min-width: 0; }
-
+    /* ── Report header card ── */
     .report-head {
       background: linear-gradient(135deg, var(--navy) 0%, #1a3a5c 100%);
       border-radius: 12px;
@@ -118,23 +58,18 @@
       flex-wrap: wrap;
     }
     .report-head h1 {
-      color: #fff;
-      font-size: 1.3rem;
-      font-weight: 700;
-      margin-bottom: 4px;
+      color: #fff; font-size: 1.25rem; font-weight: 700; margin-bottom: 4px;
       font-family: Georgia, serif;
     }
-    .report-head .rh-sub { color: rgba(255,255,255,.5); font-size: .78rem; }
-    .report-head .rh-stats {
-      display: flex; gap: 20px; flex-shrink: 0;
-    }
-    .rh-stat { text-align: right; }
-    .rh-stat .v { font-size: 1.1rem; font-weight: 700; color: #fff; }
-    .rh-stat .v.up { color: #4ade80; }
+    .rh-sub  { color: rgba(255,255,255,.5); font-size: .76rem; }
+    .rh-stats { display: flex; gap: 20px; flex-shrink: 0; }
+    .rh-stat  { text-align: right; }
+    .rh-stat .v   { font-size: 1.05rem; font-weight: 700; color: #fff; }
+    .rh-stat .v.up   { color: #4ade80; }
     .rh-stat .v.down { color: #f87171; }
-    .rh-stat .l { font-size: .65rem; color: rgba(255,255,255,.4); text-transform: uppercase; letter-spacing: .06em; margin-top: 2px; }
+    .rh-stat .l   { font-size: .62rem; color: rgba(255,255,255,.4); text-transform: uppercase; letter-spacing: .06em; margin-top: 2px; }
 
-    /* ── REPORT CONTENT ── */
+    /* ── Report card wrapper ── */
     .report-card {
       background: var(--white);
       border: 1px solid var(--border);
@@ -142,324 +77,282 @@
       box-shadow: var(--card-sh);
       padding: 28px 32px;
     }
+    @media (max-width: 680px) { .report-card { padding: 18px 16px; } }
 
-    /* Sections */
+    /* ── Archive sidebar card ── */
+    .archive-box {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      box-shadow: var(--card-sh);
+      overflow: hidden;
+      margin-top: 16px;
+    }
+    .archive-hd {
+      background: var(--navy);
+      color: rgba(255,255,255,.7);
+      padding: 10px 14px;
+      font-size: .65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .09em;
+    }
+    .archive-list { padding: 6px; }
+    .archive-item {
+      display: block; text-decoration: none;
+      padding: 9px 10px; border-radius: 8px; border: 1px solid transparent;
+      transition: .15s; margin-bottom: 2px;
+    }
+    .archive-item:hover { background: var(--bg-mkt); border-color: var(--border); }
+    .archive-item.active { background: var(--blue-lt); border-color: rgba(13,106,184,.2); }
+    .archive-item .ai-date { font-size: .82rem; font-weight: 700; color: var(--blue); display: block; }
+    .archive-item.active .ai-date { color: #084d8a; }
+    .archive-item .ai-day  { font-size: .69rem; color: var(--sub); display: block; margin-top: 1px; }
+    .archive-item .ai-stat { font-size: .69rem; margin-top: 4px; display: flex; align-items: center; gap: 4px; }
+    .ai-stat .up   { color: var(--green); font-weight: 600; }
+    .ai-stat .down { color: var(--red);   font-weight: 600; }
+
+    /* ── Report content styles ── */
     .report-section { margin-bottom: 36px; }
     .report-section:last-child { margin-bottom: 0; }
-
     .report-section h2 {
       font-family: Georgia, "Times New Roman", serif;
-      font-size: 1.2rem;
-      color: var(--ink);
-      padding-bottom: 10px;
-      border-bottom: 2px solid var(--bg);
+      font-size: 1.15rem; color: var(--ink);
+      padding-bottom: 10px; border-bottom: 2px solid var(--bg-mkt);
       margin-bottom: 16px;
     }
     .report-section h3 {
-      font-size: .98rem;
-      font-weight: 700;
-      color: var(--ink);
+      font-size: .96rem; font-weight: 700; color: var(--ink);
       margin: 20px 0 8px;
       display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
     }
     .report-section h3:first-child { margin-top: 0; }
-    .report-section p {
-      font-size: .88rem;
-      color: var(--ink);
-      margin-bottom: 10px;
-      line-height: 1.72;
-    }
-    .report-section ul, .report-section ol {
-      padding-left: 20px; margin-bottom: 12px;
-    }
-    .report-section li { font-size: .87rem; margin-bottom: 4px; line-height: 1.65; }
+    .report-section p { font-size: .87rem; color: var(--ink); margin-bottom: 10px; line-height: 1.72; }
+    .report-section ul, .report-section ol { padding-left: 20px; margin-bottom: 12px; }
+    .report-section li { font-size: .86rem; margin-bottom: 4px; line-height: 1.65; }
     .report-section strong { color: var(--ink); }
 
-    /* Section chips */
-    .section-chip {
-      display: inline-block;
-      background: var(--bg);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 3px 12px;
-      font-size: .68rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: .07em;
-      color: var(--sub);
-      margin-bottom: 10px;
-    }
-
-    /* Badges */
     .badge {
       display: inline-flex; align-items: center;
-      padding: 2px 9px;
-      border-radius: 20px;
-      font-size: .68rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: .05em;
-      vertical-align: middle;
-      white-space: nowrap;
+      padding: 2px 9px; border-radius: 20px;
+      font-size: .67rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: .05em; vertical-align: middle; white-space: nowrap;
     }
     .badge-up      { background: #dcfce7; color: #15803d; }
     .badge-down    { background: #fee2e2; color: #b91c1c; }
     .badge-neutral { background: #fef9c3; color: #854d0e; }
     .badge-alert   { background: #fff7ed; color: #c2410c; border: 1px solid #fed7aa; }
 
-    /* Tables */
     .market-table, .summary-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin: 12px 0;
-      font-size: .83rem;
+      width: 100%; border-collapse: collapse; margin: 12px 0; font-size: .82rem;
     }
     .market-table th, .summary-table th {
-      background: var(--navy);
-      color: rgba(255,255,255,.7);
-      padding: 8px 12px;
-      text-align: left;
-      font-size: .68rem;
-      text-transform: uppercase;
-      letter-spacing: .07em;
-      font-weight: 600;
+      background: var(--navy); color: rgba(255,255,255,.7);
+      padding: 8px 12px; text-align: left;
+      font-size: .66rem; text-transform: uppercase; letter-spacing: .07em; font-weight: 600;
     }
-    .market-table th:first-child { border-radius: 6px 0 0 0; }
-    .market-table th:last-child  { border-radius: 0 6px 0 0; }
-    .summary-table th:first-child { border-radius: 6px 0 0 0; }
-    .summary-table th:last-child  { border-radius: 0 6px 0 0; }
+    .market-table th:first-child, .summary-table th:first-child { border-radius: 6px 0 0 0; }
+    .market-table th:last-child,  .summary-table th:last-child  { border-radius: 0 6px 0 0; }
     .market-table td, .summary-table td {
-      padding: 8px 12px;
-      border-bottom: 1px solid var(--border);
-      vertical-align: top;
+      padding: 8px 12px; border-bottom: 1px solid var(--border); vertical-align: top;
     }
-    .market-table tr:last-child td,
-    .summary-table tr:last-child td { border-bottom: none; }
+    .market-table tr:last-child td, .summary-table tr:last-child td { border-bottom: none; }
     .market-table tr:nth-child(even) td,
-    .summary-table tr:nth-child(even) td { background: var(--bg); }
+    .summary-table tr:nth-child(even) td { background: var(--bg-mkt); }
     .market-table td.up,   .summary-table td.up   { color: var(--green); font-weight: 600; }
     .market-table td.down, .summary-table td.down { color: var(--red);   font-weight: 600; }
 
-    /* Tech block */
     .tech-block {
-      background: #f8fafc;
-      border-left: 3px solid var(--blue);
-      border-radius: 0 8px 8px 0;
-      padding: 12px 16px;
-      margin: 10px 0;
-      font-size: .83rem;
-      line-height: 1.65;
+      background: #f8fafc; border-left: 3px solid var(--blue);
+      border-radius: 0 8px 8px 0; padding: 12px 16px; margin: 10px 0;
+      font-size: .82rem; line-height: 1.65;
     }
     .tech-block h4 {
-      font-size: .68rem;
-      text-transform: uppercase;
-      letter-spacing: .08em;
-      color: var(--sub);
-      margin-bottom: 7px;
-      font-weight: 700;
+      font-size: .66rem; text-transform: uppercase; letter-spacing: .08em;
+      color: var(--sub); margin-bottom: 7px; font-weight: 700;
     }
     .tech-block.alert  { border-left-color: #f59e0b; }
     .tech-block.danger { border-left-color: var(--red); }
     .tech-block ul { padding-left: 18px; margin: 0; }
     .tech-block li { margin-bottom: 3px; }
 
-    /* Alert box */
     .alert-box {
-      background: #fff7ed;
-      border: 1px solid #fed7aa;
-      border-radius: 10px;
-      padding: 14px 18px;
-      margin: 12px 0;
+      background: #fff7ed; border: 1px solid #fed7aa; border-radius: 10px;
+      padding: 14px 18px; margin: 12px 0;
       display: flex; gap: 12px; align-items: flex-start;
     }
-    .alert-box .alert-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: 1px; }
-    .alert-box .alert-title { font-weight: 700; color: #92400e; font-size: .87rem; margin-bottom: 4px; }
-    .alert-box .alert-text  { color: #78350f; font-size: .83rem; line-height: 1.65; }
+    .alert-box .alert-icon  { font-size: 1.1rem; flex-shrink: 0; margin-top: 1px; }
+    .alert-box .alert-title { font-weight: 700; color: #92400e; font-size: .86rem; margin-bottom: 4px; }
+    .alert-box .alert-text  { color: #78350f; font-size: .82rem; line-height: 1.65; }
 
-    /* Sources */
     .sources-footer {
-      margin-top: 32px;
-      padding-top: 18px;
-      border-top: 1px solid var(--border);
+      margin-top: 32px; padding-top: 18px; border-top: 1px solid var(--border);
     }
     .sources-footer h4 {
-      font-size: .68rem;
-      text-transform: uppercase;
-      letter-spacing: .09em;
-      color: var(--sub);
-      margin-bottom: 8px;
+      font-size: .66rem; text-transform: uppercase; letter-spacing: .09em;
+      color: var(--sub); margin-bottom: 8px;
     }
     .source-links { display: flex; flex-wrap: wrap; gap: 6px; }
     .source-links a {
-      font-size: .73rem;
-      color: var(--blue);
-      text-decoration: none;
-      padding: 2px 9px;
-      background: var(--bg);
-      border-radius: 20px;
-      border: 1px solid var(--border);
-      transition: .15s;
+      font-size: .72rem; color: var(--blue); text-decoration: none;
+      padding: 2px 9px; background: var(--bg-mkt);
+      border-radius: 20px; border: 1px solid var(--border); transition: .15s;
     }
     .source-links a:hover { background: var(--blue); color: #fff; border-color: var(--blue); }
-    .sources-footer p { margin-top: 10px; font-size: .72rem; color: var(--sub); }
+    .sources-footer p { margin-top: 10px; font-size: .7rem; color: var(--sub); }
 
-    /* ── SIDEBAR ── */
-    .sidebar { position: sticky; top: 16px; }
-    .sidebar-card {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      box-shadow: var(--card-sh);
-      overflow: hidden;
+    /* ── Layout: workspace split ── */
+    .mkt-layout {
+      display: grid;
+      grid-template-columns: 1fr 220px;
+      gap: 20px;
+      align-items: start;
     }
-    .sidebar-hd {
-      background: var(--navy);
-      color: rgba(255,255,255,.7);
-      padding: 11px 16px;
-      font-size: .68rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: .09em;
-    }
-    .archive-list { padding: 8px; }
-    .archive-item {
-      display: block;
-      text-decoration: none;
-      padding: 9px 10px;
-      border-radius: 8px;
-      border: 1px solid transparent;
-      transition: .15s;
-      margin-bottom: 2px;
-    }
-    .archive-item:hover { background: var(--bg); border-color: var(--border); }
-    .archive-item.active {
-      background: var(--blue-lt);
-      border-color: rgba(13,106,184,.2);
-    }
-    .archive-item .ai-date {
-      font-size: .82rem; font-weight: 700;
-      color: var(--blue);
-      display: block;
-    }
-    .archive-item.active .ai-date { color: #084d8a; }
-    .archive-item .ai-day {
-      font-size: .7rem; color: var(--sub);
-      display: block; margin-top: 1px;
-    }
-    .archive-item .ai-stat {
-      font-size: .7rem; margin-top: 5px;
-      display: flex; align-items: center; gap: 4px;
-    }
-    .ai-stat .up   { color: var(--green); font-weight: 600; }
-    .ai-stat .down { color: var(--red);   font-weight: 600; }
+    .mkt-main { min-width: 0; }
+    .mkt-aside { position: sticky; top: 20px; }
 
-    /* ── RESPONSIVE ── */
     @media (max-width: 860px) {
-      .wrap { grid-template-columns: 1fr; }
-      .sidebar { position: static; order: -1; }
-      .archive-list { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 10px; }
+      .mkt-layout { grid-template-columns: 1fr; }
+      .mkt-aside  { position: static; }
+      .archive-list { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 8px; }
       .archive-item { flex-shrink: 0; min-width: 110px; }
-      .report-card { padding: 20px 16px; }
+      .report-head  { flex-direction: column; }
+      .rh-stats     { justify-content: flex-start; }
     }
-    @media (max-width: 560px) {
-      .report-head { flex-direction: column; }
-      .rh-stats { justify-content: flex-start; }
-    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
   </style>
 </head>
 <body>
-
-<!-- NAV -->
-<nav class="nav">
-  <a href="../index.html" class="nav-brand">Dr. Fernando Coutinho</a>
-  <div class="nav-links">
-    <a href="../index.html">Início</a>
-    <a href="../amib-temi.html">AMIB-TEMI</a>
-    <a href="index.html" class="active">Mercado</a>
-    <a href="../perfil.html">Perfil</a>
-  </div>
-  <span class="nav-date" id="navDate"></span>
-</nav>
-
-<!-- STAT BAR -->
-<div class="stat-bar" id="statBar">
-  <div class="stat-item">
-    <span class="stat-label">Ibovespa</span>
-    <span class="stat-val" id="s-ibov">175.870</span>
-    <span class="stat-chg down" id="s-ibov-chg">▼ 1,01%</span>
-  </div>
-  <div class="stat-sep"></div>
-  <div class="stat-item">
-    <span class="stat-label">USD/BRL</span>
-    <span class="stat-val" id="s-dolar">R$ 5,02</span>
-  </div>
-  <div class="stat-sep"></div>
-  <div class="stat-item">
-    <span class="stat-label">WTI Oil</span>
-    <span class="stat-val" id="s-oil">US$ 92,94</span>
-  </div>
-  <div class="stat-sep"></div>
-  <div class="stat-item">
-    <span class="stat-label">Carteira</span>
-    <span class="stat-val">AXIA3 · VALE3 · BBDC4 · MRFG3 · MSFT34 · B3SA3</span>
-  </div>
-</div>
-
-<!-- LAYOUT -->
-<div class="wrap">
-
-  <!-- MAIN -->
-  <main class="main">
-
-    <!-- Report header -->
-    <div class="report-head" id="reportHead">
-      <div>
-        <div style="font-size:.68rem;color:rgba(255,255,255,.35);text-transform:uppercase;letter-spacing:.09em;margin-bottom:5px">
-          Informe Diário de Mercado
-        </div>
-        <h1 id="rTitle">26 de Maio de 2026</h1>
-        <div class="rh-sub" id="rSub">Terça-feira · Gerado automaticamente às 09h BRT</div>
-      </div>
-      <div class="rh-stats">
-        <div class="rh-stat">
-          <div class="v down" id="rIbov">175.870</div>
-          <div class="l">Ibovespa</div>
-        </div>
-        <div class="rh-stat">
-          <div class="v" id="rDolar">R$ 5,02</div>
-          <div class="l">Dólar</div>
-        </div>
-        <div class="rh-stat">
-          <div class="v" id="rOil">US$ 92,94</div>
-          <div class="l">WTI Oil</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Report body — content injected here by script or loaded via JS -->
-    <div class="report-card" id="reportBody">
-      <div id="reportContent">
-        <!-- Placeholder shown until JS loads content -->
-        <div style="text-align:center;padding:48px 0;color:var(--sub)">
-          <div style="font-size:2rem;margin-bottom:12px">📊</div>
-          <p style="font-size:.9rem">Carregando relatório...</p>
-        </div>
-      </div>
-    </div>
-
-  </main>
+<div class="app-shell">
 
   <!-- SIDEBAR -->
-  <aside class="sidebar">
+  <aside class="sidebar" aria-label="Menu lateral">
+    <a class="brand" href="../index.html" aria-label="Dr. Fernando — página inicial">
+      <span class="brand-mark">F</span>
+      <span>
+        <strong>DR. FERNANDO</strong>
+        <small>Dashboard médico</small>
+      </span>
+    </a>
+
+    <nav class="side-nav" aria-label="Módulos">
+      <a class="nav-link" href="../index.html">
+        <span>Plantões</span>
+        <strong>Ir</strong>
+      </a>
+      <a class="nav-link" href="../perfil.html">
+        <span>Perfil</span>
+        <strong>Ir</strong>
+      </a>
+      <a class="nav-link" href="../amib-temi.html">
+        <span>AMIB</span>
+        <strong>TEMI</strong>
+      </a>
+      <a class="nav-link active" href="index.html">
+        <span>Mercado</span>
+        <strong>📊</strong>
+      </a>
+    </nav>
+
     <div class="sidebar-card">
-      <div class="sidebar-hd">📅 Histórico</div>
-      <div class="archive-list" id="archiveList">
-        <!-- Populated by JS -->
+      <span class="status-dot"></span>
+      <div>
+        <strong>Relatórios diários</strong>
+        <small>Seg–Sex às 09h BRT</small>
       </div>
     </div>
   </aside>
 
+  <!-- WORKSPACE -->
+  <main class="workspace">
+    <header class="topbar">
+      <button class="icon-button menu-toggle" type="button" aria-label="Abrir menu" data-menu-toggle>
+        <span></span><span></span><span></span>
+      </button>
+      <div>
+        <p class="eyebrow">Dashboard de Mercado</p>
+        <h1>Informe Diário</h1>
+      </div>
+      <button class="theme-toggle" type="button" data-theme-toggle aria-label="Alternar dark mode">
+        <span aria-hidden="true">◐</span>
+        <strong>Dark mode</strong>
+      </button>
+    </header>
+
+    <!-- Stat bar -->
+    <div class="stat-bar" id="statBar">
+      <div class="stat-item">
+        <span class="stat-label">Ibovespa</span>
+        <span class="stat-val" id="s-ibov">—</span>
+        <span class="stat-chg" id="s-ibov-chg"></span>
+      </div>
+      <div class="stat-sep"></div>
+      <div class="stat-item">
+        <span class="stat-label">USD/BRL</span>
+        <span class="stat-val" id="s-dolar">—</span>
+      </div>
+      <div class="stat-sep"></div>
+      <div class="stat-item">
+        <span class="stat-label">WTI Oil</span>
+        <span class="stat-val" id="s-oil">—</span>
+      </div>
+      <div class="stat-sep"></div>
+      <div class="stat-item">
+        <span class="stat-label">Carteira</span>
+        <span class="stat-val">AXIA3 · VALE3 · BBDC4 · MRFG3 · MSFT34 · B3SA3</span>
+      </div>
+    </div>
+
+    <div class="mkt-layout">
+      <!-- MAIN CONTENT -->
+      <div class="mkt-main">
+        <div class="report-head" id="reportHead">
+          <div>
+            <div style="font-size:.65rem;color:rgba(255,255,255,.35);text-transform:uppercase;letter-spacing:.09em;margin-bottom:5px">
+              Informe Diário de Mercado
+            </div>
+            <h1 id="rTitle">Dashboard de Mercado</h1>
+            <div class="rh-sub" id="rSub">Relatórios gerados automaticamente às 09h BRT</div>
+          </div>
+          <div class="rh-stats">
+            <div class="rh-stat">
+              <div class="v" id="rIbov">—</div>
+              <div class="l">Ibovespa</div>
+            </div>
+            <div class="rh-stat">
+              <div class="v" id="rDolar">—</div>
+              <div class="l">Dólar</div>
+            </div>
+            <div class="rh-stat">
+              <div class="v" id="rOil">—</div>
+              <div class="l">WTI Oil</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="report-card" id="reportBody">
+          <div id="reportContent">
+            <div style="text-align:center;padding:48px 0;color:var(--sub)">
+              <div style="font-size:2rem;margin-bottom:12px">📊</div>
+              <p style="font-size:.88rem">Carregando relatório...</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ARCHIVE SIDEBAR -->
+      <aside class="mkt-aside">
+        <div class="archive-box">
+          <div class="archive-hd">📅 Histórico</div>
+          <div class="archive-list" id="archiveList"></div>
+        </div>
+      </aside>
+    </div>
+  </main>
 </div>
+
+<div class="backdrop" data-menu-toggle></div>
 
 <script>
 const MANIFEST = 'data/manifest.json';
@@ -471,11 +364,11 @@ function fmtDate(iso) {
   return `${d}/${m}/${y}`;
 }
 function fmtTitle(iso) {
-  const [y,m,d] = iso.split('-');
-  const dt = new Date(iso + 'T12:00:00');
+  const [,m,d] = iso.split('-');
   const months = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho',
                   'Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
-  return `${parseInt(d)} de ${months[parseInt(m)-1]} de ${y}`;
+  const dt = new Date(iso + 'T12:00:00');
+  return `${parseInt(d)} de ${months[parseInt(m)-1]} de ${dt.getFullYear()}`;
 }
 function wday(iso) {
   return WDAYS[new Date(iso + 'T12:00:00').getDay()];
@@ -490,13 +383,11 @@ async function loadManifest() {
 }
 
 async function loadReport(date, manifest) {
-  // Update header
   document.getElementById('rTitle').textContent = fmtTitle(date);
+  const wd = wday(date);
   document.getElementById('rSub').textContent =
-    wday(date).charAt(0).toUpperCase() + wday(date).slice(1) +
-    '-feira · Gerado automaticamente às 09h BRT';
+    wd.charAt(0).toUpperCase() + wd.slice(1) + '-feira · Gerado automaticamente às 09h BRT';
 
-  // Update stats from manifest
   const entry = manifest.reports.find(r => r.date === date);
   if (entry) {
     const ibovEl = document.getElementById('rIbov');
@@ -508,34 +399,30 @@ async function loadReport(date, manifest) {
       chgEl.textContent = (entry.ibovUp ? '▲ ' : '▼ ') + entry.ibovChg.replace('-','').replace('+','');
       chgEl.className = 'stat-chg ' + (entry.ibovUp ? 'up' : 'down');
     }
-    if (entry.ibov) document.getElementById('s-ibov').textContent = entry.ibov;
+    if (entry.ibov)  document.getElementById('s-ibov').textContent  = entry.ibov;
     if (entry.dolar) { document.getElementById('rDolar').textContent = entry.dolar; document.getElementById('s-dolar').textContent = entry.dolar; }
-    if (entry.oil)   { document.getElementById('rOil').textContent = entry.oil;     document.getElementById('s-oil').textContent = entry.oil; }
+    if (entry.oil)   { document.getElementById('rOil').textContent   = entry.oil;   document.getElementById('s-oil').textContent   = entry.oil; }
   }
 
-  // Mark active in archive
-  document.querySelectorAll('.archive-item').forEach(el => {
-    el.classList.toggle('active', el.dataset.date === date);
-  });
+  document.querySelectorAll('.archive-item').forEach(el =>
+    el.classList.toggle('active', el.dataset.date === date));
 
-  // Load report HTML
   const content = document.getElementById('reportContent');
-  content.innerHTML = '<div style="text-align:center;padding:48px 0;color:var(--sub)"><div style="width:32px;height:32px;border:2px solid var(--border);border-top-color:var(--blue);border-radius:50%;animation:spin .7s linear infinite;margin:0 auto 12px"></div><p style="font-size:.85rem">Carregando...</p></div>';
+  content.innerHTML = '<div style="text-align:center;padding:48px 0;color:var(--sub)"><div style="width:28px;height:28px;border:2px solid var(--border);border-top-color:var(--blue);border-radius:50%;animation:spin .7s linear infinite;margin:0 auto 12px"></div><p style="font-size:.84rem">Carregando...</p></div>';
 
   try {
     const r = await fetch(REPORTS + date + '.html?v=' + Date.now());
     if (!r.ok) throw new Error('not found');
     const html = await r.text();
-    // Strip HTML comments and leaked thinking text
     const clean = html
       .replace(/<!--.*?-->/gs, '')
-      .replace(/^(Vou |Tenho |Aguarde).*/gm, '')
+      .replace(/^(Vou |Tenho |Aguarde|Preciso |Buscando|Encontrei|Já tenho|Com base|Deixa eu ).*/gm, '')
       .trim();
     content.innerHTML = clean;
   } catch {
     content.innerHTML = `<div style="text-align:center;padding:48px 0">
       <div style="font-size:2rem;margin-bottom:12px">📭</div>
-      <p style="color:var(--sub);font-size:.87rem">Relatório de ${fmtDate(date)} não disponível.</p>
+      <p style="color:var(--sub);font-size:.86rem">Relatório de ${fmtDate(date)} não disponível.</p>
     </div>`;
   }
 }
@@ -543,7 +430,7 @@ async function loadReport(date, manifest) {
 function buildArchive(reports) {
   const list = document.getElementById('archiveList');
   if (!reports.length) {
-    list.innerHTML = '<p style="padding:16px;font-size:.8rem;color:var(--sub);text-align:center">Nenhum relatório ainda.</p>';
+    list.innerHTML = '<p style="padding:16px;font-size:.78rem;color:var(--sub);text-align:center">Nenhum relatório ainda.</p>';
     return;
   }
   list.innerHTML = [...reports].reverse().map(r => `
@@ -558,17 +445,6 @@ function buildArchive(reports) {
   `).join('');
 }
 
-// Nav date
-const now = new Date();
-document.getElementById('navDate').textContent =
-  now.toLocaleDateString('pt-BR', { weekday:'short', day:'2-digit', month:'short', year:'numeric' });
-
-// Spinner keyframe
-const style = document.createElement('style');
-style.textContent = '@keyframes spin { to { transform:rotate(360deg) } }';
-document.head.appendChild(style);
-
-// Init
 (async () => {
   const manifest = await loadManifest();
   window._manifest = manifest;
@@ -579,10 +455,22 @@ document.head.appendChild(style);
   } else {
     document.getElementById('reportContent').innerHTML =
       '<div style="text-align:center;padding:48px 0"><div style="font-size:2rem;margin-bottom:12px">📅</div><p style="color:var(--sub)">Nenhum relatório disponível ainda.<br>O primeiro será gerado às 9h do próximo dia útil.</p></div>';
-    document.getElementById('rTitle').textContent = 'Dashboard de Mercado';
-    document.getElementById('rSub').textContent = 'Relatórios diários gerados automaticamente';
   }
 })();
+
+// Dark mode + mobile menu — re-use logic from app.js if loaded, else minimal fallback
+document.querySelectorAll('[data-theme-toggle]').forEach(btn => {
+  const saved = localStorage.getItem('theme');
+  if (saved === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+  btn.addEventListener('click', () => {
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    document.documentElement.setAttribute('data-theme', isDark ? '' : 'dark');
+    localStorage.setItem('theme', isDark ? '' : 'dark');
+  });
+});
+document.querySelectorAll('[data-menu-toggle]').forEach(el => {
+  el.addEventListener('click', () => document.querySelector('.sidebar')?.classList.toggle('open'));
+});
 </script>
 </body>
 </html>

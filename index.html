@@ -57,6 +57,10 @@
             <span>AMIB</span>
             <strong>TEMI</strong>
           </a>
+          <a class="nav-link nav-link-route" href="./mercado/index.html">
+            <span>Mercado</span>
+            <strong id="nav-ibov-badge">📊</strong>
+          </a>
         </nav>
 
         <div class="sidebar-card">
@@ -113,6 +117,17 @@
               <small>Dias arquivados</small>
             </article>
           </div>
+        </section>
+
+        <section class="market-preview-panel" id="marketPreview" aria-label="Resumo de mercado" hidden>
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Atualizado hoje</p>
+              <h2>Mercado de hoje</h2>
+            </div>
+            <a href="./mercado/index.html" class="viewer-button" style="text-decoration:none">Ver dashboard completo</a>
+          </div>
+          <div class="market-stat-grid" id="marketStatGrid"></div>
         </section>
 
         <section class="controls-panel" aria-label="Busca e filtros">
@@ -182,5 +197,70 @@
 
     <script src="./assets/site-data.js"></script>
     <script src="./assets/app.js"></script>
+    <script>
+    (async () => {
+      try {
+        const r = await fetch('./mercado/data/manifest.json?v=' + Date.now());
+        if (!r.ok) return;
+        const data = await r.json();
+        const reports = data.reports || [];
+        if (!reports.length) return;
+        const latest = reports[reports.length - 1];
+
+        const grid = document.getElementById('marketStatGrid');
+        const up = latest.ibovUp;
+        const chg = (latest.ibovChg || '').replace('-','').replace('+','');
+        grid.innerHTML = `
+          <article>
+            <span style="font-size:1.25rem;font-weight:700;color:var(--brand)">${latest.ibov || '—'}</span>
+            <small style="display:block;margin-top:2px">
+              Ibovespa
+              ${chg ? `<span style="color:${up ? '#15803d' : '#b91c1c'};font-weight:600">&nbsp;${up ? '▲' : '▼'} ${chg}</span>` : ''}
+            </small>
+          </article>
+          <article>
+            <span style="font-size:1.25rem;font-weight:700;color:var(--brand)">${latest.dolar || '—'}</span>
+            <small style="display:block;margin-top:2px">USD/BRL</small>
+          </article>
+          <article>
+            <span style="font-size:1.25rem;font-weight:700;color:var(--brand)">${latest.oil || '—'}</span>
+            <small style="display:block;margin-top:2px">Petróleo WTI</small>
+          </article>
+          <article>
+            <span style="font-size:1.25rem;font-weight:700;color:var(--brand)">${latest.date ? latest.date.split('-').reverse().join('/') : '—'}</span>
+            <small style="display:block;margin-top:2px">Último relatório</small>
+          </article>`;
+
+        document.getElementById('marketPreview').hidden = false;
+
+        // Update nav badge with IBOV
+        const badge = document.getElementById('nav-ibov-badge');
+        if (badge && latest.ibov) badge.textContent = latest.ibov;
+      } catch { /* no market data yet */ }
+    })();
+    </script>
+    <style>
+    .market-preview-panel {
+      padding: 0 0 8px;
+    }
+    .market-stat-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+    .market-stat-grid article {
+      background: var(--panel);
+      border: 1px solid var(--line, #e2e8f0);
+      border-radius: var(--radius);
+      padding: 16px 18px;
+      transition: box-shadow .15s;
+    }
+    .market-stat-grid article:hover {
+      box-shadow: 0 4px 16px rgba(0,0,0,.08);
+    }
+    @media (max-width: 640px) {
+      .market-stat-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    </style>
   </body>
 </html>
