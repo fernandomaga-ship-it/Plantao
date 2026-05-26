@@ -1,0 +1,86 @@
+name: 📊 Relatório Diário de Mercado
+
+on:
+  schedule:
+    # 09:00 BRT = 12:00 UTC (Brasil não usa horário de verão desde 2019)
+    - cron: '0 12 * * 1-5'
+  workflow_dispatch:
+    inputs:
+      date_override:
+        description: 'Data para gerar (YYYY-MM-DD). Deixe vazio para usar hoje.'
+        required: false
+        default: ''
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: market-report
+  cancel-in-progress: false
+
+jobs:
+  generate-report:
+    name: Gerar e publicar relatório
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repositório
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Configurar Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Instalar dependências
+        run: pip install anthropic
+
+      - name: Gerar relatório de mercado
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          DATE_OVERRIDE: ${{ github.event.inputs.date_override }}
+        run: python scripts/generate_daily_market.py
+
+      - name: Commit e push do relatório
+        run: |
+          git config user.name  "Market Bot 📊"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add mercado/
+          git diff --staged --quiet || git commit -m "📊 Relatório de mercado $(date +'%Y-%m-%d')"
+          git push
+
+  deploy-pages:
+    name: Publicar no GitHub Pages
+    needs: generate-report
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Configurar Pages
+        uses: actions/configure-pages@v5
+
+      - name: Gerar manifesto do site
+        run: node scripts/generate-site-data.mjs
+
+      - name: Criar .nojekyll
+        run: touch .nojekyll
+
+      - name: Upload artefato
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '.'
+
+      - name: Deploy para GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
