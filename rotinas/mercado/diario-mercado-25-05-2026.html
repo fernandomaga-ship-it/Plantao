@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diário de Mercado — F&K | 25 Mai 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Mono:wght@300;400;500&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1208;
+    --paper: #f5f0e8;
+    --gold: #b8860b;
+    --gold-light: #d4a017;
+    --red: #8b1a1a;
+    --green: #1a5c2a;
+    --green-light: #2d8b3a;
+    --blue: #1a2e5c;
+    --accent: #c0392b;
+    --mid: #6b5c3e;
+    --border: #c8b89a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Lora', Georgia, serif;
+    background: var(--paper);
+    color: var(--ink);
+    min-height: 100vh;
+  }
+
+  /* ─── Texture overlay ─── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ─── HEADER ─── */
+  .masthead {
+    border-bottom: 3px double var(--gold);
+    padding: 28px 40px 20px;
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    background: linear-gradient(180deg, rgba(184,134,11,0.06) 0%, transparent 100%);
+  }
+  .masthead-kicker {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--mid);
+    margin-bottom: 8px;
+  }
+  .masthead-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 5vw, 48px);
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    line-height: 1;
+  }
+  .masthead-sub {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--mid);
+    letter-spacing: 0.2em;
+    margin-top: 6px;
+  }
+  .masthead-date {
+    margin-top: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--gold);
+    letter-spacing: 0.15em;
+  }
+  .masthead-date::before,
+  .masthead-date::after {
+    content: '—';
+    color: var(--border);
+  }
+
+  /* ─── LAYOUT ─── */
+  .container {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 32px 24px 60px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ─── TICKER STRIP ─── */
+  .ticker-strip {
+    display: flex;
+    gap: 0;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 36px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+  }
+  .ticker-item {
+    flex: 1;
+    padding: 10px 14px;
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .ticker-item:last-child { border-right: none; }
+  .ticker-label {
+    font-weight: 500;
+    color: var(--mid);
+    letter-spacing: 0.08em;
+    font-size: 9px;
+    text-transform: uppercase;
+  }
+  .ticker-value { font-size: 13px; color: var(--ink); font-weight: 500; }
+  .ticker-change.pos { color: var(--green); }
+  .ticker-change.neg { color: var(--red); }
+  .ticker-change.neutral { color: var(--mid); }
+
+  /* ─── SECTIONS ─── */
+  .section { margin-bottom: 40px; }
+
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, var(--border), transparent);
+  }
+
+  h2.story-head {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(20px, 3.5vw, 30px);
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--ink);
+    margin-bottom: 16px;
+    font-style: italic;
+  }
+
+  .lead {
+    font-size: 16px;
+    line-height: 1.75;
+    color: #2a2010;
+    margin-bottom: 18px;
+    font-weight: 400;
+  }
+  .lead strong { color: var(--ink); font-weight: 600; }
+
+  p.body-text {
+    font-size: 14.5px;
+    line-height: 1.82;
+    color: #3d3020;
+    margin-bottom: 14px;
+  }
+  p.body-text strong { color: var(--ink); }
+
+  /* ─── CALLOUT BOX ─── */
+  .callout {
+    border-left: 3px solid var(--gold);
+    background: rgba(184,134,11,0.06);
+    padding: 14px 18px;
+    margin: 20px 0;
+    font-style: italic;
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--mid);
+  }
+  .callout strong { font-style: normal; color: var(--gold); }
+
+  /* ─── ASSET CARDS ─── */
+  .asset-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 14px;
+    margin: 20px 0;
+  }
+  .asset-card {
+    border: 1px solid var(--border);
+    padding: 14px 16px;
+    position: relative;
+    background: rgba(255,255,255,0.4);
+    transition: background 0.2s;
+  }
+  .asset-card:hover { background: rgba(255,255,255,0.7); }
+  .asset-card .ticker {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    color: var(--blue);
+  }
+  .asset-card .name {
+    font-size: 11px;
+    color: var(--mid);
+    margin: 2px 0 8px;
+    font-family: 'DM Mono', monospace;
+  }
+  .asset-card .price {
+    font-family: 'DM Mono', monospace;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--ink);
+  }
+  .asset-card .pm {
+    font-size: 10px;
+    color: var(--mid);
+    font-family: 'DM Mono', monospace;
+    margin-top: 2px;
+  }
+  .asset-card .ret {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    margin-top: 6px;
+    padding-top: 6px;
+    border-top: 1px solid var(--border);
+  }
+  .ret.pos { color: var(--green); }
+  .ret.neg { color: var(--red); }
+  .ret.neutral { color: var(--mid); }
+  .asset-card .badge {
+    position: absolute;
+    top: 8px;
+    right: 10px;
+    font-size: 8px;
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--gold);
+    border: 1px solid var(--border);
+    padding: 2px 5px;
+  }
+
+  /* ─── ALERTS ─── */
+  .alert-list { display: flex; flex-direction: column; gap: 10px; margin: 16px 0; }
+  .alert-row {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    padding: 12px 14px;
+    border: 1px solid var(--border);
+    background: rgba(255,255,255,0.35);
+    font-size: 13px;
+    line-height: 1.6;
+  }
+  .alert-dot { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+  .alert-text { color: #2a2010; }
+  .alert-text strong { font-weight: 600; color: var(--ink); }
+
+  /* ─── DIVIDER ─── */
+  .divider {
+    text-align: center;
+    margin: 32px 0;
+    color: var(--border);
+    letter-spacing: 0.6em;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+  }
+
+  /* ─── PLANO TABLE ─── */
+  .plan-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .plan-table th {
+    text-align: left;
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--mid);
+    padding: 8px 12px;
+    border-bottom: 2px solid var(--border);
+  }
+  .plan-table td {
+    padding: 10px 12px;
+    border-bottom: 1px solid rgba(200,184,154,0.4);
+    vertical-align: top;
+    line-height: 1.55;
+  }
+  .plan-table tr:hover td { background: rgba(255,255,255,0.45); }
+  .priority-tag {
+    display: inline-block;
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    padding: 2px 7px;
+    border-radius: 2px;
+    font-weight: 500;
+  }
+  .alta { background: rgba(139,26,26,0.12); color: var(--red); }
+  .media { background: rgba(184,134,11,0.12); color: var(--gold); }
+  .baixa { background: rgba(26,92,42,0.12); color: var(--green); }
+
+  /* ─── FOOTER ─── */
+  .footer {
+    border-top: 3px double var(--gold);
+    padding: 20px 40px;
+    text-align: center;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--mid);
+    letter-spacing: 0.12em;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ─── HIGHLIGHT STAT ─── */
+  .stat-row {
+    display: flex;
+    gap: 2px;
+    margin: 16px 0;
+    flex-wrap: wrap;
+  }
+  .stat-box {
+    flex: 1 1 120px;
+    border: 1px solid var(--border);
+    padding: 14px;
+    text-align: center;
+    background: rgba(255,255,255,0.35);
+  }
+  .stat-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--ink);
+    display: block;
+  }
+  .stat-number.neg { color: var(--red); }
+  .stat-number.pos { color: var(--green); }
+  .stat-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--mid);
+    margin-top: 4px;
+    display: block;
+  }
+
+  @media (max-width: 600px) {
+    .masthead { padding: 20px 16px 16px; }
+    .container { padding: 20px 14px 40px; }
+    .ticker-strip { flex-wrap: wrap; }
+    .ticker-item { flex: 0 0 50%; border-right: 1px solid var(--border); }
+    .asset-grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  /* Fade-in animation */
+  .section {
+    opacity: 0;
+    transform: translateY(12px);
+    animation: fadeUp 0.6s ease forwards;
+  }
+  .section:nth-child(1) { animation-delay: 0.05s; }
+  .section:nth-child(2) { animation-delay: 0.15s; }
+  .section:nth-child(3) { animation-delay: 0.25s; }
+  .section:nth-child(4) { animation-delay: 0.35s; }
+  .section:nth-child(5) { animation-delay: 0.45s; }
+  .section:nth-child(6) { animation-delay: 0.55s; }
+  .section:nth-child(7) { animation-delay: 0.65s; }
+  .section:nth-child(8) { animation-delay: 0.75s; }
+
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-kicker">Carteira F&K Serviços Médicos · Análise Diária</div>
+  <div class="masthead-title">Diário de Mercado</div>
+  <div class="masthead-sub">Fernando M. Coutinho · Edição Nº 001</div>
+  <div class="masthead-date">Segunda-feira, 25 de Maio de 2026 · Corpus Christi</div>
+</header>
+
+<div class="container">
+
+  <!-- ─── TICKER STRIP ─── -->
+  <div class="ticker-strip">
+    <div class="ticker-item">
+      <span class="ticker-label">Ibovespa</span>
+      <span class="ticker-value">~176.000</span>
+      <span class="ticker-change neutral">Feriado BR</span>
+    </div>
+    <div class="ticker-item">
+      <span class="ticker-label">Selic</span>
+      <span class="ticker-value">14,50% a.a.</span>
+      <span class="ticker-change pos">↓ 0,25 pp abr/26</span>
+    </div>
+    <div class="ticker-item">
+      <span class="ticker-label">VALE3</span>
+      <span class="ticker-value">R$ 83,50</span>
+      <span class="ticker-change pos">+21% no ano</span>
+    </div>
+    <div class="ticker-item">
+      <span class="ticker-label">MSFT34 (BDR)</span>
+      <span class="ticker-value">R$ 88–90</span>
+      <span class="ticker-change neg">MSFT –15% ano (USD)</span>
+    </div>
+    <div class="ticker-item">
+      <span class="ticker-label">KNCR11</span>
+      <span class="ticker-value">R$ 105,10</span>
+      <span class="ticker-change pos">DY: ~12,5% a.a.</span>
+    </div>
+    <div class="ticker-item">
+      <span class="ticker-label">B3SA3</span>
+      <span class="ticker-value">~R$ 16,70</span>
+      <span class="ticker-change pos">+45% no ano</span>
+    </div>
+  </div>
+
+  <!-- ─── ABERTURA ─── -->
+  <div class="section">
+    <div class="section-label">Narrativa do dia</div>
+    <h2 class="story-head">O mundo respira, o Brasil comemora — mas Fernando trabalha enquanto o mercado descansa</h2>
+
+    <p class="lead">
+      Hoje é <strong>Corpus Christi</strong>. A B3 está fechada. Mas mercados não param de existir enquanto nós paramos de olhar para eles — e esse é precisamente o momento certo para fazer o que o mercado aberto não nos deixa fazer: <strong>pensar com clareza</strong>.
+    </p>
+
+    <p class="body-text">
+      O ano de 2026 está surpreendendo. Depois de um 2025 tenso — com guerra comercial EUA-China escalando, tarifas em três dígitos e volatilidade generalizada —, chegamos a maio com um cenário diferente. Trump e Xi fecharam uma trégua de um ano na Coreia do Sul em outubro de 2025, e <strong>Pequim acaba de anunciar, dias após a visita pessoal de Trump à China em 15 de maio, que trabalhará com Washington para reduzir tarifas sobre dezenas de bilhões de dólares em bens</strong>. O alívio geopolítico reacendeu apetite por risco globalmente.
+    </p>
+
+    <p class="body-text">
+      O <strong>Ibovespa chegou perto dos 200 mil pontos</strong> no início de abril — patamar histórico. Hoje oscila em torno de 176–180 mil após uma correção técnica das últimas semanas, com saída de capital estrangeiro da B3 (cerca de R$ 2,4 bilhões recentes) e inflação pressionada pelo petróleo mais caro. Mas o quadro estrutural segue favorável: o Banco Central cortou a Selic para <strong>14,5% a.a.</strong> em 29 de abril, de forma unânime, e os analistas esperam Selic a 13% até o fim do ano. O ciclo de afrouxamento favorece ativos de risco.
+    </p>
+
+    <div class="callout">
+      <strong>Contexto macro em uma frase:</strong> O mundo saiu da guerra comercial mais intensamente do que entrou. O Brasil cortou juros. A bolsa subiu muito. A questão não é mais "vai subir?" — é <em>"o que você faz com sua carteira agora que está aqui?"</em>
+    </div>
+  </div>
+
+  <!-- ─── PORTFOLIO SNAPSHOT ─── -->
+  <div class="section">
+    <div class="section-label">Sua carteira — posição consolidada</div>
+    <h2 class="story-head">R$ 1,47 milhão investido. R$ 347 mil em prejuízo acumulado. A oportunidade está no diagnóstico.</h2>
+
+    <div class="stat-row">
+      <div class="stat-box">
+        <span class="stat-number">R$ 1,47M</span>
+        <span class="stat-label">Total Investido</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-number">R$ 1,13M</span>
+        <span class="stat-label">Valor Atual</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-number neg">– R$ 347k</span>
+        <span class="stat-label">Retorno Bruto</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-number neg">–23,6%</span>
+        <span class="stat-label">Retorno %</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-number">50</span>
+        <span class="stat-label">Ativos</span>
+      </div>
+    </div>
+
+    <p class="body-text">
+      A carteira total reúne <strong>3 contas</strong> (PJ Itaú, PJ XP, PF consolidado) e <strong>50 posições</strong>. O retorno negativo de –R$347k esconde dois universos completamente distintos: de um lado, os <strong>"vencedores vivos"</strong> — AXIA3, VALE3, B3SA3, MBRF3, RBRX11 — que performam bem; de outro, os <strong>"zumbis tributários"</strong> — OIBR3, MGLU3, BHIA3 — que acumulam mais de R$ 430k em prejuízo não realizado. Esse segundo grupo é, paradoxalmente, o maior <em>ativo estratégico</em> da carteira: um banco de prejuízos que pode ser usado para zerar o DARF em meses lucrativos.
+    </p>
+
+    <p class="body-text">
+      A alocação por classe é: <strong>59,5% Ações BR</strong>, <strong>27,7% FIIs</strong>, <strong>12,2% BDRs</strong> e <strong>0,5% ETF Cripto</strong> (BITH11). A concentração em renda variável brasileira é alta — o que, num ciclo de queda de juros e Ibovespa em alta, é positivo. O risco está na falta de diversificação geográfica (apenas 12% fora do Brasil).
+    </p>
+  </div>
+
+  <!-- ─── ATIVOS UM A UM ─── -->
+  <div class="section">
+    <div class="section-label">Seus ativos — histórias individuais</div>
+    <h2 class="story-head">Cada ticker conta uma história. Saiba qual capítulo cada um está vivendo.</h2>
+
+    <div class="asset-grid">
+
+      <div class="asset-card">
+        <div class="badge">Destaque</div>
+        <div class="ticker">AXIA3</div>
+        <div class="name">Axia Energia (ex-Eletrobras)</div>
+        <div class="price">R$ 54,67</div>
+        <div class="pm">PM PF: R$ 35,53 · PM XP: R$ 55,50</div>
+        <div class="ret pos">PF: +54% · 3.100 ações total</div>
+      </div>
+
+      <div class="asset-card">
+        <div class="badge">Commodities</div>
+        <div class="ticker">VALE3</div>
+        <div class="name">Vale — Mineração</div>
+        <div class="price">R$ 83,50</div>
+        <div class="pm">PM PF: R$ 66,79 · PM XP: R$ 81,36</div>
+        <div class="ret pos">PF: +25% · 2.129 ações total</div>
+      </div>
+
+      <div class="asset-card">
+        <div class="ticker">BBDC4</div>
+        <div class="name">Bradesco PN</div>
+        <div class="price">R$ 17,62</div>
+        <div class="pm">PM PF: R$ 17,94 · PM XP: R$ 19,20</div>
+        <div class="ret neg">PF: –1,4% · 4.555 ações total</div>
+      </div>
+
+      <div class="asset-card">
+        <div class="badge">Alerta</div>
+        <div class="ticker">MRFG3</div>
+        <div class="name">Marfrig (Proteína)</div>
+        <div class="price">~R$ 19,00</div>
+        <div class="pm">PM Itaú PJ: R$ 19,92</div>
+        <div class="ret neutral">494 ações (PJ Itaú)</div>
+      </div>
+
+      <div class="asset-card">
+        <div class="badge">Vencedor</div>
+        <div class="ticker">B3SA3</div>
+        <div class="name">B3 — Bolsa brasileira</div>
+        <div class="price">R$ 16,70</div>
+        <div class="pm">PM PF: R$ 16,32</div>
+        <div class="ret pos">PF: +2,3% · +45% no ano</div>
+      </div>
+
+      <div class="asset-card">
+        <div class="ticker">MSFT34</div>
+        <div class="name">Microsoft BDR</div>
+        <div class="price">R$ 88–89</div>
+        <div class="pm">PM PF: R$ 83,16 · PM XP: R$ 87,59</div>
+        <div class="ret pos">PF: +6,7% · 744 cotas total</div>
+      </div>
+
+      <div class="asset-card">
+        <div class="badge">FII Top</div>
+        <div class="ticker">PCIP11</div>
+        <div class="name">Patrimonial Cibrasec</div>
+        <div class="price">R$ 83,00</div>
+        <div class="pm">PM PF: R$ 82,86</div>
+        <div class="ret pos">PF: +0,17% · 2.674 cotas total</div>
+      </div>
+
+      <div class="asset-card">
+        <div class="badge">Rendimento</div>
+        <div class="ticker">KNCR11</div>
+        <div class="name">Kinea Rendimentos</div>
+        <div class="price">R$ 105,10</div>
+        <div class="pm">PM PF: R$ 104,77</div>
+        <div class="ret pos">+1,27% · DY: R$ 1,10/cota/mês</div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="divider">— · · · —</div>
+
+  <!-- ─── HISTÓRIAS POR ATIVO ─── -->
+  <div class="section">
+    <div class="section-label">Análise qualitativa</div>
+    <h2 class="story-head">O que está acontecendo com cada ativo que você precisa saber hoje</h2>
+
+    <p class="body-text">
+      <strong>AXIA3 — O caso mais empolgante da carteira.</strong> A ex-Eletrobras migrou para o Novo Mercado da B3 (proposta aprovada em assembleia), unificando todas as ações em ordinária (ON). Isso eliminou o desconto histórico das preferenciais e reforçou a governança. Analistas da Genial estimam TIR implícita de <strong>10,2% real</strong> e dividend yield projetado de <strong>10% para 2026</strong>. Na sua carteira PF, o PM é de R$35,53 contra um preço atual de R$54,67 — um lucro não realizado de ~R$53,6k. Sua posição XP está em aluguel-doador: verifique se a taxa de BTC vale o custo de abrir mão da isenção de dividendos.
+    </p>
+
+    <p class="body-text">
+      <strong>VALE3 — A rainha das commodities testa sua paciência.</strong> Com +21% no ano, a Vale subiu de R$72 para R$83. O motor: minério de ferro se manteve acima de US$100/t, beneficiado pela trégua comercial EUA-China que reduziu o medo de desaceleração chinesa. A China consome mais de 60% do minério mundial — e qualquer sinal de estímulo de Pequim é gasolina para VALE3. Risco: a China Iron and Steel Association projeta queda de ~1% na demanda de aço em 2026. Sua posição PF está ~25% positiva. A XP está em aluguel-doador — avalie o custo-benefício.
+    </p>
+
+    <p class="body-text">
+      <strong>BBDC4 — O banco que ainda não convenceu.</strong> O Bradesco divulgou resultados do 1T26 no início de maio. O papel caiu de R$18,18 para R$17,62 no ano — modesto recuo de –3,1%. O banco paga dividendos de forma consistente (DY ~6,9% pelo Status Invest) mas enfrenta desafios em crédito e inadimplência. Você tem <strong>4.555 ações</strong> espalhadas por duas contas (PF e XP), com retorno ligeiramente negativo. Consolidar via STVM simplificaria o controle de IR.
+    </p>
+
+    <p class="body-text">
+      <strong>MRFG3 — Atenção à tese de proteína animal.</strong> Sua carteira tem concentração relevante em proteína: MRFG3 (Marfrig, Itaú PJ), MBRF3 (PF — provavelmente ação derivada da fusão Marfrig+BRF), BEEF3 (em 3 contas), totalizando ~R$75k. O Itaú BBA <strong>rebaixou a Minerva (BEEF3)</strong> para neutro nesta semana, reduzindo preço-alvo de R$9 para R$5,50, citando risco de desaceleração do ciclo pecuário e demanda chinesa incerta no 3T26. Isso afeta o humor setorial. A posição de MRFG3 no Itaú PJ está praticamente no preço do PM — hora de definir tese.
+    </p>
+
+    <p class="body-text">
+      <strong>MSFT34 — A gigante que o mercado ainda não precificou direito.</strong> A Microsoft reportou no 3T fiscal (abril/26) receita de <strong>US$82,9 bilhões (+18% a.a.)</strong>, lucro por ação de US$4,27 (+23%). O Azure cresceu acima de 40%. Mesmo assim, a ação em dólar <strong>cai ~15% no ano</strong> — o mercado está preocupado com os capex astronômicos de IA (US$190 bilhões projetados para 2026). O Motley Fool e analistas do setor veem isso como oportunidade: valuation historicamente baixo, operação excepcionalmente forte. Sua posição PF está +6,7%, a XP +1,8%.
+    </p>
+
+    <p class="body-text">
+      <strong>B3SA3 — O maior vencedor silencioso da carteira.</strong> A B3 como empresa se beneficia diretamente do boom de negociações: volumes recordes no 1T26, nova concorrente (A5X) ainda em desenvolvimento. Com +45% no ano, o papel saiu de ~R$11,50 para R$16,70. Sua posição de 2.400 ações na PF está com retorno de +2,3% (PM R$16,32) — chegou relativamente tarde, mas acompanhou a alta recente.
+    </p>
+
+    <p class="body-text">
+      <strong>KNCR11 — O remunerador fiel da carteira.</strong> O Kinea pagou <strong>R$1,10 por cota</strong> em 14/05/26 (referente a abril), o equivalente a 1,08% no mês, isento de IR para PF. Em 2026 acumulou R$4,45 em rendimentos por cota. A 12ª emissão captou R$3,18 bilhões em março — sinal de demanda forte e gestão ativa. <strong>Atenção crítica: você tem KNCR11 tanto na PF (340 cotas, rendimento isento) quanto na XP PJ (376 cotas, rendimento tributado). Isso é dinheiro sendo queimado em IR desnecessariamente.</strong>
+    </p>
+
+    <p class="body-text">
+      <strong>PCIP11 — O gigante silencioso da carteira.</strong> Com 2.674 cotas e ~R$222k em valor total, o PCIP11 representa <strong>83% da carteira de FIIs na PF</strong> — concentração altíssima num único fundo. Está praticamente no breakeven (+0,17%), mas com R$202k no PF isento de IR sobre rendimentos. O problema: 115 cotas no Itaú PJ e 120 na XP PJ também estão tributadas desnecessariamente.
+    </p>
+  </div>
+
+  <!-- ─── MACRO GLOBAL ─── -->
+  <div class="section">
+    <div class="section-label">Mundo</div>
+    <h2 class="story-head">A Grande Tregua de 2026 — e o que ela significa para sua carteira</h2>
+
+    <p class="body-text">
+      O maior evento geopolítico-econômico do ano foi a visita de Trump à China em 15 de maio. Depois da trégua de outubro de 2025 (redução de tarifas de 145% para 30% nos EUA e de 125% para 10% na China), Pequim sinalizou esta semana disposição para <strong>avançar mais nas reduções</strong>. Isso muda o panorama para commodities — e para a Vale especificamente.
+    </p>
+
+    <p class="body-text">
+      No lado negativo: o conflito no Oriente Médio (EUA-Israel-Irã) mantém o petróleo pressionado, gerando inflação de fretes e insumos que afeta o IPCA brasileiro. O Focus projeta inflação de <strong>4,86% para 2026</strong> — acima do teto de 4,5%. O Banco Central cortou juros mesmo assim, sinalizando que há "gordura" na política monetária. O próximo COPOM só ocorre em junho.
+    </p>
+
+    <div class="callout">
+      <strong>Para sua carteira:</strong> A trégua EUA-China é positiva para VALE3 (demanda de minério) e para o humor geral de risco, favorecendo a B3. O petróleo caro prejudica o custo da Marfrig (fretes) mas pode favorecer indiretamente o Brasil como exportador líquido de petróleo.
+    </div>
+  </div>
+
+  <!-- ─── ALERTAS ATIVOS ─── -->
+  <div class="section">
+    <div class="section-label">Alertas da carteira</div>
+    <h2 class="story-head">Seis pontos que merecem ação — não apenas leitura</h2>
+
+    <div class="alert-list">
+      <div class="alert-row">
+        <span class="alert-dot">🔴</span>
+        <span class="alert-text"><strong>Banco de Prejuízos PF (~R$ 434k).</strong> OIBR3 (–R$283k), MGLU3 (–R$49k), BHIA3 (–R$40k) e outros 8 papéis estão ativos na custódia gerando custo de oportunidade. Vendê-los em meses com ganho tributável elimina o DARF. Primeiro passo: agendar reunião com contador para formalizar controle mês a mês.</span>
+      </div>
+      <div class="alert-row">
+        <span class="alert-dot">🔴</span>
+        <span class="alert-text"><strong>FIIs na PJ pagando IR desnecessariamente.</strong> KNCR11 (376 cotas XP PJ), PCIP11 (115 Itaú + 120 XP) e RBRX11 (500 XP PJ) estão em pessoa jurídica, onde rendimentos de FII são tributados. Migrar via STVM (sem fato gerador) para a PF captura isenção imediata. Calcule o custo de transação vs. benefício recorrente.</span>
+      </div>
+      <div class="alert-row">
+        <span class="alert-dot">🟡</span>
+        <span class="alert-text"><strong>MBRF3 — valide o PM herdado.</strong> Você tem R$35k nessa posição com retorno aparente de +117% (PM R$8,04 vs. preço R$17,42). Provável produto de eventos societários da fusão Marfrig+BRF. Um PM errado pode gerar pagamento de IR a maior numa eventual venda. Solicite ao contador o cálculo correto antes de qualquer movimentação.</span>
+      </div>
+      <div class="alert-row">
+        <span class="alert-dot">🟡</span>
+        <span class="alert-text"><strong>Concentração em proteína animal.</strong> MRFG3 + BEEF3 (3 contas) + MBRF3 somam ~R$75k — e o setor está sob pressão (BBA rebaixou BEEF3 esta semana). Avalie se a tese ainda é sua ou se é herança de decisões antigas.</span>
+      </div>
+      <div class="alert-row">
+        <span class="alert-dot">🟡</span>
+        <span class="alert-text"><strong>Aluguel-doador (VALE3, AXIA3, WEGE3, SUZB3 na XP).</strong> O BTC gera renda extra, mas o dividendo recebido pelo tomador vira "reembolso" tributado para você. Com AXIA3 projetando DY de 10% em 2026, o custo do aluguel precisa ser matematicamente superior à isenção perdida. Confira a taxa e calcule.</span>
+      </div>
+      <div class="alert-row">
+        <span class="alert-dot">🟢</span>
+        <span class="alert-text"><strong>BARI11 sumiu — onde está?</strong> Histórico de R$40,5k em proventos recebidos. Confirme com a corretora se houve venda, e se o IR foi recolhido corretamente na época.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── PLANO DE AÇÃO ─── -->
+  <div class="section">
+    <div class="section-label">Plano de ação priorizado</div>
+    <h2 class="story-head">O que fazer esta semana — em ordem de impacto financeiro</h2>
+
+    <table class="plan-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Prioridade</th>
+          <th>Ação</th>
+          <th>Impacto</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><b>1</b></td>
+          <td><span class="priority-tag alta">Alta</span></td>
+          <td>Ligar para contador: estruturar controle de banco de prejuízos PF mês a mês</td>
+          <td>Evita perder ~R$434k de compensação</td>
+        </tr>
+        <tr>
+          <td><b>2</b></td>
+          <td><span class="priority-tag alta">Alta</span></td>
+          <td>Calcular custo de migrar FIIs da PJ (KNCR11+PCIP11+RBRX11) para PF via STVM</td>
+          <td>~R$49k em FIIs tributados na PJ</td>
+        </tr>
+        <tr>
+          <td><b>3</b></td>
+          <td><span class="priority-tag alta">Alta</span></td>
+          <td>Vender posições zumbi (OIBR3, MGLU3, BHIA3, PMAM3, HAPV3, IRBR3) no próximo mês com lucro tributável</td>
+          <td>~R$405k em prejuízo realizável</td>
+        </tr>
+        <tr>
+          <td><b>4</b></td>
+          <td><span class="priority-tag media">Média</span></td>
+          <td>Validar PM da MBRF3 com contador — possível evento societário Marfrig+BRF</td>
+          <td>Posição de R$35k, risco de IR a maior</td>
+        </tr>
+        <tr>
+          <td><b>5</b></td>
+          <td><span class="priority-tag media">Média</span></td>
+          <td>Calcular taxa de BTC atual de AXIA3/VALE3 na XP vs. perda de isenção de dividendos</td>
+          <td>Com DY de AXIA3 a 10%, o custo pode não compensar</td>
+        </tr>
+        <tr>
+          <td><b>6</b></td>
+          <td><span class="priority-tag media">Média</span></td>
+          <td>Confirmar destino do BARI11 e verificar IR da venda</td>
+          <td>R$40k em proventos históricos — higiênico</td>
+        </tr>
+        <tr>
+          <td><b>7</b></td>
+          <td><span class="priority-tag baixa">Baixa</span></td>
+          <td>Consolidar ativos sobrepostos em conta única via STVM (13 ativos em mais de uma conta)</td>
+          <td>Simplifica IR, reduz complexidade de PM</td>
+        </tr>
+        <tr>
+          <td><b>8</b></td>
+          <td><span class="priority-tag baixa">Baixa</span></td>
+          <td>Decidir tese para 6 posições XP < R$5k (VULC3, BEEF3, RBRX11, SUZB3, INBR32, COGN3)</td>
+          <td>Eliminar ruído operacional</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ─── ENCERRAMENTO ─── -->
+  <div class="section">
+    <div class="section-label">Editorial</div>
+    <h2 class="story-head">A lição do feriado: o mercado fecha, as oportunidades não</h2>
+
+    <p class="lead">
+      Corpus Christi é, paradoxalmente, um dos melhores dias para investir — não em ações, mas em <strong>clareza estratégica</strong>.
+    </p>
+
+    <p class="body-text">
+      Sua carteira tem dois problemas distintos. O <em>primeiro</em> é visível: –23,6% de retorno geral. O <em>segundo</em> é o que importa: esse número mascara posições excelentes (AXIA3, VALE3, B3SA3) sendo obscurecidas por carcaças tributárias (OIBR3, MGLU3, BHIA3) que só existem na custódia. A prioridade número um não é comprar mais ativos — é <strong>limpar o que não precisa estar lá</strong>.
+    </p>
+
+    <p class="body-text">
+      O mercado, quando reabrir amanhã, terá uma semana com poucos eventos domésticos relevantes (o próximo PIB do 1T26 sai em 29 de maio). O foco externo será na evolução do acordo comercial EUA-China e no comportamento do petróleo. Para VALE3, qualquer sinal de estímulo chinês é catalisador. Para MSFT34, o mercado ainda não deu crédito aos resultados — e essa pode ser uma assimetria a explorar.
+    </p>
+
+    <div class="callout">
+      <strong>Pergunta da semana:</strong> Você tem R$434k em prejuízos que podem eliminar anos de DARF sobre ganhos futuros. Quanto tempo faz que você não conversa com seu contador especificamente sobre isso?
+    </div>
+  </div>
+
+</div>
+
+<footer class="footer">
+  Diário de Mercado F&K · Fernando M. Coutinho · 25 de Maio de 2026 · Corpus Christi
+  <br>Informações compiladas de: Status Invest · Infomoney · Bloomberg · Reuters · B3 · Kinea · Genial Analisa
+  <br>Este material é de uso interno e não constitui recomendação de investimento.
+</footer>
+
+</body>
+</html>

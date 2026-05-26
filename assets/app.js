@@ -5,6 +5,7 @@
     { id: "uti", label: "UTI" },
     { id: "enfermaria", label: "Enfermaria" },
     { id: "centro-cirurgico", label: "Centro cirúrgico" },
+    { id: "rotinas", label: "Rotinas" },
     { id: "outros", label: "Outros" },
   ];
 

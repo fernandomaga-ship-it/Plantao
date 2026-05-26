@@ -1,0 +1,1043 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Plantão UTI 8B — BP Paulista — 14/05/2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap');
+
+  :root {
+    --bg: #0a0e14;
+    --surface: #111820;
+    --surface2: #161d27;
+    --border: #1e2d3d;
+    --text: #cdd9e5;
+    --text-dim: #546e7a;
+    --text-bright: #e8f0f8;
+
+    --red: #f85149;
+    --orange: #f0883e;
+    --yellow: #e3b341;
+    --green: #3fb950;
+    --blue: #58a6ff;
+    --purple: #bc8cff;
+    --cyan: #76e3ea;
+    --pink: #ff7eb6;
+
+    --red-bg: rgba(248,81,73,0.08);
+    --orange-bg: rgba(240,136,62,0.08);
+    --yellow-bg: rgba(227,179,65,0.08);
+    --green-bg: rgba(63,185,80,0.08);
+    --blue-bg: rgba(88,166,255,0.08);
+    --purple-bg: rgba(188,140,255,0.08);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'IBM Plex Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    padding: 24px;
+  }
+
+  /* HEADER */
+  .header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 20px;
+    margin-bottom: 28px;
+  }
+  .header-left { display: flex; flex-direction: column; gap: 6px; }
+  .header-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--blue-bg);
+    border: 1px solid rgba(88,166,255,0.3);
+    color: var(--blue);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 2px;
+    width: fit-content;
+  }
+  .pulse {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--green);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%,100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.8); }
+  }
+  .header-title {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text-bright);
+    letter-spacing: -0.5px;
+  }
+  .header-title span { color: var(--blue); }
+  .header-sub {
+    font-size: 12px;
+    color: var(--text-dim);
+    font-family: 'IBM Plex Mono', monospace;
+    letter-spacing: 1px;
+  }
+  .header-right {
+    text-align: right;
+    font-family: 'IBM Plex Mono', monospace;
+  }
+  .header-date { font-size: 13px; color: var(--text-bright); font-weight: 600; }
+  .header-time { font-size: 11px; color: var(--text-dim); margin-top: 2px; }
+  .header-stats {
+    display: flex;
+    gap: 16px;
+    margin-top: 10px;
+  }
+  .stat {
+    text-align: center;
+    border: 1px solid var(--border);
+    padding: 6px 12px;
+    border-radius: 4px;
+  }
+  .stat-num { font-size: 16px; font-weight: 700; color: var(--text-bright); }
+  .stat-label { font-size: 9px; color: var(--text-dim); letter-spacing: 1px; text-transform: uppercase; }
+
+  /* LEGEND */
+  .legend {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+  }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 10px;
+    font-family: 'IBM Plex Mono', monospace;
+    color: var(--text-dim);
+    letter-spacing: 0.5px;
+  }
+  .legend-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+  }
+
+  /* GRID */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+    gap: 16px;
+  }
+
+  /* CARD */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+    transition: border-color 0.2s, transform 0.2s;
+    position: relative;
+  }
+  .card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(88,166,255,0.3);
+  }
+  .card-accent {
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px;
+    height: 100%;
+    border-radius: 6px 0 0 6px;
+  }
+
+  .card-header {
+    padding: 14px 16px 12px 20px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  .card-leito {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 3px;
+  }
+  .card-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-bright);
+    line-height: 1.3;
+  }
+  .card-age {
+    font-size: 11px;
+    color: var(--text-dim);
+    font-family: 'IBM Plex Mono', monospace;
+    margin-top: 2px;
+  }
+  .card-badges {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 4px;
+  }
+  .badge {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    padding: 2px 7px;
+    border-radius: 2px;
+    text-transform: uppercase;
+  }
+  .badge-dih {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+  }
+  .badge-po {
+    background: rgba(88,166,255,0.1);
+    border: 1px solid rgba(88,166,255,0.3);
+    color: var(--blue);
+  }
+
+  .card-body { padding: 14px 16px 14px 20px; }
+
+  /* Diagnóstico principal */
+  .dx-main {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-bright);
+    line-height: 1.4;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* Seções */
+  .section { margin-bottom: 10px; }
+  .section-title {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 5px;
+  }
+
+  /* Tags de suporte */
+  .tags { display: flex; flex-wrap: wrap; gap: 4px; }
+  .tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    font-weight: 500;
+    padding: 2px 7px;
+    border-radius: 2px;
+    border: 1px solid;
+  }
+  .tag-vm { background: rgba(240,136,62,0.1); border-color: rgba(240,136,62,0.3); color: var(--orange); }
+  .tag-dva { background: rgba(248,81,73,0.1); border-color: rgba(248,81,73,0.3); color: var(--red); }
+  .tag-trs { background: rgba(188,140,255,0.1); border-color: rgba(188,140,255,0.3); color: var(--purple); }
+  .tag-tqt { background: rgba(240,136,62,0.1); border-color: rgba(240,136,62,0.3); color: var(--orange); }
+  .tag-sne { background: rgba(118,227,234,0.1); border-color: rgba(118,227,234,0.3); color: var(--cyan); }
+  .tag-atb { background: rgba(63,185,80,0.1); border-color: rgba(63,185,80,0.3); color: var(--green); }
+  .tag-ok { background: rgba(63,185,80,0.1); border-color: rgba(63,185,80,0.3); color: var(--green); }
+  .tag-mdr { background: rgba(248,81,73,0.1); border-color: rgba(248,81,73,0.35); color: var(--red); font-weight: 700; }
+  .tag-npt { background: rgba(118,227,234,0.1); border-color: rgba(118,227,234,0.3); color: var(--cyan); }
+  .tag-ivig { background: rgba(188,140,255,0.1); border-color: rgba(188,140,255,0.3); color: var(--purple); }
+
+  /* Labs mini-grid */
+  .labs {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 4px;
+  }
+  .lab-item {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 4px 6px;
+    text-align: center;
+  }
+  .lab-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 8px;
+    color: var(--text-dim);
+    display: block;
+    margin-bottom: 1px;
+  }
+  .lab-val {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-bright);
+  }
+  .lab-val.alert { color: var(--red); }
+  .lab-val.warn { color: var(--yellow); }
+  .lab-val.ok { color: var(--green); }
+
+  /* Alertas */
+  .alerts { display: flex; flex-direction: column; gap: 4px; }
+  .alert-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+    font-size: 10px;
+    line-height: 1.4;
+    color: var(--text-dim);
+  }
+  .alert-icon { flex-shrink: 0; margin-top: 1px; }
+  .alert-item.critical { color: #f85149; }
+  .alert-item.warning { color: var(--yellow); }
+  .alert-item.info { color: var(--blue); }
+  .alert-item.good { color: var(--green); }
+
+  /* Equipe */
+  .card-footer {
+    padding: 8px 16px 10px 20px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .equipe {
+    font-size: 10px;
+    color: var(--text-dim);
+    font-family: 'IBM Plex Mono', monospace;
+  }
+  .gravidade {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    padding: 2px 8px;
+    border-radius: 2px;
+    text-transform: uppercase;
+  }
+  .grav-critico { background: var(--red-bg); border: 1px solid rgba(248,81,73,0.4); color: var(--red); }
+  .grav-grave { background: var(--orange-bg); border: 1px solid rgba(240,136,62,0.4); color: var(--orange); }
+  .grav-moderado { background: var(--yellow-bg); border: 1px solid rgba(227,179,65,0.4); color: var(--yellow); }
+  .grav-estavel { background: var(--green-bg); border: 1px solid rgba(63,185,80,0.4); color: var(--green); }
+
+  /* Divider inside card */
+  .divider { border: none; border-top: 1px solid var(--border); margin: 8px 0; }
+
+  /* Pending pills */
+  .pending-list { display: flex; flex-wrap: wrap; gap: 4px; }
+  .pending-pill {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 8px;
+    padding: 2px 6px;
+    border-radius: 2px;
+    background: rgba(227,179,65,0.08);
+    border: 1px solid rgba(227,179,65,0.25);
+    color: var(--yellow);
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+  @media print {
+    body { background: white; color: black; padding: 12px; }
+    .card { break-inside: avoid; border: 1px solid #ccc; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-left">
+    <div class="header-badge">
+      <div class="pulse"></div>
+      ATIVO — PLANTÃO UTI 8B
+    </div>
+    <div class="header-title">
+      Hospital <span>Beneficência Portuguesa</span>
+    </div>
+    <div class="header-sub">UTI TORRE II · 8º ANDAR · UNIDADE 8B · LEITOS 2812–2822</div>
+  </div>
+  <div class="header-right">
+    <div class="header-date">14 / 05 / 2026</div>
+    <div class="header-time">INÍCIO: 09:25 · ATUALIZAÇÃO: 11:47</div>
+    <div class="header-stats">
+      <div class="stat">
+        <div class="stat-num" style="color:var(--red)">5</div>
+        <div class="stat-label">Críticos</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num" style="color:var(--orange)">3</div>
+        <div class="stat-label">Graves</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num" style="color:var(--yellow)">1</div>
+        <div class="stat-label">Moderado</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num" style="color:var(--green)">1</div>
+        <div class="stat-label">Estável</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="legend">
+  <div class="legend-item"><div class="legend-dot" style="background:var(--red)"></div> Crítico — risco imediato de vida</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--orange)"></div> Grave — alta complexidade</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--yellow)"></div> Moderado — vigilância</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--green)"></div> Estável — em observação</div>
+</div>
+
+<div class="grid">
+
+  <!-- ─── LEITO 2812 ─── -->
+  <div class="card">
+    <div class="card-accent" style="background:var(--red)"></div>
+    <div class="card-header">
+      <div>
+        <div class="card-leito">Leito 2812</div>
+        <div class="card-name">Sergio Ricardo Rodrigues</div>
+        <div class="card-age">61 anos · M</div>
+      </div>
+      <div class="card-badges">
+        <div class="badge badge-dih">DIH 8</div>
+        <div class="badge badge-po">PO 3</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="dx-main">⚠ Bentall de Bono (11/05) · Endocardite EI / Prótese Aórtica · IRA KDIGO 3 · Choque Vasoplégico · VM PSV · HIV B24</div>
+
+      <div class="section">
+        <div class="section-title">Suporte</div>
+        <div class="tags">
+          <span class="tag tag-vm">IOT PSV PS8 PEEP6</span>
+          <span class="tag tag-dva">NORA 0,11 mcg/kg/min</span>
+          <span class="tag tag-trs">Prisma/HD KDIGO3</span>
+          <span class="tag tag-sne">SNE 20ml/h</span>
+          <span class="tag tag-atb">Vanco + Mero + Ampicilina</span>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Labs (14/05)</div>
+        <div class="labs">
+          <div class="lab-item"><span class="lab-label">Hb</span><span class="lab-val warn">9,1</span></div>
+          <div class="lab-item"><span class="lab-label">Plaq</span><span class="lab-val alert">77k</span></div>
+          <div class="lab-item"><span class="lab-label">Lactato</span><span class="lab-val warn">2,7</span></div>
+          <div class="lab-item"><span class="lab-label">Cr</span><span class="lab-val warn">2,96</span></div>
+          <div class="lab-item"><span class="lab-label">K</span><span class="lab-val warn">3,5</span></div>
+          <div class="lab-item"><span class="lab-label">PCR</span><span class="lab-val alert">26-28</span></div>
+          <div class="lab-item"><span class="lab-label">pH</span><span class="lab-val ok">7,48</span></div>
+          <div class="lab-item"><span class="lab-label">SvO₂</span><span class="lab-val warn">69%</span></div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Alertas Críticos</div>
+        <div class="alerts">
+          <div class="alert-item critical"><span class="alert-icon">▲</span>BH acumulado +13.709 ml · diurese ausente</div>
+          <div class="alert-item warning"><span class="alert-icon">◆</span>Secreção traqueal purulenta c/ sangue — cultura pendente</div>
+          <div class="alert-item warning"><span class="alert-icon">◆</span>TARV por SNE pendente (Infectologia)</div>
+          <div class="alert-item warning"><span class="alert-icon">◆</span>Confirmar status drenos pleurais beira-leito</div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Pendências</div>
+        <div class="pending-list">
+          <span class="pending-pill">TRE se estável</span>
+          <span class="pending-pill">HNF após dreno</span>
+          <span class="pending-pill">Hemoculturas externas</span>
+          <span class="pending-pill">Gaso pareada tarde</span>
+          <span class="pending-pill">TARV via SNE</span>
+        </div>
+      </div>
+    </div>
+    <div class="card-footer">
+      <div class="equipe">CCV — Dr. Curcio / Dr. Poffo</div>
+      <div class="gravidade grav-critico">Crítico</div>
+    </div>
+  </div>
+
+  <!-- ─── LEITO 2813 ─── -->
+  <div class="card">
+    <div class="card-accent" style="background:var(--green)"></div>
+    <div class="card-header">
+      <div>
+        <div class="card-leito">Leito 2813</div>
+        <div class="card-name">Eliene dos Santos Lima</div>
+        <div class="card-age">51 anos · F</div>
+      </div>
+      <div class="card-badges">
+        <div class="badge badge-dih">DIH 3</div>
+        <div class="badge badge-po">PO 2</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="dx-main">PO2 Embolização 2 Aneurismas ACID via AFE (12/05) · Estridor laríngeo resolvido · Hemorragia conjuntival bilateral · Proptose ocular bilateral</div>
+
+      <div class="section">
+        <div class="section-title">Suporte</div>
+        <div class="tags">
+          <span class="tag tag-ok">AA SpO₂ 97%</span>
+          <span class="tag tag-ok">Sem DVA</span>
+          <span class="tag tag-ok">VO — dieta branda</span>
+          <span class="tag tag-atb">DAPT: AAS + Clopidogrel</span>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Labs (14/05)</div>
+        <div class="labs">
+          <div class="lab-item"><span class="lab-label">Hb</span><span class="lab-val warn">8,8</span></div>
+          <div class="lab-item"><span class="lab-label">Plaq</span><span class="lab-val ok">228k</span></div>
+          <div class="lab-item"><span class="lab-label">Cr</span><span class="lab-val warn">1,06</span></div>
+          <div class="lab-item"><span class="lab-label">PCR</span><span class="lab-val ok">4,4</span></div>
+          <div class="lab-item"><span class="lab-label">K</span><span class="lab-val ok">4,1</span></div>
+          <div class="lab-item"><span class="lab-label">Mg</span><span class="lab-val warn">1,7</span></div>
+          <div class="lab-item"><span class="lab-label">INR</span><span class="lab-val ok">Normal</span></div>
+          <div class="lab-item"><span class="lab-label">TFG</span><span class="lab-val warn">58-64</span></div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Alertas</div>
+        <div class="alerts">
+          <div class="alert-item warning"><span class="alert-icon">◆</span>Hemorragia conjuntival bilateral — Oftalmo pendente</div>
+          <div class="alert-item warning"><span class="alert-icon">◆</span>Proptose ocular bilateral (TC 14/05)</div>
+          <div class="alert-item info"><span class="alert-icon">▸</span>Alta UTI após 24h se estável (NRI)</div>
+          <div class="alert-item info"><span class="alert-icon">▸</span>Monitorar sítio punção AFE — MID repouso</div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Pendências</div>
+        <div class="pending-list">
+          <span class="pending-pill">Avaliação Oftalmologia</span>
+          <span class="pending-pill">Profilaxia TEV</span>
+          <span class="pending-pill">Controle Cr 48h</span>
+        </div>
+      </div>
+    </div>
+    <div class="card-footer">
+      <div class="equipe">NRI — Dr. Thiago Abud</div>
+      <div class="gravidade grav-estavel">Estável</div>
+    </div>
+  </div>
+
+  <!-- ─── LEITO 2815 ─── -->
+  <div class="card">
+    <div class="card-accent" style="background:var(--orange)"></div>
+    <div class="card-header">
+      <div>
+        <div class="card-leito">Leito 2815</div>
+        <div class="card-name">Ricardo Ferreira da Silva</div>
+        <div class="card-age">53 anos · M</div>
+      </div>
+      <div class="card-badges">
+        <div class="badge badge-dih">DIH 2</div>
+        <div class="badge badge-po">PO 1</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="dx-main">IAMCSST trombolisado s/ reperfusão → ATC Xience PRO 3,0×18mm ADA (13/05) TIMI III · DAC Biarterial · 2ºMarginal 90% residual</div>
+
+      <div class="section">
+        <div class="section-title">Suporte</div>
+        <div class="tags">
+          <span class="tag tag-ok">AA SpO₂ 97%</span>
+          <span class="tag tag-ok">Sem DVA</span>
+          <span class="tag tag-ok">VO liberada</span>
+          <span class="tag tag-atb">DAPT mantida</span>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Labs (14/05)</div>
+        <div class="labs">
+          <div class="lab-item"><span class="lab-label">Hb</span><span class="lab-val ok">15,1</span></div>
+          <div class="lab-item"><span class="lab-label">Plaq</span><span class="lab-val ok">219k</span></div>
+          <div class="lab-item"><span class="lab-label">Tropo I</span><span class="lab-val alert">91.070</span></div>
+          <div class="lab-item"><span class="lab-label">Cr</span><span class="lab-val ok">0,9</span></div>
+          <div class="lab-item"><span class="lab-label">K</span><span class="lab-val ok">3,7</span></div>
+          <div class="lab-item"><span class="lab-label">TFG</span><span class="lab-val ok">102</span></div>
+          <div class="lab-item"><span class="lab-label">FEVE</span><span class="lab-val ok">55%</span></div>
+          <div class="lab-item"><span class="lab-label">INR</span><span class="lab-val ok">1,1</span></div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Alertas</div>
+        <div class="alerts">
+          <div class="alert-item warning"><span class="alert-icon">◆</span>Acinesia apical septo/parede anterior — risco remodelamento</div>
+          <div class="alert-item warning"><span class="alert-icon">◆</span>2ºMarginal 90% óstio — Heart Team a programar</div>
+          <div class="alert-item info"><span class="alert-icon">▸</span>LDL-alvo &lt;55mg/dL — iniciar estatina AI</div>
+          <div class="alert-item info"><span class="alert-icon">▸</span>Betabloqueador + IECA a iniciar</div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Pendências</div>
+        <div class="pending-list">
+          <span class="pending-pill">Perfil lipídico</span>
+          <span class="pending-pill">HbA1c</span>
+          <span class="pending-pill">Estatina AI</span>
+          <span class="pending-pill">BB + IECA</span>
+          <span class="pending-pill">Heart Team</span>
+          <span class="pending-pill">ECO 6-12 sem</span>
+        </div>
+      </div>
+    </div>
+    <div class="card-footer">
+      <div class="equipe">Cardio — Dr. Ribas / Hemo — Dr. Décio</div>
+      <div class="gravidade grav-grave">Grave</div>
+    </div>
+  </div>
+
+  <!-- ─── LEITO 2816 ─── -->
+  <div class="card">
+    <div class="card-accent" style="background:var(--orange)"></div>
+    <div class="card-header">
+      <div>
+        <div class="card-leito">Leito 2816</div>
+        <div class="card-name">Nilce Rodrigues Magalhães</div>
+        <div class="card-age">65 anos · F</div>
+      </div>
+      <div class="card-badges">
+        <div class="badge badge-dih">DIH 5</div>
+        <div class="badge badge-po">PO 3 TQT</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="dx-main">Paralisia bilateral PV adução · TQT nº7 (11/05) · Parkinson (Prolopa via SNE bloqueada) · CEC Língua pós-RT · Disfagia grave</div>
+
+      <div class="section">
+        <div class="section-title">Suporte</div>
+        <div class="tags">
+          <span class="tag tag-tqt">TQT 7.0 Trach-vent</span>
+          <span class="tag tag-ok">SpO₂ 96% VE</span>
+          <span class="tag tag-sne">SNE 40ml/h</span>
+          <span class="tag tag-ok">Sem DVA</span>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Labs (14/05)</div>
+        <div class="labs">
+          <div class="lab-item"><span class="lab-label">Hb</span><span class="lab-val warn">10,8</span></div>
+          <div class="lab-item"><span class="lab-label">Leuco</span><span class="lab-val ok">7.640</span></div>
+          <div class="lab-item"><span class="lab-label">PCR</span><span class="lab-val warn">6,38</span></div>
+          <div class="lab-item"><span class="lab-label">P</span><span class="lab-val alert">2,1</span></div>
+          <div class="lab-item"><span class="lab-label">K</span><span class="lab-val warn">3,6</span></div>
+          <div class="lab-item"><span class="lab-label">Cr</span><span class="lab-val ok">0,66</span></div>
+          <div class="lab-item"><span class="lab-label">Mg</span><span class="lab-val ok">2,1</span></div>
+          <div class="lab-item"><span class="lab-label">GCS</span><span class="lab-val warn">11T</span></div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Alertas Críticos</div>
+        <div class="alerts">
+          <div class="alert-item critical"><span class="alert-icon">▲</span>Prolopa NÃO pode ser administrada por SNE — risco síndrome retirada dopaminérgica</div>
+          <div class="alert-item critical"><span class="alert-icon">▲</span>TQT possivelmente PERMANENTE — paralisia bilateral PV</div>
+          <div class="alert-item warning"><span class="alert-icon">◆</span>RNM encéfalo e pescoço PENDENTE — metástase SNC?</div>
+          <div class="alert-item warning"><span class="alert-icon">◆</span>LPP grau I glúteos D e E</div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Pendências</div>
+        <div class="pending-list">
+          <span class="pending-pill">Neurologia URGENTE</span>
+          <span class="pending-pill">RNM encéfalo/pescoço</span>
+          <span class="pending-pill">Avaliação CCP</span>
+          <span class="pending-pill">Oncologia</span>
+          <span class="pending-pill">GTT discutir</span>
+          <span class="pending-pill">Repor P</span>
+        </div>
+      </div>
+    </div>
+    <div class="card-footer">
+      <div class="equipe">CM — Dr. Pamplona / ORL — Dr. Cedin</div>
+      <div class="gravidade grav-grave">Grave</div>
+    </div>
+  </div>
+
+  <!-- ─── LEITO 2817 ─── -->
+  <div class="card">
+    <div class="card-accent" style="background:var(--red)"></div>
+    <div class="card-header">
+      <div>
+        <div class="card-leito">Leito 2817</div>
+        <div class="card-name">Jurandir Filadelfo dos Santos</div>
+        <div class="card-age">64 anos · M</div>
+      </div>
+      <div class="card-badges">
+        <div class="badge badge-dih">DIH 29</div>
+        <div class="badge badge-po">PO 9 TQT</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="dx-main">⚠ AVCh HIP Núcleo Capsular E (16/04) · HDA Esofagite Erosiva (11/05) · Klebsiella MBL+ panR · Gastroparesia · Hemiplegia D</div>
+
+      <div class="section">
+        <div class="section-title">Suporte</div>
+        <div class="tags">
+          <span class="tag tag-tqt">TQT 8.0 O₂5L</span>
+          <span class="tag tag-npt">NPT 80ml/h</span>
+          <span class="tag tag-atb">Sem ATB ativo</span>
+          <span class="tag tag-mdr">KPC MBL+</span>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Labs (14/05)</div>
+        <div class="labs">
+          <div class="lab-item"><span class="lab-label">Hb</span><span class="lab-val alert">8,1</span></div>
+          <div class="lab-item"><span class="lab-label">K</span><span class="lab-val alert">2,8</span></div>
+          <div class="lab-item"><span class="lab-label">PCR</span><span class="lab-val warn">5,86</span></div>
+          <div class="lab-item"><span class="lab-label">pH</span><span class="lab-val warn">7,49</span></div>
+          <div class="lab-item"><span class="lab-label">pCO₂a</span><span class="lab-val ok">37</span></div>
+          <div class="lab-item"><span class="lab-label">pO₂a</span><span class="lab-val alert">181</span></div>
+          <div class="lab-item"><span class="lab-label">Cr</span><span class="lab-val ok">0,68</span></div>
+          <div class="lab-item"><span class="lab-label">GCS</span><span class="lab-val warn">11T</span></div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Alertas Críticos</div>
+        <div class="alerts">
+          <div class="alert-item critical"><span class="alert-icon">▲</span>K 2,8 — HIPOCALEMIA GRAVE — reposição EV urgente</div>
+          <div class="alert-item critical"><span class="alert-icon">▲</span>MELENA hoje — controle Hb vespertino — EDA urgência se queda</div>
+          <div class="alert-item critical"><span class="alert-icon">▲</span>Klebsiella MBL+ panR sem ATB ativo — Aztreonam-Avi?</div>
+          <div class="alert-item warning"><span class="alert-icon">◆</span>FiO₂ excessiva (pO₂ 181) — reduzir O₂</div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Pendências</div>
+        <div class="pending-list">
+          <span class="pending-pill">Hb controle tarde</span>
+          <span class="pending-pill">EDA urgência?</span>
+          <span class="pending-pill">K EV urgente</span>
+          <span class="pending-pill">Infectologia</span>
+          <span class="pending-pill">Reduzir FiO₂</span>
+          <span class="pending-pill">PA 130-150</span>
+        </div>
+      </div>
+    </div>
+    <div class="card-footer">
+      <div class="equipe">Neuro — Dr. Olival / CM — Dr. Genta</div>
+      <div class="gravidade grav-critico">Crítico</div>
+    </div>
+  </div>
+
+  <!-- ─── LEITO 2818 ─── -->
+  <div class="card">
+    <div class="card-accent" style="background:var(--yellow)"></div>
+    <div class="card-header">
+      <div>
+        <div class="card-leito">Leito 2818</div>
+        <div class="card-name">Manoelina Aparecida Ferreira</div>
+        <div class="card-age">54 anos · F</div>
+      </div>
+      <div class="card-badges">
+        <div class="badge badge-dih">DIH 3</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="dx-main">AIT provável (12/05) — afasia + parestesia D 10min · DRC G5 Dialítica · LES / AR / Sjögren · HAS · Disfagia leve FOIS 5</div>
+
+      <div class="section">
+        <div class="section-title">Suporte</div>
+        <div class="tags">
+          <span class="tag tag-ok">AA Eupneica</span>
+          <span class="tag tag-ok">Sem DVA</span>
+          <span class="tag tag-ok">VO supervisionada</span>
+          <span class="tag tag-trs">PermCath HD 2/4/6</span>
+          <span class="tag tag-atb">DAPT + Estatina AI</span>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Labs (14/05)</div>
+        <div class="labs">
+          <div class="lab-item"><span class="lab-label">Hb</span><span class="lab-val warn">10,3</span></div>
+          <div class="lab-item"><span class="lab-label">Cr</span><span class="lab-val alert">3,81</span></div>
+          <div class="lab-item"><span class="lab-label">TFG</span><span class="lab-val alert">13-16</span></div>
+          <div class="lab-item"><span class="lab-label">PCR</span><span class="lab-val ok">1,2</span></div>
+          <div class="lab-item"><span class="lab-label">K</span><span class="lab-val warn">3,6</span></div>
+          <div class="lab-item"><span class="lab-label">Na</span><span class="lab-val warn">134</span></div>
+          <div class="lab-item"><span class="lab-label">Mg</span><span class="lab-val ok">2,2</span></div>
+          <div class="lab-item"><span class="lab-label">P</span><span class="lab-val ok">2,7</span></div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Alertas</div>
+        <div class="alerts">
+          <div class="alert-item critical"><span class="alert-icon">▲</span>RM + Doppler vascular + ECO-TT — TODOS PENDENTES</div>
+          <div class="alert-item warning"><span class="alert-icon">◆</span>Investigar SAF (LES + AIT) — anticoagular?</div>
+          <div class="alert-item info"><span class="alert-icon">▸</span>HD UTI após imagem — programar</div>
+          <div class="alert-item info"><span class="alert-icon">▸</span>Tolerar hipertensão hoje (pós-AIT)</div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Pendências</div>
+        <div class="pending-list">
+          <span class="pending-pill">RM URGENTE</span>
+          <span class="pending-pill">Doppler vascular</span>
+          <span class="pending-pill">ECO-TT</span>
+          <span class="pending-pill">HD pós-imagem</span>
+          <span class="pending-pill">Perfil SAF</span>
+          <span class="pending-pill">Complemento C3/C4</span>
+        </div>
+      </div>
+    </div>
+    <div class="card-footer">
+      <div class="equipe">Neuro — Dr. Olival / Nefro — Dra. Anita</div>
+      <div class="gravidade grav-moderado">Moderado</div>
+    </div>
+  </div>
+
+  <!-- ─── LEITO 2819 ─── -->
+  <div class="card">
+    <div class="card-accent" style="background:var(--red)"></div>
+    <div class="card-header">
+      <div>
+        <div class="card-leito">Leito 2819</div>
+        <div class="card-name">Gilson Pereira Guimarães</div>
+        <div class="card-age">77 anos · M · 130kg</div>
+      </div>
+      <div class="card-badges">
+        <div class="badge badge-dih">DIH 27</div>
+        <div class="badge badge-po">PO 3 Debrid.</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="dx-main">⚠ Osteomielite Sacral Pseudomonas MDR · VM desmame difícil · Politrauma (29/12/25) · FA · KPC+MBL+ panR via central · Íleo metabólico · Colostomia</div>
+
+      <div class="section">
+        <div class="section-title">Suporte</div>
+        <div class="tags">
+          <span class="tag tag-tqt">TQT 9.0 PCV P20</span>
+          <span class="tag tag-dva">NORA em uso</span>
+          <span class="tag tag-npt">NPT 103ml/h</span>
+          <span class="tag tag-mdr">Pseudo MDR</span>
+          <span class="tag tag-atb">Poli B + Mero + LNZ</span>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Labs (14/05)</div>
+        <div class="labs">
+          <div class="lab-item"><span class="lab-label">Hb</span><span class="lab-val warn">9,3</span></div>
+          <div class="lab-item"><span class="lab-label">K</span><span class="lab-val alert">2,8</span></div>
+          <div class="lab-item"><span class="lab-label">Mg</span><span class="lab-val warn">1,7</span></div>
+          <div class="lab-item"><span class="lab-label">P</span><span class="lab-val warn">2,3</span></div>
+          <div class="lab-item"><span class="lab-label">GGT</span><span class="lab-val alert">588</span></div>
+          <div class="lab-item"><span class="lab-label">FA</span><span class="lab-val alert">272</span></div>
+          <div class="lab-item"><span class="lab-label">Ur</span><span class="lab-val alert">151</span></div>
+          <div class="lab-item"><span class="lab-label">Cr</span><span class="lab-val ok">0,93</span></div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Alertas Críticos</div>
+        <div class="alerts">
+          <div class="alert-item critical"><span class="alert-icon">▲</span>Febre persistente 38,7°C refratária — colchão térmico</div>
+          <div class="alert-item critical"><span class="alert-icon">▲</span>K 2,8 GRAVE + KPC/MBL+ panR sem cobertura — Aztreonam-Avi?</div>
+          <div class="alert-item critical"><span class="alert-icon">▲</span>Retornar anticoagulação plena (FA) — liberado gastrocirurgia</div>
+          <div class="alert-item warning"><span class="alert-icon">◆</span>GGT 588 / FA 272 — hepatotoxicidade NPT prolongada?</div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Pendências</div>
+        <div class="pending-list">
+          <span class="pending-pill">K EV urgente</span>
+          <span class="pending-pill">Infectologia MDR</span>
+          <span class="pending-pill">Anticoag. plena</span>
+          <span class="pending-pill">Reduzir PS</span>
+          <span class="pending-pill">Prostigmine?</span>
+          <span class="pending-pill">Culturas se febre</span>
+        </div>
+      </div>
+    </div>
+    <div class="card-footer">
+      <div class="equipe">CM/Pneumo — Dr. Genta / Cardio — Dr. Neves</div>
+      <div class="gravidade grav-critico">Crítico</div>
+    </div>
+  </div>
+
+  <!-- ─── LEITO 2821 ─── -->
+  <div class="card">
+    <div class="card-accent" style="background:var(--orange)"></div>
+    <div class="card-header">
+      <div>
+        <div class="card-leito">Leito 2821</div>
+        <div class="card-name">Maria Assunção de Souza</div>
+        <div class="card-age">84 anos · F · 40kg</div>
+      </div>
+      <div class="card-badges">
+        <div class="badge badge-dih">DIH 14</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="dx-main">TSV revertida adenosina · TEP segmentar · Síndrome Consumptiva · Nódulo pulmonar s/ proposta invasiva · ITU · Demência · Fragilidade</div>
+
+      <div class="section">
+        <div class="section-title">Suporte</div>
+        <div class="tags">
+          <span class="tag tag-ok">O₂ 1L/min SpO₂ 97%</span>
+          <span class="tag tag-ok">Sem DVA</span>
+          <span class="tag tag-sne">Fresubin HP 30ml/h + VO</span>
+          <span class="tag tag-atb">Mero + Amicacina (ITU)</span>
+          <span class="tag tag-atb">Eliquis 2,5mg 12/12h</span>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Labs (14/05)</div>
+        <div class="labs">
+          <div class="lab-item"><span class="lab-label">Hb</span><span class="lab-val warn">11,2</span></div>
+          <div class="lab-item"><span class="lab-label">Leuco</span><span class="lab-val warn">14.020</span></div>
+          <div class="lab-item"><span class="lab-label">PCR</span><span class="lab-val warn">6,92</span></div>
+          <div class="lab-item"><span class="lab-label">Na</span><span class="lab-val alert">131</span></div>
+          <div class="lab-item"><span class="lab-label">Mg</span><span class="lab-val warn">1,9</span></div>
+          <div class="lab-item"><span class="lab-label">P</span><span class="lab-val warn">2,3</span></div>
+          <div class="lab-item"><span class="lab-label">K</span><span class="lab-val ok">4,2</span></div>
+          <div class="lab-item"><span class="lab-label">SpO₂</span><span class="lab-val warn">86%AA</span></div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Alertas</div>
+        <div class="alerts">
+          <div class="alert-item critical"><span class="alert-icon">▲</span>Na 131 — hiponatremia — investigar SIADH / Indapen / hipotireoidismo</div>
+          <div class="alert-item warning"><span class="alert-icon">◆</span>Holter 24h — AGUARDA LAUDO</div>
+          <div class="alert-item warning"><span class="alert-icon">◆</span>SpO₂ 86% sem O₂ — oxigênio dependente (TEP + enfisema)</div>
+          <div class="alert-item info"><span class="alert-icon">▸</span>Home Care solicitado 11/05 — planejar alta</div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Pendências</div>
+        <div class="pending-list">
+          <span class="pending-pill">Holter laudo</span>
+          <span class="pending-pill">Investigar Na 131</span>
+          <span class="pending-pill">Repor Mg/P</span>
+          <span class="pending-pill">Urocultura</span>
+          <span class="pending-pill">TSH</span>
+          <span class="pending-pill">Home Care</span>
+        </div>
+      </div>
+    </div>
+    <div class="card-footer">
+      <div class="equipe">Cardio/CM — Dr. José Gois</div>
+      <div class="gravidade grav-grave">Grave</div>
+    </div>
+  </div>
+
+  <!-- ─── LEITO 2822 ─── -->
+  <div class="card">
+    <div class="card-accent" style="background:var(--red)"></div>
+    <div class="card-header">
+      <div>
+        <div class="card-leito">Leito 2822</div>
+        <div class="card-name">Talita Mota Rodrigues</div>
+        <div class="card-age">41 anos · F · 43kg</div>
+      </div>
+      <div class="card-badges">
+        <div class="badge badge-dih">DIH 5</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="dx-main">⚠ Crise Miastênica (MG 2009) · Gatilho BCP/PNM · Semi-ptose bilateral · Disfonia · Fadigabilidade bulbar-resp · Ca mama pós-mastectomia</div>
+
+      <div class="section">
+        <div class="section-title">Suporte</div>
+        <div class="tags">
+          <span class="tag tag-ok">AA SpO₂ 97%</span>
+          <span class="tag tag-ok">Sem DVA</span>
+          <span class="tag tag-ok">VO pastosa liquidif.</span>
+          <span class="tag tag-ivig">IVIG 0,4mg/kg D3-4/5</span>
+          <span class="tag tag-atb">Ceftriaxona D4/5</span>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Labs (14/05)</div>
+        <div class="labs">
+          <div class="lab-item"><span class="lab-label">Hb</span><span class="lab-val ok">12,0</span></div>
+          <div class="lab-item"><span class="lab-label">K</span><span class="lab-val warn">3,4</span></div>
+          <div class="lab-item"><span class="lab-label">Mg</span><span class="lab-val warn">1,8</span></div>
+          <div class="lab-item"><span class="lab-label">pCO₂v</span><span class="lab-val alert">49</span></div>
+          <div class="lab-item"><span class="lab-label">HCO₃v</span><span class="lab-val warn">31</span></div>
+          <div class="lab-item"><span class="lab-label">Linf</span><span class="lab-val warn">690</span></div>
+          <div class="lab-item"><span class="lab-label">Cr</span><span class="lab-val ok">0,44</span></div>
+          <div class="lab-item"><span class="lab-label">Lactato</span><span class="lab-val ok">8</span></div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Alertas Críticos</div>
+        <div class="alerts">
+          <div class="alert-item critical"><span class="alert-icon">▲</span>pCO₂v 49 + HCO₃ 31 — fadiga resp — GASO ARTERIAL URGENTE</div>
+          <div class="alert-item critical"><span class="alert-icon">▲</span>Para ao contar 30/50 — fadigabilidade bulbar presente</div>
+          <div class="alert-item warning"><span class="alert-icon">◆</span>IVIG D3 vs D4 — CONFIRMAR DIA NA PRESCRIÇÃO</div>
+          <div class="alert-item warning"><span class="alert-icon">◆</span>Repor K (3,4) e Mg c/ CAUTELA (piora JNM em excesso)</div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Pendências</div>
+        <div class="pending-list">
+          <span class="pending-pill">Gaso arterial urgente</span>
+          <span class="pending-pill">Manovacuometria</span>
+          <span class="pending-pill">Confirmar dia IVIG</span>
+          <span class="pending-pill">K repor ≥4,0</span>
+          <span class="pending-pill">Mg cauteloso</span>
+          <span class="pending-pill">Procalcitonina</span>
+          <span class="pending-pill">Imunossupressor?</span>
+        </div>
+      </div>
+    </div>
+    <div class="card-footer">
+      <div class="equipe">Neuro — Dr. Guilherme Olival (TRUE Neuro)</div>
+      <div class="gravidade grav-critico">Crítico</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<div style="margin-top:32px; border-top:1px solid var(--border); padding-top:16px; display:flex; justify-content:space-between; align-items:center;">
+  <div style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--text-dim);">
+    UTI BP PAULISTA · TORRE II · 8º ANDAR · UNIDADE 8B &nbsp;|&nbsp; PLANTÃO 14/05/2026 &nbsp;|&nbsp; TEMPLATE INTERFLOW
+  </div>
+  <div style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--text-dim);">
+    9 PACIENTES ATIVOS &nbsp;|&nbsp; 5 CRÍTICOS · 3 GRAVES · 1 MODERADO · 1 ESTÁVEL
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,170 @@
+
+<style>
+:root { --font-sans: Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif; --color-text-primary: #17201f; --color-text-secondary: #5f6f6c; --color-background-primary: #ffffff; --color-border-secondary: #d8e2df; --color-border-tertiary: #e9efed; --border-radius-lg: 12px; --border-radius-md: 8px; } html { background: #f6faf9; } body { max-width: 1120px; margin: 0 auto; padding: 16px; } .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+.lc { font-family: var(--font-sans); font-size: 14px; color: var(--color-text-primary); }
+.lh { background: #E6F1FB; border-bottom: 1.5px solid #185FA5; padding: 10px 18px; display: flex; align-items: flex-start; gap: 12px; border-radius: 12px 12px 0 0; }
+.lb-badge { background: #185FA5; color: #E6F1FB; font-size: 12px; font-weight: 500; padding: 4px 10px; border-radius: 8px; white-space: nowrap; flex-shrink: 0; }
+.lp { font-size: 15px; font-weight: 500; color: #0C447C; }
+.lsub { font-size: 12px; color: #185FA5; }
+.body { padding: 14px 18px; }
+.st { font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.8px; color: var(--color-text-secondary); border-bottom: 0.5px solid var(--color-border-tertiary); padding-bottom: 4px; margin-bottom: 8px; margin-top: 14px; }
+.st:first-child { margin-top: 0; }
+.tag { display: inline-block; font-size: 12px; padding: 3px 8px; border-radius: 4px; margin: 2px 3px 2px 0; font-weight: 500; }
+.tag-r { background: #FCEBEB; color: #A32D2D; }
+.tag-y { background: #FAEEDA; color: #BA7517; }
+.tag-b { background: #E6F1FB; color: #0C447C; }
+.tag-g { background: #EAF3DE; color: #3B6D11; }
+.g2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 8px; }
+.g3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-top: 8px; }
+.mc { background: var(--color-background-secondary); border-radius: 8px; padding: 8px 12px; }
+.mc .lb { font-size: 11px; color: var(--color-text-secondary); margin-bottom: 3px; }
+.mc .vl { font-size: 14px; font-weight: 500; }
+.mc .vl.ok { color: #3B6D11; }
+.mc .vl.warn { color: #BA7517; }
+.mc .vl.bad { color: #A32D2D; }
+.il { display: flex; gap: 6px; align-items: flex-start; padding: 4px 0; border-bottom: 0.5px solid var(--color-border-tertiary); font-size: 13px; line-height: 1.5; }
+.il:last-child { border-bottom: none; }
+.bul { flex-shrink: 0; margin-top: 1px; font-weight: 700; }
+.bul.r { color: #A32D2D; }
+.bul.y { color: #BA7517; }
+.bul.g { color: #3B6D11; }
+.bul.b { color: #185FA5; }
+.bold { font-weight: 500; }
+.impressao { background: #E6F1FB; border-left: 3px solid #185FA5; border-radius: 0 8px 8px 0; padding: 10px 14px; font-size: 13px; line-height: 1.6; color: #0C447C; }
+.conduta { background: var(--color-background-secondary); border-radius: 8px; padding: 10px 14px; font-size: 13px; line-height: 1.6; }
+.inter { background: #FAECE7; border-left: 3px solid #D85A30; border-radius: 0 8px 8px 0; padding: 10px 14px; font-size: 13px; line-height: 1.6; color: #993C1D; }
+.atb-pill { display: inline-block; background: #EAF3DE; color: #3B6D11; font-size: 11px; padding: 2px 7px; border-radius: 4px; margin: 2px 3px 2px 0; font-weight: 500; }
+.bundle { display: inline-flex; align-items: center; gap: 3px; background: #EAF3DE; color: #3B6D11; font-size: 10px; font-weight: 500; padding: 2px 6px; border-radius: 4px; margin-left: 6px; border: 0.5px solid #639922; }
+.vm-box { background: #EAF3DE; border-left: 3px solid #3B6D11; border-radius: 0 8px 8px 0; padding: 10px 14px; font-size: 13px; line-height: 1.6; color: #1E4D0A; margin-bottom: 8px; }
+</style>
+
+<div class="lc">
+  <div style="border: 0.5px solid var(--color-border-secondary); border-radius: 12px; margin-bottom: 20px; overflow: hidden;">
+
+    <div class="lh">
+      <div class="lb-badge">Leito 1600-16</div>
+      <div style="flex:1;">
+        <div class="lp">Gustavo de Souza Schmidt Gonçalves</div>
+        <div class="lsub">41 anos · Masculino · DIH: 09/05/2026 · 7 dias de internação · Traqueostomizado</div>
+        <div class="lsub" style="margin-top:2px;">Cardiologia/Clínica Médica — Dr. José Marcos de Góis | Médico Assistente — Dr. Leonardo de Carvalho Rocha</div>
+      </div>
+    </div>
+
+    <div class="body">
+
+      <div class="st">Diagnósticos</div>
+      <span class="tag tag-r">🔴 Encefalopatia anóxica grave pós-PCR (30min) — intoxicação por fentanil (jul/2024)</span>
+      <span class="tag tag-r">🔴 Pneumonia broncoaspirativa — internação atual (09/05/2026)</span>
+      <span class="tag tag-y">🟡 Broncoespasmo grave na admissão — em desmame de corticoide</span>
+      <span class="tag tag-y">🟡 Dependência ventilatória (VM via TQT) — PSV em desmame</span>
+      <span class="tag tag-b">🔵 TQT crônica (paciente institucionalizado)</span>
+      <span class="tag tag-b">🔵 Diarreia — em uso de Muvinlax</span>
+      <span class="tag tag-b">🔵 Sobrepeso (IMC 26) | Internação prévia por PNM aspirativa (03/2025)</span>
+
+      <div class="st">Antecedentes</div>
+      <div class="il"><span class="bul r">▲</span><span><span class="bold">Encefalopatia anóxica grave pós-PCR de 30 min (jul/2024)</span> por intoxicação aguda por fentanil — institucionalizado desde então, dependente total de cuidados</span></div>
+      <div class="il"><span class="bul b">•</span><span>PNM broncoaspirativa prévia (03/2025) — padrão recorrente de aspiração</span></div>
+      <div class="il"><span class="bul b">•</span><span>TQT de longa data | Gastrostomia (GTT) para alimentação enteral | Sobrepeso</span></div>
+      <div class="il"><span class="bul b">•</span><span>Relato de "alergia a broncodilatador" (não documentada formalmente — verificar histórico)</span></div>
+
+      <div class="st">Dispositivos / Suporte</div>
+      <div class="vm-box">
+        <div class="il"><span class="bul g">✓</span><span><span class="bold">TQT nº 7,0 com cuff</span> — cuff 40 cmH₂O (escape posicional) | Aspiração contínua ativa | Supracuff ativo</span></div>
+        <div class="il"><span class="bul g">✓</span><span><span class="bold">VM:</span> Modo PSV | PS 10 cmH₂O | PEEP 7 | FiO₂ 25% | FR 12–16 irpm | VC 450 mL | SpO₂ 98%</span></div>
+        <div class="il"><span class="bul y">!</span><span><span class="bold">Diafragma (USG):</span> Espessura inspiratória 0,56–0,62 cm / Expiratória 0,39–0,51 cm — fraqueza diafragmática significativa, compatível com dependência ventilatória prolongada</span></div>
+      </div>
+      <div class="g2">
+        <div>
+          <div class="il"><span class="bul r">▲</span><span><span class="bold">Neurológico:</span> Glasgow 6T — não contactuante, retira membros ao estímulo doloroso. Encefalopatia anóxica grave — prognóstico neurológico muito reservado.</span></div>
+          <div class="il"><span class="bul g">✓</span><span><span class="bold">DVA:</span> Sem DVA — hemodinamicamente estável</span></div>
+          <div class="il"><span class="bul g">✓</span><span><span class="bold">Sedoanalgesia:</span> Sem sedação contínua — encefalopatia de base</span></div>
+        </div>
+        <div>
+          <div class="il"><span class="bul g">✓</span><span><span class="bold">Nutrição:</span> Dieta enteral via GTT — Fresubin 2 kcal 50 mL/h + módulo proteico 15g 1×/dia</span></div>
+          <div class="il"><span class="bul g">✓</span><span><span class="bold">TRS:</span> Não em uso | Função renal excelente (Cr 0,42 / TFG > 137)</span></div>
+          <div class="il"><span class="bul y">!</span><span><span class="bold">AVP MSD</span> — pérvio sem sinais flogísticos | GTT flanco D — curativo limpo e bem acoplado</span></div>
+        </div>
+      </div>
+
+      <div class="st">Sinais vitais — últimas 24h</div>
+      <div class="g3">
+        <div class="mc"><div class="lb">FC / PA (admissão)</div><div class="vl warn">100 bpm | 160×100 mmHg (melhora após ATB/corticoide)</div></div>
+        <div class="mc"><div class="lb">SpO₂ atual</div><div class="vl ok">98% (VM PSV FiO₂ 25%)</div></div>
+        <div class="mc"><div class="lb">Glasgow</div><div class="vl bad">6T — encefalopatia grave</div></div>
+        <div class="mc"><div class="lb">Temperatura</div><div class="vl ok">Afebril (controles estáveis)</div></div>
+        <div class="mc"><div class="lb">BH 14/05</div><div class="vl warn">+516 mL</div></div>
+        <div class="mc"><div class="lb">BH 15/05 (manhã)</div><div class="vl ok">−91 mL (turno manhã)</div></div>
+      </div>
+
+      <div class="st">Exames recentes — 14/05/2026</div>
+      <div class="g2">
+        <div>
+          <div class="il"><span class="bul g">✓</span><span><span class="bold">Hemograma:</span> Hb 14,4 g/dL | Ht 41,6% | Leuco 11.250 | Neut 8.640 (76,8%) — leucocitose em resolução (era 19.560 na admissão)</span></div>
+          <div class="il"><span class="bul g">✓</span><span><span class="bold">Bioquímica:</span> Na 139 | K 3,5 | Cr 0,42 | Ur 36 | TFG > 137 mL/min</span></div>
+        </div>
+        <div>
+          <div class="il"><span class="bul g">✓</span><span><span class="bold">Gasometria admissão (09/05):</span> pH 7,33 | pO₂ 100 | pCO₂ 54 | HCO₃ 29 — acidose respiratória com compensação metabólica (hipercapnia aguda sobre crônica)</span></div>
+          <div class="il"><span class="bul g">✓</span><span><span class="bold">Influenza / COVID:</span> Negativos (09/05)</span></div>
+          <div class="il"><span class="bul y">!</span><span><span class="bold">K 3,5</span> — no limite inferior. Repor se < 3,5 (risco de broncoespasmo/arritmia). Mg pendente.</span></div>
+        </div>
+      </div>
+
+      <div class="st">Antimicrobianos em curso</div>
+      <span class="atb-pill">Ceftriaxona D7 — DI 09/05 (PNM aspirativa)</span>
+      <span class="atb-pill">Clindamicina 600mg 6/6h D7 — DI 09/05 (cobertura anaeróbios)</span>
+      <div style="margin-top:6px; font-size:12px; color:var(--color-text-secondary);">Metilprednisolona 40mg/dia (broncoespasmo grave) — desmame previsto em 14/05. Confirmar se foi realizado ou está em curso.</div>
+
+      <div class="st">Profilaxias <span class="bundle">✔ BUNDLES</span></div>
+      <div class="il"><span class="bul g">✓</span><span><span class="bold">TEV:</span> Enoxaparina (profilaxia medicamentosa) ativa</span></div>
+      <div class="il"><span class="bul g">✓</span><span><span class="bold">PAV:</span> Bundle PAV ativo — TQT com cuff calibrado (40 cmH₂O), aspiração contínua, supracuff, cabeceira 30–45°</span></div>
+      <div class="il"><span class="bul y">!</span><span><span class="bold">LPP:</span> Protocolo LP não inserido (conforme fisioterapia) — paciente totalmente dependente e EMU 0. Inserir protocolo LP. Verificar inspeção de pele (acamado, sem LP até o momento per prontuário de enfermagem).</span></div>
+      <div class="il"><span class="bul g">✓</span><span>BCA | Queda ativo</span></div>
+      <div class="il"><span class="bul y">!</span><span><span class="bold">Nutrição:</span> Meta calórica 2.150 kcal/dia | Fresubin 2 kcal 50 mL/h = 2.400 kcal/dia (acima da meta) + módulo proteico 15g. Avaliar redução de volume se diarreia persistente. Muvinlax 1 sache/dia (reduzido de 2 para 1).</span></div>
+
+      <div class="st">Condutas / Pendências — Bundles UTI / PAV / Desmame</div>
+      <div class="conduta">
+        <div class="il"><span class="bul r">★</span><span><span class="bold">[DESMAME VENTILATÓRIO — Bundle PAV / Desmame]</span> PSV 10 / PEEP 7 / FiO₂ 25% — progresso claro desde admissão (era em suporte intenso). USG diafragma: espessura inspiratória 0,56–0,62 cm com variação aceitável. Realizar TRS (Teste de Respiração Espontânea) diário com protocolo: PSV 5 / PEEP 5 / FiO₂ 21%, mínimo 30 min. Critérios de sucesso: FR < 35, SpO₂ > 92%, sem uso de musculatura acessória, FC < 140 e PAM estável. Monitorar USG diafragmático seriado para acompanhar força diafragmática. Meta: extubação/decanulação gradual. ⚠ Prognóstico neurológico grave — objetivo de desmame é tolerância a TM/TQT de baixo suporte, não necessariamente decanulação.</span></div>
+        <div class="il"><span class="bul r">★</span><span><span class="bold">[PNM ASPIRATIVA — ATB]</span> Ceftriaxona + Clindamicina D7 (09/05). Avaliar deescalonamento ou conclusão do ciclo em 7–10 dias (14–16/05). Leucocitose em resolução (19.560 → 11.250). Afebril. Se melhora clínica mantida → encerrar ATB em 14/05 ou avaliar extensão para 10 dias se ainda há secreção purulenta. Solicitar PCR e gasometria atuais para decisão.</span></div>
+        <div class="il"><span class="bul y">!</span><span><span class="bold">[CORTICOIDE]</span> Metilprednisolona 40mg/dia para broncoespasmo — desmame previsto em 14/05. Confirmar se foi suspenso ou se está em desmame gradual. Atenção: corticoide prolongado → miopatia do paciente crítico (já tem fraqueza diafragmática documentada ao USG).</span></div>
+        <div class="il"><span class="bul y">!</span><span><span class="bold">[BRONCOESPASMO — "Alergia a broncodilatador"]</span> Relato não documentado formalmente. Verificar qual broncodilatador foi envolvido (beta-2 agonista? anticolinérgico?). Se reação verdadeira a salbutamol, alternativa: brometo de ipratrópio via TQT. Se reação a adrenalina (usada no transporte sem reação adversa relatada) — pode ser falso histórico. Esclarecer com cuidadores e família. Documentar formalmente no prontuário.</span></div>
+        <div class="il"><span class="bul y">!</span><span><span class="bold">[DIARREIA / NUTRIÇÃO]</span> Fezes líquidas em grande quantidade. Fresubin 2 kcal 50 mL/h (2.400 kcal/dia) — levemente acima da meta de 2.150 kcal. Muvinlax pode estar contribuindo para diarreia (reduzido para 1 sache/dia). Considerar: dosagem de Clostridium difficile se diarreia persistir > 3 dias em uso de ATB. Avaliar probiótico ou dieta específica para diarreia. Monitorar eletrólitos (K 3,5 no limite).</span></div>
+        <div class="il"><span class="bul y">!</span><span><span class="bold">[K 3,5 — LIMÍTROFE]</span> Repor K se < 3,5. Monitorar Mg (não coletado em 14/05) — hipomagnesemia potencializa broncoespasmo e hipopotassemia. Solicitar Mg.</span></div>
+        <div class="il"><span class="bul y">!</span><span><span class="bold">[PROTOCOLO LPP]</span> Não inserido na avaliação de fisioterapia. Inserir protocolo LP. EMU 0 — paciente em risco máximo de LPP. Inspeção de pele completa a cada turno. Decúbito 2/2h. Superfície de redistribuição de pressão (colchão pneumático se disponível).</span></div>
+        <div class="il"><span class="bul b">•</span><span><span class="bold">[NEUROLÓGICO — ENCEFALOPATIA ANÓXICA]</span> Glasgow 6T estável. Sem contactuância — padrão crônico desde jul/2024 (PCR 30 min). Prognóstico neurológico muito reservado (encefalopatia anóxica grave). Discutir com família/cuidadores expectativas e plano de cuidados a longo prazo. Fono: acompanhamento para deglutição (não aplicável em curto prazo dado Glasgow 6T).</span></div>
+        <div class="il"><span class="bul b">•</span><span><span class="bold">[CUFF / PAV]</span> Escape posicional no cuff. Reavaliar posicionamento da TQT. Manter cuff ≤ 30 cmH₂O (mínimo sem vazamento) — pressão atual 40 cmH₂O pode causar lesão traqueal se mantida. Considerar revisão com equipe de fonoaudiologia/UTI para adequação.</span></div>
+        <div class="il"><span class="bul b">•</span><span><span class="bold">[USG DIAFRAGMÁTICO]</span> Fração de espessamento calculável: (0,62−0,39)/0,39 = ~59% (1ª medida) / (0,56−0,51)/0,51 = ~10% (2ª medida) — discordância significativa entre as duas medidas. Repetir USG padronizado (zona de aposição, linha axilar anterior, 8º–9º EIC) para seguimento confiável.</span></div>
+      </div>
+
+      <div class="st">Intercorrências</div>
+      <div class="inter">
+        <div class="il"><span class="bul r">⚠</span><span><span class="bold">Escape posicional no cuff (40 cmH₂O)</span> — pressão elevada com escape. Risco de lesão traqueal. Revisar posicionamento e avaliar troca de cânula se necessário.</span></div>
+        <div class="il"><span class="bul y">!</span><span>Diarreia líquida em grande quantidade — monitorar eletrólitos. Risco de Clostridioides difficile em uso de Clindamicina (antibiótico de maior risco). Coletar toxina se persistência.</span></div>
+        <div class="il"><span class="bul y">!</span><span>Protocolo LP não inserido — paciente EMU 0, acamado total. Inserir urgente e realizar inspeção de pele.</span></div>
+        <div class="il"><span class="bul y">!</span><span>Histórico de "alergia a broncodilatador" não documentada formalmente — risco em futuras exacerbações de broncoespasmo sem opção terapêutica clara.</span></div>
+        <div class="il"><span class="bul y">!</span><span>Corticoide sistêmico: confirmar se desmame foi concluído em 14/05 conforme plano.</span></div>
+      </div>
+
+      <div class="st">Impressão clínica — progressão do caso</div>
+      <div class="impressao">
+        <span class="bold">Progressão:</span> Paciente de 41 anos com sequela neurológica grave (encefalopatia anóxica pós-PCR de 30 min por intoxicação a fentanil, jul/2024), institucionalizado, traqueostomizado e com gastrostomia. Admitido em 09/05 por broncoespasmo grave + PNM aspirativa, com insuficiência respiratória e necessidade de VM. Na admissão: leucocitose 19.560, acidose respiratória, MV quase silente, taquipneia e uso de musculatura acessória. ATB dupla (Ceftriaxona + Clindamicina) + corticoide sistêmico instituídos.
+        <br><br>
+        <span class="bold">Situação atual (15/05 — D7):</span> Melhora clínica expressiva. Em PSV 10/PEEP 7/FiO₂ 25%, SpO₂ 98%, afebril, leucocitose em resolução (11.250). BH neutro. Estável hemodinamicamente sem DVA. USG diafragma demonstra fraqueza diafragmática (dependência ventilatória esperada em encefalopatia grave crônica). <span style="font-weight:500;color:#0C447C;">Foco do plantão: avaliar conclusão do ciclo de ATB (D7), confirmar desmame do corticoide, progressão cautelosa do desmame ventilatório (TRS diário), corrigir cuff e inserir protocolo LPP.</span> Prognóstico neurológico permanece muito reservado — condição crônica irreversível.
+      </div>
+
+      <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:12px; font-size:12px; color:var(--color-text-secondary); border-top: 0.5px solid var(--color-border-tertiary); padding-top:10px;">
+        <span><strong>ATB:</strong> Ceftriaxona + Clindamicina D7</span>
+        <span>•</span>
+        <span><strong>VM:</strong> PSV 10 / PEEP 7 / FiO₂ 25%</span>
+        <span>•</span>
+        <span><strong>TQT:</strong> 7,0 + cuff</span>
+        <span>•</span>
+        <span><strong>Glasgow:</strong> 6T (crônico)</span>
+        <span>•</span>
+        <span><strong>Protocolos:</strong> PAV | BCA | TEV | Queda | ⚠ LP pendente</span>
+      </div>
+
+    </div>
+  </div>
+</div>

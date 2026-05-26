@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Plantão BP — Índice dos Pacientes</title>
+<style>
+:root {
+  --bg: #f5f7fb;
+  --paper: #ffffff;
+  --ink: #111827;
+  --muted: #4b5563;
+  --line: #d1d5db;
+  --accent: #0f766e;
+  --danger: #b91c1c;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+  line-height: 1.45;
+}
+.page {
+  max-width: 980px;
+  margin: 24px auto;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 28px;
+  box-shadow: 0 10px 24px rgba(15, 23, 42, .08);
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: flex-start;
+  border-bottom: 3px solid var(--accent);
+  padding-bottom: 14px;
+  margin-bottom: 20px;
+}
+h1 { margin: 0; font-size: 1.45rem; }
+h2 {
+  margin: 22px 0 8px;
+  font-size: 1.05rem;
+  color: var(--accent);
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 4px;
+}
+.meta { color: var(--muted); font-size: .95rem; margin-top: 5px; }
+.badge {
+  display: inline-block;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  border-radius: 999px;
+  padding: 4px 10px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+ul { margin: 8px 0 0 0; padding-left: 22px; }
+li { margin: 4px 0; }
+.impressao {
+  border-left: 5px solid var(--accent);
+  background: #ecfdf5;
+  padding: 12px 14px;
+  border-radius: 12px;
+  margin-top: 8px;
+}
+.alerta {
+  color: var(--danger);
+  font-weight: 700;
+}
+.footer {
+  margin-top: 26px;
+  padding-top: 10px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: .85rem;
+}
+.nav {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 12px;
+  margin-top: 18px;
+}
+.card-link {
+  display: block;
+  text-decoration: none;
+  color: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 14px;
+  background: #fff;
+}
+.card-link:hover { border-color: var(--accent); box-shadow: 0 4px 14px rgba(15, 118, 110, .15); }
+.small { color: var(--muted); font-size: .9rem; }
+@media print {
+  body { background: white; }
+  .page { margin: 0; border: none; box-shadow: none; border-radius: 0; max-width: none; }
+  .no-print { display: none; }
+  a { color: black; text-decoration: none; }
+}
+</style>
+</head>
+<body>
+<main class="page">
+  <div class="header">
+    <div>
+      <h1>📋 Plantão BP — Índice dos Pacientes</h1>
+      <div class="meta">Gerado em: 25/05/2026 09:26</div>
+      <div class="meta">Arquivos individuais em HTML para consulta e impressão.</div>
+    </div>
+    <span class="badge">5 pacientes</span>
+  </div>
+  <section class="nav">
+    <a class="card-link" href="leito_1610_paulo-santos-ribeiro.html"><strong>Leito 1610 — Paulo Santos Ribeiro</strong><div class="small">60 anos | Cardiologia — Dr. Marcos Vinícius / Hemodinâmica — Equipe Décio</div><div class="small">Pós-angioplastia coronária percutânea multivascular, com ATC prévia da 1ª marginal e ATC atual da ADA + ramo diagonal em minicrush, sem lesões residuais descritas. Evolui sem dor t...</div></a><a class="card-link" href="leito_1611_rafael-padilha-rosa.html"><strong>Leito 1611 — Rafael Padilha Rosa</strong><div class="small">34 anos | Nefrologia — Dra. Sibeli / Equipe Irene Noronha</div><div class="small">Pós-transplante renal imediato com doador falecido, tempo de isquemia fria prolongado e particularidades urológicas importantes. Evolui com hipercalemia, acidose metabólica e creat...</div></a><a class="card-link" href="leito_1612_antonio-maria-garces.html"><strong>Leito 1612 — Antônio Maria Garcês</strong><div class="small">67 anos | Cardiologia — Dr. Silas dos Santos Galvão</div><div class="small">FA de alta resposta em contexto de sepse provável de foco biliar/abdominal. TC compatível com colangite e suspeita de recidiva neoplásica no leito pancreático com possível estenose...</div></a><a class="card-link" href="leito_1614_juarez-ribeiro.html"><strong>Leito 1614 — Juarez Ribeiro</strong><div class="small">59 anos | Angiologia/Cirurgia Vascular — Dr. Caio César Focassio; Equipe médica — Dr. João Egídio</div><div class="small">Paciente dialítico anúrico, com acesso vascular complexo, pós-confecção de FAV/prótese e trombectomia, evoluindo com choque em noradrenalina e quadro abdominal com vômitos/obstipaç...</div></a><a class="card-link" href="leito_1616_wilmore-da-silva-oliveira.html"><strong>Leito 1616 — Wilmore da Silva Oliveira</strong><div class="small">37 anos | Cardiologia — Dr. Fernando Faglioni Ribas; Hemodinâmica — Dr. Décio Salvadori Junior</div><div class="small">Paciente jovem com IAMCSST trombolisado e reperfusão clínica, porém CATE evidencia DAC triarterial extensa e grave, acometendo DA proximal/média, CX e CD, sem lesão significativa d...</div></a>
+  </section>
+  <div class="footer">Revisar no prontuário antes de uso assistencial definitivo.</div>
+</main>
+</body>
+</html>

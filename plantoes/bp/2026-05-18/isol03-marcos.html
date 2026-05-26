@@ -1,0 +1,203 @@
+
+<style>
+:root { --font-sans: Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif; --color-text-primary: #17201f; --color-text-secondary: #5f6f6c; --color-background-primary: #ffffff; --color-border-secondary: #d8e2df; --color-border-tertiary: #e9efed; --border-radius-lg: 12px; --border-radius-md: 8px; } html { background: #f6faf9; } body { max-width: 1120px; margin: 0 auto; padding: 16px; } .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+.lc { font-family: var(--font-sans); font-size: 14px; color: var(--color-text-primary); }
+.lh { background: #FAEEDA; border-bottom: 1.5px solid #BA7517; padding: 10px 18px; display: flex; align-items: flex-start; gap: 12px; border-radius: 12px 12px 0 0; }
+.lb-badge { background: #BA7517; color: #fff; font-size: 12px; font-weight: 500; padding: 4px 10px; border-radius: 8px; white-space: nowrap; flex-shrink: 0; }
+.lp { font-size: 15px; font-weight: 500; color: #6B3A00; }
+.lsub { font-size: 12px; color: #BA7517; }
+.body { padding: 14px 18px; }
+.st { font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.8px; color: var(--color-text-secondary); border-bottom: 0.5px solid var(--color-border-tertiary); padding-bottom: 4px; margin-bottom: 8px; margin-top: 14px; }
+.st:first-child { margin-top: 0; }
+.tag { display: inline-block; font-size: 12px; padding: 3px 8px; border-radius: 4px; margin: 2px 3px 2px 0; font-weight: 500; }
+.tag-r { background: #FCEBEB; color: #A32D2D; }
+.tag-y { background: #FAEEDA; color: #BA7517; }
+.tag-b { background: #E6F1FB; color: #0C447C; }
+.tag-p { background: #EEEDFE; color: #3C3489; }
+.tag-g { background: #EAF3DE; color: #3B6D11; }
+.g2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 8px; }
+.g3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-top: 8px; }
+.mc { background: var(--color-background-secondary); border-radius: 8px; padding: 8px 12px; }
+.mc .lb { font-size: 11px; color: var(--color-text-secondary); margin-bottom: 3px; }
+.mc .vl { font-size: 14px; font-weight: 500; }
+.mc .vl.ok { color: #3B6D11; }
+.mc .vl.warn { color: #BA7517; }
+.mc .vl.bad { color: #A32D2D; }
+.il { display: flex; gap: 6px; align-items: flex-start; padding: 4px 0; border-bottom: 0.5px solid var(--color-border-tertiary); font-size: 13px; line-height: 1.5; }
+.il:last-child { border-bottom: none; }
+.bul { flex-shrink: 0; margin-top: 1px; font-weight: 700; }
+.bul.r { color: #A32D2D; }
+.bul.y { color: #BA7517; }
+.bul.g { color: #3B6D11; }
+.bul.b { color: #185FA5; }
+.bul.p { color: #6B4FA0; }
+.bold { font-weight: 500; }
+.impressao { background: #FAEEDA; border-left: 3px solid #BA7517; border-radius: 0 8px 8px 0; padding: 10px 14px; font-size: 13px; line-height: 1.6; color: #6B3A00; }
+.conduta { background: var(--color-background-secondary); border-radius: 8px; padding: 10px 14px; font-size: 13px; line-height: 1.6; }
+.inter { background: #FAECE7; border-left: 3px solid #D85A30; border-radius: 0 8px 8px 0; padding: 10px 14px; font-size: 13px; line-height: 1.6; color: #993C1D; }
+.atb-pill { display: inline-block; background: #EAF3DE; color: #3B6D11; font-size: 11px; padding: 2px 7px; border-radius: 4px; margin: 2px 3px 2px 0; font-weight: 500; }
+.bundle { display: inline-flex; align-items: center; gap: 3px; background: #EAF3DE; color: #3B6D11; font-size: 10px; font-weight: 500; padding: 2px 6px; border-radius: 4px; margin-left: 6px; border: 0.5px solid #639922; }
+.alerta-ca { background: #FCEBEB; border-left: 3px solid #A32D2D; border-radius: 0 8px 8px 0; padding: 10px 14px; font-size: 13px; line-height: 1.6; color: #7A1E1E; margin-bottom: 8px; }
+.trs-box { background: #EAF3DE; border-left: 3px solid #3B6D11; border-radius: 0 8px 8px 0; padding: 10px 14px; font-size: 13px; line-height: 1.6; color: #1E4D0A; margin-bottom: 8px; }
+.isolamento-badge { display: inline-flex; align-items: center; background: #FAEEDA; color: #BA7517; font-size: 11px; font-weight: 500; padding: 3px 8px; border-radius: 4px; margin-left: 8px; border: 0.5px solid #EF9F27; }
+</style>
+
+<div class="lc">
+  <div style="border: 1.5px solid #BA7517; border-radius: 12px; margin-bottom: 20px; overflow: hidden;">
+
+    <div class="lh">
+      <div class="lb-badge">ISOL 03</div>
+      <div style="flex:1;">
+        <div class="lp">Marcos Bortoluzzi
+          <span class="isolamento-badge">⚠ ISOLAMENTO — COVID + Imunossuprimido</span>
+        </div>
+        <div class="lsub">55 anos · Masculino · DIH: 24/01/2026 · 112 dias de internação · PO 8 (Craniectomia + drenagem abscesso 08/04)</div>
+        <div class="lsub" style="margin-top:2px;">Hematologia — Dra. Danielle Leão | Infectologia — Dr. João Prats | Nefrologia — Eq. Irene Noronha | Neurologia — Dr. Alex Baeta | NCR — Dr. Matheus Reghin</div>
+      </div>
+    </div>
+
+    <div class="body">
+
+      <div class="st">Diagnósticos</div>
+      <span class="tag tag-r">🔴 Macroglobulinemia de Waldenstrom recaída — D16 Bortezomibe semanal (dose reduzida 0,7 mg/m²)</span>
+      <span class="tag tag-r">🔴 Aspergilose cerebral (Aspergillus fumigatus) — tratamento duplo AnfoB + Voriconazol</span>
+      <span class="tag tag-r">🔴 IRA estágio 3 — CVVHDF em curso (DI 07/05 — reinício)</span>
+      <span class="tag tag-r">🔴 Sepse — foco a esclarecer (PCR 237,9 mg/L, febril, HMC pendentes)</span>
+      <span class="tag tag-r">🔴 HSD crônico agudizado D + osteomielite de calota + abscesso cerebral — múltiplas abordagens cirúrgicas</span>
+      <span class="tag tag-y">🟡 Extubado hoje — CN O₂ 2 L/min | PSV 10/PEEP 7/FiO₂ 30% (pré-extubação)</span>
+      <span class="tag tag-y">🟡 Hematúria franca — irrigação vesical contínua | BK vírus / Adenovírus pendente</span>
+      <span class="tag tag-y">🟡 Hipocalcemia grave (Ca iônico 0,86 mmol/L) — em CVVHDF com citrato</span>
+      <span class="tag tag-y">🟡 Trombocitopenia (Plaq 59.000 — 13/05) | Coagulopatia (INR 1,3 / TTPa 1,35)</span>
+      <span class="tag tag-p">🟣 Adenovírus positivo no LBA (07/05) — pesquisa em sangue/urina pendente</span>
+      <span class="tag tag-b">🔵 LPP estágio 2 sacral | AHAI | Hipotireoidismo | Ex-esplenectomizado</span>
+
+      <div class="st">Antecedentes relevantes</div>
+      <div class="il"><span class="bul r">▲</span><span><span class="bold">MW / Linfoma Linfoplasmocítico:</span> Dx 2018 (MYD88 neg) | Múltiplos regimes: R-CD → R+Ibrutinibe → Velcade+Ibru → Obinutuzumab+Bendamustina → TCTH autólogo (jul/2022) → Zanubrutinibe → Bortezomibe semanal (atual, D16)</span></div>
+      <div class="il"><span class="bul b">•</span><span>Esplenectomia 2017 | AHAI desde 1992 | Hipotireoidismo | Hiperuricemia | Nefrolitíase | Herniorrafia complicada 2018</span></div>
+      <div class="il"><span class="bul b">•</span><span><span class="bold">Alergias:</span> Camarão (choque anafilático 1995) | AAS | Clavulin | Contraste iodado</span></div>
+      <div class="il"><span class="bul b">•</span><span>Histórico cirúrgico crânio: drenagem HSD (14/01) → embolização meníngea (15/01) → nova drenagem (16/01) → embolização pseudoaneurisma femoral D (02/02) → desbridamento FO crânio (27/02) → drenagem abscesso frontal E (18/03) → craniectomia + limpeza (08/04)</span></div>
+
+      <div class="st">Dispositivos / Suporte</div>
+      <div class="trs-box">
+        <div class="il"><span class="bul g">✓</span><span><span class="bold">CVVHDF (Prisma):</span> Modo CVVHDF | Sangue 120 mL/min | Citrato 180 mL/h | Dialisante 1800 mL/h | Reposição 200 mL/h | UF 140 mL/h (→ ajuste para 200 mL/h) | CaCl₂ 10%: 15 mL/h | Kit atual: DI 13/05 → previsão troca 16/05</span></div>
+        <div class="il"><span class="bul r">▲</span><span><span class="bold">Ca iônico pós-filtro 0,21 mmol/L</span> — hipocalcemia grave no circuito do citrato. Ca iônico sistêmico: 0,86 mmol/L (abaixo do alvo ≥ 1,0). Ajustar reposição de CaCl₂.</span></div>
+      </div>
+      <div class="g2">
+        <div>
+          <div class="il"><span class="bul g">✓</span><span><span class="bold">Neurológico:</span> Extubado hoje — Glasgow 14T. Vigil, respondendo a comandos simples. Sem sedação (Precedex em uso — desmame). Keppra + Clobazam (anticonvulsivantes)</span></div>
+          <div class="il"><span class="bul g">✓</span><span><span class="bold">VM:</span> Extubado — CN O₂ 2 L/min. Pré-extubação: PSV 10/PEEP 7/FiO₂ 30%/VC 420–500</span></div>
+          <div class="il"><span class="bul y">!</span><span><span class="bold">DVA:</span> Noradrenalina 0,05 mcg/kg/min em desmame (PAM 63–83 mmHg)</span></div>
+          <div class="il"><span class="bul y">!</span><span><span class="bold">Sedação:</span> Precedex (dexmedetomidina) em desmame — sem benzodiazepínico</span></div>
+        </div>
+        <div>
+          <div class="il"><span class="bul r">▲</span><span><span class="bold">Nutrição:</span> NPT 75 mL/h (1.820 kcal/dia + 155g ptn) | Contr. oral: fonoaudiologia contraindicou VO em 04/05 | Sem evacuação há vários dias</span></div>
+          <div class="il"><span class="bul y">!</span><span><span class="bold">Hematúria:</span> SVD com irrigação vesical contínua — hematúria franca</span></div>
+          <div class="il"><span class="bul g">✓</span><span><span class="bold">Acessos:</span> CVC triplo-lúmen JE (CHG) | Shilley JD (CVVHDF) | PICC MSD | PAI radial E</span></div>
+          <div class="il"><span class="bul y">!</span><span><span class="bold">Contenção mecânica MMSS</span> — manter vigilância e reavaliação horária</span></div>
+        </div>
+      </div>
+
+      <div class="st">Sinais vitais — últimas 24h</div>
+      <div class="g3">
+        <div class="mc"><div class="lb">PA / PAM</div><div class="vl warn">PAM 63–83 mmHg (Nora 0,05)</div></div>
+        <div class="mc"><div class="lb">FC</div><div class="vl ok">81 bpm</div></div>
+        <div class="mc"><div class="lb">SpO₂ / FR</div><div class="vl ok">96–98% / 18 irpm (pós-extubação CN 2L)</div></div>
+        <div class="mc"><div class="lb">Temperatura</div><div class="vl bad">Tmax 38,1°C — picos febris</div></div>
+        <div class="mc"><div class="lb">BH 24h</div><div class="vl warn">+755 mL | Ganhos 4.600 | UF 3.000 | Diurese 850 mL</div></div>
+        <div class="mc"><div class="lb">Glicemia</div><div class="vl ok">95–128 mg/dL</div></div>
+      </div>
+
+      <div class="st">Exames recentes — 18/05/2026</div>
+      <div class="alerta-ca">
+        <div class="il"><span class="bul r">⚠</span><span><span class="bold">Ca iônico sistêmico 0,86 mmol/L</span> — hipocalcemia grave. Alvo em CVVHDF com citrato: Ca iônico ≥ 1,0 mmol/L. Ca pós-filtro 0,21 — reposição de CaCl₂ insuficiente → aumentar taxa de reposição. Risco de hipocalcemia sintomática (tetania, arritmia, broncoespasmo).</span></div>
+        <div class="il"><span class="bul r">⚠</span><span><span class="bold">PCR 237,9 mg/L</span> — elevado, em ascensão. Etiologia: sepse bacteriana? viral (adenovírus)? fúngica em progressão? Aguardar HMC 12/05 e pesquisa adenovírus/BK vírus.</span></div>
+      </div>
+      <div class="g2">
+        <div>
+          <div class="il"><span class="bul g">✓</span><span><span class="bold">Renal (CVVHDF):</span> Cr 0,41 | TFG > 90 | Ur 31 — bom clareamento com CVVHDF</span></div>
+          <div class="il"><span class="bul y">!</span><span><span class="bold">Hemograma (13/05):</span> Hb 7,2 g/dL | Leuco 16.810 | Neut 7.910 (47%) + metamielócitos + mielócitos | Plaq 59.000 | RDW 23,3%</span></div>
+          <div class="il"><span class="bul y">!</span><span><span class="bold">Gasometria venosa:</span> pH 7,35 | HCO₃ 19 | BE −5,7 | pO₂v 54 — acidose metabólica leve (melhora com CVVHDF)</span></div>
+          <div class="il"><span class="bul y">!</span><span><span class="bold">Coagulação:</span> INR 1,3 | TTPa 1,35 | Fibrinogênio 622 mg/dL (elevado — fase aguda)</span></div>
+        </div>
+        <div>
+          <div class="il"><span class="bul y">!</span><span><span class="bold">P 2,1 mg/dL</span> (hipofosfatemia leve) | Mg 2,0 | K 4,1–4,2 | Na 136–138 | Ca iônico 0,86</span></div>
+          <div class="il"><span class="bul g">✓</span><span><span class="bold">IgM sérico:</span> 4470 (10/03) → 3313 (26/03) → 3856 (16/04) → IgG 357 → IGIV 400mg/kg em 14/05</span></div>
+          <div class="il"><span class="bul b">•</span><span><span class="bold">LBA 07/05:</span> Adenovírus positivo | Cultura negativa | PCP neg | Histoplasmose neg | Toxo neg | Fungo parcial negativo</span></div>
+          <div class="il"><span class="bul b">•</span><span><span class="bold">HMC 12/05:</span> Pendente (parcial) | Galactomanana e BK vírus/adenovírus sangue/urina — pendentes</span></div>
+        </div>
+      </div>
+
+      <div class="st">Antimicrobianos em curso <span class="bundle">✔ ANTIFÚNGICO DUPLO</span></div>
+      <span class="atb-pill">🍄 Ambisome (L-AmB) D37/43 — DI 07/04 (reinício)</span>
+      <span class="atb-pill">🍄 Voriconazol 200mg 12/12h D17/29 — DI 31/03</span>
+      <span class="atb-pill">Meropenem 2g 8/8h D17/20</span>
+      <span class="atb-pill">Teicoplanina D17/20</span>
+      <span class="atb-pill">Amicacina 1250mg/dia D9</span>
+      <span class="atb-pill">Bactrim 3x/sem D16 (profilaxia)</span>
+      <span class="atb-pill">Aciclovir (profilaxia)</span>
+      <div style="margin-top:6px; font-size:12px; color:var(--color-text-secondary);">Infecto sugere suspender amicacina e programar suspensão de Meropenem+Teicoplanina se melhora clínica mantida (febre pode ser viral — adenovírus). Aguardar HMC 12/05.</div>
+
+      <div class="st">Profilaxias <span class="bundle">✔ BUNDLES</span></div>
+      <div class="il"><span class="bul r">!</span><span><span class="bold">TEV:</span> Sem profilaxia medicamentosa (plaquetopenia 59.000). Meias compressivas/CPI em uso.</span></div>
+      <div class="il"><span class="bul g">✓</span><span><span class="bold">PAV:</span> Protocolos ativos | Extubado hoje — monitorar sinais de falha de extubação</span></div>
+      <div class="il"><span class="bul g">✓</span><span><span class="bold">LPP:</span> Estágio 2 sacral — Aquacel + multicamadas | Reavaliação estomaterapeuta 15/05</span></div>
+      <div class="il"><span class="bul y">!</span><span><span class="bold">Vitamina K:</span> 10mg EV D2/3 — manter hoje (D3)</span></div>
+      <div class="il"><span class="bul y">!</span><span><span class="bold">Plaquetas:</span> Manter > 50.000. Transfundir se < 50.000 + sangramento ativo. Transfusão de 1 CHFI programada hoje.</span></div>
+      <div class="il"><span class="bul y">!</span><span><span class="bold">Ácido tranexâmico 1g 8/8h</span> — em curso (hematúria + plaquetopenia). Monitorar.</span></div>
+      <div class="il"><span class="bul g">✓</span><span>BCA | Pantoprazol | Isolamento (COVID + imunossuprimido)</span></div>
+
+      <div class="st">Condutas / Pendências — Bundles UTI / Aspergilose / CVVHDF / MW</div>
+      <div class="conduta">
+        <div class="il"><span class="bul r">★</span><span><span class="bold">[HIPOCALCEMIA GRAVE EM CVVHDF]</span> Ca iônico 0,86 mmol/L (alvo ≥ 1,0). Ca pós-filtro 0,21 — reposição de CaCl₂ 15 mL/h insuficiente. Aumentar para 20–25 mL/h e controlar Ca iônico em 2h. Risco de arritmia e tetania. Acionar nefrologia (Eq. Irene Noronha) para ajuste do protocolo de citrato.</span></div>
+        <div class="il"><span class="bul r">★</span><span><span class="bold">[PÓS-EXTUBAÇÃO — Vigilância]</span> Extubado hoje após PSV 10/PEEP 7. CN O₂ 2 L/min, SpO₂ 96–98%. Monitorar sinais de falha de extubação nas próximas 6h: FR > 35, SpO₂ < 92%, uso de musculatura acessória, agitação, estridor. Critério de reintubação: deterioração clínica. Fisioterapia: higiene brônquica, tosse assistida, mobilização precoce.</span></div>
+        <div class="il"><span class="bul r">★</span><span><span class="bold">[FEBRE + PCR 237,9 — Investigação]</span> Etiologias em investigação: (1) Adenovírus — LBA positivo, PCR sangue/urina pendente; (2) BK vírus — hematúria + imunossuprimido (pendente); (3) Bacteriana — HMC 12/05 parcial, aguardar resultado; (4) Fúngica em progressão — manter antifúngico duplo. Conforme infecto (Dr. João Prats): avaliar suspender amicacina se melhora; discutir suspensão de Mero+Teico após HMC negativas confirmadas. Nova HMC se pico febril hoje.</span></div>
+        <div class="il"><span class="bul r">★</span><span><span class="bold">[ASPERGILOSE CEREBRAL — Antifúngico duplo]</span> L-AmB + Voriconazol ativos. NS voriconazol 2,1 (05/04) — adequado. Aguardar autorização de isavuconazol pelo convênio para possível mudança de estratégia (monoterapia de menor toxicidade). Atenção: Zanubrutinibe suspenso desde 07/04 por piora fúngica — MW em progressão durante pausa.</span></div>
+        <div class="il"><span class="bul r">★</span><span><span class="bold">[HEMATÚRIA / BK VÍRUS]</span> Hematúria franca em irrigação vesical contínua. Suspeita de cistite hemorrágica por BK vírus ou adenovírus (ambos imunossuprimido-relacionados). Aguardar PCR BK virus + adenovírus em sangue e urina. Manter ácido tranexâmico. Monitorar Hb (7,2 em 13/05). Transfundir 1 CHFI se Hb < 7,0 ou sintomático.</span></div>
+        <div class="il"><span class="bul y">!</span><span><span class="bold">[MW — Bortezomibe D16]</span> Dose reduzida para 0,7 mg/m² (D15+) para redução de toxicidade neurológica. IgM: 4470 → 3313 → 3856 — tendência de resposta parcial. IGIV 400 mg/kg recebida em 14/05 (IgG sérica 357 — hipogamaglobulinemia grave). Zanubrutinibe: discutir reintrodução após controle infeccioso. Plasmaférese prévia: IgM pós-PEX 2989 (28/04 → 04/05).</span></div>
+        <div class="il"><span class="bul y">!</span><span><span class="bold">[CVVHDF — Parâmetros]</span> Ajustar UF para 200 mL/h conforme nefrologia. Troca de kit prevista em 16/05. Monitorar P, Ca, HCO₃ e K a cada 6h. Diurese 850 mL — função renal em recuperação parcial.</span></div>
+        <div class="il"><span class="bul y">!</span><span><span class="bold">[COAGULOPATIA]</span> INR 1,3 + plaquetas 59.000. Vitamina K D3/3 hoje. Se INR > 1,5 + sangramento ativo: PFC 15 mL/kg. Se fibrinogênio < 100: Haemocomplettan 2g. Manter plaquetas > 50.000 (transfundir se necessário).</span></div>
+        <div class="il"><span class="bul y">!</span><span><span class="bold">[NEUROLÓGICO]</span> Glasgow 14T pós-extubação. Anticonvulsivantes: Keppra + Clobazam. Sem crises convulsivas relatadas. Precedex em desmame. Neurologista Dr. Alex Baeta acompanhando. NCR Dr. Matheus Reghin — sem nova abordagem programada no momento.</span></div>
+        <div class="il"><span class="bul y">!</span><span><span class="bold">[TROMBOFLEBITE MSD]</span> Doppler 05/05: tromboflebite em veia cefálica. Sem TVP profunda. PICC MSD em uso — monitorar. Sem anticoagulação por plaquetopenia (> risco de sangramento que de trombose no momento).</span></div>
+        <div class="il"><span class="bul b">•</span><span><span class="bold">[CONSTIPAÇÃO]</span> Sem evacuação há vários dias. NPT sem fibras. Prescrever lactulose ou polietilenoglicol. Considerar enema se necessário.</span></div>
+        <div class="il"><span class="bul b">•</span><span><span class="bold">[NUTRIÇÃO]</span> NPT 75 mL/h em metas (1.820 kcal + 155g ptn). Citrato contribui com ~345 kcal/dia. Fonoaudiologia: VO contraindicada desde 04/05 — reavaliar agora que extubado, com Glasgow 14T.</span></div>
+        <div class="il"><span class="bul b">•</span><span><span class="bold">[HIPOTIREOIDISMO]</span> Puran T4 150 mcg/dia — manter. TSH não disponível nos exames atuais — solicitar se suspeita de hipotireoidismo descompensado contribuindo para letargia.</span></div>
+        <div class="il"><span class="bul b">•</span><span><span class="bold">[LPP SACRAL ESTÁGIO 2]</span> Aquacel + multicamadas. Reavaliação estomaterapeuta Juliana prevista para hoje. Imobilismo total + hipoalbuminemia = risco muito elevado de progressão.</span></div>
+      </div>
+
+      <div class="st">Intercorrências</div>
+      <div class="inter">
+        <div class="il"><span class="bul r">⚠</span><span><span class="bold">Extubação hoje</span> — pós-extubação imediata, monitorar falha nas próximas 6h.</span></div>
+        <div class="il"><span class="bul r">⚠</span><span><span class="bold">Hipocalcemia grave (Ca 0,86) em CVVHDF com citrato</span> — ajuste urgente de reposição de CaCl₂.</span></div>
+        <div class="il"><span class="bul r">⚠</span><span><span class="bold">PCR 237,9 mg/L + febre</span> — HMC 12/05 pendente. Nova HMC se pico febril hoje. Adenovírus positivo no LBA — investigação sistêmica em andamento.</span></div>
+        <div class="il"><span class="bul y">!</span><span>Hematúria franca — irrigação contínua. BK vírus/adenovírus urina pendentes.</span></div>
+        <div class="il"><span class="bul y">!</span><span>Plaquetas 59.000 + INR 1,3 — sem profilaxia TEV medicamentosa. 1 CHFI programado hoje.</span></div>
+        <div class="il"><span class="bul y">!</span><span>Noradrenalina em desmame (0,05 mcg/kg/min) — PAM 63–83 mmHg. Monitorar meta PAM ≥ 65.</span></div>
+        <div class="il"><span class="bul y">!</span><span>Constipação — sem evacuação há vários dias. Prescrever laxativo.</span></div>
+      </div>
+
+      <div class="st">Impressão clínica — progressão do caso</div>
+      <div class="impressao">
+        <span class="bold">Progressão:</span> Paciente de 55 anos com MW recaída em tratamento com Bortezomibe, internado há 112 dias após HSD crônico agudizado D com osteomielite de calota e aspergilose cerebral (Aspergillus fumigatus confirmado em biópsia). Múltiplas abordagens cirúrgicas cranianas (7 procedimentos), embolizações e CVVHDF por IRA estágio 3 pós-AnfoB. COVID-19 em 03/04 (resolvido). Adenovírus positivo no LBA. Sepse recorrente com esquemas antibióticos sucessivos. Extubado hoje após IOT em 09/04.
+        <br><br>
+        <span class="bold">Situação atual (15/05):</span> <span style="font-weight:500;color:#A32D2D;">Extubação hoje — evento positivo crítico para monitoramento.</span> Glasgow 14T, vigil. Nora em desmame (0,05 mcg/kg/min). CVVHDF ativa — hipocalcemia grave por citrato exige ajuste urgente. PCR muito elevado (237,9) com febre — etiologia indefinida (viral vs. bacteriana vs. fúngica). HMC 12/05 pendente. Hematúria franca — suspeita de cistite hemorrágica por BK/adenovírus. Trombocitopenia persistente sem profilaxia TEV. Prognóstico reservado — 112 dias de internação com doença de base em atividade.
+      </div>
+
+      <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:12px; font-size:12px; color:var(--color-text-secondary); border-top: 0.5px solid var(--color-border-tertiary); padding-top:10px;">
+        <span><strong>Internação:</strong> 112 dias</span>
+        <span>•</span>
+        <span><strong>CVVHDF:</strong> DI 07/05 (reinício) | Kit: troca 16/05</span>
+        <span>•</span>
+        <span><strong>Antifúngico:</strong> L-AmB D37 + Voriconazol D17</span>
+        <span>•</span>
+        <span><strong>Plaq:</strong> 59.000 — sem profilaxia TEV medic.</span>
+        <span>•</span>
+        <span><strong>Isolamento:</strong> COVID + imunossuprimido</span>
+        <span>•</span>
+        <span><strong>Protocolos:</strong> PAV | BCA | LP | TEV mecânico | Queda</span>
+      </div>
+
+    </div>
+  </div>
+</div>
