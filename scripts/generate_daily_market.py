@@ -143,16 +143,40 @@ oil: [ex: US$ 94]
 """
 
 # ── HTML template ─────────────────────────────────────────────────────────────
+def clean_content(raw: str) -> str:
+    """Remove thinking text, orphaned citation periods and HTML comments."""
+    lines = raw.splitlines()
+    cleaned = []
+    # Prefixes that indicate Claude thinking/status lines (not report content)
+    skip_prefixes = (
+        "Vou ", "Tenho ", "Aguarde", "Preciso ", "Deixa eu ",
+        "Buscando", "Encontrei", "Já tenho", "Com base",
+    )
+    for line in lines:
+        stripped = line.strip()
+        # Drop thinking lines
+        if any(stripped.startswith(p) for p in skip_prefixes):
+            continue
+        # Drop lines that are just a lone period (citation artifact)
+        if stripped in (".", ". ", ""):
+            if cleaned and cleaned[-1].strip() == "":
+                continue  # avoid double blank lines
+        cleaned.append(line)
+
+    result = "\n".join(cleaned)
+    # Remove HTML comments (<!-- ... -->)
+    result = re.sub(r"<!--.*?-->", "", result, flags=re.DOTALL)
+    # Collapse 3+ consecutive blank lines into 2
+    result = re.sub(r"\n{3,}", "\n\n", result)
+    return result.strip()
+
+
 def wrap_in_html(content: str, date_br: str, weekday: str) -> str:
+    clean = clean_content(content)
     return f"""<!-- REPORT:{DATE_STR} -->
 <!-- GENERATED:{datetime.datetime.utcnow().isoformat()}Z -->
-<div class="report-section">
-  <div style="display:flex;align-items:center;gap:10px;margin-bottom:4px">
-    <span class="section-chip">📅 {date_br} — {weekday.capitalize()}</span>
-  </div>
-</div>
 
-{content}
+{clean}
 
 <div class="sources-footer">
   <h4>Fontes consultadas</h4>
@@ -165,7 +189,7 @@ def wrap_in_html(content: str, date_br: str, weekday: str) -> str:
     <a href="https://www.fundamentus.com.br" target="_blank">Fundamentus</a>
     <a href="https://www.b3.com.br" target="_blank">B3</a>
   </div>
-  <p style="margin-top:12px;font-size:0.75rem;color:var(--muted)">
+  <p style="margin-top:12px;font-size:0.75rem;color:var(--sub)">
     Relatório gerado automaticamente em {datetime.datetime.now().strftime("%d/%m/%Y às %H:%M")} (BRT).
     Caráter educacional e informativo. Não constitui recomendação formal de investimento.
   </p>
