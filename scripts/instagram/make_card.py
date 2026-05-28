@@ -170,9 +170,16 @@ def make_card(topic: dict, output_path: str, handle: str = "@fernandomagalhaesco
 
 
 if __name__ == "__main__":
-    topics = json.loads((SCRIPT_DIR / "topics.json").read_text())
-    topic_id = sys.argv[1] if len(sys.argv) > 1 else "sepse"
+    from datetime import date
+    topics   = json.loads((SCRIPT_DIR / "topics.json").read_text())
+    topic_id = sys.argv[1] if len(sys.argv) > 1 else "auto"
     output   = sys.argv[2] if len(sys.argv) > 2 else "/tmp/instagram-card.png"
-    topic = next((t for t in topics if t["id"] == topic_id), topics[0])
+
+    if topic_id in ("auto", ""):
+        day_of_year = date.today().timetuple().tm_yday
+        topic = topics[day_of_year % len(topics)]
+    else:
+        topic = next((t for t in topics if t["id"] == topic_id), topics[0])
+
     make_card(topic, output)
     print(output)
