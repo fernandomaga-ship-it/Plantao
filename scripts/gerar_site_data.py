@@ -15,6 +15,7 @@ import re
 import sys
 from datetime import datetime
 from pathlib import Path
+from urllib.parse import quote as url_quote
 
 # ── Configuração ──────────────────────────────────────────────────────────────
 REPO_ROOT = Path(__file__).resolve().parent.parent
@@ -115,10 +116,14 @@ def page_data(file: Path) -> dict:
     mtime = datetime.fromtimestamp(file.stat().st_mtime).strftime("%Y-%m-%d")
     summary = text[:168] if text else "Arquivo HTML publicado no GitHub Pages."
 
+    # Percent-encode o href para funcionar em URLs (ex: ã → %C3%A3)
+    # Preserva / e . como separadores de caminho
+    href = "/".join(url_quote(part, safe="") for part in rel.split("/"))
+
     return {
         "title": title,
         "path": rel,
-        "href": rel,             # pode-se usar urllib.parse.quote para espaços futuros
+        "href": href,
         "folder": folder,
         "category": category,
         "categoryLabel": CATEGORY_LABELS.get(category, "Outros"),

@@ -39,8 +39,8 @@ window.PLANTAO_DATA = {
     },
     {
       "title": "Leito 2815 — Gilson Pereira Guimarães",
-      "path": "plantoes/8b/2026-05-28/leito_2815_gilson_pereira_guimarães.html",
-      "href": "plantoes/8b/2026-05-28/leito_2815_gilson_pereira_guimarães.html",
+      "path": "plantoes/8b/2026-05-28/leito_2815_gilson_pereira_guimaraes.html",
+      "href": "plantoes/8b/2026-05-28/leito_2815_gilson_pereira_guimaraes.html",
       "folder": "plantoes/8b/2026-05-28",
       "category": "uti",
       "categoryLabel": "UTI",
@@ -484,7 +484,7 @@ window.PLANTAO_DATA = {
     {
       "title": "1600-16 | Lydia Bocater — Nova Admissão",
       "path": "plantoes/bp/leito 1600 16b lydia.html",
-      "href": "plantoes/bp/leito 1600 16b lydia.html",
+      "href": "plantoes/bp/leito%201600%2016b%20lydia.html",
       "folder": "plantoes/bp",
       "category": "uti",
       "categoryLabel": "UTI",
