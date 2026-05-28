@@ -1,373 +1,509 @@
 window.PLANTAO_DATA = {
-  "generatedAt": "2026-05-26",
+  "generatedAt": "2026-05-28",
   "pages": [
-
-    // ── UTI BP · Plantão 25/05/2026 ──────────────────────────────────────
     {
-      "title": "Plantão BP — 25/05/2026 (Índice)",
-      "path": "plantoes/bp/2026-05-25/index_plantao_bp.html",
-      "href": "plantoes/bp/2026-05-25/index_plantao_bp.html",
-      "folder": "plantoes/bp/2026-05-25",
+      "title": "Leito 2812 — Maria Cristina Moreira Dias Chiavinato",
+      "path": "plantoes/8b/2026-05-28/leito_2812_maria_cristina_moreira_dias_chiavinato.html",
+      "href": "plantoes/8b/2026-05-28/leito_2812_maria_cristina_moreira_dias_chiavinato.html",
+      "folder": "plantoes/8b/2026-05-28",
       "category": "uti",
       "categoryLabel": "UTI",
-      "summary": "Índice geral do plantão UTI BP Paulista — 25/05/2026. Leitos 1610–1616.",
-      "shiftDate": "2026-05-25",
-      "shiftDateLabel": "25/05/2026",
-      "updated": "2026-05-25"
+      "summary": "Leito 2812 — Maria Cristina Moreira Dias Chiavinato 📋 Plantão BP — UTI 8B Data: 28/05/2026 &nbsp; | &nbsp; Arquivo individual do paciente Leito: 2812 Paciente: Maria Cr",
+      "updated": "2026-05-28",
+      "shiftDate": "2026-05-28",
+      "shiftDateLabel": "28/05/2026"
     },
     {
-      "title": "Leito 1610 — Paulo Santos Ribeiro",
+      "title": "Leito 2813 — Fernando de Camargo Gonzales",
+      "path": "plantoes/8b/2026-05-28/leito_2813_fernando_de_camargo_gonzales.html",
+      "href": "plantoes/8b/2026-05-28/leito_2813_fernando_de_camargo_gonzales.html",
+      "folder": "plantoes/8b/2026-05-28",
+      "category": "uti",
+      "categoryLabel": "UTI",
+      "summary": "Leito 2813 — Fernando de Camargo Gonzales 📋 Plantão BP — UTI 8B Data: 28/05/2026 &nbsp; | &nbsp; Arquivo individual do paciente Leito: 2813 Paciente: Fernando de Camarg",
+      "updated": "2026-05-28",
+      "shiftDate": "2026-05-28",
+      "shiftDateLabel": "28/05/2026"
+    },
+    {
+      "title": "Leito 2814 — Mayara Thayle Oliveira Ramos Brigatte",
+      "path": "plantoes/8b/2026-05-28/leito_2814_mayara_thayle_oliveira_ramos_brigatte.html",
+      "href": "plantoes/8b/2026-05-28/leito_2814_mayara_thayle_oliveira_ramos_brigatte.html",
+      "folder": "plantoes/8b/2026-05-28",
+      "category": "uti",
+      "categoryLabel": "UTI",
+      "summary": "Leito 2814 — Mayara Thayle Oliveira Ramos Brigatte 📋 Plantão BP — UTI 8B Data: 28/05/2026 &nbsp; | &nbsp; Arquivo individual do paciente Leito: 2814 Paciente: Mayara Th",
+      "updated": "2026-05-28",
+      "shiftDate": "2026-05-28",
+      "shiftDateLabel": "28/05/2026"
+    },
+    {
+      "title": "Leito 2815 — Gilson Pereira Guimarães",
+      "path": "plantoes/8b/2026-05-28/leito_2815_gilson_pereira_guimarães.html",
+      "href": "plantoes/8b/2026-05-28/leito_2815_gilson_pereira_guimarães.html",
+      "folder": "plantoes/8b/2026-05-28",
+      "category": "uti",
+      "categoryLabel": "UTI",
+      "summary": "Leito 2815 — Gilson Pereira Guimarães 📋 Plantão BP — UTI 8B Data: 28/05/2026 &nbsp; | &nbsp; Arquivo individual do paciente Leito: 2815 Paciente: Gilson Pereira Guimarã",
+      "updated": "2026-05-28",
+      "shiftDate": "2026-05-28",
+      "shiftDateLabel": "28/05/2026"
+    },
+    {
+      "title": "Leito 2816 — Christina da Silva Santos",
+      "path": "plantoes/8b/2026-05-28/leito_2816_christina_da_silva_santos.html",
+      "href": "plantoes/8b/2026-05-28/leito_2816_christina_da_silva_santos.html",
+      "folder": "plantoes/8b/2026-05-28",
+      "category": "uti",
+      "categoryLabel": "UTI",
+      "summary": "Leito 2816 — Christina da Silva Santos 📋 Plantão BP — UTI 8B Data: 28/05/2026 &nbsp; | &nbsp; Arquivo individual do paciente Leito: 2816 Paciente: Christina da Silva Sa",
+      "updated": "2026-05-28",
+      "shiftDate": "2026-05-28",
+      "shiftDateLabel": "28/05/2026"
+    },
+    {
+      "title": "Leito 2817 — Neder de Faria Debs",
+      "path": "plantoes/8b/2026-05-28/leito_2817_neder_de_faria_debs.html",
+      "href": "plantoes/8b/2026-05-28/leito_2817_neder_de_faria_debs.html",
+      "folder": "plantoes/8b/2026-05-28",
+      "category": "uti",
+      "categoryLabel": "UTI",
+      "summary": "Leito 2817 — Neder de Faria Debs 📋 Plantão BP — UTI 8B Data: 28/05/2026 &nbsp; | &nbsp; Arquivo individual do paciente Leito: 2817 Paciente: Neder de Faria Debs Idade: ",
+      "updated": "2026-05-28",
+      "shiftDate": "2026-05-28",
+      "shiftDateLabel": "28/05/2026"
+    },
+    {
+      "title": "Leito 2818 — Breno Antonio Ambrosio",
+      "path": "plantoes/8b/2026-05-28/leito_2818_breno_antonio_ambrosio.html",
+      "href": "plantoes/8b/2026-05-28/leito_2818_breno_antonio_ambrosio.html",
+      "folder": "plantoes/8b/2026-05-28",
+      "category": "uti",
+      "categoryLabel": "UTI",
+      "summary": "Leito 2818 — Breno Antonio Ambrosio 📋 Plantão BP — UTI 8B Data: 28/05/2026 &nbsp; | &nbsp; Arquivo individual do paciente Leito: 2818 Paciente: Breno Antonio Ambrosio I",
+      "updated": "2026-05-28",
+      "shiftDate": "2026-05-28",
+      "shiftDateLabel": "28/05/2026"
+    },
+    {
+      "title": "Leito 2820 — Ana Maria de Carvalho",
+      "path": "plantoes/8b/2026-05-28/leito_2820_ana_maria_de_carvalho.html",
+      "href": "plantoes/8b/2026-05-28/leito_2820_ana_maria_de_carvalho.html",
+      "folder": "plantoes/8b/2026-05-28",
+      "category": "uti",
+      "categoryLabel": "UTI",
+      "summary": "Leito 2820 — Ana Maria de Carvalho 📋 Plantão BP — UTI 8B Data: 28/05/2026 &nbsp; | &nbsp; Arquivo individual do paciente Leito: 2820 Paciente: Ana Maria de Carvalho Ida",
+      "updated": "2026-05-28",
+      "shiftDate": "2026-05-28",
+      "shiftDateLabel": "28/05/2026"
+    },
+    {
+      "title": "Leito 2821 — Erickson dos Santos",
+      "path": "plantoes/8b/2026-05-28/leito_2821_erickson_dos_santos.html",
+      "href": "plantoes/8b/2026-05-28/leito_2821_erickson_dos_santos.html",
+      "folder": "plantoes/8b/2026-05-28",
+      "category": "uti",
+      "categoryLabel": "UTI",
+      "summary": "Leito 2821 — Erickson dos Santos 📋 Plantão BP — UTI 8B Data: 28/05/2026 &nbsp; | &nbsp; Arquivo individual do paciente Leito: 2821 Paciente: Erickson dos Santos Idade: ",
+      "updated": "2026-05-28",
+      "shiftDate": "2026-05-28",
+      "shiftDateLabel": "28/05/2026"
+    },
+    {
+      "title": "Leito 2822 — Adalberto Aparecido Derobio",
+      "path": "plantoes/8b/2026-05-28/leito_2822_adalberto_aparecido_derobio.html",
+      "href": "plantoes/8b/2026-05-28/leito_2822_adalberto_aparecido_derobio.html",
+      "folder": "plantoes/8b/2026-05-28",
+      "category": "uti",
+      "categoryLabel": "UTI",
+      "summary": "Leito 2822 — Adalberto Aparecido Derobio 📋 Plantão BP — UTI 8B Data: 28/05/2026 &nbsp; | &nbsp; Arquivo individual do paciente Leito: 2822 Paciente: Adalberto Aparecido",
+      "updated": "2026-05-28",
+      "shiftDate": "2026-05-28",
+      "shiftDateLabel": "28/05/2026"
+    },
+    {
+      "title": "Índice — UTI 8B 28/05/2026",
+      "path": "plantoes/8b/2026-05-28/index_UTI_8B_28-05-2026.html",
+      "href": "plantoes/8b/2026-05-28/index_UTI_8B_28-05-2026.html",
+      "folder": "plantoes/8b/2026-05-28",
+      "category": "uti",
+      "categoryLabel": "UTI",
+      "summary": "Índice — UTI 8B 28/05/2026 📋 Plantão BP — UTI 8B Índice dos arquivos HTML individuais — Data: 28/05/2026 Pacientes Leito 2812 — Maria Cristina Moreira Dias Chiavinato L",
+      "updated": "2026-05-28",
+      "shiftDate": "2026-05-28",
+      "shiftDateLabel": "28/05/2026"
+    },
+    {
+      "title": "Leito 1610 — Paulo Santos Ribeiro, 60 anos",
       "path": "plantoes/bp/2026-05-25/leito_1610_paulo-santos-ribeiro.html",
       "href": "plantoes/bp/2026-05-25/leito_1610_paulo-santos-ribeiro.html",
       "folder": "plantoes/bp/2026-05-25",
       "category": "uti",
       "categoryLabel": "UTI",
-      "summary": "Paulo Santos Ribeiro, 60 anos. Leito 1610 — UTI BP Paulista · 25/05/2026.",
+      "summary": "Leito 1610 — Paulo Santos Ribeiro, 60 anos 📋 Plantão BP — Leito 1610 Paulo Santos Ribeiro , 60 anos Eq. Responsável: Cardiologia — Dr. Marcos Vinícius / Hemodinâmica — ",
+      "updated": "2026-05-25",
       "shiftDate": "2026-05-25",
-      "shiftDateLabel": "25/05/2026",
-      "updated": "2026-05-25"
+      "shiftDateLabel": "25/05/2026"
     },
     {
-      "title": "Leito 1611 — Rafael Padilha Rosa",
+      "title": "Leito 1611 — Rafael Padilha Rosa, 34 anos",
       "path": "plantoes/bp/2026-05-25/leito_1611_rafael-padilha-rosa.html",
       "href": "plantoes/bp/2026-05-25/leito_1611_rafael-padilha-rosa.html",
       "folder": "plantoes/bp/2026-05-25",
       "category": "uti",
       "categoryLabel": "UTI",
-      "summary": "Rafael Padilha Rosa, 34 anos. Leito 1611 — UTI BP Paulista · 25/05/2026.",
+      "summary": "Leito 1611 — Rafael Padilha Rosa, 34 anos 📋 Plantão BP — Leito 1611 Rafael Padilha Rosa , 34 anos Eq. Responsável: Nefrologia — Dra. Sibeli / Equipe Irene Noronha Gerad",
+      "updated": "2026-05-25",
       "shiftDate": "2026-05-25",
-      "shiftDateLabel": "25/05/2026",
-      "updated": "2026-05-25"
+      "shiftDateLabel": "25/05/2026"
     },
     {
-      "title": "Leito 1612 — Antônio Maria Garcês",
+      "title": "Leito 1612 — Antônio Maria Garcês, 67 anos",
       "path": "plantoes/bp/2026-05-25/leito_1612_antonio-maria-garces.html",
       "href": "plantoes/bp/2026-05-25/leito_1612_antonio-maria-garces.html",
       "folder": "plantoes/bp/2026-05-25",
       "category": "uti",
       "categoryLabel": "UTI",
-      "summary": "Antônio Maria Garcês, 67 anos. Leito 1612 — UTI BP Paulista · 25/05/2026.",
+      "summary": "Leito 1612 — Antônio Maria Garcês, 67 anos 📋 Plantão BP — Leito 1612 Antônio Maria Garcês , 67 anos Eq. Responsável: Cardiologia — Dr. Silas dos Santos Galvão Gerado em",
+      "updated": "2026-05-25",
       "shiftDate": "2026-05-25",
-      "shiftDateLabel": "25/05/2026",
-      "updated": "2026-05-25"
+      "shiftDateLabel": "25/05/2026"
     },
     {
-      "title": "Leito 1614 — Juarez Ribeiro",
+      "title": "Leito 1614 — Juarez Ribeiro, 59 anos",
       "path": "plantoes/bp/2026-05-25/leito_1614_juarez-ribeiro.html",
       "href": "plantoes/bp/2026-05-25/leito_1614_juarez-ribeiro.html",
       "folder": "plantoes/bp/2026-05-25",
       "category": "uti",
       "categoryLabel": "UTI",
-      "summary": "Juarez Ribeiro, 59 anos. Leito 1614 — UTI BP Paulista · 25/05/2026.",
+      "summary": "Leito 1614 — Juarez Ribeiro, 59 anos 📋 Plantão BP — Leito 1614 Juarez Ribeiro , 59 anos Eq. Responsável: Angiologia/Cirurgia Vascular — Dr. Caio César Focassio; Equipe ",
+      "updated": "2026-05-25",
       "shiftDate": "2026-05-25",
-      "shiftDateLabel": "25/05/2026",
-      "updated": "2026-05-25"
+      "shiftDateLabel": "25/05/2026"
     },
     {
-      "title": "Leito 1616 — Wilmore da Silva Oliveira",
+      "title": "Leito 1616 — Wilmore da Silva Oliveira, 37 anos",
       "path": "plantoes/bp/2026-05-25/leito_1616_wilmore-da-silva-oliveira.html",
       "href": "plantoes/bp/2026-05-25/leito_1616_wilmore-da-silva-oliveira.html",
       "folder": "plantoes/bp/2026-05-25",
       "category": "uti",
       "categoryLabel": "UTI",
-      "summary": "Wilmore da Silva Oliveira, 37 anos. Leito 1616 — UTI BP Paulista · 25/05/2026.",
+      "summary": "Leito 1616 — Wilmore da Silva Oliveira, 37 anos 📋 Plantão BP — Leito 1616 Wilmore da Silva Oliveira , 37 anos Eq. Responsável: Cardiologia — Dr. Fernando Faglioni Ribas",
+      "updated": "2026-05-25",
       "shiftDate": "2026-05-25",
-      "shiftDateLabel": "25/05/2026",
-      "updated": "2026-05-25"
+      "shiftDateLabel": "25/05/2026"
     },
-
-    // ── UTI BP · Plantão 18/05/2026 ──────────────────────────────────────
     {
-      "title": "Plantão BP — 18/05/2026 (Resumo)",
-      "path": "plantoes/bp/2026-05-18/plantao-bp-18-05-2026.html",
-      "href": "plantoes/bp/2026-05-18/plantao-bp-18-05-2026.html",
-      "folder": "plantoes/bp/2026-05-18",
+      "title": "Plantão BP — Índice dos Pacientes",
+      "path": "plantoes/bp/2026-05-25/index_plantao_bp.html",
+      "href": "plantoes/bp/2026-05-25/index_plantao_bp.html",
+      "folder": "plantoes/bp/2026-05-25",
       "category": "uti",
       "categoryLabel": "UTI",
-      "summary": "Passagem de plantão UTI BP Paulista — 18 de maio de 2026. Cardio 1600-10 a 1600-17 · Neuro 8A/8B.",
-      "shiftDate": "2026-05-18",
-      "shiftDateLabel": "18/05/2026",
-      "updated": "2026-05-18"
+      "summary": "Plantão BP — Índice dos Pacientes 📋 Plantão BP — Índice dos Pacientes Gerado em: 25/05/2026 09:26 Arquivos individuais em HTML para consulta e impressão. 5 pacientes Le",
+      "updated": "2026-05-25",
+      "shiftDate": "2026-05-25",
+      "shiftDateLabel": "25/05/2026"
     },
     {
-      "title": "ISOL 02 — Sandra Petrassi Cardoso",
+      "title": "Isol02 Sandra",
       "path": "plantoes/bp/2026-05-18/isol02-sandra.html",
       "href": "plantoes/bp/2026-05-18/isol02-sandra.html",
       "folder": "plantoes/bp/2026-05-18",
       "category": "uti",
       "categoryLabel": "UTI",
-      "summary": "Sandra Petrassi Cardoso — Isolamento. UTI BP Paulista · 18/05/2026.",
+      "summary": "ISOL 02 Sandra Petrassi Cardoso 63 anos · Feminino · DIH: 05/05/2026 · 11 dias · PO 9 RM (06/05) — ATIE-SA / PVS-MG | CEC 41' / Pinça 38' Cardiologia — Dr. Fernando Fag",
+      "updated": "2026-05-18",
       "shiftDate": "2026-05-18",
-      "shiftDateLabel": "18/05/2026",
-      "updated": "2026-05-18"
+      "shiftDateLabel": "18/05/2026"
     },
     {
-      "title": "ISOL 03 — Marcos Bortoluzzi",
+      "title": "Isol03 Marcos",
       "path": "plantoes/bp/2026-05-18/isol03-marcos.html",
       "href": "plantoes/bp/2026-05-18/isol03-marcos.html",
       "folder": "plantoes/bp/2026-05-18",
       "category": "uti",
       "categoryLabel": "UTI",
-      "summary": "Marcos Bortoluzzi — Isolamento COVID + Imunossuprimido. UTI BP Paulista · 18/05/2026.",
+      "summary": "ISOL 03 Marcos Bortoluzzi ⚠ ISOLAMENTO — COVID + Imunossuprimido 55 anos · Masculino · DIH: 24/01/2026 · 112 dias de internação · PO 8 (Craniectomia + drenagem abscesso",
+      "updated": "2026-05-18",
       "shiftDate": "2026-05-18",
-      "shiftDateLabel": "18/05/2026",
-      "updated": "2026-05-18"
+      "shiftDateLabel": "18/05/2026"
     },
     {
-      "title": "Leito 1600-11 — Luis Carlos da Silva",
+      "title": "Leito 1600 11",
       "path": "plantoes/bp/2026-05-18/leito-1600-11.html",
       "href": "plantoes/bp/2026-05-18/leito-1600-11.html",
       "folder": "plantoes/bp/2026-05-18",
       "category": "uti",
       "categoryLabel": "UTI",
-      "summary": "Luis Carlos da Silva. Leito 1600-11 — UTI BP Paulista · 18/05/2026.",
+      "summary": "Leito 1600-11 — Luis Carlos da Silva — Plantão 18/05/2026 Leito 1600-11 Luis Carlos da Silva 68 anos · Masculino · DIH: 07/05/2026 · PO 7 (ATC DA) · Internação: 9 dias ",
+      "updated": "2026-05-18",
       "shiftDate": "2026-05-18",
-      "shiftDateLabel": "18/05/2026",
-      "updated": "2026-05-18"
+      "shiftDateLabel": "18/05/2026"
     },
     {
-      "title": "Leito 1600-12 — Amilton Soette",
+      "title": "Leito 1600 12",
       "path": "plantoes/bp/2026-05-18/leito-1600-12.html",
       "href": "plantoes/bp/2026-05-18/leito-1600-12.html",
       "folder": "plantoes/bp/2026-05-18",
       "category": "uti",
       "categoryLabel": "UTI",
-      "summary": "Amilton Soette, 55 anos. Leito 1600-12 — UTI BP Paulista · 18/05/2026.",
+      "summary": "Leito 1600-12 — Amilton Soette — Plantão 18/05/2026 Leito 1600-12 Amilton Soette 55 anos · Masculino · DIH: 23/04/2026 · PO 6 (Colectomia Direita Estendida — 09/05) · I",
+      "updated": "2026-05-18",
       "shiftDate": "2026-05-18",
-      "shiftDateLabel": "18/05/2026",
-      "updated": "2026-05-18"
+      "shiftDateLabel": "18/05/2026"
     },
     {
-      "title": "Leito 1600-13 — Débora Flor da Silva",
+      "title": "Leito 1600 13",
       "path": "plantoes/bp/2026-05-18/leito-1600-13.html",
       "href": "plantoes/bp/2026-05-18/leito-1600-13.html",
       "folder": "plantoes/bp/2026-05-18",
       "category": "uti",
       "categoryLabel": "UTI",
-      "summary": "Débora Flor da Silva — Cuidados Paliativos. Leito 1600-13 — UTI BP Paulista · 18/05/2026.",
+      "summary": "Leito 1600-13 Débora Flor da Silva 🕊 CUIDADOS PALIATIVOS — PAC ATIVO 50 anos · Feminino · DIH: 14/03/2026 · 63 dias de internação · PO 4 Nefrologia — Dr. João Egídio Ro",
+      "updated": "2026-05-18",
       "shiftDate": "2026-05-18",
-      "shiftDateLabel": "18/05/2026",
-      "updated": "2026-05-18"
+      "shiftDateLabel": "18/05/2026"
     },
     {
-      "title": "Leito 1600-14 — Juarez Ribeiro de Roma",
+      "title": "Leito 1600 13 Copia",
+      "path": "plantoes/bp/2026-05-18/leito-1600-13-copia.html",
+      "href": "plantoes/bp/2026-05-18/leito-1600-13-copia.html",
+      "folder": "plantoes/bp/2026-05-18",
+      "category": "uti",
+      "categoryLabel": "UTI",
+      "summary": "Leito 1600-13 Débora Flor da Silva 🕊 CUIDADOS PALIATIVOS — PAC ATIVO 50 anos · Feminino · DIH: 14/03/2026 · 63 dias de internação · PO 4 Nefrologia — Dr. João Egídio Ro",
+      "updated": "2026-05-18",
+      "shiftDate": "2026-05-18",
+      "shiftDateLabel": "18/05/2026"
+    },
+    {
+      "title": "Leito 1600 14",
       "path": "plantoes/bp/2026-05-18/leito-1600-14.html",
       "href": "plantoes/bp/2026-05-18/leito-1600-14.html",
       "folder": "plantoes/bp/2026-05-18",
       "category": "uti",
       "categoryLabel": "UTI",
-      "summary": "Juarez Ribeiro de Roma, 59 anos. Leito 1600-14 — UTI BP Paulista · 18/05/2026.",
+      "summary": "Leito 1600-14 Juarez Ribeiro de Roma 59 anos · Masculino · DIH: 12/05/2026 · POI Trombectomia FAV PTFE MSE (15/05) · 3 dias de internação Angiologia/Cirurgia Vascular —",
+      "updated": "2026-05-18",
       "shiftDate": "2026-05-18",
-      "shiftDateLabel": "18/05/2026",
-      "updated": "2026-05-18"
+      "shiftDateLabel": "18/05/2026"
     },
     {
-      "title": "Leito 1600-15 — Paulo Celso Lavieri Gomes",
+      "title": "Leito 1600 15",
       "path": "plantoes/bp/2026-05-18/leito-1600-15.html",
       "href": "plantoes/bp/2026-05-18/leito-1600-15.html",
       "folder": "plantoes/bp/2026-05-18",
       "category": "uti",
       "categoryLabel": "UTI",
-      "summary": "Paulo Celso Lavieri Gomes — Cuidados Paliativos. Leito 1600-15 — UTI BP Paulista · 18/05/2026.",
+      "summary": "Leito 1600-15 Paulo Celso Lavieri Gomes 🕊 Cuidados Paliativos — PAC em construção 77 anos · Masculino · DIH: 19/03/2026 · 58 dias · PO 24 (Cistoprostatectomia Radical 2",
+      "updated": "2026-05-18",
       "shiftDate": "2026-05-18",
-      "shiftDateLabel": "18/05/2026",
-      "updated": "2026-05-18"
+      "shiftDateLabel": "18/05/2026"
     },
     {
-      "title": "Leito 1600-16 — Gustavo de Souza Schmidt Gonçalves",
+      "title": "Leito 1600 16",
       "path": "plantoes/bp/2026-05-18/leito-1600-16.html",
       "href": "plantoes/bp/2026-05-18/leito-1600-16.html",
       "folder": "plantoes/bp/2026-05-18",
       "category": "uti",
       "categoryLabel": "UTI",
-      "summary": "Gustavo de Souza Schmidt Gonçalves, 41 anos. Leito 1600-16 — UTI BP Paulista · 18/05/2026.",
+      "summary": "Leito 1600-16 Gustavo de Souza Schmidt Gonçalves 41 anos · Masculino · DIH: 09/05/2026 · 7 dias de internação · Traqueostomizado Cardiologia/Clínica Médica — Dr. José M",
+      "updated": "2026-05-18",
       "shiftDate": "2026-05-18",
-      "shiftDateLabel": "18/05/2026",
-      "updated": "2026-05-18"
+      "shiftDateLabel": "18/05/2026"
     },
     {
-      "title": "Leito 1600-17 — Aricia das Neves Monteiro Salvioni",
+      "title": "Leito 1600 17",
       "path": "plantoes/bp/2026-05-18/leito-1600-17.html",
       "href": "plantoes/bp/2026-05-18/leito-1600-17.html",
       "folder": "plantoes/bp/2026-05-18",
       "category": "uti",
       "categoryLabel": "UTI",
-      "summary": "Aricia das Neves Monteiro Salvioni, 38 anos. Leito 1600-17 — UTI BP Paulista · 18/05/2026.",
+      "summary": "Leito 1600-17 Aricia das Neves Monteiro Salvioni 38 anos · Feminino · DIH: 11/05/2026 · 5 dias · POI FAV Braquiocefálica ESQ (14/05) Nefrologia — Dra. Anita Leme da Roc",
+      "updated": "2026-05-18",
       "shiftDate": "2026-05-18",
-      "shiftDateLabel": "18/05/2026",
-      "updated": "2026-05-18"
+      "shiftDateLabel": "18/05/2026"
     },
-
-    // ── UTI BP · Plantão 15/05/2026 ──────────────────────────────────────
     {
-      "title": "Plantão BP — 15/05/2026 (Resumo)",
-      "path": "plantoes/bp/2026-05-15/plantao-bp-15-05-2026.html",
-      "href": "plantoes/bp/2026-05-15/plantao-bp-15-05-2026.html",
-      "folder": "plantoes/bp/2026-05-15",
+      "title": "Plantao Bp 18 05 2026",
+      "path": "plantoes/bp/2026-05-18/plantao-bp-18-05-2026.html",
+      "href": "plantoes/bp/2026-05-18/plantao-bp-18-05-2026.html",
+      "folder": "plantoes/bp/2026-05-18",
       "category": "uti",
       "categoryLabel": "UTI",
-      "summary": "Passagem de plantão UTI BP Paulista — 15 de maio de 2026. Cardio 1600-10 a 1600-17 · Neuro 8A/8B.",
-      "shiftDate": "2026-05-15",
-      "shiftDateLabel": "15/05/2026",
-      "updated": "2026-05-15"
+      "summary": "Passagem de plantão UTI BP Paulista — 18 de maio de 2026 📋 Plantão BP Hospital Beneficência Portuguesa • UTI Cardiologia / Neurologia 18 / 05 / 2026 Plantão — hora de i",
+      "updated": "2026-05-18",
+      "shiftDate": "2026-05-18",
+      "shiftDateLabel": "18/05/2026"
     },
     {
-      "title": "ISOL 02 — Sandra Petrassi Cardoso",
+      "title": "Isol02 Sandra",
       "path": "plantoes/bp/2026-05-15/isol02-sandra.html",
       "href": "plantoes/bp/2026-05-15/isol02-sandra.html",
       "folder": "plantoes/bp/2026-05-15",
       "category": "uti",
       "categoryLabel": "UTI",
-      "summary": "Sandra Petrassi Cardoso, 63 anos — Isolamento. DIH: 05/05/2026 · PO RM. UTI BP Paulista · 15/05/2026.",
+      "summary": "ISOL 02 Sandra Petrassi Cardoso 63 anos · Feminino · DIH: 05/05/2026 · 11 dias · PO 9 RM (06/05) — ATIE-SA / PVS-MG | CEC 41' / Pinça 38' Cardiologia — Dr. Fernando Fag",
+      "updated": "2026-05-15",
       "shiftDate": "2026-05-15",
-      "shiftDateLabel": "15/05/2026",
-      "updated": "2026-05-15"
+      "shiftDateLabel": "15/05/2026"
     },
     {
-      "title": "ISOL 03 — Marcos Bortoluzzi",
+      "title": "Isol03 Marcos",
       "path": "plantoes/bp/2026-05-15/isol03-marcos.html",
       "href": "plantoes/bp/2026-05-15/isol03-marcos.html",
       "folder": "plantoes/bp/2026-05-15",
       "category": "uti",
       "categoryLabel": "UTI",
-      "summary": "Marcos Bortoluzzi, 55 anos — Isolamento COVID + Imunossuprimido. 112 dias de internação. UTI BP Paulista · 15/05/2026.",
+      "summary": "ISOL 03 Marcos Bortoluzzi ⚠ ISOLAMENTO — COVID + Imunossuprimido 55 anos · Masculino · DIH: 24/01/2026 · 112 dias de internação · PO 8 (Craniectomia + drenagem abscesso",
+      "updated": "2026-05-15",
       "shiftDate": "2026-05-15",
-      "shiftDateLabel": "15/05/2026",
-      "updated": "2026-05-15"
+      "shiftDateLabel": "15/05/2026"
     },
     {
-      "title": "Leito 1600-11 — Luis Carlos da Silva",
+      "title": "Leito 1600 11",
       "path": "plantoes/bp/2026-05-15/leito-1600-11.html",
       "href": "plantoes/bp/2026-05-15/leito-1600-11.html",
       "folder": "plantoes/bp/2026-05-15",
       "category": "uti",
       "categoryLabel": "UTI",
-      "summary": "Luis Carlos da Silva, 68 anos. DIH: 07/05/2026 · PO 7. UTI BP Paulista · 15/05/2026.",
+      "summary": "Leito 1600-11 — Luis Carlos da Silva — Plantão 15/05/2026 Leito 1600-11 Luis Carlos da Silva 68 anos · Masculino · DIH: 07/05/2026 · PO 7 (ATC DA) · Internação: 9 dias ",
+      "updated": "2026-05-15",
       "shiftDate": "2026-05-15",
-      "shiftDateLabel": "15/05/2026",
-      "updated": "2026-05-15"
+      "shiftDateLabel": "15/05/2026"
     },
     {
-      "title": "Leito 1600-12 — Amilton Soette",
+      "title": "Leito 1600 12",
       "path": "plantoes/bp/2026-05-15/leito-1600-12.html",
       "href": "plantoes/bp/2026-05-15/leito-1600-12.html",
       "folder": "plantoes/bp/2026-05-15",
       "category": "uti",
       "categoryLabel": "UTI",
-      "summary": "Amilton Soette, 55 anos. DIH: 23/04/2026 · PO 6 Colectomia. UTI BP Paulista · 15/05/2026.",
+      "summary": "Leito 1600-12 — Amilton Soette — Plantão 15/05/2026 Leito 1600-12 Amilton Soette 55 anos · Masculino · DIH: 23/04/2026 · PO 6 (Colectomia Direita Estendida — 09/05) · I",
+      "updated": "2026-05-15",
       "shiftDate": "2026-05-15",
-      "shiftDateLabel": "15/05/2026",
-      "updated": "2026-05-15"
+      "shiftDateLabel": "15/05/2026"
     },
     {
-      "title": "Leito 1600-13 — Débora Flor da Silva",
+      "title": "Leito 1600 13",
       "path": "plantoes/bp/2026-05-15/leito-1600-13.html",
       "href": "plantoes/bp/2026-05-15/leito-1600-13.html",
       "folder": "plantoes/bp/2026-05-15",
       "category": "uti",
       "categoryLabel": "UTI",
-      "summary": "Débora Flor da Silva, 50 anos — Cuidados Paliativos. DIH: 14/03/2026 · 63 dias. UTI BP Paulista · 15/05/2026.",
+      "summary": "Leito 1600-13 Débora Flor da Silva 🕊 CUIDADOS PALIATIVOS — PAC ATIVO 50 anos · Feminino · DIH: 14/03/2026 · 63 dias de internação · PO 4 Nefrologia — Dr. João Egídio Ro",
+      "updated": "2026-05-15",
       "shiftDate": "2026-05-15",
-      "shiftDateLabel": "15/05/2026",
-      "updated": "2026-05-15"
+      "shiftDateLabel": "15/05/2026"
     },
     {
-      "title": "Leito 1600-14 — Juarez Ribeiro de Roma",
+      "title": "Leito 1600 13 Copia",
+      "path": "plantoes/bp/2026-05-15/leito-1600-13-copia.html",
+      "href": "plantoes/bp/2026-05-15/leito-1600-13-copia.html",
+      "folder": "plantoes/bp/2026-05-15",
+      "category": "uti",
+      "categoryLabel": "UTI",
+      "summary": "Leito 1600-13 Débora Flor da Silva 🕊 CUIDADOS PALIATIVOS — PAC ATIVO 50 anos · Feminino · DIH: 14/03/2026 · 63 dias de internação · PO 4 Nefrologia — Dr. João Egídio Ro",
+      "updated": "2026-05-15",
+      "shiftDate": "2026-05-15",
+      "shiftDateLabel": "15/05/2026"
+    },
+    {
+      "title": "Leito 1600 14",
       "path": "plantoes/bp/2026-05-15/leito-1600-14.html",
       "href": "plantoes/bp/2026-05-15/leito-1600-14.html",
       "folder": "plantoes/bp/2026-05-15",
       "category": "uti",
       "categoryLabel": "UTI",
-      "summary": "Juarez Ribeiro de Roma, 59 anos. DIH: 12/05/2026 · POI Trombectomia FAV. UTI BP Paulista · 15/05/2026.",
+      "summary": "Leito 1600-14 Juarez Ribeiro de Roma 59 anos · Masculino · DIH: 12/05/2026 · POI Trombectomia FAV PTFE MSE (15/05) · 3 dias de internação Angiologia/Cirurgia Vascular —",
+      "updated": "2026-05-15",
       "shiftDate": "2026-05-15",
-      "shiftDateLabel": "15/05/2026",
-      "updated": "2026-05-15"
+      "shiftDateLabel": "15/05/2026"
     },
     {
-      "title": "Leito 1600-15 — Paulo Celso Lavieri Gomes",
+      "title": "Leito 1600 15",
       "path": "plantoes/bp/2026-05-15/leito-1600-15.html",
       "href": "plantoes/bp/2026-05-15/leito-1600-15.html",
       "folder": "plantoes/bp/2026-05-15",
       "category": "uti",
       "categoryLabel": "UTI",
-      "summary": "Paulo Celso Lavieri Gomes, 77 anos — Cuidados Paliativos. DIH: 19/03/2026 · 58 dias. UTI BP Paulista · 15/05/2026.",
+      "summary": "Leito 1600-15 Paulo Celso Lavieri Gomes 🕊 Cuidados Paliativos — PAC em construção 77 anos · Masculino · DIH: 19/03/2026 · 58 dias · PO 24 (Cistoprostatectomia Radical 2",
+      "updated": "2026-05-15",
       "shiftDate": "2026-05-15",
-      "shiftDateLabel": "15/05/2026",
-      "updated": "2026-05-15"
+      "shiftDateLabel": "15/05/2026"
     },
     {
-      "title": "Leito 1600-16 — Gustavo de Souza Schmidt Gonçalves",
+      "title": "Leito 1600 16",
       "path": "plantoes/bp/2026-05-15/leito-1600-16.html",
       "href": "plantoes/bp/2026-05-15/leito-1600-16.html",
       "folder": "plantoes/bp/2026-05-15",
       "category": "uti",
       "categoryLabel": "UTI",
-      "summary": "Gustavo de Souza Schmidt Gonçalves, 41 anos. DIH: 09/05/2026 · 7 dias. UTI BP Paulista · 15/05/2026.",
+      "summary": "Leito 1600-16 Gustavo de Souza Schmidt Gonçalves 41 anos · Masculino · DIH: 09/05/2026 · 7 dias de internação · Traqueostomizado Cardiologia/Clínica Médica — Dr. José M",
+      "updated": "2026-05-15",
       "shiftDate": "2026-05-15",
-      "shiftDateLabel": "15/05/2026",
-      "updated": "2026-05-15"
+      "shiftDateLabel": "15/05/2026"
     },
     {
-      "title": "Leito 1600-17 — Aricia das Neves Monteiro Salvioni",
+      "title": "Leito 1600 17",
       "path": "plantoes/bp/2026-05-15/leito-1600-17.html",
       "href": "plantoes/bp/2026-05-15/leito-1600-17.html",
       "folder": "plantoes/bp/2026-05-15",
       "category": "uti",
       "categoryLabel": "UTI",
-      "summary": "Aricia das Neves Monteiro Salvioni, 38 anos. DIH: 11/05/2026 · POI FAV Braquiocefálica. UTI BP Paulista · 15/05/2026.",
+      "summary": "Leito 1600-17 Aricia das Neves Monteiro Salvioni 38 anos · Feminino · DIH: 11/05/2026 · 5 dias · POI FAV Braquiocefálica ESQ (14/05) Nefrologia — Dra. Anita Leme da Roc",
+      "updated": "2026-05-15",
       "shiftDate": "2026-05-15",
-      "shiftDateLabel": "15/05/2026",
-      "updated": "2026-05-15"
+      "shiftDateLabel": "15/05/2026"
     },
-
-    // ── UTI 8B · Plantão 14/05/2026 ──────────────────────────────────────
     {
-      "title": "Plantão UTI 8B — 14/05/2026",
+      "title": "Plantao Bp 15 05 2026",
+      "path": "plantoes/bp/2026-05-15/plantao-bp-15-05-2026.html",
+      "href": "plantoes/bp/2026-05-15/plantao-bp-15-05-2026.html",
+      "folder": "plantoes/bp/2026-05-15",
+      "category": "uti",
+      "categoryLabel": "UTI",
+      "summary": "Passagem de plantão UTI BP Paulista — 15 de maio de 2026 📋 Plantão BP Hospital Beneficência Portuguesa • UTI Cardiologia / Neurologia 15 / 05 / 2026 Plantão — hora de i",
+      "updated": "2026-05-15",
+      "shiftDate": "2026-05-15",
+      "shiftDateLabel": "15/05/2026"
+    },
+    {
+      "title": "Plantão UTI 8B — BP Paulista — 14/05/2026",
       "path": "plantoes/8b/2026-05-14/plantao-8b-14-05-2026.html",
       "href": "plantoes/8b/2026-05-14/plantao-8b-14-05-2026.html",
       "folder": "plantoes/8b/2026-05-14",
       "category": "uti",
       "categoryLabel": "UTI",
-      "summary": "Dashboard noturno UTI 8B — BP Paulista · 14/05/2026. Interface dark mode com visão geral dos leitos.",
+      "summary": "Plantão UTI 8B — BP Paulista — 14/05/2026 ATIVO — PLANTÃO UTI 8B Hospital Beneficência Portuguesa UTI TORRE II · 8º ANDAR · UNIDADE 8B · LEITOS 2812–2822 14 / 05 / 2026",
+      "updated": "2026-05-26",
       "shiftDate": "2026-05-14",
-      "shiftDateLabel": "14/05/2026",
-      "updated": "2026-05-14"
+      "shiftDateLabel": "14/05/2026"
     },
-
-    // ── Rotinas · Mercado ─────────────────────────────────────────────────
     {
-      "title": "Diário de Mercado F&K — 25/05/2026",
+      "title": "1600-16 | Lydia Bocater — Nova Admissão",
+      "path": "plantoes/bp/leito 1600 16b lydia.html",
+      "href": "plantoes/bp/leito 1600 16b lydia.html",
+      "folder": "plantoes/bp",
+      "category": "uti",
+      "categoryLabel": "UTI",
+      "summary": "1600-16 | Lydia Bocater — Nova Admissão ⚡ NOVA ADMISSÃO — 13/05/2026 Leito 1600-16 15/05/2026 · UTI BP Lydia Christina Marotti Bocater 75 anos · Feminino · DIH 13/05/20",
+      "updated": "2026-05-25",
+      "shiftDate": "2026-05-13",
+      "shiftDateLabel": "13/05/2026"
+    },
+    {
+      "title": "Diário de Mercado — F&K | 25 Mai 2026",
       "path": "rotinas/mercado/diario-mercado-25-05-2026.html",
       "href": "rotinas/mercado/diario-mercado-25-05-2026.html",
       "folder": "rotinas/mercado",
       "category": "rotinas",
       "categoryLabel": "Rotinas",
-      "summary": "Diário de Mercado F&K — 25 de maio de 2026. Análise de ações, commodities e panorama econômico do dia.",
-      "shiftDate": "2026-05-25",
-      "shiftDateLabel": "25/05/2026",
-      "updated": "2026-05-25"
-    },
-
-    // ── Perfil / Estudo ───────────────────────────────────────────────────
-    {
-      "title": "Perfil do médico",
-      "path": "perfil.html",
-      "href": "perfil.html",
-      "folder": "",
-      "category": "outros",
-      "categoryLabel": "Outros",
-      "summary": "Dr. Fernando Magalhães Coutinho — Médico Intensivista. Medicina Intensiva, Cirurgia Cardíaca.",
-      "updated": "2026-05-23"
-    },
-    {
-      "title": "AMIB TEMI — Estudo",
-      "path": "amib-temi.html",
-      "href": "amib-temi.html",
-      "folder": "",
-      "category": "outros",
-      "categoryLabel": "Outros",
-      "summary": "Página de estudo para a prova de Título de Especialista em Medicina Intensiva da AMIB.",
-      "updated": "2026-05-23"
+      "summary": "Diário de Mercado — F&K | 25 Mai 2026 Carteira F&K Serviços Médicos · Análise Diária Diário de Mercado Fernando M. Coutinho · Edição Nº 001 Segunda-feira, 25 de Maio de",
+      "updated": "2026-05-26",
+      "shiftDate": "",
+      "shiftDateLabel": ""
     }
   ]
 };
