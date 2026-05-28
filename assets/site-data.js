@@ -39,8 +39,8 @@ window.PLANTAO_DATA = {
     },
     {
       "title": "Leito 2815 — Gilson Pereira Guimarães",
-      "path": "plantoes/8b/2026-05-28/leito_2815_gilson_pereira_guimarães.html",
-      "href": "plantoes/8b/2026-05-28/leito_2815_gilson_pereira_guimarães.html",
+      "path": "plantoes/8b/2026-05-28/leito_2815_gilson_pereira_guimarães.html",
+      "href": "plantoes/8b/2026-05-28/leito_2815_gilson_pereira_guimarães.html",
       "folder": "plantoes/8b/2026-05-28",
       "category": "uti",
       "categoryLabel": "UTI",
