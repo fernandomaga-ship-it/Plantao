@@ -70,6 +70,20 @@
     "hashtags": "#insuficienciarenal #IRA #KDIGO #UTI #medicinaintensiva #AMIB #TEMI #medresumo"
   },
   {
+    "id": "iam",
+    "titulo": "Infarto Agudo do Miocárdio",
+    "subtitulo": "IAMCSST · Reperfusão · UTI Coronariana",
+    "cor": "#7B1515",
+    "pontos": [
+      "IAMCSST: supra ST ≥ 1 mm em ≥ 2 derivações contíguas + troponina",
+      "ICP primária < 90 min (meta porta-balão) — 1ª escolha de reperfusão",
+      "Fibrinólise se ICP indisponível em < 120 min — janela até 12h",
+      "Antitrombóticos: AAS + inibidor P2Y12 (ticagrelor/prasugrel) + HNF",
+      "Killip IV (choque cardiogênico): inotrópico + suporte mecânico (BIA/Impella)"
+    ],
+    "hashtags": "#IAM #infarto #cardiologia #choquecardogenico #UTI #medicinaintensiva #AMIB #TEMI #medresumo #cardioUTI"
+  },
+  {
     "id": "neurointensivismo",
     "titulo": "Neurointensivismo",
     "subtitulo": "HIC · TCE · AVE Isquêmico",
