@@ -110,6 +110,18 @@ window.PLANTAO_DATA = {
       "shiftDateLabel": "28/05/2026"
     },
     {
+      "title": "Leito 2820 — Ana Maria de Carvalho — Atualizado",
+      "path": "plantoes/8b/2026-05-28/leito_2820_ana_maria_atualizado_28-05-2026.html",
+      "href": "plantoes/8b/2026-05-28/leito_2820_ana_maria_atualizado_28-05-2026.html",
+      "folder": "plantoes/8b/2026-05-28",
+      "category": "uti",
+      "categoryLabel": "UTI",
+      "summary": "Leito 2820 — Ana Maria de Carvalho — Atualizado 📋 Leito 2820 — Ana Maria de Carvalho UTI 8B — Atualizado em 28/05/2026 Identificação Paciente: Ana Maria de Carvalho, 85",
+      "updated": "2026-05-28",
+      "shiftDate": "2026-05-28",
+      "shiftDateLabel": "28/05/2026"
+    },
+    {
       "title": "Leito 2821 — Erickson dos Santos",
       "path": "plantoes/8b/2026-05-28/leito_2821_erickson_dos_santos.html",
       "href": "plantoes/8b/2026-05-28/leito_2821_erickson_dos_santos.html",
