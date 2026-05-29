@@ -2,6 +2,18 @@ window.PLANTAO_DATA = {
   "generatedAt": "2026-05-28",
   "pages": [
     {
+      "title": "Leito 2819 — Etna — 28/05/2026",
+      "path": "plantoes/8b/2026-05-29/leito_2819_etna_28-05-2026.html",
+      "href": "plantoes/8b/2026-05-29/leito_2819_etna_28-05-2026.html",
+      "folder": "plantoes/8b/2026-05-29",
+      "category": "uti",
+      "categoryLabel": "UTI",
+      "summary": "Leito 2819 — Etna — 28/05/2026 📋 Leito 2819 — Etna Plantão BP — UTI 8B — 28/05/2026 Identificação Leito 2819 — Etna, 67 anos. Equipe responsável: Cirurgia Torácica + UT",
+      "updated": "2026-05-28",
+      "shiftDate": "2026-05-29",
+      "shiftDateLabel": "29/05/2026"
+    },
+    {
       "title": "Leito 2812 — Maria Cristina Moreira Dias Chiavinato",
       "path": "plantoes/8b/2026-05-28/leito_2812_maria_cristina_moreira_dias_chiavinato.html",
       "href": "plantoes/8b/2026-05-28/leito_2812_maria_cristina_moreira_dias_chiavinato.html",
