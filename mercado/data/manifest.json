@@ -17,6 +17,15 @@
       "ibovUp": true,
       "dolar": "R$ 5,02",
       "oil": "US$ 88,53"
+    },
+    {
+      "date": "2026-05-29",
+      "title": "Relatório 29/05/2026",
+      "ibov": "175.063",
+      "ibovChg": "-0,39%",
+      "ibovUp": false,
+      "dolar": "R$ 5,03",
+      "oil": "US$ 88,68"
     }
   ]
 }
