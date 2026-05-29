@@ -211,10 +211,22 @@ def main() -> None:
     rodar(["git", "add", rel_dest, "assets/site-data.js"])
     rodar(["git", "commit", "-m", msg])
 
-    # ── Push ──────────────────────────────────────────────────────────────────
+    # ── Push (com pull --rebase automático se o remote tiver commits novos) ───
     if not args.no_push:
         print("  🚀  Fazendo push…")
-        rodar(["git", "push", "origin", "main"])
+        # Tenta push direto; se rejeitado, faz pull --rebase e tenta de novo
+        resultado = subprocess.run(
+            ["git", "push", "origin", "main"],
+            cwd=CODEX, capture_output=True, text=True,
+        )
+        if resultado.returncode != 0:
+            if "fetch first" in resultado.stderr or "rejected" in resultado.stderr:
+                print("  ↕  Remote tem commits novos — fazendo pull --rebase…")
+                rodar(["git", "pull", "--rebase", "origin", "main"])
+                rodar(["git", "push", "origin", "main"])
+            else:
+                print(f"\n  ✗ Erro no push:\n{resultado.stderr.strip()}", file=sys.stderr)
+                sys.exit(1)
         print()
         print("━" * 56)
         print("  ✅  Dashboard atualizado no GitHub Pages!")
