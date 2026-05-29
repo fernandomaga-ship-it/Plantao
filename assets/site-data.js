@@ -1,5 +1,5 @@
 window.PLANTAO_DATA = {
-  "generatedAt": "2026-05-28",
+  "generatedAt": "2026-05-29",
   "pages": [
     {
       "title": "Leito 2819 — Etna — 28/05/2026",
@@ -10,6 +10,18 @@ window.PLANTAO_DATA = {
       "categoryLabel": "UTI",
       "summary": "Leito 2819 — Etna — 28/05/2026 📋 Leito 2819 — Etna Plantão BP — UTI 8B — 28/05/2026 Identificação Leito 2819 — Etna, 67 anos. Equipe responsável: Cirurgia Torácica + UT",
       "updated": "2026-05-28",
+      "shiftDate": "2026-05-29",
+      "shiftDateLabel": "29/05/2026"
+    },
+    {
+      "title": "Plantão BP UTI — 29/05/2026",
+      "path": "plantoes/8b/2026-05-29/plantao_bp_uti_29-05-2026.html",
+      "href": "plantoes/8b/2026-05-29/plantao_bp_uti_29-05-2026.html",
+      "folder": "plantoes/8b/2026-05-29",
+      "category": "uti",
+      "categoryLabel": "UTI",
+      "summary": "Plantão BP UTI — 29/05/2026 📋 Plantão BP — UTI Data: 29/05/2026 | Unidade: UTI BP Paulista Torre I 6º andar Adulto Consolidado por leito — ISOL 02, ISOL 03, 1600 09–17.",
+      "updated": "2026-05-29",
       "shiftDate": "2026-05-29",
       "shiftDateLabel": "29/05/2026"
     },
