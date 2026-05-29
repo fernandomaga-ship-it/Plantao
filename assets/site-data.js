@@ -50,18 +50,6 @@ window.PLANTAO_DATA = {
       "shiftDateLabel": "28/05/2026"
     },
     {
-      "title": "Leito 2815 — Gilson Pereira Guimarães",
-      "path": "plantoes/8b/2026-05-28/leito_2815_gilson_pereira_guimarães.html",
-      "href": "plantoes/8b/2026-05-28/leito_2815_gilson_pereira_guimara%CC%83es.html",
-      "folder": "plantoes/8b/2026-05-28",
-      "category": "uti",
-      "categoryLabel": "UTI",
-      "summary": "Leito 2815 — Gilson Pereira Guimarães 📋 Plantão BP — UTI 8B Data: 28/05/2026 &nbsp; | &nbsp; Arquivo individual do paciente Leito: 2815 Paciente: Gilson Pereira Guimarã",
-      "updated": "2026-05-28",
-      "shiftDate": "2026-05-28",
-      "shiftDateLabel": "28/05/2026"
-    },
-    {
       "title": "Leito 2816 — Christina da Silva Santos",
       "path": "plantoes/8b/2026-05-28/leito_2816_christina_da_silva_santos.html",
       "href": "plantoes/8b/2026-05-28/leito_2816_christina_da_silva_santos.html",
