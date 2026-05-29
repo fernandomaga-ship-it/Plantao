@@ -26,6 +26,18 @@ window.PLANTAO_DATA = {
       "shiftDateLabel": "29/05/2026"
     },
     {
+      "title": "UTI BP — Plantão 29/05/2026",
+      "path": "plantoes/8b/2026-05-29/uti_bp_29_05_2026_exames.html",
+      "href": "plantoes/8b/2026-05-29/uti_bp_29_05_2026_exames.html",
+      "folder": "plantoes/8b/2026-05-29",
+      "category": "uti",
+      "categoryLabel": "UTI",
+      "summary": "UTI BP — Plantão 29/05/2026 UTI BP — Plantão 29/05/2026 Imprimir / PDF 📋 Plantão BP — UTI Cardio / Isolamentos Data: 29/05/2026 &nbsp;|&nbsp; Hora: 11h &nbsp;|&nbsp; To",
+      "updated": "2026-05-29",
+      "shiftDate": "2026-05-29",
+      "shiftDateLabel": "29/05/2026"
+    },
+    {
       "title": "Leito 2812 — Maria Cristina Moreira Dias Chiavinato",
       "path": "plantoes/8b/2026-05-28/leito_2812_maria_cristina_moreira_dias_chiavinato.html",
       "href": "plantoes/8b/2026-05-28/leito_2812_maria_cristina_moreira_dias_chiavinato.html",
