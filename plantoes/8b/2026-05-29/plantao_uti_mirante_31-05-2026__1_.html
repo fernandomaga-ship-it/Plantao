@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Plantão UTI Mirante - 31/05/2026 | 01:05</title>
+<style>
+    :root {
+        --bg: #f5f7fa;
+        --card: #ffffff;
+        --ink: #1f2937;
+        --muted: #4b5563;
+        --blue: #1d4ed8;
+        --red: #b91c1c;
+        --amber: #92400e;
+        --green: #166534;
+        --line: #d1d5db;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        padding: 24px;
+        font-family: Arial, Helvetica, sans-serif;
+        background: var(--bg);
+        color: var(--ink);
+        line-height: 1.45;
+        font-size: 14px;
+    }
+
+    .container {
+        max-width: 1100px;
+        margin: 0 auto;
+    }
+
+    header {
+        background: linear-gradient(135deg, #1e3a8a, #2563eb);
+        color: white;
+        padding: 24px 28px;
+        border-radius: 18px;
+        margin-bottom: 20px;
+        box-shadow: 0 8px 22px rgba(0,0,0,0.12);
+    }
+
+    header h1 {
+        margin: 0 0 8px 0;
+        font-size: 28px;
+        letter-spacing: -0.02em;
+    }
+
+    header p {
+        margin: 0;
+        font-size: 16px;
+        opacity: 0.95;
+    }
+
+    .toc {
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        padding: 16px 20px;
+        margin-bottom: 22px;
+    }
+
+    .toc h2 {
+        margin-top: 0;
+        font-size: 18px;
+        color: var(--blue);
+    }
+
+    .toc a {
+        display: inline-block;
+        margin: 4px 12px 4px 0;
+        color: var(--blue);
+        text-decoration: none;
+        font-weight: 700;
+    }
+
+    .patient {
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        padding: 22px 24px;
+        margin: 22px 0;
+        page-break-inside: avoid;
+        box-shadow: 0 4px 14px rgba(0,0,0,0.06);
+    }
+
+    .patient h2 {
+        margin: 0 0 6px 0;
+        font-size: 22px;
+        color: #111827;
+    }
+
+    .team {
+        color: var(--muted);
+        font-weight: 700;
+        margin-bottom: 14px;
+    }
+
+    .tag-row {
+        margin-bottom: 14px;
+    }
+
+    .tag {
+        display: inline-block;
+        padding: 4px 9px;
+        border-radius: 999px;
+        font-size: 12px;
+        font-weight: 700;
+        margin: 2px 4px 2px 0;
+        background: #e0ecff;
+        color: #1e40af;
+    }
+
+    .tag.red {
+        background: #fee2e2;
+        color: var(--red);
+    }
+
+    .tag.amber {
+        background: #fef3c7;
+        color: var(--amber);
+    }
+
+    .tag.green {
+        background: #dcfce7;
+        color: var(--green);
+    }
+
+    h3 {
+        color: var(--blue);
+        margin: 18px 0 6px 0;
+        font-size: 16px;
+        border-bottom: 1px solid #e5e7eb;
+        padding-bottom: 3px;
+    }
+
+    ul {
+        margin-top: 6px;
+        padding-left: 22px;
+    }
+
+    li {
+        margin: 3px 0;
+    }
+
+    .critical {
+        border-left: 5px solid var(--red);
+        background: #fff5f5;
+        padding: 10px 12px;
+        border-radius: 10px;
+        margin: 10px 0;
+        font-weight: 700;
+    }
+
+    .note {
+        border-left: 5px solid var(--amber);
+        background: #fffbeb;
+        padding: 10px 12px;
+        border-radius: 10px;
+        margin: 10px 0;
+    }
+
+    .impression {
+        border-left: 5px solid var(--blue);
+        background: #eff6ff;
+        padding: 12px 14px;
+        border-radius: 10px;
+        margin-top: 10px;
+    }
+
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px 18px;
+    }
+
+    .small {
+        color: var(--muted);
+        font-size: 13px;
+    }
+
+    .divider {
+        border: 0;
+        border-top: 2px dashed #cbd5e1;
+        margin: 28px 0;
+    }
+
+    strong {
+        font-weight: 800;
+    }
+
+    @media print {
+        body {
+            background: white;
+            padding: 0;
+            font-size: 12px;
+        }
+
+        header, .toc, .patient {
+            box-shadow: none;
+        }
+
+        header {
+            border-radius: 0;
+        }
+
+        .patient {
+            border-radius: 0;
+            margin: 12px 0;
+            page-break-inside: avoid;
+        }
+
+        .toc {
+            display: none;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+    }
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+    <h1>📋 Plantão UTI Mirante</h1>
+    <p><strong>Data/Hora:</strong> 31/05/2026 | 01:05</p>
+</header>
+
+<section class="toc">
+    <h2>Leitos incluídos</h2>
+    <a href="#leito02">Leito 02</a>
+    <a href="#leito04">Leito 04</a>
+    <a href="#leito06">Leito 06</a>
+    <a href="#leito07">Leito 07</a>
+    <a href="#leito08">Leito 08</a>
+    <a href="#leito10">Leito 10</a>
+    <a href="#leito14">Leito 14</a>
+</section>
+
+<section class="patient" id="leito02">
+    <h2>Leito 02 — Maria Elizabeth Brant de Carvalho, 76 anos</h2>
+    <div class="team">Eq.: Felipe Marques / Pneumo + Busaid</div>
+    <div class="tag-row">
+        <span class="tag red">VM prolongada</span>
+        <span class="tag amber">TQT</span>
+        <span class="tag red">DPOC grave</span>
+        <span class="tag amber">Novo foco consolidativo</span>
+        <span class="tag">Neoplasia metastática</span>
+    </div>
+
+    <h3>Diagnósticos</h3>
+    <ul>
+        <li><strong>DPOC exacerbado grave</strong> + broncoespasmo severo.</li>
+        <li><strong>IOT + VM desde 22/05</strong>.</li>
+        <li><strong>TQT em 26/05</strong>.</li>
+        <li>Neoplasia de mama metastática com metástases pulmonares.</li>
+        <li>TEP descartado.</li>
+        <li>Novo foco consolidativo em TC de tórax.</li>
+    </ul>
+
+    <h3>Antecedentes</h3>
+    <ul>
+        <li>DM.</li>
+        <li>CA de mama.</li>
+        <li>Depressão.</li>
+        <li>Enfisema pulmonar / DLP.</li>
+    </ul>
+
+    <h3>Dispositivos / Suporte</h3>
+    <ul>
+        <li><strong>Neurológico:</strong> Precedex 1,11 mcg/kg/h + quetiapina.</li>
+        <li><strong>VM:</strong> via TQT, espontânea: PEEP 7 | FiO₂ 30% | PS 16.</li>
+        <li><strong>DVA:</strong> noradrenalina 0,071.</li>
+        <li><strong>Nutrição:</strong> dieta enteral 45 mL/h.</li>
+        <li><strong>Dispositivos:</strong> Port-a-cath, CVC JD, PAI RD, SNE, SVD.</li>
+    </ul>
+
+    <h3>Exames / Antimicrobianos / Profilaxias</h3>
+    <ul>
+        <li><strong>TC tórax:</strong> novo foco consolidativo.</li>
+        <li><strong>HMC 21/05:</strong> em andamento.</li>
+        <li><strong>ATB:</strong> Tazocin reiniciado em 30/05.</li>
+        <li><strong>Profilaxias:</strong> IBP + Clexane.</li>
+    </ul>
+
+    <h3>Condutas / Pendências</h3>
+    <div class="critical">⚠️ Ligar para Pneumo em qualquer conduta — Dr. Felipe: (11) 98747-5525</div>
+    <ul>
+        <li>Manter Tazocin e reavaliar conforme culturas/evolução.</li>
+        <li>Avaliar possibilidade de ST.</li>
+        <li>TQT + desmame ventilatório progressivo conforme tolerância.</li>
+        <li>Controle de broncoespasmo com broncodilatadores, fisioterapia respiratória e reavaliação seriada da mecânica ventilatória.</li>
+        <li>Bundle VM/PAV: cabeceira 30–45°, higiene oral, sedação mínima possível, avaliação diária de desmame, prevenção PAV.</li>
+    </ul>
+
+    <h3>Intercorrências</h3>
+    <ul>
+        <li>Novo foco consolidativo em TC de tórax.</li>
+        <li>Reinício de Tazocin em 30/05.</li>
+    </ul>
+
+    <h3>Impressão</h3>
+    <div class="impression">
+        Paciente com DPOC grave e doença neoplásica metastática, em VM prolongada, já traqueostomizada, com foco atual em controle infeccioso/respiratório e tentativa de desmame ventilatório progressivo.
+    </div>
+</section>
+
+<hr class="divider">
+
+<section class="patient" id="leito04">
+    <h2>Leito 04 — Renata Colombo Martins, 49 anos</h2>
+    <div class="team">Eq.: Marcus Fernando Kodama Pertille Ramos</div>
+    <div class="tag-row">
+        <span class="tag green">Estável</span>
+        <span class="tag amber">PO abdominal</span>
+        <span class="tag">Anastomose íleo-cólica</span>
+        <span class="tag amber">Anemia</span>
+    </div>
+
+    <h3>Diagnósticos</h3>
+    <ul>
+        <li><strong>PO 28/05 de hemicolectomia direita + anastomose íleo-cólica.</strong></li>
+        <li>Adenocarcinoma de cólon de flexura hepática.</li>
+        <li>Cirurgia eletiva.</li>
+        <li>Anemia em acompanhamento.</li>
+    </ul>
+
+    <h3>Antecedentes</h3>
+    <ul>
+        <li>CA de intestino.</li>
+        <li>Hipotireoidismo.</li>
+    </ul>
+
+    <h3>Dispositivos / Suporte</h3>
+    <ul>
+        <li><strong>Neurológico:</strong> Glasgow 15.</li>
+        <li><strong>Cardio:</strong> sem DVA; bulhas arrítmicas, sem sopro.</li>
+        <li><strong>Resp:</strong> ar ambiente.</li>
+        <li><strong>Nutrição:</strong> dieta VO.</li>
+        <li><strong>Renal/metabólico:</strong> sem disfunção descrita.</li>
+        <li><strong>Dispositivo:</strong> AVP.</li>
+    </ul>
+
+    <h3>Exames / Antimicrobianos / Profilaxias</h3>
+    <ul>
+        <li><strong>Exames:</strong> valores não informados; acompanhar anemia.</li>
+        <li><strong>ATB atual:</strong> sem antibiótico.</li>
+        <li><strong>Prévio:</strong> cefazolina.</li>
+        <li><strong>Profilaxias:</strong> IBP + Clexane.</li>
+    </ul>
+
+    <h3>Condutas / Pendências</h3>
+    <ul>
+        <li>Mobilizar e estimular deambulação conforme tolerância.</li>
+        <li>Manter Clexane se sem contraindicação.</li>
+        <li>Náuseas: manejar com antiemético se necessário e avaliar tolerância de dieta VO.</li>
+        <li>Tremores à tarde, sem febre ou outras alterações: manter vigilância térmica e clínica.</li>
+        <li>Analgesia com dipirona + Profenid; discutir ampliação se dor não controlada.</li>
+        <li>Bundle pós-operatório abdominal: analgesia multimodal, mobilização precoce, prevenção TEV, controle glicêmico, vigilância de deiscência/anastomose e sinais de sepse abdominal.</li>
+    </ul>
+
+    <h3>Intercorrências</h3>
+    <ul>
+        <li>Tremores à tarde, sem febre.</li>
+        <li>Náuseas referidas/risco no pós-operatório.</li>
+    </ul>
+
+    <h3>Impressão</h3>
+    <div class="impression">
+        Pós-operatório recente de colectomia direita por neoplasia de cólon, clinicamente estável, em ar ambiente e dieta VO. Atenção para náuseas, dor, anemia e vigilância de complicações infecciosas/anastomóticas.
+    </div>
+</section>
+
+<hr class="divider">
+
+<section class="patient" id="leito06">
+    <h2>Leito 06 — José Aparecido da Silva, 58 anos</h2>
+    <div class="team">Eq.: Hugo Doria</div>
+    <div class="tag-row">
+        <span class="tag red">Neurocrítico</span>
+        <span class="tag red">VM + DVA</span>
+        <span class="tag amber">DVE</span>
+        <span class="tag">PIC 7</span>
+        <span class="tag amber">Febril</span>
+    </div>
+
+    <h3>Diagnósticos</h3>
+    <ul>
+        <li><strong>PO 21/05 de microcirurgia para ressecção de schwannoma VIII à direita.</strong></li>
+        <li>Tumor volumoso T4B com compressão de bulbo, ponte, mesencéfalo e nervos cranianos.</li>
+        <li><strong>PO 23/05 de craniectomia descompressiva + duroplastia descompressiva</strong>.</li>
+        <li>Tratamento cirúrgico de hemorragia/AVCH em cisternas perimesencefálicas.</li>
+        <li><strong>DVE desde 23/05</strong>.</li>
+        <li>Edema intracraniano / risco de hipertensão intracraniana.</li>
+        <li>Febre em investigação.</li>
+    </ul>
+
+    <h3>Antecedentes</h3>
+    <ul>
+        <li>Schwannoma VIII tipo IV B.</li>
+        <li>Surdez.</li>
+        <li>Déficit auditivo e paralisia facial prévios.</li>
+        <li>HAS em uso de enalapril.</li>
+    </ul>
+
+    <h3>Dispositivos / Suporte</h3>
+    <ul>
+        <li><strong>Neurológico:</strong> RASS -5; PIC 7.</li>
+        <li><strong>Sedação:</strong> fentanil 1,11 mcg/kg/h + Dormicum 0,022 mg/kg/h + propofol 2,22 mg/kg/h.</li>
+        <li><strong>Cardio:</strong> noradrenalina em uso.</li>
+        <li><strong>VM:</strong> TOT + VM: PEEP 10 | FiO₂ 40%.</li>
+        <li><strong>Nutrição:</strong> dieta enteral 30 mL/h.</li>
+        <li><strong>Dispositivos:</strong> CVC, SVD, dreno, PAI, DVE, TOT.</li>
+    </ul>
+
+    <h3>Exames complementares</h3>
+    <ul>
+        <li><strong>DTC 25/05:</strong> hemodinâmica encefálica sem assimetria relevante; comprometimento da autorregulação encefálica; edema intracraniano; sem sinais sonográficos de hipertensão intracraniana crítica.</li>
+        <li><strong>TC crânio controle:</strong> programada para 31/05 pela manhã.</li>
+        <li><strong>Na:</strong> 146.</li>
+    </ul>
+
+    <h3>Antimicrobianos / Profilaxias</h3>
+    <ul>
+        <li><strong>ATB:</strong> meropenem + vancomicina.</li>
+        <li><strong>Vancomicina:</strong> vancocinemia diária.</li>
+        <li><strong>Profilaxias:</strong> IBP + CPI.</li>
+    </ul>
+
+    <h3>Condutas / Pendências</h3>
+    <ul>
+        <li>Cuidados neurocríticos rigorosos.</li>
+        <li>Cabeceira elevada 45°.</li>
+        <li>DVE a 15 cmH₂O.</li>
+        <li>Metas: PAM ~90; PAS 120–130.</li>
+        <li>Manter Vimpat 200 mg IV 12/12h + dexametasona 4 mg IV 12/12h.</li>
+        <li>NaCl 3% 40 mL/h; alvo Na 143 — reavaliar com equipe neuro.</li>
+        <li>Colher par respiratório e aguardar culturas.</li>
+        <li>Noradrenalina: confirmar dose/prescrição por trecho parcialmente ilegível.</li>
+        <li>Discutido com Dr. Rodrigo: retirada de propofol e manutenção da antibioticoterapia.</li>
+        <li>Bundle neurocrítico: evitar hipóxia/hipotensão, normotermia, normoglicemia, controle de PIC/DVE, sedação conforme meta e profilaxia TEV conforme liberação neurocirúrgica.</li>
+    </ul>
+
+    <h3>Intercorrências</h3>
+    <ul>
+        <li>PO neurocirúrgico complicado por hemorragia/edema intracraniano.</li>
+        <li>Febre em investigação.</li>
+        <li>Segue em VM, DVA e sedação profunda.</li>
+    </ul>
+
+    <h3>Impressão</h3>
+    <div class="impression">
+        Caso neurocrítico grave pós-ressecção de schwannoma volumoso complicado por hemorragia/edema intracraniano, com DVE, VM e DVA. Conduta atual focada em controle de edema/PIC, metas hemodinâmicas, controle infeccioso e reavaliação por TC. Discutido com Dr. Rodrigo retirada de propofol e manutenção de antibioticoterapia.
+    </div>
+</section>
+
+<hr class="divider">
+
+<section class="patient" id="leito07">
+    <h2>Leito 07 — Valcileide, 56 anos</h2>
+    <div class="team">Eq.: não informada</div>
+    <div class="tag-row">
+        <span class="tag amber">PO imediato</span>
+        <span class="tag">Transplante renal</span>
+        <span class="tag red">Alergia penicilina</span>
+        <span class="tag">Monitorização renal</span>
+    </div>
+
+    <h3>Diagnósticos</h3>
+    <ul>
+        <li><strong>PO 30/05 de dermolipectomia com reconstrução de parede</strong>.</li>
+        <li>Lipoaspiração com tecnologia de retração de pele.</li>
+        <li>Transplante renal em 2014.</li>
+        <li>Alergia referida à penicilina.</li>
+    </ul>
+
+    <h3>Antecedentes</h3>
+    <ul>
+        <li>Transplante renal em 2014.</li>
+        <li>IRC dialítica prévia.</li>
+        <li>HAS.</li>
+        <li>Transtorno depressivo e ansiedade.</li>
+        <li>Fibromialgia.</li>
+        <li>Covid em 01/2022.</li>
+        <li>Alergia: penicilina.</li>
+    </ul>
+
+    <h3>Dispositivos / Suporte</h3>
+    <ul>
+        <li><strong>Neurológico:</strong> Glasgow 15.</li>
+        <li><strong>Cardio:</strong> sem DVA.</li>
+        <li><strong>Resp:</strong> não informado.</li>
+        <li><strong>Nutrição:</strong> cobrar/liberar alimentação se sem contraindicação cirúrgica.</li>
+        <li><strong>Renal/metabólico:</strong> transplantada renal; checar função renal e diurese.</li>
+    </ul>
+
+    <h3>Antimicrobianos / Profilaxias</h3>
+    <ul>
+        <li>Inicialmente descrito: Kefazol/cefazolina.</li>
+        <li>Devido à alergia à penicilina, foi feito ciprofloxacino.</li>
+        <li>Profilaxias não informadas — reavaliar TEV, proteção gástrica e mobilização.</li>
+    </ul>
+
+    <h3>Condutas / Pendências</h3>
+    <ul>
+        <li>Checar exames: Hb/Ht, leucograma, plaquetas, ureia, creatinina, eletrólitos.</li>
+        <li>Analgesia adequada; evitar ou usar cautela com AINEs pela função renal/transplante.</li>
+        <li>Cobrar alimentação.</li>
+        <li>Monitorar sangramento, hematoma, débito de drenos se presentes e queda de Hb.</li>
+        <li>Monitorar diurese horária, creatinina, balanço hídrico e evitar nefrotóxicos.</li>
+        <li>Confirmar imunossupressão habitual e garantir continuidade conforme orientação assistente.</li>
+        <li>Confirmar tipo de reação à penicilina.</li>
+        <li>Bundle pós-operatório: analgesia, controle de sangramento/hematoma, avaliação renal, prevenção TEV e mobilização precoce.</li>
+    </ul>
+
+    <h3>Intercorrências</h3>
+    <ul>
+        <li>Alergia referida à penicilina; realizado ciprofloxacino.</li>
+        <li>Pendente checar exames e alimentação.</li>
+    </ul>
+
+    <h3>Impressão</h3>
+    <div class="impression">
+        Pós-operatório imediato de cirurgia plástica/reconstrução de parede, em paciente transplantada renal e com alergia medicamentosa referida. Prioridade: analgesia, monitorização renal, sangramento e profilaxias. Cobrar alimentação.
+    </div>
+</section>
+
+<hr class="divider">
+
+<section class="patient" id="leito08">
+    <h2>Leito 08 — Lourenço Ribeiro, 80 anos</h2>
+    <div class="team">Eq.: Anita Aldanha</div>
+    <div class="tag-row">
+        <span class="tag red">TVP axilar/subclávia</span>
+        <span class="tag amber">Pneumonia?</span>
+        <span class="tag">IRC não dialítica</span>
+        <span class="tag amber">PICC MSD não usar</span>
+    </div>
+
+    <h3>Diagnósticos</h3>
+    <ul>
+        <li><strong>Trombose venosa de veia axilar e subclávia direita.</strong></li>
+        <li>Desaturação — broncopneumonia?</li>
+        <li>Distúrbio obstrutivo + restritivo.</li>
+        <li>Em tratamento para erisipela de membro inferior em home care.</li>
+        <li>IRC não dialítica.</li>
+    </ul>
+
+    <h3>Antecedentes</h3>
+    <ul>
+        <li>HAS.</li>
+        <li>DM.</li>
+        <li>IAM prévio.</li>
+        <li>Artrose de joelho direito.</li>
+        <li>Nódulo renal à direita.</li>
+        <li>IRC não dialítica.</li>
+        <li>DLP.</li>
+        <li>Erisipela de repetição.</li>
+    </ul>
+
+    <h3>Dispositivos / Suporte</h3>
+    <ul>
+        <li><strong>Neurológico:</strong> Glasgow 14.</li>
+        <li><strong>Cardio:</strong> sem DVA.</li>
+        <li><strong>Resp:</strong> cateter nasal.</li>
+        <li><strong>Nutrição:</strong> dieta pastosa liquidificada conforme Fono.</li>
+        <li><strong>Dispositivos:</strong> PICC MSE 30/05 novo liberado; PICC MSD não utilizar.</li>
+    </ul>
+
+    <h3>Exames / Antimicrobianos / Profilaxias</h3>
+    <ul>
+        <li><strong>Painel viral:</strong> negativo — retirar isolamento se sem outro critério.</li>
+        <li><strong>ATB informado:</strong> meropenem + daptomicina + fluconazol.</li>
+        <li><strong>Trecho duvidoso:</strong> meropenem + teicoplanina? + claritromicina + fluconazol.</li>
+        <li><strong>Fungo:</strong> “Ornithomyces?” — ilegível, confirmar em cultura/laudo.</li>
+        <li><strong>Profilaxias:</strong> heparina fracionada/heparina em BIC + IBP.</li>
+    </ul>
+
+    <h3>Condutas / Pendências</h3>
+    <ul>
+        <li>Seguimento Pneumo.</li>
+        <li>Iniciar heparina em BIC para TVP se sem contraindicação.</li>
+        <li>Monitorar TTPa/anti-Xa conforme protocolo, plaquetas, Hb/Ht, sangramento e função renal.</li>
+        <li>PICC MSE novo liberado.</li>
+        <li>PICC MSD não utilizar; retirar em 48h após anticoagulação plena iniciada em 30/05.</li>
+        <li>Confirmar esquema antimicrobiano ativo e achado fúngico ilegível.</li>
+        <li>Descalonar antimicrobianos conforme culturas/evolução e ajuste por função renal.</li>
+        <li>Bundle TEV: anticoagulação plena, monitorização de sangramento/plaquetas, reavaliação de cateteres e foco infeccioso.</li>
+        <li>Bundle pneumonia: culturas, ajuste por função renal, descalonamento conforme culturas e reavaliação diária de antifúngico.</li>
+    </ul>
+
+    <h3>Intercorrências</h3>
+    <ul>
+        <li>TVP de veia axilar/subclávia direita.</li>
+        <li>Desaturação em investigação.</li>
+        <li>Painel viral negativo.</li>
+        <li>Troca funcional de acesso: PICC MSE liberado; PICC MSD não usar.</li>
+    </ul>
+
+    <h3>Impressão</h3>
+    <div class="impression">
+        Paciente idoso, multimórbido, com TVP associada a cateter/membro superior e provável infecção respiratória/pele em tratamento amplo. Foco atual: anticoagulação segura, troca/retirada de PICC comprometido e descalonamento antimicrobiano conforme culturas.
+    </div>
+</section>
+
+<hr class="divider">
+
+<section class="patient" id="leito10">
+    <h2>Leito 10 — Iraci Vieira, 94 anos</h2>
+    <div class="team">Eq.: Isaac Samuel Moscoso Sanchez / Pamplona</div>
+    <div class="tag-row">
+        <span class="tag amber">Idosa frágil</span>
+        <span class="tag">Pneumonia</span>
+        <span class="tag green">Ar ambiente</span>
+        <span class="tag red">Hematoma + anticoagulação</span>
+    </div>
+
+    <h3>Diagnósticos</h3>
+    <ul>
+        <li>Dispneia — <strong>angio-TC negativa para TEP</strong>.</li>
+        <li><strong>Pneumonia bacteriana.</strong></li>
+        <li><strong>PO 18/05 de correção de fratura de fêmur</strong>.</li>
+        <li>Alta hospitalar em 22/05, com reinternação por quadro respiratório.</li>
+        <li>Hiperemia em MIE — provável local de fixador externo / trecho parcialmente ilegível.</li>
+        <li>Hematoma em coxa direita.</li>
+    </ul>
+
+    <h3>Antecedentes</h3>
+    <ul>
+        <li>Cardiopatia.</li>
+        <li>DPOC.</li>
+        <li>Fibrose pulmonar.</li>
+        <li>HAS.</li>
+        <li>Hipotireoidismo.</li>
+    </ul>
+
+    <h3>Dispositivos / Suporte</h3>
+    <ul>
+        <li><strong>Neurológico:</strong> Glasgow 15.</li>
+        <li><strong>Cardio:</strong> sem DVA.</li>
+        <li><strong>Resp:</strong> ar ambiente.</li>
+        <li><strong>Nutrição:</strong> dieta VO.</li>
+    </ul>
+
+    <h3>Exames / Antimicrobianos / Profilaxias</h3>
+    <ul>
+        <li><strong>Angio-TC:</strong> negativa para TEP.</li>
+        <li><strong>Culturas:</strong> aguardando resultados.</li>
+        <li><strong>ATB:</strong> Tazocin + Azitromicina desde 28/05.</li>
+        <li><strong>Profilaxia:</strong> IBP.</li>
+        <li><strong>Anticoagulação:</strong> Lixiana — atenção ao hematoma.</li>
+    </ul>
+
+    <h3>Condutas / Pendências</h3>
+    <ul>
+        <li>Segue ATB: manter Tazocin + Azitromicina por pneumonia bacteriana.</li>
+        <li>Aguardar culturas e descalonar conforme resultado.</li>
+        <li>Vigilância de foco infeccioso: pulmonar, ferida operatória, hiperemia em MIE e hematoma de coxa.</li>
+        <li>Hematoma em coxa direita — Ortopedia avisada.</li>
+        <li>Reavaliar segurança de manter Lixiana: Hb/Ht seriados, expansão do hematoma, dor/tensão local, instabilidade e função renal.</li>
+        <li>Bundle pneumonia: reavaliar dupla cobertura, culturas, fisioterapia respiratória, mobilização e meta SpO₂ individualizada por DPOC/fibrose.</li>
+        <li>Pós-fratura fêmur: analgesia, mobilização assistida, prevenção TEV e vigilância de hematoma/sangramento em uso de anticoagulante.</li>
+    </ul>
+
+    <h3>Intercorrências</h3>
+    <ul>
+        <li>Pneumonia bacteriana em tratamento.</li>
+        <li>TEP descartado.</li>
+        <li>Hematoma em coxa direita, Ortopedia avisada.</li>
+        <li>Hiperemia em MIE — trecho/local parcialmente ilegível.</li>
+    </ul>
+
+    <h3>Impressão</h3>
+    <div class="impression">
+        Idosa frágil, pós-operatório ortopédico recente, admitida por dispneia/pneumonia com TEP descartado. Evolui estável em ar ambiente, mas requer vigilância de foco infeccioso e hematoma de coxa em contexto de anticoagulação.
+    </div>
+</section>
+
+<hr class="divider">
+
+<section class="patient" id="leito14">
+    <h2>Leito 14 — Luiz Zildo Colangelo, 66 anos</h2>
+    <div class="team">Eq.: Dr. Sérgio Augusto — Cirurgia Cardíaca</div>
+    <div class="tag-row">
+        <span class="tag red">PO cardíaco complexo</span>
+        <span class="tag red">Choque misto</span>
+        <span class="tag amber">VM + DVA</span>
+        <span class="tag">Plastia mitral</span>
+        <span class="tag amber">Controle de sangramento</span>
+    </div>
+
+    <h3>Diagnósticos</h3>
+    <ul>
+        <li><strong>PO 29/05 de plastia mitral</strong> com ressecção quadrangular + anel Physio Flex 32.</li>
+        <li><strong>Choque misto: distributivo + hemorrágico.</strong></li>
+        <li>Prolapso mitral + ruptura de cordoalha em P2.</li>
+        <li>CEC 165 min; anóxia 125 min.</li>
+        <li>Intraoperatório: 2 CH; 4000 mL Plasma-Lyte; 1400 mL cell saver; diurese 1000 mL.</li>
+    </ul>
+
+    <h3>Antecedentes</h3>
+    <ul>
+        <li>HAS.</li>
+        <li>Insuficiência mitral importante.</li>
+        <li>ICFEp?</li>
+        <li>DMNID.</li>
+        <li>DLP.</li>
+        <li>HPB.</li>
+        <li>Pós-operatório tardio de correção bariátrica.</li>
+    </ul>
+
+    <h3>Dispositivos / Suporte</h3>
+    <ul>
+        <li><strong>Neurológico:</strong> 3T; propofol + cetamina; RASS alvo -2 a -3.</li>
+        <li><strong>Desligados:</strong> midazolam + fentanil + Precedex.</li>
+        <li><strong>Cardio:</strong> noradrenalina 0,20 mcg/kg/min + vasopressina 0,02 UI/h em desmame. Noradrenalina prévia 0,6.</li>
+        <li><strong>Resp:</strong> TOT + VM PCV; PEEP 8; Delta 14; FR 18; FiO₂ 30%.</li>
+        <li><strong>Hemoderivados:</strong> 2 CH intraoperatório.</li>
+        <li><strong>Dispositivos:</strong> CVC JID, PAI FD, TOT, SVD, dreno mediastinal + dreno pleural D.</li>
+    </ul>
+
+    <h3>Exames / Antimicrobianos / Profilaxias</h3>
+    <ul>
+        <li><strong>BH atual:</strong> +500 mL.</li>
+        <li><strong>Exames:</strong> série hematimétrica indicada; acompanhar lactato/perfusão.</li>
+        <li><strong>Procalcitonina:</strong> solicitada após discussão com Dr. Sérgio.</li>
+        <li><strong>ATB:</strong> cefuroxima profilática 750 mg IV 8/8h.</li>
+        <li><strong>Profilaxias:</strong> IBP + CPI; TEV farmacológica conforme sangramento/liberação da Cirurgia Cardíaca.</li>
+    </ul>
+
+    <h3>Condutas / Pendências</h3>
+    <div class="critical">⚠️ Manter contato com Dr. Sérgio Augusto: 11 99608-8545</div>
+    <ul>
+        <li>PAM alvo &gt; 65 mmHg.</li>
+        <li>Titular DVA conforme perfusão; confirmar dose/necessidade de adrenalina, trecho ilegível.</li>
+        <li>Hidrocortisona 50 mg IV 6/6h se choque vasoplégico/refratário conforme discussão assistente.</li>
+        <li>Se precisar sedar: utilizar Precedex.</li>
+        <li>Controle rigoroso de débito e aspecto dos drenos mediastinal e pleural direito.</li>
+        <li>Série hematimétrica e acionar Cirurgia Cardíaca se aumento de débito/instabilidade/queda de Hb.</li>
+        <li>Quantificação rigorosa de diurese e balanço hídrico.</li>
+        <li>VM protetora; desmame de VM se SatO₂ &gt; 92% e estabilidade.</li>
+        <li>Solicitada procalcitonina e avaliação da Infectologia — Dra. Eliana.</li>
+        <li>Bundle pós-operatório cardíaco: controle de sangramento, metas hemodinâmicas, lactato/perfusão, glicemia 140–180, prevenção FA, ventilação protetora, extubação precoce se critérios, profilaxia TEV conforme sangramento.</li>
+    </ul>
+
+    <h3>Intercorrências</h3>
+    <ul>
+        <li>PO imediato de plastia mitral evoluindo com choque misto distributivo/hemorrágico.</li>
+        <li>Necessidade de DVA e VM invasiva.</li>
+        <li>Discutido com Dr. Sérgio: solicitada procalcitonina e avaliação da Infectologia — Dra. Eliana.</li>
+    </ul>
+
+    <h3>Impressão</h3>
+    <div class="impression">
+        Pós-operatório imediato de plastia mitral complexo, com choque misto distributivo/hemorrágico e necessidade de DVA/hemocomponentes. Conduta prioritária: controle de sangramento, perfusão, desmame vasopressor e avaliação para extubação conforme estabilidade. Discutido com Dr. Sérgio: solicitado procalcitonina e avaliação da Infectologia Eliana.
+    </div>
+</section>
+
+</div>
+</body>
+</html>
