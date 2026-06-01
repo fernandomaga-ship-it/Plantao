@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>📊 Análise de Mercado — 1º de Junho de 2026</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Georgia', serif;
+    background: #0d1117;
+    color: #e6edf3;
+    line-height: 1.7;
+  }
+  header {
+    background: linear-gradient(135deg, #161b22 0%, #1c2432 100%);
+    border-bottom: 1px solid #30363d;
+    padding: 40px 48px 32px;
+    position: relative;
+    overflow: hidden;
+  }
+  header::before {
+    content: '';
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(88,166,255,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .date-tag {
+    display: inline-block;
+    background: rgba(88,166,255,0.15);
+    border: 1px solid rgba(88,166,255,0.3);
+    color: #58a6ff;
+    font-family: 'Courier New', monospace;
+    font-size: 12px;
+    letter-spacing: 2px;
+    padding: 4px 12px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  h1 {
+    font-size: 2.2rem;
+    font-weight: 400;
+    color: #f0f6fc;
+    margin-bottom: 8px;
+    letter-spacing: -0.5px;
+  }
+  .subtitle {
+    color: #8b949e;
+    font-size: 1rem;
+    font-style: italic;
+  }
+  .container { max-width: 960px; margin: 0 auto; padding: 40px 32px; }
+
+  /* Pulse indicators */
+  .market-pulse {
+    display: flex; gap: 16px; flex-wrap: wrap;
+    margin-bottom: 40px;
+  }
+  .pulse-card {
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 12px;
+    padding: 16px 20px;
+    flex: 1; min-width: 140px;
+    transition: transform 0.2s;
+  }
+  .pulse-card:hover { transform: translateY(-2px); }
+  .pulse-card .label { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: #8b949e; margin-bottom: 6px; }
+  .pulse-card .value { font-size: 1.3rem; font-weight: 700; font-family: 'Courier New', monospace; }
+  .pulse-card .change { font-size: 12px; margin-top: 4px; }
+  .up { color: #3fb950; }
+  .down { color: #f85149; }
+  .neutral { color: #e3b341; }
+
+  /* Story sections */
+  .section {
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 16px;
+    padding: 32px;
+    margin-bottom: 24px;
+    position: relative;
+  }
+  .section-icon {
+    font-size: 1.8rem;
+    margin-bottom: 8px;
+    display: block;
+  }
+  .section h2 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #f0f6fc;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #30363d;
+  }
+  .section p { color: #c9d1d9; margin-bottom: 12px; font-size: 0.97rem; }
+  .section p:last-child { margin-bottom: 0; }
+
+  /* Asset table */
+  .asset-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 16px; }
+  .asset-row {
+    background: #0d1117;
+    border: 1px solid #21262d;
+    border-radius: 10px;
+    padding: 14px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .asset-ticker { font-family: 'Courier New', monospace; font-weight: 700; font-size: 0.95rem; color: #58a6ff; }
+  .asset-name { font-size: 11px; color: #8b949e; margin-top: 2px; }
+  .asset-signal { font-size: 12px; padding: 3px 10px; border-radius: 20px; font-weight: 600; }
+  .signal-pos { background: rgba(63,185,80,0.15); color: #3fb950; border: 1px solid rgba(63,185,80,0.3); }
+  .signal-neg { background: rgba(248,81,73,0.15); color: #f85149; border: 1px solid rgba(248,81,73,0.3); }
+  .signal-neu { background: rgba(227,179,65,0.15); color: #e3b341; border: 1px solid rgba(227,179,65,0.3); }
+
+  /* Quote block */
+  .callout {
+    background: rgba(88,166,255,0.05);
+    border-left: 3px solid #58a6ff;
+    padding: 16px 20px;
+    border-radius: 0 8px 8px 0;
+    margin: 16px 0;
+    font-style: italic;
+    color: #8b949e;
+  }
+
+  /* Risk banner */
+  .risk-banner {
+    background: rgba(248,81,73,0.08);
+    border: 1px solid rgba(248,81,73,0.25);
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin-top: 16px;
+  }
+  .risk-banner .risk-title { color: #f85149; font-weight: 600; font-size: 0.9rem; margin-bottom: 8px; }
+  .risk-banner ul { padding-left: 20px; color: #c9d1d9; font-size: 0.9rem; }
+  .risk-banner li { margin-bottom: 4px; }
+
+  /* opportunity banner */
+  .opp-banner {
+    background: rgba(63,185,80,0.08);
+    border: 1px solid rgba(63,185,80,0.25);
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin-top: 16px;
+  }
+  .opp-banner .opp-title { color: #3fb950; font-weight: 600; font-size: 0.9rem; margin-bottom: 8px; }
+  .opp-banner ul { padding-left: 20px; color: #c9d1d9; font-size: 0.9rem; }
+  .opp-banner li { margin-bottom: 4px; }
+
+  footer {
+    text-align: center;
+    padding: 32px;
+    color: #484f58;
+    font-size: 12px;
+    border-top: 1px solid #21262d;
+  }
+  footer a { color: #58a6ff; text-decoration: none; }
+  .sources { font-size: 11px; color: #484f58; margin-top: 8px; }
+
+  @media (max-width: 600px) {
+    header { padding: 24px 20px; }
+    h1 { font-size: 1.5rem; }
+    .container { padding: 24px 16px; }
+    .asset-grid { grid-template-columns: 1fr; }
+    .market-pulse { gap: 10px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div style="max-width:960px;margin:0 auto;">
+    <div class="date-tag">Segunda-feira · 1 de Junho de 2026</div>
+    <h1>📊 Diário de Mercado</h1>
+    <p class="subtitle">Uma história do que move o mundo — e o seu portfólio — hoje.</p>
+  </div>
+</header>
+
+<div class="container">
+
+  <!-- Pulso Rápido -->
+  <div class="market-pulse">
+    <div class="pulse-card">
+      <div class="label">Ibovespa Futuro</div>
+      <div class="value up">~176.120</div>
+      <div class="change up">▲ +0,38% (abertura est.)</div>
+    </div>
+    <div class="pulse-card">
+      <div class="label">Dólar / BRL</div>
+      <div class="value neutral">R$ 5,05</div>
+      <div class="change neutral">▲ leve pressão</div>
+    </div>
+    <div class="pulse-card">
+      <div class="label">Selic atual</div>
+      <div class="value down">15,00%</div>
+      <div class="change neutral">Corte em vista (2S26)</div>
+    </div>
+    <div class="pulse-card">
+      <div class="label">Minério de Ferro</div>
+      <div class="value down">~US$ 109</div>
+      <div class="change down">▼ pressão sazonal</div>
+    </div>
+    <div class="pulse-card">
+      <div class="label">S&P 500 / Nasdaq</div>
+      <div class="value up">Máximas históricas</div>
+      <div class="change up">▲ Nasdaq +8% em maio</div>
+    </div>
+  </div>
+
+  <!-- SEÇÃO 1: Cenário Global -->
+  <div class="section">
+    <span class="section-icon">🌍</span>
+    <h2>O Mundo Amanheceu Assim</h2>
+    <p>
+      Wall Street encerrou maio em máximas históricas — o Nasdaq acumula alta de mais de 8% no mês, impulsionado pelo otimismo
+      com inteligência artificial e pela expectativa de que o conflito no Estreito de Ormuz encontrará uma saída diplomática.
+      Mais de 60% dos analistas consultados pela Bloomberg esperam algum tipo de cessar-fogo até meados de junho, o que mantém
+      os preços do petróleo relativamente controlados.
+    </p>
+    <p>
+      Mas nem tudo é euforia. O índice de confiança do consumidor americano caiu pelo terceiro mês consecutivo,
+      atingindo 44,8 pontos — o menor nível desde que o dado começou a ser coletado, em 1952. O PPI (inflação no atacado)
+      subiu 5,2% em abril, sinalizando que o Fed ainda não tem margem confortável para cortar juros. Junho historicamente
+      é o pior mês para bolsas em anos de eleição midterm, e os traders já começam a reduzir exposição.
+    </p>
+    <div class="callout">
+      "O mercado está apostando no fim da guerra e ignorando a inflação. Quando um desses fatores decepcionar, a correção será rápida."
+      — Perspectiva de estrategistas citados pela CNBC
+    </div>
+    <p>
+      Para o investidor brasileiro, o cenário externo favorável (bolsas americanas no topo, commodities estáveis)
+      cria um ambiente de apetite ao risco que beneficia mercados emergentes. O real pode continuar pressionado
+      pelo diferencial de juros, com o dólar oscilando perto de R$ 5,05.
+    </p>
+  </div>
+
+  <!-- SEÇÃO 2: Brasil -->
+  <div class="section">
+    <span class="section-icon">🇧🇷</span>
+    <h2>Brasil: Ibovespa na Mira dos 200 Mil</h2>
+    <p>
+      O Ibovespa acumula alta de quase 9% em reais e ~13% em dólares em 2026, após superar o nível histórico
+      de 175 mil pontos. Os estrangeiros injetaram R$ 12,3 bilhões no mercado brasileiro só em janeiro —
+      quase a metade do fluxo do ano inteiro de 2025. O PIB cresceu 1,8% no 1T26 ante o mesmo período do ano anterior,
+      acima das expectativas.
+    </p>
+    <p>
+      O grande motor interno é a perspectiva de queda da Selic. Atualmente em 15% ao ano,
+      o mercado precifica cortes a partir do 2º semestre de 2026. Cada 0,5 p.p. de queda nos juros
+      beneficia ações (via desconto de fluxo de caixa futuro), os fundos imobiliários e o crédito.
+      O debate eleitoral de 2026 adiciona prêmio de risco — especialmente após o chamado "Efeito Flávio 2026",
+      que gerou perdas de R$ 183 bilhões em capitalização de mercado em um único evento de volatilidade.
+    </p>
+    <p>
+      Para hoje, o Ibovespa Futuro aponta abertura estável a levemente positiva (~176.120 pontos),
+      com atenção ao cessar-fogo no Irã e ao dólar, que pode amplificar ou amortecer os movimentos das commodities.
+    </p>
+  </div>
+
+  <!-- SEÇÃO 3: Seus Ativos -->
+  <div class="section">
+    <span class="section-icon">📈</span>
+    <h2>Seus Ativos — Contexto e Sinais</h2>
+
+    <div class="asset-grid">
+      <div class="asset-row">
+        <div>
+          <div class="asset-ticker">VALE3</div>
+          <div class="asset-name">Vale — Mineração</div>
+        </div>
+        <span class="asset-signal signal-neg">⚠ Cautela</span>
+      </div>
+      <div class="asset-row">
+        <div>
+          <div class="asset-ticker">BBDC4</div>
+          <div class="asset-name">Bradesco — Banco</div>
+        </div>
+        <span class="asset-signal signal-pos">✦ Positivo</span>
+      </div>
+      <div class="asset-row">
+        <div>
+          <div class="asset-ticker">MRFG3</div>
+          <div class="asset-name">Marfrig — Proteína</div>
+        </div>
+        <span class="asset-signal signal-pos">✦ Positivo</span>
+      </div>
+      <div class="asset-row">
+        <div>
+          <div class="asset-ticker">B3SA3</div>
+          <div class="asset-name">B3 — Bolsa BR</div>
+        </div>
+        <span class="asset-signal signal-pos">✦ Positivo</span>
+      </div>
+      <div class="asset-row">
+        <div>
+          <div class="asset-ticker">MSFT34</div>
+          <div class="asset-name">Microsoft BDR</div>
+        </div>
+        <span class="asset-signal signal-neu">→ Neutro/Aguardar</span>
+      </div>
+      <div class="asset-row">
+        <div>
+          <div class="asset-ticker">AXIA3</div>
+          <div class="asset-name">Axia — Tec/Energia</div>
+        </div>
+        <span class="asset-signal signal-neu">→ Monitorar</span>
+      </div>
+      <div class="asset-row">
+        <div>
+          <div class="asset-ticker">KNCR11</div>
+          <div class="asset-name">Kinea Rendimentos FII</div>
+        </div>
+        <span class="asset-signal signal-pos">✦ Positivo</span>
+      </div>
+      <div class="asset-row">
+        <div>
+          <div class="asset-ticker">PCIP11</div>
+          <div class="asset-name">Patrimonial Cibrasec FII</div>
+        </div>
+        <span class="asset-signal signal-neu">→ Monitorar</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SEÇÃO 4: Narrativa por ativo -->
+  <div class="section">
+    <span class="section-icon">🔍</span>
+    <h2>A História por Trás de Cada Ativo</h2>
+
+    <p><strong style="color:#58a6ff;">VALE3 — Atenção redobrada.</strong> O minério de ferro operou em torno de US$ 109/t na semana passada,
+    queda em relação aos picos recentes de ~CNY 810/t nos futuros chineses. A demanda sazonal por aço na China
+    desacelerou, e os estoques nos portos chineses chegaram a 167 milhões de toneladas — nível recorde.
+    O resultado do 1T26 mostrou lucro 36% maior (US$ 1,89 bi), mas Ebitda abaixo do esperado e custos mais altos
+    pesaram. A ação chegou a cair ~6% para perto de R$ 79 após o balanço. O risco China continua sendo o principal
+    fator de risco. Previsão de preço para o minério em 2026: US$ 102/t.</p>
+
+    <p><strong style="color:#58a6ff;">BBDC4 — Turnaround consolidando.</strong> Lucro líquido de R$ 6,8 bilhões no 1T26, alta de 16% a.a.
+    A projeção para 2026 indica R$ 27,5 bilhões de lucro anual. O banco está colhendo os frutos do plano de reestruturação
+    iniciado em 2024. O ROE (retorno sobre patrimônio) está em recuperação. A queda esperada da Selic no 2S26 deve
+    impulsionar crédito e reduzir inadimplência — dois ventos favoráveis ao Bradesco. A ação subiu mais de 60% em 2025.</p>
+
+    <p><strong style="color:#58a6ff;">MRFG3 — Incorporação da BRF muda o jogo.</strong> A Marfrig anunciou a incorporação total das ações
+    da BRF, formando a nova MBRF. A operação cria uma das maiores empresas de proteína animal do mundo.
+    Em sessões recentes a ação subiu mais de 16% em um único dia com o anúncio. O processo de integração
+    traz riscos executivos, mas o potencial de escala e geração de caixa é significativo.</p>
+
+    <p><strong style="color:#58a6ff;">B3SA3 — Direta beneficiária do rali do Ibovespa.</strong> Com o Ibovespa em máximas e volume negociado
+    em alta, a B3 se beneficia diretamente. Maior volume → mais receita de negociação. A perspectiva de corte
+    de juros também incentiva migração de poupança para renda variável, aumentando a base de investidores.
+    B3SA3 é uma das ações de maior convicção dos analistas para o 2S26.</p>
+
+    <p><strong style="color:#58a6ff;">MSFT34 — Gigante com volatilidade.</strong> A Microsoft entregou crescimento de 18% na receita no 3T fiscal,
+    Azure +40%, e a receita anualizada de IA chegou a US$ 37 bilhões (+123% a.a.). Porém, o capex planejado de
+    US$ 190 bilhões em 2026 (+61%) preocupa o mercado quanto à compressão de margens. A ação caiu ~12% no início
+    de 2026 e hoje negocia perto de US$ 440. Para o BDR MSFT34, o câmbio também é variável — dólar forte
+    amplifica os retornos em reais. É um ativo de longo prazo; o momento pode exigir paciência.</p>
+
+    <p><strong style="color:#58a6ff;">KNCR11 — FII com histórico sólido e crescimento.</strong> O maior fundo de recebíveis da B3 em patrimônio
+    (R$ 10,96 bilhões) pagou R$ 1,10 por cota em maio/26. A cotação subiu de R$ 101,84 no início do ano para
+    ~R$ 107,00. Com a Selic em 15%, fundos de CRI como o KNCR11 têm rendimento alto e protegido. A queda
+    futura dos juros pode pressionar levemente a cota, mas a distribuição de proventos continua atrativa.
+    O IFIX acumulou queda de 1,74% em maio — pressão técnica que pode criar oportunidade de entrada.</p>
+
+    <p><strong style="color:#58a6ff;">PCIP11 — Monitorar.</strong> Não há notícias relevantes disponíveis publicamente para PCIP11 nesta semana.
+    Recomenda-se verificar diretamente em statusinvest.com.br o último relatório gerencial e a distribuição
+    de rendimentos. A compressão do IFIX em maio pode ter afetado a cota.</p>
+  </div>
+
+  <!-- SEÇÃO 5: Riscos e Oportunidades -->
+  <div class="section">
+    <span class="section-icon">⚡</span>
+    <h2>Riscos e Oportunidades para Junho</h2>
+
+    <div class="risk-banner">
+      <div class="risk-title">🔴 Principais Riscos</div>
+      <ul>
+        <li><strong>Geopolítica Irã:</strong> Sem cessar-fogo, petróleo sobe → inflação global → Fed hawkish → queda em emergentes.</li>
+        <li><strong>China / Minério:</strong> Demanda por aço fraca pressiona VALE3 abaixo dos R$ 75.</li>
+        <li><strong>Selic sem corte:</strong> Frustração com timing do ciclo de afrouxamento afeta FIIs e ações de crescimento.</li>
+        <li><strong>Ruído eleitoral 2026:</strong> Declarações fiscais podem gerar episódios de volatilidade aguda (como o "Efeito Flávio").</li>
+        <li><strong>Microsoft capex:</strong> US$ 190 bi em 2026 pode comprimir margens; mercado pode reprecificar o papel.</li>
+      </ul>
+    </div>
+
+    <div class="opp-banner">
+      <div class="opp-title">🟢 Oportunidades no Radar</div>
+      <ul>
+        <li><strong>BBDC4 + B3SA3:</strong> Ciclo de corte de juros ainda não está totalmente precificado nas ações de bancos e bolsa.</li>
+        <li><strong>KNCR11:</strong> IFIX em queda em maio pode abrir janela de entrada com yield atrativo.</li>
+        <li><strong>MRFG3:</strong> Conclusão da incorporação BRF pode destravar valor; ação ainda não precificou todo o potencial de escala.</li>
+        <li><strong>Ibovespa rumo a 192-200k:</strong> Fluxo estrangeiro continua forte; bull market estrutural para o Brasil em 2026.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Agenda da semana -->
+  <div class="section">
+    <span class="section-icon">📅</span>
+    <h2>Agenda da Semana (1–5 de Junho)</h2>
+    <p><strong style="color:#e3b341;">Segunda (hoje):</strong> Abertura do mês — fluxo de rebalanceamento de carteiras institucionais. Atenção ao dólar futuro e ao comportamento dos futuros de minério na China.</p>
+    <p><strong style="color:#e3b341;">Terça–Quarta:</strong> Dados de atividade industrial americanos (ISM Manufacturing). Qualquer surpresa negativa pode gerar realização em Wall Street.</p>
+    <p><strong style="color:#e3b341;">Quinta:</strong> Dados de emprego ADP (precursor do payroll). Mercado de trabalho robusto = Fed pressionado = emergentes em alerta.</p>
+    <p><strong style="color:#e3b341;">Sexta:</strong> Payroll americano (não-farm payrolls) — o dado mais importante da semana. Pode definir o tom de junho para todos os mercados.</p>
+    <p>No Brasil: aguardar posicionamento do Copom sobre a trajetória da Selic e eventuais notícias eleitorais de 2026.</p>
+  </div>
+
+</div>
+
+<footer>
+  <p>Análise compilada por Claude · 1º de Junho de 2026</p>
+  <p class="sources">
+    Fontes:
+    <a href="https://www.cnbc.com/2026/05/29/stock-market-next-week-outlook-for-june-1-5-2026.html" target="_blank">CNBC — Outlook Junho</a> ·
+    <a href="https://www.infomoney.com.br/mercados/bradesco-bbdc4-resultados-primeiro-trimestre-2026/" target="_blank">InfoMoney — Bradesco 1T26</a> ·
+    <a href="https://www.infomoney.com.br/onde-investir/bolsa-dispara-em-2026-ainda-da-tempo-de-aproveitar-o-rali-do-ibovespa/" target="_blank">InfoMoney — Ibovespa 2026</a> ·
+    <a href="https://www.cnbc.com/2026/04/29/microsoft-msft-q3-earnings-report-2026.html" target="_blank">CNBC — MSFT Q3</a> ·
+    <a href="https://finance.yahoo.com/markets/stocks/articles/microsoft-stock-buy-ai-business-175557690.html" target="_blank">Yahoo Finance — MSFT IA</a> ·
+    <a href="https://statusinvest.com.br/fundos-imobiliarios/kncr11" target="_blank">Status Invest — KNCR11</a> ·
+    <a href="https://pt.tradingeconomics.com/commodity/iron-ore" target="_blank">TradingEconomics — Minério</a>
+  </p>
+  <p class="sources" style="margin-top:8px;">⚠ Este relatório é informativo. Não constitui recomendação de investimento.</p>
+</footer>
+
+</body>
+</html>
