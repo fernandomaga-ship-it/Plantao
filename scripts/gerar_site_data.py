@@ -77,7 +77,7 @@ def title_from_path(rel: str) -> str:
 # ── Datas ─────────────────────────────────────────────────────────────────────
 def shift_date_from_path(rel: str) -> str:
     """Extrai data ISO (YYYY-MM-DD) do caminho, ex: plantoes/bp/2026-05-15/leito.html"""
-    m = re.search(r"(?:^|/)(\d{4}-\d{2}-\d{2})(?:/|$)", rel)
+    m = re.search(r"(?:^|/)(\d{4}-\d{2}-\d{2})(?:/|\.|$)", rel)
     return m.group(1) if m else ""
 
 def shift_date_from_html(html: str) -> str:

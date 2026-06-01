@@ -2,6 +2,18 @@ window.PLANTAO_DATA = {
   "generatedAt": "2026-06-01",
   "pages": [
     {
+      "title": "📊 Análise de Mercado — 1º de Junho de 2026",
+      "path": "rotinas/mercado/2026-06-01.html",
+      "href": "rotinas/mercado/2026-06-01.html",
+      "folder": "rotinas/mercado",
+      "category": "rotinas",
+      "categoryLabel": "Rotinas",
+      "summary": "📊 Análise de Mercado — 1º de Junho de 2026 Segunda-feira · 1 de Junho de 2026 📊 Diário de Mercado Uma história do que move o mundo — e o seu portfólio — hoje. Ibovespa ",
+      "updated": "2026-06-01",
+      "shiftDate": "2026-06-01",
+      "shiftDateLabel": "01/06/2026"
+    },
+    {
       "title": "Leito 2819 — Etna — 28/05/2026",
       "path": "plantoes/8b/2026-05-29/leito_2819_etna_28-05-2026.html",
       "href": "plantoes/8b/2026-05-29/leito_2819_etna_28-05-2026.html",
@@ -586,18 +598,6 @@ window.PLANTAO_DATA = {
       "categoryLabel": "Rotinas",
       "summary": "Diário de Mercado — F&K | 25 Mai 2026 Carteira F&K Serviços Médicos · Análise Diária Diário de Mercado Fernando M. Coutinho · Edição Nº 001 Segunda-feira, 25 de Maio de",
       "updated": "2026-05-26",
-      "shiftDate": "",
-      "shiftDateLabel": ""
-    },
-    {
-      "title": "📊 Análise de Mercado — 1º de Junho de 2026",
-      "path": "rotinas/mercado/2026-06-01.html",
-      "href": "rotinas/mercado/2026-06-01.html",
-      "folder": "rotinas/mercado",
-      "category": "rotinas",
-      "categoryLabel": "Rotinas",
-      "summary": "📊 Análise de Mercado — 1º de Junho de 2026 Segunda-feira · 1 de Junho de 2026 📊 Diário de Mercado Uma história do que move o mundo — e o seu portfólio — hoje. Ibovespa ",
-      "updated": "2026-06-01",
       "shiftDate": "",
       "shiftDateLabel": ""
     }
