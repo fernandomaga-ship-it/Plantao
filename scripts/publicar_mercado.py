@@ -25,15 +25,30 @@ from urllib.parse import quote as url_quote
 CODEX = Path(__file__).parent.parent.resolve()
 DESTINO = CODEX / "rotinas" / "mercado"
 
-# Pasta de outputs da rotina Cowork (pode ser sobrescrita via --source)
-COWORK_OUTPUTS = Path(
+# Raiz de todas as sessões Cowork — busca em TODAS, independente do session ID
+COWORK_SESSIONS_ROOT = Path(
     "/Users/fernandomcoutinho/Library/Application Support/Claude"
     "/local-agent-mode-sessions"
-    "/5ea7e628-d35b-4b4a-a560-b19b495de896"
-    "/4eb03a25-bcd7-45ee-829b-d0ea5d1e0714"
-    "/local_37255801-648e-4475-b6ea-5643cb576523"
-    "/outputs"
 )
+
+def encontrar_outputs_dirs() -> list:
+    """
+    Varre todas as sessões Cowork e devolve a lista de pastas outputs/
+    que contenham arquivos mercado_*.html.
+    Não depende de ID de sessão fixo.
+    """
+    if not COWORK_SESSIONS_ROOT.exists():
+        return []
+    dirs = []
+    for outputs in COWORK_SESSIONS_ROOT.glob("*/*/outputs"):
+        if any(outputs.glob("mercado_*.html")):
+            dirs.append(outputs)
+    # Fallback: busca em profundidade variável
+    if not dirs:
+        for outputs in COWORK_SESSIONS_ROOT.glob("**/outputs"):
+            if any(outputs.glob("mercado_*.html")):
+                dirs.append(outputs)
+    return dirs
 
 # Meses em português → número
 MESES = {
@@ -66,7 +81,7 @@ def data_do_nome(nome: str) -> Optional[str]:
         if num:
             return f"{yyyy}-{num}-{dd.zfill(2)}"
 
-    # Padrão YYYY-MM-DD ou DD-MM-YYYY ou DD_MM_YYYY
+    # Padrão YYYY-MM-DD ou DD-MM-YYYY ou DD_MM_YYYY (com separadores)
     m = re.search(r"(\d{4})[-_](\d{2})[-_](\d{2})", stem)
     if m:
         return f"{m.group(1)}-{m.group(2)}-{m.group(3)}"
@@ -74,6 +89,13 @@ def data_do_nome(nome: str) -> Optional[str]:
     m = re.search(r"(\d{2})[-_](\d{2})[-_](\d{4})", stem)
     if m:
         return f"{m.group(3)}-{m.group(2)}-{m.group(1)}"
+
+    # Padrão DDMMYYYY colado (ex: mercado_29052026)
+    m = re.search(r"(\d{2})(\d{2})(\d{4})$", stem)
+    if m:
+        dd, mm, yyyy = m.groups()
+        if 1 <= int(mm) <= 12 and 1 <= int(dd) <= 31:
+            return f"{yyyy}-{mm}-{dd}"
 
     return None
 
@@ -108,20 +130,31 @@ def main() -> None:
     )
     parser.add_argument(
         "--source",
-        default=str(COWORK_OUTPUTS),
-        help="Pasta de origem dos HTMLs (padrão: pasta outputs/ do Cowork)",
+        default=None,
+        help="Pasta de origem dos HTMLs (padrão: busca automática em todas as sessões Cowork)",
     )
     parser.add_argument("--dry-run", action="store_true")
     parser.add_argument("--no-push", action="store_true")
     args = parser.parse_args()
 
-    src_dir = Path(args.source).expanduser().resolve()
-    if not src_dir.is_dir():
-        print(f"✗ Pasta não encontrada: {src_dir}", file=sys.stderr)
-        sys.exit(1)
+    # ── Resolve pasta(s) de origem ────────────────────────────────────────────
+    if args.source:
+        src_dirs = [Path(args.source).expanduser().resolve()]
+        if not src_dirs[0].is_dir():
+            print(f"✗ Pasta não encontrada: {src_dirs[0]}", file=sys.stderr)
+            sys.exit(1)
+    else:
+        src_dirs = encontrar_outputs_dirs()
+        if not src_dirs:
+            print("✗ Nenhuma pasta outputs/ com mercado_*.html encontrada.", file=sys.stderr)
+            sys.exit(1)
+        print(f"  🔍  {len(src_dirs)} pasta(s) Cowork encontrada(s).")
 
     # ── Encontra HTMLs novos ──────────────────────────────────────────────────
-    candidatos = sorted(src_dir.glob("*.html"), key=lambda p: p.stat().st_mtime)
+    todos = []
+    for src_dir in src_dirs:
+        todos.extend(src_dir.glob("mercado_*.html"))
+    candidatos = sorted(todos, key=lambda p: p.stat().st_mtime)
     novos = []
     ignorados = []
 
