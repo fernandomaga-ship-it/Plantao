@@ -25,16 +25,49 @@ from urllib.parse import quote as url_quote
 CODEX = Path(__file__).parent.parent.resolve()
 DESTINO = CODEX / "rotinas" / "mercado"
 
-# Raiz de todas as sessões Cowork — busca em TODAS, independente do session ID
+# Raiz de todas as sessões Cowork
 COWORK_SESSIONS_ROOT = Path(
     "/Users/fernandomcoutinho/Library/Application Support/Claude"
     "/local-agent-mode-sessions"
 )
 
+# Pasta de Artifacts do Cowork (quando a rotina usa Artifact em vez de arquivo)
+ARTIFACTS_MERCADO = Path(
+    "/Users/fernandomcoutinho/Documents/Claude/Artifacts/mercado-de-acoes"
+)
+
+
+def data_do_artifact(html_path: Path) -> Optional[str]:
+    """
+    Extrai a data do conteúdo do Artifact (ex: <title>Análise de Mercado — 2 jun 2026</title>).
+    Devolve formato ISO YYYY-MM-DD ou None.
+    """
+    MESES_ABREV = {
+        "jan": "01", "fev": "02", "mar": "03", "abr": "04",
+        "mai": "05", "jun": "06", "jul": "07", "ago": "08",
+        "set": "09", "out": "10", "nov": "11", "dez": "12",
+    }
+    try:
+        texto = html_path.read_text(encoding="utf-8", errors="ignore")[:2000]
+        # Padrão: "2 jun 2026" ou "02 junho 2026"
+        m = re.search(r"(\d{1,2})\s+([a-z]{3,})\s+(\d{4})", texto, re.IGNORECASE)
+        if m:
+            dd, mes, yyyy = m.group(1), m.group(2)[:3].lower(), m.group(3)
+            num = MESES_ABREV.get(mes)
+            if num:
+                return f"{yyyy}-{num}-{dd.zfill(2)}"
+        # Padrão ISO direto no conteúdo
+        m = re.search(r"(\d{4}-\d{2}-\d{2})", texto)
+        if m:
+            return m.group(1)
+    except Exception:
+        pass
+    return None
+
+
 def encontrar_outputs_dirs() -> list:
     """
-    Varre todas as sessões Cowork e devolve a lista de pastas outputs/
-    que contenham arquivos mercado_*.html.
+    Varre todas as sessões Cowork e devolve pastas outputs/ com mercado_*.html.
     Não depende de ID de sessão fixo.
     """
     if not COWORK_SESSIONS_ROOT.exists():
@@ -43,7 +76,6 @@ def encontrar_outputs_dirs() -> list:
     for outputs in COWORK_SESSIONS_ROOT.glob("*/*/outputs"):
         if any(outputs.glob("mercado_*.html")):
             dirs.append(outputs)
-    # Fallback: busca em profundidade variável
     if not dirs:
         for outputs in COWORK_SESSIONS_ROOT.glob("**/outputs"):
             if any(outputs.glob("mercado_*.html")):
@@ -137,24 +169,40 @@ def main() -> None:
     parser.add_argument("--no-push", action="store_true")
     args = parser.parse_args()
 
-    # ── Resolve pasta(s) de origem ────────────────────────────────────────────
-    if args.source:
-        src_dirs = [Path(args.source).expanduser().resolve()]
-        if not src_dirs[0].is_dir():
-            print(f"✗ Pasta não encontrada: {src_dirs[0]}", file=sys.stderr)
-            sys.exit(1)
-    else:
-        src_dirs = encontrar_outputs_dirs()
-        if not src_dirs:
-            print("✗ Nenhuma pasta outputs/ com mercado_*.html encontrada.", file=sys.stderr)
-            sys.exit(1)
-        print(f"  🔍  {len(src_dirs)} pasta(s) Cowork encontrada(s).")
+    # ── Resolve arquivo(s) de origem ─────────────────────────────────────────
+    candidatos_raw = []
 
-    # ── Encontra HTMLs novos ──────────────────────────────────────────────────
-    todos = []
-    for src_dir in src_dirs:
-        todos.extend(src_dir.glob("mercado_*.html"))
-    candidatos = sorted(todos, key=lambda p: p.stat().st_mtime)
+    if args.source:
+        src = Path(args.source).expanduser().resolve()
+        if not src.is_dir():
+            print(f"✗ Pasta não encontrada: {src}", file=sys.stderr)
+            sys.exit(1)
+        candidatos_raw = list(src.glob("*.html"))
+    else:
+        # 1) Sessões Cowork (arquivos mercado_*.html)
+        src_dirs = encontrar_outputs_dirs()
+        if src_dirs:
+            print(f"  🔍  {len(src_dirs)} pasta(s) Cowork encontrada(s).")
+            for d in src_dirs:
+                candidatos_raw.extend(d.glob("mercado_*.html"))
+
+        # 2) Artifact do Cowork (index.html em mercado-de-acoes/)
+        artifact = ARTIFACTS_MERCADO / "index.html"
+        if artifact.exists():
+            data_art = data_do_artifact(artifact)
+            if data_art and not ja_publicado(data_art):
+                print(f"  🎨  Artifact encontrado: mercado-de-acoes/index.html → {data_art}")
+                # Copia com nome datado para tratar como candidato normal
+                tmp = artifact.parent / f"mercado_{data_art}.html"
+                if not tmp.exists():
+                    shutil.copy2(artifact, tmp)
+                candidatos_raw.append(tmp)
+
+        if not candidatos_raw:
+            print("  ✓  Nenhum arquivo novo para publicar.")
+            return
+
+    candidatos = sorted(set(candidatos_raw), key=lambda p: p.stat().st_mtime)
     novos = []
     ignorados = []
 
