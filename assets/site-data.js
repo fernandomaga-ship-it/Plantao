@@ -1,5 +1,5 @@
 window.PLANTAO_DATA = {
-  "generatedAt": "2026-06-01",
+  "generatedAt": "2026-06-02",
   "pages": [
     {
       "title": "📊 Análise de Mercado — 1º de Junho de 2026",
@@ -46,6 +46,18 @@ window.PLANTAO_DATA = {
       "categoryLabel": "UTI",
       "summary": "Plantão UTI Mirante - 31/05/2026 | 01:05 📋 Plantão UTI Mirante Data/Hora: 31/05/2026 | 01:05 Leitos incluídos Leito 02 Leito 04 Leito 06 Leito 07 Leito 08 Leito 10 Leit",
       "updated": "2026-05-31",
+      "shiftDate": "2026-05-29",
+      "shiftDateLabel": "29/05/2026"
+    },
+    {
+      "title": "Radar de Mercado — 29 de maio de 2026",
+      "path": "rotinas/mercado/2026-05-29.html",
+      "href": "rotinas/mercado/2026-05-29.html",
+      "folder": "rotinas/mercado",
+      "category": "rotinas",
+      "categoryLabel": "Rotinas",
+      "summary": "Radar de Mercado — 29 de maio de 2026 📊 Radar de Mercado O mundo sob pressão do Oriente Médio — e a bolsa brasileira resiste Sexta-feira, 29 de maio de 2026 · Baseado e",
+      "updated": "2026-05-29",
       "shiftDate": "2026-05-29",
       "shiftDateLabel": "29/05/2026"
     },

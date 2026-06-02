@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Radar de Mercado — 29 de maio de 2026</title>
+<style>
+  :root {
+    --verde: #00c97a;
+    --vermelho: #ff4a4a;
+    --amarelo: #f5c542;
+    --azul: #1a73e8;
+    --fundo: #0d1117;
+    --card: #161b22;
+    --borda: #30363d;
+    --texto: #e6edf3;
+    --texto-secundario: #8b949e;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--fundo);
+    color: var(--texto);
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    line-height: 1.6;
+    padding: 24px 16px;
+  }
+  .container { max-width: 900px; margin: 0 auto; }
+
+  /* HEADER */
+  .header {
+    border-bottom: 1px solid var(--borda);
+    padding-bottom: 20px;
+    margin-bottom: 32px;
+  }
+  .header .tag {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--texto-secundario);
+    margin-bottom: 8px;
+  }
+  .header h1 {
+    font-size: 28px;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 6px;
+  }
+  .header .subtitle {
+    color: var(--texto-secundario);
+    font-size: 14px;
+  }
+
+  /* SEÇÃO */
+  .section { margin-bottom: 36px; }
+  .section-title {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--texto-secundario);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .section-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--borda);
+  }
+
+  /* NARRATIVA */
+  .narrativa {
+    background: var(--card);
+    border: 1px solid var(--borda);
+    border-radius: 12px;
+    padding: 24px;
+    font-size: 15px;
+    line-height: 1.8;
+  }
+  .narrativa p { margin-bottom: 14px; }
+  .narrativa p:last-child { margin-bottom: 0; }
+  .narrativa strong { color: #fff; }
+  .narrativa .destaque {
+    border-left: 3px solid var(--azul);
+    padding-left: 16px;
+    color: var(--texto-secundario);
+    font-style: italic;
+    margin: 18px 0;
+  }
+
+  /* PAINEL IBOVESPA */
+  .ibov-painel {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 12px;
+    margin-bottom: 32px;
+  }
+  .ibov-card {
+    background: var(--card);
+    border: 1px solid var(--borda);
+    border-radius: 10px;
+    padding: 16px;
+    text-align: center;
+  }
+  .ibov-card .label { font-size: 11px; color: var(--texto-secundario); margin-bottom: 4px; text-transform: uppercase; letter-spacing: 1px; }
+  .ibov-card .valor { font-size: 22px; font-weight: 800; }
+  .ibov-card .sub { font-size: 12px; margin-top: 4px; }
+  .up { color: var(--verde); }
+  .down { color: var(--vermelho); }
+  .neutro { color: var(--amarelo); }
+
+  /* CARDS DE AÇÕES */
+  .acoes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 14px;
+  }
+  .acao-card {
+    background: var(--card);
+    border: 1px solid var(--borda);
+    border-radius: 10px;
+    padding: 18px;
+    position: relative;
+    overflow: hidden;
+  }
+  .acao-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+  }
+  .acao-card.up::before { background: var(--verde); }
+  .acao-card.down::before { background: var(--vermelho); }
+  .acao-card.neutro::before { background: var(--amarelo); }
+
+  .acao-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; }
+  .acao-ticker { font-weight: 800; font-size: 17px; }
+  .acao-nome { font-size: 11px; color: var(--texto-secundario); margin-top: 2px; }
+  .acao-var {
+    font-size: 13px;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 6px;
+  }
+  .acao-var.up { background: rgba(0,201,122,0.15); color: var(--verde); }
+  .acao-var.down { background: rgba(255,74,74,0.15); color: var(--vermelho); }
+  .acao-var.neutro { background: rgba(245,197,66,0.15); color: var(--amarelo); }
+  .acao-preco { font-size: 20px; font-weight: 700; margin-bottom: 8px; }
+  .acao-nota { font-size: 12px; color: var(--texto-secundario); line-height: 1.5; }
+
+  /* FIIs */
+  .fii-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 14px;
+  }
+  .fii-card {
+    background: var(--card);
+    border: 1px solid var(--borda);
+    border-radius: 10px;
+    padding: 18px;
+    position: relative;
+    overflow: hidden;
+  }
+  .fii-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--azul);
+  }
+  .fii-dividendo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 10px;
+  }
+  .fii-dividendo .badge {
+    background: rgba(26,115,232,0.15);
+    color: var(--azul);
+    font-size: 12px;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 6px;
+  }
+
+  /* RADAR GLOBAL */
+  .global-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 10px;
+  }
+  .global-item {
+    background: var(--card);
+    border: 1px solid var(--borda);
+    border-radius: 8px;
+    padding: 12px 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .global-item .nome { font-size: 13px; color: var(--texto-secundario); }
+  .global-item .var-g { font-size: 14px; font-weight: 700; }
+
+  /* RODAPÉ */
+  .footer {
+    border-top: 1px solid var(--borda);
+    padding-top: 20px;
+    margin-top: 40px;
+    font-size: 12px;
+    color: var(--texto-secundario);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .sources a { color: var(--azul); text-decoration: none; }
+  .sources a:hover { text-decoration: underline; }
+
+  /* ALERTA */
+  .alerta {
+    background: rgba(245,197,66,0.1);
+    border: 1px solid rgba(245,197,66,0.3);
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-size: 13px;
+    color: var(--amarelo);
+    margin-bottom: 24px;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="tag">📊 Radar de Mercado</div>
+    <h1>O mundo sob pressão do Oriente Médio —<br>e a bolsa brasileira resiste</h1>
+    <div class="subtitle">Sexta-feira, 29 de maio de 2026 · Baseado em dados até 26/mai/2026</div>
+  </div>
+
+  <!-- ALERTA DE CONTEXTO -->
+  <div class="alerta">
+    ⚠️ <strong>Contexto desta edição:</strong> dados consolidados até terça-feira (26/mai). O pregão de hoje (29/mai) ainda não abriu no momento desta análise. Use como referência de tendência para a abertura.
+  </div>
+
+  <!-- PAINEL IBOVESPA -->
+  <div class="section">
+    <div class="section-title">Ibovespa</div>
+    <div class="ibov-painel">
+      <div class="ibov-card">
+        <div class="label">Fechamento (seg 25/mai)</div>
+        <div class="valor">177.815</div>
+        <div class="sub up">+0,91% no dia</div>
+      </div>
+      <div class="ibov-card">
+        <div class="label">Maio</div>
+        <div class="valor down">-5,07%</div>
+        <div class="sub">mês difícil</div>
+      </div>
+      <div class="ibov-card">
+        <div class="label">2026 (YTD)</div>
+        <div class="valor up">+10,36%</div>
+        <div class="sub">ano ainda positivo</div>
+      </div>
+      <div class="ibov-card">
+        <div class="label">Dólar (R$)</div>
+        <div class="valor neutro">5,019</div>
+        <div class="sub down">-0,19% na seg</div>
+      </div>
+      <div class="ibov-card">
+        <div class="label">Meta analistas 2026</div>
+        <div class="valor">195.000</div>
+        <div class="sub up">mediana de 15 analistas</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NARRATIVA GLOBAL -->
+  <div class="section">
+    <div class="section-title">🌍 Cenário Global</div>
+    <div class="narrativa">
+      <p>A semana começou com os mercados globais divididos entre o otimismo de um possível cessar-fogo e a realidade dos ataques americanos no sul do Irã. O secretário de Estado Marco Rubio admitiu que um acordo "pode levar alguns dias", esfriando as apostas mais otimistas — mas sem cancelá-las. Em Washington, o feriado do <strong>Memorial Day</strong> na segunda-feira manteve Wall Street fechada, e os índices futuros abriam a terça com alta moderada: <strong>Dow +0,53%, S&P +0,70% e Nasdaq +1,04%</strong>.</p>
+
+      <div class="destaque">
+        "O Irã busca a liberação de US$ 24 bilhões em ativos congelados. O Catar serve de mediador. A pergunta que move os mercados: quando — não se — o acordo virá." — Tasnim/Reuters, 26 mai
+      </div>
+
+      <p>O petróleo respondeu de forma esquizofrênica: o <strong>Brent subiu 2,36% para US$ 98,44</strong> (preocupação com o Estreito de Ormuz ainda fechado), enquanto o <strong>WTI caiu 4,79% para US$ 91,97</strong> (apostas num arrefecimento de curto prazo). O <strong>minério de ferro na China recuou 1,95%</strong>, para 781 yuanes — um sinal de fraqueza na demanda asiática que afeta diretamente a Vale.</p>
+
+      <p>Na Ásia, os mercados fecharam mistos. O <strong>Japão manteve sua avaliação de recuperação moderada</strong>, mas sinalizou preocupação com os efeitos do Oriente Médio. Uma novidade diplomática: Tóquio e Mercosul devem iniciar negociações de um acordo de parceria econômica (EPA) — um movimento que, se concluído, seria positivo para commodities agrícolas brasileiras.</p>
+
+      <p>Na Europa, seis dias de ganhos deram lugar a uma pequena pausa. A <strong>Ferrari despencou 7,7%</strong> ao apresentar seu primeiro modelo totalmente elétrico — o mercado questionou margens. A tensão no Oriente Médio mantém os investidores europeus cautelosos com energia.</p>
+
+      <p>No front tecnológico americano, a <strong>Microsoft (MSFT)</strong> brilhou: receita recorde de <strong>US$ 54,1 bilhões no 3T2026</strong> (+29% a.a.), negócios de IA em <strong>US$ 37 bilhões anualizados</strong> (+123%), e Azure em alta de 40%. A empresa gastará US$ 190 bilhões em 2026 em infraestrutura de IA. Uma ruptura importante: a Microsoft deixou de ser parceira exclusiva da OpenAI, que agora pode trabalhar com Amazon e Google — mantendo o ecossistema de IA mais competitivo.</p>
+    </div>
+  </div>
+
+  <!-- RADAR GLOBAL -->
+  <div class="section">
+    <div class="section-title">📡 Índices & Commodities (26/mai)</div>
+    <div class="global-grid">
+      <div class="global-item"><span class="nome">S&P 500 Futuro</span><span class="var-g up">+0,70%</span></div>
+      <div class="global-item"><span class="nome">Nasdaq Futuro</span><span class="var-g up">+1,04%</span></div>
+      <div class="global-item"><span class="nome">Shanghai SE</span><span class="var-g down">-0,17%</span></div>
+      <div class="global-item"><span class="nome">Nikkei 225</span><span class="var-g down">-0,25%</span></div>
+      <div class="global-item"><span class="nome">DAX (Alemanha)</span><span class="var-g down">-0,54%</span></div>
+      <div class="global-item"><span class="nome">FTSE 100 (UK)</span><span class="var-g up">+0,65%</span></div>
+      <div class="global-item"><span class="nome">Petróleo Brent</span><span class="var-g up">US$ 98,44 +2,4%</span></div>
+      <div class="global-item"><span class="nome">Petróleo WTI</span><span class="var-g down">US$ 91,97 -4,8%</span></div>
+      <div class="global-item"><span class="nome">Minério de Ferro</span><span class="var-g down">781 ¥ -1,95%</span></div>
+      <div class="global-item"><span class="nome">Dólar (DXY)</span><span class="var-g down">98,98 -0,26%</span></div>
+    </div>
+  </div>
+
+  <!-- AÇÕES -->
+  <div class="section">
+    <div class="section-title">📈 Suas Ações</div>
+    <div class="narrativa" style="margin-bottom:18px;">
+      <p>O mês de maio pressionou a bolsa brasileira (-5,07%), mas o ano ainda acumula ganho de <strong>+10,36%</strong>. Os setores bancário e de varejo puxaram as altas no pregão de segunda. O grande evento da semana foi o balanço da Vale: lucro forte, mas custos crescendo — e o mercado puniu. Veja o panorama de cada ativo:</p>
+    </div>
+    <div class="acoes-grid">
+
+      <div class="acao-card down">
+        <div class="acao-header">
+          <div>
+            <div class="acao-ticker">VALE3</div>
+            <div class="acao-nome">Vale — Mineração</div>
+          </div>
+          <span class="acao-var down">-5,87% (29/abr)</span>
+        </div>
+        <div class="acao-preco">R$ 79,44</div>
+        <div class="acao-nota">Lucro de US$ 1,89 bi no 1T26 (+36% a.a.) não animou: custo C1 subiu 12% (real valorizado vs. dólar). Minério de ferro queda 2% na China esta semana. O mercado espera clareza sobre os projetos Serra Sul +20 (2S26) e Capanema. <strong>Tese de longo prazo intacta, mas ruído de curto prazo.</strong></div>
+      </div>
+
+      <div class="acao-card up">
+        <div class="acao-header">
+          <div>
+            <div class="acao-ticker">BBDC4</div>
+            <div class="acao-nome">Bradesco PN — Banco</div>
+          </div>
+          <span class="acao-var up">+2,70% (05/mai)</span>
+        </div>
+        <div class="acao-preco">~R$ 18,00</div>
+        <div class="acao-nota">Bancos foram os grandes protagonistas do rali de maio. Bradesco lidera entre os incumbentes na retomada. Selic em patamar restritivo beneficia spread bancário. <strong>Setor segue como favorito do consenso.</strong></div>
+      </div>
+
+      <div class="acao-card up">
+        <div class="acao-header">
+          <div>
+            <div class="acao-ticker">MRFG3 / MBRF3</div>
+            <div class="acao-nome">Marfrig → MBRF (fusão BRF)</div>
+          </div>
+          <span class="acao-var up">+18%+ em maio</span>
+        </div>
+        <div class="acao-preco">R$ 16,24</div>
+        <div class="acao-nota">Após a fusão com a BRF, o papel passou a se chamar MBRF3. Foi um dos maiores destaques positivos do Ibovespa em maio. A combinação de proteínas bovinas + aves criou um gigante global. <strong>Atenção: checar se você ainda tem MRFG3 ou já migrou para MBRF3.</strong></div>
+      </div>
+
+      <div class="acao-card up">
+        <div class="acao-header">
+          <div>
+            <div class="acao-ticker">B3SA3</div>
+            <div class="acao-nome">B3 — Bolsa Brasileira</div>
+          </div>
+          <span class="acao-var up">+3,60% (25/mai)</span>
+        </div>
+        <div class="acao-preco">Alta recente</div>
+        <div class="acao-nota">A B3 foi uma das mais negociadas na segunda (31.996 negócios). Volume anual de ações caiu -10,9% em maio no acumulado, mas a recuperação do índice em 2026 (+10%) favorece a tese. <strong>Correlação direta com o Ibovespa.</strong></div>
+      </div>
+
+      <div class="acao-card up">
+        <div class="acao-header">
+          <div>
+            <div class="acao-ticker">MSFT34</div>
+            <div class="acao-nome">Microsoft BDR — Tech EUA</div>
+          </div>
+          <span class="acao-var up">+17% no ano</span>
+        </div>
+        <div class="acao-preco">Alvo: US$ 676</div>
+        <div class="acao-nota">Resultado do 3T26 foi impressionante: receita US$ 54,1 bi (+29%), IA anualizada US$ 37 bi (+123%), Azure +40%. A ruptura com exclusividade da OpenAI inicialmente preocupou, mas analistas veem como positivo para diversificar parcerias. <strong>Target de 40% de upside segundo 24/7 Wall St.</strong></div>
+      </div>
+
+      <div class="acao-card neutro">
+        <div class="acao-header">
+          <div>
+            <div class="acao-ticker">AXIA3</div>
+            <div class="acao-nome">Axia — Tecnologia/Energia</div>
+          </div>
+          <span class="acao-var neutro">Dados limitados</span>
+        </div>
+        <div class="acao-preco">—</div>
+        <div class="acao-nota">Sem dados específicos disponíveis nesta edição. Recomenda-se verificar diretamente no <a href="https://statusinvest.com.br/acoes/axia3" style="color:var(--azul)">Status Invest</a> ou InfoMoney. Ativo com baixa cobertura de analistas institucionais.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- FIIs -->
+  <div class="section">
+    <div class="section-title">🏢 Fundos Imobiliários</div>
+    <div class="fii-grid">
+
+      <div class="fii-card">
+        <div class="acao-header">
+          <div>
+            <div class="acao-ticker">KNCR11</div>
+            <div class="acao-nome">Kinea Rendimentos — CRI/LCI</div>
+          </div>
+          <span class="acao-var up">Alta em 2026</span>
+        </div>
+        <div class="fii-dividendo">
+          <span class="badge">💰 Último DY: R$ 1,10/cota (14/mai)</span>
+        </div>
+        <div class="acao-nota" style="margin-top:10px;">Fundo de papel de alta qualidade, 100% indexado ao CDI. Maior emissão da história dos FIIs no 1S2026, captando R$ 3,18 bilhões. Com a Selic elevada, KNCR11 segue sendo uma âncora de rentabilidade na carteira. <strong>Distribuições consistentes e crescentes.</strong></div>
+      </div>
+
+      <div class="fii-card">
+        <div class="acao-header">
+          <div>
+            <div class="acao-ticker">PCIP11</div>
+            <div class="acao-nome">Patrimonial Cibrasec — IPCA</div>
+          </div>
+          <span class="acao-var up">Alta em 2026</span>
+        </div>
+        <div class="fii-dividendo">
+          <span class="badge">💰 Último DY: R$ 0,89/cota (18/mai)</span>
+        </div>
+        <div class="acao-nota" style="margin-top:10px;">Fundo de crédito imobiliário indexado ao IPCA. Com a inflação dentro da meta em 2026 (pressão de combustíveis controlada pelo governo), o fundo mantém distribuições regulares. <strong>Bom complemento para proteger poder de compra real.</strong></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- NARRATIVA BRASIL -->
+  <div class="section">
+    <div class="section-title">🇧🇷 Brasil: O que Observar Hoje (29/mai)</div>
+    <div class="narrativa">
+      <p>Chegando à sexta-feira, o pregão brasileiro abre com três vetores em jogo: a <strong>tensão no Oriente Médio</strong> (que ainda não se resolveu), a <strong>queda do minério de ferro</strong> (pressão sobre VALE3) e os <strong>futuros americanos positivos</strong> (sustentando o apetite por risco). O dólar abaixo de R$ 5,02 é um sinal construtivo.</p>
+
+      <p>No campo doméstico, o governo segurou os combustíveis para não forçar o BC a subir juros — um ato de equilíbrio político-econômico que a Secretaria de Política Econômica defende abertamente. Os <strong>juros futuros DI caíram em toda a curva</strong> na segunda (ex: DI1F29: -18,5 bps), sinalizando que o mercado acredita que o pico da Selic está próximo.</p>
+
+      <p>A <strong>PEC 6×1</strong> avança na Câmara após pedido de vista — uma decisão sobre jornada de trabalho que, se aprovada, impactaria custos das empresas listadas com grande base de funcionários (varejo, frigoríficos, bancos).</p>
+
+      <p>O <strong>IFIX</strong> — índice dos FIIs — mantém trajetória positiva em 2026, beneficiado pela Selic alta e pela demanda por renda passiva. KNCR11 e PCIP11 seguem como opções sólidas nesse ambiente.</p>
+
+      <div class="destaque">
+        Projeção mediana de 15 analistas consultados pelo Valor Econômico (mai/2026): Ibovespa encerrará 2026 em 195.000 pontos — +10% em relação ao nível atual de 177.815.
+      </div>
+
+      <p>Para hoje, o mercado estará de olho nos desdobramentos do acordo EUA-Irã (qualquer anúncio pode mover petróleo +/-5% num dia), e no fechamento do mês de maio — historicamente um mês de "sell in May" que este ano confirmou a sazonalidade.</p>
+    </div>
+  </div>
+
+  <!-- RODAPÉ -->
+  <div class="footer">
+    <div>📅 Gerado em 29/05/2026 · Dados consolidados até 26/mai/2026</div>
+    <div class="sources">
+      Fontes:
+      <a href="https://www.infomoney.com.br" target="_blank">InfoMoney</a> ·
+      <a href="https://statusinvest.com.br" target="_blank">Status Invest</a> ·
+      <a href="https://finance.yahoo.com" target="_blank">Yahoo Finance</a> ·
+      <a href="https://www.cnbc.com" target="_blank">CNBC</a>
+    </div>
+    <div style="width:100%; margin-top:8px; font-size:11px;">⚠️ Este relatório é informativo e não constitui recomendação de investimento.</div>
+  </div>
+
+</div>
+</body>
+</html>
