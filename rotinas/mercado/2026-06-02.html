@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<script type="application/json" id="cowork-artifact-meta">
+{
+  "name": "Mercado De Acoes",
+  "schemaVersion": 1,
+  "description": "Análise diária de mercado — 2 jun 2026. Cobre macro global, Ibovespa, ações da carteira (VALE3, BBDC4, MRFG3, MSFT34, B3SA3, AXIA3) e FIIs (KNCR11, PCIP11)."
+}
+</script>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Análise de Mercado — 2 jun 2026</title>
+<style>
+  :root { color-scheme: light; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #f5f6fa;
+    color: #1a1a2e;
+    line-height: 1.6;
+    padding: 20px;
+  }
+  .header {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    color: white;
+    border-radius: 16px;
+    padding: 28px 32px;
+    margin-bottom: 24px;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::after {
+    content: '📊';
+    position: absolute;
+    right: 24px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 56px;
+    opacity: 0.3;
+  }
+  .header h1 { font-size: 1.6rem; font-weight: 700; }
+  .header .subtitle { color: #a0b4d0; margin-top: 4px; font-size: 0.9rem; }
+  .header .date { color: #e2b96a; font-weight: 600; font-size: 0.85rem; margin-top: 8px; }
+
+  .section-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #0f3460;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin: 28px 0 12px 0;
+    padding-left: 12px;
+    border-left: 4px solid #e2b96a;
+  }
+
+  .narrative {
+    background: white;
+    border-radius: 12px;
+    padding: 22px 26px;
+    margin-bottom: 16px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    font-size: 0.95rem;
+    color: #2d3748;
+    line-height: 1.8;
+  }
+  .narrative strong { color: #0f3460; }
+  .narrative .highlight { background: #fff8e6; border-left: 3px solid #e2b96a; padding: 10px 14px; border-radius: 6px; margin: 12px 0; font-size: 0.9rem; }
+
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  .card {
+    background: white;
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    position: relative;
+  }
+  .card .ticker { font-weight: 700; font-size: 1rem; color: #0f3460; }
+  .card .name { font-size: 0.72rem; color: #718096; margin-top: 2px; }
+  .card .price { font-size: 1.1rem; font-weight: 700; margin-top: 8px; }
+  .card .change { font-size: 0.82rem; font-weight: 600; margin-top: 2px; }
+  .card .sector { font-size: 0.68rem; color: #a0aec0; margin-top: 6px; }
+  .up { color: #22a06b; }
+  .down { color: #e53e3e; }
+  .neutral { color: #718096; }
+
+  .card .badge {
+    position: absolute;
+    top: 10px; right: 10px;
+    font-size: 18px;
+  }
+
+  .insight-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  @media (max-width: 600px) { .insight-row { grid-template-columns: 1fr; } }
+  .insight-box {
+    background: white;
+    border-radius: 12px;
+    padding: 18px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+  .insight-box h4 { font-size: 0.85rem; color: #718096; font-weight: 600; margin-bottom: 8px; }
+  .insight-box .val { font-size: 1.4rem; font-weight: 800; color: #0f3460; }
+  .insight-box .sub { font-size: 0.8rem; color: #a0aec0; margin-top: 4px; }
+
+  .alert-box {
+    border-radius: 10px;
+    padding: 14px 18px;
+    font-size: 0.88rem;
+    margin-bottom: 12px;
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+  .alert-red { background: #fff5f5; border: 1px solid #fed7d7; color: #c53030; }
+  .alert-green { background: #f0fff4; border: 1px solid #c6f6d5; color: #276749; }
+  .alert-yellow { background: #fffbeb; border: 1px solid #fde68a; color: #92400e; }
+  .alert-blue { background: #ebf8ff; border: 1px solid #bee3f8; color: #2b6cb0; }
+
+  .commodity-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 10px;
+  }
+  .com-box {
+    background: white;
+    border-radius: 10px;
+    padding: 14px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    text-align: center;
+  }
+  .com-box .icon { font-size: 24px; }
+  .com-box .label { font-size: 0.72rem; color: #718096; margin-top: 4px; }
+  .com-box .cval { font-size: 1rem; font-weight: 700; color: #1a1a2e; margin-top: 4px; }
+  .com-box .cchg { font-size: 0.75rem; margin-top: 2px; }
+
+  .footer { text-align: center; font-size: 0.75rem; color: #a0aec0; margin-top: 28px; padding-top: 16px; border-top: 1px solid #e2e8f0; }
+  .footer a { color: #0f3460; text-decoration: none; }
+
+  .story-block { background: linear-gradient(135deg, #1a1a2e, #0f3460); color: white; border-radius: 14px; padding: 24px 28px; margin-bottom: 20px; }
+  .story-block h2 { font-size: 1.1rem; color: #e2b96a; margin-bottom: 14px; }
+  .story-block p { font-size: 0.92rem; color: #cbd5e0; line-height: 1.9; }
+  .story-block p + p { margin-top: 12px; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Análise de Mercado</h1>
+  <div class="subtitle">Ações BR · FIIs · Macro Global · Sua Carteira</div>
+  <div class="date">📅 Terça-feira, 2 de junho de 2026</div>
+</div>
+
+<!-- NARRATIVA DO DIA -->
+<div class="story-block">
+  <h2>📖 A História de Hoje</h2>
+  <p>
+    Junho chegou com o Ibovespa no modo ressaca. Depois de um maio doloroso — queda de <strong style="color:#e2b96a">7,22%</strong>, o pior mês em mais de três anos — a bolsa brasileira entra no segundo semestre carregando dois pesos difíceis de equilibrar: o <strong style="color:#e2b96a">ruído eleitoral</strong> que já contamina o noticiário e a revisão para baixo nas expectativas de corte da <strong style="color:#e2b96a">Selic</strong>.
+  </p>
+  <p>
+    Lá fora, o tom é diferente. A <strong style="color:#e2b96a">Microsoft</strong> brilhou na abertura desta terça após resultados do Q3 2026 que surpreenderam para cima — receita de US$ 82,9 bilhões, alta de 18% — impulsionados pelo boom de IA. O Fed mantém os juros entre 3,5% e 3,75% e sinaliza cautela, mas o cenário global ainda favorece ativos de risco lá fora. A tensão fica do lado de cá.
+  </p>
+  <p>
+    A <strong style="color:#e2b96a">Vale</strong> recebeu o título raro de unanimidade entre carteiras recomendadas para junho — algo inédito em 2026 — mesmo com o minério oscilando em torno de US$ 108/t. No campo dos FIIs, o <strong style="color:#e2b96a">KNCR11</strong> distribuiu R$ 1,10 por cota para pagamento em 12/06, rendimento mensal de ~1,04%, sustentado por sua carteira de CRIs indexados ao CDI.
+  </p>
+</div>
+
+<!-- ALERTAS DO DIA -->
+<div class="section-title">⚡ Alertas e Destaques</div>
+
+<div class="alert-red">⚠️ <span><strong>Ibovespa</strong> acumulou queda de 7,22% em maio — pior mês desde fev/2023. Forte saída de capital estrangeiro e ruído eleitoral.</span></div>
+<div class="alert-green">✅ <span><strong>VALE3</strong> aparece pela primeira vez em 100% das carteiras recomendadas de junho — sinal raro de consenso no mercado.</span></div>
+<div class="alert-yellow">🗳️ <span><strong>Eleições 2026:</strong> BofA projeta Ibovespa a 180k pts, XP a 190k — mas com cenário binário. Pêndulo político define direção do mercado no 2º semestre.</span></div>
+<div class="alert-blue">🤖 <span><strong>MSFT (MSFT34):</strong> Ações sobem ~2% após analistas reforçarem tese de IA. Guidance de Q4 aponta receita de US$ 87,9 bi. 52 analistas recomendam Compra.</span></div>
+<div class="alert-yellow">💰 <span><strong>KNCR11</strong> paga R$ 1,10/cota em 12/jun (competência mai/26). DY mensal: ~1,04%. Isenção de IR para PF mantida.</span></div>
+
+<!-- IBOVESPA + MACRO -->
+<div class="section-title">🌎 Macro e Ibovespa</div>
+<div class="insight-row">
+  <div class="insight-box">
+    <h4>Ibovespa (1º/jun)</h4>
+    <div class="val">~173.100</div>
+    <div class="sub down">▼ Quinta queda consecutiva</div>
+  </div>
+  <div class="insight-box">
+    <h4>Fed Funds Rate</h4>
+    <div class="val">3,5–3,75%</div>
+    <div class="sub neutral">Manutenção prevista para jun/26</div>
+  </div>
+  <div class="insight-box">
+    <h4>Minério de Ferro</h4>
+    <div class="val">US$ 108,8</div>
+    <div class="sub up">▲ +1,5% no mês | +9,8% a/a</div>
+  </div>
+  <div class="insight-box">
+    <h4>Petróleo Brent</h4>
+    <div class="val">~US$ 55</div>
+    <div class="sub down">▼ Superávit estrutural 2026 (EIA)</div>
+  </div>
+</div>
+
+<!-- SUA CARTEIRA -->
+<div class="section-title">📈 Suas Ações</div>
+<div class="cards-grid">
+  <div class="card">
+    <div class="badge">⛏️</div>
+    <div class="ticker">VALE3</div>
+    <div class="name">Vale S.A.</div>
+    <div class="price neutral">Atualizar →</div>
+    <div class="change down">▼ -1,35% em 1/jun</div>
+    <div class="sector">Mineração · 🏆 #1 recomendada jun/26</div>
+  </div>
+  <div class="card">
+    <div class="badge">🏦</div>
+    <div class="ticker">BBDC4</div>
+    <div class="name">Bradesco PN</div>
+    <div class="price neutral">Atualizar →</div>
+    <div class="change down">▼ -1,13% em 1/jun</div>
+    <div class="sector">Banco · Setor financeiro</div>
+  </div>
+  <div class="card">
+    <div class="badge">🥩</div>
+    <div class="ticker">MRFG3</div>
+    <div class="name">Marfrig</div>
+    <div class="price neutral">Ver cotação</div>
+    <div class="change neutral">— Proteína animal</div>
+    <div class="sector">Alimentos · Exportadora</div>
+  </div>
+  <div class="card">
+    <div class="badge">💻</div>
+    <div class="ticker">MSFT34</div>
+    <div class="name">Microsoft BDR</div>
+    <div class="price up">MSFT: US$ 460,52</div>
+    <div class="change up">▲ ~+2% hoje (01/jun)</div>
+    <div class="sector">Tecnologia · IA · Cloud</div>
+  </div>
+  <div class="card">
+    <div class="badge">🏛️</div>
+    <div class="ticker">B3SA3</div>
+    <div class="name">B3 — Bolsa BR</div>
+    <div class="price neutral">Atualizar →</div>
+    <div class="change up">▲ +1,37% (pregão ant.)</div>
+    <div class="sector">Infraestrutura financeira</div>
+  </div>
+  <div class="card">
+    <div class="badge">⚡</div>
+    <div class="ticker">AXIA3</div>
+    <div class="name">Axia</div>
+    <div class="price neutral">Ver cotação</div>
+    <div class="change neutral">— Tecnologia/Energia</div>
+    <div class="sector">Acompanhar setor</div>
+  </div>
+</div>
+
+<!-- FIIs -->
+<div class="section-title">🏢 Seus FIIs</div>
+<div class="cards-grid">
+  <div class="card">
+    <div class="badge">💵</div>
+    <div class="ticker">KNCR11</div>
+    <div class="name">Kinea Rendimentos</div>
+    <div class="price neutral">~R$ 105,64/cota</div>
+    <div class="change up">▲ Div: R$ 1,10 (12/jun)</div>
+    <div class="sector">CRI · CDI | DY mensal: ~1,04%</div>
+  </div>
+  <div class="card">
+    <div class="badge">🏗️</div>
+    <div class="ticker">PCIP11</div>
+    <div class="name">Patrimonial Cibrasec</div>
+    <div class="price neutral">Ver cotação</div>
+    <div class="change neutral">— Verificar dividendos</div>
+    <div class="sector">Crédito imobiliário</div>
+  </div>
+</div>
+
+<!-- COMMODITIES -->
+<div class="section-title">🌐 Commodities & Referências</div>
+<div class="commodity-row">
+  <div class="com-box">
+    <div class="icon">⛏️</div>
+    <div class="label">Minério 62% CFR</div>
+    <div class="cval">US$ 108,8/t</div>
+    <div class="cchg up">+1,5% no mês</div>
+  </div>
+  <div class="com-box">
+    <div class="icon">🛢️</div>
+    <div class="label">Petróleo Brent</div>
+    <div class="cval">~US$ 55/b</div>
+    <div class="cchg down">▼ Pressão em 2026</div>
+  </div>
+  <div class="com-box">
+    <div class="icon">💵</div>
+    <div class="label">Fed Funds</div>
+    <div class="cval">3,5–3,75%</div>
+    <div class="cchg neutral">Estável</div>
+  </div>
+  <div class="com-box">
+    <div class="icon">📉</div>
+    <div class="label">Ibovespa maio</div>
+    <div class="cval">-7,22%</div>
+    <div class="cchg down">Pior mês em 3 anos</div>
+  </div>
+  <div class="com-box">
+    <div class="icon">🤖</div>
+    <div class="label">MSFT Q3 Receita</div>
+    <div class="cval">US$ 82,9B</div>
+    <div class="cchg up">+18% a/a</div>
+  </div>
+  <div class="com-box">
+    <div class="icon">🎯</div>
+    <div class="label">Ibovespa meta 2026</div>
+    <div class="cval">180–190k</div>
+    <div class="cchg neutral">BofA / XP</div>
+  </div>
+</div>
+
+<!-- NARRATIVA FINAL -->
+<div class="section-title">🔭 Visão de Curto Prazo</div>
+<div class="narrative">
+  <p>O cenário para junho é de <strong>cautela com oportunidades pontuais</strong>. A Selic permanece no radar — qualquer sinalização mais hawkish do Copom pode pressionar ainda mais o fluxo estrangeiro para fora. O <strong>ruído eleitoral tende a aumentar</strong> no segundo semestre, criando volatilidade que pode ser tanto risco quanto janela de entrada para quem monitora de perto.</p>
+  <div class="highlight">
+    💡 <strong>Estratégia para o mês:</strong> VALE3 como escolha de consenso (commodities + geração de caixa); KNCR11 como proteção via CDI com isenção de IR; MSFT34 como exposição a crescimento de IA em dólar. Manter vigilância sobre BBDC4 com Selic e inadimplência no radar.
+  </div>
+  <p>No macro global, o Fed em modo de espera e o petróleo em queda são ventos relativamente favoráveis para o custo de capital — mas a guerra comercial e tensões geopolíticas seguem como variáveis de cauda a monitorar.</p>
+</div>
+
+<!-- LINKS ÚTEIS -->
+<div class="section-title">🔗 Links Diretos</div>
+<div class="narrative" style="font-size:0.85rem; line-height:2">
+  <a href="https://statusinvest.com.br/acoes/vale3" target="_blank">📊 VALE3 — Status Invest</a> &nbsp;|&nbsp;
+  <a href="https://statusinvest.com.br/acoes/bbdc4" target="_blank">📊 BBDC4 — Status Invest</a> &nbsp;|&nbsp;
+  <a href="https://statusinvest.com.br/acoes/mrfg3" target="_blank">📊 MRFG3 — Status Invest</a><br>
+  <a href="https://statusinvest.com.br/bdrs/msft34" target="_blank">📊 MSFT34 — Status Invest</a> &nbsp;|&nbsp;
+  <a href="https://statusinvest.com.br/acoes/b3sa3" target="_blank">📊 B3SA3 — Status Invest</a> &nbsp;|&nbsp;
+  <a href="https://statusinvest.com.br/acoes/axia3" target="_blank">📊 AXIA3 — Status Invest</a><br>
+  <a href="https://statusinvest.com.br/fundos-imobiliarios/kncr11" target="_blank">🏢 KNCR11 — Status Invest</a> &nbsp;|&nbsp;
+  <a href="https://statusinvest.com.br/fundos-imobiliarios/pcip11" target="_blank">🏢 PCIP11 — Status Invest</a><br>
+  <a href="https://www.infomoney.com.br/mercados/ibovespa-hoje-bolsa-de-valores-ao-vivo-01062026/" target="_blank">📰 InfoMoney — Ibovespa hoje</a> &nbsp;|&nbsp;
+  <a href="https://finance.yahoo.com/quote/MSFT/" target="_blank">💹 Yahoo Finance — MSFT</a>
+</div>
+
+<div class="footer">
+  Fontes: InfoMoney · Bloomberg · Reuters · Status Invest · Investing.com · FIIS.com.br · Invezz · CNN Brasil<br>
+  Análise gerada automaticamente em <strong>2 de junho de 2026</strong> · Não constitui recomendação de investimento.
+</div>
+
+</body>
+</html>

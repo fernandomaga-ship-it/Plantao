@@ -2,6 +2,18 @@ window.PLANTAO_DATA = {
   "generatedAt": "2026-06-02",
   "pages": [
     {
+      "title": "Análise de Mercado — 2 jun 2026",
+      "path": "rotinas/mercado/2026-06-02.html",
+      "href": "rotinas/mercado/2026-06-02.html",
+      "folder": "rotinas/mercado",
+      "category": "rotinas",
+      "categoryLabel": "Rotinas",
+      "summary": "Análise de Mercado — 2 jun 2026 Análise de Mercado Ações BR · FIIs · Macro Global · Sua Carteira 📅 Terça-feira, 2 de junho de 2026 📖 A História de Hoje Junho chegou com",
+      "updated": "2026-06-02",
+      "shiftDate": "2026-06-02",
+      "shiftDateLabel": "02/06/2026"
+    },
+    {
       "title": "📊 Análise de Mercado — 1º de Junho de 2026",
       "path": "rotinas/mercado/2026-06-01.html",
       "href": "rotinas/mercado/2026-06-01.html",
