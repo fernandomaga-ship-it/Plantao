@@ -36,6 +36,9 @@ ARTIFACTS_MERCADO = Path(
     "/Users/fernandomcoutinho/Documents/Claude/Artifacts/mercado-de-acoes"
 )
 
+# Downloads — nova pasta padrão das rotinas diárias
+DOWNLOADS = Path("/Users/fernandomcoutinho/Downloads")
+
 
 def data_do_artifact(html_path: Path) -> Optional[str]:
     """
@@ -84,10 +87,15 @@ def encontrar_outputs_dirs() -> list:
 
 # Meses em português → número
 MESES = {
+    # Nomes completos
     "janeiro": "01", "fevereiro": "02", "março": "03",  "marco": "03",
     "abril": "04",   "maio": "05",      "junho": "06",
     "julho": "07",   "agosto": "08",    "setembro": "09",
     "outubro": "10", "novembro": "11",  "dezembro": "12",
+    # Abreviações (jan, fev, mar, abr, mai, jun, jul, ago, set, out, nov, dez)
+    "jan": "01", "fev": "02", "mar": "03", "abr": "04",
+    "mai": "05", "jun": "06", "jul": "07", "ago": "08",
+    "set": "09", "out": "10", "nov": "11", "dez": "12",
 }
 
 
@@ -179,6 +187,12 @@ def main() -> None:
             sys.exit(1)
         candidatos_raw = list(src.glob("*.html"))
     else:
+        # 0) Downloads — pasta padrão das rotinas diárias
+        downloads_hits = list(DOWNLOADS.glob("mercado_*.html"))
+        if downloads_hits:
+            print(f"  📥  {len(downloads_hits)} arquivo(s) em Downloads/")
+            candidatos_raw.extend(downloads_hits)
+
         # 1) Sessões Cowork (arquivos mercado_*.html)
         src_dirs = encontrar_outputs_dirs()
         if src_dirs:
