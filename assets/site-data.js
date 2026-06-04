@@ -50,6 +50,18 @@ window.PLANTAO_DATA = {
       "shiftDateLabel": "29/05/2026"
     },
     {
+      "title": "Plantão BP - UTI 8B - 04/06/2026",
+      "path": "plantoes/8b/2026-05-29/uti8b_04-06-2026.html",
+      "href": "plantoes/8b/2026-05-29/uti8b_04-06-2026.html",
+      "folder": "plantoes/8b/2026-05-29",
+      "category": "uti",
+      "categoryLabel": "UTI",
+      "summary": "Plantão BP - UTI 8B - 04/06/2026 📋 Plantão BP — UTI 8B Data: 04/06/2026 &nbsp; | &nbsp; Hora: 14:32 &nbsp; | &nbsp; Unidade: UTI 8B — Leitos 2812 a 2822 ⚠️ Visão rápida",
+      "updated": "2026-06-04",
+      "shiftDate": "2026-05-29",
+      "shiftDateLabel": "29/05/2026"
+    },
+    {
       "title": "Plantão BP UTI — 29/05/2026",
       "path": "plantoes/8b/2026-05-29/plantao_bp_uti_29-05-2026.html",
       "href": "plantoes/8b/2026-05-29/plantao_bp_uti_29-05-2026.html",
@@ -65,6 +77,18 @@ window.PLANTAO_DATA = {
       "title": "Plantão UTI Mirante - 31/05/2026 | 01:05",
       "path": "plantoes/8b/2026-05-29/plantao_uti_mirante_31-05-2026__1_.html",
       "href": "plantoes/8b/2026-05-29/plantao_uti_mirante_31-05-2026__1_.html",
+      "folder": "plantoes/8b/2026-05-29",
+      "category": "uti",
+      "categoryLabel": "UTI",
+      "summary": "Plantão UTI Mirante - 31/05/2026 | 01:05 📋 Plantão UTI Mirante Data/Hora: 31/05/2026 | 01:05 Leitos incluídos Leito 02 Leito 04 Leito 06 Leito 07 Leito 08 Leito 10 Leit",
+      "updated": "2026-05-31",
+      "shiftDate": "2026-05-29",
+      "shiftDateLabel": "29/05/2026"
+    },
+    {
+      "title": "Plantão UTI Mirante - 31/05/2026 | 01:05",
+      "path": "plantoes/8b/2026-05-29/uti_mirante_31-05-2026__1_.html",
+      "href": "plantoes/8b/2026-05-29/uti_mirante_31-05-2026__1_.html",
       "folder": "plantoes/8b/2026-05-29",
       "category": "uti",
       "categoryLabel": "UTI",
