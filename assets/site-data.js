@@ -50,30 +50,6 @@ window.PLANTAO_DATA = {
       "shiftDateLabel": "01/06/2026"
     },
     {
-      "title": "Leito 2819 — Etna — 28/05/2026",
-      "path": "plantoes/8b/2026-05-29/leito_2819_etna_28-05-2026.html",
-      "href": "plantoes/8b/2026-05-29/leito_2819_etna_28-05-2026.html",
-      "folder": "plantoes/8b/2026-05-29",
-      "category": "uti",
-      "categoryLabel": "UTI",
-      "summary": "Leito 2819 — Etna — 28/05/2026 📋 Leito 2819 — Etna Plantão BP — UTI 8B — 28/05/2026 Identificação Leito 2819 — Etna, 67 anos. Equipe responsável: Cirurgia Torácica + UT",
-      "updated": "2026-05-28",
-      "shiftDate": "2026-05-29",
-      "shiftDateLabel": "29/05/2026"
-    },
-    {
-      "title": "Plantão BP UTI — 29/05/2026",
-      "path": "plantoes/8b/2026-05-29/plantao_bp_uti_29-05-2026.html",
-      "href": "plantoes/8b/2026-05-29/plantao_bp_uti_29-05-2026.html",
-      "folder": "plantoes/8b/2026-05-29",
-      "category": "uti",
-      "categoryLabel": "UTI",
-      "summary": "Plantão BP UTI — 29/05/2026 📋 Plantão BP — UTI Data: 29/05/2026 | Unidade: UTI BP Paulista Torre I 6º andar Adulto Consolidado por leito — ISOL 02, ISOL 03, 1600 09–17.",
-      "updated": "2026-05-29",
-      "shiftDate": "2026-05-29",
-      "shiftDateLabel": "29/05/2026"
-    },
-    {
       "title": "Plantão UTI Mirante - 31/05/2026 | 01:05",
       "path": "plantoes/8b/2026-05-29/plantao_uti_mirante_31-05-2026__1_.html",
       "href": "plantoes/8b/2026-05-29/plantao_uti_mirante_31-05-2026__1_.html",
@@ -82,8 +58,8 @@ window.PLANTAO_DATA = {
       "categoryLabel": "UTI",
       "summary": "Plantão UTI Mirante - 31/05/2026 | 01:05 📋 Plantão UTI Mirante Data/Hora: 31/05/2026 | 01:05 Leitos incluídos Leito 02 Leito 04 Leito 06 Leito 07 Leito 08 Leito 10 Leit",
       "updated": "2026-05-31",
-      "shiftDate": "2026-05-29",
-      "shiftDateLabel": "29/05/2026"
+      "shiftDate": "2026-05-31",
+      "shiftDateLabel": "31/05/2026"
     },
     {
       "title": "Plantão UTI Mirante - 31/05/2026 | 01:05",
@@ -94,6 +70,18 @@ window.PLANTAO_DATA = {
       "categoryLabel": "UTI",
       "summary": "Plantão UTI Mirante - 31/05/2026 | 01:05 📋 Plantão UTI Mirante Data/Hora: 31/05/2026 | 01:05 Leitos incluídos Leito 02 Leito 04 Leito 06 Leito 07 Leito 08 Leito 10 Leit",
       "updated": "2026-05-31",
+      "shiftDate": "2026-05-31",
+      "shiftDateLabel": "31/05/2026"
+    },
+    {
+      "title": "Plantão BP UTI — 29/05/2026",
+      "path": "plantoes/8b/2026-05-29/plantao_bp_uti_29-05-2026.html",
+      "href": "plantoes/8b/2026-05-29/plantao_bp_uti_29-05-2026.html",
+      "folder": "plantoes/8b/2026-05-29",
+      "category": "uti",
+      "categoryLabel": "UTI",
+      "summary": "Plantão BP UTI — 29/05/2026 📋 Plantão BP — UTI Data: 29/05/2026 | Unidade: UTI BP Paulista Torre I 6º andar Adulto Consolidado por leito — ISOL 02, ISOL 03, 1600 09–17.",
+      "updated": "2026-05-29",
       "shiftDate": "2026-05-29",
       "shiftDateLabel": "29/05/2026"
     },
@@ -230,6 +218,18 @@ window.PLANTAO_DATA = {
       "shiftDateLabel": "28/05/2026"
     },
     {
+      "title": "Leito 2819 — Etna — 28/05/2026",
+      "path": "plantoes/8b/2026-05-29/leito_2819_etna_28-05-2026.html",
+      "href": "plantoes/8b/2026-05-29/leito_2819_etna_28-05-2026.html",
+      "folder": "plantoes/8b/2026-05-29",
+      "category": "uti",
+      "categoryLabel": "UTI",
+      "summary": "Leito 2819 — Etna — 28/05/2026 📋 Leito 2819 — Etna Plantão BP — UTI 8B — 28/05/2026 Identificação Leito 2819 — Etna, 67 anos. Equipe responsável: Cirurgia Torácica + UT",
+      "updated": "2026-05-28",
+      "shiftDate": "2026-05-28",
+      "shiftDateLabel": "28/05/2026"
+    },
+    {
       "title": "Leito 2820 — Ana Maria de Carvalho",
       "path": "plantoes/8b/2026-05-28/leito_2820_ana_maria_de_carvalho.html",
       "href": "plantoes/8b/2026-05-28/leito_2820_ana_maria_de_carvalho.html",
@@ -288,6 +288,18 @@ window.PLANTAO_DATA = {
       "updated": "2026-05-28",
       "shiftDate": "2026-05-28",
       "shiftDateLabel": "28/05/2026"
+    },
+    {
+      "title": "Diário de Mercado — F&K | 25 Mai 2026",
+      "path": "rotinas/mercado/diario-mercado-25-05-2026.html",
+      "href": "rotinas/mercado/diario-mercado-25-05-2026.html",
+      "folder": "rotinas/mercado",
+      "category": "rotinas",
+      "categoryLabel": "Rotinas",
+      "summary": "Diário de Mercado — F&K | 25 Mai 2026 Carteira F&K Serviços Médicos · Análise Diária Diário de Mercado Fernando M. Coutinho · Edição Nº 001 Segunda-feira, 25 de Maio de",
+      "updated": "2026-05-26",
+      "shiftDate": "2026-05-25",
+      "shiftDateLabel": "25/05/2026"
     },
     {
       "title": "Leito 1610 — Paulo Santos Ribeiro, 60 anos",
@@ -648,18 +660,6 @@ window.PLANTAO_DATA = {
       "updated": "2026-05-25",
       "shiftDate": "2026-05-13",
       "shiftDateLabel": "13/05/2026"
-    },
-    {
-      "title": "Diário de Mercado — F&K | 25 Mai 2026",
-      "path": "rotinas/mercado/diario-mercado-25-05-2026.html",
-      "href": "rotinas/mercado/diario-mercado-25-05-2026.html",
-      "folder": "rotinas/mercado",
-      "category": "rotinas",
-      "categoryLabel": "Rotinas",
-      "summary": "Diário de Mercado — F&K | 25 Mai 2026 Carteira F&K Serviços Médicos · Análise Diária Diário de Mercado Fernando M. Coutinho · Edição Nº 001 Segunda-feira, 25 de Maio de",
-      "updated": "2026-05-26",
-      "shiftDate": "",
-      "shiftDateLabel": ""
     }
   ]
 };

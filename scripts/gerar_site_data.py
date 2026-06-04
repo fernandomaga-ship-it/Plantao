@@ -76,7 +76,32 @@ def title_from_path(rel: str) -> str:
 
 # ── Datas ─────────────────────────────────────────────────────────────────────
 def shift_date_from_path(rel: str) -> str:
-    """Extrai data ISO (YYYY-MM-DD) do caminho, ex: plantoes/bp/2026-05-15/leito.html"""
+    """
+    Extrai data ISO (YYYY-MM-DD) do caminho.
+    Prioridade: data no nome do arquivo > data na pasta.
+    Ex: plantoes/8b/2026-05-29/uti8b_04-06-2026.html → 2026-06-04
+        plantoes/bp/2026-05-15/leito-1600-11.html    → 2026-05-15
+    """
+    from pathlib import Path as _P
+    parts = rel.replace("\\", "/").split("/")
+    filename = parts[-1] if parts else ""
+
+    # 1. Tenta data no nome do arquivo (sem extensão)
+    stem = _P(filename).stem
+    # Padrão YYYY-MM-DD no stem
+    m = re.search(r"(\d{4}-\d{2}-\d{2})", stem)
+    if m:
+        return m.group(1)
+    # Padrão DD-MM-YYYY no stem
+    m = re.search(r"(\d{2})-(\d{2})-(\d{4})", stem)
+    if m:
+        return f"{m.group(3)}-{m.group(2)}-{m.group(1)}"
+    # Padrão DD_MM_YYYY no stem
+    m = re.search(r"(\d{2})_(\d{2})_(\d{4})", stem)
+    if m:
+        return f"{m.group(3)}-{m.group(2)}-{m.group(1)}"
+
+    # 2. Fallback: data na pasta (caminho completo)
     m = re.search(r"(?:^|/)(\d{4}-\d{2}-\d{2})(?:/|\.|$)", rel)
     return m.group(1) if m else ""
 
