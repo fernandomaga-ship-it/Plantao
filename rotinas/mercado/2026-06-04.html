@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>📊 Análise de Mercado — 4 de Junho de 2026</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Segoe UI', system-ui, sans-serif; background: #0d1117; color: #e6edf3; line-height: 1.6; }
+
+  .header {
+    background: linear-gradient(135deg, #1a1f2e 0%, #0d2137 100%);
+    border-bottom: 1px solid #21262d;
+    padding: 32px 40px;
+  }
+  .header h1 { font-size: 28px; font-weight: 700; color: #58a6ff; margin-bottom: 4px; }
+  .header .subtitle { color: #8b949e; font-size: 14px; }
+  .date-badge {
+    display: inline-block;
+    background: #1f6feb22;
+    border: 1px solid #1f6feb;
+    color: #58a6ff;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+
+  .container { max-width: 1100px; margin: 0 auto; padding: 32px 40px; }
+
+  /* STORY BLOCK */
+  .story-block {
+    background: linear-gradient(135deg, #161b22, #1c2333);
+    border: 1px solid #30363d;
+    border-left: 4px solid #58a6ff;
+    border-radius: 8px;
+    padding: 28px;
+    margin-bottom: 32px;
+  }
+  .story-block h2 { font-size: 18px; color: #f0f6fc; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+  .story-block p { color: #c9d1d9; font-size: 15px; margin-bottom: 12px; }
+  .story-block p:last-child { margin-bottom: 0; }
+
+  /* ALERT */
+  .alert {
+    background: #3d1f1f;
+    border: 1px solid #f85149;
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin-bottom: 24px;
+    display: flex; align-items: flex-start; gap: 12px;
+  }
+  .alert .icon { font-size: 20px; }
+  .alert .text { color: #ffa198; font-size: 14px; }
+  .alert .text strong { color: #f85149; }
+
+  .alert-green {
+    background: #1a3a2a;
+    border-color: #3fb950;
+  }
+  .alert-green .text { color: #aff4c6; }
+  .alert-green .text strong { color: #3fb950; }
+
+  /* SECTION TITLE */
+  .section-title {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #8b949e;
+    margin-bottom: 16px;
+    margin-top: 36px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .section-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: #21262d;
+  }
+
+  /* ASSET GRID */
+  .asset-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; margin-bottom: 8px; }
+
+  .asset-card {
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 8px;
+    padding: 20px;
+    transition: border-color 0.2s;
+  }
+  .asset-card:hover { border-color: #58a6ff; }
+
+  .asset-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; }
+  .asset-ticker { font-size: 18px; font-weight: 700; color: #f0f6fc; }
+  .asset-name { font-size: 11px; color: #8b949e; margin-top: 2px; }
+
+  .asset-price { font-size: 22px; font-weight: 700; color: #f0f6fc; }
+  .asset-change {
+    font-size: 13px;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 4px;
+  }
+  .up { background: #1a3a2a; color: #3fb950; }
+  .down { background: #3d1f1f; color: #f85149; }
+  .neutral { background: #1c2333; color: #8b949e; }
+
+  .asset-note { font-size: 12px; color: #8b949e; margin-top: 10px; padding-top: 10px; border-top: 1px solid #21262d; }
+  .asset-note strong { color: #c9d1d9; }
+
+  /* IBOVESPA BANNER */
+  .ibov-banner {
+    background: linear-gradient(135deg, #1a1f2e, #1c2333);
+    border: 1px solid #30363d;
+    border-radius: 8px;
+    padding: 24px 28px;
+    margin-bottom: 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  .ibov-left { }
+  .ibov-label { font-size: 12px; color: #8b949e; text-transform: uppercase; letter-spacing: 1px; }
+  .ibov-value { font-size: 36px; font-weight: 800; color: #f85149; }
+  .ibov-change { font-size: 16px; color: #f85149; font-weight: 600; }
+
+  .ibov-stats { display: flex; gap: 32px; flex-wrap: wrap; }
+  .ibov-stat { text-align: center; }
+  .ibov-stat .val { font-size: 18px; font-weight: 700; color: #f0f6fc; }
+  .ibov-stat .lbl { font-size: 11px; color: #8b949e; }
+
+  /* WORLD */
+  .world-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; margin-bottom: 8px; }
+  .world-card {
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 8px;
+    padding: 16px;
+    text-align: center;
+  }
+  .world-card .w-name { font-size: 12px; color: #8b949e; margin-bottom: 4px; }
+  .world-card .w-val { font-size: 20px; font-weight: 700; color: #f0f6fc; }
+  .world-card .w-change { font-size: 12px; margin-top: 4px; }
+
+  /* TIMELINE */
+  .timeline { margin-bottom: 8px; }
+  .timeline-item {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+  .timeline-dot {
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    background: #58a6ff;
+    margin-top: 5px;
+    flex-shrink: 0;
+    position: relative;
+  }
+  .timeline-dot::after {
+    content: '';
+    position: absolute;
+    top: 12px; left: 5px;
+    width: 2px; height: 100%;
+    background: #21262d;
+  }
+  .timeline-item:last-child .timeline-dot::after { display: none; }
+  .timeline-content { }
+  .timeline-title { font-size: 14px; font-weight: 600; color: #f0f6fc; }
+  .timeline-text { font-size: 13px; color: #8b949e; margin-top: 2px; }
+
+  /* FOOTER */
+  .footer {
+    background: #161b22;
+    border-top: 1px solid #21262d;
+    padding: 20px 40px;
+    margin-top: 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .footer .disclaimer { font-size: 11px; color: #484f58; max-width: 600px; }
+  .footer .sources { font-size: 11px; color: #8b949e; }
+  .footer .sources a { color: #58a6ff; text-decoration: none; }
+
+  .tag { display: inline-block; padding: 2px 8px; border-radius: 3px; font-size: 11px; font-weight: 600; margin-left: 6px; }
+  .tag-warn { background: #3d2f0a; color: #e3b341; }
+  .tag-ok { background: #1a3a2a; color: #3fb950; }
+  .tag-info { background: #0d2137; color: #58a6ff; }
+
+  .highlight-box {
+    background: #1c2333;
+    border: 1px solid #30363d;
+    border-radius: 6px;
+    padding: 14px 18px;
+    margin-top: 16px;
+    font-size: 13px;
+    color: #c9d1d9;
+  }
+  .highlight-box strong { color: #f0f6fc; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="date-badge">📅 Quinta-feira, 4 de Junho de 2026</div>
+  <h1>📊 Análise Diária de Mercado</h1>
+  <div class="subtitle">Mundo · Brasil · Suas Ações · Seus FIIs</div>
+</div>
+
+<div class="container">
+
+  <!-- HISTÓRIA DO DIA -->
+  <div class="story-block">
+    <h2>📰 A História de Hoje</h2>
+    <p>O mundo acorda com dois vetores opostos em colisão: de um lado, o <strong>boom de commodities</strong> que pode ser o maior breakout do ano — petróleo WTI acima de US$ 94/barril, ouro em US$ 4.753/oz, metais pressionados pela demanda de IA e estoques globais em queda. De outro, o <strong>risco geopolítico</strong> se intensificou: EUA e Irã trocaram ataques no Oriente Médio enquanto Washington apresentou proposta de tarifa de 25% sobre produtos brasileiros, citando "práticas comerciais desleais" e até o Pix como alvo.</p>
+    <p>No Brasil, o Ibovespa reagiu negativamente ontem (3/jun), recuando 2,22% para 170.330 pontos. O dólar sobe para ~R$ 5,05. Apesar disso, dados reais da economia surpreenderam: a <strong>produção industrial de abril</strong> registrou o 4º mês consecutivo de alta. Lula anuncia diversificação de parceiros comerciais para contornar as ameaças americanas.</p>
+    <p>Para o portfólio, o cenário exige atenção: a VALE3 está no topo das recomendações para junho com preço elevado do minério (~US$ 104/t), a MBRF3 (ex-MRFG3) se consolida pós-fusão com BRF, enquanto MSFT34 carrega o peso de um MSFT americano que caiu 12% no ano — mesmo com resultados de IA extraordinários.</p>
+  </div>
+
+  <!-- ALERTAS -->
+  <div class="alert">
+    <div class="icon">⚠️</div>
+    <div class="text"><strong>Risco macro elevado:</strong> EUA propõe tarifa de 25% sobre importações brasileiras (Seção 301). Lula responde com diversificação de mercados. Tensão no Oriente Médio pressiona petróleo e defensivos. Ibovespa voltou ao nível de 170K.</div>
+  </div>
+
+  <div class="alert alert-green">
+    <div class="icon">✅</div>
+    <div class="text"><strong>Ponto positivo:</strong> Produção industrial brasileira surpreende positivamente pelo 4º mês seguido. VALE3 é unanimidade nas carteiras recomendadas para junho. KNCR11 mantém R$ 1,10/cota de dividendo com DY mensal de ~1,04%.</div>
+  </div>
+
+  <!-- IBOVESPA -->
+  <div class="section-title">📈 Ibovespa — Fechamento 03/06/2026</div>
+  <div class="ibov-banner">
+    <div class="ibov-left">
+      <div class="ibov-label">IBOVESPA</div>
+      <div class="ibov-value">170.330</div>
+      <div class="ibov-change">▼ -2,22% ontem</div>
+    </div>
+    <div class="ibov-stats">
+      <div class="ibov-stat">
+        <div class="val">R$ 5,05</div>
+        <div class="lbl">Dólar (↑)</div>
+      </div>
+      <div class="ibov-stat">
+        <div class="val">R$ 28,3 bi</div>
+        <div class="lbl">Volume negociado</div>
+      </div>
+      <div class="ibov-stat">
+        <div class="val">174.192</div>
+        <div class="lbl">Máxima do dia</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MERCADO GLOBAL -->
+  <div class="section-title">🌍 Mercado Global</div>
+  <div class="world-grid">
+    <div class="world-card">
+      <div class="w-name">WTI Crude Oil</div>
+      <div class="w-val" style="color:#f0b429;">$94+</div>
+      <div class="w-change up">↑ +9% recente</div>
+    </div>
+    <div class="world-card">
+      <div class="w-name">Brent</div>
+      <div class="w-val" style="color:#f0b429;">$97+</div>
+      <div class="w-change up">↑ Alta geopolítica</div>
+    </div>
+    <div class="world-card">
+      <div class="w-name">Ouro (Gold)</div>
+      <div class="w-val" style="color:#f0b429;">$4.753</div>
+      <div class="w-change up">↑ Recorde 2026</div>
+    </div>
+    <div class="world-card">
+      <div class="w-name">Minério de Ferro</div>
+      <div class="w-val">$104/t</div>
+      <div class="w-change neutral">→ Estável</div>
+    </div>
+    <div class="world-card">
+      <div class="w-name">MSFT (EUA)</div>
+      <div class="w-val">$452</div>
+      <div class="w-change down">↓ -12% no ano</div>
+    </div>
+    <div class="world-card">
+      <div class="w-name">MSCI EM</div>
+      <div class="w-val">+23,76%</div>
+      <div class="w-change up">↑ Melhor classe</div>
+    </div>
+  </div>
+
+  <div class="highlight-box">
+    🤖 <strong>Destaque AI:</strong> Microsoft reportou receita de IA em run rate anualizado de <strong>US$ 37 bilhões</strong> (+123% a/a). Azure cresceu 40%. Copilot com 20M+ assinantes pagos. Mesmo assim, o mercado ainda questiona o ROI dos US$ 190 bi em capex de IA para 2026, mantendo a ação pressionada.
+  </div>
+
+  <!-- SUAS AÇÕES -->
+  <div class="section-title">💼 Suas Ações</div>
+  <div class="asset-grid">
+
+    <div class="asset-card">
+      <div class="asset-header">
+        <div>
+          <div class="asset-ticker">VALE3</div>
+          <div class="asset-name">Vale S.A. · Mineração</div>
+        </div>
+        <span class="asset-change up">▲ Recomendada</span>
+      </div>
+      <div class="asset-price">R$ 85,06</div>
+      <div class="asset-note">
+        <strong>Unanimidade junho 2026</strong> nas 10 principais corretoras. Minério de ferro em ~US$ 104/t sustenta tese. Risco: real valorizado pressiona custos operacionais. Alta de +75% nos últimos 12 meses.
+      </div>
+    </div>
+
+    <div class="asset-card">
+      <div class="asset-header">
+        <div>
+          <div class="asset-ticker">BBDC4</div>
+          <div class="asset-name">Bradesco PN · Banco</div>
+        </div>
+        <span class="asset-change neutral">→ Vigiar</span>
+      </div>
+      <div class="asset-price">~R$ 15,45</div>
+      <div class="asset-note">
+        Referência baseada em BBDC3 (~R$ 15,45, +18% em 12m). Setor bancário sob pressão de Selic alta e possível impacto das tarifas americanas no crédito e câmbio. EUA citou Pix como alvo de investigação.
+      </div>
+    </div>
+
+    <div class="asset-card">
+      <div class="asset-header">
+        <div>
+          <div class="asset-ticker">MBRF3</div>
+          <div class="asset-name">ex-MRFG3 · Marfrig+BRF</div>
+        </div>
+        <span class="asset-change neutral">🔄 Ticker mudou</span>
+      </div>
+      <div class="asset-price">—</div>
+      <div class="asset-note">
+        <strong>Atenção:</strong> MRFG3 foi extinto em 2025 após fusão com BRF. O novo ticker é <strong>MBRF3</strong>. A empresa acumulou +26% até ago/25. Exportações de proteína animal impactadas por tarifas americanas e flu aviária. Diversificação de mercados é prioridade.
+      </div>
+    </div>
+
+    <div class="asset-card">
+      <div class="asset-header">
+        <div>
+          <div class="asset-ticker">MSFT34</div>
+          <div class="asset-name">Microsoft BDR · Tecnologia</div>
+        </div>
+        <span class="asset-change down">▼ -12% no ano</span>
+      </div>
+      <div class="asset-price">~R$ 452 (USD)</div>
+      <div class="asset-note">
+        Microsoft bate estimativas (EPS $4,27 vs $4,06 esp.), Azure +40%. Mas mercado teme que IA "coma" software tradicional. Capex de US$ 190bi/ano gera ceticismo. BDR segue MSFT + câmbio (dólar a R$ 5,05).
+      </div>
+    </div>
+
+    <div class="asset-card">
+      <div class="asset-header">
+        <div>
+          <div class="asset-ticker">B3SA3</div>
+          <div class="asset-name">B3 S.A. · Bolsa</div>
+        </div>
+        <span class="asset-change down">▼ Pressão</span>
+      </div>
+      <div class="asset-price">—</div>
+      <div class="asset-note">
+        Volume negociado em queda no dia (contexto de risk-off). Ibovespa perdendo 170K é sinal negativo para receita da B3. Tarifas americanas e geopolítica afastam capital estrangeiro no curto prazo.
+      </div>
+    </div>
+
+    <div class="asset-card">
+      <div class="asset-header">
+        <div>
+          <div class="asset-ticker">AXIA3</div>
+          <div class="asset-name">Axia · Tecnologia/Energia</div>
+        </div>
+        <span class="asset-change neutral">🔍 Monitorar</span>
+      </div>
+      <div class="asset-price">—</div>
+      <div class="asset-note">
+        Sem dados específicos disponíveis hoje. Em ambiente de alta de juros e pressão cambial, ações de tecnologia/energia doméstica pequena podem sofrer mais. Recomendo verificar diretamente no Status Invest.
+      </div>
+    </div>
+
+  </div>
+
+  <!-- FIIS -->
+  <div class="section-title">🏢 Seus Fundos Imobiliários</div>
+  <div class="asset-grid">
+
+    <div class="asset-card">
+      <div class="asset-header">
+        <div>
+          <div class="asset-ticker">KNCR11</div>
+          <div class="asset-name">Kinea Rendimentos · Papel/CRI</div>
+        </div>
+        <span class="asset-change up">✅ Dividendo confirmado</span>
+      </div>
+      <div class="asset-price">R$ 105,64/cota</div>
+      <div class="asset-note">
+        <strong>Dividendo junho:</strong> R$ 1,10/cota (pagamento 12/jun). DY mensal ~1,04% · isento de IR (PF). Carteira: 78,2% CRIs e FIIs, 14,8% LCIs, 6,9% caixa. Fundo de papel beneficia de CDI alto (Selic elevada = mais rendimento).
+      </div>
+    </div>
+
+    <div class="asset-card">
+      <div class="asset-header">
+        <div>
+          <div class="asset-ticker">PCIP11</div>
+          <div class="asset-name">Patrimonial Cibrasec · Papel</div>
+        </div>
+        <span class="asset-change neutral">🔍 Monitorar</span>
+      </div>
+      <div class="asset-price">—</div>
+      <div class="asset-note">
+        Sem informações específicas nos feeds de hoje. Como FII de papel (CRI), também deve se beneficiar da Selic elevada. Verifique dividendos em <strong>statusinvest.com.br/fundos-imobiliarios/pcip11</strong> para confirmar data de pagamento de junho.
+      </div>
+    </div>
+
+  </div>
+
+  <!-- RADAR DE EVENTOS -->
+  <div class="section-title">🗓️ Radar — Próximos Eventos</div>
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">
+        <div class="timeline-title">12 de Junho — KNCR11 paga dividendos <span class="tag tag-ok">R$ 1,10/cota</span></div>
+        <div class="timeline-text">Data de pagamento confirmada pelo fundo Kinea Rendimentos Imobiliários.</div>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot" style="background:#f85149;"></div>
+      <div class="timeline-content">
+        <div class="timeline-title">Decisão EUA–Brasil sobre tarifas <span class="tag tag-warn">Risco ativo</span></div>
+        <div class="timeline-text">Proposta de 25% sobre produtos brasileiros ainda em fase de discussão. Qualquer escalada impacta câmbio, exportadoras (MBRF3/VALE3) e mercado em geral.</div>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot" style="background:#e3b341;"></div>
+      <div class="timeline-content">
+        <div class="timeline-title">Tensão Oriente Médio — EUA/Irã <span class="tag tag-warn">Petróleo +9%</span></div>
+        <div class="timeline-text">Conflito pressiona o petróleo acima de US$ 94. Positivo para fundos com CRI de energia, negativo para inflação global.</div>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot" style="background:#3fb950;"></div>
+      <div class="timeline-content">
+        <div class="timeline-title">Produção industrial brasileira — 4° mês de alta <span class="tag tag-ok">Surpresa positiva</span></div>
+        <div class="timeline-text">Dado de abril surpreende e reforça resiliência da economia real, mesmo com tensão externa.</div>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot" style="background:#58a6ff;"></div>
+      <div class="timeline-content">
+        <div class="timeline-title">Microsoft — Resultados FY26 Q4 (esperado julho) <span class="tag tag-info">Azure+IA</span></div>
+        <div class="timeline-text">Próximo earnings reportará impacto real do Copilot em receita. Mercado aguarda para rever tese de MSFT34.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RESUMO EXECUTIVO -->
+  <div class="story-block" style="border-left-color: #e3b341; margin-top: 32px;">
+    <h2>🎯 Resumo para Decisão</h2>
+    <p><strong>Manter VALE3:</strong> unanimidade nas corretoras, minério sólido, valuation atrativo. Risco: real forte comprime margens.</p>
+    <p><strong>Atenção MBRF3:</strong> o ticker MRFG3 não existe mais. Verifique se sua corretora já atualizou a posição para MBRF3. Empresa forte, mas tarifas americanas sobre proteína animal são risco real.</p>
+    <p><strong>MSFT34:</strong> fundamentos de IA são excelentes, mas sentimento de mercado negativo. BDR ainda sofre com dólar a R$ 5,05. Posição de longo prazo — não vender no ruído.</p>
+    <p><strong>KNCR11:</strong> recebimento de R$ 1,10 em 12/jun confirmado. Com Selic alta, FIIs de papel seguem sendo boa posição defensiva com renda mensal.</p>
+    <p><strong>Câmbio e macro:</strong> dólar a R$ 5,05 com possível alta se tarifas americanas avançarem. Isso favorece exportadoras (VALE3, MBRF3) mas pressiona importações e inflação.</p>
+  </div>
+
+</div>
+
+<div class="footer">
+  <div class="disclaimer">⚠️ Este relatório é gerado automaticamente com fins informativos. Não constitui recomendação de investimento. Sempre consulte um profissional certificado antes de tomar decisões financeiras.</div>
+  <div class="sources">
+    Fontes:
+    <a href="https://www.infomoney.com.br">InfoMoney</a> ·
+    <a href="https://statusinvest.com.br/acoes/vale3">Status Invest</a> ·
+    <a href="https://www.suno.com.br/noticias/kncr11-dividendos-r-1-10-junho-2026/">Suno</a> ·
+    <a href="https://www.cnbc.com/2026/04/29/microsoft-msft-q3-earnings-report-2026.html">CNBC</a> ·
+    <a href="https://www.forte.jor.br/2026/06/02/relatorio-dos-eua-propoe-tarifa-de-25-sobre-produtos-brasileiros/">Forças Terrestres</a> ·
+    <a href="https://www.fxstreet.com/analysis/june-could-ignite-the-biggest-commodity-breakout-of-2026-are-you-ready-video-202606012030">FXStreet</a>
+  </div>
+</div>
+
+</body>
+</html>

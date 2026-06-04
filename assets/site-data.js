@@ -2,6 +2,30 @@ window.PLANTAO_DATA = {
   "generatedAt": "2026-06-04",
   "pages": [
     {
+      "title": "Plantão BP - UTI 8B - 04/06/2026",
+      "path": "plantoes/8b/2026-06-04/uti8b_04-06-2026.html",
+      "href": "plantoes/8b/2026-06-04/uti8b_04-06-2026.html",
+      "folder": "plantoes/8b/2026-06-04",
+      "category": "uti",
+      "categoryLabel": "UTI",
+      "summary": "Plantão BP - UTI 8B - 04/06/2026 📋 Plantão BP — UTI 8B Data: 04/06/2026 &nbsp; | &nbsp; Hora: 14:32 &nbsp; | &nbsp; Unidade: UTI 8B — Leitos 2812 a 2822 ⚠️ Visão rápida",
+      "updated": "2026-06-04",
+      "shiftDate": "2026-06-04",
+      "shiftDateLabel": "04/06/2026"
+    },
+    {
+      "title": "📊 Análise de Mercado — 4 de Junho de 2026",
+      "path": "rotinas/mercado/2026-06-04.html",
+      "href": "rotinas/mercado/2026-06-04.html",
+      "folder": "rotinas/mercado",
+      "category": "rotinas",
+      "categoryLabel": "Rotinas",
+      "summary": "📊 Análise de Mercado — 4 de Junho de 2026 📅 Quinta-feira, 4 de Junho de 2026 📊 Análise Diária de Mercado Mundo · Brasil · Suas Ações · Seus FIIs 📰 A História de Hoje O ",
+      "updated": "2026-06-04",
+      "shiftDate": "2026-06-04",
+      "shiftDateLabel": "04/06/2026"
+    },
+    {
       "title": "Análise de Mercado — 2 jun 2026",
       "path": "rotinas/mercado/2026-06-02.html",
       "href": "rotinas/mercado/2026-06-02.html",
@@ -34,30 +58,6 @@ window.PLANTAO_DATA = {
       "categoryLabel": "UTI",
       "summary": "Leito 2819 — Etna — 28/05/2026 📋 Leito 2819 — Etna Plantão BP — UTI 8B — 28/05/2026 Identificação Leito 2819 — Etna, 67 anos. Equipe responsável: Cirurgia Torácica + UT",
       "updated": "2026-05-28",
-      "shiftDate": "2026-05-29",
-      "shiftDateLabel": "29/05/2026"
-    },
-    {
-      "title": "Plantão BP - UTI 8B - 04/06/2026",
-      "path": "plantoes/8b/2026-05-29/plantao_uti8b_04-06-2026.html",
-      "href": "plantoes/8b/2026-05-29/plantao_uti8b_04-06-2026.html",
-      "folder": "plantoes/8b/2026-05-29",
-      "category": "uti",
-      "categoryLabel": "UTI",
-      "summary": "Plantão BP - UTI 8B - 04/06/2026 📋 Plantão BP — UTI 8B Data: 04/06/2026 &nbsp; | &nbsp; Hora: 14:32 &nbsp; | &nbsp; Unidade: UTI 8B — Leitos 2812 a 2822 ⚠️ Visão rápida",
-      "updated": "2026-06-04",
-      "shiftDate": "2026-05-29",
-      "shiftDateLabel": "29/05/2026"
-    },
-    {
-      "title": "Plantão BP - UTI 8B - 04/06/2026",
-      "path": "plantoes/8b/2026-05-29/uti8b_04-06-2026.html",
-      "href": "plantoes/8b/2026-05-29/uti8b_04-06-2026.html",
-      "folder": "plantoes/8b/2026-05-29",
-      "category": "uti",
-      "categoryLabel": "UTI",
-      "summary": "Plantão BP - UTI 8B - 04/06/2026 📋 Plantão BP — UTI 8B Data: 04/06/2026 &nbsp; | &nbsp; Hora: 14:32 &nbsp; | &nbsp; Unidade: UTI 8B — Leitos 2812 a 2822 ⚠️ Visão rápida",
-      "updated": "2026-06-04",
       "shiftDate": "2026-05-29",
       "shiftDateLabel": "29/05/2026"
     },
