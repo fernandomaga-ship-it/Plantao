@@ -1,6 +1,18 @@
 window.PLANTAO_DATA = {
-  "generatedAt": "2026-06-04",
+  "generatedAt": "2026-06-05",
   "pages": [
+    {
+      "title": "Plantão BP - UTI 8B - 04/06/2026",
+      "path": "plantoes/8b/2026-05-29/uti8b_04-06-2026.html",
+      "href": "plantoes/8b/2026-05-29/uti8b_04-06-2026.html",
+      "folder": "plantoes/8b/2026-05-29",
+      "category": "uti",
+      "categoryLabel": "UTI",
+      "summary": "Plantão BP - UTI 8B - 04/06/2026 📋 Plantão BP — UTI 8B Data: 04/06/2026 &nbsp; | &nbsp; Hora: 14:32 &nbsp; | &nbsp; Unidade: UTI 8B — Leitos 2812 a 2822 ⚠️ Visão rápida",
+      "updated": "2026-06-04",
+      "shiftDate": "2026-06-04",
+      "shiftDateLabel": "04/06/2026"
+    },
     {
       "title": "Plantão BP - UTI 8B - 04/06/2026",
       "path": "plantoes/8b/2026-06-04/uti8b_04-06-2026.html",
