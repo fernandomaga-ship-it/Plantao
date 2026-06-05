@@ -2,6 +2,18 @@ window.PLANTAO_DATA = {
   "generatedAt": "2026-06-05",
   "pages": [
     {
+      "title": "Plantão BP — UTI 6A — 05/06/2026",
+      "path": "plantoes/6a/2026-06-05/uti_6a_05-06-2026.html",
+      "href": "plantoes/6a/2026-06-05/uti_6a_05-06-2026.html",
+      "folder": "plantoes/6a/2026-06-05",
+      "category": "uti",
+      "categoryLabel": "UTI",
+      "summary": "Plantão BP — UTI 6A — 05/06/2026 📋 Plantão BP — UTI 6A Data: 05/06/2026 | Unidade: UTI BP Paulista Torre I 6º andar Adulto | Leitos: ISOL 02/03 + 1600 10–17 Índice: ISO",
+      "updated": "2026-06-05",
+      "shiftDate": "2026-06-05",
+      "shiftDateLabel": "05/06/2026"
+    },
+    {
       "title": "Plantão BP - UTI 8B - 04/06/2026",
       "path": "plantoes/8b/2026-05-29/uti8b_04-06-2026.html",
       "href": "plantoes/8b/2026-05-29/uti8b_04-06-2026.html",
