@@ -1,5 +1,5 @@
 window.PLANTAO_DATA = {
-  "generatedAt": "2026-06-05",
+  "generatedAt": "2026-06-07",
   "pages": [
     {
       "title": "Plantão BP — UTI 6A — 05/06/2026",
