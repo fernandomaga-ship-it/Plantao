@@ -31,7 +31,7 @@ def category_for(path_str: str, text_snippet: str) -> str:
     v = (path_str + " " + text_snippet).lower()
     if "rotinas/" in v:
         return "rotinas"
-    if "plantoes/bp" in v or "plantoes/8b" in v:
+    if re.search(r"plantoes/(bp|8b|6a|mirante)", v):
         return "uti"
     if re.search(r"(uti|intensiv|cti|icu)", v):
         return "uti"

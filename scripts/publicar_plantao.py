@@ -43,6 +43,10 @@ def detectar_hospital(nome: str) -> str:
         return "bp"
     if "UTI_8B" in n or "_8B_" in n or n.startswith("8B_") or n.endswith("_8B"):
         return "8b"
+    if "UTI_6A" in n or "_6A_" in n or n.startswith("6A_") or n.endswith("_6A") or "6A" in n:
+        return "6a"
+    if "MIRANTE" in n:
+        return "mirante"
     # Fallback: pergunta ao usuário
     print("⚠  Não foi possível detectar o hospital no nome da pasta.")
     resp = input("   Digite o hospital (ex: 8b ou bp): ").strip().lower()

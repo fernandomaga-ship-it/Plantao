@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UTI 6A Cardio — Leito 1600 13 — Hewals Preuss</title>
+  <style>
+    :root {
+      --bg:#f5f7fb; --card:#fff; --ink:#1f2937; --muted:#5b6472; --line:#d9e0ea;
+      --accent:#0f766e; --danger:#b91c1c; --warn:#b45309; --blue:#1d4ed8;
+      --soft-red:#fff1f2; --soft-yellow:#fffbeb; --soft-blue:#eff6ff; --soft-green:#ecfdf5;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;padding:24px;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;line-height:1.45;font-size:15px}
+    .page{max-width:1120px;margin:0 auto;background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:0 12px 32px rgba(15,23,42,.08)}
+    header{padding:24px 28px;background:linear-gradient(135deg,#0f766e,#155e75);color:white}
+    header h1{margin:0 0 8px;font-size:26px;letter-spacing:-.02em}
+    header .sub{display:flex;flex-wrap:wrap;gap:10px 18px;font-size:14px;opacity:.95}
+    .patient-bar{padding:18px 28px;border-bottom:1px solid var(--line);background:#f8fafc}
+    .patient-bar h2{margin:0 0 8px;font-size:24px;color:#111827}
+    .meta{display:grid;grid-template-columns:repeat(2,minmax(240px,1fr));gap:8px 18px;color:var(--muted);font-size:14px}
+    main{padding:24px 28px 30px}
+    section{margin-bottom:20px;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:white}
+    section h3{margin:0;padding:12px 16px;background:#f1f5f9;border-bottom:1px solid var(--line);font-size:18px;color:#0f172a}
+    .content{padding:14px 18px 16px}
+    ul{margin:0;padding-left:20px}
+    li{margin:5px 0}
+    .grid{display:grid;grid-template-columns:repeat(2,minmax(260px,1fr));gap:12px}
+    .mini-card{border:1px solid var(--line);border-radius:12px;padding:12px;background:#fff}
+    .mini-card strong{color:#111827}
+    .tag{display:inline-block;padding:4px 8px;border-radius:999px;font-weight:700;font-size:12px;margin:2px 4px 2px 0;border:1px solid transparent}
+    .tag-danger{background:var(--soft-red);color:var(--danger);border-color:#fecdd3}
+    .tag-warn{background:var(--soft-yellow);color:var(--warn);border-color:#fde68a}
+    .tag-blue{background:var(--soft-blue);color:var(--blue);border-color:#bfdbfe}
+    .tag-green{background:var(--soft-green);color:#047857;border-color:#bbf7d0}
+    .alert{padding:12px 14px;border-radius:12px;margin:10px 0;border-left:5px solid}
+    .alert-danger{background:var(--soft-red);border-color:var(--danger)}
+    .alert-warn{background:var(--soft-yellow);border-color:var(--warn)}
+    .alert-blue{background:var(--soft-blue);border-color:var(--blue)}
+    table{width:100%;border-collapse:collapse;margin:4px 0;overflow:hidden;border-radius:12px}
+    th,td{border-bottom:1px solid var(--line);padding:9px 10px;text-align:left;vertical-align:top}
+    th{background:#f8fafc;color:#334155;width:28%}
+    tr:last-child th,tr:last-child td{border-bottom:none}
+    .impression{background:#f8fafc;border:1px solid #cbd5e1;border-radius:14px;padding:16px;font-size:15.5px}
+    .footer-note{color:var(--muted);font-size:12px;margin-top:18px;border-top:1px solid var(--line);padding-top:12px}
+    @media print{
+      body{background:white;padding:0;font-size:12px}
+      .page{box-shadow:none;border:none;border-radius:0}
+      header{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+      section{break-inside:avoid;page-break-inside:avoid}
+    }
+    @media(max-width:760px){
+      body{padding:12px}
+      .meta,.grid{grid-template-columns:1fr}
+      header,.patient-bar,main{padding-left:18px;padding-right:18px}
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <header>
+      <h1>📋 Plantão BP — UTI 6A Cardio</h1>
+      <div class="sub">
+        <span><strong>Data:</strong> 07/06/2026</span>
+        <span><strong>Hora:</strong> 10:43</span>
+        <span><strong>Unidade:</strong> UTI BP Paulista Torre I — 6º andar Adulto</span>
+      </div>
+    </header>
+
+    <div class="patient-bar">
+      <h2>Leito 1600 13 — Hewals Preuss, 80 anos</h2>
+      <div class="meta">
+        <div><strong>Eq. Responsável:</strong> Cardiologia / Hemodinâmica — Dr. Fernando Faglioni Ribas</div>
+        <div><strong>Cirurgia Cardiovascular:</strong> Eq. Noedir</div>
+        <div><strong>Peso:</strong> 100 kg</div>
+        <div><strong>Internação:</strong> D7 | <strong>PO:</strong> 03–04 de CRVM em 02/06/2026</div>
+      </div>
+    </div>
+
+    <main>
+      <section>
+        <h3>Diagnósticos</h3>
+        <div class="content">
+          <span class="tag tag-danger">IAMCSST</span>
+          <span class="tag tag-warn">CRVM incompleta</span>
+          <span class="tag tag-blue">PO CRVM</span>
+          <span class="tag tag-green">Extubado</span>
+          <ul>
+            <li><strong>IAM com supradesnivelamento de ST</strong> — 12/05/2026.</li>
+            <li><strong>DAC triarterial complexa.</strong></li>
+            <li><strong>PO de tentativa de CRVM</strong> — 02/06/2026.</li>
+            <li>Realizado <strong>ATIE → ADA</strong>.</li>
+            <li><strong>CRVM incompleta:</strong> safenas retiradas, porém fibrosadas/trombosadas, impossibilitando uso como enxerto.</li>
+            <li>Lesões conhecidas: DA proximal 80%; D2 ostial 90%; CX proximal 80%; OM2 proximal 80%; CD dominante com lesões 80% proximal/média calcificada e trombo volumoso distal; VP 80%.</li>
+            <li>FEVE preservada, 57%, com acinesia basal/média de parede inferior.</li>
+            <li>Choque/instabilidade pós-operatória em desmame de noradrenalina.</li>
+            <li>Episódio febril isolado no pós-operatório.</li>
+            <li>HAS.</li>
+            <li>DM2 não insulinodependente — HbA1c 6,7%.</li>
+            <li>Hipotireoidismo.</li>
+            <li>CA de próstata em remissão.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <h3>Antecedentes</h3>
+        <div class="content">
+          <ul>
+            <li>DAC crônica em tratamento clínico desde 2022.</li>
+            <li>HAS.</li>
+            <li>DM2 não insulinodependente.</li>
+            <li>Hipotireoidismo.</li>
+            <li>CA de próstata em remissão.</li>
+            <li><strong>Uso domiciliar:</strong> losartana 50 mg 12/12h, anlodipino 5 mg/dia, levotiroxina 150 mcg/dia.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <h3>Dispositivos / Suporte</h3>
+        <div class="content">
+          <div class="grid">
+            <div class="mini-card"><strong>Neurológico:</strong> Glasgow 15, PIFR, sem déficits focais.</div>
+            <div class="mini-card"><strong>Respiratório:</strong> extubado previamente; boa condição clínica descrita. Confirmar se em ar ambiente ou cateter O₂ baixo fluxo.</div>
+            <div class="mini-card"><strong>VM:</strong> não claramente ativa no momento.</div>
+            <div class="mini-card"><strong>P/F:</strong> não calculável — sem gasometria arterial atual e FiO₂ confiável.</div>
+            <div class="mini-card"><strong>DVA:</strong> noradrenalina em desmame, previamente ~0,03 mcg/kg/min.</div>
+            <div class="mini-card"><strong>Sedoanalgesia:</strong> não.</div>
+            <div class="mini-card"><strong>Nutrição:</strong> via oral/dieta conforme tolerância.</div>
+            <div class="mini-card"><strong>TRS:</strong> não.</div>
+            <div class="mini-card"><strong>Dreno mediastinal:</strong> retirado ontem.</div>
+            <div class="mini-card"><strong>SVD/PAI:</strong> avaliar retirada após suspensão de DVA e estabilidade.</div>
+            <div class="mini-card"><strong>Fios de marcapasso:</strong> solicitar avaliação da Cirurgia Cardiovascular para retirada conforme protocolo.</div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h3>Sinais vitais — últimas 24h</h3>
+        <div class="content">
+          <table>
+            <tr><th>Temperatura</th><td>35–38 °C</td></tr>
+            <tr><th>FC</th><td>67–97 bpm</td></tr>
+            <tr><th>PAM</th><td>71–84 mmHg</td></tr>
+            <tr><th>BH</th><td><strong>-353 mL/24h</strong></td></tr>
+            <tr><th>Diurese</th><td>1600 mL/24h → 1600 ÷ 100 ÷ 24 = <strong>0,67 mL/kg/h</strong> → diurese adequada.</td></tr>
+          </table>
+        </div>
+      </section>
+
+      <section>
+        <h3>Exames recentes — 07/06/2026</h3>
+        <div class="content">
+          <table>
+            <tr><th>Hemograma</th><td>Hb <strong>8,9</strong> | Ht <strong>26,9%</strong> | Leuco <strong>3.250</strong> | Plaq <strong>145.000</strong></td></tr>
+            <tr><th>Bioquímica</th><td>Na <strong>139</strong> | K <strong>4,2</strong> | Mg <strong>1,9</strong></td></tr>
+            <tr><th>ECO</th><td>FEVE 57%; acinesia de segmentos basal e médio da parede inferior; disfunção diastólica grau I; VD preservado; PSAP 29 mmHg; sem derrame pericárdico; sem trombos/vegetações.</td></tr>
+            <tr><th>Doppler venoso MMII 30/05</th><td>Sem TVP.</td></tr>
+            <tr><th>Doppler carotídeo 30/05</th><td>Ateromatose sem repercussão hemodinâmica.</td></tr>
+            <tr><th>Doppler arterial MMII</th><td>Ateromatose moderada, sem estenoses significativas.</td></tr>
+          </table>
+        </div>
+      </section>
+
+      <section>
+        <h3>Antimicrobianos</h3>
+        <div class="content">
+          <ul>
+            <li>Sem antibiótico terapêutico no momento.</li>
+            <li>Vancomicina profilática descrita no pré-operatório.</li>
+            <li>Pico febril isolado no PO — manter vigilância.</li>
+            <li>Se nova febre ou instabilidade: colher hemoculturas, urocultura, urina tipo 1, RX tórax e revisar ferida operatória/sítios de acesso.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <h3>Profilaxias</h3>
+        <div class="content">
+          <ul>
+            <li><strong>Antiagregação:</strong> manter AAS.</li>
+            <li><strong>Estatina:</strong> manter alta intensidade.</li>
+            <li><strong>TEV:</strong> confirmar profilaxia farmacológica/mecânica.</li>
+            <li><strong>PAV:</strong> não aplicável se extubado; manter higiene oral, fisioterapia respiratória e cabeceira elevada.</li>
+            <li><strong>LPP / Mobilização:</strong> protocolo ativo; retirar dispositivos assim que seguro.</li>
+            <li><strong>Delirium:</strong> preservar sono, orientação, óculos/aparelho auditivo se usa, mobilização precoce.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <h3>Condutas / Pendências</h3>
+        <div class="content">
+          <div class="alert alert-warn">
+            <strong>Ponto crítico:</strong> CRVM incompleta com lesões residuais importantes — manter tratamento clínico otimizado e discutir estratégia complementar com Cardiologia/Hemodinâmica.
+          </div>
+
+          <ul>
+            <li><strong>Cardiovascular / Pós-IAM / CRVM incompleta:</strong> manter AAS, estatina de alta intensidade, betabloqueador quando estabilidade hemodinâmica permitir e IECA/BRA após suspensão de DVA se PA/função renal adequadas.</li>
+            <li><strong>Revascularização residual:</strong> discutir com Hemodinâmica/Cardiologia estratégia de revascularização complementar versus tratamento clínico otimizado.</li>
+            <li><strong>Hemodinâmica:</strong> desmamar noradrenalina conforme tolerância, mantendo PAM adequada e boa perfusão periférica.</li>
+            <li><strong>Dispositivos:</strong> após retirada completa de DVA, retirar PAI e SVD se sem outra indicação.</li>
+            <li><strong>Isquemia:</strong> monitorar dor torácica, ECG seriado e marcadores se nova dor/instabilidade.</li>
+            <li><strong>Fios de marcapasso:</strong> solicitar equipe da Cirurgia Cardiovascular para retirada. Ideal retirar com paciente estável, plaquetas adequadas, sem coagulopatia relevante e antes de intensificar anticoagulação/dupla antiagregação, se possível.</li>
+            <li><strong>Pós-retirada dos fios:</strong> monitorar dor torácica, hipotensão, sangramento, arritmia e sinais de tamponamento.</li>
+            <li><strong>Respiratório:</strong> confirmar suporte atual: ar ambiente versus cateter O₂; se extubado, manter fisioterapia respiratória, tosse assistida, incentivo ventilatório e mobilização precoce.</li>
+            <li><strong>Volume / renal:</strong> manter meta de BH zero a discretamente negativo conforme congestão, PA e função renal. Seguir furosemida se prescrita e se PA/função renal permitirem.</li>
+            <li><strong>Eletrólitos / arritmia:</strong> K 4,2 adequado; Mg 1,9 — considerar reposição para meta Mg &gt;2,0; manter K &gt;4,0.</li>
+            <li><strong>Drenos / ferida:</strong> dreno retirado ontem; vigiar curativo, dor, sangramento, sinais de tamponamento, febre e sinais locais de infecção.</li>
+            <li><strong>Febre / infecção:</strong> pico até 38 °C, sem ATB terapêutico; se recorrência, coletar HMC, URC, urina tipo 1, RX tórax e revisar ferida/drenos/acessos.</li>
+            <li><strong>Mobilização:</strong> iniciar mobilização fora do leito hoje se estabilidade hemodinâmica e segurança cirúrgica permitirem; priorizar sentar em poltrona, ortostatismo assistido e fisioterapia motora.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <h3>Intercorrências</h3>
+        <div class="content">
+          <ul>
+            <li>IAMCST em 12/05 com DAC triarterial complexa.</li>
+            <li>CRVM em 02/06, incompleta por impossibilidade de uso das safenas.</li>
+            <li>Extubado previamente.</li>
+            <li>DVA em desmame.</li>
+            <li>Dreno mediastinal retirado ontem.</li>
+            <li>Pico febril até 38 °C.</li>
+            <li><strong>Evolução noturna:</strong> programar/iniciar mobilização fora do leito e solicitar equipe cirúrgica para retirada de fios de marcapasso.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <h3>Impressão</h3>
+        <div class="content">
+          <div class="impression">
+            <p>
+              Paciente de <strong>80 anos</strong>, com HAS, DM2, hipotireoidismo e DAC crônica, admitido após IAM com supra e
+              cinecoronariografia evidenciando DAC triarterial complexa. Submetido em 02/06 a tentativa de CRVM, com realização de
+              <strong>ATIE → ADA</strong>, porém revascularização ficou <strong>incompleta</strong> por safenas fibrosadas/trombosadas
+              e inutilizáveis.
+            </p>
+            <p>
+              Evolui em PO 03–04, neurologicamente íntegro, extubado, sem dor torácica ativa descrita, FEVE preservada apesar de
+              acinesia inferior, em desmame de baixa dose de noradrenalina, com diurese adequada e balanço discretamente negativo.
+              Dreno mediastinal já retirado. Apresentou pico febril até 38 °C, sem foco infeccioso definido até o momento, mantendo
+              conduta de vigilância e coleta de culturas se recorrência.
+            </p>
+            <p>
+              <strong>Prioridades do plantão:</strong> suspender noradrenalina se tolerado, iniciar mobilização fora do leito, solicitar
+              retirada dos fios de marcapasso pela Cirurgia Cardiovascular, retirar PAI/SVD após estabilidade, manter AAS + estatina e
+              discutir estratégia de P2Y12/revascularização residual com Cardiologia/Hemodinâmica, além de vigilância para febre recorrente,
+              arritmias, isquemia e complicações pós-operatórias.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <div class="footer-note">
+        Documento gerado em HTML para passagem de plantão. Revisar dados dinâmicos no Tasy antes de uso assistencial definitivo.
+      </div>
+    </main>
+  </div>
+</body>
+</html>

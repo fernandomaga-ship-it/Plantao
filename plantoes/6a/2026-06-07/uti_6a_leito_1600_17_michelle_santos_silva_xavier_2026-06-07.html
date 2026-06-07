@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UTI 6A Cardio — Leito 1600 17 — Michelle Santos Silva Xavier</title>
+  <style>
+    :root {
+      --bg:#f5f7fb; --card:#fff; --ink:#1f2937; --muted:#5b6472; --line:#d9e0ea;
+      --accent:#0f766e; --danger:#b91c1c; --warn:#b45309; --blue:#1d4ed8;
+      --soft-red:#fff1f2; --soft-yellow:#fffbeb; --soft-blue:#eff6ff; --soft-green:#ecfdf5;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;padding:24px;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;line-height:1.45;font-size:15px}
+    .page{max-width:1120px;margin:0 auto;background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:0 12px 32px rgba(15,23,42,.08)}
+    header{padding:24px 28px;background:linear-gradient(135deg,#0f766e,#155e75);color:white}
+    header h1{margin:0 0 8px;font-size:26px;letter-spacing:-.02em}
+    header .sub{display:flex;flex-wrap:wrap;gap:10px 18px;font-size:14px;opacity:.95}
+    .patient-bar{padding:18px 28px;border-bottom:1px solid var(--line);background:#f8fafc}
+    .patient-bar h2{margin:0 0 8px;font-size:24px;color:#111827}
+    .meta{display:grid;grid-template-columns:repeat(2,minmax(240px,1fr));gap:8px 18px;color:var(--muted);font-size:14px}
+    main{padding:24px 28px 30px}
+    section{margin-bottom:20px;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:white}
+    section h3{margin:0;padding:12px 16px;background:#f1f5f9;border-bottom:1px solid var(--line);font-size:18px;color:#0f172a}
+    .content{padding:14px 18px 16px}
+    ul{margin:0;padding-left:20px}
+    li{margin:5px 0}
+    .grid{display:grid;grid-template-columns:repeat(2,minmax(260px,1fr));gap:12px}
+    .mini-card{border:1px solid var(--line);border-radius:12px;padding:12px;background:#fff}
+    .mini-card strong{color:#111827}
+    .tag{display:inline-block;padding:4px 8px;border-radius:999px;font-weight:700;font-size:12px;margin:2px 4px 2px 0;border:1px solid transparent}
+    .tag-danger{background:var(--soft-red);color:var(--danger);border-color:#fecdd3}
+    .tag-warn{background:var(--soft-yellow);color:var(--warn);border-color:#fde68a}
+    .tag-blue{background:var(--soft-blue);color:var(--blue);border-color:#bfdbfe}
+    .tag-green{background:var(--soft-green);color:#047857;border-color:#bbf7d0}
+    .alert{padding:12px 14px;border-radius:12px;margin:10px 0;border-left:5px solid}
+    .alert-danger{background:var(--soft-red);border-color:var(--danger)}
+    .alert-warn{background:var(--soft-yellow);border-color:var(--warn)}
+    .alert-blue{background:var(--soft-blue);border-color:var(--blue)}
+    table{width:100%;border-collapse:collapse;margin:4px 0;overflow:hidden;border-radius:12px}
+    th,td{border-bottom:1px solid var(--line);padding:9px 10px;text-align:left;vertical-align:top}
+    th{background:#f8fafc;color:#334155;width:28%}
+    tr:last-child th,tr:last-child td{border-bottom:none}
+    .impression{background:#f8fafc;border:1px solid #cbd5e1;border-radius:14px;padding:16px;font-size:15.5px}
+    .footer-note{color:var(--muted);font-size:12px;margin-top:18px;border-top:1px solid var(--line);padding-top:12px}
+    @media print{
+      body{background:white;padding:0;font-size:12px}
+      .page{box-shadow:none;border:none;border-radius:0}
+      header{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+      section{break-inside:avoid;page-break-inside:avoid}
+    }
+    @media(max-width:760px){
+      body{padding:12px}
+      .meta,.grid{grid-template-columns:1fr}
+      header,.patient-bar,main{padding-left:18px;padding-right:18px}
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <header>
+      <h1>📋 Plantão BP — UTI 6A Cardio</h1>
+      <div class="sub">
+        <span><strong>Data:</strong> 07/06/2026</span>
+        <span><strong>Hora:</strong> 11:27</span>
+        <span><strong>Unidade:</strong> UTI BP Paulista Torre I — 6º andar Adulto</span>
+      </div>
+    </header>
+
+    <div class="patient-bar">
+      <h2>Leito 1600 17 — Michelle Santos Silva Xavier, 33 anos</h2>
+      <div class="meta">
+        <div><strong>Eq. Responsável:</strong> Nefrologia — Eq. Irene Noronha</div>
+        <div><strong>Internação:</strong> D1?</div>
+        <div><strong>Peso:</strong> não informado</div>
+        <div><strong>Status:</strong> Doença falciforme + DRC dialítica + anemia grave</div>
+      </div>
+    </div>
+
+    <main>
+      <section>
+        <h3>Diagnósticos</h3>
+        <div class="content">
+          <span class="tag tag-danger">Anemia grave</span>
+          <span class="tag tag-warn">Falciforme aloimunizada</span>
+          <span class="tag tag-blue">DRC dialítica</span>
+          <span class="tag tag-danger">Risco transfusional</span>
+          <span class="tag tag-warn">Congestão pulmonar</span>
+          <ul>
+            <li><strong>Doença falciforme com anemia grave</strong>, Hb inicial 4,8 g/dL, atualmente Hb 6,6 g/dL.</li>
+            <li>Paciente <strong>poli-transfundida e aloimunizada</strong>.</li>
+            <li><strong>DRC dialítica</strong>, em hemodiálise segunda/quarta/sexta; última HD em 05/06/2026.</li>
+            <li>Dispneia e dor torácica/dorsal, provável contribuição de anemia grave + congestão pulmonar.</li>
+            <li>Congestão pulmonar em imagem, sem consolidação ou broncograma aéreo; pequeno derrame pleural à esquerda.</li>
+            <li>Epistaxe autolimitada.</li>
+            <li>Náuseas/vômitos e inapetência desde 03/06/2026.</li>
+            <li>Avaliada para TEP/TEC: sem sinais de tromboembolismo.</li>
+            <li>Leucocitose em investigação, sem foco infeccioso evidente.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <h3>Antecedentes</h3>
+        <div class="content">
+          <ul>
+            <li>Doença falciforme.</li>
+            <li>Poli-transfundida, aloimunizada.</li>
+            <li>DRC dialítica, HD seg/qua/sex.</li>
+            <li>Sem alergias conhecidas; dipirona/paracetamol tolerados.</li>
+            <li>Histórico de epistaxe esporádica.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <h3>Dispositivos / Suporte</h3>
+        <div class="content">
+          <div class="grid">
+            <div class="mini-card"><strong>Neurológico:</strong> vigil, orientada, queixa de dor leve a moderada.</div>
+            <div class="mini-card"><strong>Respiratório:</strong> ar ambiente; saturação baixa na admissão, em monitorização contínua.</div>
+            <div class="mini-card"><strong>VM:</strong> não.</div>
+            <div class="mini-card"><strong>P/F:</strong> se gasometria arterial em ar ambiente → 95 / 0,21 = <strong>452</strong>, oxigenação preservada. Se em O₂ suplementar, P/F não validável sem FiO₂ precisa.</div>
+            <div class="mini-card"><strong>DVA:</strong> não.</div>
+            <div class="mini-card"><strong>Sedoanalgesia:</strong> dipirona programada; opioide de resgate se dor moderada/intensa.</div>
+            <div class="mini-card"><strong>Nutrição:</strong> inapetente desde 03/06; dieta conforme tolerância.</div>
+            <div class="mini-card"><strong>TRS:</strong> HD regular seg/qua/sex; próxima prevista 08/06, avaliar antecipação se congestão/sintomas.</div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h3>Sinais vitais — últimas 24h</h3>
+        <div class="content">
+          <table>
+            <tr><th>Temperatura</th><td>36 °C</td></tr>
+            <tr><th>FC</th><td>103–118 bpm</td></tr>
+            <tr><th>PAM</th><td>113–144 mmHg</td></tr>
+            <tr><th>Glicemia</th><td>120–131 mg/dL</td></tr>
+            <tr><th>BH</th><td>+1145 mL</td></tr>
+            <tr><th>Perdas</th><td>Não quantificadas.</td></tr>
+            <tr><th>Diurese</th><td>Não informada — cálculo mL/kg/h não possível.</td></tr>
+          </table>
+        </div>
+      </section>
+
+      <section>
+        <h3>Exames recentes — 07/06/2026</h3>
+        <div class="content">
+          <table>
+            <tr><th>Gasometria</th><td>pH <strong>7,33</strong> | pO₂ <strong>95</strong> | pCO₂ <strong>41</strong> | HCO₃ <strong>22</strong></td></tr>
+            <tr><th>Hemograma</th><td>Hb <strong>6,6</strong> | Leuco <strong>18.400</strong> | Plaq <strong>260.000</strong></td></tr>
+            <tr><th>Bioquímica</th><td>Na <strong>131</strong> | Ca ionizado <strong>1,17</strong> | P <strong>8,6</strong> | Ur <strong>85</strong> | Cr <strong>6,15</strong></td></tr>
+            <tr><th>Lactato</th><td><strong>11</strong> — confirmar unidade; se mg/dL, sem hiperlactatemia relevante.</td></tr>
+            <tr><th>Imagem pulmonar</th><td>Congestão pulmonar + pequeno derrame pleural à esquerda; sem consolidação/broncograma aéreo.</td></tr>
+            <tr><th>TEP/TEC</th><td>Sem sinais de tromboembolismo.</td></tr>
+          </table>
+        </div>
+      </section>
+
+      <section>
+        <h3>Antimicrobianos</h3>
+        <div class="content">
+          <ul>
+            <li><strong>Piperacilina/tazobactam</strong> iniciado empiricamente.</li>
+            <li>Sem foco infeccioso evidente até o momento.</li>
+            <li>Reavaliar em 24–48h conforme curva térmica, culturas, PCR/PCT, imagem e evolução clínica.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <h3>Profilaxias</h3>
+        <div class="content">
+          <ul>
+            <li><strong>TEV:</strong> avaliar risco/benefício; falciforme aumenta risco trombótico, porém há anemia grave e epistaxe recente. Preferir medidas mecânicas/deambulação se sangramento ativo ou recorrente.</li>
+            <li><strong>Úlcera de estresse:</strong> considerar IBP se risco elevado, uso de opioide, instabilidade ou histórico gastrointestinal relevante.</li>
+            <li><strong>Cateter/HD:</strong> bundle de linha, técnica asséptica e vigilância de sinais de infecção.</li>
+            <li><strong>Queda / LP:</strong> protocolo ativo.</li>
+            <li><strong>Epistaxe:</strong> hidratação de mucosas, evitar trauma local e monitorar recorrência.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <h3>Condutas / Pendências</h3>
+        <div class="content">
+          <div class="alert alert-danger">
+            <strong>Ponto crítico:</strong> paciente falciforme aloimunizada com anemia grave e DRC dialítica — transfundir com compatibilização estendida e vigiar TACO/hiper-hemólise.
+          </div>
+
+          <ul>
+            <li><strong>Anemia grave / Doença falciforme:</strong> Hb atual 6,6, melhora em relação à Hb inicial 4,8, porém ainda anemia grave.</li>
+            <li><strong>Banco de Sangue:</strong> acionar para hemácias compatibilizadas com fenótipo/genótipo estendido, devido à aloimunização.</li>
+            <li><strong>Meta transfusional:</strong> Hb 7–8 g/dL, evitando hipertransfusão/hiperviscosidade.</li>
+            <li><strong>Estratégia:</strong> transfundir 1 CH por vez, com reavaliação clínica, Hb e sinais de sobrecarga.</li>
+            <li><strong>Vigilância hemolítica:</strong> monitorar reação hemolítica tardia/hiper-hemólise: dor, febre, icterícia, urina escura, queda paradoxal de Hb, LDH, bilirrubina e reticulócitos.</li>
+            <li><strong>Risco transfusional / Congestão:</strong> alto risco de TACO pela DRC dialítica e congestão pulmonar; transfusão lenta, balanço rigoroso, monitorar PA, SpO₂, ausculta e desconforto respiratório.</li>
+            <li><strong>HD pós-transfusão:</strong> considerar programação de HD/UF após transfusão se piora congestiva.</li>
+            <li><strong>Dor torácica/dorsal / Crise falciforme:</strong> analgesia programada com dipirona; se dor moderada/intensa, opioide titulado com vigilância respiratória e náuseas.</li>
+            <li><strong>Medidas anti-falcização:</strong> evitar hipoxemia, hipotermia, desidratação e acidose. Hidratação cautelosa, preferencialmente oral/fracionada, pelo contexto de congestão e DRC.</li>
+            <li><strong>Síndrome torácica aguda — vigilância:</strong> imagem sem consolidação/broncograma e sem febre, favorecendo congestão/anemia; repetir RX/TC tórax se febre, dor progressiva, queda de SpO₂, novo infiltrado ou piora ventilatória.</li>
+            <li><strong>Oxigenação:</strong> monitorização contínua de SpO₂; O₂ suplementar se SpO₂ &lt;92%; em falciforme, preferir meta ≥94% se possível; fisioterapia/incentivo respiratório.</li>
+            <li><strong>DRC / Hemodiálise:</strong> próxima HD prevista em 08/06/2026; considerar antecipar se congestão, piora respiratória, hipercalemia, acidose, hipertensão volumétrica ou necessidade pós-transfusão.</li>
+            <li><strong>Fósforo:</strong> P 8,6 — revisar quelantes, dieta e programação dialítica.</li>
+            <li><strong>Ajuste renal:</strong> ajustar piperacilina/tazobactam e demais fármacos para HD.</li>
+            <li><strong>Náuseas / Vômitos / Inapetência:</strong> antiemético com avaliação de QTc e função renal; dieta fracionada conforme tolerância; monitorar hipoglicemia, eletrólitos e volume efetivo.</li>
+            <li><strong>Epistaxe:</strong> medidas locais — compressão, umidificação nasal, pomada/gel nasal. Solicitar ORL se recorrência, sangramento volumoso ou queda de Hb desproporcional.</li>
+            <li><strong>Antibiótico / Leucocitose:</strong> leuco 18.400, afebril, imagem sem consolidação. Manter Tazocin se decisão assistente, mas reavaliar diariamente e suspender/descalonar se estabilidade, ausência de foco e culturas negativas.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <h3>Intercorrências</h3>
+        <div class="content">
+          <ul>
+            <li>Epistaxe pequena em 06/06 por volta de 19:30, autolimitada com compressão.</li>
+            <li>Dispneia na admissão, saturação baixa, em melhora sob monitorização.</li>
+            <li>Vômitos e inapetência desde 03/06.</li>
+            <li>Anemia grave com Hb inicial 4,8, atualmente Hb 6,6 após suporte.</li>
+            <li>Congestão pulmonar em imagem, pequeno derrame pleural à esquerda.</li>
+            <li>Sem evidência de TEP.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <h3>Impressão</h3>
+        <div class="content">
+          <div class="impression">
+            <p>
+              Paciente jovem, portadora de <strong>doença falciforme</strong>, poli-transfundida e aloimunizada, com
+              <strong>DRC dialítica</strong>, admitida com anemia crítica, dispneia e dor torácica/dorsal. Evolui com Hb atual 6,6,
+              ainda abaixo de meta segura, mantendo necessidade de suporte transfusional cuidadoso e compatibilizado. A dispneia parece
+              multifatorial, com contribuição de anemia grave e congestão pulmonar, sem evidência atual de TEP ou consolidação pulmonar.
+            </p>
+            <p>
+              O principal risco imediato é o equilíbrio entre <strong>corrigir anemia/hipóxia tecidual</strong> e evitar complicações
+              transfusionais, especialmente <strong>TACO</strong>, reação hemolítica tardia/hiper-hemólise e hiperviscosidade. Também exige
+              vigilância para síndrome torácica aguda, embora imagem atual favoreça congestão sem foco infeccioso consolidado.
+            </p>
+            <p>
+              <strong>Prioridades do plantão:</strong> coordenar hemotransfusão compatibilizada com Banco de Sangue, mirar Hb 7–8 g/dL sem
+              hipertransfundir, monitorar sinais de sobrecarga e necessidade de antecipar HD, controlar dor e náuseas, manter SpO₂ adequada,
+              reavaliar Tazocin em 24–48h conforme culturas/foco e vigiar recorrência de epistaxe ou piora respiratória.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <div class="footer-note">
+        Documento gerado em HTML para passagem de plantão. Revisar dados dinâmicos no Tasy antes de uso assistencial definitivo.
+      </div>
+    </main>
+  </div>
+</body>
+</html>

@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UTI 6A Cardio — Leito 1600 12 — Rosa Maria Martins de Araújo</title>
+  <style>
+    :root {
+      --bg:#f5f7fb; --card:#fff; --ink:#1f2937; --muted:#5b6472; --line:#d9e0ea;
+      --accent:#0f766e; --danger:#b91c1c; --warn:#b45309; --blue:#1d4ed8;
+      --soft-red:#fff1f2; --soft-yellow:#fffbeb; --soft-blue:#eff6ff; --soft-green:#ecfdf5;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;padding:24px;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;line-height:1.45;font-size:15px}
+    .page{max-width:1120px;margin:0 auto;background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:0 12px 32px rgba(15,23,42,.08)}
+    header{padding:24px 28px;background:linear-gradient(135deg,#0f766e,#155e75);color:white}
+    header h1{margin:0 0 8px;font-size:26px;letter-spacing:-.02em}
+    header .sub{display:flex;flex-wrap:wrap;gap:10px 18px;font-size:14px;opacity:.95}
+    .patient-bar{padding:18px 28px;border-bottom:1px solid var(--line);background:#f8fafc}
+    .patient-bar h2{margin:0 0 8px;font-size:24px;color:#111827}
+    .meta{display:grid;grid-template-columns:repeat(2,minmax(240px,1fr));gap:8px 18px;color:var(--muted);font-size:14px}
+    main{padding:24px 28px 30px}
+    section{margin-bottom:20px;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:white}
+    section h3{margin:0;padding:12px 16px;background:#f1f5f9;border-bottom:1px solid var(--line);font-size:18px;color:#0f172a}
+    .content{padding:14px 18px 16px}
+    ul{margin:0;padding-left:20px}
+    li{margin:5px 0}
+    .grid{display:grid;grid-template-columns:repeat(2,minmax(260px,1fr));gap:12px}
+    .mini-card{border:1px solid var(--line);border-radius:12px;padding:12px;background:#fff}
+    .mini-card strong{color:#111827}
+    .tag{display:inline-block;padding:4px 8px;border-radius:999px;font-weight:700;font-size:12px;margin:2px 4px 2px 0;border:1px solid transparent}
+    .tag-danger{background:var(--soft-red);color:var(--danger);border-color:#fecdd3}
+    .tag-warn{background:var(--soft-yellow);color:var(--warn);border-color:#fde68a}
+    .tag-blue{background:var(--soft-blue);color:var(--blue);border-color:#bfdbfe}
+    .tag-green{background:var(--soft-green);color:#047857;border-color:#bbf7d0}
+    .alert{padding:12px 14px;border-radius:12px;margin:10px 0;border-left:5px solid}
+    .alert-danger{background:var(--soft-red);border-color:var(--danger)}
+    .alert-warn{background:var(--soft-yellow);border-color:var(--warn)}
+    .alert-blue{background:var(--soft-blue);border-color:var(--blue)}
+    table{width:100%;border-collapse:collapse;margin:4px 0;overflow:hidden;border-radius:12px}
+    th,td{border-bottom:1px solid var(--line);padding:9px 10px;text-align:left;vertical-align:top}
+    th{background:#f8fafc;color:#334155;width:28%}
+    tr:last-child th,tr:last-child td{border-bottom:none}
+    .impression{background:#f8fafc;border:1px solid #cbd5e1;border-radius:14px;padding:16px;font-size:15.5px}
+    .footer-note{color:var(--muted);font-size:12px;margin-top:18px;border-top:1px solid var(--line);padding-top:12px}
+    @media print{
+      body{background:white;padding:0;font-size:12px}
+      .page{box-shadow:none;border:none;border-radius:0}
+      header{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+      section{break-inside:avoid;page-break-inside:avoid}
+    }
+    @media(max-width:760px){
+      body{padding:12px}
+      .meta,.grid{grid-template-columns:1fr}
+      header,.patient-bar,main{padding-left:18px;padding-right:18px}
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <header>
+      <h1>📋 Plantão BP — UTI 6A Cardio</h1>
+      <div class="sub">
+        <span><strong>Data:</strong> 07/06/2026</span>
+        <span><strong>Hora:</strong> 10:36</span>
+        <span><strong>Unidade:</strong> UTI BP Paulista Torre I — 6º andar Adulto</span>
+      </div>
+    </header>
+
+    <div class="patient-bar">
+      <h2>Leito 1600 12 — Rosa Maria Martins de Araújo, 74 anos</h2>
+      <div class="meta">
+        <div><strong>Eq. Responsável:</strong> Cardiologia / Cirurgia Cardiovascular — Dr. Sérgio Almeida de Oliveira</div>
+        <div><strong>Interconsulta:</strong> Neurologia — Dr. Fernando Freua / TRUE Neuro</div>
+        <div><strong>Peso:</strong> 61 kg</div>
+        <div><strong>Internação:</strong> D5 | <strong>PO:</strong> 04–05 de procedimento em 02/06/2026</div>
+      </div>
+    </div>
+
+    <main>
+      <section>
+        <h3>Diagnósticos</h3>
+        <div class="content">
+          <span class="tag tag-danger">AVC extenso</span>
+          <span class="tag tag-blue">VM invasiva</span>
+          <span class="tag tag-warn">FAARV</span>
+          <span class="tag tag-danger">Pós valve-in-valve</span>
+          <div class="alert alert-warn">
+            <strong>Atenção:</strong> há divergência de leito no material: passagem refere 1600 12, mas Doppler transcraniano cita 6700-05. Validar no Tasy.
+          </div>
+          <ul>
+            <li><strong>PO de implante transcateter valve-in-valve aórtico e mitral</strong> — 02/06/2026.</li>
+            <li><strong>Acesso acidental pela carótida esquerda</strong> durante o procedimento.</li>
+            <li><strong>AVC isquêmico extenso em hemisfério esquerdo</strong>, território de ACA/ACM esquerda, acometendo região fronto-temporo-parietal, ínsula e região nucleocapsular.</li>
+            <li>Provável mecanismo misto: hemodinâmico + embólico, com sinais prévios de reperfusão pós-isquêmica / luxury perfusion.</li>
+            <li>Hemiplegia direita e despertar inadequado no POI.</li>
+            <li>Rebaixamento neurológico persistente, sem sedação desde 05/06 às 06h.</li>
+            <li>Atividade epileptiforme interictal frequente, sem crises clínicas/eletrográficas.</li>
+            <li><strong>FA / FA de alta resposta ventricular</strong>, em amiodarona.</li>
+            <li><strong>Febre 38 °C</strong> com leucocitose — iniciado/expandido ATB.</li>
+            <li>Insuficiência respiratória pós-operatória — IOT + VM.</li>
+            <li>IRA / disfunção renal aguda.</li>
+            <li>Anemia pós-operatória.</li>
+            <li>Coagulopatia prévia, com INR atual em melhora.</li>
+            <li>Sinusopatia aguda esfenoidal em TC.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <h3>Antecedentes</h3>
+        <div class="content">
+          <ul>
+            <li>Troca valvar mitral e aórtica prévias.</li>
+            <li>Doença valvar aórtica e mitral.</li>
+            <li>Doença arterial coronariana.</li>
+            <li>Fibrilação atrial.</li>
+            <li>HAS.</li>
+            <li>Vasculopatia.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <h3>Dispositivos / Suporte</h3>
+        <div class="content">
+          <div class="grid">
+            <div class="mini-card"><strong>Neurológico:</strong> sem sedação desde 05/06 às 06h; movimentação espontânea de dimídio esquerdo; hemiplegia direita; abertura ocular apenas ao estímulo doloroso, sem interação sustentada.</div>
+            <div class="mini-card"><strong>EEG:</strong> sem crise eletrográfica; atividade epileptiforme interictal frequente.</div>
+            <div class="mini-card"><strong>VM:</strong> IOT desde 02/06, COT nº 7, RL 22, sem supracuff. Modo AC/PCV | PC 12 | PEEP 6 | FiO₂ 25% | FR 15 | Vte ~423 mL.</div>
+            <div class="mini-card"><strong>P/F:</strong> PaO₂ 155 / FiO₂ 0,25 = <strong>620</strong> → oxigenação preservada.</div>
+            <div class="mini-card"><strong>DVA:</strong> noradrenalina em baixa dose na atualização prévia; manter no menor nível possível.</div>
+            <div class="mini-card"><strong>Antiarrítmico:</strong> amiodarona, dose aumentada na evolução noturna por FAARV.</div>
+            <div class="mini-card"><strong>Sedoanalgesia:</strong> suspensa para avaliação neurológica.</div>
+            <div class="mini-card"><strong>Nutrição:</strong> SNE 20 mL/h.</div>
+            <div class="mini-card"><strong>TRS:</strong> não.</div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h3>Sinais vitais — últimas 24h</h3>
+        <div class="content">
+          <table>
+            <tr><th>Temperatura</th><td>38 °C</td></tr>
+            <tr><th>FC</th><td>110–150 bpm</td></tr>
+            <tr><th>PAM</th><td>83–112 mmHg</td></tr>
+            <tr><th>Glicemia</th><td>172–189 mg/dL</td></tr>
+            <tr><th>BH</th><td>+1587 mL</td></tr>
+            <tr><th>Diurese</th><td>1250 mL/24h → 1250 ÷ 61 ÷ 24 = <strong>0,85 mL/kg/h</strong> → diurese adequada.</td></tr>
+          </table>
+        </div>
+      </section>
+
+      <section>
+        <h3>Exames recentes — 07/06/2026</h3>
+        <div class="content">
+          <table>
+            <tr><th>Gasometria</th><td>pH <strong>7,46</strong> | PaO₂ <strong>155</strong> | PaCO₂ <strong>36</strong> | HCO₃ <strong>26</strong> — alcalemia leve, ventilação adequada e oxigenação preservada.</td></tr>
+            <tr><th>Hemograma</th><td>Hb <strong>9,6</strong> | Leuco <strong>21.860</strong> | Plaq <strong>196.000</strong></td></tr>
+            <tr><th>Coagulação</th><td>INR <strong>1,4</strong></td></tr>
+            <tr><th>Bioquímica</th><td>Na <strong>150</strong> | K <strong>4,0</strong> | Ca ionizado <strong>1,05</strong> | P <strong>2,3</strong> | Ur <strong>104</strong> | Cr <strong>1,66</strong></td></tr>
+            <tr><th>Culturas</th><td>Parciais negativas até o momento.</td></tr>
+            <tr><th>Observação</th><td>AL/ALT? 20 — confirmar nomenclatura no Tasy.</td></tr>
+          </table>
+        </div>
+      </section>
+
+      <section>
+        <h3>Exames complementares</h3>
+        <div class="content">
+          <ul>
+            <li><strong>TC crânio 06/06:</strong> AVC isquêmico recente em grande parte do território de ACA/ACM esquerda; discreto apagamento de sulcos; sem hemorragia intracraniana recente, sem desvio significativo de linha média e sem sinais de HIC crítica.</li>
+            <li><strong>EEG prolongado 06/06:</strong> desorganização difusa assimétrica, pior no hemisfério esquerdo; paroxismos epileptiformes frequentes em região anterior direita; sem crises clínicas ou eletrográficas.</li>
+            <li><strong>Doppler transcraniano 06/06:</strong> padrão hiperdinâmico global, sobretudo em circulação carotídea esquerda; possível vasoespasmo leve/hiperdinamia em sifão carotídeo esquerdo; sem sinais de HIC crítica; sem atividade embólica espontânea.</li>
+            <li><strong>RNM encéfalo 04/06:</strong> AVC isquêmico cortical extenso à esquerda com sinais de reperfusão pós-isquêmica / luxury perfusion; pequenos focos isquêmicos adicionais; microhemorragias esparsas.</li>
+            <li><strong>Ecocardiograma 03/06:</strong> FE 59–65%; endoprótese mitral com gradiente médio 5 mmHg e refluxo moderado provável leak periprotético; endoprótese aórtica com gradiente médio 4 mmHg, sem refluxo; sem derrame pericárdico; PSAP ~41 mmHg.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <h3>Antimicrobianos</h3>
+        <div class="content">
+          <ul>
+            <li>Previamente apenas antibiótico profilático perioperatório descrito.</li>
+            <li><strong>Evolução noturna:</strong> febre 38 °C + leucocitose + FAARV; discutido com Dr. Mayco e Dr. Judas → <strong>ampliado esquema para piperacilina-tazobactam + vancomicina</strong>.</li>
+            <li>Reavaliar em 48–72h conforme culturas, foco clínico e evolução de febre/leucocitose.</li>
+            <li>Culturas parciais negativas até o momento.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <h3>Profilaxias</h3>
+        <div class="content">
+          <ul>
+            <li><strong>PAV:</strong> cabeceira 30–45°, higiene oral, aspiração adequada, avaliação diária de extubação e sedação mínima.</li>
+            <li><strong>BCA:</strong> protocolo ativo.</li>
+            <li><strong>TEV:</strong> ponto crítico individualizado por AVC extenso, microhemorragias prévias, pós-operatório valvar recente, FA/próteses com alto risco tromboembólico e INR em melhora.</li>
+            <li><strong>LP:</strong> protocolo ativo.</li>
+            <li><strong>Queda:</strong> protocolo ativo.</li>
+            <li><strong>Neuroproteção:</strong> normóxia, normocapnia, normoglicemia, normotermia, evitar hipotensão, anemia, hipovolemia e distúrbios eletrolíticos.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <h3>Condutas / Pendências</h3>
+        <div class="content">
+          <div class="alert alert-danger">
+            <strong>Ponto crítico:</strong> AVC extenso pós-procedimento + FAARV + decisão complexa de anticoagulação versus risco hemorrágico.
+          </div>
+          <ul>
+            <li><strong>Neurológico / AVC extenso:</strong> manter vigilância neurológica rigorosa; evitar hipotensão, hipoxemia, hipercapnia, febre, hipoglicemia/hiperglicemia, anemia e hipovolemia.</li>
+            <li><strong>Alerta neuro:</strong> se piora neurológica, anisocoria, bradicardia + hipertensão, desalinhamento ocular ou suspeita de HIC → TC crânio sem contraste de urgência.</li>
+            <li><strong>Mantidan:</strong> 100 mg 1x/dia conforme Neurologia, para facilitar despertar.</li>
+            <li><strong>LCR:</strong> apenas quando INR/procedimento estiver seguro e se mantida indicação.</li>
+            <li><strong>Epilepsia / EEG:</strong> manter levetiracetam ajustado à função renal; evitar gatilhos de irritabilidade cortical: febre, distúrbios de sódio, hipoglicemia, hipercapnia, acidose e sepse.</li>
+            <li><strong>FAARV:</strong> dose de amiodarona aumentada na evolução noturna; provável contribuição de febre/SIRS.</li>
+            <li><strong>Eletrólitos:</strong> manter K &gt;4,0 e Mg &gt;2,0; repor cálcio/fósforo conforme protocolo.</li>
+            <li><strong>Infecção / Febre:</strong> manter Tazocin + Vancomicina conforme discussão assistente; checar hemoculturas, urocultura, aspirado traqueal, secreções e culturas coletadas; descalonar se culturas negativas e estabilidade.</li>
+            <li><strong>Anticoagulação / Antiagregação:</strong> decisão multidisciplinar Cardiologia + Cirurgia Cardiovascular + Neurologia. Alto risco trombótico por FA + valve-in-valve recente e alto risco hemorrágico por AVC extenso + microhemorragias.</li>
+            <li><strong>Se anticoagulação plena imprescindível:</strong> considerar heparina não fracionada pela meia-vida curta e reversibilidade, com meta clara e acompanhamento neurológico estreito.</li>
+            <li><strong>Ventilação:</strong> oxigenação excelente, P/F 620; principal barreira para extubação é rebaixamento neurológico e apneia em PSV.</li>
+            <li><strong>Hemodinâmica cerebral:</strong> evitar grandes oscilações pressóricas, hipotensão, hipovolemia, anemia, acidose e febre persistente.</li>
+            <li><strong>Renal / Hidroeletrolítico:</strong> IRA em melhora parcial; corrigir hipernatremia gradualmente; ajustar dose de levetiracetam e antimicrobianos à função renal.</li>
+            <li><strong>Sinusopatia / ORL:</strong> considerar ORL/Infectologia se persistência de febre, secreção purulenta, bacteremia ou piora clínica.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <h3>Intercorrências</h3>
+        <div class="content">
+          <ul>
+            <li>POI com despertar inadequado e hemiplegia direita → protocolo AVC em 02/06.</li>
+            <li>Acesso acidental pela carótida esquerda.</li>
+            <li>AVC extenso em hemisfério esquerdo confirmado em RNM/TC.</li>
+            <li>EEG com atividade epileptiforme frequente, sem crises.</li>
+            <li>Persistência de IOT + VM por rebaixamento neurológico/apneia em PSV.</li>
+            <li><strong>Evolução noturna:</strong> FA de alta resposta ventricular; amiodarona aumentada.</li>
+            <li>Correção de eletrólitos realizada.</li>
+            <li>Febre 38 °C, provável contribuinte para taquiarritmia.</li>
+            <li>Culturas a checar; parciais negativas até o momento.</li>
+            <li>Discutido com Dr. Mayco e Dr. Judas: ampliado ATB para <strong>Tazocin + Vancomicina</strong>.</li>
+            <li>IRA em acompanhamento.</li>
+            <li>Anemia pós-operatória em melhora após CH.</li>
+            <li>INR em melhora: 3,0 prévio → 1,4 atual.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <h3>Impressão</h3>
+        <div class="content">
+          <div class="impression">
+            <p>
+              Paciente <strong>Rosa Maria Martins de Araújo, 74 anos</strong>, cardiopata valvar, em pós-operatório de duplo
+              valve-in-valve transcateter aórtico e mitral, com complicação neurológica grave após acesso acidental pela carótida
+              esquerda. Evoluiu com <strong>AVC isquêmico extenso em hemisfério esquerdo</strong>, acometendo grande território de
+              ACA/ACM, cursando com hemiplegia direita e despertar inadequado persistente, apesar de sedação suspensa.
+            </p>
+            <p>
+              Do ponto de vista respiratório, apresenta <strong>excelente oxigenação em baixos parâmetros ventilatórios</strong>,
+              com P/F 620, porém permanece dependente de VM por limitação neurológica e apneia em PSV. Neurologicamente, segue com
+              alto risco de piora por edema, crises subclínicas, febre, distúrbios metabólicos e instabilidade hemodinâmica.
+            </p>
+            <p>
+              Na evolução noturna, apresentou <strong>FA de alta resposta ventricular</strong>, provavelmente agravada por febre/SIRS,
+              sendo aumentada dose de amiodarona e realizada correção eletrolítica. Pela febre de 38 °C, leucocitose importante e
+              contexto pós-operatório/VM, foi discutido com equipes assistentes e ampliado antimicrobiano para
+              <strong>piperacilina-tazobactam + vancomicina</strong>, com culturas ainda parciais negativas.
+            </p>
+            <p>
+              <strong>Prioridades do plantão:</strong> vigilância neurológica estreita, controle de temperatura, prevenção de hipocapnia/hipercapnia e hipotensão,
+              controle da FAARV, manutenção de K &gt;4 e Mg &gt;2, reavaliação diária de PSV/extubação conforme drive neurológico,
+              acompanhamento das culturas para descalonamento de ATB, correção gradual da hipernatremia e decisão multidisciplinar
+              sobre anticoagulação frente ao risco trombótico valvar/FA versus risco hemorrágico do AVC extenso.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <div class="footer-note">
+        Documento gerado em HTML para passagem de plantão. Revisar dados dinâmicos no Tasy antes de uso assistencial definitivo.
+      </div>
+    </main>
+  </div>
+</body>
+</html>

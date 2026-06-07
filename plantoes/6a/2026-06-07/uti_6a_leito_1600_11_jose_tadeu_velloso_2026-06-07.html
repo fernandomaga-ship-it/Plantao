@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UTI 6A Cardio — Leito 1600 11 — José Tadeu Velloso</title>
+  <style>
+    :root {
+      --bg:#f5f7fb; --card:#fff; --ink:#1f2937; --muted:#5b6472; --line:#d9e0ea;
+      --accent:#0f766e; --danger:#b91c1c; --warn:#b45309; --blue:#1d4ed8;
+      --soft-red:#fff1f2; --soft-yellow:#fffbeb; --soft-blue:#eff6ff; --soft-green:#ecfdf5;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;padding:24px;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;line-height:1.45;font-size:15px}
+    .page{max-width:1120px;margin:0 auto;background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:0 12px 32px rgba(15,23,42,.08)}
+    header{padding:24px 28px;background:linear-gradient(135deg,#0f766e,#155e75);color:white}
+    header h1{margin:0 0 8px;font-size:26px;letter-spacing:-.02em}
+    header .sub{display:flex;flex-wrap:wrap;gap:10px 18px;font-size:14px;opacity:.95}
+    .patient-bar{padding:18px 28px;border-bottom:1px solid var(--line);background:#f8fafc}
+    .patient-bar h2{margin:0 0 8px;font-size:24px;color:#111827}
+    .meta{display:grid;grid-template-columns:repeat(2,minmax(240px,1fr));gap:8px 18px;color:var(--muted);font-size:14px}
+    main{padding:24px 28px 30px}
+    section{margin-bottom:20px;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:white}
+    section h3{margin:0;padding:12px 16px;background:#f1f5f9;border-bottom:1px solid var(--line);font-size:18px;color:#0f172a}
+    .content{padding:14px 18px 16px}
+    ul{margin:0;padding-left:20px}
+    li{margin:5px 0}
+    .grid{display:grid;grid-template-columns:repeat(2,minmax(260px,1fr));gap:12px}
+    .mini-card{border:1px solid var(--line);border-radius:12px;padding:12px;background:#fff}
+    .mini-card strong{color:#111827}
+    .tag{display:inline-block;padding:4px 8px;border-radius:999px;font-weight:700;font-size:12px;margin:2px 4px 2px 0;border:1px solid transparent}
+    .tag-danger{background:var(--soft-red);color:var(--danger);border-color:#fecdd3}
+    .tag-warn{background:var(--soft-yellow);color:var(--warn);border-color:#fde68a}
+    .tag-blue{background:var(--soft-blue);color:var(--blue);border-color:#bfdbfe}
+    .tag-green{background:var(--soft-green);color:#047857;border-color:#bbf7d0}
+    .alert{padding:12px 14px;border-radius:12px;margin:10px 0;border-left:5px solid}
+    .alert-danger{background:var(--soft-red);border-color:var(--danger)}
+    .alert-warn{background:var(--soft-yellow);border-color:var(--warn)}
+    .alert-blue{background:var(--soft-blue);border-color:var(--blue)}
+    table{width:100%;border-collapse:collapse;margin:4px 0;overflow:hidden;border-radius:12px}
+    th,td{border-bottom:1px solid var(--line);padding:9px 10px;text-align:left;vertical-align:top}
+    th{background:#f8fafc;color:#334155;width:28%}
+    tr:last-child th,tr:last-child td{border-bottom:none}
+    .impression{background:#f8fafc;border:1px solid #cbd5e1;border-radius:14px;padding:16px;font-size:15.5px}
+    .footer-note{color:var(--muted);font-size:12px;margin-top:18px;border-top:1px solid var(--line);padding-top:12px}
+    @media print{
+      body{background:white;padding:0;font-size:12px}
+      .page{box-shadow:none;border:none;border-radius:0}
+      header{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+      section{break-inside:avoid;page-break-inside:avoid}
+    }
+    @media(max-width:760px){
+      body{padding:12px}
+      .meta,.grid{grid-template-columns:1fr}
+      header,.patient-bar,main{padding-left:18px;padding-right:18px}
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <header>
+      <h1>📋 Plantão BP — UTI 6A Cardio</h1>
+      <div class="sub">
+        <span><strong>Data:</strong> 07/06/2026</span>
+        <span><strong>Hora:</strong> 11:35</span>
+        <span><strong>Unidade:</strong> UTI BP Paulista Torre I — 6º andar Adulto</span>
+      </div>
+    </header>
+
+    <div class="patient-bar">
+      <h2>Leito 1600 11 — José Tadeu Velloso, 69 anos</h2>
+      <div class="meta">
+        <div><strong>Eq. Responsável:</strong> Cardiologia — Equipe Fernando Ribas</div>
+        <div><strong>Hemodinâmica:</strong> Mohamad Said Ghandour</div>
+        <div><strong>Peso:</strong> 68 kg | <strong>Convênio:</strong> SUS — BP Paulista</div>
+        <div><strong>Entrada:</strong> 05/06/2026 22:52 | <strong>DIH:</strong> 2</div>
+      </div>
+    </div>
+
+    <main>
+      <section>
+        <h3>Diagnósticos</h3>
+        <div class="content">
+          <span class="tag tag-danger">IAMCSST inferior</span>
+          <span class="tag tag-blue">Pós-ATC</span>
+          <span class="tag tag-green">Estável</span>
+          <span class="tag tag-warn">Hematoma radial</span>
+          <span class="tag tag-warn">Lesão residual DA</span>
+          <ul>
+            <li><strong>IAMCSST inferior trombolisado em 05/06/2026</strong>, com critérios de reperfusão.</li>
+            <li><strong>POI de ATC em 06/06/2026</strong> com implante de:
+              <ul>
+                <li>01 stent farmacológico <strong>Xience Pro 3,5 x 28 mm</strong> em ACD.</li>
+                <li>01 stent farmacológico <strong>Xience Pro 2,5 x 18 mm</strong> em DPD.</li>
+              </ul>
+            </li>
+            <li>Via radial direita, sem intercorrências imediatas.</li>
+            <li><strong>DAC multiarterial</strong>, com lesão residual em DA de 70% no terço médio.</li>
+            <li>Lesão de 50% em óstio de CX.</li>
+            <li><strong>Hematoma em sítio de punção radial direita/MSD</strong>, com pulso presente e membro perfundido.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <h3>Antecedentes</h3>
+        <div class="content">
+          <ul>
+            <li>Pós-operatório tardio de osteossíntese de tíbia e fíbula direita após acidente automobilístico.</li>
+            <li>Nega uso domiciliar de medicamentos.</li>
+            <li><strong>Alergias:</strong> nenhum registro encontrado.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <h3>Dispositivos / Suporte</h3>
+        <div class="content">
+          <div class="grid">
+            <div class="mini-card"><strong>Neurológico:</strong> Glasgow 15, calmo, colaborativo, sem déficit descrito.</div>
+            <div class="mini-card"><strong>Respiratório:</strong> ar ambiente, eupneico, SpO₂ 96%.</div>
+            <div class="mini-card"><strong>VM:</strong> não.</div>
+            <div class="mini-card"><strong>P/F:</strong> não calculável — sem gasometria disponível.</div>
+            <div class="mini-card"><strong>DVA:</strong> não.</div>
+            <div class="mini-card"><strong>Sedoanalgesia:</strong> não.</div>
+            <div class="mini-card"><strong>Nutrição:</strong> não informado.</div>
+            <div class="mini-card"><strong>TRS:</strong> não.</div>
+            <div class="mini-card"><strong>Mobilidade:</strong> EMU real 1; alvo EMU 5, liberado somente poltrona.</div>
+            <div class="mini-card"><strong>Força muscular:</strong> MRC segmentar aproximado 4/5 em MMSS e MMII.</div>
+            <div class="mini-card"><strong>Protocolos ativos:</strong> queda, BCA, lesão por pressão e TEV.</div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h3>Sinais vitais / Balanço</h3>
+        <div class="content">
+          <table>
+            <tr><th>Temperatura</th><td>36 °C</td></tr>
+            <tr><th>FC</th><td>52–81 bpm</td></tr>
+            <tr><th>PAM</th><td>72–97 mmHg</td></tr>
+            <tr><th>Glicemia</th><td>98–153 mg/dL</td></tr>
+            <tr><th>BH</th><td>+250 mL</td></tr>
+            <tr><th>Diurese</th><td>850 mL/24h → 850 ÷ 68 ÷ 24 = <strong>0,52 mL/kg/h</strong> → diurese adequada limítrofe.</td></tr>
+          </table>
+        </div>
+      </section>
+
+      <section>
+        <h3>Exames recentes</h3>
+        <div class="content">
+          <table>
+            <tr><th>Laboratório — 06/06/2026</th><td>Hb <strong>15,7</strong> g/dL | Leuco <strong>11.810</strong>/mm³ | Plaq <strong>162.000</strong>/mm³ | Na <strong>138</strong> mEq/L | Ur <strong>29</strong> mg/dL | Cr <strong>0,99</strong> mg/dL | TGO <strong>237</strong> U/L | TGP <strong>52</strong> U/L</td></tr>
+            <tr><th>RNI / PCR</th><td>Não informados.</td></tr>
+            <tr><th>Função renal estimada</th><td>Cockcroft-Gault aproximado: <strong>68 mL/min</strong>, considerando 69 anos, 68 kg, Cr 0,99.</td></tr>
+            <tr><th>Gasometria</th><td>Não disponível.</td></tr>
+          </table>
+        </div>
+      </section>
+
+      <section>
+        <h3>Exames complementares</h3>
+        <div class="content">
+          <h4>CATE / ATC — 06/06/2026</h4>
+          <ul>
+            <li><strong>TCE:</strong> bifurcado, irregularidades parietais.</li>
+            <li><strong>DA:</strong> tortuosa, atinge o ápice, lesão excêntrica de 70% em terço médio.</li>
+            <li><strong>D1:</strong> irregularidades parietais.</li>
+            <li><strong>D2:</strong> grande importância, bifurcado, irregularidades parietais.</li>
+            <li><strong>CX:</strong> lesão obstrutiva segmentar de 50% no óstio.</li>
+            <li><strong>ACD:</strong> ectásica, lesão de 80% em terço médio.</li>
+            <li><strong>DPD:</strong> lesão de 90% em terço médio.</li>
+            <li>Realizada ATC com stents em <strong>ACD e DPD</strong>.</li>
+            <li><strong>Lesão residual em DA</strong> com programação de abordagem na segunda-feira.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <h3>Antimicrobianos</h3>
+        <div class="content">
+          <ul>
+            <li><strong>Sem antimicrobianos em uso.</strong></li>
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <h3>Profilaxias</h3>
+        <div class="content">
+          <ul>
+            <li><strong>TEV:</strong> não se aplica escala isolada, pois segue anticoagulado com enoxaparina 60 mg SC 12/12h.</li>
+            <li><strong>Gástrica:</strong> esomeprazol 40 mg VO 1x/dia.</li>
+            <li><strong>Queda / LP / mobilidade precoce:</strong> protocolos ativos.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <h3>Condutas / Pendências</h3>
+        <div class="content">
+          <div class="alert alert-warn">
+            <strong>Ponto crítico:</strong> hematoma radial em contexto de DAPT + enoxaparina terapêutica; equilibrar risco isquêmico pós-IAM/multiarterial versus risco hemorrágico local.
+          </div>
+
+          <ul>
+            <li><strong>Pós-IAM / Pós-ATC:</strong> manter DAPT conforme prescrição da Cardiologia.</li>
+            <li><strong>Estatina:</strong> manter estatina de alta potência.</li>
+            <li><strong>ECOTT:</strong> aguardar para avaliação de função ventricular, alterações segmentares e complicações pós-IAM.</li>
+            <li><strong>Perfil metabólico:</strong> solicitar/coletar HbA1c, perfil lipídico, função tireoidiana se indicado e eletrólitos completos.</li>
+            <li><strong>Cuidados pós-ATC radial direita:</strong> monitorar hematoma em MSD; avaliar dor, parestesia, perfusão, pulso radial/ulnar e enchimento capilar.</li>
+            <li><strong>Hematoma radial:</strong> controlar expansão; solicitar/acompanhar USG Doppler de MSD.</li>
+            <li><strong>Anticoagulação:</strong> reavaliar enoxaparina 60 mg SC 12/12h, especialmente pelo hematoma radial e uso concomitante de DAPT.</li>
+            <li><strong>Lesão residual DA:</strong> programada abordagem na segunda-feira.</li>
+            <li><strong>Monitorização em UTI:</strong> telemetria contínua; controle de dor torácica/equivalente anginoso; ECG seriado se sintomas ou instabilidade.</li>
+            <li><strong>Marcadores:</strong> troponina/CK-MB conforme protocolo local se necessário.</li>
+            <li><strong>Controle clínico:</strong> PA, FC e sinais de congestão.</li>
+            <li><strong>Fisioterapia:</strong> manter cinesioterapia respiratória e motora; estimular sedestação em poltrona conforme liberação e aceitação.</li>
+            <li><strong>Mobilização:</strong> paciente recusou poltrona/saída do leito no momento — manter orientação e reavaliação.</li>
+            <li><strong>Bundles / Diretrizes:</strong> condutas alinhadas ao manejo atual de SCA pós-PCI: DAPT em SCA, estatina de alta intensidade em IAM/STEMI e preferência por acesso radial com vigilância de complicações hemorrágicas locais.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <h3>Intercorrências</h3>
+        <div class="content">
+          <ul>
+            <li><strong>Hematoma em MSD</strong> no local de punção radial direita.</li>
+            <li>Membro superior direito com pulso presente e boa perfusão.</li>
+            <li>Sem dor referida.</li>
+            <li>Sem intercorrências fisioterapêuticas.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <h3>Impressão</h3>
+        <div class="content">
+          <div class="impression">
+            <p>
+              Paciente <strong>José Tadeu Velloso, 69 anos</strong>, admitido em UTI após <strong>IAMCSST inferior trombolisado em 05/06</strong>,
+              evoluindo com critérios de reperfusão e submetido em 06/06 a ATC via radial direita com implante de stents farmacológicos
+              em <strong>ACD e DPD</strong>.
+            </p>
+            <p>
+              Evolui hemodinamicamente estável, sem DVA, em ar ambiente, Glasgow 15, sem queixas no momento. Ponto de atenção principal
+              no plantão: <strong>hematoma em sítio de punção radial direita</strong>, atualmente com pulso presente e membro perfundido;
+              necessário monitorar expansão e aguardar USG Doppler de MSD.
+            </p>
+            <p>
+              Mantém doença coronariana residual significativa em <strong>DA</strong>, com programação de nova abordagem na segunda-feira.
+              Atenção adicional para equilíbrio entre risco isquêmico elevado pós-IAM/multiarterial e risco hemorrágico pelo hematoma radial
+              em contexto de <strong>DAPT + enoxaparina terapêutica</strong>.
+            </p>
+            <p>
+              <strong>Prioridades do plantão:</strong> monitorar hematoma radial/MSD, revisar necessidade de enoxaparina plena junto à Cardiologia,
+              manter DAPT e estatina, aguardar ECOTT, manter telemetria, estimular mobilização segura em poltrona e preparar abordagem residual
+              da DA conforme programação da Hemodinâmica.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <div class="footer-note">
+        Documento gerado em HTML para passagem de plantão. Revisar dados dinâmicos no Tasy antes de uso assistencial definitivo.
+      </div>
+    </main>
+  </div>
+</body>
+</html>

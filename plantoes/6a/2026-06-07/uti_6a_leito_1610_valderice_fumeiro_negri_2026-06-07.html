@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UTI 6A Cardio — Leito 1610 — Valderice Fumeiro Negri</title>
+  <style>
+    :root {
+      --bg:#f5f7fb; --card:#fff; --ink:#1f2937; --muted:#5b6472; --line:#d9e0ea;
+      --accent:#0f766e; --danger:#b91c1c; --warn:#b45309; --blue:#1d4ed8;
+      --soft-red:#fff1f2; --soft-yellow:#fffbeb; --soft-blue:#eff6ff; --soft-green:#ecfdf5;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;padding:24px;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;line-height:1.45;font-size:15px}
+    .page{max-width:1120px;margin:0 auto;background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:0 12px 32px rgba(15,23,42,.08)}
+    header{padding:24px 28px;background:linear-gradient(135deg,#0f766e,#155e75);color:white}
+    header h1{margin:0 0 8px;font-size:26px;letter-spacing:-.02em}
+    header .sub{display:flex;flex-wrap:wrap;gap:10px 18px;font-size:14px;opacity:.95}
+    .patient-bar{padding:18px 28px;border-bottom:1px solid var(--line);background:#f8fafc}
+    .patient-bar h2{margin:0 0 8px;font-size:24px;color:#111827}
+    .meta{display:grid;grid-template-columns:repeat(2,minmax(240px,1fr));gap:8px 18px;color:var(--muted);font-size:14px}
+    main{padding:24px 28px 30px}
+    section{margin-bottom:20px;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:white}
+    section h3{margin:0;padding:12px 16px;background:#f1f5f9;border-bottom:1px solid var(--line);font-size:18px;color:#0f172a}
+    .content{padding:14px 18px 16px}
+    ul{margin:0;padding-left:20px}
+    li{margin:5px 0}
+    .grid{display:grid;grid-template-columns:repeat(2,minmax(260px,1fr));gap:12px}
+    .mini-card{border:1px solid var(--line);border-radius:12px;padding:12px;background:#fff}
+    .mini-card strong{color:#111827}
+    .tag{display:inline-block;padding:4px 8px;border-radius:999px;font-weight:700;font-size:12px;margin:2px 4px 2px 0;border:1px solid transparent}
+    .tag-danger{background:var(--soft-red);color:var(--danger);border-color:#fecdd3}
+    .tag-warn{background:var(--soft-yellow);color:var(--warn);border-color:#fde68a}
+    .tag-blue{background:var(--soft-blue);color:var(--blue);border-color:#bfdbfe}
+    .tag-green{background:var(--soft-green);color:#047857;border-color:#bbf7d0}
+    .alert{padding:12px 14px;border-radius:12px;margin:10px 0;border-left:5px solid}
+    .alert-danger{background:var(--soft-red);border-color:var(--danger)}
+    .alert-warn{background:var(--soft-yellow);border-color:var(--warn)}
+    table{width:100%;border-collapse:collapse;margin:4px 0;overflow:hidden;border-radius:12px}
+    th,td{border-bottom:1px solid var(--line);padding:9px 10px;text-align:left;vertical-align:top}
+    th{background:#f8fafc;color:#334155;width:28%}
+    tr:last-child th,tr:last-child td{border-bottom:none}
+    .impression{background:#f8fafc;border:1px solid #cbd5e1;border-radius:14px;padding:16px;font-size:15.5px}
+    .footer-note{color:var(--muted);font-size:12px;margin-top:18px;border-top:1px solid var(--line);padding-top:12px}
+    @media print{
+      body{background:white;padding:0;font-size:12px}
+      .page{box-shadow:none;border:none;border-radius:0}
+      header{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+      section{break-inside:avoid;page-break-inside:avoid}
+    }
+    @media(max-width:760px){
+      body{padding:12px}
+      .meta,.grid{grid-template-columns:1fr}
+      header,.patient-bar,main{padding-left:18px;padding-right:18px}
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <header>
+      <h1>📋 Plantão BP — UTI 6A Cardio</h1>
+      <div class="sub">
+        <span><strong>Data:</strong> 07/06/2026</span>
+        <span><strong>Hora:</strong> 10:18</span>
+        <span><strong>Unidade:</strong> UTI BP Paulista Torre I — 6º andar Adulto</span>
+      </div>
+    </header>
+
+    <div class="patient-bar">
+      <h2>Leito 1610 — Valderice Fumeiro Negri, 83 anos</h2>
+      <div class="meta">
+        <div><strong>Eq. Responsável:</strong> UTI Cardiologia</div>
+        <div><strong>Peso:</strong> ~100 kg</div>
+        <div><strong>Acesso de HD:</strong> PermCath</div>
+        <div><strong>Status:</strong> Sepse/choque séptico provável, em noradrenalina</div>
+      </div>
+    </div>
+
+    <main>
+      <section>
+        <h3>Diagnósticos</h3>
+        <div class="content">
+          <span class="tag tag-danger">Choque séptico provável</span>
+          <span class="tag tag-warn">Gram-negativo</span>
+          <span class="tag tag-blue">Dialítica</span>
+          <span class="tag tag-warn">PermCath suspeito</span>
+          <ul>
+            <li><strong>DRC estágio terminal em hemodiálise</strong>, acesso por <strong>PermCath</strong>.</li>
+            <li><strong>Sepse / choque séptico provável</strong>, com cultura positiva para <strong>bacilo Gram-negativo</strong>.</li>
+            <li>Possível infecção relacionada a cateter venoso central de diálise.</li>
+            <li>Hipotensão inicialmente responsiva a volume, evoluindo com necessidade de <strong>noradrenalina</strong>.</li>
+            <li>Dispneia/hipoxemia na admissão — com melhora respiratória referida.</li>
+            <li>HAS.</li>
+            <li>Coronariopatia referida.</li>
+            <li>Depressão/ansiedade.</li>
+            <li>Diarreia recente — resolvida.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <h3>Antecedentes</h3>
+        <div class="content">
+          <ul>
+            <li>Hemodiálise crônica, com diurese residual presente.</li>
+            <li>Acesso: PermCath para hemodiálise.</li>
+            <li>HAS, coronariopatia.</li>
+            <li>Transtorno depressivo/ansioso.</li>
+            <li>Sem edema de MMII no exame atual.</li>
+            <li>Última evacuação: 05/06/2026.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <h3>Dispositivos / Suporte</h3>
+        <div class="content">
+          <div class="grid">
+            <div class="mini-card"><strong>Neurológico:</strong> acordada, orientável, ansiosa; sem déficit focal; sem sedação.</div>
+            <div class="mini-card"><strong>Oxigenação:</strong> em ar ambiente; dispneia/hipoxemia inicial, atualmente refere melhora respiratória.</div>
+            <div class="mini-card"><strong>P/F:</strong> se gasometria arterial em ar ambiente → 52 / 0,21 = <strong>247</strong>, compatível com hipoxemia leve.</div>
+            <div class="mini-card"><strong>DVA:</strong> noradrenalina <strong>0,1 mcg/kg/min</strong>.</div>
+            <div class="mini-card"><strong>Sedoanalgesia:</strong> não em uso.</div>
+            <div class="mini-card"><strong>Nutrição:</strong> inicialmente em jejum; referia não ter se alimentado.</div>
+            <div class="mini-card"><strong>TRS:</strong> hemodiálise programada/realizada conforme Nefrologia.</div>
+            <div class="mini-card"><strong>Acessos:</strong> PermCath para HD — suspeito como possível foco infeccioso; <strong>CVC femoral direito</strong> passado na evolução noturna.</div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h3>Sinais vitais — últimas 24h</h3>
+        <div class="content">
+          <table>
+            <tr><th>Temperatura</th><td>36–37,9 °C</td></tr>
+            <tr><th>FC</th><td>40–66 bpm — atenção para bradicardia relativa.</td></tr>
+            <tr><th>PAM</th><td>47–84 mmHg</td></tr>
+            <tr><th>BH</th><td>+677 mL</td></tr>
+            <tr><th>Diurese espontânea</th><td>220 mL/4h → 220 ÷ 100 ÷ 4 = <strong>0,55 mL/kg/h</strong> → diurese adequada, considerando janela de 4h, porém paciente dialítica.</td></tr>
+          </table>
+        </div>
+      </section>
+
+      <section>
+        <h3>Exames recentes — 07/06/2026</h3>
+        <div class="content">
+          <table>
+            <tr><th>Gasometria</th><td>pH <strong>7,32</strong> | pO₂ <strong>52</strong> | pCO₂ <strong>47</strong> | HCO₃ <strong>24</strong> — acidose leve com componente respiratório discreto.</td></tr>
+            <tr><th>Lactato</th><td><strong>20</strong> — confirmar unidade. Se mg/dL: aproximadamente <strong>2,2 mmol/L</strong>, discretamente elevado. Se mmol/L: gravemente elevado.</td></tr>
+            <tr><th>Hemograma</th><td>Hb <strong>9,1</strong> | Leuco <strong>12.390</strong> | Plaq <strong>124.000</strong></td></tr>
+            <tr><th>Bioquímica</th><td>Na <strong>134</strong> | K <strong>4,6</strong> | Ca ionizado <strong>1,27</strong> | P <strong>3,1</strong> | Cr <strong>2,76</strong></td></tr>
+            <tr><th>Culturas</th><td>Crescimento de <strong>bacilo Gram-negativo</strong> — aguardar identificação e antibiograma.</td></tr>
+          </table>
+        </div>
+      </section>
+
+      <section>
+        <h3>Antimicrobianos</h3>
+        <div class="content">
+          <ul>
+            <li><strong>Ceftazidima + Vancomicina</strong> — iniciados em 06/06/2026.</li>
+            <li>Diante de bacilo Gram-negativo em cultura, manter cobertura para Gram-negativo e <strong>reavaliar retirada da vancomicina em 24–48h</strong> se não houver crescimento de Gram-positivo, MRSA, Enterococcus ou foco cutâneo/cateter típico por Gram-positivo.</li>
+            <li>Ajustar doses conforme hemodiálise e orientação da Infectologia/Nefrologia.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <h3>Exames complementares / Pendências</h3>
+        <div class="content">
+          <ul>
+            <li>Hemoculturas de múltiplos sítios.</li>
+            <li>Considerar cultura pareada: periférica + PermCath, se ainda não realizada.</li>
+            <li>Identificação do bacilo Gram-negativo + antibiograma.</li>
+            <li>Repetir lactato se elevado e acompanhar tendência.</li>
+            <li>Rx tórax.</li>
+            <li>Reavaliação pós-HD.</li>
+            <li>Avaliação de necessidade de remoção/troca do PermCath conforme evolução, culturas e estabilidade.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <h3>Profilaxias</h3>
+        <div class="content">
+          <ul>
+            <li><strong>TEV:</strong> avaliar risco/benefício; considerar heparina profilática se sem sangramento ativo, plaquetas adequadas e sem contraindicação.</li>
+            <li><strong>Úlcera de estresse:</strong> IBP se critérios — choque, coagulopatia, VM prolongada.</li>
+            <li><strong>Prevenção de infecção relacionada a cateter:</strong> curativo estéril, higiene de mãos, manipulação mínima e revisão diária da necessidade.</li>
+            <li><strong>Delirium:</strong> sono, reorientação, óculos/aparelho auditivo se usa, evitar benzodiazepínicos.</li>
+            <li><strong>Broncoaspiração:</strong> cabeceira 30–45°.</li>
+            <li><strong>Skin care:</strong> mudança de decúbito regular e proteção de proeminências.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <h3>Condutas / Pendências</h3>
+        <div class="content">
+          <div class="alert alert-danger">
+            <strong>Ponto crítico:</strong> sepse/choque provável por bacilo Gram-negativo em paciente dialítica com PermCath — definir foco e necessidade de troca/remoção do acesso.
+          </div>
+
+          <ul>
+            <li><strong>Sepse / Choque:</strong> manter meta de PAM ≥65 mmHg. Seguir noradrenalina, atualmente 0,1 mcg/kg/min, titulando conforme PAM, perfusão, lactato e sintomas.</li>
+            <li><strong>Volemia:</strong> reavaliar volemia com cautela, pois é paciente dialítica; diferenciar congestão pulmonar versus hipovolemia.</li>
+            <li><strong>Lactato:</strong> repetir se elevado e confirmar unidade.</li>
+            <li><strong>Foco infeccioso / PermCath:</strong> inspecionar sítio do cateter: hiperemia, secreção, dor, túnel e flutuação.</li>
+            <li><strong>Discussão Nefro/Infecto:</strong> definir manter versus trocar/remover PermCath conforme patógeno, bacteremia persistente, instabilidade e viabilidade de novo acesso.</li>
+            <li><strong>Antimicrobianos:</strong> manter ceftazidima enquanto aguarda identificação/antibiograma, ajustada para HD. Se instabilidade persistente, risco de ESBL/KPC ou piora hemodinâmica, discutir ampliação conforme perfil microbiológico local.</li>
+            <li><strong>Vancomicina:</strong> com cultura mostrando bacilo Gram-negativo, programar reavaliação em 24h; suspender se ausência de Gram-positivo/MRSA/Enterococcus e sem foco cutâneo/cateter típico por Gram-positivo.</li>
+            <li><strong>Acesso venoso central:</strong> CVC femoral direito passado na intercorrência noturna; se inserido em urgência ou com quebra potencial de técnica, considerar troca assim que possível por acesso mais seguro.</li>
+            <li><strong>Respiratório:</strong> manter monitorização contínua de SpO₂; O₂ suplementar se SpO₂ &lt;92% ou dispneia; repetir avaliação após HD.</li>
+            <li><strong>Hemodiálise:</strong> HD com ultrafiltração conservadora, pois houve hipotensão e necessidade de DVA; ajustar UF conforme PAM, lactato, congestão pulmonar, K e equilíbrio ácido-base.</li>
+            <li><strong>Hemoglobina / Transfusão:</strong> recebeu 1 CH na evolução noturna; Hb atual 9,1; manter vigilância de queda hematimétrica, sangramento oculto e resposta pós-transfusional.</li>
+            <li><strong>Nutrição / Ansiedade:</strong> liberar dieta conforme estabilidade, nível de consciência e risco de broncoaspiração; priorizar reorientação, conforto, presença familiar/cuidador e sono; evitar benzodiazepínicos se possível.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <h3>Intercorrências</h3>
+        <div class="content">
+          <ul>
+            <li>Admissão por dispneia e hipotensão; melhora inicial após 500 mL SF.</li>
+            <li>Evoluiu à noite com nova hipotensão, necessidade de CVC femoral direito e início de noradrenalina 0,1 mcg/kg/min.</li>
+            <li>Recebeu 1 CH.</li>
+            <li>Refere melhora respiratória.</li>
+            <li>Cultura com crescimento de <strong>bacilo Gram-negativo</strong>.</li>
+            <li>Plano: reavaliar em 24h necessidade de manter vancomicina.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <h3>Impressão</h3>
+        <div class="content">
+          <div class="impression">
+            <p>
+              Paciente <strong>Valderice Fumeiro Negri, 83 anos</strong>, dialítica crônica por PermCath, admitida com dispneia,
+              hipoxemia e hipotensão, inicialmente responsiva a volume, mas com evolução noturna para instabilidade hemodinâmica
+              e necessidade de noradrenalina. O quadro agora se consolida como <strong>sepse/choque séptico provável</strong>,
+              com cultura positiva para <strong>bacilo Gram-negativo</strong>, tendo como foco principal a ser investigado o
+              <strong>cateter de hemodiálise</strong>, embora ainda sem foco definitivamente confirmado.
+            </p>
+            <p>
+              Apresenta melhora subjetiva respiratória, mas gasometria sugere hipoxemia leve se amostra arterial em ar ambiente,
+              além de acidemia discreta. Diurese residual nas últimas 4h está preservada para o contexto, mas a paciente permanece
+              dependente de HD, exigindo cautela com fluidos e ultrafiltração.
+            </p>
+            <p>
+              <strong>Prioridades do plantão:</strong> manter PAM ≥65 com desmame progressivo de noradrenalina se possível,
+              confirmar unidade/tendência do lactato, acompanhar identificação e antibiograma do Gram-negativo, discutir preservação
+              versus troca/remoção do PermCath com Nefrologia/Infectologia, ajustar antibióticos para HD e reavaliar suspensão da
+              vancomicina em 24–48h se não houver evidência de Gram-positivo.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <div class="footer-note">
+        Documento gerado em HTML para passagem de plantão. Revisar dados dinâmicos no Tasy antes de uso assistencial definitivo.
+      </div>
+    </main>
+  </div>
+</body>
+</html>

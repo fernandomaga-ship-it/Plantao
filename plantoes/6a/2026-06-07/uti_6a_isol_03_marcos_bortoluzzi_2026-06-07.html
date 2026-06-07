@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UTI 6A Cardio — ISOL 03 — Marcos Bortoluzzi</title>
+  <style>
+    :root {
+      --bg: #f5f7fb;
+      --card: #ffffff;
+      --ink: #1f2937;
+      --muted: #5b6472;
+      --line: #d9e0ea;
+      --accent: #0f766e;
+      --danger: #b91c1c;
+      --warn: #b45309;
+      --blue: #1d4ed8;
+      --soft-red: #fff1f2;
+      --soft-yellow: #fffbeb;
+      --soft-blue: #eff6ff;
+      --soft-green: #ecfdf5;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      padding: 24px;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      line-height: 1.45;
+      font-size: 15px;
+    }
+
+    .page {
+      max-width: 1120px;
+      margin: 0 auto;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 12px 32px rgba(15, 23, 42, 0.08);
+    }
+
+    header {
+      padding: 24px 28px;
+      background: linear-gradient(135deg, #0f766e, #155e75);
+      color: white;
+    }
+
+    header h1 {
+      margin: 0 0 8px;
+      font-size: 26px;
+      letter-spacing: -0.02em;
+    }
+
+    header .sub {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 18px;
+      font-size: 14px;
+      opacity: 0.95;
+    }
+
+    .patient-bar {
+      padding: 18px 28px;
+      border-bottom: 1px solid var(--line);
+      background: #f8fafc;
+    }
+
+    .patient-bar h2 {
+      margin: 0 0 8px;
+      font-size: 24px;
+      color: #111827;
+    }
+
+    .meta {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(240px, 1fr));
+      gap: 8px 18px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    main {
+      padding: 24px 28px 30px;
+    }
+
+    section {
+      margin-bottom: 20px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      overflow: hidden;
+      background: white;
+    }
+
+    section h3 {
+      margin: 0;
+      padding: 12px 16px;
+      background: #f1f5f9;
+      border-bottom: 1px solid var(--line);
+      font-size: 18px;
+      color: #0f172a;
+    }
+
+    .content {
+      padding: 14px 18px 16px;
+    }
+
+    ul {
+      margin: 0;
+      padding-left: 20px;
+    }
+
+    li { margin: 5px 0; }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(260px, 1fr));
+      gap: 12px;
+    }
+
+    .mini-card {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 12px;
+      background: #ffffff;
+    }
+
+    .mini-card strong {
+      color: #111827;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 4px 8px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 12px;
+      margin: 2px 4px 2px 0;
+      border: 1px solid transparent;
+    }
+
+    .tag-danger { background: var(--soft-red); color: var(--danger); border-color: #fecdd3; }
+    .tag-warn { background: var(--soft-yellow); color: var(--warn); border-color: #fde68a; }
+    .tag-blue { background: var(--soft-blue); color: var(--blue); border-color: #bfdbfe; }
+    .tag-green { background: var(--soft-green); color: #047857; border-color: #bbf7d0; }
+
+    .alert {
+      padding: 12px 14px;
+      border-radius: 12px;
+      margin: 10px 0;
+      border-left: 5px solid;
+    }
+
+    .alert-danger {
+      background: var(--soft-red);
+      border-color: var(--danger);
+    }
+
+    .alert-warn {
+      background: var(--soft-yellow);
+      border-color: var(--warn);
+    }
+
+    .alert-blue {
+      background: var(--soft-blue);
+      border-color: var(--blue);
+    }
+
+    .separator {
+      margin: 24px 0;
+      height: 1px;
+      background: var(--line);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 4px 0;
+      overflow: hidden;
+      border-radius: 12px;
+    }
+
+    th, td {
+      border-bottom: 1px solid var(--line);
+      padding: 9px 10px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background: #f8fafc;
+      color: #334155;
+      width: 28%;
+    }
+
+    tr:last-child th, tr:last-child td {
+      border-bottom: none;
+    }
+
+    .impression {
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-radius: 14px;
+      padding: 16px;
+      font-size: 15.5px;
+    }
+
+    .footer-note {
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 18px;
+      border-top: 1px solid var(--line);
+      padding-top: 12px;
+    }
+
+    @media print {
+      body {
+        background: white;
+        padding: 0;
+        font-size: 12px;
+      }
+      .page {
+        box-shadow: none;
+        border: none;
+        border-radius: 0;
+      }
+      header {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      section {
+        break-inside: avoid;
+        page-break-inside: avoid;
+      }
+    }
+
+    @media (max-width: 760px) {
+      body { padding: 12px; }
+      .meta, .grid { grid-template-columns: 1fr; }
+      header, .patient-bar, main { padding-left: 18px; padding-right: 18px; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <header>
+      <h1>📋 Plantão BP — UTI 6A Cardio</h1>
+      <div class="sub">
+        <span><strong>Data:</strong> 07/06/2026</span>
+        <span><strong>Hora:</strong> 11:42</span>
+        <span><strong>Unidade:</strong> UTI BP Paulista Torre I — 6º andar Adulto</span>
+      </div>
+    </header>
+
+    <div class="patient-bar">
+      <h2>Leito ISOL 03 — Marcos Bortoluzzi, 55 anos</h2>
+      <div class="meta">
+        <div><strong>Eq. Responsável:</strong> Hematologia — Dra. Danielle Leão Cordeiro de Farias</div>
+        <div><strong>Interconsultas:</strong> Infectologia — Eq. Dr. João Prats | Nefrologia — Eq. Irene Noronha</div>
+        <div><strong>Peso:</strong> 132 kg</div>
+        <div><strong>Internação:</strong> D133</div>
+      </div>
+    </div>
+
+    <main>
+      <section>
+        <h3>Diagnósticos</h3>
+        <div class="content">
+          <span class="tag tag-danger">Paciente crítico</span>
+          <span class="tag tag-danger">Imunossuprimido</span>
+          <span class="tag tag-warn">CVVHDF</span>
+          <span class="tag tag-blue">VM invasiva</span>
+          <ul>
+            <li><strong>Linfoma linfoplasmocítico / Macroglobulinemia de Waldenström</strong> — doença em atividade/progressão.</li>
+            <li><strong>Pós-TCTH autólogo em 22/07/2022</strong> — protocolo BEAM.</li>
+            <li><strong>Abscesso cerebral por Aspergillus fumigatus</strong>, com drenagens em 18/03 e 08/04.</li>
+            <li>Hematoma subdural infectado / osteomielite de calota craniana.</li>
+            <li><strong>Insuficiência respiratória aguda</strong> — IOT 06/05, extubação 14/05, re-IOT 18/05 por hipoxemia progressiva.</li>
+            <li>Pneumonite/pneumonia viral por adenovírus em LBA, em tratamento com cidofovir.</li>
+            <li><strong>IRA KDIGO 3 dialítica</strong>, provável nefrotoxicidade por anfotericina B + sepse.</li>
+            <li><strong>Choque séptico/distributivo</strong>, em noradrenalina em desmame.</li>
+            <li><strong>Sangramentos difusos refratários:</strong> mucosa nasal/oral, vesical e pulmonar.</li>
+            <li>Hemorragia alveolar sugerida em LBA.</li>
+            <li><strong>Plaquetopenia grave e anemia importante</strong>, com necessidade transfusional recorrente.</li>
+            <li>Rash cutâneo desde 01/06.</li>
+            <li>COVID-19 prévio — resolvido.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <h3>Antecedentes</h3>
+        <div class="content">
+          <ul>
+            <li>Macroglobulinemia de Waldenström / linfoma linfoplasmocítico desde 2018.</li>
+            <li>TMO autólogo em 2022.</li>
+            <li>Hipotireoidismo.</li>
+            <li>Hiperuricemia.</li>
+            <li>Anemia hemolítica autoimune.</li>
+            <li>Esplenomegalia; esplenectomia em 2017.</li>
+            <li>Nefrolitíase com litotripsia em 2018.</li>
+            <li>Colecistectomia.</li>
+            <li>Herniorrafia complicada com sangramento abdominal.</li>
+            <li><strong>Alergias:</strong> camarão — anafilaxia, AAS, Clavulin, contraste.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <h3>Dispositivos / Suporte</h3>
+        <div class="content">
+          <div class="grid">
+            <div class="mini-card"><strong>Neurológico:</strong> sedado, RASS -4 a -5; meta diarista RASS -2 se possível.</div>
+            <div class="mini-card"><strong>VM:</strong> IOT COT nº 8,5 | PSV | PS 12 | PEEP 8 | FiO₂ 40% | FR ~20 | VC ~665 mL.</div>
+            <div class="mini-card"><strong>P/F:</strong> se pO₂ 77 arterial → 77 / 0,40 = <strong>192,5</strong>, compatível com hipoxemia moderada / SDRA moderada. Se venosa, P/F não validável.</div>
+            <div class="mini-card"><strong>DVA:</strong> noradrenalina ~0,08–0,13 mcg/kg/min, em desmame; teto definido em diretiva familiar.</div>
+            <div class="mini-card"><strong>Sedoanalgesia:</strong> propofol + cetamina.</div>
+            <div class="mini-card"><strong>Nutrição:</strong> dieta enteral.</div>
+            <div class="mini-card"><strong>TRS:</strong> CVVHDF / Prisma em curso, UF ajustada pela Nefrologia.</div>
+            <div class="mini-card"><strong>Urinário:</strong> SVD com obstrução prévia por coágulos, em irrigação vesical contínua.</div>
+            <div class="mini-card"><strong>PAI:</strong> cateter trocado em 19/05.</div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h3>Sinais vitais — últimas 24h</h3>
+        <div class="content">
+          <table>
+            <tr><th>Temperatura</th><td>36 °C</td></tr>
+            <tr><th>FC</th><td>83–108 bpm</td></tr>
+            <tr><th>PAM</th><td>76–93 mmHg</td></tr>
+            <tr><th>Glicemia</th><td>121–190 mg/dL</td></tr>
+            <tr><th>BH</th><td><strong>-1630 mL/24h</strong></td></tr>
+            <tr><th>Diurese</th><td>200 mL/24h → 200 ÷ 132 ÷ 24 = <strong>0,06 mL/kg/h</strong> → oligúria grave/anúria funcional; interpretação limitada por CVVHDF e irrigação vesical contínua.</td></tr>
+            <tr><th>UF</th><td>6112 mL</td></tr>
+            <tr><th>Evacuação</th><td>200 mL</td></tr>
+          </table>
+        </div>
+      </section>
+
+      <section>
+        <h3>Exames recentes — 07/06/2026</h3>
+        <div class="content">
+          <table>
+            <tr><th>Gasometria</th><td>pH 7,33 | pO₂ 77 | pCO₂ 49 | HCO₃ 26</td></tr>
+            <tr><th>Gasometria venosa prévia</th><td>pH 7,34 | pCO₂ 47 | HCO₃ 25 | BE -0,4 | SvO₂ 88%</td></tr>
+            <tr><th>Hemograma</th><td>Hb <strong>6,2</strong> | Leuco <strong>3.140</strong> | Plaq <strong>18.000</strong></td></tr>
+            <tr><th>Bioquímica</th><td>Na 139 | K 3,6 | Mg 2,2 | Ca ionizado 1,31 | P 3,4 | Ur 105 | Cr 1,3</td></tr>
+            <tr><th>Coagulação prévia</th><td>TP 13,8 | INR 1,2 | TTPA 37,6 | relação TTPA 1,22</td></tr>
+            <tr><th>PCR prévio</th><td>7,27 mg/dL / 72,7 mg/L</td></tr>
+            <tr><th>LBA 18/05</th><td>Adenovírus positivo, PCR 288.823 cópias / log 5,46</td></tr>
+            <tr><th>LBA 26/05</th><td>Painel viral não detectado; culturas em andamento/parcial negativas; sugestivo de hemorragia alveolar.</td></tr>
+          </table>
+        </div>
+      </section>
+
+      <section>
+        <h3>Culturas / Imagens relevantes</h3>
+        <div class="content">
+          <ul>
+            <li><strong>Abscesso cerebral 18/03 e 08/04:</strong> Aspergillus fumigatus, sensível a anfotericina B e voriconazol.</li>
+            <li><strong>Fragmento ósseo:</strong> S. epidermidis oxacilina resistente, sensível a teicoplanina.</li>
+            <li><strong>Hemocultura 28/04:</strong> S. epidermidis em Shilley, provável contaminante/cateter removido.</li>
+            <li><strong>TC tórax 19/05:</strong> progressão de vidro fosco/consolidações bilaterais, edema/congestão + provável processo inflamatório/infeccioso; pequeno/moderado derrame pleural bilateral.</li>
+            <li><strong>Imagem neuro:</strong> alterações pós-operatórias, cavidade cirúrgica frontal esquerda, edema/gliose, redução de efeito expansivo em exame evolutivo, sem desvio significativo atual.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <h3>Antimicrobianos / Antivirais / Antifúngicos</h3>
+        <div class="content">
+          <h4>Atuais</h4>
+          <ul>
+            <li>Anfotericina B lipossomal — desde 26/03; suspensa 04/04 por LRA; reintroduzida 07/04 por piora de imagem.</li>
+            <li>Voriconazol 200 mg 12/12h — D0 31/03.</li>
+            <li>Meropenem — D0 28/04.</li>
+            <li>Teicoplanina — D0 28/04.</li>
+            <li>Levofloxacino 750 mg — D1 18/05.</li>
+            <li>Cidofovir — D1 19/05; esquema fracionado 1 mg/kg 3x/semana, prorrogado por mais 7 dias ou até melhora respiratória/nova TC.</li>
+          </ul>
+          <h4>Prévios relevantes</h4>
+          <ul>
+            <li>Amicacina 18/05–22/05.</li>
+            <li>Remdesivir 14/03–18/03.</li>
+            <li>Doxiciclina, vancomicina e ciclos prévios de meropenem/teicoplanina.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <h3>Profilaxias</h3>
+        <div class="content">
+          <ul>
+            <li><strong>TEV:</strong> sem profilaxia farmacológica por plaquetopenia grave e sangramento ativo; manter CPI/meias conforme tolerância.</li>
+            <li><strong>PAV:</strong> protocolo ativo.</li>
+            <li><strong>BCA:</strong> protocolo ativo.</li>
+            <li><strong>LP:</strong> protocolo ativo.</li>
+            <li><strong>Queda:</strong> protocolo ativo.</li>
+            <li><strong>Gástrica:</strong> pantoprazol.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <h3>Condutas / Pendências</h3>
+        <div class="content">
+          <div class="alert alert-danger">
+            <strong>Plano antecipado:</strong> sem RCP, sem escalonamento agressivo de DVA, teto de noradrenalina 0,3 mcg/kg/min, sem vasopressina.
+          </div>
+
+          <ul>
+            <li><strong>Hemodinâmica / Sepse:</strong> manter PAM ≥65 mmHg; desmamar noradrenalina conforme perfusão, lactato, extremidades, balanço e tolerância à UF.</li>
+            <li><strong>Ventilação mecânica:</strong> manter estratégia protetora; P/F estimado 192,5 se gasometria arterial; reduzir sedação apenas se segurança respiratória/hemodinâmica e controle de sangramento permitirem.</li>
+            <li><strong>TQT:</strong> segue contraindicada pela CCP devido a sangramentos e discrasia sanguínea.</li>
+            <li><strong>Hematologia / Sangramento:</strong> melhora noturna do sangramento oral e hematúria; manter suporte transfusional conforme Hematologia/UTI.</li>
+            <li><strong>Transfusão:</strong> conduta proposta: 1 CH + 1 aférese de plaquetas, com reavaliação clínica e laboratorial.</li>
+            <li><strong>Hemostasia:</strong> acompanhar coagulograma, fibrinogênio, cálcio ionizado e considerar TEG/ROTEM se disponível; considerar crioprecipitado se fibrinogênio baixo ou sangramento persistente; PFC se coagulopatia documentada.</li>
+            <li><strong>Aspergilose cerebral:</strong> manter anfotericina B lipossomal + voriconazol; monitorar nefrotoxicidade, hepatotoxicidade, QT, eletrólitos e nível sérico do voriconazol.</li>
+            <li><strong>Isavuconazol:</strong> solicitado para estratégia posterior, especialmente por interação com iBTK.</li>
+            <li><strong>Adenovírus respiratório:</strong> manter cidofovir conforme Infectologia; monitorar resposta ventilatória, imagem, PCR viral quando indicado e toxicidade renal/eletrolítica.</li>
+            <li><strong>IRA dialítica / CVVHDF:</strong> manter CVVHDF conforme Nefrologia, com UF ajustada à estabilidade hemodinâmica; ajustar doses de antimicrobianos/antifúngicos.</li>
+            <li><strong>Urológico:</strong> manter irrigação vesical contínua enquanto hematúria/coágulos; quantificar diurese real separando volume de irrigação, débito urinário efetivo e perdas.</li>
+            <li><strong>Nutrição / Pele / Mobilidade:</strong> manter dieta enteral se tolerância; prevenção rigorosa de LP; mobilização passiva apenas se estabilidade e segurança hematológica permitirem.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <h3>Intercorrências</h3>
+        <div class="content">
+          <ul>
+            <li><strong>Melhora noturna do sangramento em cavidade oral e da hematúria.</strong></li>
+            <li>Mantida discussão com Hematologia: seguir suporte transfusional.</li>
+            <li>Queda hematimétrica importante.</li>
+            <li>Plaquetopenia grave.</li>
+            <li>Sangramentos difusos: oral/nasal, vesical e pulmonar — atualmente com melhora parcial.</li>
+            <li>Obstrução de SVD por coágulos, em irrigação contínua.</li>
+            <li>Re-IOT em 18/05 por hipoxemia progressiva.</li>
+            <li>Em CVVHDF por IRA dialítica.</li>
+            <li>Rash cutâneo desde 01/06.</li>
+            <li>Plano antecipado de cuidados alinhado em 29/05.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <h3>Impressão</h3>
+        <div class="content">
+          <div class="impression">
+            <p>
+              Paciente <strong>Marcos Bortoluzzi, 55 anos</strong>, onco-hematológico de <strong>altíssima complexidade</strong>,
+              com macroglobulinemia de Waldenström em atividade, pós-TMO autólogo, imunossupressão profunda e longa internação.
+              Evoluiu com complicações neuroinfecciosas graves, incluindo <strong>aspergilose cerebral documentada</strong>,
+              hematoma subdural infectado/osteomielite de calota, em terapia antifúngica combinada.
+            </p>
+            <p>
+              Do ponto de vista respiratório, mantém <strong>VM invasiva</strong> após re-IOT em 18/05 por hipoxemia progressiva,
+              com provável componente multifatorial: adenovírus respiratório, pneumonite/pneumonia, congestão/edema e hemorragia alveolar.
+              Se a gasometria for arterial, P/F estimado em <strong>192,5</strong>, sugerindo hipoxemia moderada.
+            </p>
+            <p>
+              Nas últimas 24h, permanece crítico, sedado, em noradrenalina baixa/moderada e CVVHDF, porém com
+              <strong>melhora noturna do sangramento oral e da hematúria</strong>, após suporte transfusional e acompanhamento da Hematologia.
+              Ainda apresenta anemia grave, plaquetopenia grave e risco elevado de ressangramento, o que mantém contraindicação à TQT
+              e limita desmame ventilatório.
+            </p>
+            <p>
+              <strong>Prioridades do plantão:</strong> manter suporte transfusional/hemostático, validar diurese real em vigência de irrigação vesical,
+              manter CVVHDF com UF conforme tolerância, desmamar noradrenalina dentro do teto terapêutico, seguir antimicrobianos conforme Infectologia
+              e respeitar diretiva familiar previamente estabelecida.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <div class="footer-note">
+        Documento gerado em HTML para passagem de plantão. Revisar dados dinâmicos no Tasy antes de uso assistencial definitivo.
+      </div>
+    </main>
+  </div>
+</body>
+</html>

@@ -1,0 +1,1715 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard — Plantão BP UTI 6A Cardio — 07/06/2026</title>
+  <style>
+    :root {
+      --bg:#eef2f7; --panel:#ffffff; --ink:#172033; --muted:#667085; --line:#d9e0ea;
+      --accent:#0f766e; --accent2:#155e75; --danger:#b91c1c; --warn:#b45309; --blue:#1d4ed8; --green:#047857;
+      --soft-red:#fff1f2; --soft-yellow:#fffbeb; --soft-blue:#eff6ff; --soft-green:#ecfdf5;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      background:var(--bg);
+      color:var(--ink);
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+      line-height:1.45;
+      font-size:15px;
+    }
+    .hero{
+      background:linear-gradient(135deg,#0f766e,#155e75);
+      color:#fff;
+      padding:28px 30px;
+    }
+    .hero-inner{max-width:1440px;margin:0 auto;display:flex;gap:24px;justify-content:space-between;align-items:flex-end;flex-wrap:wrap}
+    .hero h1{margin:0 0 8px;font-size:30px;letter-spacing:-.03em}
+    .hero p{margin:0;opacity:.95}
+    .print-btn{
+      border:1px solid rgba(255,255,255,.55);
+      color:#fff;
+      background:rgba(255,255,255,.12);
+      padding:10px 14px;
+      border-radius:12px;
+      text-decoration:none;
+      font-weight:700;
+      cursor:pointer;
+    }
+    .layout{
+      max-width:1440px;
+      margin:0 auto;
+      padding:22px;
+      display:grid;
+      grid-template-columns:280px 1fr;
+      gap:22px;
+    }
+    aside{
+      position:sticky;
+      top:14px;
+      align-self:start;
+      background:var(--panel);
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:16px;
+      box-shadow:0 10px 28px rgba(15,23,42,.08);
+      max-height:calc(100vh - 28px);
+      overflow:auto;
+    }
+    aside h2{font-size:16px;margin:0 0 12px}
+    .nav-list{display:grid;gap:8px}
+    .nav-list a{
+      display:block;
+      text-decoration:none;
+      color:var(--ink);
+      border:1px solid var(--line);
+      border-radius:12px;
+      padding:9px 10px;
+      background:#f8fafc;
+    }
+    .nav-list a strong{display:block;font-size:13px;color:var(--accent2)}
+    .nav-list a span{display:block;font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .main{min-width:0}
+    .stats{
+      display:grid;
+      grid-template-columns:repeat(5,minmax(140px,1fr));
+      gap:12px;
+      margin-bottom:18px;
+    }
+    .stat{
+      background:var(--panel);
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:14px;
+      box-shadow:0 8px 22px rgba(15,23,42,.06);
+    }
+    .stat b{font-size:26px;display:block;line-height:1}
+    .stat span{color:var(--muted);font-size:12px}
+    .cards{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(240px,1fr));
+      gap:14px;
+      margin-bottom:22px;
+    }
+    .card{
+      background:var(--panel);
+      border:1px solid var(--line);
+      border-top:5px solid var(--accent);
+      border-radius:18px;
+      padding:16px;
+      box-shadow:0 8px 24px rgba(15,23,42,.07);
+      min-height:250px;
+    }
+    .card.critical{border-top-color:var(--danger)}
+    .card.high{border-top-color:var(--warn)}
+    .card.stable{border-top-color:var(--green)}
+    .card-top{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+    .card h3{margin:0;color:var(--accent2);font-size:15px}
+    .card h2{margin:2px 0 0;font-size:19px;letter-spacing:-.02em}
+    .status{
+      display:inline-flex;align-items:center;white-space:nowrap;
+      padding:5px 9px;border-radius:999px;font-size:12px;font-weight:800;border:1px solid transparent
+    }
+    .status.critical{background:var(--soft-red);color:var(--danger);border-color:#fecdd3}
+    .status.high{background:var(--soft-yellow);color:var(--warn);border-color:#fde68a}
+    .status.stable{background:var(--soft-green);color:var(--green);border-color:#bbf7d0}
+    .pills{display:flex;gap:5px;flex-wrap:wrap;margin:12px 0 10px}
+    .pill{background:#f1f5f9;color:#334155;border:1px solid #e2e8f0;border-radius:999px;padding:4px 7px;font-size:11px;font-weight:700}
+    .card p{color:#475569;font-size:13px;margin:0 0 12px}
+    .card-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:auto}
+    .card-actions a,.head-actions a{
+      text-decoration:none;
+      color:#0f766e;
+      background:#ecfdf5;
+      border:1px solid #bbf7d0;
+      border-radius:10px;
+      padding:7px 9px;
+      font-size:12px;
+      font-weight:800;
+    }
+    .patient-section{
+      background:var(--panel);
+      border:1px solid var(--line);
+      border-radius:20px;
+      padding:18px;
+      margin-bottom:20px;
+      box-shadow:0 10px 28px rgba(15,23,42,.08);
+      scroll-margin-top:16px;
+    }
+    .section-head{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:14px;
+      border-bottom:1px solid var(--line);
+      padding-bottom:14px;
+      margin-bottom:14px;
+    }
+    .eyebrow{margin:0;color:var(--accent2);font-weight:900;text-transform:uppercase;letter-spacing:.08em;font-size:12px}
+    .section-head h2{margin:3px 0 0;font-size:24px;letter-spacing:-.02em}
+    .head-actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
+    .quick-impression{
+      background:#f8fafc;
+      border:1px solid var(--line);
+      border-radius:14px;
+      padding:12px 14px;
+      margin-bottom:12px;
+      color:#334155;
+    }
+    details{
+      border:1px solid var(--line);
+      border-radius:14px;
+      overflow:hidden;
+      margin:10px 0;
+      background:#fff;
+    }
+    summary{
+      cursor:pointer;
+      list-style:none;
+      padding:12px 14px;
+      background:#f1f5f9;
+      font-weight:900;
+      color:#0f172a;
+    }
+    summary::-webkit-details-marker{display:none}
+    summary::before{content:"▸";display:inline-block;margin-right:8px;transition:.2s}
+    details[open] summary::before{transform:rotate(90deg)}
+    .section-content{padding:14px 16px}
+    .section-content ul{margin:0;padding-left:20px}
+    .section-content li{margin:5px 0}
+    .section-content table{width:100%;border-collapse:collapse}
+    .section-content th,.section-content td{border-bottom:1px solid var(--line);padding:8px;text-align:left;vertical-align:top}
+    .section-content th{background:#f8fafc;color:#334155;width:28%}
+    .section-content .tag{display:inline-block;padding:4px 8px;border-radius:999px;font-weight:700;font-size:12px;margin:2px 4px 2px 0;border:1px solid #e2e8f0;background:#f8fafc}
+    .section-content .tag-danger{background:var(--soft-red);color:var(--danger);border-color:#fecdd3}
+    .section-content .tag-warn{background:var(--soft-yellow);color:var(--warn);border-color:#fde68a}
+    .section-content .tag-blue{background:var(--soft-blue);color:var(--blue);border-color:#bfdbfe}
+    .section-content .tag-green{background:var(--soft-green);color:var(--green);border-color:#bbf7d0}
+    .section-content .alert{padding:12px 14px;border-radius:12px;margin:10px 0;border-left:5px solid}
+    .section-content .alert-danger{background:var(--soft-red);border-color:var(--danger)}
+    .section-content .alert-warn{background:var(--soft-yellow);border-color:var(--warn)}
+    .section-content .alert-blue{background:var(--soft-blue);border-color:var(--blue)}
+    .section-content .mini-card{border:1px solid var(--line);border-radius:12px;padding:12px;background:#fff}
+    .section-content .grid{display:grid;grid-template-columns:repeat(2,minmax(260px,1fr));gap:12px}
+    .section-content .impression{background:#f8fafc;border:1px solid #cbd5e1;border-radius:14px;padding:16px}
+    .footer{
+      color:var(--muted);
+      padding:18px 0 36px;
+      font-size:12px;
+    }
+    @media(max-width:1100px){
+      .layout{grid-template-columns:1fr}
+      aside{position:static;max-height:none}
+      .cards{grid-template-columns:repeat(2,minmax(240px,1fr))}
+      .stats{grid-template-columns:repeat(3,minmax(140px,1fr))}
+    }
+    @media(max-width:720px){
+      .layout{padding:12px}
+      .cards,.stats{grid-template-columns:1fr}
+      .section-head{display:block}
+      .head-actions{justify-content:flex-start;margin-top:12px}
+      .section-content .grid{grid-template-columns:1fr}
+    }
+    @media print{
+      body{background:white;font-size:12px}
+      .hero{padding:18px;background:#0f766e !important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+      .layout{display:block;padding:0}
+      aside,.cards,.stats,.card-actions,.head-actions a,.print-btn{display:none!important}
+      .patient-section{box-shadow:none;border:1px solid #ccc;border-radius:0;margin:0 0 16px;break-inside:avoid;page-break-inside:avoid}
+      details{break-inside:avoid;page-break-inside:avoid}
+      details:not([open]) .section-content{display:block}
+      details summary::before{display:none}
+    }
+  </style>
+</head>
+<body>
+  <div class="hero">
+    <div class="hero-inner">
+      <div>
+        <h1>📋 Dashboard — Plantão BP UTI 6A Cardio</h1>
+        <p><strong>Data:</strong> 07/06/2026 | <strong>Pacientes:</strong> 9 | Visão integrada dos arquivos HTML individuais</p>
+      </div>
+      <button class="print-btn" onclick="window.print()">Imprimir / Salvar PDF</button>
+    </div>
+  </div>
+
+  <div class="layout">
+    <aside>
+      <h2>Leitos</h2>
+      <nav class="nav-list">
+        <a href="#leito-isol-03-marcos-bortoluzzi"><strong>ISOL 03</strong><span>Marcos Bortoluzzi</span></a><a href="#leito-1600-11-jos-tadeu-velloso"><strong>1600 11</strong><span>José Tadeu Velloso</span></a><a href="#leito-1610-valderice-fumeiro-negri"><strong>1610</strong><span>Valderice Fumeiro Negri</span></a><a href="#leito-1600-12-rosa-maria-martins-de-ara-jo"><strong>1600 12</strong><span>Rosa Maria Martins de Araújo</span></a><a href="#leito-1600-13-hewals-preuss"><strong>1600 13</strong><span>Hewals Preuss</span></a><a href="#leito-1600-14-juarez-ribeiro-de-roma"><strong>1600 14</strong><span>Juarez Ribeiro de Roma</span></a><a href="#leito-1600-15-luis-bispo-de-andrade"><strong>1600 15</strong><span>Luis Bispo de Andrade</span></a><a href="#leito-1600-16-ojandir-ubirajara-belini"><strong>1600 16</strong><span>Ojandir Ubirajara Belini</span></a><a href="#leito-1600-17-michelle-santos-silva-xavier"><strong>1600 17</strong><span>Michelle Santos Silva Xavier</span></a>
+      </nav>
+    </aside>
+
+    <div class="main">
+      <div class="stats">
+        <div class="stat"><b>9</b><span>pacientes no dashboard</span></div>
+        <div class="stat"><b>2</b><span>críticos</span></div>
+        <div class="stat"><b>5</b><span>alta vigilância</span></div>
+        <div class="stat"><b>4</b><span>VM / IOT ou suporte ventilatório relevante</span></div>
+        <div class="stat"><b>4</b><span>TRS / HD / CRRT ou dialíticos</span></div>
+      </div>
+
+      <div class="cards">
+        
+      <article class="card critical">
+        <div class="card-top">
+          <div>
+            <h3>ISOL 03</h3>
+            <h2>Marcos Bortoluzzi</h2>
+          </div>
+          <span class="status critical">Crítico</span>
+        </div>
+        <div class="pills"><span class="pill">Paciente crítico</span><span class="pill">Imunossuprimido</span><span class="pill">CVVHDF</span><span class="pill">VM invasiva</span></div>
+        <p>Paciente Marcos Bortoluzzi, 55 anos , onco-hematológico de altíssima complexidade , com macroglobulinemia de Waldenström em atividade, pós-TMO autólogo, imunossupressão profunda e longa internação. Evoluiu com complicações neuroinfecciosas graves, incluindo aspergilose cerebral documentada , hematoma subdural infectado/osteomielite de calota, em terapia antifúngica combinada. Do ponto de vista respiratório, mantém VM invasiva após re-IOT em 18/05 por hipoxemia progressiva, com provável componente multifatorial:…</p>
+        <div class="card-actions">
+          <a href="#leito-isol-03-marcos-bortoluzzi">Abrir resumo completo</a>
+          <a href="uti_6a_isol_03_marcos_bortoluzzi_2026-06-07.html" target="_blank">Arquivo individual</a>
+        </div>
+      </article>
+    
+      <article class="card stable">
+        <div class="card-top">
+          <div>
+            <h3>1600 11</h3>
+            <h2>José Tadeu Velloso</h2>
+          </div>
+          <span class="status stable">Estável / monitorização</span>
+        </div>
+        <div class="pills"><span class="pill">IAMCSST inferior</span><span class="pill">Pós-ATC</span><span class="pill">Estável</span><span class="pill">Hematoma radial</span><span class="pill">Lesão residual DA</span></div>
+        <p>Paciente José Tadeu Velloso, 69 anos , admitido em UTI após IAMCSST inferior trombolisado em 05/06 , evoluindo com critérios de reperfusão e submetido em 06/06 a ATC via radial direita com implante de stents farmacológicos em ACD e DPD . Evolui hemodinamicamente estável, sem DVA, em ar ambiente, Glasgow 15, sem queixas no momento. Ponto de atenção principal no plantão: hematoma em sítio de punção radial direita , atualmente com pulso presente e membro perfundido; necessário monitorar expansão e aguardar USG…</p>
+        <div class="card-actions">
+          <a href="#leito-1600-11-jos-tadeu-velloso">Abrir resumo completo</a>
+          <a href="uti_6a_leito_1600_11_jose_tadeu_velloso_2026-06-07.html" target="_blank">Arquivo individual</a>
+        </div>
+      </article>
+    
+      <article class="card high">
+        <div class="card-top">
+          <div>
+            <h3>1610</h3>
+            <h2>Valderice Fumeiro Negri</h2>
+          </div>
+          <span class="status high">Alta vigilância</span>
+        </div>
+        <div class="pills"><span class="pill">Choque séptico provável</span><span class="pill">Gram-negativo</span><span class="pill">Dialítica</span><span class="pill">PermCath suspeito</span></div>
+        <p>Paciente Valderice Fumeiro Negri, 83 anos , dialítica crônica por PermCath, admitida com dispneia, hipoxemia e hipotensão, inicialmente responsiva a volume, mas com evolução noturna para instabilidade hemodinâmica e necessidade de noradrenalina. O quadro agora se consolida como sepse/choque séptico provável , com cultura positiva para bacilo Gram-negativo , tendo como foco principal a ser investigado o cateter de hemodiálise , embora ainda sem foco definitivamente confirmado. Apresenta melhora subjetiva…</p>
+        <div class="card-actions">
+          <a href="#leito-1610-valderice-fumeiro-negri">Abrir resumo completo</a>
+          <a href="uti_6a_leito_1610_valderice_fumeiro_negri_2026-06-07.html" target="_blank">Arquivo individual</a>
+        </div>
+      </article>
+    
+      <article class="card high">
+        <div class="card-top">
+          <div>
+            <h3>1600 12</h3>
+            <h2>Rosa Maria Martins de Araújo</h2>
+          </div>
+          <span class="status high">Alta vigilância</span>
+        </div>
+        <div class="pills"><span class="pill">AVC extenso</span><span class="pill">VM invasiva</span><span class="pill">FAARV</span><span class="pill">Pós valve-in-valve</span></div>
+        <p>Paciente Rosa Maria Martins de Araújo, 74 anos , cardiopata valvar, em pós-operatório de duplo valve-in-valve transcateter aórtico e mitral, com complicação neurológica grave após acesso acidental pela carótida esquerda. Evoluiu com AVC isquêmico extenso em hemisfério esquerdo , acometendo grande território de ACA/ACM, cursando com hemiplegia direita e despertar inadequado persistente, apesar de sedação suspensa. Do ponto de vista respiratório, apresenta excelente oxigenação em baixos parâmetros ventilatórios ,…</p>
+        <div class="card-actions">
+          <a href="#leito-1600-12-rosa-maria-martins-de-ara-jo">Abrir resumo completo</a>
+          <a href="uti_6a_leito_1600_12_rosa_maria_martins_araujo_2026-06-07.html" target="_blank">Arquivo individual</a>
+        </div>
+      </article>
+    
+      <article class="card high">
+        <div class="card-top">
+          <div>
+            <h3>1600 13</h3>
+            <h2>Hewals Preuss</h2>
+          </div>
+          <span class="status high">Alta vigilância</span>
+        </div>
+        <div class="pills"><span class="pill">IAMCSST</span><span class="pill">CRVM incompleta</span><span class="pill">PO CRVM</span><span class="pill">Extubado</span></div>
+        <p>Paciente de 80 anos , com HAS, DM2, hipotireoidismo e DAC crônica, admitido após IAM com supra e cinecoronariografia evidenciando DAC triarterial complexa. Submetido em 02/06 a tentativa de CRVM, com realização de ATIE → ADA , porém revascularização ficou incompleta por safenas fibrosadas/trombosadas e inutilizáveis. Evolui em PO 03–04, neurologicamente íntegro, extubado, sem dor torácica ativa descrita, FEVE preservada apesar de acinesia inferior, em desmame de baixa dose de noradrenalina, com diurese adequada e…</p>
+        <div class="card-actions">
+          <a href="#leito-1600-13-hewals-preuss">Abrir resumo completo</a>
+          <a href="uti_6a_leito_1600_13_hewals_preuss_2026-06-07.html" target="_blank">Arquivo individual</a>
+        </div>
+      </article>
+    
+      <article class="card critical">
+        <div class="card-top">
+          <div>
+            <h3>1600 14</h3>
+            <h2>Juarez Ribeiro de Roma</h2>
+          </div>
+          <span class="status critical">Crítico</span>
+        </div>
+        <div class="pills"><span class="pill">Choque refratário</span><span class="pill">VM invasiva</span><span class="pill">CRRT</span><span class="pill">MSE inviável</span><span class="pill">Prognóstico reservado</span></div>
+        <p>Paciente de 59 anos , DRC dialítico crônico, anúrico, com falência de acesso vascular, internado para confecção de FAV/PTFE em MSE. Evoluiu com trombose precoce, reabordagem cirúrgica, choque persistente e posterior HDA volumosa por varizes esofágicas em 26/05, com choque hemorrágico, IOT e necessidade de CRRT. Atualmente permanece gravíssimo , sedado, em VM, com oxigenação preservada, porém com alcalemia respiratória importante. Mantém choque refratário ainda dependente de noradrenalina 0,5 + vasopressina 0,02 ,…</p>
+        <div class="card-actions">
+          <a href="#leito-1600-14-juarez-ribeiro-de-roma">Abrir resumo completo</a>
+          <a href="uti_6a_leito_1600_14_juarez_ribeiro_de_roma_2026-06-07.html" target="_blank">Arquivo individual</a>
+        </div>
+      </article>
+    
+      <article class="card high">
+        <div class="card-top">
+          <div>
+            <h3>1600 15</h3>
+            <h2>Luis Bispo de Andrade</h2>
+          </div>
+          <span class="status high">Alta vigilância</span>
+        </div>
+        <div class="pills"><span class="pill">IAMCSST anterior</span><span class="pill">Pós-TNK</span><span class="pill">Cate sem lesão obstrutiva</span><span class="pill">Hemoptise</span></div>
+        <p>Paciente Luis Bispo de Andrade, 56 anos , HAS, DM2 e etilista, admitido por IAM com supradesnivelamento de ST anterior , tratado inicialmente com TNK 40 mg na origem, com critério de reperfusão, seguido de cateterismo precoce via radial direita na BP. O cate não demonstrou lesões obstrutivas, levantando hipótese de artéria recanalizada pós-trombólise versus MINOCA ou diagnóstico diferencial não coronariano, como miocardite/Takotsubo/vasoespasmo. No momento encontra-se estável, consciente, sem dor torácica ou…</p>
+        <div class="card-actions">
+          <a href="#leito-1600-15-luis-bispo-de-andrade">Abrir resumo completo</a>
+          <a href="uti_6a_leito_1600_15_luis_bispo_de_andrade_2026-06-07.html" target="_blank">Arquivo individual</a>
+        </div>
+      </article>
+    
+      <article class="card stable">
+        <div class="card-top">
+          <div>
+            <h3>1600 16</h3>
+            <h2>Ojandir Ubirajara Belini</h2>
+          </div>
+          <span class="status stable">Estável / monitorização</span>
+        </div>
+        <div class="pills"><span class="pill">MELD 29</span><span class="pill">Encefalopatia</span><span class="pill">Lista transplante</span><span class="pill">SHR/DRC agudizada</span><span class="pill">Plaquetopenia</span></div>
+        <p>Paciente de 72 anos , cirrótico descompensado por ascite volumosa recorrente, encefalopatia hepática e síndrome hepatorrenal/DRC agudizada, ativo em lista de transplante hepático com MELD 29 . Evolui hemodinamicamente estável, sem DVA clássica, sonolento porém despertável, com fala lentificada e flapping discreto, mantendo quadro de encefalopatia hepática clínica. Apresenta diurese adequada nas últimas 24h, porém mantém ureia elevada, hiponatremia, leucopenia/neutropenia, plaquetopenia importante e urinálise com…</p>
+        <div class="card-actions">
+          <a href="#leito-1600-16-ojandir-ubirajara-belini">Abrir resumo completo</a>
+          <a href="uti_6a_leito_1600_16_ojandir_ubirajara_belini_2026-06-07.html" target="_blank">Arquivo individual</a>
+        </div>
+      </article>
+    
+      <article class="card high">
+        <div class="card-top">
+          <div>
+            <h3>1600 17</h3>
+            <h2>Michelle Santos Silva Xavier</h2>
+          </div>
+          <span class="status high">Alta vigilância</span>
+        </div>
+        <div class="pills"><span class="pill">Anemia grave</span><span class="pill">Falciforme aloimunizada</span><span class="pill">DRC dialítica</span><span class="pill">Risco transfusional</span><span class="pill">Congestão pulmonar</span></div>
+        <p>Paciente jovem, portadora de doença falciforme , poli-transfundida e aloimunizada, com DRC dialítica , admitida com anemia crítica, dispneia e dor torácica/dorsal. Evolui com Hb atual 6,6, ainda abaixo de meta segura, mantendo necessidade de suporte transfusional cuidadoso e compatibilizado. A dispneia parece multifatorial, com contribuição de anemia grave e congestão pulmonar, sem evidência atual de TEP ou consolidação pulmonar. O principal risco imediato é o equilíbrio entre corrigir anemia/hipóxia tecidual e…</p>
+        <div class="card-actions">
+          <a href="#leito-1600-17-michelle-santos-silva-xavier">Abrir resumo completo</a>
+          <a href="uti_6a_leito_1600_17_michelle_santos_silva_xavier_2026-06-07.html" target="_blank">Arquivo individual</a>
+        </div>
+      </article>
+    
+      </div>
+
+      
+      <section class="patient-section" id="leito-isol-03-marcos-bortoluzzi">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Leito ISOL 03</p>
+            <h2>Marcos Bortoluzzi</h2>
+          </div>
+          <div class="head-actions">
+            <span class="status critical">Crítico</span>
+            <a href="uti_6a_isol_03_marcos_bortoluzzi_2026-06-07.html" target="_blank">Abrir HTML individual</a>
+          </div>
+        </div>
+
+        <div class="quick-impression">
+          <strong>Impressão rápida:</strong> Paciente Marcos Bortoluzzi, 55 anos , onco-hematológico de altíssima complexidade , com macroglobulinemia de Waldenström em atividade, pós-TMO autólogo, imunossupressão profunda e longa internação. Evoluiu com complicações neuroinfecciosas graves, incluindo aspergilose cerebral documentada , hematoma subdural infectado/osteomielite de calota, em terapia antifúngica combinada. Do ponto de vista respiratório, mantém VM invasiva após re-IOT em 18/05 por hipoxemia progressiva, com provável componente multifatorial:…
+        </div>
+
+        <details open>
+          <summary>Diagnósticos</summary>
+          <div class="section-content"><span class="tag tag-danger">Paciente crítico</span>
+          <span class="tag tag-danger">Imunossuprimido</span>
+          <span class="tag tag-warn">CVVHDF</span>
+          <span class="tag tag-blue">VM invasiva</span>
+          <ul>
+            <li><strong>Linfoma linfoplasmocítico / Macroglobulinemia de Waldenström</strong> — doença em atividade/progressão.</li>
+            <li><strong>Pós-TCTH autólogo em 22/07/2022</strong> — protocolo BEAM.</li>
+            <li><strong>Abscesso cerebral por Aspergillus fumigatus</strong>, com drenagens em 18/03 e 08/04.</li>
+            <li>Hematoma subdural infectado / osteomielite de calota craniana.</li>
+            <li><strong>Insuficiência respiratória aguda</strong> — IOT 06/05, extubação 14/05, re-IOT 18/05 por hipoxemia progressiva.</li>
+            <li>Pneumonite/pneumonia viral por adenovírus em LBA, em tratamento com cidofovir.</li>
+            <li><strong>IRA KDIGO 3 dialítica</strong>, provável nefrotoxicidade por anfotericina B + sepse.</li>
+            <li><strong>Choque séptico/distributivo</strong>, em noradrenalina em desmame.</li>
+            <li><strong>Sangramentos difusos refratários:</strong> mucosa nasal/oral, vesical e pulmonar.</li>
+            <li>Hemorragia alveolar sugerida em LBA.</li>
+            <li><strong>Plaquetopenia grave e anemia importante</strong>, com necessidade transfusional recorrente.</li>
+            <li>Rash cutâneo desde 01/06.</li>
+            <li>COVID-19 prévio — resolvido.</li>
+          </ul></div>
+        </details>
+        <details>
+          <summary>Dispositivos / Suporte</summary>
+          <div class="section-content"><div class="grid">
+            <div class="mini-card"><strong>Neurológico:</strong> sedado, RASS -4 a -5; meta diarista RASS -2 se possível.</div>
+            <div class="mini-card"><strong>VM:</strong> IOT COT nº 8,5 | PSV | PS 12 | PEEP 8 | FiO₂ 40% | FR ~20 | VC ~665 mL.</div>
+            <div class="mini-card"><strong>P/F:</strong> se pO₂ 77 arterial → 77 / 0,40 = <strong>192,5</strong>, compatível com hipoxemia moderada / SDRA moderada. Se venosa, P/F não validável.</div>
+            <div class="mini-card"><strong>DVA:</strong> noradrenalina ~0,08–0,13 mcg/kg/min, em desmame; teto definido em diretiva familiar.</div>
+            <div class="mini-card"><strong>Sedoanalgesia:</strong> propofol + cetamina.</div>
+            <div class="mini-card"><strong>Nutrição:</strong> dieta enteral.</div>
+            <div class="mini-card"><strong>TRS:</strong> CVVHDF / Prisma em curso, UF ajustada pela Nefrologia.</div>
+            <div class="mini-card"><strong>Urinário:</strong> SVD com obstrução prévia por coágulos, em irrigação vesical contínua.</div>
+            <div class="mini-card"><strong>PAI:</strong> cateter trocado em 19/05.</div>
+          </div></div>
+        </details>
+        <details>
+          <summary>Sinais vitais / Balanço</summary>
+          <div class="section-content"><table>
+            <tr><th>Temperatura</th><td>36 °C</td></tr>
+            <tr><th>FC</th><td>83–108 bpm</td></tr>
+            <tr><th>PAM</th><td>76–93 mmHg</td></tr>
+            <tr><th>Glicemia</th><td>121–190 mg/dL</td></tr>
+            <tr><th>BH</th><td><strong>-1630 mL/24h</strong></td></tr>
+            <tr><th>Diurese</th><td>200 mL/24h → 200 ÷ 132 ÷ 24 = <strong>0,06 mL/kg/h</strong> → oligúria grave/anúria funcional; interpretação limitada por CVVHDF e irrigação vesical contínua.</td></tr>
+            <tr><th>UF</th><td>6112 mL</td></tr>
+            <tr><th>Evacuação</th><td>200 mL</td></tr>
+          </table></div>
+        </details>
+        <details>
+          <summary>Exames recentes</summary>
+          <div class="section-content"><table>
+            <tr><th>Gasometria</th><td>pH 7,33 | pO₂ 77 | pCO₂ 49 | HCO₃ 26</td></tr>
+            <tr><th>Gasometria venosa prévia</th><td>pH 7,34 | pCO₂ 47 | HCO₃ 25 | BE -0,4 | SvO₂ 88%</td></tr>
+            <tr><th>Hemograma</th><td>Hb <strong>6,2</strong> | Leuco <strong>3.140</strong> | Plaq <strong>18.000</strong></td></tr>
+            <tr><th>Bioquímica</th><td>Na 139 | K 3,6 | Mg 2,2 | Ca ionizado 1,31 | P 3,4 | Ur 105 | Cr 1,3</td></tr>
+            <tr><th>Coagulação prévia</th><td>TP 13,8 | INR 1,2 | TTPA 37,6 | relação TTPA 1,22</td></tr>
+            <tr><th>PCR prévio</th><td>7,27 mg/dL / 72,7 mg/L</td></tr>
+            <tr><th>LBA 18/05</th><td>Adenovírus positivo, PCR 288.823 cópias / log 5,46</td></tr>
+            <tr><th>LBA 26/05</th><td>Painel viral não detectado; culturas em andamento/parcial negativas; sugestivo de hemorragia alveolar.</td></tr>
+          </table></div>
+        </details>
+        <details>
+          <summary>Antimicrobianos</summary>
+          <div class="section-content"><h4>Atuais</h4>
+          <ul>
+            <li>Anfotericina B lipossomal — desde 26/03; suspensa 04/04 por LRA; reintroduzida 07/04 por piora de imagem.</li>
+            <li>Voriconazol 200 mg 12/12h — D0 31/03.</li>
+            <li>Meropenem — D0 28/04.</li>
+            <li>Teicoplanina — D0 28/04.</li>
+            <li>Levofloxacino 750 mg — D1 18/05.</li>
+            <li>Cidofovir — D1 19/05; esquema fracionado 1 mg/kg 3x/semana, prorrogado por mais 7 dias ou até melhora respiratória/nova TC.</li>
+          </ul>
+          <h4>Prévios relevantes</h4>
+          <ul>
+            <li>Amicacina 18/05–22/05.</li>
+            <li>Remdesivir 14/03–18/03.</li>
+            <li>Doxiciclina, vancomicina e ciclos prévios de meropenem/teicoplanina.</li>
+          </ul></div>
+        </details>
+        <details open>
+          <summary>Condutas / Pendências</summary>
+          <div class="section-content"><div class="alert alert-danger">
+            <strong>Plano antecipado:</strong> sem RCP, sem escalonamento agressivo de DVA, teto de noradrenalina 0,3 mcg/kg/min, sem vasopressina.
+          </div>
+
+          <ul>
+            <li><strong>Hemodinâmica / Sepse:</strong> manter PAM ≥65 mmHg; desmamar noradrenalina conforme perfusão, lactato, extremidades, balanço e tolerância à UF.</li>
+            <li><strong>Ventilação mecânica:</strong> manter estratégia protetora; P/F estimado 192,5 se gasometria arterial; reduzir sedação apenas se segurança respiratória/hemodinâmica e controle de sangramento permitirem.</li>
+            <li><strong>TQT:</strong> segue contraindicada pela CCP devido a sangramentos e discrasia sanguínea.</li>
+            <li><strong>Hematologia / Sangramento:</strong> melhora noturna do sangramento oral e hematúria; manter suporte transfusional conforme Hematologia/UTI.</li>
+            <li><strong>Transfusão:</strong> conduta proposta: 1 CH + 1 aférese de plaquetas, com reavaliação clínica e laboratorial.</li>
+            <li><strong>Hemostasia:</strong> acompanhar coagulograma, fibrinogênio, cálcio ionizado e considerar TEG/ROTEM se disponível; considerar crioprecipitado se fibrinogênio baixo ou sangramento persistente; PFC se coagulopatia documentada.</li>
+            <li><strong>Aspergilose cerebral:</strong> manter anfotericina B lipossomal + voriconazol; monitorar nefrotoxicidade, hepatotoxicidade, QT, eletrólitos e nível sérico do voriconazol.</li>
+            <li><strong>Isavuconazol:</strong> solicitado para estratégia posterior, especialmente por interação com iBTK.</li>
+            <li><strong>Adenovírus respiratório:</strong> manter cidofovir conforme Infectologia; monitorar resposta ventilatória, imagem, PCR viral quando indicado e toxicidade renal/eletrolítica.</li>
+            <li><strong>IRA dialítica / CVVHDF:</strong> manter CVVHDF conforme Nefrologia, com UF ajustada à estabilidade hemodinâmica; ajustar doses de antimicrobianos/antifúngicos.</li>
+            <li><strong>Urológico:</strong> manter irrigação vesical contínua enquanto hematúria/coágulos; quantificar diurese real separando volume de irrigação, débito urinário efetivo e perdas.</li>
+            <li><strong>Nutrição / Pele / Mobilidade:</strong> manter dieta enteral se tolerância; prevenção rigorosa de LP; mobilização passiva apenas se estabilidade e segurança hematológica permitirem.</li>
+          </ul></div>
+        </details>
+        <details>
+          <summary>Intercorrências</summary>
+          <div class="section-content"><ul>
+            <li><strong>Melhora noturna do sangramento em cavidade oral e da hematúria.</strong></li>
+            <li>Mantida discussão com Hematologia: seguir suporte transfusional.</li>
+            <li>Queda hematimétrica importante.</li>
+            <li>Plaquetopenia grave.</li>
+            <li>Sangramentos difusos: oral/nasal, vesical e pulmonar — atualmente com melhora parcial.</li>
+            <li>Obstrução de SVD por coágulos, em irrigação contínua.</li>
+            <li>Re-IOT em 18/05 por hipoxemia progressiva.</li>
+            <li>Em CVVHDF por IRA dialítica.</li>
+            <li>Rash cutâneo desde 01/06.</li>
+            <li>Plano antecipado de cuidados alinhado em 29/05.</li>
+          </ul></div>
+        </details>
+        <details open>
+          <summary>Impressão</summary>
+          <div class="section-content"><div class="impression">
+            <p>
+              Paciente <strong>Marcos Bortoluzzi, 55 anos</strong>, onco-hematológico de <strong>altíssima complexidade</strong>,
+              com macroglobulinemia de Waldenström em atividade, pós-TMO autólogo, imunossupressão profunda e longa internação.
+              Evoluiu com complicações neuroinfecciosas graves, incluindo <strong>aspergilose cerebral documentada</strong>,
+              hematoma subdural infectado/osteomielite de calota, em terapia antifúngica combinada.
+            </p>
+            <p>
+              Do ponto de vista respiratório, mantém <strong>VM invasiva</strong> após re-IOT em 18/05 por hipoxemia progressiva,
+              com provável componente multifatorial: adenovírus respiratório, pneumonite/pneumonia, congestão/edema e hemorragia alveolar.
+              Se a gasometria for arterial, P/F estimado em <strong>192,5</strong>, sugerindo hipoxemia moderada.
+            </p>
+            <p>
+              Nas últimas 24h, permanece crítico, sedado, em noradrenalina baixa/moderada e CVVHDF, porém com
+              <strong>melhora noturna do sangramento oral e da hematúria</strong>, após suporte transfusional e acompanhamento da Hematologia.
+              Ainda apresenta anemia grave, plaquetopenia grave e risco elevado de ressangramento, o que mantém contraindicação à TQT
+              e limita desmame ventilatório.
+            </p>
+            <p>
+              <strong>Prioridades do plantão:</strong> manter suporte transfusional/hemostático, validar diurese real em vigência de irrigação vesical,
+              manter CVVHDF com UF conforme tolerância, desmamar noradrenalina dentro do teto terapêutico, seguir antimicrobianos conforme Infectologia
+              e respeitar diretiva familiar previamente estabelecida.
+            </p>
+          </div></div>
+        </details>
+      </section>
+    
+      <section class="patient-section" id="leito-1600-11-jos-tadeu-velloso">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Leito 1600 11</p>
+            <h2>José Tadeu Velloso</h2>
+          </div>
+          <div class="head-actions">
+            <span class="status stable">Estável / monitorização</span>
+            <a href="uti_6a_leito_1600_11_jose_tadeu_velloso_2026-06-07.html" target="_blank">Abrir HTML individual</a>
+          </div>
+        </div>
+
+        <div class="quick-impression">
+          <strong>Impressão rápida:</strong> Paciente José Tadeu Velloso, 69 anos , admitido em UTI após IAMCSST inferior trombolisado em 05/06 , evoluindo com critérios de reperfusão e submetido em 06/06 a ATC via radial direita com implante de stents farmacológicos em ACD e DPD . Evolui hemodinamicamente estável, sem DVA, em ar ambiente, Glasgow 15, sem queixas no momento. Ponto de atenção principal no plantão: hematoma em sítio de punção radial direita , atualmente com pulso presente e membro perfundido; necessário monitorar expansão e aguardar USG…
+        </div>
+
+        <details open>
+          <summary>Diagnósticos</summary>
+          <div class="section-content"><span class="tag tag-danger">IAMCSST inferior</span>
+          <span class="tag tag-blue">Pós-ATC</span>
+          <span class="tag tag-green">Estável</span>
+          <span class="tag tag-warn">Hematoma radial</span>
+          <span class="tag tag-warn">Lesão residual DA</span>
+          <ul>
+            <li><strong>IAMCSST inferior trombolisado em 05/06/2026</strong>, com critérios de reperfusão.</li>
+            <li><strong>POI de ATC em 06/06/2026</strong> com implante de:
+              <ul>
+                <li>01 stent farmacológico <strong>Xience Pro 3,5 x 28 mm</strong> em ACD.</li>
+                <li>01 stent farmacológico <strong>Xience Pro 2,5 x 18 mm</strong> em DPD.</li>
+              </ul>
+            </li>
+            <li>Via radial direita, sem intercorrências imediatas.</li>
+            <li><strong>DAC multiarterial</strong>, com lesão residual em DA de 70% no terço médio.</li>
+            <li>Lesão de 50% em óstio de CX.</li>
+            <li><strong>Hematoma em sítio de punção radial direita/MSD</strong>, com pulso presente e membro perfundido.</li>
+          </ul></div>
+        </details>
+        <details>
+          <summary>Dispositivos / Suporte</summary>
+          <div class="section-content"><div class="grid">
+            <div class="mini-card"><strong>Neurológico:</strong> Glasgow 15, calmo, colaborativo, sem déficit descrito.</div>
+            <div class="mini-card"><strong>Respiratório:</strong> ar ambiente, eupneico, SpO₂ 96%.</div>
+            <div class="mini-card"><strong>VM:</strong> não.</div>
+            <div class="mini-card"><strong>P/F:</strong> não calculável — sem gasometria disponível.</div>
+            <div class="mini-card"><strong>DVA:</strong> não.</div>
+            <div class="mini-card"><strong>Sedoanalgesia:</strong> não.</div>
+            <div class="mini-card"><strong>Nutrição:</strong> não informado.</div>
+            <div class="mini-card"><strong>TRS:</strong> não.</div>
+            <div class="mini-card"><strong>Mobilidade:</strong> EMU real 1; alvo EMU 5, liberado somente poltrona.</div>
+            <div class="mini-card"><strong>Força muscular:</strong> MRC segmentar aproximado 4/5 em MMSS e MMII.</div>
+            <div class="mini-card"><strong>Protocolos ativos:</strong> queda, BCA, lesão por pressão e TEV.</div>
+          </div></div>
+        </details>
+        <details>
+          <summary>Sinais vitais / Balanço</summary>
+          <div class="section-content"><table>
+            <tr><th>Temperatura</th><td>36 °C</td></tr>
+            <tr><th>FC</th><td>52–81 bpm</td></tr>
+            <tr><th>PAM</th><td>72–97 mmHg</td></tr>
+            <tr><th>Glicemia</th><td>98–153 mg/dL</td></tr>
+            <tr><th>BH</th><td>+250 mL</td></tr>
+            <tr><th>Diurese</th><td>850 mL/24h → 850 ÷ 68 ÷ 24 = <strong>0,52 mL/kg/h</strong> → diurese adequada limítrofe.</td></tr>
+          </table></div>
+        </details>
+        <details>
+          <summary>Exames recentes</summary>
+          <div class="section-content"><table>
+            <tr><th>Laboratório — 06/06/2026</th><td>Hb <strong>15,7</strong> g/dL | Leuco <strong>11.810</strong>/mm³ | Plaq <strong>162.000</strong>/mm³ | Na <strong>138</strong> mEq/L | Ur <strong>29</strong> mg/dL | Cr <strong>0,99</strong> mg/dL | TGO <strong>237</strong> U/L | TGP <strong>52</strong> U/L</td></tr>
+            <tr><th>RNI / PCR</th><td>Não informados.</td></tr>
+            <tr><th>Função renal estimada</th><td>Cockcroft-Gault aproximado: <strong>68 mL/min</strong>, considerando 69 anos, 68 kg, Cr 0,99.</td></tr>
+            <tr><th>Gasometria</th><td>Não disponível.</td></tr>
+          </table></div>
+        </details>
+        <details>
+          <summary>Antimicrobianos</summary>
+          <div class="section-content"><ul>
+            <li><strong>Sem antimicrobianos em uso.</strong></li>
+          </ul></div>
+        </details>
+        <details open>
+          <summary>Condutas / Pendências</summary>
+          <div class="section-content"><div class="alert alert-warn">
+            <strong>Ponto crítico:</strong> hematoma radial em contexto de DAPT + enoxaparina terapêutica; equilibrar risco isquêmico pós-IAM/multiarterial versus risco hemorrágico local.
+          </div>
+
+          <ul>
+            <li><strong>Pós-IAM / Pós-ATC:</strong> manter DAPT conforme prescrição da Cardiologia.</li>
+            <li><strong>Estatina:</strong> manter estatina de alta potência.</li>
+            <li><strong>ECOTT:</strong> aguardar para avaliação de função ventricular, alterações segmentares e complicações pós-IAM.</li>
+            <li><strong>Perfil metabólico:</strong> solicitar/coletar HbA1c, perfil lipídico, função tireoidiana se indicado e eletrólitos completos.</li>
+            <li><strong>Cuidados pós-ATC radial direita:</strong> monitorar hematoma em MSD; avaliar dor, parestesia, perfusão, pulso radial/ulnar e enchimento capilar.</li>
+            <li><strong>Hematoma radial:</strong> controlar expansão; solicitar/acompanhar USG Doppler de MSD.</li>
+            <li><strong>Anticoagulação:</strong> reavaliar enoxaparina 60 mg SC 12/12h, especialmente pelo hematoma radial e uso concomitante de DAPT.</li>
+            <li><strong>Lesão residual DA:</strong> programada abordagem na segunda-feira.</li>
+            <li><strong>Monitorização em UTI:</strong> telemetria contínua; controle de dor torácica/equivalente anginoso; ECG seriado se sintomas ou instabilidade.</li>
+            <li><strong>Marcadores:</strong> troponina/CK-MB conforme protocolo local se necessário.</li>
+            <li><strong>Controle clínico:</strong> PA, FC e sinais de congestão.</li>
+            <li><strong>Fisioterapia:</strong> manter cinesioterapia respiratória e motora; estimular sedestação em poltrona conforme liberação e aceitação.</li>
+            <li><strong>Mobilização:</strong> paciente recusou poltrona/saída do leito no momento — manter orientação e reavaliação.</li>
+            <li><strong>Bundles / Diretrizes:</strong> condutas alinhadas ao manejo atual de SCA pós-PCI: DAPT em SCA, estatina de alta intensidade em IAM/STEMI e preferência por acesso radial com vigilância de complicações hemorrágicas locais.</li>
+          </ul></div>
+        </details>
+        <details>
+          <summary>Intercorrências</summary>
+          <div class="section-content"><ul>
+            <li><strong>Hematoma em MSD</strong> no local de punção radial direita.</li>
+            <li>Membro superior direito com pulso presente e boa perfusão.</li>
+            <li>Sem dor referida.</li>
+            <li>Sem intercorrências fisioterapêuticas.</li>
+          </ul></div>
+        </details>
+        <details open>
+          <summary>Impressão</summary>
+          <div class="section-content"><div class="impression">
+            <p>
+              Paciente <strong>José Tadeu Velloso, 69 anos</strong>, admitido em UTI após <strong>IAMCSST inferior trombolisado em 05/06</strong>,
+              evoluindo com critérios de reperfusão e submetido em 06/06 a ATC via radial direita com implante de stents farmacológicos
+              em <strong>ACD e DPD</strong>.
+            </p>
+            <p>
+              Evolui hemodinamicamente estável, sem DVA, em ar ambiente, Glasgow 15, sem queixas no momento. Ponto de atenção principal
+              no plantão: <strong>hematoma em sítio de punção radial direita</strong>, atualmente com pulso presente e membro perfundido;
+              necessário monitorar expansão e aguardar USG Doppler de MSD.
+            </p>
+            <p>
+              Mantém doença coronariana residual significativa em <strong>DA</strong>, com programação de nova abordagem na segunda-feira.
+              Atenção adicional para equilíbrio entre risco isquêmico elevado pós-IAM/multiarterial e risco hemorrágico pelo hematoma radial
+              em contexto de <strong>DAPT + enoxaparina terapêutica</strong>.
+            </p>
+            <p>
+              <strong>Prioridades do plantão:</strong> monitorar hematoma radial/MSD, revisar necessidade de enoxaparina plena junto à Cardiologia,
+              manter DAPT e estatina, aguardar ECOTT, manter telemetria, estimular mobilização segura em poltrona e preparar abordagem residual
+              da DA conforme programação da Hemodinâmica.
+            </p>
+          </div></div>
+        </details>
+      </section>
+    
+      <section class="patient-section" id="leito-1610-valderice-fumeiro-negri">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Leito 1610</p>
+            <h2>Valderice Fumeiro Negri</h2>
+          </div>
+          <div class="head-actions">
+            <span class="status high">Alta vigilância</span>
+            <a href="uti_6a_leito_1610_valderice_fumeiro_negri_2026-06-07.html" target="_blank">Abrir HTML individual</a>
+          </div>
+        </div>
+
+        <div class="quick-impression">
+          <strong>Impressão rápida:</strong> Paciente Valderice Fumeiro Negri, 83 anos , dialítica crônica por PermCath, admitida com dispneia, hipoxemia e hipotensão, inicialmente responsiva a volume, mas com evolução noturna para instabilidade hemodinâmica e necessidade de noradrenalina. O quadro agora se consolida como sepse/choque séptico provável , com cultura positiva para bacilo Gram-negativo , tendo como foco principal a ser investigado o cateter de hemodiálise , embora ainda sem foco definitivamente confirmado. Apresenta melhora subjetiva…
+        </div>
+
+        <details open>
+          <summary>Diagnósticos</summary>
+          <div class="section-content"><span class="tag tag-danger">Choque séptico provável</span>
+          <span class="tag tag-warn">Gram-negativo</span>
+          <span class="tag tag-blue">Dialítica</span>
+          <span class="tag tag-warn">PermCath suspeito</span>
+          <ul>
+            <li><strong>DRC estágio terminal em hemodiálise</strong>, acesso por <strong>PermCath</strong>.</li>
+            <li><strong>Sepse / choque séptico provável</strong>, com cultura positiva para <strong>bacilo Gram-negativo</strong>.</li>
+            <li>Possível infecção relacionada a cateter venoso central de diálise.</li>
+            <li>Hipotensão inicialmente responsiva a volume, evoluindo com necessidade de <strong>noradrenalina</strong>.</li>
+            <li>Dispneia/hipoxemia na admissão — com melhora respiratória referida.</li>
+            <li>HAS.</li>
+            <li>Coronariopatia referida.</li>
+            <li>Depressão/ansiedade.</li>
+            <li>Diarreia recente — resolvida.</li>
+          </ul></div>
+        </details>
+        <details>
+          <summary>Dispositivos / Suporte</summary>
+          <div class="section-content"><div class="grid">
+            <div class="mini-card"><strong>Neurológico:</strong> acordada, orientável, ansiosa; sem déficit focal; sem sedação.</div>
+            <div class="mini-card"><strong>Oxigenação:</strong> em ar ambiente; dispneia/hipoxemia inicial, atualmente refere melhora respiratória.</div>
+            <div class="mini-card"><strong>P/F:</strong> se gasometria arterial em ar ambiente → 52 / 0,21 = <strong>247</strong>, compatível com hipoxemia leve.</div>
+            <div class="mini-card"><strong>DVA:</strong> noradrenalina <strong>0,1 mcg/kg/min</strong>.</div>
+            <div class="mini-card"><strong>Sedoanalgesia:</strong> não em uso.</div>
+            <div class="mini-card"><strong>Nutrição:</strong> inicialmente em jejum; referia não ter se alimentado.</div>
+            <div class="mini-card"><strong>TRS:</strong> hemodiálise programada/realizada conforme Nefrologia.</div>
+            <div class="mini-card"><strong>Acessos:</strong> PermCath para HD — suspeito como possível foco infeccioso; <strong>CVC femoral direito</strong> passado na evolução noturna.</div>
+          </div></div>
+        </details>
+        <details>
+          <summary>Sinais vitais / Balanço</summary>
+          <div class="section-content"><table>
+            <tr><th>Temperatura</th><td>36–37,9 °C</td></tr>
+            <tr><th>FC</th><td>40–66 bpm — atenção para bradicardia relativa.</td></tr>
+            <tr><th>PAM</th><td>47–84 mmHg</td></tr>
+            <tr><th>BH</th><td>+677 mL</td></tr>
+            <tr><th>Diurese espontânea</th><td>220 mL/4h → 220 ÷ 100 ÷ 4 = <strong>0,55 mL/kg/h</strong> → diurese adequada, considerando janela de 4h, porém paciente dialítica.</td></tr>
+          </table></div>
+        </details>
+        <details>
+          <summary>Exames recentes</summary>
+          <div class="section-content"><table>
+            <tr><th>Gasometria</th><td>pH <strong>7,32</strong> | pO₂ <strong>52</strong> | pCO₂ <strong>47</strong> | HCO₃ <strong>24</strong> — acidose leve com componente respiratório discreto.</td></tr>
+            <tr><th>Lactato</th><td><strong>20</strong> — confirmar unidade. Se mg/dL: aproximadamente <strong>2,2 mmol/L</strong>, discretamente elevado. Se mmol/L: gravemente elevado.</td></tr>
+            <tr><th>Hemograma</th><td>Hb <strong>9,1</strong> | Leuco <strong>12.390</strong> | Plaq <strong>124.000</strong></td></tr>
+            <tr><th>Bioquímica</th><td>Na <strong>134</strong> | K <strong>4,6</strong> | Ca ionizado <strong>1,27</strong> | P <strong>3,1</strong> | Cr <strong>2,76</strong></td></tr>
+            <tr><th>Culturas</th><td>Crescimento de <strong>bacilo Gram-negativo</strong> — aguardar identificação e antibiograma.</td></tr>
+          </table></div>
+        </details>
+        <details>
+          <summary>Antimicrobianos</summary>
+          <div class="section-content"><ul>
+            <li><strong>Ceftazidima + Vancomicina</strong> — iniciados em 06/06/2026.</li>
+            <li>Diante de bacilo Gram-negativo em cultura, manter cobertura para Gram-negativo e <strong>reavaliar retirada da vancomicina em 24–48h</strong> se não houver crescimento de Gram-positivo, MRSA, Enterococcus ou foco cutâneo/cateter típico por Gram-positivo.</li>
+            <li>Ajustar doses conforme hemodiálise e orientação da Infectologia/Nefrologia.</li>
+          </ul></div>
+        </details>
+        <details open>
+          <summary>Condutas / Pendências</summary>
+          <div class="section-content"><div class="alert alert-danger">
+            <strong>Ponto crítico:</strong> sepse/choque provável por bacilo Gram-negativo em paciente dialítica com PermCath — definir foco e necessidade de troca/remoção do acesso.
+          </div>
+
+          <ul>
+            <li><strong>Sepse / Choque:</strong> manter meta de PAM ≥65 mmHg. Seguir noradrenalina, atualmente 0,1 mcg/kg/min, titulando conforme PAM, perfusão, lactato e sintomas.</li>
+            <li><strong>Volemia:</strong> reavaliar volemia com cautela, pois é paciente dialítica; diferenciar congestão pulmonar versus hipovolemia.</li>
+            <li><strong>Lactato:</strong> repetir se elevado e confirmar unidade.</li>
+            <li><strong>Foco infeccioso / PermCath:</strong> inspecionar sítio do cateter: hiperemia, secreção, dor, túnel e flutuação.</li>
+            <li><strong>Discussão Nefro/Infecto:</strong> definir manter versus trocar/remover PermCath conforme patógeno, bacteremia persistente, instabilidade e viabilidade de novo acesso.</li>
+            <li><strong>Antimicrobianos:</strong> manter ceftazidima enquanto aguarda identificação/antibiograma, ajustada para HD. Se instabilidade persistente, risco de ESBL/KPC ou piora hemodinâmica, discutir ampliação conforme perfil microbiológico local.</li>
+            <li><strong>Vancomicina:</strong> com cultura mostrando bacilo Gram-negativo, programar reavaliação em 24h; suspender se ausência de Gram-positivo/MRSA/Enterococcus e sem foco cutâneo/cateter típico por Gram-positivo.</li>
+            <li><strong>Acesso venoso central:</strong> CVC femoral direito passado na intercorrência noturna; se inserido em urgência ou com quebra potencial de técnica, considerar troca assim que possível por acesso mais seguro.</li>
+            <li><strong>Respiratório:</strong> manter monitorização contínua de SpO₂; O₂ suplementar se SpO₂ &lt;92% ou dispneia; repetir avaliação após HD.</li>
+            <li><strong>Hemodiálise:</strong> HD com ultrafiltração conservadora, pois houve hipotensão e necessidade de DVA; ajustar UF conforme PAM, lactato, congestão pulmonar, K e equilíbrio ácido-base.</li>
+            <li><strong>Hemoglobina / Transfusão:</strong> recebeu 1 CH na evolução noturna; Hb atual 9,1; manter vigilância de queda hematimétrica, sangramento oculto e resposta pós-transfusional.</li>
+            <li><strong>Nutrição / Ansiedade:</strong> liberar dieta conforme estabilidade, nível de consciência e risco de broncoaspiração; priorizar reorientação, conforto, presença familiar/cuidador e sono; evitar benzodiazepínicos se possível.</li>
+          </ul></div>
+        </details>
+        <details>
+          <summary>Intercorrências</summary>
+          <div class="section-content"><ul>
+            <li>Admissão por dispneia e hipotensão; melhora inicial após 500 mL SF.</li>
+            <li>Evoluiu à noite com nova hipotensão, necessidade de CVC femoral direito e início de noradrenalina 0,1 mcg/kg/min.</li>
+            <li>Recebeu 1 CH.</li>
+            <li>Refere melhora respiratória.</li>
+            <li>Cultura com crescimento de <strong>bacilo Gram-negativo</strong>.</li>
+            <li>Plano: reavaliar em 24h necessidade de manter vancomicina.</li>
+          </ul></div>
+        </details>
+        <details open>
+          <summary>Impressão</summary>
+          <div class="section-content"><div class="impression">
+            <p>
+              Paciente <strong>Valderice Fumeiro Negri, 83 anos</strong>, dialítica crônica por PermCath, admitida com dispneia,
+              hipoxemia e hipotensão, inicialmente responsiva a volume, mas com evolução noturna para instabilidade hemodinâmica
+              e necessidade de noradrenalina. O quadro agora se consolida como <strong>sepse/choque séptico provável</strong>,
+              com cultura positiva para <strong>bacilo Gram-negativo</strong>, tendo como foco principal a ser investigado o
+              <strong>cateter de hemodiálise</strong>, embora ainda sem foco definitivamente confirmado.
+            </p>
+            <p>
+              Apresenta melhora subjetiva respiratória, mas gasometria sugere hipoxemia leve se amostra arterial em ar ambiente,
+              além de acidemia discreta. Diurese residual nas últimas 4h está preservada para o contexto, mas a paciente permanece
+              dependente de HD, exigindo cautela com fluidos e ultrafiltração.
+            </p>
+            <p>
+              <strong>Prioridades do plantão:</strong> manter PAM ≥65 com desmame progressivo de noradrenalina se possível,
+              confirmar unidade/tendência do lactato, acompanhar identificação e antibiograma do Gram-negativo, discutir preservação
+              versus troca/remoção do PermCath com Nefrologia/Infectologia, ajustar antibióticos para HD e reavaliar suspensão da
+              vancomicina em 24–48h se não houver evidência de Gram-positivo.
+            </p>
+          </div></div>
+        </details>
+      </section>
+    
+      <section class="patient-section" id="leito-1600-12-rosa-maria-martins-de-ara-jo">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Leito 1600 12</p>
+            <h2>Rosa Maria Martins de Araújo</h2>
+          </div>
+          <div class="head-actions">
+            <span class="status high">Alta vigilância</span>
+            <a href="uti_6a_leito_1600_12_rosa_maria_martins_araujo_2026-06-07.html" target="_blank">Abrir HTML individual</a>
+          </div>
+        </div>
+
+        <div class="quick-impression">
+          <strong>Impressão rápida:</strong> Paciente Rosa Maria Martins de Araújo, 74 anos , cardiopata valvar, em pós-operatório de duplo valve-in-valve transcateter aórtico e mitral, com complicação neurológica grave após acesso acidental pela carótida esquerda. Evoluiu com AVC isquêmico extenso em hemisfério esquerdo , acometendo grande território de ACA/ACM, cursando com hemiplegia direita e despertar inadequado persistente, apesar de sedação suspensa. Do ponto de vista respiratório, apresenta excelente oxigenação em baixos parâmetros ventilatórios ,…
+        </div>
+
+        <details open>
+          <summary>Diagnósticos</summary>
+          <div class="section-content"><span class="tag tag-danger">AVC extenso</span>
+          <span class="tag tag-blue">VM invasiva</span>
+          <span class="tag tag-warn">FAARV</span>
+          <span class="tag tag-danger">Pós valve-in-valve</span>
+          <div class="alert alert-warn">
+            <strong>Atenção:</strong> há divergência de leito no material: passagem refere 1600 12, mas Doppler transcraniano cita 6700-05. Validar no Tasy.
+          </div>
+          <ul>
+            <li><strong>PO de implante transcateter valve-in-valve aórtico e mitral</strong> — 02/06/2026.</li>
+            <li><strong>Acesso acidental pela carótida esquerda</strong> durante o procedimento.</li>
+            <li><strong>AVC isquêmico extenso em hemisfério esquerdo</strong>, território de ACA/ACM esquerda, acometendo região fronto-temporo-parietal, ínsula e região nucleocapsular.</li>
+            <li>Provável mecanismo misto: hemodinâmico + embólico, com sinais prévios de reperfusão pós-isquêmica / luxury perfusion.</li>
+            <li>Hemiplegia direita e despertar inadequado no POI.</li>
+            <li>Rebaixamento neurológico persistente, sem sedação desde 05/06 às 06h.</li>
+            <li>Atividade epileptiforme interictal frequente, sem crises clínicas/eletrográficas.</li>
+            <li><strong>FA / FA de alta resposta ventricular</strong>, em amiodarona.</li>
+            <li><strong>Febre 38 °C</strong> com leucocitose — iniciado/expandido ATB.</li>
+            <li>Insuficiência respiratória pós-operatória — IOT + VM.</li>
+            <li>IRA / disfunção renal aguda.</li>
+            <li>Anemia pós-operatória.</li>
+            <li>Coagulopatia prévia, com INR atual em melhora.</li>
+            <li>Sinusopatia aguda esfenoidal em TC.</li>
+          </ul></div>
+        </details>
+        <details>
+          <summary>Dispositivos / Suporte</summary>
+          <div class="section-content"><div class="grid">
+            <div class="mini-card"><strong>Neurológico:</strong> sem sedação desde 05/06 às 06h; movimentação espontânea de dimídio esquerdo; hemiplegia direita; abertura ocular apenas ao estímulo doloroso, sem interação sustentada.</div>
+            <div class="mini-card"><strong>EEG:</strong> sem crise eletrográfica; atividade epileptiforme interictal frequente.</div>
+            <div class="mini-card"><strong>VM:</strong> IOT desde 02/06, COT nº 7, RL 22, sem supracuff. Modo AC/PCV | PC 12 | PEEP 6 | FiO₂ 25% | FR 15 | Vte ~423 mL.</div>
+            <div class="mini-card"><strong>P/F:</strong> PaO₂ 155 / FiO₂ 0,25 = <strong>620</strong> → oxigenação preservada.</div>
+            <div class="mini-card"><strong>DVA:</strong> noradrenalina em baixa dose na atualização prévia; manter no menor nível possível.</div>
+            <div class="mini-card"><strong>Antiarrítmico:</strong> amiodarona, dose aumentada na evolução noturna por FAARV.</div>
+            <div class="mini-card"><strong>Sedoanalgesia:</strong> suspensa para avaliação neurológica.</div>
+            <div class="mini-card"><strong>Nutrição:</strong> SNE 20 mL/h.</div>
+            <div class="mini-card"><strong>TRS:</strong> não.</div>
+          </div></div>
+        </details>
+        <details>
+          <summary>Sinais vitais / Balanço</summary>
+          <div class="section-content"><table>
+            <tr><th>Temperatura</th><td>38 °C</td></tr>
+            <tr><th>FC</th><td>110–150 bpm</td></tr>
+            <tr><th>PAM</th><td>83–112 mmHg</td></tr>
+            <tr><th>Glicemia</th><td>172–189 mg/dL</td></tr>
+            <tr><th>BH</th><td>+1587 mL</td></tr>
+            <tr><th>Diurese</th><td>1250 mL/24h → 1250 ÷ 61 ÷ 24 = <strong>0,85 mL/kg/h</strong> → diurese adequada.</td></tr>
+          </table></div>
+        </details>
+        <details>
+          <summary>Exames recentes</summary>
+          <div class="section-content"><table>
+            <tr><th>Gasometria</th><td>pH <strong>7,46</strong> | PaO₂ <strong>155</strong> | PaCO₂ <strong>36</strong> | HCO₃ <strong>26</strong> — alcalemia leve, ventilação adequada e oxigenação preservada.</td></tr>
+            <tr><th>Hemograma</th><td>Hb <strong>9,6</strong> | Leuco <strong>21.860</strong> | Plaq <strong>196.000</strong></td></tr>
+            <tr><th>Coagulação</th><td>INR <strong>1,4</strong></td></tr>
+            <tr><th>Bioquímica</th><td>Na <strong>150</strong> | K <strong>4,0</strong> | Ca ionizado <strong>1,05</strong> | P <strong>2,3</strong> | Ur <strong>104</strong> | Cr <strong>1,66</strong></td></tr>
+            <tr><th>Culturas</th><td>Parciais negativas até o momento.</td></tr>
+            <tr><th>Observação</th><td>AL/ALT? 20 — confirmar nomenclatura no Tasy.</td></tr>
+          </table></div>
+        </details>
+        <details>
+          <summary>Antimicrobianos</summary>
+          <div class="section-content"><ul>
+            <li>Previamente apenas antibiótico profilático perioperatório descrito.</li>
+            <li><strong>Evolução noturna:</strong> febre 38 °C + leucocitose + FAARV; discutido com Dr. Mayco e Dr. Judas → <strong>ampliado esquema para piperacilina-tazobactam + vancomicina</strong>.</li>
+            <li>Reavaliar em 48–72h conforme culturas, foco clínico e evolução de febre/leucocitose.</li>
+            <li>Culturas parciais negativas até o momento.</li>
+          </ul></div>
+        </details>
+        <details open>
+          <summary>Condutas / Pendências</summary>
+          <div class="section-content"><div class="alert alert-danger">
+            <strong>Ponto crítico:</strong> AVC extenso pós-procedimento + FAARV + decisão complexa de anticoagulação versus risco hemorrágico.
+          </div>
+          <ul>
+            <li><strong>Neurológico / AVC extenso:</strong> manter vigilância neurológica rigorosa; evitar hipotensão, hipoxemia, hipercapnia, febre, hipoglicemia/hiperglicemia, anemia e hipovolemia.</li>
+            <li><strong>Alerta neuro:</strong> se piora neurológica, anisocoria, bradicardia + hipertensão, desalinhamento ocular ou suspeita de HIC → TC crânio sem contraste de urgência.</li>
+            <li><strong>Mantidan:</strong> 100 mg 1x/dia conforme Neurologia, para facilitar despertar.</li>
+            <li><strong>LCR:</strong> apenas quando INR/procedimento estiver seguro e se mantida indicação.</li>
+            <li><strong>Epilepsia / EEG:</strong> manter levetiracetam ajustado à função renal; evitar gatilhos de irritabilidade cortical: febre, distúrbios de sódio, hipoglicemia, hipercapnia, acidose e sepse.</li>
+            <li><strong>FAARV:</strong> dose de amiodarona aumentada na evolução noturna; provável contribuição de febre/SIRS.</li>
+            <li><strong>Eletrólitos:</strong> manter K &gt;4,0 e Mg &gt;2,0; repor cálcio/fósforo conforme protocolo.</li>
+            <li><strong>Infecção / Febre:</strong> manter Tazocin + Vancomicina conforme discussão assistente; checar hemoculturas, urocultura, aspirado traqueal, secreções e culturas coletadas; descalonar se culturas negativas e estabilidade.</li>
+            <li><strong>Anticoagulação / Antiagregação:</strong> decisão multidisciplinar Cardiologia + Cirurgia Cardiovascular + Neurologia. Alto risco trombótico por FA + valve-in-valve recente e alto risco hemorrágico por AVC extenso + microhemorragias.</li>
+            <li><strong>Se anticoagulação plena imprescindível:</strong> considerar heparina não fracionada pela meia-vida curta e reversibilidade, com meta clara e acompanhamento neurológico estreito.</li>
+            <li><strong>Ventilação:</strong> oxigenação excelente, P/F 620; principal barreira para extubação é rebaixamento neurológico e apneia em PSV.</li>
+            <li><strong>Hemodinâmica cerebral:</strong> evitar grandes oscilações pressóricas, hipotensão, hipovolemia, anemia, acidose e febre persistente.</li>
+            <li><strong>Renal / Hidroeletrolítico:</strong> IRA em melhora parcial; corrigir hipernatremia gradualmente; ajustar dose de levetiracetam e antimicrobianos à função renal.</li>
+            <li><strong>Sinusopatia / ORL:</strong> considerar ORL/Infectologia se persistência de febre, secreção purulenta, bacteremia ou piora clínica.</li>
+          </ul></div>
+        </details>
+        <details>
+          <summary>Intercorrências</summary>
+          <div class="section-content"><ul>
+            <li>POI com despertar inadequado e hemiplegia direita → protocolo AVC em 02/06.</li>
+            <li>Acesso acidental pela carótida esquerda.</li>
+            <li>AVC extenso em hemisfério esquerdo confirmado em RNM/TC.</li>
+            <li>EEG com atividade epileptiforme frequente, sem crises.</li>
+            <li>Persistência de IOT + VM por rebaixamento neurológico/apneia em PSV.</li>
+            <li><strong>Evolução noturna:</strong> FA de alta resposta ventricular; amiodarona aumentada.</li>
+            <li>Correção de eletrólitos realizada.</li>
+            <li>Febre 38 °C, provável contribuinte para taquiarritmia.</li>
+            <li>Culturas a checar; parciais negativas até o momento.</li>
+            <li>Discutido com Dr. Mayco e Dr. Judas: ampliado ATB para <strong>Tazocin + Vancomicina</strong>.</li>
+            <li>IRA em acompanhamento.</li>
+            <li>Anemia pós-operatória em melhora após CH.</li>
+            <li>INR em melhora: 3,0 prévio → 1,4 atual.</li>
+          </ul></div>
+        </details>
+        <details open>
+          <summary>Impressão</summary>
+          <div class="section-content"><div class="impression">
+            <p>
+              Paciente <strong>Rosa Maria Martins de Araújo, 74 anos</strong>, cardiopata valvar, em pós-operatório de duplo
+              valve-in-valve transcateter aórtico e mitral, com complicação neurológica grave após acesso acidental pela carótida
+              esquerda. Evoluiu com <strong>AVC isquêmico extenso em hemisfério esquerdo</strong>, acometendo grande território de
+              ACA/ACM, cursando com hemiplegia direita e despertar inadequado persistente, apesar de sedação suspensa.
+            </p>
+            <p>
+              Do ponto de vista respiratório, apresenta <strong>excelente oxigenação em baixos parâmetros ventilatórios</strong>,
+              com P/F 620, porém permanece dependente de VM por limitação neurológica e apneia em PSV. Neurologicamente, segue com
+              alto risco de piora por edema, crises subclínicas, febre, distúrbios metabólicos e instabilidade hemodinâmica.
+            </p>
+            <p>
+              Na evolução noturna, apresentou <strong>FA de alta resposta ventricular</strong>, provavelmente agravada por febre/SIRS,
+              sendo aumentada dose de amiodarona e realizada correção eletrolítica. Pela febre de 38 °C, leucocitose importante e
+              contexto pós-operatório/VM, foi discutido com equipes assistentes e ampliado antimicrobiano para
+              <strong>piperacilina-tazobactam + vancomicina</strong>, com culturas ainda parciais negativas.
+            </p>
+            <p>
+              <strong>Prioridades do plantão:</strong> vigilância neurológica estreita, controle de temperatura, prevenção de hipocapnia/hipercapnia e hipotensão,
+              controle da FAARV, manutenção de K &gt;4 e Mg &gt;2, reavaliação diária de PSV/extubação conforme drive neurológico,
+              acompanhamento das culturas para descalonamento de ATB, correção gradual da hipernatremia e decisão multidisciplinar
+              sobre anticoagulação frente ao risco trombótico valvar/FA versus risco hemorrágico do AVC extenso.
+            </p>
+          </div></div>
+        </details>
+      </section>
+    
+      <section class="patient-section" id="leito-1600-13-hewals-preuss">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Leito 1600 13</p>
+            <h2>Hewals Preuss</h2>
+          </div>
+          <div class="head-actions">
+            <span class="status high">Alta vigilância</span>
+            <a href="uti_6a_leito_1600_13_hewals_preuss_2026-06-07.html" target="_blank">Abrir HTML individual</a>
+          </div>
+        </div>
+
+        <div class="quick-impression">
+          <strong>Impressão rápida:</strong> Paciente de 80 anos , com HAS, DM2, hipotireoidismo e DAC crônica, admitido após IAM com supra e cinecoronariografia evidenciando DAC triarterial complexa. Submetido em 02/06 a tentativa de CRVM, com realização de ATIE → ADA , porém revascularização ficou incompleta por safenas fibrosadas/trombosadas e inutilizáveis. Evolui em PO 03–04, neurologicamente íntegro, extubado, sem dor torácica ativa descrita, FEVE preservada apesar de acinesia inferior, em desmame de baixa dose de noradrenalina, com diurese adequada e…
+        </div>
+
+        <details open>
+          <summary>Diagnósticos</summary>
+          <div class="section-content"><span class="tag tag-danger">IAMCSST</span>
+          <span class="tag tag-warn">CRVM incompleta</span>
+          <span class="tag tag-blue">PO CRVM</span>
+          <span class="tag tag-green">Extubado</span>
+          <ul>
+            <li><strong>IAM com supradesnivelamento de ST</strong> — 12/05/2026.</li>
+            <li><strong>DAC triarterial complexa.</strong></li>
+            <li><strong>PO de tentativa de CRVM</strong> — 02/06/2026.</li>
+            <li>Realizado <strong>ATIE → ADA</strong>.</li>
+            <li><strong>CRVM incompleta:</strong> safenas retiradas, porém fibrosadas/trombosadas, impossibilitando uso como enxerto.</li>
+            <li>Lesões conhecidas: DA proximal 80%; D2 ostial 90%; CX proximal 80%; OM2 proximal 80%; CD dominante com lesões 80% proximal/média calcificada e trombo volumoso distal; VP 80%.</li>
+            <li>FEVE preservada, 57%, com acinesia basal/média de parede inferior.</li>
+            <li>Choque/instabilidade pós-operatória em desmame de noradrenalina.</li>
+            <li>Episódio febril isolado no pós-operatório.</li>
+            <li>HAS.</li>
+            <li>DM2 não insulinodependente — HbA1c 6,7%.</li>
+            <li>Hipotireoidismo.</li>
+            <li>CA de próstata em remissão.</li>
+          </ul></div>
+        </details>
+        <details>
+          <summary>Dispositivos / Suporte</summary>
+          <div class="section-content"><div class="grid">
+            <div class="mini-card"><strong>Neurológico:</strong> Glasgow 15, PIFR, sem déficits focais.</div>
+            <div class="mini-card"><strong>Respiratório:</strong> extubado previamente; boa condição clínica descrita. Confirmar se em ar ambiente ou cateter O₂ baixo fluxo.</div>
+            <div class="mini-card"><strong>VM:</strong> não claramente ativa no momento.</div>
+            <div class="mini-card"><strong>P/F:</strong> não calculável — sem gasometria arterial atual e FiO₂ confiável.</div>
+            <div class="mini-card"><strong>DVA:</strong> noradrenalina em desmame, previamente ~0,03 mcg/kg/min.</div>
+            <div class="mini-card"><strong>Sedoanalgesia:</strong> não.</div>
+            <div class="mini-card"><strong>Nutrição:</strong> via oral/dieta conforme tolerância.</div>
+            <div class="mini-card"><strong>TRS:</strong> não.</div>
+            <div class="mini-card"><strong>Dreno mediastinal:</strong> retirado ontem.</div>
+            <div class="mini-card"><strong>SVD/PAI:</strong> avaliar retirada após suspensão de DVA e estabilidade.</div>
+            <div class="mini-card"><strong>Fios de marcapasso:</strong> solicitar avaliação da Cirurgia Cardiovascular para retirada conforme protocolo.</div>
+          </div></div>
+        </details>
+        <details>
+          <summary>Sinais vitais / Balanço</summary>
+          <div class="section-content"><table>
+            <tr><th>Temperatura</th><td>35–38 °C</td></tr>
+            <tr><th>FC</th><td>67–97 bpm</td></tr>
+            <tr><th>PAM</th><td>71–84 mmHg</td></tr>
+            <tr><th>BH</th><td><strong>-353 mL/24h</strong></td></tr>
+            <tr><th>Diurese</th><td>1600 mL/24h → 1600 ÷ 100 ÷ 24 = <strong>0,67 mL/kg/h</strong> → diurese adequada.</td></tr>
+          </table></div>
+        </details>
+        <details>
+          <summary>Exames recentes</summary>
+          <div class="section-content"><table>
+            <tr><th>Hemograma</th><td>Hb <strong>8,9</strong> | Ht <strong>26,9%</strong> | Leuco <strong>3.250</strong> | Plaq <strong>145.000</strong></td></tr>
+            <tr><th>Bioquímica</th><td>Na <strong>139</strong> | K <strong>4,2</strong> | Mg <strong>1,9</strong></td></tr>
+            <tr><th>ECO</th><td>FEVE 57%; acinesia de segmentos basal e médio da parede inferior; disfunção diastólica grau I; VD preservado; PSAP 29 mmHg; sem derrame pericárdico; sem trombos/vegetações.</td></tr>
+            <tr><th>Doppler venoso MMII 30/05</th><td>Sem TVP.</td></tr>
+            <tr><th>Doppler carotídeo 30/05</th><td>Ateromatose sem repercussão hemodinâmica.</td></tr>
+            <tr><th>Doppler arterial MMII</th><td>Ateromatose moderada, sem estenoses significativas.</td></tr>
+          </table></div>
+        </details>
+        <details>
+          <summary>Antimicrobianos</summary>
+          <div class="section-content"><ul>
+            <li>Sem antibiótico terapêutico no momento.</li>
+            <li>Vancomicina profilática descrita no pré-operatório.</li>
+            <li>Pico febril isolado no PO — manter vigilância.</li>
+            <li>Se nova febre ou instabilidade: colher hemoculturas, urocultura, urina tipo 1, RX tórax e revisar ferida operatória/sítios de acesso.</li>
+          </ul></div>
+        </details>
+        <details open>
+          <summary>Condutas / Pendências</summary>
+          <div class="section-content"><div class="alert alert-warn">
+            <strong>Ponto crítico:</strong> CRVM incompleta com lesões residuais importantes — manter tratamento clínico otimizado e discutir estratégia complementar com Cardiologia/Hemodinâmica.
+          </div>
+
+          <ul>
+            <li><strong>Cardiovascular / Pós-IAM / CRVM incompleta:</strong> manter AAS, estatina de alta intensidade, betabloqueador quando estabilidade hemodinâmica permitir e IECA/BRA após suspensão de DVA se PA/função renal adequadas.</li>
+            <li><strong>Revascularização residual:</strong> discutir com Hemodinâmica/Cardiologia estratégia de revascularização complementar versus tratamento clínico otimizado.</li>
+            <li><strong>Hemodinâmica:</strong> desmamar noradrenalina conforme tolerância, mantendo PAM adequada e boa perfusão periférica.</li>
+            <li><strong>Dispositivos:</strong> após retirada completa de DVA, retirar PAI e SVD se sem outra indicação.</li>
+            <li><strong>Isquemia:</strong> monitorar dor torácica, ECG seriado e marcadores se nova dor/instabilidade.</li>
+            <li><strong>Fios de marcapasso:</strong> solicitar equipe da Cirurgia Cardiovascular para retirada. Ideal retirar com paciente estável, plaquetas adequadas, sem coagulopatia relevante e antes de intensificar anticoagulação/dupla antiagregação, se possível.</li>
+            <li><strong>Pós-retirada dos fios:</strong> monitorar dor torácica, hipotensão, sangramento, arritmia e sinais de tamponamento.</li>
+            <li><strong>Respiratório:</strong> confirmar suporte atual: ar ambiente versus cateter O₂; se extubado, manter fisioterapia respiratória, tosse assistida, incentivo ventilatório e mobilização precoce.</li>
+            <li><strong>Volume / renal:</strong> manter meta de BH zero a discretamente negativo conforme congestão, PA e função renal. Seguir furosemida se prescrita e se PA/função renal permitirem.</li>
+            <li><strong>Eletrólitos / arritmia:</strong> K 4,2 adequado; Mg 1,9 — considerar reposição para meta Mg &gt;2,0; manter K &gt;4,0.</li>
+            <li><strong>Drenos / ferida:</strong> dreno retirado ontem; vigiar curativo, dor, sangramento, sinais de tamponamento, febre e sinais locais de infecção.</li>
+            <li><strong>Febre / infecção:</strong> pico até 38 °C, sem ATB terapêutico; se recorrência, coletar HMC, URC, urina tipo 1, RX tórax e revisar ferida/drenos/acessos.</li>
+            <li><strong>Mobilização:</strong> iniciar mobilização fora do leito hoje se estabilidade hemodinâmica e segurança cirúrgica permitirem; priorizar sentar em poltrona, ortostatismo assistido e fisioterapia motora.</li>
+          </ul></div>
+        </details>
+        <details>
+          <summary>Intercorrências</summary>
+          <div class="section-content"><ul>
+            <li>IAMCST em 12/05 com DAC triarterial complexa.</li>
+            <li>CRVM em 02/06, incompleta por impossibilidade de uso das safenas.</li>
+            <li>Extubado previamente.</li>
+            <li>DVA em desmame.</li>
+            <li>Dreno mediastinal retirado ontem.</li>
+            <li>Pico febril até 38 °C.</li>
+            <li><strong>Evolução noturna:</strong> programar/iniciar mobilização fora do leito e solicitar equipe cirúrgica para retirada de fios de marcapasso.</li>
+          </ul></div>
+        </details>
+        <details open>
+          <summary>Impressão</summary>
+          <div class="section-content"><div class="impression">
+            <p>
+              Paciente de <strong>80 anos</strong>, com HAS, DM2, hipotireoidismo e DAC crônica, admitido após IAM com supra e
+              cinecoronariografia evidenciando DAC triarterial complexa. Submetido em 02/06 a tentativa de CRVM, com realização de
+              <strong>ATIE → ADA</strong>, porém revascularização ficou <strong>incompleta</strong> por safenas fibrosadas/trombosadas
+              e inutilizáveis.
+            </p>
+            <p>
+              Evolui em PO 03–04, neurologicamente íntegro, extubado, sem dor torácica ativa descrita, FEVE preservada apesar de
+              acinesia inferior, em desmame de baixa dose de noradrenalina, com diurese adequada e balanço discretamente negativo.
+              Dreno mediastinal já retirado. Apresentou pico febril até 38 °C, sem foco infeccioso definido até o momento, mantendo
+              conduta de vigilância e coleta de culturas se recorrência.
+            </p>
+            <p>
+              <strong>Prioridades do plantão:</strong> suspender noradrenalina se tolerado, iniciar mobilização fora do leito, solicitar
+              retirada dos fios de marcapasso pela Cirurgia Cardiovascular, retirar PAI/SVD após estabilidade, manter AAS + estatina e
+              discutir estratégia de P2Y12/revascularização residual com Cardiologia/Hemodinâmica, além de vigilância para febre recorrente,
+              arritmias, isquemia e complicações pós-operatórias.
+            </p>
+          </div></div>
+        </details>
+      </section>
+    
+      <section class="patient-section" id="leito-1600-14-juarez-ribeiro-de-roma">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Leito 1600 14</p>
+            <h2>Juarez Ribeiro de Roma</h2>
+          </div>
+          <div class="head-actions">
+            <span class="status critical">Crítico</span>
+            <a href="uti_6a_leito_1600_14_juarez_ribeiro_de_roma_2026-06-07.html" target="_blank">Abrir HTML individual</a>
+          </div>
+        </div>
+
+        <div class="quick-impression">
+          <strong>Impressão rápida:</strong> Paciente de 59 anos , DRC dialítico crônico, anúrico, com falência de acesso vascular, internado para confecção de FAV/PTFE em MSE. Evoluiu com trombose precoce, reabordagem cirúrgica, choque persistente e posterior HDA volumosa por varizes esofágicas em 26/05, com choque hemorrágico, IOT e necessidade de CRRT. Atualmente permanece gravíssimo , sedado, em VM, com oxigenação preservada, porém com alcalemia respiratória importante. Mantém choque refratário ainda dependente de noradrenalina 0,5 + vasopressina 0,02 ,…
+        </div>
+
+        <details open>
+          <summary>Diagnósticos</summary>
+          <div class="section-content"><span class="tag tag-danger">Choque refratário</span>
+          <span class="tag tag-blue">VM invasiva</span>
+          <span class="tag tag-warn">CRRT</span>
+          <span class="tag tag-danger">MSE inviável</span>
+          <span class="tag tag-danger">Prognóstico reservado</span>
+          <ul>
+            <li><strong>DRC dialítica crônica</strong>, em HD desde 2003, anúrico, com falência de acesso vascular.</li>
+            <li><strong>PO 13/05/2026</strong> de confecção de FAV com prótese/PTFE em MSE.</li>
+            <li><strong>PO 14/05/2026</strong> de trombectomia de FAV + retirada de clampes.</li>
+            <li><strong>Trombose de FAV / prótese vascular em MSE.</strong></li>
+            <li><strong>Choque refratário multifatorial:</strong> séptico/SIRS + hemorrágico + congestão/hipervolemia por falência dialítica.</li>
+            <li><strong>HDA em 26/05</strong> com hematêmese volumosa e choque hemorrágico.</li>
+            <li><strong>Varizes esofágicas sangrantes</strong> — EDA 27/05 com escleroterapia.</li>
+            <li><strong>Suspeita de infecção de prótese vascular / coleção periprótese em MSE.</strong></li>
+            <li><strong>Mão esquerda isquêmica e inviável</strong>, com cianose fixa de quirodáctilos e flictenas.</li>
+            <li><strong>Anasarca importante.</strong></li>
+            <li><strong>Insuficiência respiratória aguda</strong>, em IOT + VM.</li>
+            <li>Trombocitopenia e anemia.</li>
+            <li>AVC prévio em 2005 com disartria e hemiparesia direita.</li>
+          </ul></div>
+        </details>
+        <details>
+          <summary>Dispositivos / Suporte</summary>
+          <div class="section-content"><div class="grid">
+            <div class="mini-card"><strong>Neurológico:</strong> sedado, RASS -5.</div>
+            <div class="mini-card"><strong>VM:</strong> IOT + VM | FiO₂ 30–40% | PEEP 7 | PC/Pinsp 16 | FR 18.</div>
+            <div class="mini-card"><strong>P/F:</strong> PaO₂ 179. Se FiO₂ 30% → <strong>596</strong>; se FiO₂ 40% → <strong>447</strong>. Oxigenação preservada. Confirmar FiO₂ real no momento da gasometria.</div>
+            <div class="mini-card"><strong>DVA:</strong> noradrenalina <strong>0,5 mcg/kg/min</strong> + vasopressina <strong>0,02 UI/min</strong>; discreto desmame nas últimas 24h.</div>
+            <div class="mini-card"><strong>Sedoanalgesia:</strong> cetamina 1 mg/kg/h + midazolam 0,2.</div>
+            <div class="mini-card"><strong>Nutrição:</strong> provável jejum; avaliar TNE trófica conforme estabilidade hemodinâmica.</div>
+            <div class="mini-card"><strong>TRS:</strong> CVVHDF/CRRT em curso, UF ~130 mL/h; programação de troca de kit hoje.</div>
+            <div class="mini-card"><strong>MSE:</strong> prótese/FAV com fluxo audível, porém mão isquêmica inviável; manter elevado e aquecido; não aferir PA no MSE.</div>
+          </div></div>
+        </details>
+        <details>
+          <summary>Sinais vitais / Balanço</summary>
+          <div class="section-content"><table>
+            <tr><th>Temperatura</th><td>35–36 °C</td></tr>
+            <tr><th>FC</th><td>66–90 bpm</td></tr>
+            <tr><th>PAM</th><td>63–92 mmHg</td></tr>
+            <tr><th>Glicemia</th><td>113–256 mg/dL</td></tr>
+            <tr><th>BH</th><td>+46 mL</td></tr>
+            <tr><th>Perdas / UF</th><td>UF 2372 mL</td></tr>
+            <tr><th>Diurese</th><td>Anúrico — não aplicável cálculo mL/kg/h.</td></tr>
+          </table></div>
+        </details>
+        <details>
+          <summary>Exames recentes</summary>
+          <div class="section-content"><table>
+            <tr><th>Gasometria</th><td>pH <strong>7,52</strong> | PaO₂ <strong>179</strong> | PaCO₂ <strong>29</strong> | HCO₃ <strong>23</strong> — alcalemia importante, predominantemente respiratória.</td></tr>
+            <tr><th>Hemograma</th><td>Hb <strong>7,9</strong> | Leuco <strong>9.540</strong> | Plaq <strong>65.000</strong></td></tr>
+            <tr><th>Bioquímica</th><td>K <strong>4,0</strong> | Mg <strong>2,0</strong> | P <strong>5,0</strong> | Cr <strong>1,14</strong></td></tr>
+            <tr><th>Exames prévios relevantes</th><td>PCR 9,02 mg/dL / 90,2 mg/L. Lactato arterial 17 mg/dL — elevado pela referência local. HMC 26/05 parciais/negativas.</td></tr>
+            <tr><th>ECOTT 25/05</th><td>FEVE 66%; sem trombos, vegetações ou massas intracavitárias.</td></tr>
+          </table></div>
+        </details>
+        <details>
+          <summary>Antimicrobianos</summary>
+          <div class="section-content"><ul>
+            <li><strong>Vancomicina</strong> — D1 17/05.</li>
+            <li><strong>Meropenem</strong> — D1 21–22/05.</li>
+            <li>Prévio: ceftazidima 17/05–21/05.</li>
+            <li>Infectologia mantém <strong>meropenem + vancomicina</strong>, com ajuste para CRRT e protocolo institucional.</li>
+            <li>Se confirmada coleção periprótese, tratar como possível infecção de prótese vascular/tromboflebite infectada, com duração prolongada e necessidade de controle de foco se viável.</li>
+          </ul></div>
+        </details>
+        <details open>
+          <summary>Condutas / Pendências</summary>
+          <div class="section-content"><div class="alert alert-danger">
+            <strong>Ponto crítico:</strong> choque refratário + CRRT + suspeita de foco periprótese/MSE inviável. Reavaliar proporcionalidade terapêutica: TQT versus limitação terapêutica.
+          </div>
+
+          <ul>
+            <li><strong>Choque / Sepse:</strong> manter meta PAM ≥65 mmHg, avaliando perfusão, lactato, temperatura periférica e necessidade de DVA.</li>
+            <li><strong>DVA:</strong> choque ainda refratário, em noradrenalina 0,5 + vasopressina 0,02, apesar de discreto desmame.</li>
+            <li><strong>Corticoide:</strong> considerar hidrocortisona 200 mg/dia se choque séptico refratário persistente, conforme protocolo institucional.</li>
+            <li><strong>Foco infeccioso / Prótese vascular:</strong> confirmar USG de MSE: coleção periprótese, tamanho, conteúdo e possibilidade de punção/drenagem.</li>
+            <li><strong>Controle de foco:</strong> discutir com Vascular + Infectologia possibilidade real de drenagem, punção guiada ou abordagem cirúrgica.</li>
+            <li><strong>ATB:</strong> manter meropenem + vancomicina até definição de foco/culturas, com ajuste para CRRT.</li>
+            <li><strong>MSE isquêmico:</strong> mão esquerda inviável, com cianose fixa e flictenas; manter elevado e aquecido; não aferir PA no MSE.</li>
+            <li><strong>Necrose/foco:</strong> monitorar progressão, sinais de infecção local e necessidade de abordagem vascular/amputação se o membro se tornar foco de instabilidade séptica.</li>
+            <li><strong>CRRT / Volume:</strong> manter CVVHDF, UF ~130 mL/h conforme tolerância hemodinâmica; programada troca de kit hoje.</li>
+            <li><strong>CRRT eletrólitos:</strong> reavaliar dose de efluente entregue, eletrólitos, Ca sistêmico/pós-filtro se citrato, K, Mg, P e bicarbonato.</li>
+            <li><strong>Ventilação / Alcalose:</strong> gasometria com pH 7,52 / PaCO₂ 29; reavaliar FR programada, volume minuto, drive, sedação, dor, temperatura e ajustes da CRRT/bicarbonato; considerar reduzir volume minuto se seguro.</li>
+            <li><strong>HDA / Varizes:</strong> manter vigilância para ressangramento: queda de Hb, melena/hematêmese, aumento de DVA e lactato. Confirmar IBP e necessidade/tempo de octreotide/terlipressina conforme protocolo.</li>
+            <li><strong>Hematologia:</strong> Hb 7,9 e plaquetas 65.000; transfundir conforme sangramento, instabilidade, planejamento de procedimento ou meta hemodinâmica.</li>
+            <li><strong>Nutrição:</strong> se DVA em desmame, lactato estável e sem sinais de hipoperfusão intestinal, avaliar dieta enteral trófica precoce; se choque persistente/ascensão de lactato, manter jejum e reavaliar.</li>
+            <li><strong>Família / Prognóstico:</strong> alinhamento formal com família e equipes assistentes sobre gravidade, metas de cuidado e teto terapêutico se definido.</li>
+          </ul></div>
+        </details>
+        <details>
+          <summary>Intercorrências</summary>
+          <div class="section-content"><ul>
+            <li>Pós-operatório de confecção de FAV com prótese evoluiu com trombose e reabordagem.</li>
+            <li>Choque persistente desde pós-operatório, inicialmente SIRS/sepse suspeita.</li>
+            <li>HDA volumosa em 26/05 com choque hemorrágico.</li>
+            <li>EDA 27/05: varizes esofágicas sangrantes, submetidas a escleroterapia.</li>
+            <li>Suspeita de coleção periprótese vascular em MSE.</li>
+            <li>Mão esquerda isquêmica inviável.</li>
+            <li>Mantém VM, DVA em doses altas e CRRT.</li>
+            <li><strong>Evolução noturna:</strong> discussão com Nefrologia sobre limitação terapêutica; troca de kit programada para hoje; reavaliar com equipe titular <strong>TQT versus limitação terapêutica</strong>.</li>
+          </ul></div>
+        </details>
+        <details open>
+          <summary>Impressão</summary>
+          <div class="section-content"><div class="impression">
+            <p>
+              Paciente de <strong>59 anos</strong>, DRC dialítico crônico, anúrico, com falência de acesso vascular, internado para
+              confecção de FAV/PTFE em MSE. Evoluiu com trombose precoce, reabordagem cirúrgica, choque persistente e posterior
+              HDA volumosa por varizes esofágicas em 26/05, com choque hemorrágico, IOT e necessidade de CRRT.
+            </p>
+            <p>
+              Atualmente permanece <strong>gravíssimo</strong>, sedado, em VM, com oxigenação preservada, porém com alcalemia respiratória importante.
+              Mantém choque refratário ainda dependente de <strong>noradrenalina 0,5 + vasopressina 0,02</strong>, anasarca, CRRT com UF,
+              suspeita de infecção de prótese vascular/coleção periprótese e <strong>mão esquerda isquêmica/inviável</strong>. Laboratório mostra
+              anemia, plaquetopenia e PCR previamente elevado.
+            </p>
+            <p>
+              Na evolução noturna, houve discussão com Nefrologia sobre <strong>limitação terapêutica</strong>, mantendo por ora programação de troca
+              do kit de CRRT e reavaliação com equipe titular. Ponto central do plantão é definir proporcionalidade terapêutica:
+              <strong>traqueostomia e continuidade de suporte avançado versus limitação terapêutica</strong>, considerando falência multiorgânica,
+              ausência de controle de foco claro, membro inviável, choque persistente e prognóstico reservado.
+            </p>
+            <p>
+              <strong>Prioridades do plantão:</strong> manter suporte hemodinâmico e CRRT, reavaliar controle de foco periprótese/MSE, ajustar
+              ventilação para corrigir alcalose, vigiar ressangramento digestivo, manter meropenem + vancomicina ajustados para CRRT,
+              discutir com equipe titular e família metas de cuidado, incluindo decisão sobre TQT versus limitação terapêutica.
+            </p>
+          </div></div>
+        </details>
+      </section>
+    
+      <section class="patient-section" id="leito-1600-15-luis-bispo-de-andrade">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Leito 1600 15</p>
+            <h2>Luis Bispo de Andrade</h2>
+          </div>
+          <div class="head-actions">
+            <span class="status high">Alta vigilância</span>
+            <a href="uti_6a_leito_1600_15_luis_bispo_de_andrade_2026-06-07.html" target="_blank">Abrir HTML individual</a>
+          </div>
+        </div>
+
+        <div class="quick-impression">
+          <strong>Impressão rápida:</strong> Paciente Luis Bispo de Andrade, 56 anos , HAS, DM2 e etilista, admitido por IAM com supradesnivelamento de ST anterior , tratado inicialmente com TNK 40 mg na origem, com critério de reperfusão, seguido de cateterismo precoce via radial direita na BP. O cate não demonstrou lesões obstrutivas, levantando hipótese de artéria recanalizada pós-trombólise versus MINOCA ou diagnóstico diferencial não coronariano, como miocardite/Takotsubo/vasoespasmo. No momento encontra-se estável, consciente, sem dor torácica ou…
+        </div>
+
+        <details open>
+          <summary>Diagnósticos</summary>
+          <div class="section-content"><span class="tag tag-danger">IAMCSST anterior</span>
+          <span class="tag tag-warn">Pós-TNK</span>
+          <span class="tag tag-blue">Cate sem lesão obstrutiva</span>
+          <span class="tag tag-danger">Hemoptise</span>
+          <ul>
+            <li><strong>IAM com supradesnivelamento de ST anterior</strong> — supra V1–V3, admitido via CROSS/UPA Vila Maria.</li>
+            <li><strong>Trombólise química com TNK 40 mg</strong> em 07/06/2026 às 03:45, com critério de reperfusão.</li>
+            <li><strong>POI de cateterismo cardíaco via radial direita</strong>, sem lesões coronarianas obstrutivas.</li>
+            <li>Síndrome coronariana aguda com cine sem obstrução significativa — considerar artéria recanalizada pós-trombólise, MINOCA, vasoespasmo, miocardite, Takotsubo, embolia/trombo lisado ou alteração eletrocardiográfica não coronariana.</li>
+            <li><strong>Hemoptise em pequena quantidade</strong> após trombólise/antitrombóticos — vigilância para sangramento.</li>
+            <li>Náuseas, vômitos e inapetência há 3 dias.</li>
+            <li>HAS.</li>
+            <li>DM2.</li>
+            <li>Etilismo.</li>
+          </ul></div>
+        </details>
+        <details>
+          <summary>Dispositivos / Suporte</summary>
+          <div class="section-content"><div class="grid">
+            <div class="mini-card"><strong>Neurológico:</strong> Glasgow 15, consciente, orientado em tempo/espaço, calmo/responsivo; pupilas isocóricas e fotorreagentes; sem sinais de AVC; força preservada nos 4 membros.</div>
+            <div class="mini-card"><strong>Oxigenação:</strong> eupneico, em cateter O₂ 2 L/min, SatO₂ 97%; AP: MV+ sem ruídos adventícios.</div>
+            <div class="mini-card"><strong>P/F:</strong> não calculável — sem gasometria arterial disponível e FiO₂ de cateter nasal não é precisa.</div>
+            <div class="mini-card"><strong>DVA:</strong> não.</div>
+            <div class="mini-card"><strong>Sedoanalgesia:</strong> não.</div>
+            <div class="mini-card"><strong>Nutrição:</strong> dieta VO; atenção a náuseas/vômitos e risco de broncoaspiração.</div>
+            <div class="mini-card"><strong>TRS:</strong> não.</div>
+            <div class="mini-card"><strong>Acesso:</strong> AVP em MSD.</div>
+            <div class="mini-card"><strong>Punção radial direita:</strong> pulseira hemostática em punho D; perfusão e sensibilidade distal preservadas.</div>
+          </div></div>
+        </details>
+        <details>
+          <summary>Sinais vitais / Balanço</summary>
+          <div class="section-content"><table>
+            <tr><th>FC</th><td>95 bpm</td></tr>
+            <tr><th>FR</th><td>22 irpm</td></tr>
+            <tr><th>PAM</th><td>119 mmHg</td></tr>
+            <tr><th>BH diário</th><td>+760 mL</td></tr>
+            <tr><th>Peso</th><td>80 kg</td></tr>
+            <tr><th>Diurese</th><td>Espontânea, sem volume informado — não calculável mL/kg/h.</td></tr>
+          </table></div>
+        </details>
+        <details>
+          <summary>Exames recentes</summary>
+          <div class="section-content"><table>
+            <tr><th>Cateterismo cardíaco</th><td><strong>Sem lesões obstrutivas</strong>.</td></tr>
+            <tr><th>ECG inicial</th><td><strong>Supra V1–V3</strong>.</td></tr>
+            <tr><th>Creatinina recente pré-procedimento</th><td>Não disponível no formulário.</td></tr>
+            <tr><th>Laboratório atual</th><td>Não informado.</td></tr>
+          </table></div>
+        </details>
+        <details>
+          <summary>Antimicrobianos</summary>
+          <div class="section-content"><ul>
+            <li>Afebril.</li>
+            <li><strong>Sem ATB</strong> no momento.</li>
+          </ul></div>
+        </details>
+        <details open>
+          <summary>Condutas / Pendências</summary>
+          <div class="section-content"><div class="alert alert-warn">
+            <strong>Ponto crítico:</strong> IAMCSST trombolisado com cate sem lesões obstrutivas + hemoptise pós-TNK/antiagregação/anticoagulação.
+          </div>
+
+          <ul>
+            <li><strong>Pós-IAMCSST trombolisado / Cate sem obstrução:</strong> manter monitorização em UTI/telemetria; ECG seriado e curva de troponina.</li>
+            <li><strong>Revisar linha do tempo:</strong> confirmar horário exato de início dos sintomas, ECGs pré/pós-TNK e critérios de reperfusão.</li>
+            <li><strong>Etiologia:</strong> discutir com Hemodinâmica/Cardiologia se quadro representa coronária recanalizada, MINOCA ou diagnóstico alternativo.</li>
+            <li><strong>Antiagregação / Anticoagulação:</strong> recebeu AAS 300 mg + clopidogrel 300 mg. Definir manutenção de AAS ± P2Y12 conforme decisão da Cardiologia após cate sem lesões obstrutivas e presença de hemoptise.</li>
+            <li><strong>Sangramento:</strong> evitar escalonamento antitrombótico enquanto houver sangramento ativo ou hemoptise em progressão.</li>
+            <li><strong>Prevenção secundária:</strong> se mantido diagnóstico de IAM/MINOCA isquêmico, considerar AAS, estatina alta intensidade, controle pressórico/glicêmico e investigação etiológica.</li>
+            <li><strong>Hemoptise:</strong> quantificar volume e recorrência; checar Hb/plaquetas/coagulograma; solicitar RX tórax.</li>
+            <li><strong>Hemoptise grave:</strong> se aumento do volume, queda de Hb, dessaturação ou instabilidade, suspender/reavaliar antitrombóticos, acionar Cardiologia/Pneumo e considerar TC de tórax/broncoscopia conforme gravidade.</li>
+            <li><strong>Náuseas / Vômitos / Inapetência:</strong> manter antiemético se necessário; avaliar hidratação, eletrólitos, função renal e glicemia; dieta leve conforme tolerância.</li>
+            <li><strong>Controle cardiovascular:</strong> monitorar dor torácica ou equivalentes anginosos; manter PA controlada; solicitar ECO; iniciar/otimizar estatina de alta intensidade salvo contraindicação.</li>
+            <li><strong>Betabloqueador / IECA-BRA:</strong> considerar conforme PA, FC, função renal e avaliação da Cardiologia.</li>
+            <li><strong>Diabetes / HAS:</strong> controle glicêmico hospitalar com meta usual de UTI 140–180 mg/dL; revisar medicações domiciliares e função renal antes de reiniciar hipoglicemiantes/anti-hipertensivos.</li>
+            <li><strong>Transferência:</strong> se permanecer sem dor, sem recorrência de hemoptise, sem arritmias, ECG estável, sem queda de Hb e ECO sem achados de alto risco, discutir transferência para unidade monitorizada/cardiologia.</li>
+          </ul></div>
+        </details>
+        <details>
+          <summary>Intercorrências</summary>
+          <div class="section-content"><ul>
+            <li>Admitido via CROSS/UPA Vila Maria por <strong>IAMCSST anterior</strong>, supra V1–V3.</li>
+            <li>Recebeu <strong>TNK 40 mg às 03:45 de 07/06/2026</strong>, com critério de reperfusão.</li>
+            <li>Realizado cateterismo cardíaco via radial, <strong>sem lesões obstrutivas</strong>.</li>
+            <li>Sem dor torácica no momento.</li>
+            <li>Hemodinamicamente estável, sem DVA.</li>
+            <li>Eupneico, em cateter O₂ 2 L/min, SatO₂ 97%.</li>
+            <li>Relata inapetência, náuseas e vômitos há 3 dias.</li>
+            <li>Apresentou <strong>hemoptise em pequena quantidade</strong>.</li>
+            <li>Sítio de punção radial sem sinais de complicação, perfusão/sensibilidade distal preservadas.</li>
+          </ul></div>
+        </details>
+        <details open>
+          <summary>Impressão</summary>
+          <div class="section-content"><div class="impression">
+            <p>
+              Paciente <strong>Luis Bispo de Andrade, 56 anos</strong>, HAS, DM2 e etilista, admitido por
+              <strong>IAM com supradesnivelamento de ST anterior</strong>, tratado inicialmente com <strong>TNK 40 mg</strong> na origem,
+              com critério de reperfusão, seguido de cateterismo precoce via radial direita na BP. O cate não demonstrou lesões
+              obstrutivas, levantando hipótese de artéria recanalizada pós-trombólise versus <strong>MINOCA</strong> ou diagnóstico
+              diferencial não coronariano, como miocardite/Takotsubo/vasoespasmo.
+            </p>
+            <p>
+              No momento encontra-se estável, consciente, sem dor torácica ou equivalentes anginosos, sem DVA, eupneico com baixo fluxo
+              de O₂ e punção radial sem complicações. Ponto de atenção é <strong>hemoptise em pequena quantidade</strong> em contexto de
+              trombólise + antiagregação + anticoagulação, exigindo vigilância ativa de sangramento, hemograma/coagulograma e RX tórax.
+            </p>
+            <p>
+              <strong>Prioridades do plantão:</strong> monitorização pós-trombólise/cate, checar ECG/troponina seriados, solicitar ECO,
+              acompanhar hemoptise e Hb/coagulograma, definir com Cardiologia estratégia antitrombótica após cine sem obstrução, tratar
+              náuseas/vômitos e programar investigação de MINOCA com RM cardíaca se persistir ausência de lesão culpada e estabilidade clínica.
+            </p>
+          </div></div>
+        </details>
+      </section>
+    
+      <section class="patient-section" id="leito-1600-16-ojandir-ubirajara-belini">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Leito 1600 16</p>
+            <h2>Ojandir Ubirajara Belini</h2>
+          </div>
+          <div class="head-actions">
+            <span class="status stable">Estável / monitorização</span>
+            <a href="uti_6a_leito_1600_16_ojandir_ubirajara_belini_2026-06-07.html" target="_blank">Abrir HTML individual</a>
+          </div>
+        </div>
+
+        <div class="quick-impression">
+          <strong>Impressão rápida:</strong> Paciente de 72 anos , cirrótico descompensado por ascite volumosa recorrente, encefalopatia hepática e síndrome hepatorrenal/DRC agudizada, ativo em lista de transplante hepático com MELD 29 . Evolui hemodinamicamente estável, sem DVA clássica, sonolento porém despertável, com fala lentificada e flapping discreto, mantendo quadro de encefalopatia hepática clínica. Apresenta diurese adequada nas últimas 24h, porém mantém ureia elevada, hiponatremia, leucopenia/neutropenia, plaquetopenia importante e urinálise com…
+        </div>
+
+        <details open>
+          <summary>Diagnósticos</summary>
+          <div class="section-content"><span class="tag tag-danger">MELD 29</span>
+          <span class="tag tag-warn">Encefalopatia</span>
+          <span class="tag tag-blue">Lista transplante</span>
+          <span class="tag tag-warn">SHR/DRC agudizada</span>
+          <span class="tag tag-danger">Plaquetopenia</span>
+          <ul>
+            <li><strong>Cirrose hepática descompensada</strong>, ativo em lista para transplante hepático, com situação especial — <strong>MELD 29</strong>.</li>
+            <li><strong>Encefalopatia hepática</strong>, com sonolência, fala lenta e flapping discreto.</li>
+            <li><strong>Síndrome hepatorrenal / DRC agudizada</strong>, em melhora parcial.</li>
+            <li><strong>Divergência sobre terlipressina:</strong> hepatologia descreve suspensão; cardiologia descreve manutenção em dose reduzida — confirmar prescrição atual.</li>
+            <li><strong>Ascite volumosa recorrente.</strong></li>
+            <li>ITU tratada; nova urinálise com leucocitúria importante.</li>
+            <li><strong>Leucopenia/neutropenia</strong> e plaquetopenia.</li>
+            <li><strong>PO 02 de cantoplastia ungueal direita — 03/06/2026</strong>, sem sinais de infecção local.</li>
+            <li>DAC: ATC 2019 + CRM 2024, com antecedente de osteomielite de esterno no pós-operatório.</li>
+            <li>Estenose aórtica moderada.</li>
+            <li>HAS, DM, DLP.</li>
+            <li>HDA prévia por úlcera gástrica.</li>
+            <li>Duplo J em abril/2025.</li>
+          </ul></div>
+        </details>
+        <details>
+          <summary>Dispositivos / Suporte</summary>
+          <div class="section-content"><div class="grid">
+            <div class="mini-card"><strong>Neurológico:</strong> vigil, sonolento, facilmente despertável, fala lenta, flapping discreto; encefalopatia basal.</div>
+            <div class="mini-card"><strong>Respiratório:</strong> eupneico, provável O₂ baixo fluxo em parte do período; SatO₂ média 96,3%.</div>
+            <div class="mini-card"><strong>VM:</strong> não.</div>
+            <div class="mini-card"><strong>P/F:</strong> não aplicável — sem VM e sem gasometria arterial confiável. Gaso informada parece venosa pela SatO₂ venosa.</div>
+            <div class="mini-card"><strong>DVA:</strong> não. Terlipressina pode estar ativa como vasoconstritor para SHR — confirmar.</div>
+            <div class="mini-card"><strong>Sedoanalgesia:</strong> não.</div>
+            <div class="mini-card"><strong>Nutrição:</strong> dieta enteral por SNE 30–40 mL/h + VO quando acordado/liberado.</div>
+            <div class="mini-card"><strong>TRS:</strong> não.</div>
+            <div class="mini-card"><strong>SVD:</strong> mantida por orientação médica; fisioterapia pélvica acompanha e sugere retirada em momento oportuno.</div>
+          </div></div>
+        </details>
+        <details>
+          <summary>Sinais vitais / Balanço</summary>
+          <div class="section-content"><table>
+            <tr><th>Temperatura</th><td>36–36,8 °C</td></tr>
+            <tr><th>FC</th><td>53–66 bpm</td></tr>
+            <tr><th>PAM</th><td>69–99 mmHg</td></tr>
+            <tr><th>Glicemia</th><td>140–210 mg/dL</td></tr>
+            <tr><th>BH</th><td>+893 mL</td></tr>
+            <tr><th>Diurese</th><td>1250 mL/24h → 1250 ÷ 76 ÷ 24 = <strong>0,69 mL/kg/h</strong> → diurese adequada.</td></tr>
+          </table></div>
+        </details>
+        <details>
+          <summary>Exames recentes</summary>
+          <div class="section-content"><table>
+            <tr><th>Gasometria venosa provável</th><td>pH <strong>7,40</strong> | pO₂ <strong>77</strong> | pCO₂ <strong>34</strong> | HCO₃ <strong>21</strong> | SatO₂ venosa <strong>95%</strong></td></tr>
+            <tr><th>Lactato</th><td><strong>10</strong> — confirmar unidade; se mg/dL, dentro/limítrofe conforme referência local.</td></tr>
+            <tr><th>Hemograma</th><td>Hb <strong>9,0</strong> | Leuco <strong>1.510</strong> | Plaq <strong>36.000</strong></td></tr>
+            <tr><th>Bioquímica</th><td>Na <strong>129</strong> | K <strong>4,6</strong> | Mg <strong>2,0</strong> | Ca ionizado <strong>1,30</strong> | Ur <strong>134</strong></td></tr>
+            <tr><th>Exames prévios</th><td>Amônia 92 µmol/L. Urinálise: leucócitos 96.000, eritrócitos 13.000, nitrito negativo, proteínas ~0,30 g/L; URC solicitada.</td></tr>
+            <tr><th>ECO 13/05</th><td>FEVE 65%, disfunção diastólica grau I, AE dilatado, estenose aórtica moderada, PSAP 35 mmHg.</td></tr>
+            <tr><th>EDA 11/05</th><td>Varizes esofágicas de fino calibre, gastropatia hipertensiva leve, gastrite antral leve; SNE liberada.</td></tr>
+            <tr><th>Vascular</th><td>Doppler MMII 13/05 pérvio. USG Doppler arterial MIE: oclusão de artéria tibial posterior esquerda com recanalização.</td></tr>
+          </table></div>
+        </details>
+        <details>
+          <summary>Antimicrobianos</summary>
+          <div class="section-content"><ul>
+            <li><strong>Meropenem:</strong> encerrado em 01/06.</li>
+            <li><strong>Fluconazol:</strong> descrito como último dia 04/06; cardiologia solicitou suspensão e nova urina 1 + urocultura.</li>
+            <li><strong>Atual:</strong> confirmar se permanece sem antimicrobiano ou se fluconazol ainda consta em prescrição.</li>
+            <li>Nova urinálise alterada com leucocitúria importante — aguardar URC e correlacionar com febre, piora neurológica/renal e sintomas, especialmente em paciente com SVD.</li>
+          </ul></div>
+        </details>
+        <details open>
+          <summary>Condutas / Pendências</summary>
+          <div class="section-content"><div class="alert alert-warn">
+            <strong>Ponto crítico:</strong> cirrose descompensada em lista de transplante, com encefalopatia, SHR/DRC agudizada, hiponatremia e leucocitúria com SVD.
+          </div>
+
+          <ul>
+            <li><strong>Cirrose / Transplante:</strong> manter status ativo em lista e comunicação com equipe de transplante. Acionar Hepatologia/transplante se piora renal, infecciosa, neurológica, hemodinâmica ou sangramento.</li>
+            <li><strong>Alta da UTI:</strong> sem contraindicação de alta pela Hepatologia se plano de monitorização e suporte for seguro.</li>
+            <li><strong>Encefalopatia hepática:</strong> manter lactulona/lactulose com meta de 2–3 evacuações/dia; evitar constipação e também diarreia/desidratação pela SHR.</li>
+            <li><strong>Precipitantes de encefalopatia:</strong> procurar ITU/SVD, PBE, hiponatremia, sangramento digestivo, hipovolemia pós-paracentese, constipação, sedativos e distúrbios eletrolíticos.</li>
+            <li><strong>Hiponatremia:</strong> Na 129, pior que prévio 133; avaliar hiponatremia dilucional por cirrose/ascite versus perdas/diuréticos; evitar correção rápida.</li>
+            <li><strong>SHR / Função renal:</strong> ureia 134; confirmar se terlipressina está ativa ou suspensa. Se SHR-AKI ainda em tratamento, manter estratégia com albumina + vasoconstritor conforme prescrição, monitorando isquemia, bradicardia, PA, congestão e hipoxemia.</li>
+            <li><strong>Ascite:</strong> monitorar desconforto abdominal, ventilação, dor, febre e necessidade de nova paracentese. Em paracentese de grande volume, garantir reposição de albumina conforme protocolo institucional.</li>
+            <li><strong>PBE:</strong> avaliar se dor abdominal, febre, piora de encefalopatia, piora renal, hipotensão ou leucopenia sem explicação.</li>
+            <li><strong>Infecção / Urinário:</strong> nova urina 1 com leucocitúria importante em paciente com SVD; aguardar URC. Se febre, piora pressórica, renal ou encefalopatia, colher culturas e discutir reinício de ATB.</li>
+            <li><strong>SVD:</strong> retirar assim que seguro para reduzir risco de ITU associada a cateter.</li>
+            <li><strong>Hematologia:</strong> leuco 1.510 e plaquetas 36.000; alto risco de sangramento/procedimentos. Evitar punções/procedimentos sem correção conforme limiar institucional.</li>
+            <li><strong>Nutrição:</strong> manter dieta enteral e VO apenas quando desperto/seguro; evitar restrição proteica rotineira; considerar fracionamento e lanche noturno se viável.</li>
+            <li><strong>Cantoplastia ungueal:</strong> curativo local em pé direito com limpeza diária + Nebacetim; vigiar sangramento e infecção pela plaquetopenia e neutropenia.</li>
+            <li><strong>Cardiologia:</strong> manter vigilância hemodinâmica, especialmente se terlipressina estiver em uso; estenose aórtica moderada e DAC pós-CRM exigem evitar hipotensão, hipovolemia agressiva e anemia importante.</li>
+            <li><strong>Bradicardia relativa:</strong> FC 53–66; correlacionar com terlipressina, betabloqueadores ou outros fármacos.</li>
+          </ul></div>
+        </details>
+        <details>
+          <summary>Intercorrências</summary>
+          <div class="section-content"><ul>
+            <li>Paracenteses recentes de grande volume.</li>
+            <li>SHR em tratamento prévio com albumina/terlipressina, com melhora parcial.</li>
+            <li>Cantoplastia ungueal direita em 03/06, sem intercorrências.</li>
+            <li>Ausência de evacuação no dia anterior → lactulona reforçada.</li>
+            <li>Fluconazol suspenso em 04/06 e solicitada nova urina 1 + URC.</li>
+            <li>SVD mantida por orientação médica.</li>
+            <li>Leucocitúria importante em urinálise recente.</li>
+            <li>Hiponatremia atual: Na 129.</li>
+            <li>Plaquetopenia 36.000 e leucopenia 1.510.</li>
+          </ul></div>
+        </details>
+        <details open>
+          <summary>Impressão</summary>
+          <div class="section-content"><div class="impression">
+            <p>
+              Paciente de <strong>72 anos</strong>, cirrótico descompensado por ascite volumosa recorrente, encefalopatia hepática e
+              síndrome hepatorrenal/DRC agudizada, <strong>ativo em lista de transplante hepático com MELD 29</strong>. Evolui
+              hemodinamicamente estável, sem DVA clássica, sonolento porém despertável, com fala lentificada e flapping discreto,
+              mantendo quadro de encefalopatia hepática clínica.
+            </p>
+            <p>
+              Apresenta diurese adequada nas últimas 24h, porém mantém ureia elevada, hiponatremia, leucopenia/neutropenia,
+              plaquetopenia importante e urinálise com leucocitúria significativa em contexto de SVD, devendo-se excluir ITU como
+              precipitante de encefalopatia e deterioração renal. Há divergência relevante sobre terlipressina, que precisa ser
+              confirmada na prescrição.
+            </p>
+            <p>
+              <strong>Prioridades do plantão:</strong> confirmar terlipressina ativa ou suspensa, manter lactulona com alvo de 2–3 evacuações/dia,
+              acompanhar Na e função renal, aguardar URC, retirar SVD quando seguro, excluir ITU/PBE como precipitantes, manter nutrição
+              enteral sem restrição proteica indevida, proteger contra sangramento/procedimentos pela plaquetopenia e manter comunicação
+              com Hepatologia/transplante se houver nova deterioração clínica.
+            </p>
+          </div></div>
+        </details>
+      </section>
+    
+      <section class="patient-section" id="leito-1600-17-michelle-santos-silva-xavier">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Leito 1600 17</p>
+            <h2>Michelle Santos Silva Xavier</h2>
+          </div>
+          <div class="head-actions">
+            <span class="status high">Alta vigilância</span>
+            <a href="uti_6a_leito_1600_17_michelle_santos_silva_xavier_2026-06-07.html" target="_blank">Abrir HTML individual</a>
+          </div>
+        </div>
+
+        <div class="quick-impression">
+          <strong>Impressão rápida:</strong> Paciente jovem, portadora de doença falciforme , poli-transfundida e aloimunizada, com DRC dialítica , admitida com anemia crítica, dispneia e dor torácica/dorsal. Evolui com Hb atual 6,6, ainda abaixo de meta segura, mantendo necessidade de suporte transfusional cuidadoso e compatibilizado. A dispneia parece multifatorial, com contribuição de anemia grave e congestão pulmonar, sem evidência atual de TEP ou consolidação pulmonar. O principal risco imediato é o equilíbrio entre corrigir anemia/hipóxia tecidual e…
+        </div>
+
+        <details open>
+          <summary>Diagnósticos</summary>
+          <div class="section-content"><span class="tag tag-danger">Anemia grave</span>
+          <span class="tag tag-warn">Falciforme aloimunizada</span>
+          <span class="tag tag-blue">DRC dialítica</span>
+          <span class="tag tag-danger">Risco transfusional</span>
+          <span class="tag tag-warn">Congestão pulmonar</span>
+          <ul>
+            <li><strong>Doença falciforme com anemia grave</strong>, Hb inicial 4,8 g/dL, atualmente Hb 6,6 g/dL.</li>
+            <li>Paciente <strong>poli-transfundida e aloimunizada</strong>.</li>
+            <li><strong>DRC dialítica</strong>, em hemodiálise segunda/quarta/sexta; última HD em 05/06/2026.</li>
+            <li>Dispneia e dor torácica/dorsal, provável contribuição de anemia grave + congestão pulmonar.</li>
+            <li>Congestão pulmonar em imagem, sem consolidação ou broncograma aéreo; pequeno derrame pleural à esquerda.</li>
+            <li>Epistaxe autolimitada.</li>
+            <li>Náuseas/vômitos e inapetência desde 03/06/2026.</li>
+            <li>Avaliada para TEP/TEC: sem sinais de tromboembolismo.</li>
+            <li>Leucocitose em investigação, sem foco infeccioso evidente.</li>
+          </ul></div>
+        </details>
+        <details>
+          <summary>Dispositivos / Suporte</summary>
+          <div class="section-content"><div class="grid">
+            <div class="mini-card"><strong>Neurológico:</strong> vigil, orientada, queixa de dor leve a moderada.</div>
+            <div class="mini-card"><strong>Respiratório:</strong> ar ambiente; saturação baixa na admissão, em monitorização contínua.</div>
+            <div class="mini-card"><strong>VM:</strong> não.</div>
+            <div class="mini-card"><strong>P/F:</strong> se gasometria arterial em ar ambiente → 95 / 0,21 = <strong>452</strong>, oxigenação preservada. Se em O₂ suplementar, P/F não validável sem FiO₂ precisa.</div>
+            <div class="mini-card"><strong>DVA:</strong> não.</div>
+            <div class="mini-card"><strong>Sedoanalgesia:</strong> dipirona programada; opioide de resgate se dor moderada/intensa.</div>
+            <div class="mini-card"><strong>Nutrição:</strong> inapetente desde 03/06; dieta conforme tolerância.</div>
+            <div class="mini-card"><strong>TRS:</strong> HD regular seg/qua/sex; próxima prevista 08/06, avaliar antecipação se congestão/sintomas.</div>
+          </div></div>
+        </details>
+        <details>
+          <summary>Sinais vitais / Balanço</summary>
+          <div class="section-content"><table>
+            <tr><th>Temperatura</th><td>36 °C</td></tr>
+            <tr><th>FC</th><td>103–118 bpm</td></tr>
+            <tr><th>PAM</th><td>113–144 mmHg</td></tr>
+            <tr><th>Glicemia</th><td>120–131 mg/dL</td></tr>
+            <tr><th>BH</th><td>+1145 mL</td></tr>
+            <tr><th>Perdas</th><td>Não quantificadas.</td></tr>
+            <tr><th>Diurese</th><td>Não informada — cálculo mL/kg/h não possível.</td></tr>
+          </table></div>
+        </details>
+        <details>
+          <summary>Exames recentes</summary>
+          <div class="section-content"><table>
+            <tr><th>Gasometria</th><td>pH <strong>7,33</strong> | pO₂ <strong>95</strong> | pCO₂ <strong>41</strong> | HCO₃ <strong>22</strong></td></tr>
+            <tr><th>Hemograma</th><td>Hb <strong>6,6</strong> | Leuco <strong>18.400</strong> | Plaq <strong>260.000</strong></td></tr>
+            <tr><th>Bioquímica</th><td>Na <strong>131</strong> | Ca ionizado <strong>1,17</strong> | P <strong>8,6</strong> | Ur <strong>85</strong> | Cr <strong>6,15</strong></td></tr>
+            <tr><th>Lactato</th><td><strong>11</strong> — confirmar unidade; se mg/dL, sem hiperlactatemia relevante.</td></tr>
+            <tr><th>Imagem pulmonar</th><td>Congestão pulmonar + pequeno derrame pleural à esquerda; sem consolidação/broncograma aéreo.</td></tr>
+            <tr><th>TEP/TEC</th><td>Sem sinais de tromboembolismo.</td></tr>
+          </table></div>
+        </details>
+        <details>
+          <summary>Antimicrobianos</summary>
+          <div class="section-content"><ul>
+            <li><strong>Piperacilina/tazobactam</strong> iniciado empiricamente.</li>
+            <li>Sem foco infeccioso evidente até o momento.</li>
+            <li>Reavaliar em 24–48h conforme curva térmica, culturas, PCR/PCT, imagem e evolução clínica.</li>
+          </ul></div>
+        </details>
+        <details open>
+          <summary>Condutas / Pendências</summary>
+          <div class="section-content"><div class="alert alert-danger">
+            <strong>Ponto crítico:</strong> paciente falciforme aloimunizada com anemia grave e DRC dialítica — transfundir com compatibilização estendida e vigiar TACO/hiper-hemólise.
+          </div>
+
+          <ul>
+            <li><strong>Anemia grave / Doença falciforme:</strong> Hb atual 6,6, melhora em relação à Hb inicial 4,8, porém ainda anemia grave.</li>
+            <li><strong>Banco de Sangue:</strong> acionar para hemácias compatibilizadas com fenótipo/genótipo estendido, devido à aloimunização.</li>
+            <li><strong>Meta transfusional:</strong> Hb 7–8 g/dL, evitando hipertransfusão/hiperviscosidade.</li>
+            <li><strong>Estratégia:</strong> transfundir 1 CH por vez, com reavaliação clínica, Hb e sinais de sobrecarga.</li>
+            <li><strong>Vigilância hemolítica:</strong> monitorar reação hemolítica tardia/hiper-hemólise: dor, febre, icterícia, urina escura, queda paradoxal de Hb, LDH, bilirrubina e reticulócitos.</li>
+            <li><strong>Risco transfusional / Congestão:</strong> alto risco de TACO pela DRC dialítica e congestão pulmonar; transfusão lenta, balanço rigoroso, monitorar PA, SpO₂, ausculta e desconforto respiratório.</li>
+            <li><strong>HD pós-transfusão:</strong> considerar programação de HD/UF após transfusão se piora congestiva.</li>
+            <li><strong>Dor torácica/dorsal / Crise falciforme:</strong> analgesia programada com dipirona; se dor moderada/intensa, opioide titulado com vigilância respiratória e náuseas.</li>
+            <li><strong>Medidas anti-falcização:</strong> evitar hipoxemia, hipotermia, desidratação e acidose. Hidratação cautelosa, preferencialmente oral/fracionada, pelo contexto de congestão e DRC.</li>
+            <li><strong>Síndrome torácica aguda — vigilância:</strong> imagem sem consolidação/broncograma e sem febre, favorecendo congestão/anemia; repetir RX/TC tórax se febre, dor progressiva, queda de SpO₂, novo infiltrado ou piora ventilatória.</li>
+            <li><strong>Oxigenação:</strong> monitorização contínua de SpO₂; O₂ suplementar se SpO₂ &lt;92%; em falciforme, preferir meta ≥94% se possível; fisioterapia/incentivo respiratório.</li>
+            <li><strong>DRC / Hemodiálise:</strong> próxima HD prevista em 08/06/2026; considerar antecipar se congestão, piora respiratória, hipercalemia, acidose, hipertensão volumétrica ou necessidade pós-transfusão.</li>
+            <li><strong>Fósforo:</strong> P 8,6 — revisar quelantes, dieta e programação dialítica.</li>
+            <li><strong>Ajuste renal:</strong> ajustar piperacilina/tazobactam e demais fármacos para HD.</li>
+            <li><strong>Náuseas / Vômitos / Inapetência:</strong> antiemético com avaliação de QTc e função renal; dieta fracionada conforme tolerância; monitorar hipoglicemia, eletrólitos e volume efetivo.</li>
+            <li><strong>Epistaxe:</strong> medidas locais — compressão, umidificação nasal, pomada/gel nasal. Solicitar ORL se recorrência, sangramento volumoso ou queda de Hb desproporcional.</li>
+            <li><strong>Antibiótico / Leucocitose:</strong> leuco 18.400, afebril, imagem sem consolidação. Manter Tazocin se decisão assistente, mas reavaliar diariamente e suspender/descalonar se estabilidade, ausência de foco e culturas negativas.</li>
+          </ul></div>
+        </details>
+        <details>
+          <summary>Intercorrências</summary>
+          <div class="section-content"><ul>
+            <li>Epistaxe pequena em 06/06 por volta de 19:30, autolimitada com compressão.</li>
+            <li>Dispneia na admissão, saturação baixa, em melhora sob monitorização.</li>
+            <li>Vômitos e inapetência desde 03/06.</li>
+            <li>Anemia grave com Hb inicial 4,8, atualmente Hb 6,6 após suporte.</li>
+            <li>Congestão pulmonar em imagem, pequeno derrame pleural à esquerda.</li>
+            <li>Sem evidência de TEP.</li>
+          </ul></div>
+        </details>
+        <details open>
+          <summary>Impressão</summary>
+          <div class="section-content"><div class="impression">
+            <p>
+              Paciente jovem, portadora de <strong>doença falciforme</strong>, poli-transfundida e aloimunizada, com
+              <strong>DRC dialítica</strong>, admitida com anemia crítica, dispneia e dor torácica/dorsal. Evolui com Hb atual 6,6,
+              ainda abaixo de meta segura, mantendo necessidade de suporte transfusional cuidadoso e compatibilizado. A dispneia parece
+              multifatorial, com contribuição de anemia grave e congestão pulmonar, sem evidência atual de TEP ou consolidação pulmonar.
+            </p>
+            <p>
+              O principal risco imediato é o equilíbrio entre <strong>corrigir anemia/hipóxia tecidual</strong> e evitar complicações
+              transfusionais, especialmente <strong>TACO</strong>, reação hemolítica tardia/hiper-hemólise e hiperviscosidade. Também exige
+              vigilância para síndrome torácica aguda, embora imagem atual favoreça congestão sem foco infeccioso consolidado.
+            </p>
+            <p>
+              <strong>Prioridades do plantão:</strong> coordenar hemotransfusão compatibilizada com Banco de Sangue, mirar Hb 7–8 g/dL sem
+              hipertransfundir, monitorar sinais de sobrecarga e necessidade de antecipar HD, controlar dor e náuseas, manter SpO₂ adequada,
+              reavaliar Tazocin em 24–48h conforme culturas/foco e vigiar recorrência de epistaxe ou piora respiratória.
+            </p>
+          </div></div>
+        </details>
+      </section>
+    
+
+      <div class="footer">
+        Dashboard único gerado a partir dos arquivos HTML individuais. Revisar dados dinâmicos no Tasy antes de uso assistencial definitivo.
+      </div>
+    </div>
+  </div>
+</body>
+</html>

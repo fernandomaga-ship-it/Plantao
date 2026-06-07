@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UTI 6A Cardio — Leito 1600 16 — Ojandir Ubirajara Belini</title>
+  <style>
+    :root {
+      --bg:#f5f7fb; --card:#fff; --ink:#1f2937; --muted:#5b6472; --line:#d9e0ea;
+      --accent:#0f766e; --danger:#b91c1c; --warn:#b45309; --blue:#1d4ed8;
+      --soft-red:#fff1f2; --soft-yellow:#fffbeb; --soft-blue:#eff6ff; --soft-green:#ecfdf5;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;padding:24px;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;line-height:1.45;font-size:15px}
+    .page{max-width:1120px;margin:0 auto;background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:0 12px 32px rgba(15,23,42,.08)}
+    header{padding:24px 28px;background:linear-gradient(135deg,#0f766e,#155e75);color:white}
+    header h1{margin:0 0 8px;font-size:26px;letter-spacing:-.02em}
+    header .sub{display:flex;flex-wrap:wrap;gap:10px 18px;font-size:14px;opacity:.95}
+    .patient-bar{padding:18px 28px;border-bottom:1px solid var(--line);background:#f8fafc}
+    .patient-bar h2{margin:0 0 8px;font-size:24px;color:#111827}
+    .meta{display:grid;grid-template-columns:repeat(2,minmax(240px,1fr));gap:8px 18px;color:var(--muted);font-size:14px}
+    main{padding:24px 28px 30px}
+    section{margin-bottom:20px;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:white}
+    section h3{margin:0;padding:12px 16px;background:#f1f5f9;border-bottom:1px solid var(--line);font-size:18px;color:#0f172a}
+    .content{padding:14px 18px 16px}
+    ul{margin:0;padding-left:20px}
+    li{margin:5px 0}
+    .grid{display:grid;grid-template-columns:repeat(2,minmax(260px,1fr));gap:12px}
+    .mini-card{border:1px solid var(--line);border-radius:12px;padding:12px;background:#fff}
+    .mini-card strong{color:#111827}
+    .tag{display:inline-block;padding:4px 8px;border-radius:999px;font-weight:700;font-size:12px;margin:2px 4px 2px 0;border:1px solid transparent}
+    .tag-danger{background:var(--soft-red);color:var(--danger);border-color:#fecdd3}
+    .tag-warn{background:var(--soft-yellow);color:var(--warn);border-color:#fde68a}
+    .tag-blue{background:var(--soft-blue);color:var(--blue);border-color:#bfdbfe}
+    .tag-green{background:var(--soft-green);color:#047857;border-color:#bbf7d0}
+    .alert{padding:12px 14px;border-radius:12px;margin:10px 0;border-left:5px solid}
+    .alert-danger{background:var(--soft-red);border-color:var(--danger)}
+    .alert-warn{background:var(--soft-yellow);border-color:var(--warn)}
+    .alert-blue{background:var(--soft-blue);border-color:var(--blue)}
+    table{width:100%;border-collapse:collapse;margin:4px 0;overflow:hidden;border-radius:12px}
+    th,td{border-bottom:1px solid var(--line);padding:9px 10px;text-align:left;vertical-align:top}
+    th{background:#f8fafc;color:#334155;width:28%}
+    tr:last-child th,tr:last-child td{border-bottom:none}
+    .impression{background:#f8fafc;border:1px solid #cbd5e1;border-radius:14px;padding:16px;font-size:15.5px}
+    .footer-note{color:var(--muted);font-size:12px;margin-top:18px;border-top:1px solid var(--line);padding-top:12px}
+    @media print{
+      body{background:white;padding:0;font-size:12px}
+      .page{box-shadow:none;border:none;border-radius:0}
+      header{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+      section{break-inside:avoid;page-break-inside:avoid}
+    }
+    @media(max-width:760px){
+      body{padding:12px}
+      .meta,.grid{grid-template-columns:1fr}
+      header,.patient-bar,main{padding-left:18px;padding-right:18px}
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <header>
+      <h1>📋 Plantão BP — UTI 6A Cardio</h1>
+      <div class="sub">
+        <span><strong>Data:</strong> 07/06/2026</span>
+        <span><strong>Hora:</strong> 11:21</span>
+        <span><strong>Unidade:</strong> UTI BP Paulista Torre I — 6º andar Adulto</span>
+      </div>
+    </header>
+
+    <div class="patient-bar">
+      <h2>Leito 1600 16 — Ojandir Ubirajara Belini, 72 anos</h2>
+      <div class="meta">
+        <div><strong>Eq. Responsável:</strong> Gastroenterologia / Hepatologia — Dr. Rogério Alves</div>
+        <div><strong>Interconsultas:</strong> Cardiologia — Eq. Dr. Alexandre Soeiro | Cirurgia Geral/Oncológica — Dr. Ytauan Calheiros | Fisioterapia Pélvica</div>
+        <div><strong>Peso:</strong> 76 kg</div>
+        <div><strong>Internação:</strong> D29 | <strong>PO:</strong> 02 de cantoplastia ungueal direita</div>
+      </div>
+    </div>
+
+    <main>
+      <section>
+        <h3>Diagnósticos</h3>
+        <div class="content">
+          <span class="tag tag-danger">MELD 29</span>
+          <span class="tag tag-warn">Encefalopatia</span>
+          <span class="tag tag-blue">Lista transplante</span>
+          <span class="tag tag-warn">SHR/DRC agudizada</span>
+          <span class="tag tag-danger">Plaquetopenia</span>
+          <ul>
+            <li><strong>Cirrose hepática descompensada</strong>, ativo em lista para transplante hepático, com situação especial — <strong>MELD 29</strong>.</li>
+            <li><strong>Encefalopatia hepática</strong>, com sonolência, fala lenta e flapping discreto.</li>
+            <li><strong>Síndrome hepatorrenal / DRC agudizada</strong>, em melhora parcial.</li>
+            <li><strong>Divergência sobre terlipressina:</strong> hepatologia descreve suspensão; cardiologia descreve manutenção em dose reduzida — confirmar prescrição atual.</li>
+            <li><strong>Ascite volumosa recorrente.</strong></li>
+            <li>ITU tratada; nova urinálise com leucocitúria importante.</li>
+            <li><strong>Leucopenia/neutropenia</strong> e plaquetopenia.</li>
+            <li><strong>PO 02 de cantoplastia ungueal direita — 03/06/2026</strong>, sem sinais de infecção local.</li>
+            <li>DAC: ATC 2019 + CRM 2024, com antecedente de osteomielite de esterno no pós-operatório.</li>
+            <li>Estenose aórtica moderada.</li>
+            <li>HAS, DM, DLP.</li>
+            <li>HDA prévia por úlcera gástrica.</li>
+            <li>Duplo J em abril/2025.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <h3>Antecedentes</h3>
+        <div class="content">
+          <ul>
+            <li>Cirrose por provável MASLD, com descompensações prévias por ascite, encefalopatia e síndrome hepatorrenal.</li>
+            <li>Embolização de shunt em 18/03/2026.</li>
+            <li><strong>Paracenteses de grande volume:</strong> 10/05: 7,3 L; 28/05 ou início da semana: ~5,1 L / registro prévio de 8,3 L — confirmar data e volume final.</li>
+            <li>DAC com ATC 2019 e CRM 2024.</li>
+            <li>DM, HAS, DLP.</li>
+            <li>HDA prévia por úlcera gástrica.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <h3>Dispositivos / Suporte</h3>
+        <div class="content">
+          <div class="grid">
+            <div class="mini-card"><strong>Neurológico:</strong> vigil, sonolento, facilmente despertável, fala lenta, flapping discreto; encefalopatia basal.</div>
+            <div class="mini-card"><strong>Respiratório:</strong> eupneico, provável O₂ baixo fluxo em parte do período; SatO₂ média 96,3%.</div>
+            <div class="mini-card"><strong>VM:</strong> não.</div>
+            <div class="mini-card"><strong>P/F:</strong> não aplicável — sem VM e sem gasometria arterial confiável. Gaso informada parece venosa pela SatO₂ venosa.</div>
+            <div class="mini-card"><strong>DVA:</strong> não. Terlipressina pode estar ativa como vasoconstritor para SHR — confirmar.</div>
+            <div class="mini-card"><strong>Sedoanalgesia:</strong> não.</div>
+            <div class="mini-card"><strong>Nutrição:</strong> dieta enteral por SNE 30–40 mL/h + VO quando acordado/liberado.</div>
+            <div class="mini-card"><strong>TRS:</strong> não.</div>
+            <div class="mini-card"><strong>SVD:</strong> mantida por orientação médica; fisioterapia pélvica acompanha e sugere retirada em momento oportuno.</div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h3>Sinais vitais — últimas 24h</h3>
+        <div class="content">
+          <table>
+            <tr><th>Temperatura</th><td>36–36,8 °C</td></tr>
+            <tr><th>FC</th><td>53–66 bpm</td></tr>
+            <tr><th>PAM</th><td>69–99 mmHg</td></tr>
+            <tr><th>Glicemia</th><td>140–210 mg/dL</td></tr>
+            <tr><th>BH</th><td>+893 mL</td></tr>
+            <tr><th>Diurese</th><td>1250 mL/24h → 1250 ÷ 76 ÷ 24 = <strong>0,69 mL/kg/h</strong> → diurese adequada.</td></tr>
+          </table>
+        </div>
+      </section>
+
+      <section>
+        <h3>Exames recentes — 07/06/2026</h3>
+        <div class="content">
+          <table>
+            <tr><th>Gasometria venosa provável</th><td>pH <strong>7,40</strong> | pO₂ <strong>77</strong> | pCO₂ <strong>34</strong> | HCO₃ <strong>21</strong> | SatO₂ venosa <strong>95%</strong></td></tr>
+            <tr><th>Lactato</th><td><strong>10</strong> — confirmar unidade; se mg/dL, dentro/limítrofe conforme referência local.</td></tr>
+            <tr><th>Hemograma</th><td>Hb <strong>9,0</strong> | Leuco <strong>1.510</strong> | Plaq <strong>36.000</strong></td></tr>
+            <tr><th>Bioquímica</th><td>Na <strong>129</strong> | K <strong>4,6</strong> | Mg <strong>2,0</strong> | Ca ionizado <strong>1,30</strong> | Ur <strong>134</strong></td></tr>
+            <tr><th>Exames prévios</th><td>Amônia 92 µmol/L. Urinálise: leucócitos 96.000, eritrócitos 13.000, nitrito negativo, proteínas ~0,30 g/L; URC solicitada.</td></tr>
+            <tr><th>ECO 13/05</th><td>FEVE 65%, disfunção diastólica grau I, AE dilatado, estenose aórtica moderada, PSAP 35 mmHg.</td></tr>
+            <tr><th>EDA 11/05</th><td>Varizes esofágicas de fino calibre, gastropatia hipertensiva leve, gastrite antral leve; SNE liberada.</td></tr>
+            <tr><th>Vascular</th><td>Doppler MMII 13/05 pérvio. USG Doppler arterial MIE: oclusão de artéria tibial posterior esquerda com recanalização.</td></tr>
+          </table>
+        </div>
+      </section>
+
+      <section>
+        <h3>Antimicrobianos</h3>
+        <div class="content">
+          <ul>
+            <li><strong>Meropenem:</strong> encerrado em 01/06.</li>
+            <li><strong>Fluconazol:</strong> descrito como último dia 04/06; cardiologia solicitou suspensão e nova urina 1 + urocultura.</li>
+            <li><strong>Atual:</strong> confirmar se permanece sem antimicrobiano ou se fluconazol ainda consta em prescrição.</li>
+            <li>Nova urinálise alterada com leucocitúria importante — aguardar URC e correlacionar com febre, piora neurológica/renal e sintomas, especialmente em paciente com SVD.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <h3>Profilaxias</h3>
+        <div class="content">
+          <ul>
+            <li><strong>Encefalopatia hepática:</strong> lactulona/lactulose 20 mL 8/8h, ajustar para meta de 2–3 evacuações/dia.</li>
+            <li><strong>PBE:</strong> avaliar indicação conforme proteína da ascite, história prévia de PBE, sangramento digestivo e função renal.</li>
+            <li><strong>TEV:</strong> plaquetas 36.000 → evitar farmacológica salvo orientação específica; usar mecânica se não contraindicação.</li>
+            <li><strong>LPP:</strong> alto risco por edema/ascite/fragilidade.</li>
+            <li><strong>BCA:</strong> cabeceira elevada, fono/nutrição e vigilância de broncoaspiração.</li>
+            <li><strong>Queda:</strong> protocolo ativo.</li>
+            <li><strong>Gástrica:</strong> considerar proteção conforme risco e HDA prévia.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <h3>Condutas / Pendências</h3>
+        <div class="content">
+          <div class="alert alert-warn">
+            <strong>Ponto crítico:</strong> cirrose descompensada em lista de transplante, com encefalopatia, SHR/DRC agudizada, hiponatremia e leucocitúria com SVD.
+          </div>
+
+          <ul>
+            <li><strong>Cirrose / Transplante:</strong> manter status ativo em lista e comunicação com equipe de transplante. Acionar Hepatologia/transplante se piora renal, infecciosa, neurológica, hemodinâmica ou sangramento.</li>
+            <li><strong>Alta da UTI:</strong> sem contraindicação de alta pela Hepatologia se plano de monitorização e suporte for seguro.</li>
+            <li><strong>Encefalopatia hepática:</strong> manter lactulona/lactulose com meta de 2–3 evacuações/dia; evitar constipação e também diarreia/desidratação pela SHR.</li>
+            <li><strong>Precipitantes de encefalopatia:</strong> procurar ITU/SVD, PBE, hiponatremia, sangramento digestivo, hipovolemia pós-paracentese, constipação, sedativos e distúrbios eletrolíticos.</li>
+            <li><strong>Hiponatremia:</strong> Na 129, pior que prévio 133; avaliar hiponatremia dilucional por cirrose/ascite versus perdas/diuréticos; evitar correção rápida.</li>
+            <li><strong>SHR / Função renal:</strong> ureia 134; confirmar se terlipressina está ativa ou suspensa. Se SHR-AKI ainda em tratamento, manter estratégia com albumina + vasoconstritor conforme prescrição, monitorando isquemia, bradicardia, PA, congestão e hipoxemia.</li>
+            <li><strong>Ascite:</strong> monitorar desconforto abdominal, ventilação, dor, febre e necessidade de nova paracentese. Em paracentese de grande volume, garantir reposição de albumina conforme protocolo institucional.</li>
+            <li><strong>PBE:</strong> avaliar se dor abdominal, febre, piora de encefalopatia, piora renal, hipotensão ou leucopenia sem explicação.</li>
+            <li><strong>Infecção / Urinário:</strong> nova urina 1 com leucocitúria importante em paciente com SVD; aguardar URC. Se febre, piora pressórica, renal ou encefalopatia, colher culturas e discutir reinício de ATB.</li>
+            <li><strong>SVD:</strong> retirar assim que seguro para reduzir risco de ITU associada a cateter.</li>
+            <li><strong>Hematologia:</strong> leuco 1.510 e plaquetas 36.000; alto risco de sangramento/procedimentos. Evitar punções/procedimentos sem correção conforme limiar institucional.</li>
+            <li><strong>Nutrição:</strong> manter dieta enteral e VO apenas quando desperto/seguro; evitar restrição proteica rotineira; considerar fracionamento e lanche noturno se viável.</li>
+            <li><strong>Cantoplastia ungueal:</strong> curativo local em pé direito com limpeza diária + Nebacetim; vigiar sangramento e infecção pela plaquetopenia e neutropenia.</li>
+            <li><strong>Cardiologia:</strong> manter vigilância hemodinâmica, especialmente se terlipressina estiver em uso; estenose aórtica moderada e DAC pós-CRM exigem evitar hipotensão, hipovolemia agressiva e anemia importante.</li>
+            <li><strong>Bradicardia relativa:</strong> FC 53–66; correlacionar com terlipressina, betabloqueadores ou outros fármacos.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <h3>Intercorrências</h3>
+        <div class="content">
+          <ul>
+            <li>Paracenteses recentes de grande volume.</li>
+            <li>SHR em tratamento prévio com albumina/terlipressina, com melhora parcial.</li>
+            <li>Cantoplastia ungueal direita em 03/06, sem intercorrências.</li>
+            <li>Ausência de evacuação no dia anterior → lactulona reforçada.</li>
+            <li>Fluconazol suspenso em 04/06 e solicitada nova urina 1 + URC.</li>
+            <li>SVD mantida por orientação médica.</li>
+            <li>Leucocitúria importante em urinálise recente.</li>
+            <li>Hiponatremia atual: Na 129.</li>
+            <li>Plaquetopenia 36.000 e leucopenia 1.510.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <h3>Impressão</h3>
+        <div class="content">
+          <div class="impression">
+            <p>
+              Paciente de <strong>72 anos</strong>, cirrótico descompensado por ascite volumosa recorrente, encefalopatia hepática e
+              síndrome hepatorrenal/DRC agudizada, <strong>ativo em lista de transplante hepático com MELD 29</strong>. Evolui
+              hemodinamicamente estável, sem DVA clássica, sonolento porém despertável, com fala lentificada e flapping discreto,
+              mantendo quadro de encefalopatia hepática clínica.
+            </p>
+            <p>
+              Apresenta diurese adequada nas últimas 24h, porém mantém ureia elevada, hiponatremia, leucopenia/neutropenia,
+              plaquetopenia importante e urinálise com leucocitúria significativa em contexto de SVD, devendo-se excluir ITU como
+              precipitante de encefalopatia e deterioração renal. Há divergência relevante sobre terlipressina, que precisa ser
+              confirmada na prescrição.
+            </p>
+            <p>
+              <strong>Prioridades do plantão:</strong> confirmar terlipressina ativa ou suspensa, manter lactulona com alvo de 2–3 evacuações/dia,
+              acompanhar Na e função renal, aguardar URC, retirar SVD quando seguro, excluir ITU/PBE como precipitantes, manter nutrição
+              enteral sem restrição proteica indevida, proteger contra sangramento/procedimentos pela plaquetopenia e manter comunicação
+              com Hepatologia/transplante se houver nova deterioração clínica.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <div class="footer-note">
+        Documento gerado em HTML para passagem de plantão. Revisar dados dinâmicos no Tasy antes de uso assistencial definitivo.
+      </div>
+    </main>
+  </div>
+</body>
+</html>
