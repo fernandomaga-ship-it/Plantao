@@ -1,6 +1,18 @@
 window.PLANTAO_DATA = {
-  "generatedAt": "2026-06-07",
+  "generatedAt": "2026-06-09",
   "pages": [
+    {
+      "title": "Análise de Mercado – 09 de Junho de 2026",
+      "path": "rotinas/mercado/2026-06-09.html",
+      "href": "rotinas/mercado/2026-06-09.html",
+      "folder": "rotinas/mercado",
+      "category": "rotinas",
+      "categoryLabel": "Rotinas",
+      "summary": "Análise de Mercado – 09 de Junho de 2026 📊 Análise Diária de Mercado Segunda-feira, 9 de Junho de 2026 Economia Global · Bolsa Brasileira · Portfólio Pessoal Ibovespa: ",
+      "updated": "2026-06-09",
+      "shiftDate": "2026-06-09",
+      "shiftDateLabel": "09/06/2026"
+    },
     {
       "title": "Dashboard — Plantão BP UTI 6A Cardio — 07/06/2026",
       "path": "plantoes/6a/2026-06-07/dashboard_uti_6a_cardio_2026-06-07.html",
