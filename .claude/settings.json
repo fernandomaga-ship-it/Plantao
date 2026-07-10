@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__deb21856-e184-4cf0-b289-5dd155a7eb04__execute_zapier_write_action"
+    ]
+  }
+}
