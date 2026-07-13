@@ -233,6 +233,96 @@ def make_slide(slide: dict, num: int, total: int, bg1, bg2, out: Path):
 
 # ── CARROSSÉIS ─────────────────────────────────────────────────────────────────
 CAROUSELS = {
+  "ultrassom-uti": {
+    "cor1": (8, 68, 110),
+    "cor2": (5, 40, 72),
+    "handle": "@fernandomagalhaescoutinho",
+    "cover": {
+      "titulo": "Ultrassom na UTI",
+      "subtitulo": "e-FAST · RUSH · Ecocardiografia",
+      "categoria": "Medicina Intensiva",
+      "topicos": ["e-FAST", "Pneumotórax", "RUSH", "Choque", "Ecocardiografia", "Dicas AMIB"]
+    },
+    "slides": [
+      {
+        "titulo": "e-FAST: Os 5 Pontos",
+        "categoria": "Trauma · ATLS",
+        "pontos": [
+          "1º Morrison (QSD): fígado + rim dir. · flanco dir., L. axilar média",
+          "2º Esplenorrenal (QSE): baço + rim esq. · flanco esq., L. axilar post.",
+          "3º Pelve: bexiga cheia → espaço retrovesical / Douglas",
+          "4º Subxifoide: 4 câmaras → tamponamento pericárdico?",
+          "5º Pleura ant. bilateral: pesquisa de pneumotórax (L. mamilar)"
+        ]
+      },
+      {
+        "titulo": "Técnica do Probe",
+        "categoria": "Posição · Profundidade · Fanning",
+        "pontos": [
+          "Marcador cefálico: Morrison · Esplenorrenal · Pleura anterior",
+          "Profundidade: 15-18 cm (Morrison) · 18-22 cm (Subxifoide) · 8-10 cm (Pleura)",
+          "Fanning: movimento em leque lento — não perca líquido livre",
+          "Boa imagem: os 2 órgãos juntos visíveis em cada janela abdominal",
+          "Pelve: avalie SEMPRE em 2 planos (longitudinal e transversal)"
+        ]
+      },
+      {
+        "titulo": "Pneumotórax no Ultrassom",
+        "categoria": "Pleura Anterior · Linha Mamilar",
+        "pontos": [
+          "Normal (Modo B): lung sliding presente = deslizamento pleural visível",
+          "Normal (Modo M): Sinal da Praia — granular abaixo, linhas acima",
+          "Pneumotórax (Modo B): ausência de lung sliding",
+          "Pneumotórax (Modo M): Sinal da Estratosfera — linhas paralelas em toda a imagem",
+          "Lung Point: 100% específico — onde pulmão colapsado toca a parede"
+        ]
+      },
+      {
+        "titulo": "Protocolo RUSH",
+        "categoria": "Rapid Ultrasound in Shock",
+        "pontos": [
+          "PUMP (Coração): PLAX · PSAX · Apical 4C · Subcostal → FE, tamponamento, VD?",
+          "TANK — VCI subcostal: calibre e colapso respiratório",
+          "TANK — Pulmões: linhas B (edema pulmonar) · deslizamento pleural",
+          "TANK — Abdômen: e-FAST (4 janelas) → hemoperitônio?",
+          "PIPES: Aorta abdominal em 3 pontos · TVP femoral e poplítea"
+        ]
+      },
+      {
+        "titulo": "Diagnóstico do Choque",
+        "categoria": "RUSH · Padrões Ecocardiográficos",
+        "pontos": [
+          "Hipovolêmico: VCI < 20 mm + VE hiperdinâmico (FE ↑) + sem linhas B",
+          "Cardiogênico: VE hipodinâmico (FE ↓) + VCI > 20 mm + linhas B difusas",
+          "Distributivo: VE hiperdinâmico + VCI < 20 mm + linhas B ausentes",
+          "Obstrutivo: tamponamento · TEP (VD dilatado) · pneumotórax hipertensivo",
+          "VCI túrgida + líquido livre + sem tamponamento = hemoperitônio hipovolêmico"
+        ]
+      },
+      {
+        "titulo": "Projeções Ecocardiográficas",
+        "categoria": "PLAX · PSAX · Apical 4C · Subcostal",
+        "pontos": [
+          "PLAX (paraesternal longo): contratilidade VE · valvas · derrame · AO",
+          "PSAX (paraesternal curto): forma VE · septo em D → sobrecarga VD",
+          "Apical 4C: VD × VE (tamanho) · TAPSE · função segmentar · Índice D",
+          "Subcostal: 4 câmaras + VCI + derrame pericárdico · ideal em intubados",
+          "2º EIC L. esternal: girar 90° sentido horário PLAX → PSAX"
+        ]
+      },
+      {
+        "titulo": "Dicas para a Prova",
+        "categoria": "AMIB · Estação Prática",
+        "pontos": [
+          "Cite o protocolo pelo nome: 'Vou realizar o e-FAST / RUSH'",
+          "Fanning lento e constante — não varra rápido em Morrison ou Pelve",
+          "Tempo ideal por estação: 3 a 4 minutos — seja objetivo",
+          "VCI túrgida + líquido livre sem tamponamento = hemoperitônio, não obstrutivo",
+          "Lung Point = 100% específico para pneumotórax — mencione sempre"
+        ]
+      }
+    ]
+  },
   "hemorragia-cerebral": {
     "cor1": (100, 15, 15),
     "cor2": (60,  6,  6),
