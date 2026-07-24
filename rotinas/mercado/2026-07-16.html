@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>📊 Análise de Mercado — 16 de Julho de 2026</title>
+<style>
+  :root {
+    --bg: #0d1117;
+    --surface: #161b22;
+    --surface2: #1c2128;
+    --border: #30363d;
+    --text: #e6edf3;
+    --muted: #8b949e;
+    --green: #3fb950;
+    --red: #f85149;
+    --yellow: #d29922;
+    --blue: #58a6ff;
+    --purple: #bc8cff;
+    --orange: #ffa657;
+    --accent: #1f6feb;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    padding: 24px;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  /* Header */
+  .header {
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 20px;
+    margin-bottom: 28px;
+  }
+  .header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .header h1 {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text);
+  }
+  .header p.subtitle {
+    font-size: 13px;
+    color: var(--muted);
+    margin-top: 4px;
+  }
+  .date-badge {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 6px 14px;
+    font-size: 12px;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+
+  /* Section titles */
+  .section {
+    margin-bottom: 28px;
+  }
+  .section-title {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 14px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* Narrative block */
+  .narrative {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--blue);
+    border-radius: 8px;
+    padding: 18px 20px;
+    margin-bottom: 20px;
+    line-height: 1.75;
+    color: #c9d1d9;
+    font-size: 14px;
+  }
+  .narrative strong { color: var(--text); }
+  .narrative .highlight { color: var(--blue); font-weight: 600; }
+  .narrative .up { color: var(--green); font-weight: 600; }
+  .narrative .down { color: var(--red); font-weight: 600; }
+  .narrative .warn { color: var(--yellow); font-weight: 600; }
+
+  /* Index cards row */
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .card .label {
+    font-size: 11px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 6px;
+  }
+  .card .value {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.2;
+  }
+  .card .change {
+    font-size: 12px;
+    margin-top: 4px;
+    font-weight: 600;
+  }
+  .card .change.up { color: var(--green); }
+  .card .change.down { color: var(--red); }
+  .card .sub { font-size: 11px; color: var(--muted); margin-top: 2px; }
+
+  /* Stocks table */
+  .stocks-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .stocks-table th {
+    text-align: left;
+    padding: 10px 14px;
+    font-size: 11px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    background: var(--surface2);
+    border-bottom: 1px solid var(--border);
+  }
+  .stocks-table td {
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: middle;
+  }
+  .stocks-table tr:last-child td { border-bottom: none; }
+  .stocks-table tr:hover td { background: var(--surface2); }
+  .ticker {
+    font-weight: 700;
+    font-size: 13px;
+    color: var(--blue);
+    font-family: 'SF Mono', 'Consolas', monospace;
+  }
+  .company-name { font-size: 12px; color: var(--muted); margin-top: 2px; }
+  .sector-badge {
+    display: inline-block;
+    font-size: 10px;
+    padding: 2px 7px;
+    border-radius: 20px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--muted);
+  }
+  .signal {
+    display: inline-block;
+    font-size: 10px;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-weight: 600;
+  }
+  .signal.compra { background: rgba(63,185,80,0.15); color: var(--green); border: 1px solid rgba(63,185,80,0.3); }
+  .signal.atencao { background: rgba(210,153,34,0.15); color: var(--yellow); border: 1px solid rgba(210,153,34,0.3); }
+  .signal.neutro { background: rgba(88,166,255,0.1); color: var(--blue); border: 1px solid rgba(88,166,255,0.25); }
+  .signal.aguardar { background: rgba(248,81,73,0.1); color: var(--red); border: 1px solid rgba(248,81,73,0.25); }
+
+  /* Alert boxes */
+  .alert {
+    border-radius: 8px;
+    padding: 14px 16px;
+    margin-bottom: 12px;
+    font-size: 13px;
+    display: flex;
+    gap: 10px;
+  }
+  .alert .icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+  .alert-body strong { display: block; margin-bottom: 2px; }
+  .alert-body { color: #c9d1d9; }
+  .alert.warn { background: rgba(210,153,34,0.1); border: 1px solid rgba(210,153,34,0.3); }
+  .alert.info { background: rgba(88,166,255,0.08); border: 1px solid rgba(88,166,255,0.2); }
+  .alert.danger { background: rgba(248,81,73,0.08); border: 1px solid rgba(248,81,73,0.2); }
+  .alert.success { background: rgba(63,185,80,0.08); border: 1px solid rgba(63,185,80,0.2); }
+
+  /* Timeline */
+  .timeline { padding-left: 4px; }
+  .tl-item {
+    display: flex;
+    gap: 14px;
+    margin-bottom: 16px;
+    position: relative;
+  }
+  .tl-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-top: 5px;
+    flex-shrink: 0;
+    background: var(--blue);
+  }
+  .tl-dot.green { background: var(--green); }
+  .tl-dot.red { background: var(--red); }
+  .tl-dot.yellow { background: var(--yellow); }
+  .tl-dot.purple { background: var(--purple); }
+  .tl-content strong { font-size: 13px; display: block; color: var(--text); }
+  .tl-content span { font-size: 12px; color: var(--muted); }
+
+  /* Radar / Risk */
+  .risk-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .risk-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px 16px;
+  }
+  .risk-item .risk-label { font-size: 12px; color: var(--muted); margin-bottom: 6px; }
+  .risk-item .risk-title { font-size: 13px; font-weight: 600; color: var(--text); }
+  .risk-bar {
+    height: 4px;
+    border-radius: 2px;
+    background: var(--border);
+    margin-top: 8px;
+    overflow: hidden;
+  }
+  .risk-bar-fill { height: 100%; border-radius: 2px; }
+  .risk-bar-fill.high { background: var(--red); width: 80%; }
+  .risk-bar-fill.med { background: var(--yellow); width: 55%; }
+  .risk-bar-fill.low { background: var(--green); width: 30%; }
+  .risk-bar-fill.med-high { background: var(--orange); width: 68%; }
+
+  /* Quote */
+  .pull-quote {
+    background: var(--surface2);
+    border-left: 3px solid var(--purple);
+    border-radius: 0 8px 8px 0;
+    padding: 14px 18px;
+    margin: 20px 0;
+    font-style: italic;
+    color: #c9d1d9;
+    font-size: 14px;
+  }
+  .pull-quote cite { display: block; margin-top: 6px; font-style: normal; font-size: 12px; color: var(--muted); }
+
+  /* Footer */
+  .footer {
+    margin-top: 32px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+    font-size: 11px;
+    color: var(--muted);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .sources a { color: var(--blue); text-decoration: none; }
+  .sources a:hover { text-decoration: underline; }
+
+  /* FII specific */
+  .fii-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+    margin-bottom: 10px;
+  }
+  .fii-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+  .fii-ticker { font-weight: 700; color: var(--purple); font-family: 'SF Mono', 'Consolas', monospace; font-size: 15px; }
+  .fii-name { font-size: 12px; color: var(--muted); }
+  .fii-stats { display: flex; gap: 16px; flex-wrap: wrap; }
+  .fii-stat .key { font-size: 11px; color: var(--muted); text-transform: uppercase; }
+  .fii-stat .val { font-size: 13px; font-weight: 600; color: var(--text); margin-top: 2px; }
+
+  @media (max-width: 600px) {
+    .risk-grid { grid-template-columns: 1fr; }
+    body { padding: 14px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-top">
+    <div>
+      <h1>📊 Análise de Mercado — Fernando Coutinho</h1>
+      <p class="subtitle">Resumo diário · Ações BR + FIIs + Cenário Global</p>
+    </div>
+    <div class="date-badge">🗓️ Quinta-feira, 16 de Julho de 2026</div>
+  </div>
+</div>
+
+<!-- ─────────────────────────────────────────── -->
+<!-- NARRATIVA DO DIA -->
+<!-- ─────────────────────────────────────────── -->
+<div class="section">
+  <div class="section-title">📖 A história do dia</div>
+  <div class="narrative">
+    O mundo acorda em modo <strong>dual speed</strong>: Wall Street encerrou quarta-feira (15/jul) em leve alta — <span class="up">S&P 500 +0,4% a 7.572 pts</span>, Nasdaq +0,6%, Dow +0,3% — montado em uma onda de tecnologia que teima em subir apesar do barulho geopolítico. O ingrediente surpresa foi o PPI americano de junho: <span class="up">preços no atacado caíram 0,3%</span>, puxados por gasolina, dando ao Fed de Kevin Warsh mais espaço para respirar — e ao mercado, mais uma desculpa para comprar chips.
+
+    Mas o otimismo tem suas sombras. <span class="warn">Warren Buffett soou o alarme</span>, pedindo cautela em uma semana em que as tensões no Oriente Médio voltaram ao radar com o risco de fechamento do Estreito de Ormuz. A <strong>China</strong>, por sua vez, registrou o pior crescimento de PIB desde 2022, perdendo as estimativas do mercado — notícia que <span class="down">pesa diretamente sobre commodities e sobre a Vale</span>.
+
+    No Brasil, o Ibovespa reage em ambiente instável. Na segunda (13/jul), caiu para a região dos <strong>175.700 pontos</strong>, com perdas no setor financeiro, nas cíclicas e na Vale. O segundo semestre se anuncia mais volátil: decisões do Fed, trajetória da Selic, fluxo de gringo, fiscal e a <span class="warn">corrida eleitoral de 2026</span> formam o coquetel que mantém investidores na ponta dos pés. A boa notícia? Temporada de resultados do 2T26 está chegando e pode ser o catalisador de curto prazo que o mercado precisa.
+  </div>
+</div>
+
+<!-- ─────────────────────────────────────────── -->
+<!-- ÍNDICES GLOBAIS -->
+<!-- ─────────────────────────────────────────── -->
+<div class="section">
+  <div class="section-title">🌍 Índices Globais (fechamento 15/jul)</div>
+  <div class="cards-grid">
+    <div class="card">
+      <div class="label">S&P 500</div>
+      <div class="value">7.572</div>
+      <div class="change up">▲ +0,4%</div>
+      <div class="sub">Big Tech lidera alta</div>
+    </div>
+    <div class="card">
+      <div class="label">Nasdaq</div>
+      <div class="value">26.269</div>
+      <div class="change up">▲ +0,6%</div>
+      <div class="sub">Chips em rally</div>
+    </div>
+    <div class="card">
+      <div class="label">Dow Jones</div>
+      <div class="value">52.659</div>
+      <div class="change up">▲ +0,3%</div>
+      <div class="sub">Inflação arrefece</div>
+    </div>
+    <div class="card">
+      <div class="label">Ibovespa</div>
+      <div class="value">~175.700</div>
+      <div class="change down">▼ −1,2%</div>
+      <div class="sub">Ref. fechamento 13/jul</div>
+    </div>
+    <div class="card">
+      <div class="label">PPI EUA (jun)</div>
+      <div class="value">−0,3%</div>
+      <div class="change up">▲ Surpresa positiva</div>
+      <div class="sub">Desinflação no atacado</div>
+    </div>
+    <div class="card">
+      <div class="label">Fed Rate Hike (out)</div>
+      <div class="value">~60%</div>
+      <div class="change" style="color:var(--yellow)">⚠ Alta precificada</div>
+      <div class="sub">Warsh cauteloso</div>
+    </div>
+  </div>
+</div>
+
+<!-- ─────────────────────────────────────────── -->
+<!-- SUAS AÇÕES -->
+<!-- ─────────────────────────────────────────── -->
+<div class="section">
+  <div class="section-title">📈 Suas Ações — Radar do Dia</div>
+  <table class="stocks-table">
+    <thead>
+      <tr>
+        <th>Ticker / Empresa</th>
+        <th>Setor</th>
+        <th>Referência de Preço</th>
+        <th>Sinal</th>
+        <th>Contexto do Dia</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <div class="ticker">VALE3</div>
+          <div class="company-name">Vale S.A.</div>
+        </td>
+        <td><span class="sector-badge">Mineração</span></td>
+        <td>~R$ 72–74</td>
+        <td><span class="signal atencao">Atenção</span></td>
+        <td style="font-size:12px;color:#c9d1d9;">China PIB decepcionou → pressão sobre minério de ferro. Resultados 2T26 em <strong>30/jul</strong>. Era a ação mais recomendada em jun/26.</td>
+      </tr>
+      <tr>
+        <td>
+          <div class="ticker">BBDC4</div>
+          <div class="company-name">Bradesco PN</div>
+        </td>
+        <td><span class="sector-badge">Financeiro</span></td>
+        <td>Monitorar</td>
+        <td><span class="signal atencao">Atenção</span></td>
+        <td style="font-size:12px;color:#c9d1d9;">Setor financeiro foi o maior detrator do Ibovespa na última sessão. Selic alta favorece margens mas pressiona inadimplência.</td>
+      </tr>
+      <tr>
+        <td>
+          <div class="ticker">MRFG3</div>
+          <div class="company-name">Marfrig</div>
+        </td>
+        <td><span class="sector-badge">Proteína Animal</span></td>
+        <td>Monitorar</td>
+        <td><span class="signal neutro">Neutro</span></td>
+        <td style="font-size:12px;color:#c9d1d9;">Resultados 2T26 esperados em <strong>13/ago</strong>. Dólar e exportações de proteína são os drivers principais. Aguardar divulgação.</td>
+      </tr>
+      <tr>
+        <td>
+          <div class="ticker">MSFT34</div>
+          <div class="company-name">Microsoft BDR</div>
+        </td>
+        <td><span class="sector-badge">Tech EUA</span></td>
+        <td>Ref. USD/BRL</td>
+        <td><span class="signal compra">Favorável</span></td>
+        <td style="font-size:12px;color:#c9d1d9;">Big Tech puxou o Nasdaq ontem. Microsoft segue liderando na nuvem (Azure) e IA. BDR se beneficia também de eventual alta do dólar.</td>
+      </tr>
+      <tr>
+        <td>
+          <div class="ticker">B3SA3</div>
+          <div class="company-name">B3 — Bolsa Brasileira</div>
+        </td>
+        <td><span class="sector-badge">Infraestrutura Fin.</span></td>
+        <td>Monitorar</td>
+        <td><span class="signal atencao">Atenção</span></td>
+        <td style="font-size:12px;color:#c9d1d9;">Caiu −1,22% em 30/jun. Volume de negócios na bolsa impacta diretamente sua receita. Resultados esperados em breve — acompanhar calendário.</td>
+      </tr>
+      <tr>
+        <td>
+          <div class="ticker">AXIA3</div>
+          <div class="company-name">Axia</div>
+        </td>
+        <td><span class="sector-badge">Monitorar setor</span></td>
+        <td>Monitorar</td>
+        <td><span class="signal neutro">Neutro</span></td>
+        <td style="font-size:12px;color:#c9d1d9;">Ação de menor liquidez — acompanhe notícias específicas da empresa no InfoMoney e Status Invest para gatilhos de curto prazo.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ─────────────────────────────────────────── -->
+<!-- FIIS -->
+<!-- ─────────────────────────────────────────── -->
+<div class="section">
+  <div class="section-title">🏢 Fundos Imobiliários — Radar</div>
+
+  <div class="fii-card">
+    <div class="fii-header">
+      <div>
+        <div class="fii-ticker">KNCR11</div>
+        <div class="fii-name">Kinea Rendimentos — FII de CRI / Crédito</div>
+      </div>
+      <span class="signal compra">Favorável</span>
+    </div>
+    <div class="fii-stats">
+      <div class="fii-stat"><div class="key">Tipo</div><div class="val">CRI (papel)</div></div>
+      <div class="fii-stat"><div class="key">Indexação</div><div class="val">CDI / IPCA</div></div>
+      <div class="fii-stat"><div class="key">Contexto</div><div class="val">Selic alta beneficia</div></div>
+    </div>
+    <div style="margin-top:10px;font-size:12px;color:#c9d1d9;">
+      Com a Selic ainda elevada, FIIs de papel com CRIs indexados ao CDI como o KNCR11 continuam entre os mais beneficiados. Distribuições mensais tendem a ser robustas enquanto o juro permanecer restritivo. <strong>Monitorar: qualidade dos CRIs na carteira e inadimplência.</strong>
+    </div>
+  </div>
+
+  <div class="fii-card">
+    <div class="fii-header">
+      <div>
+        <div class="fii-ticker">PCIP11</div>
+        <div class="fii-name">Patrimonial Cibrasec — FII de CRI</div>
+      </div>
+      <span class="signal neutro">Neutro</span>
+    </div>
+    <div class="fii-stats">
+      <div class="fii-stat"><div class="key">Tipo</div><div class="val">CRI (papel)</div></div>
+      <div class="fii-stat"><div class="key">Indexação</div><div class="val">IPCA / CDI</div></div>
+      <div class="fii-stat"><div class="key">Contexto</div><div class="val">Acompanhar dividendos</div></div>
+    </div>
+    <div style="margin-top:10px;font-size:12px;color:#c9d1d9;">
+      Similar ao KNCR11 no perfil, porém menor. Verifique o último relatório mensal da gestora para conferir distribuição e inadimplência dos devedores. Em contexto de Selic alta, mantém atratividade.
+    </div>
+  </div>
+</div>
+
+<!-- ─────────────────────────────────────────── -->
+<!-- ALERTAS E RISCOS -->
+<!-- ─────────────────────────────────────────── -->
+<div class="section">
+  <div class="section-title">⚠️ Alertas e Riscos do Momento</div>
+
+  <div class="alert danger">
+    <div class="icon">🕳️</div>
+    <div class="alert-body">
+      <strong>Geopolítica — Oriente Médio / Estreito de Ormuz</strong>
+      Risco de fechamento do Estreito de Ormuz elevou nervosismo global. Impacto direto em petróleo e commodities. Monitore diariamente — é o principal "evento cisne" no radar.
+    </div>
+  </div>
+
+  <div class="alert warn">
+    <div class="icon">🇨🇳</div>
+    <div class="alert-body">
+      <strong>China — PIB abaixo do esperado (menor desde 2022)</strong>
+      Economia chinesa desacelera. Direto na Vale (VALE3) via minério de ferro e na Marfrig (MRFG3) via demanda por proteína. Fique atento a novos dados de atividade chinesa.
+    </div>
+  </div>
+
+  <div class="alert warn">
+    <div class="icon">🏦</div>
+    <div class="alert-body">
+      <strong>Fed / Warsh — Alta de juros em outubro com 60% de probabilidade</strong>
+      Mercado ainda precifica mais aperto. Kevin Warsh navega entre apoiar o governo Trump e manter a credibilidade do Fed. Pressão sobre emergentes — incluindo Brasil — pode voltar.
+    </div>
+  </div>
+
+  <div class="alert info">
+    <div class="icon">📅</div>
+    <div class="alert-body">
+      <strong>Calendário de Resultados 2T26 — Fique de olho!</strong>
+      VALE3 divulga em <strong>30/jul</strong> · B3SA3 em breve · MRFG3 em <strong>13/ago</strong>. Temporada pode ser o catalisador para reverter a fraqueza recente do Ibovespa.
+    </div>
+  </div>
+
+  <div class="alert success">
+    <div class="icon">💡</div>
+    <div class="alert-body">
+      <strong>Oportunidade — PPI americano caiu 0,3% em junho</strong>
+      Desinflação no atacado reforça tese de que o Fed pode adiar ou encerrar ciclo de alta. Se confirmado, fluxo para emergentes pode retornar e beneficiar a bolsa brasileira no 2S26.
+    </div>
+  </div>
+</div>
+
+<!-- ─────────────────────────────────────────── -->
+<!-- RADAR DE RISCO -->
+<!-- ─────────────────────────────────────────── -->
+<div class="section">
+  <div class="section-title">🎯 Radar de Risco — Seus Ativos</div>
+  <div class="risk-grid">
+    <div class="risk-item">
+      <div class="risk-label">Risco Geopolítico (Oriente Médio)</div>
+      <div class="risk-title">🔴 Alto</div>
+      <div class="risk-bar"><div class="risk-bar-fill high"></div></div>
+    </div>
+    <div class="risk-item">
+      <div class="risk-label">Risco China / Commodities (VALE3)</div>
+      <div class="risk-title">🟠 Médio-Alto</div>
+      <div class="risk-bar"><div class="risk-bar-fill med-high"></div></div>
+    </div>
+    <div class="risk-item">
+      <div class="risk-label">Risco Fed / Juros EUA</div>
+      <div class="risk-title">🟡 Médio</div>
+      <div class="risk-bar"><div class="risk-bar-fill med"></div></div>
+    </div>
+    <div class="risk-item">
+      <div class="risk-label">Risco Fiscal / Eleitoral BR</div>
+      <div class="risk-title">🟡 Médio</div>
+      <div class="risk-bar"><div class="risk-bar-fill med"></div></div>
+    </div>
+    <div class="risk-item">
+      <div class="risk-label">Oportunidade MSFT34 / Big Tech</div>
+      <div class="risk-title">🟢 Favorável</div>
+      <div class="risk-bar"><div class="risk-bar-fill low"></div></div>
+    </div>
+    <div class="risk-item">
+      <div class="risk-label">FIIs Papel (KNCR11, PCIP11)</div>
+      <div class="risk-title">🟢 Favorável (Selic)</div>
+      <div class="risk-bar"><div class="risk-bar-fill low"></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ─────────────────────────────────────────── -->
+<!-- QUOTE DO DIA -->
+<!-- ─────────────────────────────────────────── -->
+<div class="pull-quote">
+  "O mercado está rindo de um lado e nervoso do outro — Big Tech sobe, Buffett alerta, o Oriente Médio ameaça e a China desacelera. Para a carteira brasileira, o jogo agora é aguardar os resultados do 2T26 com disciplina e não deixar o ruído de curto prazo ditar decisões estruturais."
+  <cite>— Síntese do cenário · 16 de julho de 2026</cite>
+</div>
+
+<!-- ─────────────────────────────────────────── -->
+<!-- PRÓXIMOS EVENTOS -->
+<!-- ─────────────────────────────────────────── -->
+<div class="section">
+  <div class="section-title">📆 Próximos Eventos Relevantes</div>
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-dot blue"></div>
+      <div class="tl-content">
+        <strong>30 de julho — VALE3 divulga resultados 2T26</strong>
+        <span>Minério de ferro, China e margens serão os pontos centrais da call com analistas.</span>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot yellow"></div>
+      <div class="tl-content">
+        <strong>Julho/Agosto — Reunião do Fed (Warsh)</strong>
+        <span>Probabilidade de manutenção em julho; outubro com 60% de chance de alta. Acompanhar comunicados.</span>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot purple"></div>
+      <div class="tl-content">
+        <strong>Agosto — B3SA3 divulga resultados 2T26</strong>
+        <span>Volume médio diário negociado na B3 definirá se receita acelerou ou desacelerou.</span>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot green"></div>
+      <div class="tl-content">
+        <strong>13 de agosto — MRFG3 divulga resultados 2T26</strong>
+        <span>Dólar forte e exportações de carne bovina serão os catalisadores a monitorar.</span>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot red"></div>
+      <div class="tl-content">
+        <strong>Contínuo — Monitorar Oriente Médio</strong>
+        <span>Qualquer escalada no Estreito de Ormuz afeta petróleo, inflação global e bolsas.</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="sources">
+    Fontes:
+    <a href="https://www.infomoney.com.br/mercados/ibovespa-hoje-bolsa-de-valores-ao-vivo-13072026/" target="_blank">InfoMoney – Ibovespa 13/jul</a> ·
+    <a href="https://www.infomoney.com.br/mercados/ibovespa-apos-1o-semestre-de-altos-e-baixos-o-que-esperar-para-o-indice-ate-o-fim-de-2026/" target="_blank">InfoMoney – Perspectivas 2S26</a> ·
+    <a href="https://www.cnbc.com/2026/07/15/stock-market-today-live-updates.html" target="_blank">CNBC – Mercados 15/jul</a> ·
+    <a href="https://finance.yahoo.com/markets/live/stock-market-today-tuesday-july-14-dow-sp-500-nasdaq-070833816.html" target="_blank">Yahoo Finance – S&P 500</a> ·
+    <a href="https://www.infomoney.com.br/mercados/calendario-de-resultados-segundo-trimestre-2026-da-bolsa-brasileira/" target="_blank">InfoMoney – Calendário 2T26</a> ·
+    <a href="https://www.cnbc.com/2026/07/16/daily-open-newsletter-fed-warsh-inflation-ppi-spacex-paypal-anthropic-warren-buffett-.html" target="_blank">CNBC Daily Open – 16/jul</a> ·
+    <a href="https://statusinvest.com.br/acoes/vale3" target="_blank">Status Invest – VALE3</a>
+  </div>
+  <div>Gerado automaticamente · 16/07/2026 · Apenas informativo — não é recomendação de investimento.</div>
+</div>
+
+</body>
+</html>

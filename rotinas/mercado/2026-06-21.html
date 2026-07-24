@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>📊 Panorama de Mercado — 21 de junho de 2026</title>
+<style>
+  :root {
+    --verde: #00c48c;
+    --vermelho: #ff4d6d;
+    --amarelo: #ffd166;
+    --azul: #118ab2;
+    --azul-escuro: #073b4c;
+    --cinza: #f0f4f8;
+    --card-bg: #ffffff;
+    --text: #1a202c;
+    --text-muted: #718096;
+    --border: #e2e8f0;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--cinza);
+    color: var(--text);
+    line-height: 1.6;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+    color: white;
+    padding: 40px 24px 32px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+  .header-badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 20px;
+    padding: 4px 14px;
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .header h1 {
+    font-size: clamp(22px, 4vw, 36px);
+    font-weight: 700;
+    letter-spacing: -0.5px;
+  }
+  .header .subtitle {
+    opacity: 0.7;
+    font-size: 14px;
+    margin-top: 6px;
+  }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 1100px; margin: 0 auto; padding: 24px 16px; }
+
+  /* ── MACRO STRIP ── */
+  .macro-strip {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 12px;
+    margin-bottom: 28px;
+  }
+  .macro-card {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 16px;
+    text-align: center;
+    box-shadow: 0 1px 4px rgba(0,0,0,.06);
+    border-top: 3px solid transparent;
+  }
+  .macro-card.verde { border-color: var(--verde); }
+  .macro-card.vermelho { border-color: var(--vermelho); }
+  .macro-card.amarelo { border-color: var(--amarelo); }
+  .macro-card.azul { border-color: var(--azul); }
+  .macro-label { font-size: 11px; text-transform: uppercase; letter-spacing: .8px; color: var(--text-muted); }
+  .macro-value { font-size: 22px; font-weight: 700; margin: 4px 0 2px; }
+  .macro-change { font-size: 12px; font-weight: 600; }
+  .up { color: var(--verde); }
+  .down { color: var(--vermelho); }
+  .neutral { color: var(--text-muted); }
+
+  /* ── SECTION TITLE ── */
+  .section-title {
+    font-size: 18px;
+    font-weight: 700;
+    margin: 32px 0 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--azul-escuro);
+  }
+  .section-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* ── NARRATIVE BOX ── */
+  .narrative {
+    background: var(--card-bg);
+    border-radius: 14px;
+    padding: 24px;
+    box-shadow: 0 1px 4px rgba(0,0,0,.06);
+    margin-bottom: 20px;
+    border-left: 4px solid var(--azul);
+  }
+  .narrative p { margin-bottom: 12px; font-size: 15px; line-height: 1.75; }
+  .narrative p:last-child { margin-bottom: 0; }
+  .narrative strong { color: var(--azul-escuro); }
+
+  /* ── ATIVO CARDS ── */
+  .ativos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 16px;
+    margin-bottom: 28px;
+  }
+  .ativo-card {
+    background: var(--card-bg);
+    border-radius: 14px;
+    padding: 20px;
+    box-shadow: 0 1px 4px rgba(0,0,0,.06);
+    border: 1px solid var(--border);
+    transition: transform .2s, box-shadow .2s;
+  }
+  .ativo-card:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,.1); }
+  .ativo-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+  }
+  .ativo-ticker {
+    background: var(--azul-escuro);
+    color: white;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 6px;
+    letter-spacing: .5px;
+  }
+  .ativo-ticker.fii { background: #6b46c1; }
+  .ativo-ticker.bdr { background: #c05621; }
+  .ativo-setor {
+    font-size: 11px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: .6px;
+  }
+  .ativo-nome { font-size: 17px; font-weight: 700; margin-bottom: 6px; color: var(--azul-escuro); }
+  .ativo-preco {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+  .ativo-preco .preco { font-size: 24px; font-weight: 800; }
+  .ativo-preco .variacao {
+    font-size: 13px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 20px;
+  }
+  .variacao.up { background: #d4edda; color: #155724; }
+  .variacao.down { background: #f8d7da; color: #721c24; }
+  .variacao.neutral { background: #e2e8f0; color: #4a5568; }
+  .ativo-divider { height: 1px; background: var(--border); margin: 12px 0; }
+  .ativo-news { font-size: 13px; color: #4a5568; line-height: 1.6; }
+  .ativo-news .headline { font-weight: 600; color: var(--text); margin-bottom: 4px; }
+  .ativo-tag {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .6px;
+    padding: 2px 7px;
+    border-radius: 4px;
+    margin-right: 4px;
+    margin-bottom: 6px;
+  }
+  .tag-alta { background: #d4edda; color: #155724; }
+  .tag-baixa { background: #f8d7da; color: #721c24; }
+  .tag-neutro { background: #e2e8f0; color: #4a5568; }
+  .tag-atencao { background: #fff3cd; color: #856404; }
+
+  /* ── MINI BAR CHART ── */
+  .mini-chart { margin-top: 10px; }
+  .mini-bar-label { font-size: 11px; color: var(--text-muted); display: flex; justify-content: space-between; margin-bottom: 3px; }
+  .mini-bar-track { background: var(--cinza); border-radius: 4px; height: 7px; overflow: hidden; }
+  .mini-bar-fill { height: 100%; border-radius: 4px; transition: width .6s ease; }
+
+  /* ── FII TABLE ── */
+  .fii-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  .fii-table th {
+    text-align: left;
+    padding: 10px 14px;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: .7px;
+    color: var(--text-muted);
+    background: var(--cinza);
+    border-bottom: 1px solid var(--border);
+  }
+  .fii-table td { padding: 12px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  .fii-table tr:last-child td { border-bottom: none; }
+  .fii-table tr:hover td { background: #f7fafc; }
+
+  /* ── WORLD MAP SECTION ── */
+  .world-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  .world-card {
+    background: var(--card-bg);
+    border-radius: 10px;
+    padding: 14px 16px;
+    box-shadow: 0 1px 3px rgba(0,0,0,.05);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border: 1px solid var(--border);
+  }
+  .world-flag { font-size: 28px; }
+  .world-info .name { font-size: 12px; color: var(--text-muted); }
+  .world-info .index { font-size: 15px; font-weight: 700; }
+  .world-info .perf { font-size: 13px; font-weight: 600; }
+
+  /* ── OUTLOOK ── */
+  .outlook-card {
+    background: linear-gradient(135deg, #073b4c 0%, #118ab2 100%);
+    color: white;
+    border-radius: 14px;
+    padding: 28px;
+    margin-bottom: 20px;
+  }
+  .outlook-card h3 { font-size: 18px; margin-bottom: 16px; opacity: .9; }
+  .outlook-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+  .outlook-item {
+    background: rgba(255,255,255,0.1);
+    border-radius: 10px;
+    padding: 16px;
+    border: 1px solid rgba(255,255,255,0.15);
+  }
+  .outlook-item .icon { font-size: 22px; margin-bottom: 8px; }
+  .outlook-item .title { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: .6px; opacity: .8; }
+  .outlook-item .body { font-size: 14px; margin-top: 6px; line-height: 1.5; }
+
+  /* ── FOOTER ── */
+  .footer {
+    text-align: center;
+    padding: 24px;
+    font-size: 12px;
+    color: var(--text-muted);
+    border-top: 1px solid var(--border);
+    margin-top: 32px;
+  }
+
+  /* ── PULSE BADGE ── */
+  .live-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(0,196,140,.15);
+    color: var(--verde);
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .8px;
+    margin-bottom: 20px;
+  }
+  .pulse-dot {
+    width: 7px; height: 7px;
+    background: var(--verde);
+    border-radius: 50%;
+    animation: pulse 1.5s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: .4; transform: scale(1.4); }
+  }
+
+  @media (max-width: 600px) {
+    .ativos-grid { grid-template-columns: 1fr; }
+    .macro-strip { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-badge">📊 Panorama Diário de Mercado</div>
+  <h1>Domingo, 21 de Junho de 2026</h1>
+  <div class="subtitle">Análise completa · Ibovespa · Ações · FIIs · Cenário Global</div>
+</div>
+
+<div class="container">
+
+  <div style="display:flex; justify-content:center; margin-top:20px; margin-bottom:4px;">
+    <div class="live-badge"><div class="pulse-dot"></div> Dados atualizados esta semana</div>
+  </div>
+
+  <!-- MACRO STRIP -->
+  <div class="macro-strip">
+    <div class="macro-card vermelho">
+      <div class="macro-label">Ibovespa</div>
+      <div class="macro-value">168.668</div>
+      <div class="macro-change down">▼ −350 pts (−0,21%)</div>
+    </div>
+    <div class="macro-card vermelho">
+      <div class="macro-label">Dólar (BRL)</div>
+      <div class="macro-value">R$ 5,18</div>
+      <div class="macro-change down">▲ +0,45%</div>
+    </div>
+    <div class="macro-card amarelo">
+      <div class="macro-label">Selic (atual)</div>
+      <div class="macro-value">13,25%</div>
+      <div class="macro-change neutral">→ Projeção fim 2026: 13,5%</div>
+    </div>
+    <div class="macro-card azul">
+      <div class="macro-label">S&P 500 (semana)</div>
+      <div class="macro-value">+0,9%</div>
+      <div class="macro-change up">▲ 11ª semana positiva em 12</div>
+    </div>
+    <div class="macro-card vermelho">
+      <div class="macro-label">Minério de Ferro</div>
+      <div class="macro-value">US$101</div>
+      <div class="macro-change down">▼ −0,14% | −5,97% mês</div>
+    </div>
+    <div class="macro-card verde">
+      <div class="macro-label">Fed Funds Rate</div>
+      <div class="macro-value">3,5–3,75%</div>
+      <div class="macro-change neutral">→ Mantido em junho</div>
+    </div>
+  </div>
+
+  <!-- NARRATIVA GLOBAL -->
+  <div class="section-title">🌎 A História do Mundo Esta Semana</div>
+  <div class="narrative">
+    <p>O cenário global na semana que encerrou 21 de junho de 2026 foi dominado por uma única palavra: <strong>Fed</strong>. A primeira reunião de política monetária sob o novo presidente Kevin Warsh surpreendeu os mercados: apesar de manter os juros inalterados na faixa de <strong>3,5%–3,75%</strong>, o banco central americano revisou seu "dot plot" de forma hawkish — <strong>quase metade dos membros do FOMC agora projeta pelo menos um aumento de juros em 2026</strong>. A mediana para o fim do ano saltou de 3,4% para 3,8%.</p>
+    <p>O gatilho? Inflação teimosa. O PCE projetado para 2026 subiu de 2,7% para <strong>3,6%</strong>, num reflexo dos choques do conflito no Oriente Médio que continuam pressionando energia e alimentos. O S&P 500 reagiu com queda de 1,21% na "Fed day" — o pior desempenho no primeiro dia de um novo presidente da instituição desde 1994. Porém, ao longo da semana o índice se recuperou, avançando <strong>+0,9%</strong>, acumulando a 11ª semana positiva em 12.</p>
+    <p>Na Ásia, o <strong>Nikkei 225 japonês renovou máximas históricas</strong> acima de 71.000 pontos (+1,65%), sustentado pelo iene fraco e demanda externa. A China, por outro lado, segue em ritmo mais cauteloso: os estoques de minério de ferro nos portos crescem, e as importações de maio recuaram para 97,7 milhões de toneladas (vs 103,9 mi em abril), pesando sobre commodities.</p>
+  </div>
+
+  <!-- CENÁRIO BRASIL -->
+  <div class="section-title">🇧🇷 Brasil: Entre a Selic e o Dólar</div>
+  <div class="narrative">
+    <p>O mercado brasileiro nesta semana encerrou a sexta-feira com o Ibovespa praticamente estável em torno de <strong>168.668 pontos</strong>, numa sequência de movimentos limitados e liquidez reduzida — reflexo do domingo próximo e da indefinição sobre o próximo passo do Copom. O dólar voltou a cruzar a barreira dos R$ 5,18, pressionado pelo ambiente externo mais hawkish do Fed americano.</p>
+    <p>O mercado elevou a projeção da <strong>Selic para 13,5% ao fim de 2026</strong>, revertendo parte das expectativas de corte. O BofA vê apenas um último corte de 25 pontos-base antes de uma pausa prolongada. Em outras palavras: <strong>juro alto por mais tempo</strong> — o que favorece FIIs de papel e ações de valor, mas penaliza growth stocks e empresas alavancadas.</p>
+    <p>A boa notícia é que a <strong>Vale (VALE3) voltou a ser a ação mais recomendada para junho</strong>, aparecendo em todos os portfólios analisados pela primeira vez em 2026 — uma virada de narrativa após o sell-off do início do ano. E o Bradesco entregou resultados sólidos no 1T26, com lucro de <strong>R$ 6,8 bilhões (+16% a/a)</strong>, mantendo o turnaround em curso.</p>
+  </div>
+
+  <!-- AÇÕES -->
+  <div class="section-title">📈 Ações — Análise Individual</div>
+  <div class="ativos-grid">
+
+    <!-- AXIA3 -->
+    <div class="ativo-card">
+      <div class="ativo-header">
+        <span class="ativo-ticker">AXIA3</span>
+        <span class="ativo-setor">⚡ Energia Elétrica</span>
+      </div>
+      <div class="ativo-nome">Axia Energia (ex-Eletrobras)</div>
+      <div class="ativo-preco">
+        <span class="preco">R$ 51,80</span>
+        <span class="variacao neutral">→ Neutro semanal</span>
+      </div>
+      <span class="ativo-tag tag-alta">+74% em 12 meses</span>
+      <span class="ativo-tag tag-atencao">DY 6,95%</span>
+      <div class="ativo-divider"></div>
+      <div class="ativo-news">
+        <div class="headline">Lucro ajustado dobra no 1T26; Ebitda regulatório +60% a/a</div>
+        O 1T26 foi forte: R$ 3,7 bi em lucro líquido ajustado e Ebitda de R$ 8,6 bi. Mesmo assim, ações recuaram após o resultado — o mercado queria mais. Bradesco BBI vê oportunidade escondida e elevou preço-alvo para <strong>R$ 73</strong>. XP e BB têm alvos entre R$ 63–71. Conversão para Novo Mercado (AXIA5/AXIA6 → AXIA3) concluída.
+      </div>
+      <div class="mini-chart">
+        <div class="mini-bar-label"><span>Potencial vs. preço atual</span><span style="color:var(--verde)">+41%</span></div>
+        <div class="mini-bar-track"><div class="mini-bar-fill" style="width:71%;background:var(--verde)"></div></div>
+      </div>
+    </div>
+
+    <!-- VALE3 -->
+    <div class="ativo-card">
+      <div class="ativo-header">
+        <span class="ativo-ticker">VALE3</span>
+        <span class="ativo-setor">⛏️ Mineração</span>
+      </div>
+      <div class="ativo-nome">Vale S.A.</div>
+      <div class="ativo-preco">
+        <span class="preco">R$ 80,75</span>
+        <span class="variacao up">▲ +11,6% no ano</span>
+      </div>
+      <span class="ativo-tag tag-alta">Unanimidade junho</span>
+      <span class="ativo-tag tag-atencao">Minério US$101/t</span>
+      <div class="ativo-divider"></div>
+      <div class="ativo-news">
+        <div class="headline">Vale: ação mais recomendada de junho 2026 — pela 1ª vez no ano</div>
+        O minério de ferro caiu −5,97% no mês, mas segue 8,75% acima do valor de 12 meses atrás (~US$110/t no pico). China importou 97,7 mi toneladas em maio, abaixo de abril — estoques nos portos altos. Porém o mercado vê suporte na retomada industrial chinesa. Vale encerrou maio com <strong>+2,02%</strong> e acumula alta desde o início do ano. Ponto de risco: geopolítica e demanda siderúrgica chinesa.
+      </div>
+      <div class="mini-chart">
+        <div class="mini-bar-label"><span>Exposição China (% receita)</span><span style="color:var(--azul)">~65%</span></div>
+        <div class="mini-bar-track"><div class="mini-bar-fill" style="width:65%;background:var(--azul)"></div></div>
+      </div>
+    </div>
+
+    <!-- BBDC4 -->
+    <div class="ativo-card">
+      <div class="ativo-header">
+        <span class="ativo-ticker">BBDC4</span>
+        <span class="ativo-setor">🏦 Banco</span>
+      </div>
+      <div class="ativo-nome">Bradesco PN</div>
+      <div class="ativo-preco">
+        <span class="preco">R$ 17,56</span>
+        <span class="variacao down">▼ −1,8% no ano</span>
+      </div>
+      <span class="ativo-tag tag-neutro">Turnaround em curso</span>
+      <span class="ativo-tag tag-alta">Lucro +16% a/a</span>
+      <div class="ativo-divider"></div>
+      <div class="ativo-news">
+        <div class="headline">9º trimestre consecutivo de melhora — mas mercado quer ROE acima de 16%</div>
+        Lucro de <strong>R$ 6,8 bilhões no 1T26</strong> com ROAE de 15,8% (+1,4pp a/a). Carteira de crédito atingiu R$ 1,1 trilhão. Provisões de R$ 9,7 bi (cobertura 161%). Ação caiu ~4% após o resultado — mercado puniu leve deterioração de qualidade de ativos. Bradesco distribuirá <strong>R$ 3 bilhões</strong> aos acionistas ainda em 2026. IPO reverso da área de saúde melhora capital regulatório.
+      </div>
+      <div class="mini-chart">
+        <div class="mini-bar-label"><span>ROAE atual vs. meta 18%</span><span style="color:var(--amarelo)">15,8%</span></div>
+        <div class="mini-bar-track"><div class="mini-bar-fill" style="width:87%;background:var(--amarelo)"></div></div>
+      </div>
+    </div>
+
+    <!-- MRFG3 -->
+    <div class="ativo-card">
+      <div class="ativo-header">
+        <span class="ativo-ticker">MRFG3</span>
+        <span class="ativo-setor">🥩 Proteína Animal</span>
+      </div>
+      <div class="ativo-nome">Marfrig / MBRF</div>
+      <div class="ativo-preco">
+        <span class="preco">Ver MBRF3</span>
+        <span class="variacao neutral">→ Fusão BRF/Marfrig</span>
+      </div>
+      <span class="ativo-tag tag-alta">Lucro +26,8% a/a</span>
+      <span class="ativo-tag tag-atencao">Exportações +28%</span>
+      <div class="ativo-divider"></div>
+      <div class="ativo-news">
+        <div class="headline">MBRF (nova Marfrig+BRF): lucro de R$ 111 mi no 1T26 com exportações recordes</div>
+        A fusão entre Marfrig e BRF gerou a MBRF, que entregou resultado sólido no 1T26. Volume exportado cresceu <strong>28% a/a</strong>. Retomada de embarques para China e UE. Vendas ao Oriente Médio se destacaram. Risco: veto da UE à carne brasileira (regulação antimicrobiana). Marfrig também iniciou exportações para EUA por 2 novas plantas em MT.
+      </div>
+      <div class="mini-chart">
+        <div class="mini-bar-label"><span>Crescimento exportação anual</span><span style="color:var(--verde)">+28%</span></div>
+        <div class="mini-bar-track"><div class="mini-bar-fill" style="width:75%;background:var(--verde)"></div></div>
+      </div>
+    </div>
+
+    <!-- MSFT34 -->
+    <div class="ativo-card">
+      <div class="ativo-header">
+        <span class="ativo-ticker bdr">MSFT34</span>
+        <span class="ativo-setor">💻 BDR · Tecnologia</span>
+      </div>
+      <div class="ativo-nome">Microsoft BDR</div>
+      <div class="ativo-preco">
+        <span class="preco">BDR Tier</span>
+        <span class="variacao down">▼ −1,62% ano (portfólio)</span>
+      </div>
+      <span class="ativo-tag tag-alta">IA: Azure + Copilot</span>
+      <span class="ativo-tag tag-neutro">DY R$0,13 (jun/26)</span>
+      <div class="ativo-divider"></div>
+      <div class="ativo-news">
+        <div class="headline">Microsoft top-10 de BDRs por IA — mas dólar forte pressiona retorno em BRL</div>
+        MSFT34 representa 10% do portfólio de BDRs de IA do Banco Safra em junho 2026. A empresa combina infraestrutura (Azure) e aplicação (Copilot/Office 365). Em maio, o portfólio de BDRs avançou <strong>+5,36%</strong>, abaixo do S&P 500 (+6,78%), mas acima do CDI. Tese: monetização em múltiplas camadas e capacidade de sustentar margens mesmo com ciclo de investimento pesado em data centers.
+      </div>
+      <div class="mini-chart">
+        <div class="mini-bar-label"><span>IA capex (US$ bi, 2025)</span><span style="color:var(--azul)">US$80 bi</span></div>
+        <div class="mini-bar-track"><div class="mini-bar-fill" style="width:90%;background:var(--azul)"></div></div>
+      </div>
+    </div>
+
+    <!-- B3SA3 -->
+    <div class="ativo-card">
+      <div class="ativo-header">
+        <span class="ativo-ticker">B3SA3</span>
+        <span class="ativo-setor">🏛️ Bolsa de Valores</span>
+      </div>
+      <div class="ativo-nome">B3 — Brasil, Bolsa, Balcão</div>
+      <div class="ativo-preco">
+        <span class="preco">Volume recorde</span>
+        <span class="variacao up">▲ Lucro +33% a/a 1T26</span>
+      </div>
+      <span class="ativo-tag tag-alta">ADTV R$37 bi (1T26)</span>
+      <span class="ativo-tag tag-alta">Receita R$3,2 bi</span>
+      <div class="ativo-divider"></div>
+      <div class="ativo-news">
+        <div class="headline">B3 bate recordes em 2026: ADTV +46% a/a e lucro recorrente de R$ 1,5 bi</div>
+        O 1T26 foi o melhor trimestre da história da B3. Receita de <strong>R$ 3,2 bilhões (+20,5% a/a)</strong>. ADTV em renda variável cresceu <strong>46%</strong>. Lucro recorrente atingiu R$ 1,5 bilhão (+33%). Grupo de receitas pró-cíclicas (derivativos + renda variável) avançou 23,7%. Citi reitera recomendação de compra. B3 é beneficiária direta do Ibovespa em alta e do crescimento de investidores PF.
+      </div>
+      <div class="mini-chart">
+        <div class="mini-bar-label"><span>Crescimento ADTV vs. 1T25</span><span style="color:var(--verde)">+46%</span></div>
+        <div class="mini-bar-track"><div class="mini-bar-fill" style="width:92%;background:var(--verde)"></div></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- FIIs -->
+  <div class="section-title">🏢 Fundos Imobiliários</div>
+  <div class="narrative" style="margin-bottom:16px;">
+    <p>Com a Selic projetada em 13,5% ao fim de 2026, os <strong>FIIs de papel</strong> — especialmente os atrelados a CDI e IPCA — seguem como protagonistas em termos de distribuição de rendimentos. KNCR11 e PCIP11 se encaixam exatamente neste perfil defensivo.</p>
+  </div>
+  <div style="background:var(--card-bg); border-radius:14px; overflow:hidden; box-shadow:0 1px 4px rgba(0,0,0,.06); margin-bottom:28px;">
+    <table class="fii-table">
+      <thead>
+        <tr>
+          <th>Ticker</th>
+          <th>Nome</th>
+          <th>Tipo</th>
+          <th>Último Rendimento</th>
+          <th>DY 12M (Total)</th>
+          <th>Análise</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong style="background:#6b46c1;color:white;padding:2px 8px;border-radius:4px;font-size:12px;">KNCR11</strong></td>
+          <td><strong>Kinea Rendimentos Imobiliários</strong></td>
+          <td><span class="ativo-tag tag-neutro" style="margin:0">Papel / CRI</span></td>
+          <td>
+            <span style="font-size:18px;font-weight:800;color:var(--verde)">R$ 1,10</span>
+            <div style="font-size:11px;color:var(--text-muted)">pago em 12/06/2026</div>
+          </td>
+          <td>
+            <strong>R$ 14,54/cota</strong>
+            <div style="font-size:11px;color:var(--text-muted)">Média: R$1,21/mês</div>
+          </td>
+          <td style="font-size:13px;">
+            ✅ <strong>Maior FII do Brasil</strong>. Aumentou dividendos +17% em jan/26 (R$1,30/cota). Estratégia CDI + spread — extremamente favorecido por Selic alta. Kinea é gestora top tier. Fundo de baixíssimo risco relativo no universo FII.
+          </td>
+        </tr>
+        <tr>
+          <td><strong style="background:#6b46c1;color:white;padding:2px 8px;border-radius:4px;font-size:12px;">PCIP11</strong></td>
+          <td><strong>Patrimonial Cibrasec IP</strong></td>
+          <td><span class="ativo-tag tag-neutro" style="margin:0">Papel / CRI</span></td>
+          <td>
+            <span style="font-size:18px;font-weight:800;color:var(--verde)">~R$ 0,90–1,10*</span>
+            <div style="font-size:11px;color:var(--text-muted)">*estimativa baseada no perfil</div>
+          </td>
+          <td>
+            <strong>DY estimado ~12%+</strong>
+            <div style="font-size:11px;color:var(--text-muted)">Referência: IPCA + spread</div>
+          </td>
+          <td style="font-size:13px;">
+            ℹ️ FII de papel ligado à Cibrasec, focado em CRIs. Perfil IPCA+ o protege da inflação. Em ambiente de juro real elevado, tende a performar bem. Verificar calendário de dividendos de junho em <a href="https://statusinvest.com.br/fundos-imobiliarios/pcip11" target="_blank" style="color:var(--azul)">Status Invest</a>.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- MERCADOS GLOBAIS -->
+  <div class="section-title">🌐 Bolsas Globais</div>
+  <div class="world-grid">
+    <div class="world-card">
+      <div class="world-flag">🇺🇸</div>
+      <div class="world-info">
+        <div class="name">S&P 500</div>
+        <div class="index">~5.800 pts</div>
+        <div class="perf up">▲ +0,9% semana</div>
+      </div>
+    </div>
+    <div class="world-card">
+      <div class="world-flag">🇺🇸</div>
+      <div class="world-info">
+        <div class="name">Nasdaq</div>
+        <div class="index">~18.900 pts</div>
+        <div class="perf up">▲ +2,4% semana</div>
+      </div>
+    </div>
+    <div class="world-card">
+      <div class="world-flag">🇯🇵</div>
+      <div class="world-info">
+        <div class="name">Nikkei 225</div>
+        <div class="index">71.053 pts 🏆</div>
+        <div class="perf up">▲ +1,65% (recorde)</div>
+      </div>
+    </div>
+    <div class="world-card">
+      <div class="world-flag">🇰🇷</div>
+      <div class="world-info">
+        <div class="name">Kospi</div>
+        <div class="index">Máxima histórica</div>
+        <div class="perf up">▲ Alta semanal</div>
+      </div>
+    </div>
+    <div class="world-card">
+      <div class="world-flag">🇭🇰</div>
+      <div class="world-info">
+        <div class="name">Hang Seng</div>
+        <div class="index">23.924 pts</div>
+        <div class="perf down">▼ −1,6%</div>
+      </div>
+    </div>
+    <div class="world-card">
+      <div class="world-flag">🇨🇳</div>
+      <div class="world-info">
+        <div class="name">CSI 300</div>
+        <div class="index">Estável</div>
+        <div class="perf up">▲ +0,21%</div>
+      </div>
+    </div>
+    <div class="world-card">
+      <div class="world-flag">🇧🇷</div>
+      <div class="world-info">
+        <div class="name">Ibovespa</div>
+        <div class="index">168.668 pts</div>
+        <div class="perf down">▼ −0,21%</div>
+      </div>
+    </div>
+    <div class="world-card">
+      <div class="world-flag">🇺🇸</div>
+      <div class="world-info">
+        <div class="name">Dow Jones</div>
+        <div class="index">~42.500 pts</div>
+        <div class="perf up">▲ +0,7% semana</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- OUTLOOK -->
+  <div class="section-title">🔭 Outlook e Pontos de Atenção</div>
+  <div class="outlook-card">
+    <h3>O que monitorar na próxima semana →</h3>
+    <div class="outlook-grid">
+      <div class="outlook-item">
+        <div class="icon">🏦</div>
+        <div class="title">Copom / Selic</div>
+        <div class="body">Mercado projeta manutenção ou último corte de 25bps. Comunicado do Banco Central será chave para o câmbio e FIIs.</div>
+      </div>
+      <div class="outlook-item">
+        <div class="icon">⛏️</div>
+        <div class="title">Minério de Ferro</div>
+        <div class="body">Minério abaixo de US$100 seria sinal de alerta para VALE3. Acompanhar dados industriais da China e estoques nos portos.</div>
+      </div>
+      <div class="outlook-item">
+        <div class="icon">💵</div>
+        <div class="title">Fed Hawkish</div>
+        <div class="body">Dot plot sinaliza alta. Se dados de inflação americana (PCE) virem acima de 3,6%, pressão sobre emergentes — incluindo o real.</div>
+      </div>
+      <div class="outlook-item">
+        <div class="icon">🏛️</div>
+        <div class="title">B3 e Fluxo</div>
+        <div class="body">Fluxo estrangeiro após Fed day será determinante. ADTV acima de R$37 bi sustenta a tese de B3SA3. Acompanhar posição de gringos.</div>
+      </div>
+      <div class="outlook-item">
+        <div class="icon">🥩</div>
+        <div class="title">Exportações BR</div>
+        <div class="body">Veto da UE e regulação antimicrobiana são riscos para MBRF3/Marfrig. Compensação via China e Oriente Médio em expansão.</div>
+      </div>
+      <div class="outlook-item">
+        <div class="icon">⚡</div>
+        <div class="title">AXIA3 e Regulação</div>
+        <div class="body">Qualquer mudança na revisão tarifária ou política energética impacta diretamente. Monitorar ANEEL e posicionamento da Eletrobras/Axia.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RESUMO NARRATIVO FINAL -->
+  <div class="section-title">📖 Resumo da Semana em Uma História</div>
+  <div class="narrative">
+    <p>Imagine o mercado como um tabuleiro de xadrez. Esta semana, o rei americano — o <strong>Fed</strong> — fez um movimento inesperado ao sinalizar que pode subir os juros. O mercado, que já estava comemorando 11 semanas de alta no S&P 500, recuou um passo, respirou fundo, e continuou andando.</p>
+    <p>No Brasil, o dólar aproveitou o susto e voltou a rondar R$ 5,18. O Ibovespa ficou praticamente de lado — nem euforia, nem pânico. É a famosa "espera ativa" que o mercado pratica quando não há catalisadores claros. O juro alto (<strong>Selic a 13,25%</strong>, com projeção de 13,5% até o fim do ano) continua sendo o "campo gravitacional" que puxa tudo: beneficia os FIIs de papel como <strong>KNCR11</strong>, mantém o crédito caro para empresas alavancadas, e força o investidor pessoa física a comparar sempre com o "CDI garantido".</p>
+    <p>Entre os destaques positivos: <strong>B3SA3</strong> brilha com volumes recordes e lucro +33% — o crescimento do mercado de capitais brasileiro tem sido a grande tese de 2026. <strong>VALE3</strong> virou a queridinha dos analistas após um susto com minério, mas segue dependente da China. <strong>AXIA3</strong> (ex-Eletrobras) tem fundamentos sólidos e preço muito abaixo dos alvos dos analistas — o debate é quando o mercado vai "reconhecer" esse valor. E <strong>BBDC4</strong> segue seu turnaround paciente, trimestre a trimestre.</p>
+    <p>Para o fim de semana: momento de revisar a carteira com calma, olhar os DY dos FIIs pagos em junho, e se preparar para uma semana que pode trazer mais clareza sobre o Copom e o Fed. O mercado está em modo de <strong>"ver para crer"</strong> — e quem tiver paciência tende a sair na frente.</p>
+  </div>
+
+  <!-- SOURCES -->
+  <div class="section-title">📚 Fontes Consultadas</div>
+  <div style="background:var(--card-bg); border-radius:12px; padding:20px; box-shadow:0 1px 4px rgba(0,0,0,.06);">
+    <div style="display:grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap:10px; font-size:13px;">
+      <a href="https://www.infomoney.com.br" target="_blank" style="display:flex;align-items:center;gap:8px;color:var(--azul);text-decoration:none;padding:8px 12px;background:var(--cinza);border-radius:8px;">🇧🇷 InfoMoney</a>
+      <a href="https://finance.yahoo.com" target="_blank" style="display:flex;align-items:center;gap:8px;color:var(--azul);text-decoration:none;padding:8px 12px;background:var(--cinza);border-radius:8px;">🇺🇸 Yahoo Finance</a>
+      <a href="https://www.cnbc.com" target="_blank" style="display:flex;align-items:center;gap:8px;color:var(--azul);text-decoration:none;padding:8px 12px;background:var(--cinza);border-radius:8px;">📺 CNBC</a>
+      <a href="https://www.bloomberg.com" target="_blank" style="display:flex;align-items:center;gap:8px;color:var(--azul);text-decoration:none;padding:8px 12px;background:var(--cinza);border-radius:8px;">📊 Bloomberg</a>
+      <a href="https://statusinvest.com.br" target="_blank" style="display:flex;align-items:center;gap:8px;color:var(--azul);text-decoration:none;padding:8px 12px;background:var(--cinza);border-radius:8px;">📈 Status Invest</a>
+      <a href="https://www.suno.com.br" target="_blank" style="display:flex;align-items:center;gap:8px;color:var(--azul);text-decoration:none;padding:8px 12px;background:var(--cinza);border-radius:8px;">🔍 Suno Research</a>
+      <a href="https://www.seudinheiro.com" target="_blank" style="display:flex;align-items:center;gap:8px;color:var(--azul);text-decoration:none;padding:8px 12px;background:var(--cinza);border-radius:8px;">💰 Seu Dinheiro</a>
+      <a href="https://fiis.com.br" target="_blank" style="display:flex;align-items:center;gap:8px;color:var(--azul);text-decoration:none;padding:8px 12px;background:var(--cinza);border-radius:8px;">🏢 FIIs.com.br</a>
+      <a href="https://pt.tradingeconomics.com" target="_blank" style="display:flex;align-items:center;gap:8px;color:var(--azul);text-decoration:none;padding:8px 12px;background:var(--cinza);border-radius:8px;">🌐 Trading Economics</a>
+      <a href="https://www.bloomberglinea.com.br" target="_blank" style="display:flex;align-items:center;gap:8px;color:var(--azul);text-decoration:none;padding:8px 12px;background:var(--cinza);border-radius:8px;">📰 Bloomberg Línea BR</a>
+    </div>
+  </div>
+
+</div><!-- /container -->
+
+<div class="footer">
+  📊 Panorama gerado automaticamente em <strong>21 de junho de 2026</strong> · Para uso informativo — não constitui recomendação de investimento · Consulte sempre um assessor financeiro.
+</div>
+
+</body>
+</html>

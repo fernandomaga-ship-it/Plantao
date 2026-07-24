@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Análise de Mercado — 18 de junho de 2026</title>
+<style>
+  :root {
+    --bg: #0d0f14;
+    --card: #151821;
+    --border: #1e2330;
+    --accent: #3b82f6;
+    --accent2: #10b981;
+    --red: #ef4444;
+    --yellow: #f59e0b;
+    --text: #e2e8f0;
+    --muted: #64748b;
+    --heading: #f8fafc;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    font-size: 15px;
+    line-height: 1.65;
+  }
+
+  /* HEADER */
+  .header {
+    background: linear-gradient(135deg, #0a0f1e 0%, #111827 60%, #0d1a2e 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 36px 40px 28px;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(59,130,246,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .header h1 {
+    font-size: 1.9rem;
+    font-weight: 700;
+    color: var(--heading);
+    letter-spacing: -0.5px;
+  }
+  .header h1 span { color: var(--accent); }
+  .header .date-badge {
+    background: rgba(59,130,246,0.15);
+    border: 1px solid rgba(59,130,246,0.3);
+    color: var(--accent);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+  }
+  .header .subtitle {
+    color: var(--muted);
+    font-size: 0.9rem;
+    margin-top: 6px;
+  }
+
+  /* ALERT BANNER */
+  .alert-banner {
+    background: rgba(239,68,68,0.1);
+    border: 1px solid rgba(239,68,68,0.35);
+    border-left: 4px solid var(--red);
+    margin: 24px 40px 0;
+    padding: 14px 18px;
+    border-radius: 8px;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .alert-banner .icon { font-size: 1.3rem; flex-shrink: 0; margin-top: 1px; }
+  .alert-banner strong { color: #fca5a5; display: block; font-size: 0.88rem; margin-bottom: 2px; }
+  .alert-banner p { color: #fca5a5; font-size: 0.85rem; line-height: 1.5; opacity: 0.9; }
+
+  /* LAYOUT */
+  .container { max-width: 1100px; margin: 0 auto; padding: 32px 40px 60px; }
+
+  /* SECTION TITLE */
+  .section-title {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--muted);
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .section-title::before {
+    content: '';
+    width: 3px; height: 14px;
+    background: var(--accent);
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+
+  /* NARRATIVE */
+  .narrative {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px 32px;
+    margin-bottom: 28px;
+    line-height: 1.8;
+  }
+  .narrative h2 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--heading);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .narrative p { margin-bottom: 14px; color: #cbd5e1; }
+  .narrative p:last-child { margin-bottom: 0; }
+  .narrative strong { color: var(--heading); }
+  .narrative .highlight {
+    background: rgba(59,130,246,0.08);
+    border-left: 3px solid var(--accent);
+    padding: 10px 14px;
+    border-radius: 0 6px 6px 0;
+    margin: 18px 0;
+    font-style: italic;
+    color: #93c5fd;
+    font-size: 0.92rem;
+  }
+
+  /* MACRO GRID */
+  .macro-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 14px;
+    margin-bottom: 28px;
+  }
+  .macro-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px 16px;
+    text-align: center;
+  }
+  .macro-card .label { font-size: 0.72rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 6px; }
+  .macro-card .value { font-size: 1.5rem; font-weight: 700; color: var(--heading); margin-bottom: 4px; }
+  .macro-card .change { font-size: 0.8rem; font-weight: 600; }
+  .change.up { color: var(--accent2); }
+  .change.down { color: var(--red); }
+  .change.neutral { color: var(--yellow); }
+
+  /* STOCKS GRID */
+  .stocks-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 16px;
+    margin-bottom: 28px;
+  }
+  .stock-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 22px;
+    transition: border-color 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+  .stock-card::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    border-radius: 12px 12px 0 0;
+  }
+  .stock-card.positive::after { background: var(--accent2); }
+  .stock-card.negative::after { background: var(--red); }
+  .stock-card.neutral::after { background: var(--yellow); }
+  .stock-card:hover { border-color: rgba(59,130,246,0.4); }
+
+  .stock-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 12px;
+  }
+  .stock-ticker {
+    font-size: 1rem;
+    font-weight: 800;
+    color: var(--heading);
+    letter-spacing: 0.5px;
+  }
+  .stock-name {
+    font-size: 0.75rem;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+  .stock-sector {
+    font-size: 0.68rem;
+    background: rgba(59,130,246,0.12);
+    color: #93c5fd;
+    border: 1px solid rgba(59,130,246,0.2);
+    padding: 3px 9px;
+    border-radius: 20px;
+    white-space: nowrap;
+  }
+  .stock-price {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--heading);
+    margin-bottom: 8px;
+  }
+  .stock-price span {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--muted);
+    margin-left: 4px;
+  }
+  .stock-change-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+  }
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 0.78rem;
+    font-weight: 600;
+  }
+  .badge.up { background: rgba(16,185,129,0.12); color: #34d399; border: 1px solid rgba(16,185,129,0.25); }
+  .badge.down { background: rgba(239,68,68,0.1); color: #f87171; border: 1px solid rgba(239,68,68,0.25); }
+  .badge.yellow { background: rgba(245,158,11,0.1); color: #fbbf24; border: 1px solid rgba(245,158,11,0.25); }
+  .badge.blue { background: rgba(59,130,246,0.1); color: #60a5fa; border: 1px solid rgba(59,130,246,0.25); }
+
+  .stock-narrative {
+    font-size: 0.83rem;
+    color: #94a3b8;
+    line-height: 1.6;
+    border-top: 1px solid var(--border);
+    padding-top: 12px;
+  }
+  .stock-narrative strong { color: #cbd5e1; }
+
+  .metrics-row {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+  }
+  .metric {
+    text-align: center;
+  }
+  .metric .m-label { font-size: 0.65rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.6px; }
+  .metric .m-val { font-size: 0.85rem; font-weight: 600; color: #e2e8f0; }
+
+  /* FII SECTION */
+  .fii-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+    margin-bottom: 28px;
+  }
+  .fii-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 22px;
+    position: relative;
+    overflow: hidden;
+  }
+  .fii-card::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #6366f1, #8b5cf6);
+    border-radius: 12px 12px 0 0;
+  }
+
+  /* RADAR */
+  .radar-box {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px 28px;
+    margin-bottom: 28px;
+  }
+  .radar-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .radar-item:last-child { border-bottom: none; }
+  .radar-icon { font-size: 1.3rem; flex-shrink: 0; margin-top: 1px; }
+  .radar-title { font-size: 0.88rem; font-weight: 600; color: var(--heading); margin-bottom: 3px; }
+  .radar-desc { font-size: 0.81rem; color: #94a3b8; line-height: 1.55; }
+
+  /* FOOTER */
+  .footer {
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.75rem;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    line-height: 1.7;
+  }
+  .footer a { color: var(--accent); text-decoration: none; }
+
+  @media (max-width: 600px) {
+    .header, .container { padding-left: 20px; padding-right: 20px; }
+    .alert-banner { margin-left: 20px; margin-right: 20px; }
+    .header h1 { font-size: 1.4rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-top">
+    <div>
+      <h1>📊 Análise de <span>Mercado</span></h1>
+      <p class="subtitle">Sua carteira em contexto — Brasil & Mundo</p>
+    </div>
+    <div class="date-badge">⏰ Quinta-feira, 18 de junho de 2026</div>
+  </div>
+</div>
+
+<!-- ALERT BANNER -->
+<div class="alert-banner">
+  <div class="icon">🚨</div>
+  <div>
+    <strong>ALERTA DO DIA — FED HAWKISH: WARSH SINALIZA POSSÍVEL ALTA DE JUROS</strong>
+    <p>Na reunião de ontem (17/jun), Kevin Warsh presidiu sua primeira reunião como chairman do Fed. Taxas mantidas em 3,50–3,75%, mas o dot plot causou choque: 9 membros do FOMC sinalizam ao menos um aumento de juros em 2026. Wall Street vendeu risco: S&P 500 –1,21%, Dow –507 pts, yields do Tesouro dispararam.</p>
+  </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="container">
+
+  <!-- NARRATIVA GLOBAL -->
+  <div style="margin-bottom: 10px; margin-top: 28px;">
+    <div class="section-title">🌍 A História do Dia</div>
+  </div>
+
+  <div class="narrative">
+    <h2>⚡ O Fed muda o tom — e o mundo reage</h2>
+    <p>
+      A manhã desta quinta-feira nasce com os mercados globais ainda processando o choque de ontem. Kevin Warsh presidiu sua primeira reunião como chairman do Federal Reserve e, embora as taxas tenham ficado estáveis entre <strong>3,50% e 3,75%</strong>, o que aconteceu no dot plot deixou os mercados de cabelos em pé. <strong>Nove membros do FOMC sinalizaram ao menos uma alta de juros ainda em 2026</strong>, revertendo completamente a expectativa de cortes que predominava no início do ano.
+    </p>
+    <div class="highlight">
+      "Warsh absteve-se de apresentar sua própria projeção — coerente com suas visões de longa data —, mas o sinal dos 9 membros foi suficiente para provocar um rout no mercado de bonds e uma fuga do risco em Wall Street."
+    </div>
+    <p>
+      O S&P 500 fechou em queda de <strong>1,21%</strong>, o Nasdaq recuou <strong>1,34%</strong> e o Dow Jones perdeu mais de <strong>507 pontos</strong>. Os rendimentos do Tesouro americano de 10 anos dispararam, pressionando especialmente as ações de tecnologia — Microsoft, Meta, Alphabet e Amazon lideraram as perdas. Para o BDR <strong>MSFT34</strong>, mesmo após pagar dividendos de R$0,13/cota na véspera, o reflexo da queda técnica em Nova York deve ser sentido.
+    </p>
+    <p>
+      Mas há uma reviravolta geopolítica para equilibrar a narrativa: os Estados Unidos e o Irã assinaram um <strong>acordo de paz provisório</strong>, aliviando tensões no Estreito de Ormuz. O mercado de petróleo respira — e esse movimento pode favorecer companies de energia no curto prazo, como a <strong>AXIA3</strong>.
+    </p>
+    <p>
+      No Brasil, o cenário macro ainda é construtivo. O IBOVESPA acumula alta de quase <strong>9% em reais e 13% em dólares</strong> no ano, com alvos dos principais bancos entre 185 mil e 200 mil pontos para o fim de 2026. O dólar, porém, encontra resistência na nova postura hawkish do Fed — qualquer pressão sobre o câmbio pode afetar as projeções de lucro das exportadoras e adicionar ruído para o Copom.
+    </p>
+  </div>
+
+  <!-- MACRO INDICATORS -->
+  <div class="section-title">📈 Indicadores Macro</div>
+  <div class="macro-grid">
+    <div class="macro-card">
+      <div class="label">IBOVESPA</div>
+      <div class="value">~168K</div>
+      <div class="change up">▲ +9% no ano (R$)</div>
+    </div>
+    <div class="macro-card">
+      <div class="label">Dólar / BRL</div>
+      <div class="value">R$5,18</div>
+      <div class="change neutral">↔ Pressão Fed</div>
+    </div>
+    <div class="macro-card">
+      <div class="label">Minério de Ferro</div>
+      <div class="value">US$101</div>
+      <div class="change down">▼ –0,27% (16/jun)</div>
+    </div>
+    <div class="macro-card">
+      <div class="label">Fed Funds Rate</div>
+      <div class="value">3,50%</div>
+      <div class="change down">⚠ 9 membros → alta</div>
+    </div>
+    <div class="macro-card">
+      <div class="label">S&P 500 (17/jun)</div>
+      <div class="value">7.420</div>
+      <div class="change down">▼ –1,21%</div>
+    </div>
+    <div class="macro-card">
+      <div class="label">Nasdaq (17/jun)</div>
+      <div class="value">26.021</div>
+      <div class="change down">▼ –1,34%</div>
+    </div>
+  </div>
+
+  <!-- AÇÕES -->
+  <div class="section-title">💼 Sua Carteira — Ações</div>
+  <div class="stocks-grid">
+
+    <!-- AXIA3 -->
+    <div class="stock-card positive">
+      <div class="stock-header">
+        <div>
+          <div class="stock-ticker">AXIA3</div>
+          <div class="stock-name">Axia Energia</div>
+        </div>
+        <span class="stock-sector">⚡ Energia</span>
+      </div>
+      <div class="stock-price">R$ 53,16 <span>/ ação</span></div>
+      <div class="stock-change-row">
+        <span class="badge up">▲ +74,4% em 12 meses</span>
+        <span class="badge blue">🎯 Alvo BB: R$63,90</span>
+      </div>
+      <div class="metrics-row">
+        <div class="metric"><div class="m-label">DY</div><div class="m-val">6,85%</div></div>
+        <div class="metric"><div class="m-label">Lucro 1T26</div><div class="m-val">R$3,7 Bi</div></div>
+        <div class="metric"><div class="m-label">EBITDA</div><div class="m-val">+60% YoY</div></div>
+      </div>
+      <div class="stock-narrative">
+        <strong>A história:</strong> A Axia foi a grande surpresa do mercado de energia em 2026. No 1T26, reverteu prejuízo de R$80 mi para lucro ajustado de R$3,7 bilhões, com EBITDA regulatório crescendo 60% e receita operacional subindo 19,7%. Os acionistas aprovaram a migração para o Novo Mercado — sinal de maturidade corporativa. Com o acordo EUA-Irã reduzindo pressões geopolíticas no setor energético, o momento pode ser construtivo. O preço-alvo de R$63,90 representa upside de +20%.
+      </div>
+    </div>
+
+    <!-- VALE3 -->
+    <div class="stock-card neutral">
+      <div class="stock-header">
+        <div>
+          <div class="stock-ticker">VALE3</div>
+          <div class="stock-name">Vale S.A.</div>
+        </div>
+        <span class="stock-sector">⛏️ Mineração</span>
+      </div>
+      <div class="stock-price">R$ 81,44 <span>/ ação</span></div>
+      <div class="stock-change-row">
+        <span class="badge up">▲ +12,5% vs Jan/26</span>
+        <span class="badge yellow">⚠ Minério em pressão</span>
+      </div>
+      <div class="metrics-row">
+        <div class="metric"><div class="m-label">Minério Ferro</div><div class="m-val">US$101/t</div></div>
+        <div class="metric"><div class="m-label">DY</div><div class="m-val">10,25%</div></div>
+        <div class="metric"><div class="m-label">Importações China</div><div class="m-val">–6% Mai</div></div>
+      </div>
+      <div class="stock-narrative">
+        <strong>A história:</strong> A Vale lidera as recomendações de junho com unanimidade entre analistas, atraída por DY de 10,25%. Porém há um sinal de alerta: as importações de minério de ferro pela China caíram quase 6% em maio ante abril, de 103,9 Mt para 97,7 Mt. O preço do minério recuou para ~US$101/t. O grande risco da Vale continua sendo a velocidade de recuperação da demanda siderúrgica chinesa. A virada hawkish do Fed também fortalece o dólar globalmente, o que pode pressionar commodities no curto prazo.
+      </div>
+    </div>
+
+    <!-- BBDC4 -->
+    <div class="stock-card positive">
+      <div class="stock-header">
+        <div>
+          <div class="stock-ticker">BBDC4</div>
+          <div class="stock-name">Banco Bradesco PN</div>
+        </div>
+        <span class="stock-sector">🏦 Bancário</span>
+      </div>
+      <div class="stock-price">R$ 17,66 <span>/ ação</span></div>
+      <div class="stock-change-row">
+        <span class="badge up">▲ Lucro +16% no 1T26</span>
+        <span class="badge blue">9° tri consecutivo de melhora</span>
+      </div>
+      <div class="metrics-row">
+        <div class="metric"><div class="m-label">Lucro 1T26</div><div class="m-val">R$6,81 Bi</div></div>
+        <div class="metric"><div class="m-label">ROE</div><div class="m-val">15,8%</div></div>
+        <div class="metric"><div class="m-label">DY 2026E</div><div class="m-val">>8%</div></div>
+      </div>
+      <div class="stock-narrative">
+        <strong>A história:</strong> O Bradesco vive o seu melhor momento em anos. O nono trimestre consecutivo de melhora nos resultados consolida a percepção de que o turnaround é real. Lucro de R$6,8 bi no 1T26 veio acima do consenso (R$6,65 bi), ROE chegou a 15,8%. A projeção é lucro próximo de R$28 bi em 2026, com DY acima de 8%. Atenção: o ambiente de juros altos prolongados (impacto do Fed hawkish pode reverter expectativas de corte do Copom) costuma beneficiar a margem financeira dos bancos. BBDC4 pode ser um dos ativos mais resilientes da sua carteira.
+      </div>
+    </div>
+
+    <!-- MRFG3 -->
+    <div class="stock-card neutral">
+      <div class="stock-header">
+        <div>
+          <div class="stock-ticker">MRFG3</div>
+          <div class="stock-name">Marfrig Global Foods</div>
+        </div>
+        <span class="stock-sector">🥩 Proteína Animal</span>
+      </div>
+      <div class="stock-price">— <span>acompanhar</span></div>
+      <div class="stock-change-row">
+        <span class="badge yellow">⚠ Monitorar ciclo de proteínas</span>
+      </div>
+      <div class="metrics-row">
+        <div class="metric"><div class="m-label">Setor</div><div class="m-val">Não-Cíclico</div></div>
+        <div class="metric"><div class="m-label">Operações</div><div class="m-val">10+ países</div></div>
+      </div>
+      <div class="stock-narrative">
+        <strong>A história:</strong> A Marfrig opera em um ciclo sensível ao preço do boi gordo no Brasil e às exportações de carne bovina, especialmente para China, EUA e Oriente Médio. Com o acordo de paz entre EUA e Irã, há potencial de abertura de mercados no Oriente Médio para proteína brasileira. Acompanhe o ciclo pecuário e a evolução da BRF (na qual a Marfrig é acionista relevante) para calibrar a posição. Verifique a cotação em tempo real no <a href="https://statusinvest.com.br/acoes/mrfg3" style="color:#60a5fa;">Status Invest</a>.
+      </div>
+    </div>
+
+    <!-- MSFT34 -->
+    <div class="stock-card negative">
+      <div class="stock-header">
+        <div>
+          <div class="stock-ticker">MSFT34</div>
+          <div class="stock-name">Microsoft BDR</div>
+        </div>
+        <span class="stock-sector">💻 Tecnologia (BDR)</span>
+      </div>
+      <div class="stock-price">R$ 83,60 <span>/ BDR</span></div>
+      <div class="stock-change-row">
+        <span class="badge down">▼ Reflexo queda Nasdaq</span>
+        <span class="badge blue">Dividendo pago: R$0,13 (17/jun)</span>
+      </div>
+      <div class="metrics-row">
+        <div class="metric"><div class="m-label">Div. Jun/26</div><div class="m-val">R$0,1303</div></div>
+        <div class="metric"><div class="m-label">DY 12m</div><div class="m-val">R$0,27</div></div>
+        <div class="metric"><div class="m-label">Var. 12m</div><div class="m-val">–23,28%</div></div>
+      </div>
+      <div class="stock-narrative">
+        <strong>A história:</strong> A Microsoft pagou ontem (17/jun) seus dividendos trimestrais em BDR (R$0,13/cota). Porém, o choque hawkish do Fed pressionou toda a tecnologia americana — Microsoft, Meta, Alphabet e Amazon lideraram as quedas em Nova York. Como BDR, o MSFT34 sofre dupla pressão: queda da ação em USD <em>e</em> eventual valorização do dólar. O cenário de juros altos por mais tempo nos EUA reduz o valor presente dos fluxos futuros de empresas de crescimento. Atenção redobrada para os próximos resultados trimestrais da Microsoft em IA/cloud.
+      </div>
+    </div>
+
+    <!-- B3SA3 -->
+    <div class="stock-card positive">
+      <div class="stock-header">
+        <div>
+          <div class="stock-ticker">B3SA3</div>
+          <div class="stock-name">B3 — Bolsa Brasileira</div>
+        </div>
+        <span class="stock-sector">📈 Mercado de Capitais</span>
+      </div>
+      <div class="stock-price">— <span>acompanhar</span></div>
+      <div class="stock-change-row">
+        <span class="badge up">▲ Lucro +33% no 1T26</span>
+        <span class="badge blue">Receita recorde R$3,2 Bi</span>
+      </div>
+      <div class="metrics-row">
+        <div class="metric"><div class="m-label">Lucro 1T26</div><div class="m-val">R$1,5 Bi</div></div>
+        <div class="metric"><div class="m-label">Receita 1T26</div><div class="m-val">R$3,2 Bi</div></div>
+        <div class="metric"><div class="m-label">Proventos 2026E</div><div class="m-val">R$6,3 Bi</div></div>
+      </div>
+      <div class="stock-narrative">
+        <strong>A história:</strong> A B3 entregou um 1T26 histórico: receita recorde de R$3,2 bilhões (+20,5% YoY), lucro de R$1,5 bilhão (+33%). O Citi mantém recomendação de compra e projeta R$6,3 bilhões em proventos para 2026. O motor foi o volume crescente em derivativos e o forte fluxo estrangeiro. Atenção ao paradoxo: um Fed hawkish pode desacelerar o apetite estrangeiro pela bolsa brasileira, reduzindo o ADV (volume médio diário) da B3. Monitorar os dados mensais de volume é chave.
+      </div>
+    </div>
+
+  </div>
+
+  <!-- FIIS -->
+  <div class="section-title">🏢 Fundos Imobiliários</div>
+  <div class="fii-grid">
+
+    <!-- KNCR11 -->
+    <div class="fii-card">
+      <div class="stock-header">
+        <div>
+          <div class="stock-ticker">KNCR11</div>
+          <div class="stock-name">Kinea Rendimentos Imobiliários</div>
+        </div>
+        <span class="stock-sector">🏦 CRI / Renda</span>
+      </div>
+      <div class="stock-price">R$ 105,64 <span>/ cota</span></div>
+      <div class="stock-change-row">
+        <span class="badge up">💰 Dividendo Jun: R$1,10/cota</span>
+      </div>
+      <div class="metrics-row">
+        <div class="metric"><div class="m-label">DY mensal</div><div class="m-val">~1,04%</div></div>
+        <div class="metric"><div class="m-label">Div. acum. 2026</div><div class="m-val">R$5,55</div></div>
+        <div class="metric"><div class="m-label">Pgto Jun</div><div class="m-val">11/jun/26</div></div>
+      </div>
+      <div class="stock-narrative">
+        <strong>A história:</strong> O KNCR11 é um dos FIIs mais beneficiados pelo ambiente de CDI elevado — sua carteira de CRIs pós-fixados se valoriza quando a Selic se mantém alta. Com o Fed sinalizando juros mais altos por mais tempo nos EUA, o Copom brasileiro terá menos espaço para cortar a Selic, o que é <strong style="color:#34d399;">diretamente positivo para o KNCR11</strong>. O fundo acumula R$5,55/cota em dividendos apenas nos primeiros 5 meses e meio de 2026. Para investidores pessoas físicas, os rendimentos são isentos de IR.
+      </div>
+    </div>
+
+    <!-- PCIP11 -->
+    <div class="fii-card">
+      <div class="stock-header">
+        <div>
+          <div class="stock-ticker">PCIP11</div>
+          <div class="stock-name">Patrimonial Cibrasec FII</div>
+        </div>
+        <span class="stock-sector">🏢 Patrimonial / CRI</span>
+      </div>
+      <div class="stock-price">— <span>acompanhar</span></div>
+      <div class="stock-change-row">
+        <span class="badge yellow">⚠ Consultar proventos</span>
+      </div>
+      <div class="stock-narrative">
+        <strong>A história:</strong> O PCIP11, ligado à Cibrasec, atua no segmento patrimonial com exposição a CRIs. Em um ambiente de Selic elevada e yield curves pressionadas pelo Fed, fundos de CRI tendem a se beneficiar. Consulte o calendário de distribuições e eventuais negociações de portfólio diretamente em <a href="https://statusinvest.com.br/fundos-imobiliarios/pcip11" style="color:#60a5fa;">Status Invest — PCIP11</a> ou <a href="https://www.fundamentus.com.br/fii_resultado.php?papel=PCIP11" style="color:#60a5fa;">Fundamentus</a> para dados atualizados de DY e P/VP.
+      </div>
+    </div>
+
+  </div>
+
+  <!-- RADAR -->
+  <div class="section-title">🔭 Radar de Atenção — Próximos 7 dias</div>
+  <div class="radar-box">
+    <div class="radar-item">
+      <div class="radar-icon">🇺🇸</div>
+      <div>
+        <div class="radar-title">Dados de inflação americana (CPI/PCE)</div>
+        <div class="radar-desc">Com o Fed sinalizando possível alta de juros, qualquer leitura de inflação acima do esperado pode intensificar a pressão hawkish e provocar nova fuga do risco. Impacto direto em MSFT34 e fluxo estrangeiro para IBOV.</div>
+      </div>
+    </div>
+    <div class="radar-item">
+      <div class="radar-icon">🇨🇳</div>
+      <div>
+        <div class="radar-title">Dados de demanda chinesa — minério e aço</div>
+        <div class="radar-desc">Com importações de minério caindo 6% em maio, qualquer sinal de fraqueza adicional da demanda industrial na China pressiona VALE3. Acompanhe o PMI industrial de junho (divulgado no final do mês).</div>
+      </div>
+    </div>
+    <div class="radar-item">
+      <div class="radar-icon">🕊️</div>
+      <div>
+        <div class="radar-title">Evolução do acordo EUA-Irã e petróleo</div>
+        <div class="radar-desc">O acordo provisório de paz pode afetar preços de energia e abrir rotas comerciais para proteína brasileira no Oriente Médio. Potencial positivo para AXIA3 (energia) e MRFG3 (exportações).</div>
+      </div>
+    </div>
+    <div class="radar-item">
+      <div class="radar-icon">🏦</div>
+      <div>
+        <div class="radar-title">Copom — expectativas de política monetária</div>
+        <div class="radar-desc">O Fed mais hawkish reduz espaço para Selic cair. Isso beneficia KNCR11 e BBDC4 (margem financeira bancária), mas pode pressionar ações mais alavancadas e setores imobiliários sensíveis a juros.</div>
+      </div>
+    </div>
+    <div class="radar-item">
+      <div class="radar-icon">📊</div>
+      <div>
+        <div class="radar-title">Volumes da B3 — ADV de junho</div>
+        <div class="radar-desc">Com a virada hawkish do Fed, o fluxo estrangeiro para emergentes pode arrefecer. O volume médio diário (ADV) da B3 é o principal termômetro para B3SA3. Dados mensais saem em início de julho.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <p>📌 Fontes consultadas:
+      <a href="https://www.cnbc.com/2026/06/17/fed-interest-rate-decision-june-2026.html">CNBC</a> ·
+      <a href="https://finance.yahoo.com/economy/policy/articles/warsh-hawkish-shock-9-fed-180221394.html">Yahoo Finance</a> ·
+      <a href="https://www.infomoney.com.br">InfoMoney</a> ·
+      <a href="https://statusinvest.com.br">Status Invest</a> ·
+      <a href="https://www.infomoney.com.br/mercados/bradesco-bbdc4-resultados-primeiro-trimestre-2026/">InfoMoney — BBDC4</a> ·
+      <a href="https://borainvestir.b3.com.br/noticias/empresas/b3-registra-volumes-recordes-durante-o-primeiro-trimestre-de-2026/">B3</a>
+    </p>
+    <p style="margin-top: 8px;">⚠️ Este relatório é informativo e não constitui recomendação de compra ou venda. Gerado automaticamente em 18/06/2026.</p>
+  </div>
+
+</div>
+</body>
+</html>

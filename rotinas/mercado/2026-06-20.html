@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>📊 Briefing de Mercado — 20 de Junho de 2026</title>
+<style>
+  :root {
+    --bg: #0d1117;
+    --card: #161b22;
+    --border: #30363d;
+    --text: #e6edf3;
+    --muted: #8b949e;
+    --green: #3fb950;
+    --red: #f85149;
+    --yellow: #d29922;
+    --blue: #58a6ff;
+    --purple: #bc8cff;
+    --teal: #39d353;
+    --accent: #1f6feb;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    padding: 24px;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  /* HEADER */
+  .header {
+    background: linear-gradient(135deg, #0d1117 0%, #161b22 50%, #0d2340 100%);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 32px;
+    margin-bottom: 28px;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    top: -40px; right: -40px;
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, rgba(88,166,255,0.12) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .header-tag {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--blue);
+    margin-bottom: 8px;
+  }
+  .header h1 {
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+  .header .subtitle {
+    color: var(--muted);
+    font-size: 14px;
+  }
+  .header .closed-badge {
+    display: inline-block;
+    background: rgba(210,153,34,0.15);
+    border: 1px solid var(--yellow);
+    color: var(--yellow);
+    font-size: 12px;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 20px;
+    margin-top: 12px;
+  }
+
+  /* SECTION HEADINGS */
+  .section-title {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: var(--muted);
+    margin: 28px 0 14px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* MACRO SNAPSHOT BAR */
+  .macro-bar {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 12px;
+    margin-bottom: 8px;
+  }
+  .macro-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .macro-label {
+    font-size: 11px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-bottom: 4px;
+  }
+  .macro-value {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text);
+  }
+  .macro-delta {
+    font-size: 12px;
+    font-weight: 600;
+    margin-top: 2px;
+  }
+  .up { color: var(--green); }
+  .down { color: var(--red); }
+  .neutral { color: var(--muted); }
+
+  /* NARRATIVE CARD */
+  .narrative {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 22px 26px;
+    margin-bottom: 16px;
+  }
+  .narrative h3 {
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .narrative p {
+    color: #cdd9e5;
+    margin-bottom: 10px;
+    font-size: 14.5px;
+  }
+  .narrative p:last-child { margin-bottom: 0; }
+
+  /* ASSET GRID */
+  .asset-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 14px;
+    margin-bottom: 8px;
+  }
+  .asset-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 18px;
+    position: relative;
+  }
+  .asset-card:hover {
+    border-color: #444c56;
+  }
+  .asset-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 8px;
+  }
+  .asset-ticker {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--blue);
+    font-family: 'SF Mono', monospace;
+    letter-spacing: 0.5px;
+  }
+  .asset-name {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+  .asset-price {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text);
+    text-align: right;
+  }
+  .asset-delta-badge {
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 12px;
+    display: inline-block;
+    text-align: right;
+  }
+  .badge-up { background: rgba(63,185,80,0.15); color: var(--green); }
+  .badge-down { background: rgba(248,81,73,0.15); color: var(--red); }
+  .badge-neutral { background: rgba(139,148,158,0.15); color: var(--muted); }
+  .asset-note {
+    font-size: 12.5px;
+    color: var(--muted);
+    line-height: 1.5;
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px solid var(--border);
+  }
+  .sector-tag {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px 7px;
+    border-radius: 10px;
+    background: rgba(188,140,255,0.12);
+    color: var(--purple);
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  /* FII specific */
+  .fii-card {
+    border-left: 3px solid var(--teal);
+  }
+  .fii-yield {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--teal);
+  }
+
+  /* ALERT BOX */
+  .alert {
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin-bottom: 12px;
+    font-size: 13.5px;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .alert-info {
+    background: rgba(88,166,255,0.07);
+    border: 1px solid rgba(88,166,255,0.25);
+    color: #cdd9e5;
+  }
+  .alert-warn {
+    background: rgba(210,153,34,0.08);
+    border: 1px solid rgba(210,153,34,0.3);
+    color: #cdd9e5;
+  }
+  .alert-positive {
+    background: rgba(63,185,80,0.07);
+    border: 1px solid rgba(63,185,80,0.25);
+    color: #cdd9e5;
+  }
+  .alert-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+  .alert-body strong { color: var(--text); display: block; margin-bottom: 2px; }
+
+  /* RADAR */
+  .radar-list { list-style: none; }
+  .radar-list li {
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13.5px;
+    display: flex;
+    gap: 10px;
+    color: #cdd9e5;
+  }
+  .radar-list li:last-child { border-bottom: none; }
+  .radar-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    margin-top: 6px;
+    flex-shrink: 0;
+  }
+  .dot-green { background: var(--green); }
+  .dot-red { background: var(--red); }
+  .dot-yellow { background: var(--yellow); }
+  .dot-blue { background: var(--blue); }
+
+  /* FOOTER */
+  .footer {
+    margin-top: 36px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+    font-size: 12px;
+    color: var(--muted);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .sources-list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 6px;
+  }
+  .sources-list li a {
+    color: var(--blue);
+    text-decoration: none;
+    font-size: 12px;
+    opacity: 0.8;
+  }
+  .sources-list li a:hover { opacity: 1; text-decoration: underline; }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    body { padding: 14px; }
+    .macro-bar { grid-template-columns: 1fr 1fr; }
+    .asset-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-tag">📊 Briefing Diário de Mercado</div>
+  <h1>Sábado, 20 de Junho de 2026</h1>
+  <div class="subtitle">Análise semanal · Mercado brasileiro e global · Suas posições</div>
+  <span class="closed-badge">⏸ Bolsa fechada hoje — Análise com fechamento de sexta, 19/06</span>
+</div>
+
+<!-- MACRO SNAPSHOT -->
+<div class="section-title">📌 Snapshot Macro — Fechamento Semanal</div>
+<div class="macro-bar">
+  <div class="macro-card">
+    <div class="macro-label">Ibovespa</div>
+    <div class="macro-value">~168k</div>
+    <div class="macro-delta down">▼ 1,63% na semana</div>
+  </div>
+  <div class="macro-card">
+    <div class="macro-label">Dólar (USD/BRL)</div>
+    <div class="macro-value">R$ 5,16</div>
+    <div class="macro-delta neutral">▼ 0,20% (semana)</div>
+  </div>
+  <div class="macro-card">
+    <div class="macro-label">Selic</div>
+    <div class="macro-value">14,5%</div>
+    <div class="macro-delta down">▼ Corte de 0,25 pp — Abr/26</div>
+  </div>
+  <div class="macro-card">
+    <div class="macro-label">Inflação (IPCA 2026)</div>
+    <div class="macro-value">5,11%</div>
+    <div class="macro-delta down">▲ Focus revisou para cima</div>
+  </div>
+  <div class="macro-card">
+    <div class="macro-label">S&P 500</div>
+    <div class="macro-value">7.500</div>
+    <div class="macro-delta up">▲ +1,08% (sex/26)</div>
+  </div>
+  <div class="macro-card">
+    <div class="macro-label">NASDAQ</div>
+    <div class="macro-value">26.517</div>
+    <div class="macro-delta up">▲ +1,91% (sex/26)</div>
+  </div>
+</div>
+
+<!-- NARRATIVE: GLOBAL -->
+<div class="section-title">🌍 Contexto Global — A Semana em Perspectiva</div>
+
+<div class="narrative">
+  <h3>🤖 IA e Tech: o motor que não para</h3>
+  <p>A inteligência artificial segue como o tema central dos mercados globais em 2026. Na semana, a Microsoft foi destaque ao revelar no evento Build sete novos modelos de IA próprios — incluindo o MAI-Thinking-1 e o MAI-Code-1-Flash — reduzindo dependência da OpenAI e apostando forte em infraestrutura própria. Com previsão de <strong>US$ 190 bilhões em capex</strong> para data centers, a empresa reportou receita anualizada de IA em US$ 37 bilhões, alta de 123% ano a ano. O NASDAQ puxou os índices americanos na sexta, refletindo esse otimismo estrutural.</p>
+  <p>A Fidelity International define a IA como "o tema definitório para os mercados de ações em 2026", e o BlackRock Investment Institute ressalta que a tecnologia continuará a "superar tarifas e os tradicionais drivers macroeconômicos".</p>
+</div>
+
+<div class="narrative">
+  <h3>🛢️ Oriente Médio e petróleo: arrefecimento à vista?</h3>
+  <p>Uma variável relevante nesta semana: sinais de um acordo interino entre EUA e Irã que reabriria o Estreito de Ormuz e encerraria as ambições nucleares de Teerã. O petróleo americano fechou abaixo de US$ 85 por barril com essas notícias. Para o Brasil, o impacto seria duplo — redução de pressão inflacionária via combustíveis, mas também potencial queda nas receitas de exportação de energia.</p>
+  <p>As tarifas comerciais americanas seguem como freio ao crescimento global. A OCDE projeta crescimento de 2,8% para a economia mundial em 2026 e 2,0% para os EUA — moderado, mas resiliente.</p>
+</div>
+
+<!-- NARRATIVE: BRASIL -->
+<div class="section-title">🇧🇷 Brasil — Macro e Bolsa</div>
+
+<div class="narrative">
+  <h3>📉 Ibovespa fecha semana no vermelho</h3>
+  <p>O Ibovespa encerrou a semana com queda acumulada de <strong>1,63%</strong>, sustentando os 168 mil pontos ao final do pregão de sexta-feira. O dólar cedeu levemente, fechando a R$ 5,16. O mês de junho foi marcado por volatilidade: o índice chegou a disparar aos 171 mil pontos na esteira de declarações de Trump sobre um acordo comercial próximo, mas não sustentou o patamar.</p>
+  <p>A semana foi impactada pelas decisões de juros do Fed e do Copom. Após cortar a Selic em 0,25 pp em abril (para 14,5%), o Banco Central adotou postura cautelosa na reunião de junho diante das tensões globais, da guerra no Oriente Médio e de uma inflação que o Focus revisou para <strong>5,11% em 2026</strong> — bem acima do teto da meta. O ciclo de cortes fica em compasso de espera.</p>
+</div>
+
+<div class="alert alert-warn">
+  <div class="alert-icon">⚠️</div>
+  <div class="alert-body">
+    <strong>Sinal de atenção: inflação pressiona</strong>
+    No Focus mais recente, o mercado elevou a projeção de inflação para 5,11% em 2026 — nível que pressiona o Copom a ser conservador nos cortes de juros. Com a Selic em 14,5%, o custo de oportunidade da renda fixa permanece elevado e compete diretamente com equity e FIIs.
+  </div>
+</div>
+
+<!-- AÇÕES -->
+<div class="section-title">📈 Suas Ações — Análise Individual</div>
+<div class="asset-grid">
+
+  <!-- AXIA3 -->
+  <div class="asset-card">
+    <div class="sector-tag">⚡ Energia / Ex-Eletrobras</div>
+    <div class="asset-header">
+      <div>
+        <div class="asset-ticker">AXIA3</div>
+        <div class="asset-name">Axia Energia (ex-Eletrobras)</div>
+      </div>
+      <div style="text-align:right;">
+        <div class="asset-price">~R$ 58–61</div>
+        <span class="asset-delta-badge badge-up">+90% em 12m</span>
+      </div>
+    </div>
+    <div class="asset-note">
+      A AXIA3 é a maior história de privatização da bolsa brasileira. Após dobrar o lucro ajustado no 4T25, as ações acumulam alta superior a 90% nos últimos 12 meses, impulsionadas pela reestruturação pós-privatização e pela expectativa de dividendos robustos. Em 2026, a companhia unificou os papéis AXIA5 e AXIA6 em AXIA3 (Novo Mercado).<br><br>
+      <strong>Atenção:</strong> o mercado ficou decepcionado após o balanço do 1T26 (lucro ajustado de R$ 3,7 bi, EBITDA regulatório +60% a.a), gerando volatilidade. Bradesco BBI enxerga oportunidade na queda. Preço-alvo do BB Investimentos: <strong>R$ 63,90</strong>. XP e BB recomendam compra.
+    </div>
+  </div>
+
+  <!-- VALE3 -->
+  <div class="asset-card">
+    <div class="sector-tag">⛏️ Mineração</div>
+    <div class="asset-header">
+      <div>
+        <div class="asset-ticker">VALE3</div>
+        <div class="asset-name">Vale S.A.</div>
+      </div>
+      <div style="text-align:right;">
+        <div class="asset-price">~R$ 80</div>
+        <span class="asset-delta-badge badge-neutral">+2% em maio</span>
+      </div>
+    </div>
+    <div class="asset-note">
+      A Vale foi unanimidade nas carteiras recomendadas para junho — primeira vez em 2026 em que aparece em todas as 10 corretoras/casas de análise consultadas pelo InfoMoney. Sobreviveu à liquidação de maio como único papel do ranking no positivo (+2,02%). O minério de ferro oscila perto de US$ 95–100/t, mas futuros em Dalian caíram para mínimas de duas semanas (CNY 764/t), com importações chinesas recuando 6% em maio.<br><br>
+      Safra projeta minério a US$ 94/t no final de 2026. O fator China é o principal risco: menor demanda industrial pressiona receitas. Dividendos extraordinários no horizonte animam o mercado.
+    </div>
+  </div>
+
+  <!-- BBDC4 -->
+  <div class="asset-card">
+    <div class="sector-tag">🏦 Banco</div>
+    <div class="asset-header">
+      <div>
+        <div class="asset-ticker">BBDC4</div>
+        <div class="asset-name">Bradesco PN</div>
+      </div>
+      <div style="text-align:right;">
+        <div class="asset-price">—</div>
+        <span class="asset-delta-badge badge-down">▼ 1,1% (jun)</span>
+      </div>
+    </div>
+    <div class="asset-note">
+      O Bradesco publicou resultado sólido no 1T26: <strong>lucro líquido de R$ 6,8 bilhões (+16% a.a.)</strong>, carteira de crédito em R$ 1,1 trilhão e ROE de 15,8%. A inadimplência acima de 90 dias ficou em 4,2%. Mesmo com balanço positivo, as ações recuaram no início de junho, afetadas pela cautela do mercado com o setor bancário num ambiente de juros ainda elevados.<br><br>
+      JP Morgan projeta lucro de R$ 27,5 bi em 2026 e ROE de 15,5% — abaixo de rivais como Itaú. Turnaround em andamento, mas velocidade de recuperação ainda em debate.
+    </div>
+  </div>
+
+  <!-- MRFG3 / MBRF3 -->
+  <div class="asset-card">
+    <div class="sector-tag">🥩 Proteína Animal</div>
+    <div class="asset-header">
+      <div>
+        <div class="asset-ticker">MBRF3</div>
+        <div class="asset-name">MBRF (ex-Marfrig + BRF)</div>
+      </div>
+      <div style="text-align:right;">
+        <div class="asset-price">—</div>
+        <span class="asset-delta-badge badge-neutral">Fusão concluída</span>
+      </div>
+    </div>
+    <div class="asset-note">
+      <strong>⚠️ Atenção: MRFG3 não existe mais.</strong> A fusão entre Marfrig e BRF foi aprovada pelo CADE e concluída em 2025. O ticker passou a ser <strong>MBRF3</strong> (MBRF Global Foods Company). Se você ainda referencia MRFG3 em planilhas ou plataformas, atualize para MBRF3.<br><br>
+      A nova companhia bateu recorde de exportações em março/26, inaugurou expansão de US$ 70 mi no Uruguai (500 mil hambúrgueres/dia), e criou a Sadia Halal com IPO em preparação. Goldman Sachs elevou estimativas de EBITDA. Dividendos ainda incertos para 2026 segundo BTG Pactual.
+    </div>
+  </div>
+
+  <!-- MSFT34 -->
+  <div class="asset-card">
+    <div class="sector-tag">💻 BDR Tecnologia</div>
+    <div class="asset-header">
+      <div>
+        <div class="asset-ticker">MSFT34</div>
+        <div class="asset-name">Microsoft (BDR)</div>
+      </div>
+      <div style="text-align:right;">
+        <div class="asset-price">—</div>
+        <span class="asset-delta-badge badge-down">▼ 15% em 2026</span>
+      </div>
+    </div>
+    <div class="asset-note">
+      Apesar da liderança em IA, as ações da Microsoft acumulam queda de ~15% em 2026, com investidores questionando o prazo para monetização dos bilhões investidos em IA. Mas os fundamentos são sólidos: receita de IA em US$ 37 bi anualizados (+123% a.a.), capex de US$ 190 bi comprometido para data centers.<br><br>
+      Wells Fargo vê potencial de alta significativo com a estratégia de IA proprietária. MSFT34 pode ser uma oportunidade de entrada para quem acredita na tese de longo prazo de monetização da IA — especialmente com o Copilot e agentes autônomos acelerando adoção corporativa.
+    </div>
+  </div>
+
+  <!-- B3SA3 -->
+  <div class="asset-card">
+    <div class="sector-tag">📊 Bolsa / Mercado de Capitais</div>
+    <div class="asset-header">
+      <div>
+        <div class="asset-ticker">B3SA3</div>
+        <div class="asset-name">B3 — Brasil, Bolsa, Balcão</div>
+      </div>
+      <div style="text-align:right;">
+        <div class="asset-price">~R$ 14,41</div>
+        <span class="asset-delta-badge badge-up">▲ +0,56%</span>
+      </div>
+    </div>
+    <div class="asset-note">
+      A B3 divulgou projeções para 2026 com payout elevado e novo programa de recompra de ações — o que animou o mercado. O guidance de custos, porém, acendeu alerta entre os analistas. A performance da B3SA3 está intrinsecamente ligada ao volume de negócios na bolsa: com o Ibovespa volátil e o investidor pessoa física retraído, as receitas de trading tendem a ser pressionadas.<br><br>
+      Quem tem B3SA3 tem uma posição estrutural: se o mercado de capitais brasileiro amadurecer e o volume crescer nos próximos ciclos de queda de juros, a ação se beneficia diretamente.
+    </div>
+  </div>
+
+</div>
+
+<!-- FIIs -->
+<div class="section-title">🏢 Fundos Imobiliários (FIIs)</div>
+<div class="asset-grid">
+
+  <!-- KNCR11 -->
+  <div class="asset-card fii-card">
+    <div class="sector-tag">📜 CRI / Papel</div>
+    <div class="asset-header">
+      <div>
+        <div class="asset-ticker">KNCR11</div>
+        <div class="asset-name">Kinea Rendimentos Imobiliários</div>
+      </div>
+      <div style="text-align:right;">
+        <div class="asset-price">R$ 107,15</div>
+        <span class="fii-yield">DY: ~1,08%/mês</span>
+      </div>
+    </div>
+    <div class="asset-note">
+      Um dos FIIs de papel mais recomendados do mercado. Em junho de 2026, distribuiu <strong>R$ 1,10 por cota</strong> (pagamento em 12/06), representando 1,08% de retorno isento de IR para pessoa física. A cota subiu de R$ 101,84 no início do ano para R$ 107,15 — valorização de ~5% além dos rendimentos mensais.<br><br>
+      Portfólio concentrado em CRIs, LCIs e instrumentos de caixa. Com a Selic ainda em 14,5%, fundos de papel como o KNCR11 continuam entregando rendimentos atrativos. Administrado pela Kinea (Itaú), fundo com alta liquidez e boa reputação.
+    </div>
+  </div>
+
+  <!-- PCIP11 -->
+  <div class="asset-card fii-card">
+    <div class="sector-tag">📜 CRI IPCA / Papel</div>
+    <div class="asset-header">
+      <div>
+        <div class="asset-ticker">PCIP11</div>
+        <div class="asset-name">Patria Crédito Imobiliário IP</div>
+      </div>
+      <div style="text-align:right;">
+        <div class="asset-price">~R$ 81,43</div>
+        <span class="fii-yield">DY: ~9,43% a.a.</span>
+      </div>
+    </div>
+    <div class="asset-note">
+      Fundo indexado ao IPCA, com carteira de CRIs e outros ativos imobiliários de renda fixa. Em junho/2026, pagou <strong>R$ 0,89 por cota</strong> (retorno de 1,06%, isento de IR). O P/VP está em 0,88 — abaixo do valor patrimonial, o que pode representar desconto ou refletir cautela do mercado sobre os CRIs do portfólio.<br><br>
+      Com a inflação projetada em 5,11% para 2026, a proteção via IPCA do PCIP11 ganha relevância. Taxa de administração: 1,00% a.a. DY acumulado em 12m: 9,43%. Fundo mais conservador que o KNCR11 mas com proteção inflacionária embutida.
+    </div>
+  </div>
+
+</div>
+
+<!-- RADAR DA SEMANA -->
+<div class="section-title">🔭 Radar da Próxima Semana</div>
+<div class="narrative">
+  <ul class="radar-list">
+    <li>
+      <span class="radar-dot dot-blue"></span>
+      <span><strong>China e minério de ferro:</strong> acompanhe dados de atividade industrial — produção de aço e importações de minério são críticos para VALE3/MBRF3.</span>
+    </li>
+    <li>
+      <span class="radar-dot dot-yellow"></span>
+      <span><strong>Iran/EUA:</strong> se o acordo de paz se confirmar, petróleo cai, inflação alivia — positivo para o Copom e para o mercado brasileiro em geral.</span>
+    </li>
+    <li>
+      <span class="radar-dot dot-green"></span>
+      <span><strong>KNCR11 e PCIP11:</strong> fique atento ao comunicado de resultados mensais. Com Selic em 14,5%, os rendimentos de papel devem se manter elevados.</span>
+    </li>
+    <li>
+      <span class="radar-dot dot-red"></span>
+      <span><strong>MBRF3 (ex-MRFG3):</strong> atualizar o ticker na sua carteira. Aguardar guidance de dividendos e atualização do BTG sobre a tese pós-fusão.</span>
+    </li>
+    <li>
+      <span class="radar-dot dot-blue"></span>
+      <span><strong>AXIA3:</strong> a conversão de AXIA5/6 → AXIA3 está concluída. Analistas aguardam guidance de dividendos extraordinários — catalisador importante para a tese.</span>
+    </li>
+    <li>
+      <span class="radar-dot dot-yellow"></span>
+      <span><strong>Focus/Copom:</strong> na segunda-feira sai o Boletim Focus. Com inflação em 5,11%, qualquer revisão altista pode pressionar a curva de juros e impactar toda a bolsa.</span>
+    </li>
+  </ul>
+</div>
+
+<!-- ALERTS -->
+<div class="section-title">💡 Destaques & Alertas</div>
+
+<div class="alert alert-positive">
+  <div class="alert-icon">✅</div>
+  <div class="alert-body">
+    <strong>VALE3: consenso máximo em junho</strong>
+    Pela primeira vez em 2026, Vale aparece em 100% das carteiras recomendadas das principais corretoras. Dividendos extraordinários e resiliência do minério são os gatilhos. Monitorar China.
+  </div>
+</div>
+
+<div class="alert alert-warn">
+  <div class="alert-icon">🔄</div>
+  <div class="alert-body">
+    <strong>MRFG3 → MBRF3: ticker desatualizado</strong>
+    A fusão Marfrig + BRF foi concluída. O ativo correto agora é MBRF3. Atualize suas planilhas, alertas e corretora para evitar confusão.
+  </div>
+</div>
+
+<div class="alert alert-info">
+  <div class="alert-icon">🤖</div>
+  <div class="alert-body">
+    <strong>MSFT34: oportunidade de entrada?</strong>
+    Com as ações caindo ~15% em 2026 apesar de fundamentos sólidos em IA, analistas como Wells Fargo veem potencial de alta. Para quem já tem posição, é momento de acompanhar a narrativa de monetização do Copilot e agentes de IA.
+  </div>
+</div>
+
+<!-- FOOTER / SOURCES -->
+<div class="footer">
+  <div>
+    <div>📡 Fontes consultadas em 20/06/2026:</div>
+    <ul class="sources-list">
+      <li><a href="https://www.infomoney.com.br/mercados/" target="_blank">InfoMoney</a></li>
+      <li><a href="https://www.moneytimes.com.br" target="_blank">Money Times</a></li>
+      <li><a href="https://finance.yahoo.com" target="_blank">Yahoo Finance</a></li>
+      <li><a href="https://www.cnbc.com/markets/" target="_blank">CNBC</a></li>
+      <li><a href="https://www.bloomberg.com" target="_blank">Bloomberg</a></li>
+      <li><a href="https://agenciabrasil.ebc.com.br" target="_blank">Agência Brasil</a></li>
+      <li><a href="https://statusinvest.com.br" target="_blank">Status Invest</a></li>
+      <li><a href="https://fiis.com.br/kncr11/" target="_blank">Fiis.com.br</a></li>
+      <li><a href="https://www.fundsexplorer.com.br" target="_blank">Funds Explorer</a></li>
+      <li><a href="https://investidor10.com.br" target="_blank">Investidor10</a></li>
+    </ul>
+  </div>
+  <div style="color:var(--muted); font-size:11px; max-width:280px; text-align:right;">
+    Este relatório é informativo e não constitui recomendação de investimento. Dados baseados em cotações e notícias até 19/06/2026.
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>📊 Análise de Mercado — 24 de Julho de 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+  :root {
+    --bg: #0a0e1a;
+    --surface: #111827;
+    --surface2: #1a2235;
+    --border: #1e2d45;
+    --accent-blue: #3b82f6;
+    --accent-green: #10b981;
+    --accent-red: #ef4444;
+    --accent-yellow: #f59e0b;
+    --accent-purple: #8b5cf6;
+    --text: #e2e8f0;
+    --text-muted: #94a3b8;
+    --text-faint: #475569;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', -apple-system, sans-serif;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* HEADER */
+  .hero {
+    background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 40px 24px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at 60% 40%, rgba(59,130,246,0.08) 0%, transparent 60%),
+                radial-gradient(circle at 30% 70%, rgba(139,92,246,0.06) 0%, transparent 50%);
+    pointer-events: none;
+  }
+  .hero-badge {
+    display: inline-block;
+    background: rgba(59,130,246,0.15);
+    border: 1px solid rgba(59,130,246,0.3);
+    color: #93c5fd;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 4px 14px;
+    border-radius: 20px;
+    margin-bottom: 16px;
+  }
+  .hero h1 {
+    font-size: 2.2rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #e2e8f0, #93c5fd);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 8px;
+  }
+  .hero-date {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    font-weight: 400;
+  }
+  .hero-sub {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    margin-top: 6px;
+  }
+
+  /* LAYOUT */
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 32px 20px 60px;
+  }
+
+  /* SECTION TITLES */
+  .section-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--accent-blue);
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* CARDS */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+  }
+  .card.blue::before { background: linear-gradient(90deg, var(--accent-blue), transparent); }
+  .card.green::before { background: linear-gradient(90deg, var(--accent-green), transparent); }
+  .card.red::before { background: linear-gradient(90deg, var(--accent-red), transparent); }
+  .card.yellow::before { background: linear-gradient(90deg, var(--accent-yellow), transparent); }
+  .card.purple::before { background: linear-gradient(90deg, var(--accent-purple), transparent); }
+
+  /* GRIDS */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+  .grid-4 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 16px; }
+
+  @media (max-width: 768px) {
+    .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+    .hero h1 { font-size: 1.6rem; }
+  }
+
+  /* ALERT */
+  .alert {
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin-bottom: 12px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    border: 1px solid;
+    font-size: 0.88rem;
+    line-height: 1.5;
+  }
+  .alert.warning {
+    background: rgba(245,158,11,0.08);
+    border-color: rgba(245,158,11,0.25);
+    color: #fcd34d;
+  }
+  .alert.danger {
+    background: rgba(239,68,68,0.08);
+    border-color: rgba(239,68,68,0.25);
+    color: #fca5a5;
+  }
+  .alert.info {
+    background: rgba(59,130,246,0.08);
+    border-color: rgba(59,130,246,0.25);
+    color: #93c5fd;
+  }
+  .alert.success {
+    background: rgba(16,185,129,0.08);
+    border-color: rgba(16,185,129,0.25);
+    color: #6ee7b7;
+  }
+  .alert-icon { font-size: 1.3rem; flex-shrink: 0; }
+
+  /* KPI */
+  .kpi-value {
+    font-size: 1.7rem;
+    font-weight: 700;
+    line-height: 1;
+    margin: 8px 0 4px;
+  }
+  .kpi-label { font-size: 0.75rem; color: var(--text-muted); font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; }
+  .kpi-change { font-size: 0.85rem; font-weight: 600; }
+  .up { color: var(--accent-green); }
+  .down { color: var(--accent-red); }
+  .neutral { color: var(--accent-yellow); }
+
+  /* STORY */
+  .story {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px;
+    position: relative;
+  }
+  .story p {
+    color: #cbd5e1;
+    font-size: 0.95rem;
+    line-height: 1.8;
+    margin-bottom: 14px;
+  }
+  .story p:last-child { margin-bottom: 0; }
+  .story strong { color: #e2e8f0; font-weight: 600; }
+  .story em { color: #93c5fd; font-style: normal; font-weight: 500; }
+  .story-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #e2e8f0;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  /* TICKER ROWS */
+  .ticker-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.88rem;
+  }
+  .ticker-row:last-child { border-bottom: none; }
+  .ticker-name { font-weight: 600; color: #e2e8f0; }
+  .ticker-sector { color: var(--text-muted); font-size: 0.75rem; margin-top: 2px; }
+  .ticker-price { text-align: right; }
+  .ticker-price .price { font-size: 1.05rem; font-weight: 700; }
+
+  /* MINI BAR */
+  .mini-bar {
+    height: 6px;
+    background: var(--border);
+    border-radius: 3px;
+    overflow: hidden;
+    margin-top: 8px;
+  }
+  .mini-bar-fill {
+    height: 100%;
+    border-radius: 3px;
+  }
+
+  /* SECTION SPACER */
+  .section { margin-bottom: 36px; }
+
+  /* TABLE */
+  table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+  th { text-align: left; color: var(--text-muted); font-weight: 600; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; padding: 8px 12px; border-bottom: 1px solid var(--border); }
+  td { padding: 10px 12px; border-bottom: 1px solid rgba(30,45,69,0.5); }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: rgba(255,255,255,0.02); }
+
+  /* CHART BAR (CSS only) */
+  .chart-container { padding: 16px 0 4px; }
+  .bar-row { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; font-size: 0.8rem; }
+  .bar-label { width: 80px; text-align: right; color: var(--text-muted); flex-shrink: 0; }
+  .bar-track { flex: 1; background: var(--border); border-radius: 4px; height: 22px; overflow: hidden; position: relative; }
+  .bar-fill { height: 100%; border-radius: 4px; display: flex; align-items: center; padding-left: 10px; font-size: 0.78rem; font-weight: 700; white-space: nowrap; }
+
+  /* PILL */
+  .pill {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 20px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+  }
+  .pill-red { background: rgba(239,68,68,0.15); color: #fca5a5; border: 1px solid rgba(239,68,68,0.2); }
+  .pill-green { background: rgba(16,185,129,0.15); color: #6ee7b7; border: 1px solid rgba(16,185,129,0.2); }
+  .pill-yellow { background: rgba(245,158,11,0.15); color: #fcd34d; border: 1px solid rgba(245,158,11,0.2); }
+  .pill-blue { background: rgba(59,130,246,0.15); color: #93c5fd; border: 1px solid rgba(59,130,246,0.2); }
+
+  /* SOURCES */
+  .sources {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 20px;
+    font-size: 0.78rem;
+    color: var(--text-muted);
+  }
+  .sources a { color: var(--accent-blue); text-decoration: none; }
+  .sources a:hover { text-decoration: underline; }
+  .sources-title { font-weight: 600; color: var(--text); margin-bottom: 8px; font-size: 0.82rem; }
+
+  /* FIIS */
+  .fii-card {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px;
+  }
+  .fii-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; }
+  .fii-ticker { font-size: 1rem; font-weight: 700; }
+  .fii-name { font-size: 0.75rem; color: var(--text-muted); margin-top: 2px; }
+  .fii-stat { display: flex; justify-content: space-between; font-size: 0.8rem; padding: 5px 0; border-bottom: 1px solid rgba(30,45,69,0.5); }
+  .fii-stat:last-child { border-bottom: none; }
+  .fii-stat span:first-child { color: var(--text-muted); }
+  .fii-stat span:last-child { font-weight: 600; }
+
+  /* FOOTER */
+  .footer {
+    text-align: center;
+    padding: 20px;
+    color: var(--text-faint);
+    font-size: 0.75rem;
+    border-top: 1px solid var(--border);
+    margin-top: 20px;
+  }
+  .footer strong { color: var(--text-muted); }
+
+  /* SCORE RING */
+  .score-ring {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 16px 0;
+  }
+  .ring {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    font-weight: 800;
+    margin-bottom: 8px;
+  }
+  .ring-bear { background: radial-gradient(circle, rgba(239,68,68,0.25), rgba(239,68,68,0.05)); border: 3px solid rgba(239,68,68,0.5); color: #f87171; }
+  .ring-bull { background: radial-gradient(circle, rgba(16,185,129,0.25), rgba(16,185,129,0.05)); border: 3px solid rgba(16,185,129,0.5); color: #34d399; }
+  .ring-neutral { background: radial-gradient(circle, rgba(245,158,11,0.25), rgba(245,158,11,0.05)); border: 3px solid rgba(245,158,11,0.5); color: #fbbf24; }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">📈 Análise Diária de Mercado</div>
+  <h1>Sexta-feira, 24 de Julho de 2026</h1>
+  <div class="hero-date">Fechamento B3 · Wall Street · Geopolítica · Sua Carteira</div>
+  <div class="hero-sub">Compilado automaticamente a partir de Bloomberg, CNBC, InfoMoney, Valor Econômico, Status Invest</div>
+</div>
+
+<div class="container">
+
+  <!-- ============================================================ -->
+  <!-- HISTÓRIA DO DIA -->
+  <!-- ============================================================ -->
+  <div class="section">
+    <div class="section-label">📰 A História do Dia</div>
+
+    <div class="story">
+      <div class="story-title">🌐 Um mundo em fogo — e Wall Street também</div>
+      <p>
+        A sexta-feira chegou com o Estreito de Ormuz funcionando com <strong>metade da sua capacidade normal</strong>. Os ataques americanos ao Irã desta quinta-feira reduziram drasticamente o fluxo de navios pela passagem mais estratégica do planeta — e o petróleo Brent saltou acima de <em>US$ 101 por barril</em>. Para a Vale, para o Brasil e para os mercados globais, essa foi a cena de abertura da última semana de julho.
+      </p>
+      <p>
+        Mas o que realmente chacoalhou os investidores foi o que saiu das grandes techs americanas. <strong>Alphabet</strong> (dona do Google) reportou receita de <em>US$ 119,8 bilhões</em> — crescimento de 24% — com a nuvem subindo impressionantes 82%. Os números eram bons. O problema foi a fatura que vem junto: <strong>US$ 195–205 bilhões em capex projetado para 2026</strong>, a maior aposta em infraestrutura de IA da história corporativa. Os papéis afundaram. A <strong>Tesla</strong> fez o mesmo jogo — capex +142%, fluxo de caixa livre negativo. E a <strong>IBM</strong> simplesmente cortou suas projeções de crescimento.
+      </p>
+      <p>
+        Wall Street respondeu com dureza. <em>Dow Jones -1%, Nasdaq -2,2%, S&P 500 -1,2%.</em> O mercado diz que adorou os resultados, mas odeia os gastos. A batalha pelo domínio da inteligência artificial está custando caro — e o mercado ainda não decidiu se vale a pena.
+      </p>
+      <p>
+        No Brasil, a equação ficou ainda mais complicada com as <strong>tarifas americanas de 25%</strong> sobre cerca de 3 mil produtos brasileiros que entraram em vigor dia 22. O governo conseguiu garantir isenções para carne bovina, café, petróleo e aviação — preservando parte importante da pauta. O Ministro da Fazenda <strong>Dario Durigan</strong> e o presidente do Banco Central <strong>Gabriel Galípolo</strong> estiveram no Expert XP 2026 tentando transmitir serenidade. O Ibovespa fechou em queda de <em>0,46%, aos 176.723 pontos</em> — uma perda digna para um cenário tão carregado.
+      </p>
+      <p>
+        O dólar oscilou perto de <em>R$ 5,20</em>, e a Selic permanece em <strong>14,25% ao ano</strong> — ciclo de cortes em marcha lenta enquanto o barril de petróleo e a guerra geopolítica pressionam a inflação doméstica.
+      </p>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- ÍNDICES GLOBAIS -->
+  <!-- ============================================================ -->
+  <div class="section">
+    <div class="section-label">🌎 Mercados Globais — Fechamento 23/07 (ref. para hoje)</div>
+    <div class="grid-4">
+      <div class="card red">
+        <div class="kpi-label">S&P 500</div>
+        <div class="kpi-value down">7.408</div>
+        <div class="kpi-change down">▼ -1,2% &nbsp;(-90 pts)</div>
+        <div class="mini-bar"><div class="mini-bar-fill" style="width:42%;background:#ef4444"></div></div>
+      </div>
+      <div class="card red">
+        <div class="kpi-label">Nasdaq</div>
+        <div class="kpi-value down">25.137</div>
+        <div class="kpi-change down">▼ -2,2% &nbsp;(-553 pts)</div>
+        <div class="mini-bar"><div class="mini-bar-fill" style="width:30%;background:#ef4444"></div></div>
+      </div>
+      <div class="card red">
+        <div class="kpi-label">Dow Jones</div>
+        <div class="kpi-value down">51.711</div>
+        <div class="kpi-change down">▼ -1,0% &nbsp;(-507 pts)</div>
+        <div class="mini-bar"><div class="mini-bar-fill" style="width:38%;background:#ef4444"></div></div>
+      </div>
+      <div class="card yellow">
+        <div class="kpi-label">Petróleo Brent</div>
+        <div class="kpi-value up">US$&nbsp;101</div>
+        <div class="kpi-change up">▲ +1,2% &nbsp;tensões Ormuz</div>
+        <div class="mini-bar"><div class="mini-bar-fill" style="width:75%;background:#f59e0b"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- MERCADO BR -->
+  <!-- ============================================================ -->
+  <div class="section">
+    <div class="section-label">🇧🇷 Mercado Brasileiro</div>
+    <div class="grid-3">
+      <div class="card red">
+        <div class="kpi-label">IBOVESPA</div>
+        <div class="kpi-value down">176.723</div>
+        <div class="kpi-change down">▼ -0,46%</div>
+        <div style="font-size:0.75rem;color:var(--text-muted);margin-top:6px">Máx: 177.895 · Mín: 176.293</div>
+      </div>
+      <div class="card yellow">
+        <div class="kpi-label">Dólar (USD/BRL)</div>
+        <div class="kpi-value neutral">R$ 5,20</div>
+        <div class="kpi-change neutral">→ Pressão das tarifas</div>
+        <div style="font-size:0.75rem;color:var(--text-muted);margin-top:6px">Focus: R$5,20 projetado para 2026</div>
+      </div>
+      <div class="card blue">
+        <div class="kpi-label">Selic</div>
+        <div class="kpi-value" style="color:#93c5fd">14,25%</div>
+        <div class="kpi-change" style="color:#93c5fd">▼ -25bps (jun/26)</div>
+        <div style="font-size:0.75rem;color:var(--text-muted);margin-top:6px">Mercado projeta 14% ao fim do ano</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- ALERTAS MACRO -->
+  <!-- ============================================================ -->
+  <div class="section">
+    <div class="section-label">⚠️ Alertas Macroeconômicos</div>
+
+    <div class="alert danger">
+      <div class="alert-icon">🛢️</div>
+      <div><strong>Guerra EUA-Irã · Estreito de Ormuz:</strong> Fluxo de navios caiu à metade após novos ataques americanos nesta quinta. Petróleo Brent acima de US$ 101 — Goldman Sachs projeta possível US$ 120 se o conflito escalar. Impacto direto nos custos de frete e no minério de ferro (VALE3).</div>
+    </div>
+
+    <div class="alert warning">
+      <div class="alert-icon">🇺🇸</div>
+      <div><strong>Tarifas EUA sobre Brasil (25%):</strong> Em vigor desde 22/07. Aproximadamente 3.000 produtos impactados; ~2.000 exceções incluem carne bovina, café, petróleo e peças aeroespaciais. Impacto estimado em &lt;0,1 pp no PIB no curto prazo — mas pressão cambial e inflacionária no radar. <strong>MRFG3 fica relativamente protegida</strong> com isenção da carne.</div>
+    </div>
+
+    <div class="alert danger">
+      <div class="alert-icon">💸</div>
+      <div><strong>Big Tech: crise de confiança no capex de IA:</strong> Alphabet projeta US$ 195–205bi em capex 2026. Tesla com FCF negativo. IBM corta projeção. Mercado pune gastos pesados mesmo com receitas recordes — risco de contagio para BDRs de tecnologia (MSFT34).</div>
+    </div>
+
+    <div class="alert info">
+      <div class="alert-icon">🎙️</div>
+      <div><strong>Expert XP 2026:</strong> Ministro Durigan (Fazenda) e presidente Galípolo (BC) transmitiram cautela e confiança na condução da política econômica. Ciclo de cortes da Selic em marcha lenta — próxima decisão do Copom aguardada com expectativa.</div>
+    </div>
+
+    <div class="alert success">
+      <div class="alert-icon">🪨</div>
+      <div><strong>Minério de ferro em US$ 100–101/t:</strong> Tensões de oferta (greve BHP, custos de frete por Ormuz) sustentam o preço. Goldman projeta US$ 100–105/t para 2026. Suporte razoável para a VALE3, mas incerteza chinesa limita upside.</div>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- CARTEIRA — AÇÕES -->
+  <!-- ============================================================ -->
+  <div class="section">
+    <div class="section-label">📋 Suas Ações — Status 24/07/2026</div>
+    <div class="card blue">
+
+      <div class="ticker-row">
+        <div>
+          <div class="ticker-name">VALE3 · Vale S.A.</div>
+          <div class="ticker-sector">Mineração · Commodities</div>
+        </div>
+        <div class="ticker-price">
+          <div class="price">R$ 75,10</div>
+          <div style="font-size:0.75rem;color:var(--text-muted)">início 2026: R$72,38</div>
+          <span class="pill pill-yellow">🟡 Atenção</span>
+        </div>
+      </div>
+      <div style="font-size:0.78rem;color:#94a3b8;padding:6px 0 10px;border-bottom:1px solid var(--border)">
+        Minério em ~US$100/t é suporte. Mas Ormuz encarece o frete — risco de compressão de margem. China ainda é o fator-chave. Último dividendo: R$2,34/ação (4/mar).
+      </div>
+
+      <div class="ticker-row">
+        <div>
+          <div class="ticker-name">BBDC4 · Bradesco PN</div>
+          <div class="ticker-sector">Banco · Financeiro</div>
+        </div>
+        <div class="ticker-price">
+          <div class="price">R$ 18,72</div>
+          <div style="font-size:0.75rem;color:var(--text-muted)">início 2026: R$17,89</div>
+          <span class="pill pill-green">🟢 Positivo</span>
+        </div>
+      </div>
+      <div style="font-size:0.78rem;color:#94a3b8;padding:6px 0 10px;border-bottom:1px solid var(--border)">
+        JCP pago em julho/26. Resultado Q2 aguardado. Selic alta em 14,25% favorece spread bancário. Vigilância com inadimplência e possível desaceleração econômica pelas tarifas.
+      </div>
+
+      <div class="ticker-row">
+        <div>
+          <div class="ticker-name">MRFG3 · Marfrig</div>
+          <div class="ticker-sector">Proteína Animal · Agronegócio</div>
+        </div>
+        <div class="ticker-price">
+          <div class="price">Aguardar</div>
+          <div style="font-size:0.75rem;color:var(--text-muted)">Resultado Q2: 13/ago</div>
+          <span class="pill pill-green">🟢 Carne isenta</span>
+        </div>
+      </div>
+      <div style="font-size:0.78rem;color:#94a3b8;padding:6px 0 10px;border-bottom:1px solid var(--border)">
+        <strong style="color:#6ee7b7">Ponto positivo:</strong> carne bovina ficou de fora das tarifas de 25% dos EUA. Exportações preservadas. Resultado trimestral em agosto dará melhor visibilidade.
+      </div>
+
+      <div class="ticker-row">
+        <div>
+          <div class="ticker-name">MSFT34 · Microsoft BDR</div>
+          <div class="ticker-sector">Tecnologia EUA · BDR</div>
+        </div>
+        <div class="ticker-price">
+          <div class="price">Monitorar</div>
+          <div style="font-size:0.75rem;color:var(--text-muted)">Dividendo: R$0,13 (17/jun)</div>
+          <span class="pill pill-yellow">🟡 Atenção</span>
+        </div>
+      </div>
+      <div style="font-size:0.78rem;color:#94a3b8;padding:6px 0 10px;border-bottom:1px solid var(--border)">
+        A queda de Alphabet e Tesla por "gastos de IA" contamina o setor. Microsoft reporta em breve — se também elevar o capex além do esperado, MSFT34 pode sofrer. Hedge natural: posição em BDR diversifica da B3, mas carrega risco de câmbio + tech sentiment.
+      </div>
+
+      <div class="ticker-row">
+        <div>
+          <div class="ticker-name">B3SA3 · B3</div>
+          <div class="ticker-sector">Bolsa de Valores · Infraestrutura Financeira</div>
+        </div>
+        <div class="ticker-price">
+          <div class="price">Aguardar</div>
+          <div style="font-size:0.75rem;color:var(--text-muted)">Resultado Q2: 6/ago</div>
+          <span class="pill pill-blue">🔵 Estrutural</span>
+        </div>
+      </div>
+      <div style="font-size:0.78rem;color:#94a3b8;padding:6px 0 10px;border-bottom:1px solid var(--border)">
+        Volume de negociações na B3 é impactado pela volatilidade — tanto para cima (mais negócios) quanto para baixo (aversão ao risco). Ibovespa em 176k com volumes razoáveis sustenta a receita da empresa.
+      </div>
+
+      <div class="ticker-row" style="border-bottom:none">
+        <div>
+          <div class="ticker-name">AXIA3 · Axia Energia</div>
+          <div class="ticker-sector">Energia · Infraestrutura</div>
+        </div>
+        <div class="ticker-price">
+          <div class="price">R$ 51,68</div>
+          <div style="font-size:0.75rem;color:var(--text-muted)">início 2026: R$50,00</div>
+          <span class="pill pill-green">🟢 Estável</span>
+        </div>
+      </div>
+      <div style="font-size:0.78rem;color:#94a3b8;padding:6px 0 0">
+        Alta de 3,4% no ano. Setor de energia tende a se beneficiar do petróleo elevado. Último dividendo: R$1,89/ação (dez/25). Perfil defensivo protege em cenários de volatilidade.
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- FIIS -->
+  <!-- ============================================================ -->
+  <div class="section">
+    <div class="section-label">🏢 Fundos Imobiliários (FIIs)</div>
+    <div class="grid-2">
+
+      <div class="fii-card">
+        <div class="fii-header">
+          <div>
+            <div class="fii-ticker">PCIP11</div>
+            <div class="fii-name">Patrimonial Cibrasec · Crédito Imobiliário</div>
+          </div>
+          <span class="pill pill-red">▼ Ano negativo</span>
+        </div>
+        <div class="fii-stat">
+          <span>Cotação atual</span>
+          <span class="down">R$ 76,32</span>
+        </div>
+        <div class="fii-stat">
+          <span>Início do ano</span>
+          <span>R$ 80,75</span>
+        </div>
+        <div class="fii-stat">
+          <span>Variação 2026</span>
+          <span class="down">-5,5%</span>
+        </div>
+        <div class="fii-stat">
+          <span>Último dividendo</span>
+          <span class="up">R$ 1,07/cota</span>
+        </div>
+        <div class="fii-stat" style="border:none">
+          <span>Data pagamento</span>
+          <span>15/07/2026</span>
+        </div>
+        <div style="font-size:0.75rem;color:#94a3b8;margin-top:10px;padding-top:10px;border-top:1px solid var(--border)">
+          Fundo de crédito imobiliário ligado a índices de preços. Selic alta e incerteza inflacionária podem comprimir retornos reais. Rendimento mensal mantido.
+        </div>
+      </div>
+
+      <div class="fii-card">
+        <div class="fii-header">
+          <div>
+            <div class="fii-ticker">KNCR11</div>
+            <div class="fii-name">Kinea Rendimentos Imobiliários · CRI/CDI</div>
+          </div>
+          <span class="pill pill-green">▲ Ano positivo</span>
+        </div>
+        <div class="fii-stat">
+          <span>Cotação atual</span>
+          <span class="up">R$ 107,17</span>
+        </div>
+        <div class="fii-stat">
+          <span>Início do ano</span>
+          <span>R$ 101,84</span>
+        </div>
+        <div class="fii-stat">
+          <span>Variação 2026</span>
+          <span class="up">+5,2%</span>
+        </div>
+        <div class="fii-stat">
+          <span>Último dividendo</span>
+          <span class="up">R$ 1,10/cota</span>
+        </div>
+        <div class="fii-stat" style="border:none">
+          <span>Data pagamento</span>
+          <span>13/07/2026</span>
+        </div>
+        <div style="font-size:0.75rem;color:#94a3b8;margin-top:10px;padding-top:10px;border-top:1px solid var(--border)">
+          FII de CRI indexado ao CDI — se beneficia diretamente da Selic alta em 14,25%. Histórica maior emissão (R$3,18bi) consolida sua posição como referência em FIIs de papel. <strong style="color:#6ee7b7">Destaque positivo da carteira.</strong>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- SEMÁFORO DE SENTIMENTO -->
+  <!-- ============================================================ -->
+  <div class="section">
+    <div class="section-label">🚦 Sentimento por Ativo</div>
+    <div class="card blue">
+      <div class="chart-container">
+
+        <div class="bar-row">
+          <div class="bar-label">KNCR11</div>
+          <div class="bar-track">
+            <div class="bar-fill" style="width:85%;background:linear-gradient(90deg,#10b981,#34d399)">Comprar / Manter &nbsp;✅</div>
+          </div>
+        </div>
+
+        <div class="bar-row">
+          <div class="bar-label">AXIA3</div>
+          <div class="bar-track">
+            <div class="bar-fill" style="width:75%;background:linear-gradient(90deg,#10b981,#34d399)">Defensivo / Manter &nbsp;✅</div>
+          </div>
+        </div>
+
+        <div class="bar-row">
+          <div class="bar-label">BBDC4</div>
+          <div class="bar-track">
+            <div class="bar-fill" style="width:68%;background:linear-gradient(90deg,#10b981,#f59e0b)">Positivo / Manter &nbsp;✅</div>
+          </div>
+        </div>
+
+        <div class="bar-row">
+          <div class="bar-label">MRFG3</div>
+          <div class="bar-track">
+            <div class="bar-fill" style="width:62%;background:linear-gradient(90deg,#f59e0b,#fbbf24)">Aguardar Q2 &nbsp;⏳</div>
+          </div>
+        </div>
+
+        <div class="bar-row">
+          <div class="bar-label">B3SA3</div>
+          <div class="bar-track">
+            <div class="bar-fill" style="width:58%;background:linear-gradient(90deg,#f59e0b,#fbbf24)">Aguardar Q2 &nbsp;⏳</div>
+          </div>
+        </div>
+
+        <div class="bar-row">
+          <div class="bar-label">VALE3</div>
+          <div class="bar-track">
+            <div class="bar-fill" style="width:52%;background:linear-gradient(90deg,#f59e0b,#ef4444)">Atenção / Minério+Frete &nbsp;⚠️</div>
+          </div>
+        </div>
+
+        <div class="bar-row">
+          <div class="bar-label">MSFT34</div>
+          <div class="bar-track">
+            <div class="bar-fill" style="width:48%;background:linear-gradient(90deg,#ef4444,#f87171)">Pressão AI Capex &nbsp;⚠️</div>
+          </div>
+        </div>
+
+        <div class="bar-row">
+          <div class="bar-label">PCIP11</div>
+          <div class="bar-track">
+            <div class="bar-fill" style="width:38%;background:linear-gradient(90deg,#ef4444,#f87171)">Ano negativo / Monitorar &nbsp;🔴</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- AGENDA PRÓXIMA -->
+  <!-- ============================================================ -->
+  <div class="section">
+    <div class="section-label">📅 Agenda — Próximos Eventos</div>
+    <div class="card purple">
+      <table>
+        <thead>
+          <tr>
+            <th>Data</th>
+            <th>Evento</th>
+            <th>Impacto na Carteira</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="color:#c4b5fd;font-weight:600">6/ago</td>
+            <td>Resultado Q2 B3SA3</td>
+            <td><span class="pill pill-blue">B3SA3</span></td>
+          </tr>
+          <tr>
+            <td style="color:#c4b5fd;font-weight:600">13/ago</td>
+            <td>Resultado Q2 MRFG3</td>
+            <td><span class="pill pill-blue">MRFG3</span></td>
+          </tr>
+          <tr>
+            <td style="color:#c4b5fd;font-weight:600">Breve</td>
+            <td>Resultado Q2 Microsoft (MSFT)</td>
+            <td><span class="pill pill-yellow">MSFT34 ⚠️</span></td>
+          </tr>
+          <tr>
+            <td style="color:#c4b5fd;font-weight:600">Contínuo</td>
+            <td>Monitorar Estreito de Ormuz</td>
+            <td><span class="pill pill-red">VALE3 · Petróleo</span></td>
+          </tr>
+          <tr>
+            <td style="color:#c4b5fd;font-weight:600">Contínuo</td>
+            <td>Negociações tarifárias Brasil-EUA</td>
+            <td><span class="pill pill-yellow">Macro geral</span></td>
+          </tr>
+          <tr>
+            <td style="color:#c4b5fd;font-weight:600">Próx. Copom</td>
+            <td>Decisão Selic — novo corte?</td>
+            <td><span class="pill pill-green">KNCR11 · BBDC4</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- RESUMO EXECUTIVO -->
+  <!-- ============================================================ -->
+  <div class="section">
+    <div class="section-label">⚡ Resumo Executivo</div>
+    <div class="story">
+      <div class="story-title">📌 O que importa para a sua carteira hoje</div>
+      <p>
+        <strong>Destaque positivo: KNCR11.</strong> Com a Selic em 14,25% e sem sinal claro de corte acelerado, um FII de CRI indexado ao CDI é a posição mais confortável da carteira neste momento. Os dividendos de julho já foram pagos e o fundo acumula 5,2% de valorização no ano.
+      </p>
+      <p>
+        <strong>Ponto de atenção: MSFT34.</strong> O sentimento do mercado americano em relação ao "excesso de gasto em IA" pode contaminar o papel mesmo antes do resultado da Microsoft. Vale monitorar o movimento da semana que vem.
+      </p>
+      <p>
+        <strong>Oportunidade latente: MRFG3.</strong> A isenção da carne bovina nas tarifas americanas é um dado concreto positivo — o mercado pode estar subprecificando isso. O resultado de agosto vai clarear se o cenário operacional confirmou essa vantagem.
+      </p>
+      <p>
+        <strong>Risco a monitorar: VALE3.</strong> Minério em US$100/t sustenta, mas o custo de frete pelo Estreito de Ormuz corrói a margem. Se o conflito EUA-Irã escalar e o petróleo for a US$120, a Vale sente no EBITDA.
+      </p>
+      <p>
+        <strong>PCIP11 merece reavaliação.</strong> Queda de 5,5% no ano com Selic em máxima histórica recente levanta dúvidas sobre a qualidade da carteira de crédito do fundo. Vale comparar com pares de CRI indexados ao CDI (como o próprio KNCR11).
+      </p>
+    </div>
+  </div>
+
+  <!-- SOURCES -->
+  <div class="section">
+    <div class="sources">
+      <div class="sources-title">📚 Fontes desta análise</div>
+      <a href="https://www.infomoney.com.br/mercados/ibovespa-hoje-bolsa-de-valores-ao-vivo-24072026/" target="_blank">InfoMoney — Ibovespa ao vivo 24/07/2026</a> &nbsp;·&nbsp;
+      <a href="https://www.infomoney.com.br/mercados/pmis-galipolo-durigan-relatorio-fiscal-agenda-24072026/" target="_blank">InfoMoney — Agenda 24/07 (PMIs, Galípolo, Durigan)</a> &nbsp;·&nbsp;
+      <a href="https://finance.yahoo.com/markets/stocks/articles/big-tech-earnings-live-reports-155113440.html" target="_blank">Yahoo Finance — Big Tech Earnings (Alphabet, Tesla)</a> &nbsp;·&nbsp;
+      <a href="https://www.cnbc.com/2026/07/23/tesla-tsla-alphabet-googl-stock-today.html" target="_blank">CNBC — Tesla e Alphabet afundam com AI spending</a> &nbsp;·&nbsp;
+      <a href="https://www.infomoney.com.br/economia/tarifaco-afeta-us-11-bi-em-exportacoes-do-agro-e-da-industria-diz-camara-americana/" target="_blank">InfoMoney — Tarifaço EUA afeta US$11bi</a> &nbsp;·&nbsp;
+      <a href="https://www.infomoney.com.br/mercados/petroleo-abertura-fechamento-ira-eua-24072026/" target="_blank">InfoMoney — Petróleo 24/07 (Brent acima de US$100)</a> &nbsp;·&nbsp;
+      <a href="https://statusinvest.com.br/acoes/vale3" target="_blank">Status Invest — VALE3</a> &nbsp;·&nbsp;
+      <a href="https://statusinvest.com.br/acoes/bbdc4" target="_blank">Status Invest — BBDC4</a> &nbsp;·&nbsp;
+      <a href="https://statusinvest.com.br/fundos-imobiliarios/kncr11" target="_blank">Status Invest — KNCR11</a> &nbsp;·&nbsp;
+      <a href="https://statusinvest.com.br/fundos-imobiliarios/pcip11" target="_blank">Status Invest — PCIP11</a> &nbsp;·&nbsp;
+      <a href="https://www.bloomberg.com/news/articles/2026-07-22/alphabet-posts-cloud-sales-beat-slight-miss-on-search-revenue" target="_blank">Bloomberg — Alphabet Q2 2026</a>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  Gerado automaticamente em <strong>24 de julho de 2026</strong> · Análise diária da carteira de Fernando · Fontes: Bloomberg, CNBC, InfoMoney, Valor Econômico, Status Invest, Yahoo Finance<br>
+  <em>Este relatório é informativo e não constitui recomendação de investimento.</em>
+</div>
+
+</body>
+</html>
