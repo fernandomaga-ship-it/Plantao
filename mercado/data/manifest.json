@@ -1,31 +1,38 @@
-{
-  "reports": [
-    {
-      "date": "2026-05-26",
-      "title": "Relatório 26/05/2026",
-      "ibov": "175.870",
-      "ibovChg": "-1,01%",
-      "ibovUp": false,
-      "dolar": "R$ 5,02",
-      "oil": "US$ 92,94"
-    },
-    {
-      "date": "2026-05-27",
-      "title": "Relatório 27/05/2026",
-      "ibov": "178.180",
-      "ibovChg": "+1,12%",
-      "ibovUp": true,
-      "dolar": "R$ 5,02",
-      "oil": "US$ 88,53"
-    },
-    {
-      "date": "2026-05-29",
-      "title": "Relatório 29/05/2026",
-      "ibov": "175.063",
-      "ibovChg": "-0,39%",
-      "ibovUp": false,
-      "dolar": "R$ 5,03",
-      "oil": "US$ 88,68"
-    }
-  ]
-}
+[
+  {
+    "date": "2026-05-26",
+    "title": "Relatório Semanal — Semana 21",
+    "ibov": 137420,
+    "ibovUp": true,
+    "ibovChg": "+0,82%",
+    "dolar": "5,6120",
+    "oil": "82.40"
+  },
+  {
+    "date": "2026-05-27",
+    "title": "Relatório Diário — 27/05",
+    "ibov": 136890,
+    "ibovUp": false,
+    "ibovChg": "-0,39%",
+    "dolar": "5,6340",
+    "oil": "81.95"
+  },
+  {
+    "date": "2026-05-29",
+    "title": "Relatório Diário — 29/05",
+    "ibov": 137105,
+    "ibovUp": true,
+    "ibovChg": "+0,16%",
+    "dolar": "5,6210",
+    "oil": "82.10"
+  },
+  {
+    "date": "2026-08-31",
+    "title": "Análise Técnica Quantitativa — Carteira Completa",
+    "ibov": 178217,
+    "ibovUp": true,
+    "ibovChg": "+1,45%",
+    "dolar": "5,1750",
+    "oil": "90.69"
+  }
+]
