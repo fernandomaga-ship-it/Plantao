@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FK Capital Diário — Edição 11</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.4/chart.umd.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600;9..144,700;9..144,900&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0E1524; --panel:#141D31; --panel2:#18233B; --line:#26324D;
+  --ink:#E8ECF4; --dim:#8B97AE; --amber:#F5B84B; --teal:#3ED6B5; --coral:#F0716C; --blue:#6EA8FE;
+  --mono:'IBM Plex Mono',monospace; --serif:'Fraunces',serif; --sans:'IBM Plex Sans',sans-serif;
+}
+:root[data-theme="light"]{--bg:#F3F5F9;--panel:#FFFFFF;--panel2:#EEF1F7;--line:#D5DBE7;--ink:#141D31;--dim:#5B6577}
+@media(prefers-color-scheme:light){:root:not([data-theme="dark"]){--bg:#F3F5F9;--panel:#FFFFFF;--panel2:#EEF1F7;--line:#D5DBE7;--ink:#141D31;--dim:#5B6577}}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.65}
+.wrap{max-width:1080px;margin:0 auto;padding:0 22px 90px}
+a{color:var(--teal);text-decoration:none}
+a:hover{text-decoration:underline}
+header{border-bottom:1px solid var(--line);padding:36px 0 22px}
+.kicker{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--amber)}
+h1{font-family:var(--serif);font-weight:900;font-size:clamp(32px,5.5vw,55px);line-height:1.03;margin:10px 0 12px;letter-spacing:-.01em;text-wrap:balance}
+.dek{font-family:var(--serif);font-weight:300;font-size:18.5px;color:var(--dim);max-width:760px;line-height:1.48}
+.ticker{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:20px;font-family:var(--mono);font-size:12.5px}
+.ticker b{color:var(--ink);font-weight:500}
+.up{color:var(--teal)} .dn{color:var(--coral)} .neu{color:var(--amber)}
+section{padding:34px 0 8px;border-bottom:1px solid var(--line)}
+h2{font-family:var(--serif);font-weight:700;font-size:27px;line-height:1.15;margin-bottom:14px;text-wrap:balance}
+h3{font-family:var(--serif);font-weight:600;font-size:20px;margin-bottom:6px;text-wrap:balance}
+p{margin-bottom:12px;max-width:760px}
+.lead{font-size:16.5px}
+.grid{display:grid;gap:16px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:20px 22px}
+.card p{max-width:none}
+.chart{position:relative;height:260px;margin:8px 0 18px}
+.asset{background:var(--panel);border:1px solid var(--line);border-left:4px solid var(--blue);border-radius:10px;padding:22px 24px;margin-bottom:18px}
+.asset.buy{border-left-color:var(--teal)} .asset.sell{border-left-color:var(--coral)} .asset.hold{border-left-color:var(--amber)} .asset.alert{border-left-color:#FF8C00}
+.asset-head{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px;margin-bottom:10px}
+.asset-head h3{margin:0}
+.price{font-family:var(--mono);font-size:14.5px}
+.tag{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;padding:3px 9px;border-radius:4px;border:1px solid var(--line);color:var(--dim)}
+.tag.buy{color:var(--teal);border-color:var(--teal)} .tag.sell{color:var(--coral);border-color:var(--coral)} .tag.hold{color:var(--amber);border-color:var(--amber)} .tag.alert{color:#FF8C00;border-color:#FF8C00}
+.ta{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px 14px;background:var(--panel2);border-radius:8px;padding:12px 14px;margin:10px 0 14px;font-family:var(--mono);font-size:12.5px}
+.ta span{display:block;color:var(--dim);font-size:10.5px;letter-spacing:.06em}
+.action{border-top:1px dashed var(--line);padding-top:12px;margin-top:6px}
+.action strong{color:var(--amber)}
+table{width:100%;border-collapse:collapse;font-size:13.5px;margin:10px 0 18px;font-variant-numeric:tabular-nums}
+th,td{padding:9px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--dim);font-weight:500}
+td.num{font-family:var(--mono);text-align:right;white-space:nowrap}
+th.num{text-align:right}
+.tablewrap{overflow-x:auto}
+.placar li{list-style:none;padding:8px 0;border-bottom:1px solid var(--line);display:grid;grid-template-columns:60px 1fr;gap:12px}
+.placar li b{font-family:var(--mono);font-size:13px}
+.agenda li{list-style:none;padding:6px 0;display:grid;grid-template-columns:110px 1fr;gap:10px;border-bottom:1px solid var(--line)}
+.agenda li:last-child{border-bottom:none}
+.agenda li b{font-family:var(--mono);color:var(--amber);font-weight:500;font-size:13px}
+.agenda li.hoje b{color:var(--coral)}
+footer{padding-top:26px;font-size:12px;color:var(--dim);line-height:1.6}
+.alerta-box{background:rgba(255,64,96,.10);border:1px solid rgba(255,64,96,.35);border-radius:10px;padding:18px 22px;margin-bottom:20px}
+.alerta-box .alerta-kicker{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--coral);margin-bottom:6px}
+.alerta-box p{max-width:none;margin:0}
+@media(max-width:640px){.ta{grid-template-columns:repeat(2,1fr)}.placar li{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="kicker">FK Capital Diário · Edição 11 · quarta-feira, 2 de setembro de 2026</div>
+  <h1>Três eventos em 72 horas: embargo, payroll e o Fed que não quer cortar</h1>
+  <p class="dek">O Ibovespa fez dez altas seguidas e agora enfrenta o teste real — embargo europeu entra amanhã, payroll americano de agosto sai na sexta e o FOMC decide na semana que vem. A carteira está posicionada nas duas pontas dessa gangorra.</p>
+  <div class="ticker">
+    <div>IBOV <b>179.722</b> <span class="neu">ref. 01/09</span></div>
+    <div>USD/BRL <b>5,153</b> <span class="up">−0,54%</span></div>
+    <div>DI jan/27 <b>13,585%</b> <span class="up">−3 bps</span></div>
+    <div>S&amp;P 500 <b>7.631</b> <span class="dn">−0,71%</span></div>
+    <div>Nasdaq <b>26.100</b> <span class="dn">−1,01%</span></div>
+    <div>Brent <b>US$ 94,65</b> <span class="dn">+4,6%</span></div>
+    <div>UST 10a <b>4,79%</b> <span class="dn">máx. desde jan/25</span></div>
+    <div>Selic <b>14,00%</b> <span class="neu">Copom 16/09</span></div>
+  </div>
+</header>
+
+<section>
+  <h2>A história da semana</h2>
+
+  <div class="alerta-box">
+    <div class="alerta-kicker">⚠ Evento binário — amanhã, 3 de setembro</div>
+    <p>A Comissão Europeia suspende a partir de amanhã a importação de carne bovina e de aves do Brasil por falta de garantias sobre uso de antimicrobianos. O mercado vem digerindo isso desde maio, mas <strong>o pregão de amanhã é o primeiro com o embargo em vigor</strong>. MBRF3 e BEEF3 são os ativos mais expostos da carteira.</p>
+  </div>
+
+  <p class="lead">O cenário macro que abriu setembro ainda está vivo. Em Nova York, o Brent atingiu US$ 94,65 (+4,6%) depois de novos ataques americanos contra alvos iranianos no Estreito de Ormuz; o Treasury de 10 anos fechou em 4,79% — máxima desde janeiro de 2025 — e a probabilidade de <em>alta</em> de juros pelo Fed em 16 de setembro foi precificada acima de 68%. Tecnologia liderou as perdas no exterior; o Nasdaq caiu 1%.</p>
+
+  <p class="lead">No Brasil, o Ibovespa fechou ontem em 179.722 pontos (+1,30%), seu décimo pregão consecutivo de alta e a máxima intraday de 181.061. O motor foi a Petrobras (+4%), que surfou o petróleo, e o <em>trade eleitoral</em> bancário. O PIB do 2º trimestre cresceu 0,5% na margem — agro +2,8%, serviços +0,2%, indústria +0,1% — suficiente para sustentar a narrativa de resiliência sem pressionar o Copom para cortar antes do FOMC.</p>
+
+  <p class="lead">O quadro desta quarta-feira é de posicionamento defensivo antes do triplo evento: (1) embargo amanhã — sinal de mercado para MBRF3 e BEEF3; (2) payroll sexta — o dado que decide o tom do Fed e do Treasury; (3) FOMC na semana que vem — primeira reunião desde Jackson Hole, onde Warsh declarou que não considera a inflação controlada. O dólar próximo de R$ 5,15 e a curva curta fechando 3 bps sinalizam que o mercado local ainda não capitulou — mas o espaço para novas surpresas positivas estreitou.</p>
+</section>
+
+<section>
+  <h2>Placar — o que a Edição 10 (01/09) acertou</h2>
+  <ul class="placar">
+    <li><b class="up">✔</b><div><strong>Ibovespa em décima alta, RSI 68,8 encostando na Bollinger superior.</strong> Confirmado: sequência intacta no fechamento de ontem em 179.722 pts. A partir de agora o gatilho de pausa é payroll + FOMC, não RSI.</div></li>
+    <li><b class="up">✔</b><div><strong>MSFT34: "executar redução do lote Itaú".</strong> O BDR testou R$ 107,42 com MACD cruzado para baixo. Quem executou a ordem limitada em R$ 109,70 nas sessões anteriores realizou o objetivo; quem não executou ainda tem a janela antes do FOMC — mas ela fecha com o payroll.</div></li>
+    <li><b class="neu">~</b><div><strong>AXIA3 "romper a MM200 em R$ 56,36 com volume > 13M para confirmar entrada".</strong> Ainda não rompeu. A ação oscila em torno de R$ 53–55 sem catalisador de curto prazo. O plano de realização parcial permanece válido acima de R$ 63.</div></li>
+    <li><b class="neu">~</b><div><strong>VALE3: "ordem de venda do lote XP entre R$ 81,40 e R$ 82,00".</strong> A ação não atingiu a faixa. Continua acima de todas as MMs com MACD positivo — o lote XP segue com ordem no mercado; sem urgência para abaixar o preço-alvo antes do relatório de produção de outubro.</div></li>
+    <li><b class="dn">✘</b><div><strong>MBRF3: "não comprar antes de quinta (embargo)".</strong> Correto como postura. Para amanhã o risco é assimétrico: queda da MM21 (R$ 17,32) com volume acima de 6M seria o primeiro sinal de que o mercado não precificou suficientemente os ~2,5% de receita em risco.</div></li>
+  </ul>
+</section>
+
+<section>
+  <h2>Ibovespa — dez altas, um teste</h2>
+  <p>Com RSI em 68,8 e preço encostado na banda superior de Bollinger (180.795), o Ibovespa entrou em zona de atenção. Sequências longas não terminam por RSI — terminam por gatilho externo. Os próximos três dias são o teste mais claro desde o início do rali: payroll sexta e FOMC na semana que vem.</p>
+  <div class="chart"><canvas id="ibovChart"></canvas></div>
+</section>
+
+<section>
+  <h2>Radar da carteira — preço vs. consenso</h2>
+  <p>Upside até o preço-alvo mediano das casas (BTG, Itaú BBA, Bradesco BBI, XP, BB Investimentos, Safra, Genial). Barras vermelhas = RSI acima de 65 — zona de atenção.</p>
+  <div class="grid g2">
+    <div class="card"><h3>Upside ao alvo (%)</h3><div class="chart"><canvas id="upsideChart"></canvas></div></div>
+    <div class="card"><h3>RSI 14 dias</h3><div class="chart"><canvas id="rsiChart"></canvas></div></div>
+  </div>
+</section>
+
+<section>
+  <h2>Ativos principais</h2>
+
+  <div class="asset hold">
+    <div class="asset-head"><h3>AXIA3 — Axia Energia</h3><span class="price">R$ 53,75 <span class="up">ref. 01/09</span> · PM PF R$ 35,53 (2.800) · PM XP R$ 55,50 (300)</span><span class="tag hold">Manter · gatilho na MM200</span></div>
+    <div class="ta">
+      <div><span>MM21 / MM50 / MM200</span>51,93 / 52,32 / 56,36</div>
+      <div><span>RSI 14</span>59,6</div>
+      <div><span>MACD</span>+0,36 > sinal +0,04</div>
+      <div><span>Bollinger</span>48,72 – 54,96</div>
+      <div><span>Mín–máx 52s</span>43,16 – 67,15</div>
+    </div>
+    <p>A AXIA3 reconstruiu as médias curtas e o MACD virou positivo, mas ainda negocia 4,6% abaixo da MM200 — a resistência-chave. O fundamento continua sólido: BTG mantém alvo em R$ 74, Itaú BBA aponta até R$ 79 com base em R$ 12,5 bi em proventos e recompras em 2026. A fraqueza de curto prazo vem de preços spot de energia abaixo do contratado no ACL, não da geração de caixa. O resultado do 3T26 (previsto para 5–7 de novembro) tende a ser catalisador, especialmente se trouxer anúncio de distribuição da AXIA7.</p>
+    <p>O ambiente macro desta semana (Brent elevado, Treasury subindo) não afeta diretamente a tese — AXIA3 é um ativo de energia regulada/contratada, menos sensível ao ciclo de commodities do que VALE3 ou PETR4. A posição PF (PM R$ 35,53) carrega +52% de ganho latente e é o núcleo da carteira.</p>
+    <p class="action"><strong>Ação:</strong> nenhuma hoje. O plano de realização parcial em R$ 63–68 permanece válido, condicionado a: (1) fechamento acima de R$ 56,36 (MM200) com volume > 13M, e (2) sem deterioração dos preços ACL no relatório de produção. O lote XP (PM R$ 55,50) é o primeiro a reduzir quando as condições forem atendidas — 3% abaixo do PM, sem imposto, libera caixa PJ para as migrações de FII.</p>
+  </div>
+
+  <div class="asset hold">
+    <div class="asset-head"><h3>VALE3 — Vale</h3><span class="price">R$ 78,30 <span class="up">ref. 01/09</span> · PM PF R$ 66,79 (1.829) · PM XP R$ 81,36 (300)</span><span class="tag hold">Manter · lote XP em ordem de venda</span></div>
+    <div class="ta">
+      <div><span>MM21 / MM50 / MM200</span>74,76 / 74,02 / 76,03</div>
+      <div><span>RSI 14</span>63,5</div>
+      <div><span>MACD</span>+1,35 > sinal +0,77</div>
+      <div><span>Bollinger</span>69,09 – 80,48</div>
+      <div><span>Mín–máx 52s</span>51,20 – 87,63</div>
+    </div>
+    <p>O 2T26 foi melhor que o esperado em geração de caixa, mas trouxe uma mensagem de alerta: a Vale revisou o guidance de custo C1 para US$ 22,50–23,50/t e o all-in para US$ 58–62/t, assumindo Brent a US$ 86. Com o petróleo hoje em US$ 95, a pressão em frete e diesel fica US$ 2–3/t acima do projetado. O programa de hedge de Brent gerou US$ 100 milhões de benefício no 2T — mas não é eterno. BTG mantém recomendação de compra com alvo de R$ 85; Itaú BBA tem o alvo mais otimista, em R$ 101. A dividendo de R$ 2,03/ação (JCP) foi pago em agosto; novas distribuições dependem da geração de caixa do 2S26. O projeto Bakaba (cobre, Carajás) foi acelerado para o 3T27 com capex 50% menor e TIR de ~70% — sinaliza disciplina de capital que o mercado aprecia.</p>
+    <p class="action"><strong>Ação:</strong> manter ordem de venda do lote XP (300 ações, PM R$ 81,36) na faixa R$ 81,40–82,00. Sai no breakeven, sem imposto, e devolve ~R$ 24 mil ao caixa PJ para as migrações de FII. A posição PF (PM R$ 66,79, ganho de +17%) é o núcleo e fica. Stop de curto prazo: perda da MM21 em R$ 74,76 encerra a tese tática de alta. Se o payroll de sexta vier fraco (ativo refugio deflacionário), VALE3 pode receber fluxo de commodities — mas não é base do cenário.</p>
+  </div>
+
+  <div class="asset hold">
+    <div class="asset-head"><h3>BBDC4 — Bradesco PN</h3><span class="price">R$ 17,40 <span class="up">ref. 01/09</span> · PM PF R$ 17,94 (4.055) · PM XP R$ 19,20 (500)</span><span class="tag hold">Aguardar MM50 antes de nova tranche</span></div>
+    <div class="ta">
+      <div><span>MM21 / MM50 / MM200</span>16,86 / 17,64 / 18,27</div>
+      <div><span>RSI 14</span>55,4</div>
+      <div><span>MACD</span>−0,19 > sinal −0,34 (virando)</div>
+      <div><span>Bollinger</span>15,62 – 17,98</div>
+      <div><span>Mín–máx 52s</span>15,18 – 20,89</div>
+    </div>
+    <p>O trade eleitoral bancário puxou o Bradesco +1,22% ontem, com volume 20% acima da média — o tipo de pregão que antecede reconquista de médias móveis. Mas a ação continua abaixo da MM50 (R$ 17,64) e da MM200 (R$ 18,27). A tese de re-rating tem dois motores: (1) eleição — mercado compra a expectativa de mudança na condução econômica; (2) Copom — se o ciclo de corte retomar, o banco é beneficiado pelo alívio das provisões e expansão do crédito. O problema: o FOMC subindo juros em 16/set enfraquece o argumento de Copom. O banco ainda reporta resultados de 3T26 em 3–5 novembro; provisões em alta (+26,5% a/a no 2T26) seguem como dúvida.</p>
+    <p class="action"><strong>Ação:</strong> não entrar antes do fechamento acima de R$ 17,64 (MM50) com volume consistente. A tranche planejada usa o caixa da venda de MSFT34; se o lote Itaú ainda não foi vendido, a ordem de BBDC4 espera. Lote XP (PM R$ 19,20) permanece em prejuízo — candidato a realização em dezembro para composição do banco fiscal PJ com PCIP11 e OIBR3.</p>
+  </div>
+
+  <div class="asset alert">
+    <div class="asset-head"><h3>MBRF3 — Marfrig/BRF</h3><span class="price">R$ 18,30 <span class="up">ref. 01/09</span> · PM Itaú R$ 19,92 (494) · PM PF R$ 8,04 (2.019)</span><span class="tag alert">⚠ Embargo UE amanhã — não comprar</span></div>
+    <div class="ta">
+      <div><span>MM21 / MM50 / MM200</span>17,32 / 16,71 / 18,24</div>
+      <div><span>RSI 14</span>58,2</div>
+      <div><span>MACD</span>+0,58 > sinal +0,50</div>
+      <div><span>Bollinger</span>15,02 – 19,67</div>
+      <div><span>Volume vs média 20d</span>3,5M / 5,9M</div>
+      <div><span>Mín–máx 52s</span>14,52 – 27,52</div>
+    </div>
+    <p>A Comissão Europeia entra em vigor amanhã (3/set). A Genial Investimentos estima que a UE representa ~2,5% da receita consolidada do grupo (cerca de R$ 1,3 bi/trimestre) — o impacto é real, mas não catastrófico. A concentração em aves é o risco mais crítico: a BRF abate frangos quase exclusivamente no Brasil e não tem estrutura Mercosul equivalente para redirecionar volumes rapidamente para outros mercados. Para a divisão bovina, a América do Norte compensa parcialmente. O total de exportações brasileiras em risco é estimado em ~US$ 1,8 bi/ano.</p>
+    <p>O mercado vinha digerindo o embargo desde maio — a ação fechou ontem praticamente sobre a MM200 (R$ 18,24) sem movimento de pânico. O pregão de amanhã é o teste: se a reação for controlada (queda moderada com volume baixo), o embargo estava no preço. Se a MM21 (R$ 17,32) ceder com volume acima de 6M, a situação exige reavaliação da posição Itaú.</p>
+    <p class="action"><strong>Ação:</strong> não comprar antes do pregão de amanhã. A posição PF (PM R$ 8,04) está com ganho de +127% — não há urgência de saída, mas o lote Itaú (494 ações, PM R$ 19,92) está em prejuízo e pode servir como banco fiscal PJ se o cenário deteriorar. <em>Secundária relevante:</em> BEEF3 tem exposição percentual à Europa ainda maior que a Marfrig (3,4% da receita bruta nos últimos 12 meses, vs. 2,5% da MBRF3) e está ~50% abaixo do PM médio — continua sendo o primeiro candidato de realização de prejuízo para o banco fiscal PJ.</p>
+  </div>
+
+  <div class="asset sell">
+    <div class="asset-head"><h3>MSFT34 — Microsoft BDR</h3><span class="price">R$ 107,42 <span class="dn">−2,01% em 01/09</span> · MSFT US$ 501 · PM Itaú R$ 109,69 (91) · PM XP R$ 87,59 (497)</span><span class="tag sell">Executar redução do lote Itaú antes do payroll</span></div>
+    <div class="ta">
+      <div><span>MM21 / MM50 / MM200</span>106,32 / 93,45 / 93,17</div>
+      <div><span>RSI 14</span>60,7</div>
+      <div><span>MACD</span>+4,02 < sinal +4,43 (cruzou p/ baixo)</div>
+      <div><span>Bollinger</span>102,30 – 110,40</div>
+      <div><span>Mín–máx 52s</span>76,37 – 120,31</div>
+    </div>
+    <p>O ambiente desta semana é o mais hostil para tech em meses: Treasury a 4,79%, Fed inclinado a subir e Brent pressionando margens operacionais de toda a cadeia de IA. O MACD cruzou para baixo e o preço está abaixo da MM21 — momentum de agosto (+30% em 30 dias) esgotado. A tese de longo prazo não mudou: Azure a 43% no 4T FY26, guidance de 45% no 1T FY27, backlog de US$ 678 bi (+84% a/a). O que mudou é o custo de oportunidade com juros americanos subindo.</p>
+    <p>O resultado do 1T FY27 está confirmado para 27/outubro. O brief completo de análise pré-resultado está na Edição 10 (cenário bull/bear, consenso de Wall Street, execução sugerida). A decisão de agora é simples: o lote Itaú tem PM de R$ 109,69 e o preço atual é R$ 107,42 — se o payroll de sexta vier forte (emprego acima de 200 mil), o Treasury sobe e o BDR recua. A janela de venda no PM ou próxima dele é hoje e amanhã.</p>
+    <p class="action"><strong>Ação:</strong> executar a redução do lote Itaú (91 BDRs) hoje ou amanhã. Ordem limitada a R$ 109,70 até o fechamento de quinta (03/set); se fechar abaixo de R$ 106,32 antes disso, vender a mercado — a perda de ~3% é irrelevante frente ao objetivo (caixa PJ para BBDC4 e/ou INBR32). O núcleo XP (497 BDRs, PM R$ 87,59, +23%) permanece intacto até o resultado de outubro.</p>
+  </div>
+
+  <div class="asset hold">
+    <div class="asset-head"><h3>B3SA3 — B3</h3><span class="price">R$ 16,62 <span class="up">+2,47% em 01/09</span> · PM PF R$ 16,32 (2.400)</span><span class="tag hold">Manter · RSI 69 — não aportar</span></div>
+    <div class="ta">
+      <div><span>MM21 / MM50 / MM200</span>15,16 / 15,15 / 15,73</div>
+      <div><span>RSI 14</span>69,1</div>
+      <div><span>MACD</span>+0,27 > sinal +0,06</div>
+      <div><span>Bollinger</span>13,67 – 16,59 (rompeu)</div>
+      <div><span>Volume vs média 20d</span>55,2M / 34,5M (+60%)</div>
+      <div><span>Mín–máx 52s</span>11,68 – 19,55</div>
+    </div>
+    <p>A maior alta do dia ontem (+2,47%) com volume 60% acima da média — o rompimento mais limpo da carteira nesta série de dez pregões. A B3 é a beneficiária natural de rali com giro elevado: mais ADTV significa mais receita de tarifação, e o trade eleitoral tende a manter os volumes elevados até outubro. O risco segue no lado operacional: as interrupções recorrentes de agosto (incluindo o atraso de 3h nos futuros de juros em 27/08) reforçam o argumento dos concorrentes que prometem entrada em 2027.</p>
+    <p class="action"><strong>Ação:</strong> manter, não aportar. RSI a 69 com preço fora da banda superior é sinal de extensão — a consolidação tende a vir nos próximos 1–2 pregões. Se RSI passar de 75 com candle de indecisão acima de R$ 17,00, reduzir 20% (480 ações) — ganho pequeno sobre o PM, mas recicla capital em ativo estendido. Suporte de curto prazo: R$ 16,00 (MM21).</p>
+  </div>
+</section>
+
+<section>
+  <h2>FIIs — migração PJ → PF: janela continua aberta</h2>
+
+  <div class="asset buy">
+    <div class="asset-head"><h3>KNCR11 — Kinea Rendimentos</h3><span class="price">R$ 106,36 <span class="dn">−1,60% em 01/09</span> · PM XP R$ 105,54 (376, PJ)</span><span class="tag buy">Migrar PJ → PF — janela válida</span></div>
+    <div class="ta">
+      <div><span>MM21 / MM50 / MM200</span>106,50 / 106,32 / 101,51</div>
+      <div><span>RSI 14</span>48,7</div>
+      <div><span>MACD</span>+0,33 > sinal +0,25</div>
+      <div><span>Bollinger</span>105,00 – 107,96</div>
+      <div><span>Mín–máx 52s</span>91,63 – 108,09</div>
+    </div>
+    <p>O cenário para o Copom ficou mais nebuloso: com o Fed inclinado a subir e o Brent acima de US$ 94, a probabilidade de corte em setembro caiu. Isso é <em>bom</em> para o KNCR11 — um fundo CDI que ganha com taxa elevada por mais tempo. A cota está R$ 0,82 acima do PM na PJ, gerando ganho de ~0,8% na venda (imposto de 20% sobre ~R$ 308 — irrelevante). Migrar agora converte 100% dos rendimentos futuros em isentos na PF.</p>
+    <p class="action"><strong>Ação:</strong> a migração é uma decisão de eficiência fiscal, não de mercado. Executar venda na PJ e recompra na PF nos próximos 3 pregões — a cota está próxima da máxima de 52s (R$ 108,09) e essa janela pode fechar se o Copom confirmar pausa.</p>
+  </div>
+
+  <div class="asset buy">
+    <div class="asset-head"><h3>PCIP11 — Pátria Crédito Imobiliário</h3><span class="price">R$ 74,33 <span class="dn">−0,65% em 01/09</span> · PM Itaú R$ 82,35 (115) · PM XP R$ 85,72 (120) — ambos PJ</span><span class="tag buy">Migrar PJ → PF, realizando perda fiscal</span></div>
+    <div class="ta">
+      <div><span>MM21 / MM50 / MM200</span>72,79 / 74,53 / 77,68</div>
+      <div><span>RSI 14</span>54,4</div>
+      <div><span>MACD</span>−0,29 > sinal −0,75 (melhorando)</div>
+      <div><span>Bollinger</span>69,58 – 75,89</div>
+      <div><span>Mín–máx 52s</span>69,31 – 82,17</div>
+    </div>
+    <p>A perda realizada na migração (~R$ 2.300 entre os dois lotes PJ) é um ativo fiscal: abate ganhos futuros de VALE3/AXIA3 na XP. Encostada na MM50, 4% abaixo da MM200, recuperando de mínimas de julho. Diferente da KNCR11, aqui a migração gera prejuízo contábil — que fica registrado no banco PJ e reduz IR futuro.</p>
+    <p class="action"><strong>Ação:</strong> executar PCIP11 primeiro (perda contábil), depois KNCR11 (ganho mínimo) — mesmo mês, mesma estrutura. A sequência sugerida otimiza o resultado fiscal mensal.</p>
+  </div>
+</section>
+
+<section>
+  <h2>Planilha de acompanhamento</h2>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Ativo</th><th class="num">Preço ref.</th><th class="num">PM médio</th><th class="num">Alvo mediano</th><th class="num">Upside</th><th class="num">DY 12m</th><th>Sinal técnico</th><th>Links</th></tr></thead>
+    <tbody>
+      <tr><td>AXIA3</td><td class="num">53,75</td><td class="num">37,46</td><td class="num">74,00</td><td class="num up">+37,7%</td><td class="num">~3,6%</td><td>Abaixo MM200; MACD +</td><td><a href="https://statusinvest.com.br/acoes/axia3">SI</a> · <a href="https://www.fundamentus.com.br/detalhes.php?papel=AXIA3">Fund.</a></td></tr>
+      <tr><td>VALE3</td><td class="num">78,30</td><td class="num">68,85</td><td class="num">88,00</td><td class="num up">+12,4%</td><td class="num">~5,2%</td><td>Acima de todas MMs; lote XP em ordem</td><td><a href="https://statusinvest.com.br/acoes/vale3">SI</a> · <a href="https://www.fundamentus.com.br/detalhes.php?papel=VALE3">Fund.</a></td></tr>
+      <tr><td>BBDC4</td><td class="num">17,40</td><td class="num">18,08</td><td class="num">21,00</td><td class="num up">+20,7%</td><td class="num">~6,5%</td><td>Abaixo MM50/200; virando</td><td><a href="https://statusinvest.com.br/acoes/bbdc4">SI</a> · <a href="https://www.fundamentus.com.br/detalhes.php?papel=BBDC4">Fund.</a></td></tr>
+      <tr><td>MBRF3</td><td class="num">18,30</td><td class="num">10,38</td><td class="num">22,00</td><td class="num up">+20,2%</td><td class="num">~2%</td><td>Sobre MM200; embargo amanhã</td><td><a href="https://statusinvest.com.br/acoes/mbrf3">SI</a> · <a href="https://www.fundamentus.com.br/detalhes.php?papel=MBRF3">Fund.</a></td></tr>
+      <tr><td>MSFT34</td><td class="num">107,42</td><td class="num">91,01</td><td class="num">124,00</td><td class="num up">+15,4%</td><td class="num">~0,7%</td><td>MACD cruzou p/ baixo; vender lote Itaú</td><td><a href="https://statusinvest.com.br/bdrs/msft34">SI</a> · <a href="https://finance.yahoo.com/quote/MSFT">Yahoo</a></td></tr>
+      <tr><td>B3SA3</td><td class="num">16,62</td><td class="num">16,32</td><td class="num">18,00</td><td class="num up">+8,3%</td><td class="num">~4,5%</td><td>Rompeu BB sup.; RSI 69 — aguardar</td><td><a href="https://statusinvest.com.br/acoes/b3sa3">SI</a> · <a href="https://www.fundamentus.com.br/detalhes.php?papel=B3SA3">Fund.</a></td></tr>
+      <tr><td>KNCR11</td><td class="num">106,36</td><td class="num">105,54</td><td class="num">—</td><td class="num">—</td><td class="num">~12%</td><td>Perto da máx. 52s; migrar PJ→PF</td><td><a href="https://statusinvest.com.br/fundos-imobiliarios/kncr11">SI</a></td></tr>
+      <tr><td>PCIP11</td><td class="num">74,33</td><td class="num">84,07</td><td class="num">—</td><td class="num">—</td><td class="num">~13%</td><td>Recuperando MM50; migrar PJ→PF</td><td><a href="https://statusinvest.com.br/fundos-imobiliarios/pcip11">SI</a></td></tr>
+    </tbody>
+  </table></div>
+  <p style="font-size:12.5px;color:var(--dim)">Preços: referência fechamento B3 de 01/09/2026 (Yahoo Finance / Status Invest). Alvo mediano consolida relatórios públicos das casas citadas. DY é aproximação dos últimos 12 meses. PM médio pondera os lotes PF e PJ de todas as contas. Nenhum item constitui recomendação — o julgamento final é seu.</p>
+</section>
+
+<section>
+  <h2>Agenda — próximas 72 horas e além</h2>
+  <ul class="agenda">
+    <li class="hoje"><b>qua 02/09</b><div><strong>Hoje:</strong> Janela para executar redução de MSFT34 lote Itaú antes do payroll. Posicionamento defensivo em MBRF3 — não comprar. Migração KNCR11/PCIP11 pode ser iniciada.</div></li>
+    <li class="hoje"><b>qui 03/09</b><div><strong>Embargo UE em vigor.</strong> Primeiro pregão com restrição ativa à carne e aves brasileiras. Observar MBRF3 na MM21 (R$ 17,32) e BEEF3. Volume acima de 6M com queda indica que o mercado não havia precificado totalmente.</div></li>
+    <li><b>sex 04/09</b><div><strong>Payroll de agosto (EUA).</strong> O dado mais importante desta semana. Acima de 200 mil empregos reforça o Fed hawkish e pressiona Treasury + dólar. Abaixo de 150 mil reabre a discussão de pausa. Decide o tom de MSFT34, FIIs e do câmbio até o FOMC.</div></li>
+    <li><b>seg 08/09</b><div>Prazo para votação da MP no Congresso (possível retorno do imposto sobre combustível). Ruído fiscal na curva de juros se a aprovação atrasar.</div></li>
+    <li><b>15–16/09</b><div><strong>FOMC.</strong> Primeira reunião com alta de juros majoritariamente precificada desde o ciclo de 2023. Se confirmar alta, curva longa dos EUA abre e pressiona múltiplos de toda a carteira de crescimento. Define o cenário para o Copom na mesma semana.</div></li>
+    <li><b>16/09 (est.)</b><div><strong>Copom.</strong> Focus espera pausa em 14,00%. Com Brent acima de US$ 90 e Fed subindo, corte virou minoria. Define bloco de FIIs CDI (KNCR11, PCIP11) e tese de re-rating dos bancos (BBDC4).</div></li>
+    <li><b>out</b><div>Primeiro turno eleitoral. Volume de contratos apostando em Ibovespa acima de 200 mil pontos pós-segundo turno aumentou fortemente. B3SA3 e bancos são os principais beneficiários do trade eleitoral.</div></li>
+    <li><b>27/out</b><div><strong>Microsoft (resultado 1T FY27).</strong> Executar redução do lote Itaú até 16/10; manter núcleo XP. Brief completo de análise pré-resultado publicado na Edição 10.</div></li>
+  </ul>
+</section>
+
+<section>
+  <h2>Decisões pendentes — o que precisa acontecer esta semana</h2>
+  <p><strong>1. MSFT34 lote Itaú.</strong> A janela fecha com o payroll de sexta. Ordem limitada a R$ 109,70 amanhã (quinta); se não executar, vender a mercado na abertura de sexta antes do dado americano. O objetivo é liberar ~R$ 10 mil PJ para BBDC4.</p>
+  <p><strong>2. Migração KNCR11 → PF.</strong> A cota está R$ 0,82 acima do PM PJ. A janela é boa; não depende de mercado. Executável amanhã em menos de 5 minutos. Faz a decisão fiscal mais simples da lista.</p>
+  <p><strong>3. MBRF3/BEEF3 — monitorar amanhã.</strong> Não há decisão de compra ou venda hoje; a decisão é amanhã, após ver como o mercado absorve o primeiro pregão com o embargo ativo.</p>
+  <p><strong>4. VALE3 lote XP.</strong> Ordem de R$ 81,40–82,00 no mercado. Não reduzir o preço-alvo antes do relatório de produção de outubro.</p>
+  <p style="margin-top:16px;padding:14px 18px;background:var(--panel);border:1px solid var(--line);border-left:4px solid var(--amber);border-radius:8px;max-width:none"><strong style="color:var(--amber)">Resumo de ação para hoje:</strong> Executar MSFT34 Itaú + iniciar KNCR11 migração. As demais decisões dependem dos pregões de quinta e sexta. Duas ordens, menos de 15 minutos de execução, destravam ~R$ 13–14 mil de caixa PJ.</p>
+</section>
+
+<footer>
+  FK Capital Diário · Edição 11 · 2 de setembro de 2026 · Fontes consultadas nesta edição: InfoMoney, Forbes Brasil, Juruá Informativo, Genial Investimentos (relatório de impacto UE), Seu Dinheiro (Vale 2T26), Bloomberg Línea, Reuters, Yahoo Finance (cotações e indicadores), Status Invest, Fundamentus. Material de uso pessoal — não constitui recomendação de investimento.
+</footer>
+
+</div>
+
+<script>
+const font = {family:'IBM Plex Mono',size:10};
+const isDark = !document.documentElement.dataset.theme || document.documentElement.dataset.theme === 'dark' ||
+  (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+const grid = isDark ? '#26324D' : '#D5DBE7';
+const tick = isDark ? '#8B97AE' : '#5B6577';
+
+// Ibovespa histórico — série estendida até 01/09
+new Chart(document.getElementById('ibovChart'),{
+  type:'line',
+  data:{
+    labels:['17/08','18/08','19/08','20/08','21/08','25/08','26/08','27/08','28/08','01/09'],
+    datasets:[{
+      label:'Ibovespa',
+      data:[166784,166335,167830,167927,171032,174577,174586,175135,177419,179722],
+      borderColor:'#F5B84B',
+      backgroundColor:'rgba(245,184,75,.10)',
+      fill:true,tension:.35,pointRadius:3,pointBackgroundColor:'#F5B84B'
+    }]
+  },
+  options:{
+    responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:false},tooltip:{callbacks:{label:v=>'IBOV: '+v.raw.toLocaleString('pt-BR')}}},
+    scales:{
+      x:{ticks:{color:tick,font},grid:{color:grid}},
+      y:{ticks:{color:tick,font,callback:v=>(v/1000).toFixed(0)+'k'},grid:{color:grid},min:164000}
+    }
+  }
+});
+
+const labels=['AXIA3','VALE3','BBDC4','MBRF3','MSFT34','B3SA3'];
+const rsi=[59.6,63.5,55.4,58.2,60.7,69.1];
+
+new Chart(document.getElementById('upsideChart'),{
+  type:'bar',
+  data:{
+    labels,
+    datasets:[{
+      data:[37.7,12.4,20.7,20.2,15.4,8.3],
+      backgroundColor:rsi.map(r=>r>65?'#F0716C':'#3ED6B5'),
+      borderRadius:4
+    }]
+  },
+  options:{
+    responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:false}},
+    scales:{
+      x:{ticks:{color:tick,font},grid:{display:false}},
+      y:{ticks:{color:tick,font,callback:v=>v+'%'},grid:{color:grid}}
+    }
+  }
+});
+
+new Chart(document.getElementById('rsiChart'),{
+  type:'bar',
+  data:{
+    labels,
+    datasets:[{
+      data:rsi,
+      backgroundColor:rsi.map(r=>r>=70?'#F0716C':r>=65?'#F5B84B':'#6EA8FE'),
+      borderRadius:4
+    }]
+  },
+  options:{
+    responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:false},annotation:{annotations:{line70:{type:'line',yMin:70,yMax:70,borderColor:'rgba(240,113,108,.4)',borderDash:[4,4]}}}},
+    scales:{
+      x:{ticks:{color:tick,font},grid:{display:false}},
+      y:{min:0,max:100,ticks:{color:tick,font},grid:{color:grid}}
+    }
+  }
+});
+</script>
+</body>
+</html>
