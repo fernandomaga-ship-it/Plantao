@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#0b5f65">
+  <title>Dashboard — Plantão BP — 04/09/2026</title>
+  <style>
+    :root{--bg:#edf2f5;--card:#fff;--ink:#16232d;--muted:#64727d;--line:#d7e0e5;--brand:#0b5f65;--brand2:#13808a;--critical:#b42318;--warn:#b54708;--stable:#18794e;--soft-red:#fff1f0;--soft-warn:#fff8e8;--soft-green:#edf9f2;--soft-blue:#eef7fa}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+    header{background:linear-gradient(130deg,#083f45,#0b6870 60%,#13808a);color:#fff;padding:28px 24px}.hero{max-width:1400px;margin:auto;display:flex;justify-content:space-between;gap:24px;align-items:end;flex-wrap:wrap}h1{margin:3px 0 7px;font-size:clamp(25px,4vw,36px);letter-spacing:-.04em}.eyebrow{margin:0;font-size:12px;font-weight:800;letter-spacing:.11em;text-transform:uppercase;opacity:.78}.hero p{margin:0;opacity:.9}.hero button{border:1px solid #ffffff70;background:#ffffff16;color:#fff;border-radius:11px;padding:10px 13px;font-weight:750;cursor:pointer}
+    .layout{max-width:1400px;margin:auto;padding:20px;display:grid;grid-template-columns:240px minmax(0,1fr);gap:20px}aside{position:sticky;top:14px;align-self:start;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px;box-shadow:0 8px 25px #23313a12}aside h2{font-size:14px;margin:0 0 10px}.nav{display:grid;gap:7px}.nav a{padding:9px 10px;border:1px solid var(--line);border-radius:10px;text-decoration:none;color:var(--ink);background:#f8fafb}.nav strong,.nav span{display:block}.nav strong{font-size:13px;color:var(--brand)}.nav span{font-size:12px;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+    .stats{display:grid;grid-template-columns:repeat(4,minmax(130px,1fr));gap:10px;margin-bottom:15px}.stat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px}.stat b{font-size:24px;display:block;line-height:1.05}.stat span{font-size:12px;color:var(--muted)}
+    .alert{background:var(--soft-warn);border:1px solid #f2cf83;border-left:5px solid var(--warn);border-radius:13px;padding:13px 15px;margin-bottom:16px}.alert h2{font-size:15px;margin:0 0 5px}.alert ul{margin:0;padding-left:19px}.alert li{margin:3px 0}
+    .cards{display:grid;grid-template-columns:repeat(3,minmax(230px,1fr));gap:12px;margin-bottom:20px}.card{background:var(--card);border:1px solid var(--line);border-top:5px solid var(--brand2);border-radius:16px;padding:15px;box-shadow:0 7px 22px #23313a0d}.card.critical{border-top-color:var(--critical)}.card.warn{border-top-color:var(--warn)}.card.stable{border-top-color:var(--stable)}.card-head{display:flex;justify-content:space-between;gap:10px}.card h2{font-size:18px;margin:2px 0 0}.bed{color:var(--brand);font-size:12px;font-weight:850;text-transform:uppercase;letter-spacing:.06em}.status{font-size:11px;font-weight:800;border-radius:999px;padding:4px 8px;white-space:nowrap;height:max-content}.critical .status{background:var(--soft-red);color:var(--critical)}.warn .status{background:var(--soft-warn);color:var(--warn)}.stable .status{background:var(--soft-green);color:var(--stable)}.chips{display:flex;gap:5px;flex-wrap:wrap;margin:11px 0}.chip{font-size:11px;font-weight:700;padding:3px 7px;border:1px solid var(--line);border-radius:999px;background:#f4f7f8}.card p{font-size:13px;color:#45545f;margin:0}.card a{display:inline-block;margin-top:11px;color:var(--brand);font-weight:800;text-decoration:none;font-size:12px}
+    .patient{scroll-margin-top:15px;background:var(--card);border:1px solid var(--line);border-radius:17px;padding:17px;margin-bottom:14px;box-shadow:0 8px 24px #23313a0d}.patient-head{display:flex;justify-content:space-between;gap:14px;align-items:start;border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:12px}.patient h2{margin:2px 0 0;font-size:22px}.impression{background:var(--soft-blue);border:1px solid #cde2e8;border-radius:12px;padding:11px 13px;margin-bottom:10px}.grid{display:grid;grid-template-columns:repeat(2,minmax(230px,1fr));gap:10px}.block{border:1px solid var(--line);border-radius:12px;padding:12px}.block h3{font-size:13px;margin:0 0 7px;color:var(--brand)}ul{margin:0;padding-left:19px}li{margin:4px 0}.pending{background:var(--soft-warn);border-color:#f2cf83}.critical-box{background:var(--soft-red);border-color:#f1b4ae}.source{color:var(--muted);font-size:12px;margin:18px 0 35px}
+    @media(max-width:1050px){.layout{grid-template-columns:1fr}aside{position:static}.nav{grid-template-columns:repeat(3,1fr)}.cards{grid-template-columns:repeat(2,minmax(230px,1fr))}}
+    @media(max-width:650px){.layout{padding:11px}.stats,.cards,.grid,.nav{grid-template-columns:1fr 1fr}.hero button{width:100%}.patient-head{display:block}.patient-head .status{display:inline-block;margin-top:8px}}
+    @media(max-width:440px){.stats,.cards,.grid,.nav{grid-template-columns:1fr}}
+    @media print{body{background:#fff;font-size:12px}header{padding:16px}.layout{display:block;padding:0}.hero button,aside,.cards,.stats{display:none}.patient{box-shadow:none;border-radius:0;break-inside:avoid;margin:0 0 10px}.source{margin-bottom:0}}
+  </style>
+</head>
+<body>
+<header><div class="hero"><div><p class="eyebrow">UTI BP Paulista · Passagem de plantão</p><h1>Dashboard clínico — 04/09/2026</h1><p>10 pacientes · 07:40 · Registro organizado a partir da passagem verbal (Plaud)</p></div><button onclick="window.print()">Imprimir / Salvar PDF</button></div></header>
+<div class="layout">
+  <aside><h2>Navegação por leito</h2><nav class="nav">
+    <a href="#iso"><strong>ISOLA</strong><span>Vera Lúcia</span></a>
+    <a href="#l1611"><strong>1611</strong><span>Marco Antônio</span></a>
+    <a href="#l1612"><strong>1612</strong><span>Thiago</span></a>
+    <a href="#l1613"><strong>1613</strong><span>Anísia</span></a>
+    <a href="#l1614"><strong>1614</strong><span>Isabela</span></a>
+    <a href="#l1615"><strong>1615</strong><span>Cátia</span></a>
+    <a href="#l1616"><strong>1616</strong><span>Patrícia</span></a>
+    <a href="#l1617"><strong>1617</strong><span>Valkyria</span></a>
+    <a href="#l2801"><strong>2801</strong><span>Odair</span></a>
+    <a href="#l2802"><strong>2802</strong><span>Ana Luísa</span></a>
+  </nav></aside>
+  <main>
+    <section class="stats">
+      <article class="stat"><b>10</b><span>pacientes</span></article>
+      <article class="stat"><b>4</b><span>casos críticos</span></article>
+      <article class="stat"><b>3</b><span>próximos de alta</span></article>
+      <article class="stat"><b>2</b><span>delirium grave</span></article>
+    </section>
+
+    <section class="alert"><h2>⚠️ Prioridades da passagem</h2>
+      <ul>
+        <li><strong>Vera Lúcia (ISOLA):</strong> SARA + choque + IRA em TRS; prognóstico reservado; família ciente.</li>
+        <li><strong>Thiago (1612) e Isabela (1614):</strong> delirium hiperativo refratário na madrugada — risco de queda/autoextubação.</li>
+        <li><strong>Anísia (1613) e Cátia (1615):</strong> definição de anticoagulação pendente (neurologia / risco hemorrágico).</li>
+      </ul>
+    </section>
+
+    <section class="cards">
+      <article class="card critical"><div class="card-head"><div><span class="bed">ISOLA</span><h2>Vera Lúcia</h2></div><span class="status">Falência</span></div><div class="chips"><span class="chip">SARA</span><span class="chip">Nora + vaso</span><span class="chip">TRS</span></div><p>Sedação profunda, pulmão “pedra”, acidose mista e diálise iniciada em 03/09.</p><a href="#iso">Abrir resumo</a></article>
+      <article class="card warn"><div class="card-head"><div><span class="bed">Leito 1611</span><h2>Marco Antônio</h2></div><span class="status">Paliativos</span></div><div class="chips"><span class="chip">Hepatorrenal</span><span class="chip">Tazocin</span></div><p>Melhora de Cr/Ur com terlipressina + albumina; PA limítrofe basal.</p><a href="#l1611">Abrir resumo</a></article>
+      <article class="card critical"><div class="card-head"><div><span class="bed">Leito 1612</span><h2>Thiago, 46 a</h2></div><span class="status">Delirium</span></div><div class="chips"><span class="chip">PO mitral</span><span class="chip">Precedex</span></div><p>PO minitoracotomia estável; agitação grave com múltiplos benzodiazepínicos.</p><a href="#l1612">Abrir resumo</a></article>
+      <article class="card warn"><div class="card-head"><div><span class="bed">Leito 1613</span><h2>Anísia, 78 a</h2></div><span class="status">AVC + IAM</span></div><div class="chips"><span class="chip">AVC pontino</span><span class="chip">Amiodarona</span></div><p>IAMCSST inferior + AVC pontino; aguarda Dr. Olival para anticoagulação.</p><a href="#l1613">Abrir resumo</a></article>
+      <article class="card critical"><div class="card-head"><div><span class="bed">Leito 1614</span><h2>Isabela, 58 a</h2></div><span class="status">Abstinência</span></div><div class="chips"><span class="chip">Sepse abd.</span><span class="chip">Mero + Vanco</span></div><p>PCR em queda; delirium/abstinência alcoólica refratária na noite.</p><a href="#l1614">Abrir resumo</a></article>
+      <article class="card warn"><div class="card-head"><div><span class="bed">Leito 1615</span><h2>Cátia</h2></div><span class="status">Dilema</span></div><div class="chips"><span class="chip">Trombo apical</span><span class="chip">Tridil</span></div><p>Aneurisma/trombo apical vs. extravasamento coronariano — anticoagulação em aberto.</p><a href="#l1615">Abrir resumo</a></article>
+      <article class="card stable"><div class="card-head"><div><span class="bed">Leito 1616</span><h2>Patrícia</h2></div><span class="status">Avaliar alta</span></div><div class="chips"><span class="chip">AVCs prévios</span><span class="chip">DRC/TRS</span></div><p>Estável; aguardando normalização do INR para possível alta.</p><a href="#l1616">Abrir resumo</a></article>
+      <article class="card stable"><div class="card-head"><div><span class="bed">Leito 1617</span><h2>Valkyria, 71 a</h2></div><span class="status">Quase alta</span></div><div class="chips"><span class="chip">DPOC</span><span class="chip">HD diária</span></div><p>Exacerbação em resolução; alta condicionada à ausculta pulmonar.</p><a href="#l1617">Abrir resumo</a></article>
+      <article class="card stable"><div class="card-head"><div><span class="bed">Leito 2801</span><h2>Odair, 61 a</h2></div><span class="status">Provável alta</span></div><div class="chips"><span class="chip">IAMCSST</span><span class="chip">Pós-ATC</span></div><p>Trombólise + angioplastia bem-sucedidas; evolução excelente.</p><a href="#l2801">Abrir resumo</a></article>
+      <article class="card warn"><div class="card-head"><div><span class="bed">Leito 2802</span><h2>Ana Luísa</h2></div><span class="status">Pendência</span></div><div class="chips"><span class="chip">Paraparesia</span><span class="chip">RM</span></div><p>RM de coluna em duas etapas concluída; aguarda laudo e biópsia.</p><a href="#l2802">Abrir resumo</a></article>
+    </section>
+
+    <section class="patient" id="iso">
+      <div class="patient-head"><div><span class="bed">ISOLA 2/3 · Suporte avançado</span><h2>Vera Lúcia</h2></div><span class="status" style="background:var(--soft-red);color:var(--critical)">Prognóstico reservado</span></div>
+      <div class="impression"><strong>Impressão:</strong> choque séptico / SARA grave com acidose mista e IRA em TRS; sedação profunda (RASS −5), pulmão pouco complacente e suporte no limite.</div>
+      <div class="grid">
+        <div class="block critical-box"><h3>Suporte atual</h3><ul>
+          <li>VM controlada; PCO₂ elevada (~70 mmHg); bloqueio neuromuscular sem melhora da mecânica.</li>
+          <li>Noradrenalina (até 0,5 → ~0,38 mcg/kg/min) + vasopressina.</li>
+          <li>Propofol reduzido a 1 mg/kg/h por hipertrigliceridemia (570–580) + remifentanil.</li>
+          <li>Nutrição parenteral (100 → 120 mL/h); HD iniciada em 03/09.</li>
+        </ul></div>
+        <div class="block pending"><h3>Condutas / pendências</h3><ul>
+          <li>Otimizar VM protetora, DVA e negativar balanço com TRS.</li>
+          <li>Manter esquema antimicrobiano amplo (inclui amicacina; sem polimixina B).</li>
+          <li>Evitar/escalar propofol com cautela pela hipertrigliceridemia.</li>
+          <li>Comunicação clara com a família sobre gravidade (avô já orientado com TC).</li>
+        </ul></div>
+      </div>
+    </section>
+
+    <section class="patient" id="l1611">
+      <div class="patient-head"><div><span class="bed">Leito 1611 · Equipe clínica / paliativos</span><h2>Marco Antônio</h2></div><span class="status" style="background:var(--soft-warn);color:var(--warn)">Cuidados paliativos</span></div>
+      <div class="impression"><strong>Impressão:</strong> paciente conhecido (“Guaxinim”), em cuidados paliativos, com síndrome hepatorrenal em terlipressina + albumina e melhora parcial da função renal.</div>
+      <div class="grid">
+        <div class="block"><h3>Evolução</h3><ul>
+          <li>Dois episódios de hipotensão (75–79 mmHg) em 03/09, tratados como PA basal; depois ~85 mmHg.</li>
+          <li>Creatinina 2,0 → 1,5; ureia 150 → 100 (03/09).</li>
+          <li>Tazocin em curso; diurese moderada.</li>
+        </ul></div>
+        <div class="block pending"><h3>Condutas</h3><ul>
+          <li>Manter foco em conforto; evitar DVA desproporcional para hipotensão basal.</li>
+          <li>Manter terlipressina + albumina.</li>
+          <li>Reavaliar função renal com exames de hoje; sem condições de alta no momento.</li>
+        </ul></div>
+      </div>
+    </section>
+
+    <section class="patient" id="l1612">
+      <div class="patient-head"><div><span class="bed">Leito 1612 · Dr. Robinson Poffo / Dr. Sergio Fudaba</span><h2>Thiago, 46 anos</h2></div><span class="status" style="background:var(--soft-red);color:var(--critical)">Delirium hiperativo</span></div>
+      <div class="impression"><strong>Impressão:</strong> PO imediato de plastia mitral com neocordas + fechamento de FOP por minitoracotomia direita; cirurgicamente estável, mas com delirium hiperativo grave.</div>
+      <div class="grid">
+        <div class="block critical-box"><h3>Intercorrência noturna</h3><ul>
+          <li>Agitação intensa: choro, gritos, agressividade; risco de queda e autoextubação.</li>
+          <li>Precedex 0,5 mcg/kg/h + ~3 ampolas de diazepam e midazolam em bolus.</li>
+          <li>Em cateter nasal de O₂ (recusou VNI); hemodinâmica estável.</li>
+          <li>Hb 14,7 — possível hemoconcentração; dreno Portovac com sangramento local controlado.</li>
+        </ul></div>
+        <div class="block pending"><h3>Pendências</h3><ul>
+          <li>Otimizar bundle de delirium (considerar quetiapina/haloperidol; contenção se necessário).</li>
+          <li>Vigilância constante; avaliar expansão volêmica cautelosa.</li>
+          <li>Deambulação precoce desejada pela cirurgia — inviável enquanto agitado.</li>
+          <li>Avaliação psiquiátrica solicitada.</li>
+        </ul></div>
+      </div>
+    </section>
+
+    <section class="patient" id="l1613">
+      <div class="patient-head"><div><span class="bed">Leito 1613 · Cardiologia / Dr. Olival</span><h2>Anísia, 78 anos</h2></div><span class="status" style="background:var(--soft-warn);color:var(--warn)">Anticoagulação pendente</span></div>
+      <div class="impression"><strong>Impressão:</strong> IAMCSST inferior (tronco de CD) com falha de reperfusão prévia + AVC isquêmico pontino recente e arritmias controladas com amiodarona.</div>
+      <div class="grid">
+        <div class="block"><h3>Evolução</h3><ul>
+          <li>Fraqueza em MSE → TC com AVC pontino; Doppler MMII sem TVP; DTC com microbolhas negativo.</li>
+          <li>TVNS / extrassístoles em 03/09 → amiodarona 450 mg/24h (10 mL/h); FC 56–58 bpm.</li>
+          <li>Eco: FEVE 55% no laudo (visualmente parece pior); lactato 3,0 → 1,5.</li>
+          <li>Enoxaparina profilática + clopidogrel; sem anticoagulação plena.</li>
+        </ul></div>
+        <div class="block pending"><h3>Pendências</h3><ul>
+          <li><strong>Aguardar conduta formal do Dr. Olival (neurologia)</strong> sobre anticoagulação vs. antiagregação.</li>
+          <li>Monitorar ritmo/bradicardia sob amiodarona.</li>
+          <li>Otimizar terapia de IC conforme diretrizes.</li>
+        </ul></div>
+      </div>
+    </section>
+
+    <section class="patient" id="l1614">
+      <div class="patient-head"><div><span class="bed">Leito 1614 · Cirurgia Geral</span><h2>Isabela, 58 anos</h2></div><span class="status" style="background:var(--soft-red);color:var(--critical)">Abstinência / delirium</span></div>
+      <div class="impression"><strong>Impressão:</strong> abdome agudo perfurativo pós-DIU com sepse abdominal em melhora laboratorial, porém delirium hiperativo / abstinência alcoólica grave e refratária.</div>
+      <div class="grid">
+        <div class="block"><h3>Infecção / suporte</h3><ul>
+          <li>PCR 39 → 25; pico febril 38,2°C em 03/09.</li>
+          <li>Tazocin → meropenem; mantida vancomicina; reculturas coletadas.</li>
+          <li>Sem DVA; padrão ventilatório bom em cateter nasal.</li>
+          <li>SNE 20 mL/h (sem progressão — abdome sem RHA); SVD mantida.</li>
+        </ul></div>
+        <div class="block pending"><h3>Delirium</h3><ul>
+          <li>Precedex 1,0 + quetiapina 25 mg 8/8h + lorazepam 2 mg 8/8h.</li>
+          <li>Resgates repetidos com diazepam e midazolam na madrugada.</li>
+          <li>Considerar protocolo CIWA-Ar / escalonamento de BDZ; avaliar IOT se risco de via aérea.</li>
+          <li>Progredir dieta se abdome permitir; programar retirada de SVD.</li>
+        </ul></div>
+      </div>
+    </section>
+
+    <section class="patient" id="l1615">
+      <div class="patient-head"><div><span class="bed">Leito 1615 · Cardiologia</span><h2>Cátia</h2></div><span class="status" style="background:var(--soft-warn);color:var(--warn)">Dilema antitrombótico</span></div>
+      <div class="impression"><strong>Impressão:</strong> IAM sem supra (DA distal, tratamento clínico) com aneurisma apical e trombo móvel + extravasamento de contraste contido — risco de trombo vs. sangramento.</div>
+      <div class="grid">
+        <div class="block critical-box"><h3>Achados / intercorrências</h3><ul>
+          <li>Eco: FEVE 40%, derrame pericárdico mínimo, aneurisma apical com trombo.</li>
+          <li>TC de crânio sem alterações agudas (confusão/sonolência pós-cateterismo).</li>
+          <li>Dor torácica na madrugada → Tridil 20 mcg/min; cefaleia e náuseas (efeito colateral).</li>
+          <li>Taquicardia sinusal persistente (110–120 bpm); tabagismo pesado — adesivo de nicotina.</li>
+        </ul></div>
+        <div class="block pending"><h3>Pendências</h3><ul>
+          <li><strong>Definir anticoagulação</strong> pesando trombo apical vs. extravasamento coronariano.</li>
+          <li>Eco de controle urgente (derrame / trombo).</li>
+          <li>Controle de FC (betabloqueador com cautela); manter Tridil conforme sintomas.</li>
+          <li>Manejo de abstinência nicotínica; dipirona já suspensa por sonolência.</li>
+        </ul></div>
+      </div>
+    </section>
+
+    <section class="patient" id="l1616">
+      <div class="patient-head"><div><span class="bed">Leito 1616 · Nefrologia / Neurologia</span><h2>Patrícia</h2></div><span class="status" style="background:var(--soft-green);color:var(--stable)">Avaliar alta</span></div>
+      <div class="impression"><strong>Impressão:</strong> múltiplos AVCs prévios e DRC dialítica; clinicamente estável, aguardando INR para programar alta da UTI.</div>
+      <div class="grid">
+        <div class="block"><h3>Status</h3><ul>
+          <li>Sem intercorrências relevantes na passagem.</li>
+          <li>Em terapia renal substitutiva.</li>
+        </ul></div>
+        <div class="block pending"><h3>Pendência</h3><ul>
+          <li>Aguardar normalização / resultado do INR.</li>
+          <li>Reavaliar critérios de alta da UTI após o exame.</li>
+        </ul></div>
+      </div>
+    </section>
+
+    <section class="patient" id="l1617">
+      <div class="patient-head"><div><span class="bed">Leito 1617 · Pneumologia / Nefrologia</span><h2>Valkyria, 71 anos</h2></div><span class="status" style="background:var(--soft-green);color:var(--stable)">Quase alta</span></div>
+      <div class="impression"><strong>Impressão:</strong> exacerbação de DPOC (fenótipo bronquítico) em paciente dialítica, com melhora pós-HD, porém ausculta ainda não limpa.</div>
+      <div class="grid">
+        <div class="block"><h3>Evolução</h3><ul>
+          <li>Quadro gripal → exacerbação; O₂ domiciliar prolongado prévio.</li>
+          <li>HD diária com melhora clínica após as sessões.</li>
+          <li>Ainda com sibilos importantes (“ar que não sai”).</li>
+        </ul></div>
+        <div class="block pending"><h3>Condutas</h3><ul>
+          <li>Manter tratamento da exacerbação e otimizar volemia com diálise.</li>
+          <li>Alta condicionada à melhora da ausculta e avaliação global.</li>
+        </ul></div>
+      </div>
+    </section>
+
+    <section class="patient" id="l2801">
+      <div class="patient-head"><div><span class="bed">Leito 2801 · Cardiologia</span><h2>Odair, 61 anos</h2></div><span class="status" style="background:var(--soft-green);color:var(--stable)">Provável alta</span></div>
+      <div class="impression"><strong>Impressão:</strong> IAMCSST de parede anterior trombolisado e angioplastado com sucesso; evolução excelente, assintomático, baixo risco.</div>
+      <div class="grid">
+        <div class="block"><h3>Evolução</h3><ul>
+          <li>Sem dor torácica recorrente.</li>
+          <li>Sem pendências ou intercorrências na passagem.</li>
+        </ul></div>
+        <div class="block"><h3>Plano</h3><ul>
+          <li>Manter terapia otimizada pós-IAM (inclui metoprolol).</li>
+          <li>Candidato a alta da UTI em breve.</li>
+        </ul></div>
+      </div>
+    </section>
+
+    <section class="patient" id="l2802">
+      <div class="patient-head"><div><span class="bed">Leito 2802 · Neurologia</span><h2>Ana Luísa</h2></div><span class="status" style="background:var(--soft-warn);color:var(--warn)">Aguarda laudo</span></div>
+      <div class="impression"><strong>Impressão:</strong> paraparesia em investigação (suspeita de mielopatia); estável, aguardando resultado da ressonância.</div>
+      <div class="grid">
+        <div class="block"><h3>Exames</h3><ul>
+          <li>RM de coluna realizada em duas etapas (02/09 e 03/09) para prevenir lesão por pressão.</li>
+          <li>Duração total estimada ~2h30.</li>
+        </ul></div>
+        <div class="block pending"><h3>Pendências</h3><ul>
+          <li>Aguardar laudo da RM e resultado de biópsia.</li>
+          <li>Manter cuidados com pele / prevenção de LPP.</li>
+        </ul></div>
+      </div>
+    </section>
+
+    <p class="source">Fonte: gravação Plaud “2026-09-04 07:40:51” (passagem de plantão UTI BP). Abas Summary + Passagem de plantão. Conteúdo destinado à organização da passagem; validar informações críticas no prontuário e com as equipes responsáveis.</p>
+  </main>
+</div>
+</body>
+</html>
