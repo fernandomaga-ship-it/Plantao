@@ -1,6 +1,18 @@
 window.PLANTAO_DATA = {
-  "generatedAt": "2026-07-24",
+  "generatedAt": "2026-09-04",
   "pages": [
+    {
+      "title": "Dashboard — Plantão BP — 03/09/2026",
+      "path": "plantoes/bp/2026-09-03/dashboard_plantao_bp_2026-09-03.html",
+      "href": "plantoes/bp/2026-09-03/dashboard_plantao_bp_2026-09-03.html",
+      "folder": "plantoes/bp/2026-09-03",
+      "category": "uti",
+      "categoryLabel": "UTI",
+      "summary": "Dashboard clínico do plantão BP de 03/09/2026 com 9 pacientes, prioridades, pendências e alertas de validação.",
+      "updated": "2026-09-04",
+      "shiftDate": "2026-09-03",
+      "shiftDateLabel": "03/09/2026"
+    },
     {
       "title": "📊 Análise de Mercado — 24 de Julho de 2026",
       "path": "rotinas/mercado/2026-07-24.html",
