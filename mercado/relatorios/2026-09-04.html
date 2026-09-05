@@ -1,0 +1,856 @@
+<title>FK Capital DiÃ¡rio â EdiÃ§Ã£o 12</title>
+<style>
+  :root {
+    --bg: #0E1524;
+    --surface: #161F35;
+    --surface2: #1C2A45;
+    --border: #253354;
+    --amber: #F5B84B;
+    --teal: #3ED6B5;
+    --coral: #F0716C;
+    --blue: #6EA8FE;
+    --violet: #A78BFA;
+    --text: #E8EEF8;
+    --muted: #7A8BA8;
+    --danger-bg: rgba(240,113,108,0.12);
+    --warn-bg: rgba(245,184,75,0.12);
+    --ok-bg: rgba(62,214,181,0.1);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'IBM Plex Sans', system-ui, sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+  a { color: var(--blue); text-decoration: none; }
+
+  /* âââ HEADER âââ */
+  .header {
+    background: var(--surface);
+    border-bottom: 2px solid var(--amber);
+    padding: 24px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .logo-group { display: flex; flex-direction: column; gap: 4px; }
+  .logo-line {
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--amber);
+    letter-spacing: -0.5px;
+  }
+  .edition-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .edition-badge span {
+    background: var(--border);
+    padding: 2px 8px;
+    border-radius: 3px;
+    color: var(--amber);
+  }
+  .header-right { text-align: right; }
+  .header-date {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .header-ibov {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--coral);
+    margin-top: 4px;
+  }
+  .header-ibov small {
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--muted);
+  }
+
+  /* âââ LAYOUT âââ */
+  .container { max-width: 1100px; margin: 0 auto; padding: 28px 24px; }
+  .section { margin-bottom: 36px; }
+
+  /* âââ SECTION TITLES âââ */
+  .section-title {
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--amber);
+    border-left: 3px solid var(--amber);
+    padding-left: 12px;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-title .tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    font-weight: 400;
+    color: var(--muted);
+    background: var(--border);
+    padding: 2px 6px;
+    border-radius: 3px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+  }
+
+  /* âââ TL;DR STRIP âââ */
+  .tldr {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--amber);
+    border-radius: 6px;
+    padding: 18px 24px;
+    margin-bottom: 28px;
+  }
+  .tldr-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--amber);
+    margin-bottom: 12px;
+  }
+  .tldr-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 10px;
+  }
+  .tldr-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 13.5px;
+  }
+  .tldr-item .icon { font-size: 15px; flex-shrink: 0; margin-top: 1px; }
+
+  /* âââ CHART AREA âââ */
+  .chart-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 20px 20px 14px;
+  }
+  .chart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .chart-title {
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: 15px;
+    color: var(--text);
+  }
+  .chart-sub {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+  }
+  canvas { display: block; width: 100% !important; }
+
+  /* âââ METRIC TILES âââ */
+  .tiles {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(155px, 1fr));
+    gap: 12px;
+  }
+  .tile {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .tile-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+  .tile-value {
+    font-size: 20px;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+  }
+  .tile-sub {
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 3px;
+  }
+  .up { color: var(--teal); }
+  .down { color: var(--coral); }
+  .neutral { color: var(--blue); }
+  .warn { color: var(--amber); }
+
+  /* âââ TABLES âââ */
+  .table-wrap { overflow-x: auto; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+  thead th {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--muted);
+    text-align: left;
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--border);
+    white-space: nowrap;
+  }
+  tbody td {
+    padding: 9px 12px;
+    border-bottom: 1px solid rgba(37,51,84,0.5);
+    vertical-align: middle;
+  }
+  tbody tr:last-child td { border-bottom: none; }
+  tbody tr:hover { background: rgba(255,255,255,0.02); }
+  .ticker {
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: 600;
+    color: var(--amber);
+  }
+
+  /* âââ RATING BADGE âââ */
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .badge-buy { background: rgba(62,214,181,0.15); color: var(--teal); }
+  .badge-hold { background: rgba(110,168,254,0.15); color: var(--blue); }
+  .badge-reduce { background: rgba(240,113,108,0.15); color: var(--coral); }
+  .badge-neutral { background: rgba(122,139,168,0.2); color: var(--muted); }
+  .badge-alert { background: rgba(245,184,75,0.15); color: var(--amber); }
+
+  /* âââ ALERT CARDS âââ */
+  .alert-cards { display: flex; flex-direction: column; gap: 12px; }
+  .alert-card {
+    border-radius: 8px;
+    padding: 16px 18px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .alert-card.danger { background: var(--danger-bg); border: 1px solid rgba(240,113,108,0.25); }
+  .alert-card.warn { background: var(--warn-bg); border: 1px solid rgba(245,184,75,0.25); }
+  .alert-card.ok { background: var(--ok-bg); border: 1px solid rgba(62,214,181,0.2); }
+  .alert-card.info { background: rgba(110,168,254,0.08); border: 1px solid rgba(110,168,254,0.2); }
+  .alert-icon { font-size: 20px; flex-shrink: 0; }
+  .alert-body { flex: 1; }
+  .alert-title {
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 4px;
+  }
+  .alert-text { font-size: 13px; color: #B0C0D8; line-height: 1.55; }
+  .alert-meta {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    margin-top: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+  }
+
+  /* âââ SCORECARD âââ */
+  .scorecard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 10px;
+  }
+  .scorecard-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+    position: relative;
+  }
+  .scorecard-item::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    border-radius: 8px 8px 0 0;
+  }
+  .scorecard-item.pos::before { background: var(--teal); }
+  .scorecard-item.neg::before { background: var(--coral); }
+  .scorecard-item.neu::before { background: var(--blue); }
+  .sc-ticker {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--amber);
+  }
+  .sc-return {
+    font-size: 22px;
+    font-weight: 700;
+    margin: 4px 0;
+    font-variant-numeric: tabular-nums;
+  }
+  .sc-note { font-size: 11px; color: var(--muted); }
+
+  /* âââ HEAT MAP âââ */
+  .heatmap {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 4px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px;
+  }
+  .heat-cell {
+    padding: 10px 8px;
+    border-radius: 5px;
+    text-align: center;
+  }
+  .heat-label { font-size: 10px; color: var(--muted); font-family: 'IBM Plex Mono', monospace; text-transform: uppercase; }
+  .heat-val { font-size: 13px; font-weight: 700; margin-top: 2px; }
+  .heat-1 { background: rgba(62,214,181,0.05); }
+  .heat-2 { background: rgba(62,214,181,0.12); }
+  .heat-3 { background: rgba(245,184,75,0.12); }
+  .heat-4 { background: rgba(240,113,108,0.12); }
+  .heat-5 { background: rgba(240,113,108,0.2); }
+
+  /* âââ TWO-COL âââ */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 700px) { .two-col { grid-template-columns: 1fr; } .heatmap { grid-template-columns: repeat(2,1fr); } }
+
+  /* âââ TIMELINE âââ */
+  .timeline { display: flex; flex-direction: column; gap: 0; }
+  .tl-item { display: flex; gap: 14px; align-items: flex-start; }
+  .tl-left { display: flex; flex-direction: column; align-items: center; }
+  .tl-dot {
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    background: var(--amber);
+    flex-shrink: 0;
+    margin-top: 4px;
+  }
+  .tl-dot.red { background: var(--coral); }
+  .tl-dot.teal { background: var(--teal); }
+  .tl-dot.blue { background: var(--blue); }
+  .tl-line { width: 1px; background: var(--border); flex: 1; min-height: 24px; }
+  .tl-content { padding-bottom: 20px; flex: 1; }
+  .tl-date {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    margin-bottom: 3px;
+  }
+  .tl-title { font-size: 13.5px; font-weight: 600; }
+  .tl-desc { font-size: 12.5px; color: #B0C0D8; margin-top: 2px; }
+
+  /* âââ FOOTER âââ */
+  .footer {
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    padding: 20px 32px;
+    text-align: center;
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+  .footer strong { color: var(--amber); }
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;0,700;1,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;600&display=swap">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.4/chart.umd.min.js"></script>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="logo-group">
+    <div class="logo-line">FK Capital DiÃ¡rio</div>
+    <div class="edition-badge">
+      <span>EdiÃ§Ã£o 12</span> Â· 04 de Setembro de 2026
+    </div>
+  </div>
+  <div class="header-right">
+    <div class="header-date">Quinta-feira, 04/09/2026 Â· Fechamento</div>
+    <div class="header-ibov">
+      IBOV 184.000 <small>pts</small>
+      <span style="font-size:16px;color:var(--coral);"> â¼ â0,61%</span>
+    </div>
+    <div style="font-size:11px;color:var(--muted);margin-top:4px;">RealizaÃ§Ã£o PrÃ©-Eleitoral Â· SÃ©rie de 11 altas encerrada</div>
+  </div>
+</header>
+
+<div class="container">
+
+  <!-- TL;DR -->
+  <div class="tldr">
+    <div class="tldr-label">â¡ TL;DR â Os 4 pontos de hoje</div>
+    <div class="tldr-grid">
+      <div class="tldr-item"><span class="icon">ð</span><span>Ibovespa recua para ~184k, encerrando sequÃªncia de 11 altas consecutivas. RealizaÃ§Ã£o tÃ©cnica saudÃ¡vel.</span></div>
+      <div class="tldr-item"><span class="icon">ð³ï¸</span><span>Datafolha: Lula 46% Ã FlÃ¡vio Dino 44% â empate tÃ©cnico. EleiÃ§Ã£o presidencial de outubro ganha traÃ§Ã£o.</span></div>
+      <div class="tldr-item"><span class="icon">â ï¸</span><span>INBR32 estÃ¡ sendo encerrado. Ã necessÃ¡rio migrar para INTR ou INBR34 antes do prazo.</span></div>
+      <div class="tldr-item"><span class="icon">ð«</span><span>PCIP11 â <strong>NÃO exercer</strong> os direitos de subscriÃ§Ã£o a R$ 92,45 com cota negociando ~R$ 75. Perda imediata de 18%.</span></div>
+    </div>
+  </div>
+
+  <!-- COTAÃÃES DO DIA -->
+  <div class="section">
+    <div class="section-title">ð CotaÃ§Ãµes â Fechamento 04/09/2026 <span class="tag">Carteira Principal</span></div>
+    <div class="tiles">
+      <div class="tile">
+        <div class="tile-label">AXIA3</div>
+        <div class="tile-value up">R$ 55,60</div>
+        <div class="tile-sub">PM: R$ 35,53 Â· +56% retorno</div>
+      </div>
+      <div class="tile">
+        <div class="tile-label">VALE3</div>
+        <div class="tile-value warn">R$ 78,45</div>
+        <div class="tile-sub">PM: R$ 66,79 Â· +17% retorno</div>
+      </div>
+      <div class="tile">
+        <div class="tile-label">BBDC4</div>
+        <div class="tile-value neutral">R$ 17,80</div>
+        <div class="tile-sub">PM: R$ 17,94 Â· ~0% retorno</div>
+      </div>
+      <div class="tile">
+        <div class="tile-label">MBRF3</div>
+        <div class="tile-value up">R$ 18,50</div>
+        <div class="tile-sub">PM: R$ 8,04 Â· +130% retorno</div>
+      </div>
+      <div class="tile">
+        <div class="tile-label">MSFT34</div>
+        <div class="tile-value neutral">R$ 89â109</div>
+        <div class="tile-sub">Dependente FX Â· BDR USD</div>
+      </div>
+      <div class="tile">
+        <div class="tile-label">B3SA3</div>
+        <div class="tile-value neutral">R$ 17,30</div>
+        <div class="tile-sub">PM: R$ 16,32 Â· +6% retorno</div>
+      </div>
+      <div class="tile">
+        <div class="tile-label">PCIP11 FII</div>
+        <div class="tile-value down">R$ 74,90</div>
+        <div class="tile-sub">PM: ~R$ 84 Â· â11% retorno</div>
+      </div>
+      <div class="tile">
+        <div class="tile-label">KNCR11 FII</div>
+        <div class="tile-value teal">R$ 106,40</div>
+        <div class="tile-sub">PM: R$ 105,54 Â· renda estÃ¡vel</div>
+      </div>
+      <div class="tile">
+        <div class="tile-label">INBR32</div>
+        <div class="tile-value down">R$ 29,00</div>
+        <div class="tile-sub">â ï¸ Sendo encerrado â migrar</div>
+      </div>
+      <div class="tile">
+        <div class="tile-label">BEEF3</div>
+        <div class="tile-value down">R$ 3,94</div>
+        <div class="tile-sub">PM: R$ 5,27â7,80 Â· forte prejuÃ­zo</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- IBOVESPA CHART -->
+  <div class="section">
+    <div class="section-title">ð Ibovespa â SÃ©rie HistÃ³rica Recente <span class="tag">AgoâSet 2026</span></div>
+    <div class="chart-card">
+      <div class="chart-header">
+        <div>
+          <div class="chart-title">Ibovespa Â· 17/08 â 04/09/2026</div>
+          <div class="chart-sub">SÃ©rie de 11 altas Â· Encerrada em 04/09 com recuo de â0,61%</div>
+        </div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--coral)">
+          184.000 pts â¼ â0,61%
+        </div>
+      </div>
+      <canvas id="ibovChart" height="220"></canvas>
+    </div>
+  </div>
+
+  <!-- AÃÃES PRIORITÃRIAS -->
+  <div class="section">
+    <div class="section-title">ð¨ AÃ§Ãµes PrioritÃ¡rias â 6 Movimentos CrÃ­ticos <span class="tag">Imediato</span></div>
+    <div class="alert-cards">
+
+      <div class="alert-card danger">
+        <div class="alert-icon">ð´</div>
+        <div class="alert-body">
+          <div class="alert-title">1. INBR32 â Fundo sendo encerrado: migrar imediatamente</div>
+          <div class="alert-text">O INBR32 estÃ¡ em processo de descontinuaÃ§Ã£o. Ã necessÃ¡rio decidir entre migrar para <strong>INTR</strong> (continuaÃ§Ã£o no mesmo veÃ­culo) ou <strong>INBR34</strong> (BDR listado). Ambos tÃªm implicaÃ§Ãµes tributÃ¡rias diferentes. Prazo a ser confirmado com corretora. <strong>PM atual: R$ 42,44 Â· CotaÃ§Ã£o: ~R$ 29 (â32% retorno)</strong>.</div>
+          <div class="alert-meta">â° UrgÃªncia: IMEDIATA Â· Consultar XP/ItaÃº para prazo exato</div>
+        </div>
+      </div>
+
+      <div class="alert-card danger">
+        <div class="alert-icon">ð´</div>
+        <div class="alert-body">
+          <div class="alert-title">2. MSFT34 (ItaÃº) â Reduzir posiÃ§Ã£o antes de 27/10 (earnings)</div>
+          <div class="alert-text">A posiÃ§Ã£o de MSFT34 na conta ItaÃº (91 cotas Â· PM R$ 109,69) estÃ¡ prÃ³xima do PM com alta sensibilidade cambial. Com os resultados do Q1 FY27 previstos para <strong>27/10/2026</strong>, recomenda-se avaliar reduÃ§Ã£o parcial para capturar eventual alta prÃ©-earnings e reduzir risco FX. Manter a posiÃ§Ã£o da XP (497 cotas Â· PM R$ 87,59) que estÃ¡ com bom retorno.</div>
+          <div class="alert-meta">â° Deadline: 27/10/2026 Â· MSFT Q1 FY27 Earnings</div>
+        </div>
+      </div>
+
+      <div class="alert-card danger">
+        <div class="alert-icon">ð«</div>
+        <div class="alert-body">
+          <div class="alert-title">3. PCIP11 â NÃO exercer subscriÃ§Ã£o a R$ 92,45</div>
+          <div class="alert-text">A AGE de 18/09 aprouou emissÃ£o de novas cotas a <strong>R$ 92,45</strong>, mas o fundo negocia atualmente a <strong>~R$ 74,90</strong> no mercado secundÃ¡rio. Exercer significaria pagar 23% acima do preÃ§o de mercado â perda imediata garantida. A integraÃ§Ã£o das cotas no mercado estÃ¡ prevista para <strong>21/09</strong>. <strong>RecomendaÃ§Ã£o: IGNORAR o direito de subscriÃ§Ã£o.</strong></div>
+          <div class="alert-meta">ð AGE: 18/09 Â· IntegraÃ§Ã£o: 21/09 Â· NÃ£o exercer</div>
+        </div>
+      </div>
+
+      <div class="alert-card ok">
+        <div class="alert-icon">â</div>
+        <div class="alert-body">
+          <div class="alert-title">4. AXIA3 â Manter, alvo R$ 63â68</div>
+          <div class="alert-text">Com retorno de <strong>+56%</strong> e preÃ§o atual em ~R$ 55,60, AXIA3 ainda apresenta upside de 13â22% atÃ© a zona alvo. Resultados Q3 esperados em <strong>04/11/2026</strong>. TendÃªncia de alta intacta. RSI controlado. Volume confirmando movimento. Manter toda a posiÃ§Ã£o (2.800 cotas consolidadas).</div>
+          <div class="alert-meta">ð Resultados: 04/11/2026 Â· Alvo: R$ 63â68</div>
+        </div>
+      </div>
+
+      <div class="alert-card warn">
+        <div class="alert-icon">ð</div>
+        <div class="alert-body">
+          <div class="alert-title">5. FIIs PJ â PF â MigraÃ§Ã£o estratÃ©gica de PCIP11 e KNCR11</div>
+          <div class="alert-text">Os FIIs sÃ£o isentos de IR para PF (pessoa fÃ­sica) quando a carteira tem menos de 10% do fundo e mais de 50 cotistas. Manter FIIs na conta PJ (F&K ServiÃ§os) representa desvantagem tributÃ¡ria direta. Avaliar transferÃªncia gradual das cotas de PCIP11 e KNCR11 para conta PF, especialmente apÃ³s definiÃ§Ã£o do PCIP11.</div>
+          <div class="alert-meta">âï¸ TributÃ¡rio Â· Consultar contador antes de executar</div>
+        </div>
+      </div>
+
+      <div class="alert-card info">
+        <div class="alert-icon">ð</div>
+        <div class="alert-body">
+          <div class="alert-title">6. Benchmarks da Carteira</div>
+          <div class="alert-text">A carteira consolidada PF+PJ tem exposiÃ§Ã£o significativa a setores distintos. Com as eleiÃ§Ãµes de outubro (1Â° turno: 04/10 Â· 2Â° turno: 25/10), volatilidade polÃ­tica deve aumentar especialmente em ativos regulados (bancos, energia). Manter caixa de proteÃ§Ã£o e evitar novas entradas de risco atÃ© definiÃ§Ã£o do cenÃ¡rio eleitoral.</div>
+          <div class="alert-meta">ð³ï¸ 1Â° Turno: 04/10 Â· 2Â° Turno: 25/10</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SCREENING GOLDMAN / DCF -->
+  <div class="section">
+    <div class="section-title">ð¦ Screening EstratÃ©gico â AvaliaÃ§Ã£o Integrada <span class="tag">Goldman + Morgan Stanley)+ FK</span></div>
+    <div class="two-col">
+      <div>
+        <div style="font-size:12px;color:var(--muted);margin-bottom:10px;font-family:'IBM Plex Mono',monospace;text-transform:uppercase;letter-spacing:1px;">Screening Goldman Â· Valuation Comparativo</div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Ativo</th>
+                <th>PreÃ§o</th>
+                <th>P/L</th>
+                <th>DY 12m</th>
+                <th>Rating FK</th>
+                <th>Moat</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="ticker">AXIA3</td>
+                <td>R$ 55,60</td>
+                <td>18,4Ã</td>
+                <td>2,1%</td>
+                <td><span class="badge badge-buy">Compra</span></td>
+                <td>Alto</td>
+              </tr>
+              <tr>
+                <td class="ticker">VALE3</td>
+                <td>R$ 78,45</td>
+                <td>7,2Ã</td>
+                <td>7,8%</td>
+                <td><span class="badge badge-hold">Manter</span></td>
+                <td>MÃ©dio</td>
+              </tr>
+              <tr>
+                <td class="ticker">BBDC4</td>
+                <td>R$ 17,80</td>
+                <td>8,1Ã</td>
+                <td>6,4%</td>
+                <td><span class="badge badge-hold">Manter</span></td>
+                <td>Alto</td>
+              </tr>
+              <tr>
+                <td class="ticker">MBRF3</td>
+                <td>R$ 18,50</td>
+                <td>9,6Ã</td>
+                <td>4,2%</td>
+                <td><span class="badge badge-buy">Compra</span></td>
+                <td>MÃ©dio</td>
+              </tr>
+              <tr>
+                <td class="ticker">B3SA3</td>
+                <td>R$ 17,30</td>
+                <td>14,5Ã</td>
+                <td>5,1%</td>
+                <td><span class="badge badge-hold">Manter</span></td>
+                <td>Alto</td>
+              </tr>
+              <tr>
+                <td class="ticker">MSFT34</td>
+                <td>~R$ 100</td>
+                <td>31,1Ã</td>
+                <td>0,7%</td>
+                <td><span class="badge badge-hold">Manter</span></td>
+                <td>Muito Alto</td>
+              </tr>
+              <tr>
+                <td class="ticker">BEEF3</td>
+                <td>R$ 3,94</td>
+                <td>neg.</td>
+                <td>â</td>
+                <td><span class="badge badge-reduce">Reduzir</span></td>
+                <td>Baixo</td>
+              </tr>
+              <tr>
+                <td class="ticker">INBR32</td>
+                <td>R$ 29,00</td>
+                <td>â</td>
+                <td>â</td>
+                <td><span class="badge badge-alert">Migrar</span></td>
+                <td>â</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:12px;color:var(--muted);margin-bottom:10px;font-family:'IBM Plex Mono',monospace;text-transform:uppercase;letter-spacing:1px;">DCF Morgan Stanley Â· Valor Justo</div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Ativo</th>
+                <th>CotaÃ§Ã£o</th>
+                <th>Valor Justo</th>
+                <th>Upside</th>
+                <th>Sinal</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="ticker">VALE3</td>
+                <td>R$ 78,45</td>
+                <td>R$ 88â95</td>
+                <td class="up">+15%</td>
+                <td><span class="badge badge-buy">Compra</span></td>
+              </tr>
+              <tr>
+                <td class="ticker">BBDC4</td>
+                <td>R$ 17,80</td>
+                <td>R$ 22â23</td>
+                <td class="up">+25â30%</td>
+                <td><span class="badge badge-buy">Compra</span></td>
+              </tr>
+              <tr>
+                <td class="ticker">MSFT34</td>
+                <td>~R$ 100</td>
+                <td>R$ 110â125*</td>
+                <td class="up">+10â25%</td>
+                <td><span class="badge badge-hold">FX-dep.</span></td>
+              </tr>
+              <tr>
+                <td class="ticker">AXIA3</td>
+                <td>R$ 55,60</td>
+                <td>R$ 63â68</td>
+                <td class="up">+13â22%</td>
+                <td><span class="badge badge-buy">Compra</span></td>
+              </tr>
+              <tr>
+                <td class="ticker">B3SA3</td>
+                <td>R$ 17,30</td>
+                <td>R$ 18â20</td>
+                <td class="up">+4â15%</td>
+                <td><span class="badge badge-hold">Manter</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div style="font-size:11px;color:var(--muted);margin-top:8px;">* MSFT34 valor justo ajustado para BRL/USD atual. SensÃ­vel Ã  cÃ¢mbio.</div>
+
+        <div style="margin-top:18px;font-size:12px;color:var(--muted);margin-bottom:10px;font-family:'IBM Plex Mono',monospace;text-transform:uppercase;letter-spacing:1px;">Dividendos â Harvard Style</div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Ativo</th>
+                <th>DY 12m</th>
+                <th>Payout</th>
+                <th>IR</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>1</td><td class="ticker">KNCR11</td><td class="up">12,1%</td><td>95%</td><td>â Isento PF</td></tr>
+              <tr><td>2</td><td class="ticker">PCIP11</td><td class="up">9,8%</td><td>90%</td><td>â Isento PF</td></tr>
+              <tr><td>3</td><td class="ticker">VALE3</td><td class="warn">7,8%</td><td>40%</td><td>15% IRRF</td></tr>
+              <tr><td>4</td><td class="ticker">BBDC4</td><td class="warn">6,4%</td><td>35%</td><td>15% IRRF</td></tr>
+              <tr><td>5</td><td class="ticker">B3SA3</td><td class="neutral">5,1%</td><td>50%</td><td>15% IRRF</td></tr>
+              <tr><td>6</td><td class="ticker">MBRF3</td><td class="neutral">4,2%</td><td>25%</td><td>15% IRRF</td></tr>
+              <tr><td>7</td><td class="ticker">AXIA3</td><td>2,1%</td><td>15%</td><td>15% IRRF</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCORECARD RETORNO -->
+  <div class="section">
+    <div class="section-title">ð Scorecard de Retorno â Carteira Consolidada <span class="tag">PF + PJ</span></div>
+    <div class="scorecard-grid">
+      <div class="scorecard-item pos">
+        <div class="sc-ticker">MBRF3</div>
+        <div class="sc-return up">+130%</div>
+        <div class="sc-note">PM R$8,04 Â· CotaÃ§Ã£o ~R$18,50</div>
+      </div>
+      <div class="scorecard-item pos">
+        <div class="sc-ticker">AXIA3</div>
+        <div class="sc-return up">+56%</div>
+        <div class="sc-note">PM R$35,53 Â· Alvo R$63â68</div>
+      </div>
+      <div class="scorecard-item pos">
+        <div class="sc-ticker">VALE3</div>
+        <div class="sc-return up">+17%</div>
+        <div class="sc-note">PM R$66,79 Â· Valor justo R$88â95</div>
+      </div>
+      <div class="scorecard-item pos">
+        <div class="sc-ticker">B3SA3</div>
+        <div class="sc-return up">+6%</div>
+        <div class="sc-note">PM R$16,32 Â· Alvo R$18â20</div>
+      </div>
+      <div class="scorecard-item neu">
+        <div class="sc-ticker">KNCR11</div>
+        <div class="sc-return neutral">~0% + renda</div>
+        <div class="sc-note">DY 12m: 12,1% Â· PM R$105,54</div>
+      </div>
+      <div class="scorecard-item neu">
+        <div class="sc-ticker">BBDC4</div>
+        <div class="sc-return neutral">~0%</div>
+        <div class="sc-note">PM R$17,94 Â· Upside +25â30%</div>
+      </div>
+      <div class="scorecard-item neg">
+        <div class="sc-ticker">PCIP11</div>
+        <div class="sc-return down">â11%</div>
+        <div class="sc-note">NÃO exercer subscriÃ§Ã£o R$92,45</div>
+      </div>
+      <div class="scorecard-item neg">
+        <div class="sc-ticker">INBR32</div>
+        <div class="sc-return down">â32%</div>
+        <div class="sc-note">â ï¸ Migrar: INTR ou INBR34</div>
+      </div>
+      <div class="scorecard-item neg">
+        <div class="sc-ticker">BEEF3</div>
+        <div class="sc-return down">Forte prejuÃ­zo</div>
+        <div class="sc-note">PM R$5â7,80 Â· CotaÃ§Ã£o R$3,94</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RISK HEATMAP -->
+  <div class="section">
+    <div class="section-title">ð¡ï¸ Mapa de Risco â Estilo Bridgewater <span class="tag">04/09/2026</span></div>
+    <div class="heatmap">
+      <div class="heat-cell heat-4">
+        <div class="heat-label">Risco PolÃ­tico</div>
+        <div class="heat-val down">ALTO</div>
+      </div>
+      <div class="heat-cell heat-3">
+        <div class="heat-label">Risco Juros</div>
+        <div class="heat-val warn">MÃDIO</div>
+      </div>
+      <div class="heat-cell heat-2">
+        <div class="heat-label">Risco Cambial</div>
+        <div class="heat-val teal">BAIXO</div>
+      </div>
+      <div class="heat-cell heat-3">
+        <div class="heat-label">Risco Commodities</div>
+        <div class="heat-val warn">MÃDIO</div>
+      </div>
+      <div class="heat-cell heat-4">
+        <div class="heat-label">INBR32</div>
+        <div class="heat-val down">CRÃTICO</div>
+      </div>
+      <div class="heat-cell heat-4">
+        <div class="heat-label">PCIP11 Subscr.</div>
+        <div class="heat-val down">CRÃTICO</div>
+      </div>
+      <div class="heat-cell heat-3">
+        <div class="heat-label">BEEF3</div>
+        <div class="heat-val warn">ALTO</div>
+      </div>
+      <div class="heat-cell heat-2">
+        <div class="heat-label">AXIA3</div>
+        <div class="heat-val teal">BAIXO</div>
+      </div>
+      <div class="heat-cell heat-3">
+        <div class="heat-label">FX BDRs</div>
+        <div class="heat-val warn">MÃDIO</div>
+      </div>
+      <div class="heat-cell heat-2">
+        <div class="heat-label">VALE3</div>
+        <div class="heat-val teal">BAIXO</div>
+      </div>
+      <div class="heat-cell heat-1">
+        <div class="heat-label">KNCR11</div>
+        <div class="heat-val" style="color:var(--teal)">MÃNIMO</div>
+      </div>
+      <div class="heat-cell heat-3">
+        <div class="heat-label">EleiÃ§Ãµes out/26</div>
+        <div class="heat-val warn">MÃDIO</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MSFT Q1 FY27 PREVIEP+KO]Û\ÜÏHÙXÝ[Û]Û\ÜÏHÙXÝ[Û]]H¼'ä®ÈTÑÍ8 %]Y]ÈLHLÈX\[ÜÈÜ[Û\ÜÏHYÈ[ÜØ[Ý[H0­ÈËÌLÌÜÜ[Ù]]Û\ÜÏHÛËXÛÛ]Û\ÜÏHÚ\XØ\Ý[OHY[ÎNÈ]Ý[OHÛY[Z[NÒPH^[ÛÉË[ÛÜÜXÙNÙÛ\Ú^NL\ØÛÛÜ\K[]]Y
+NÝ^][ÙÜN\\Ø\ÙNÛ]\\ÜXÚ[Î\ÛX\Ú[XÝÛNLÈ\Ý[X]]\ÈH\Ý[YÈ0­ÈLHLÏÙ]XOXYpê]XØOÝ\ÝÛÛÙ[ÛÏÝ\ÝÏÝ\[ÖOÝÝÝXYÙOXÙZ]HÝ[ÝTÑ
+
+POÝTÑ
+x %ÍÌPOÝÛ\ÜÏH\ÌL¸ %ÌMIOÝÝÛÝY
+^\JOÝÌÌH[ÖOÝÌÌø %ÌÍIOÝÛ\ÜÏH\ÜOÝÝTÈ
+[pëYÊOÝTÑËÝTÑÎÌL38 %ÌËÝÛ\ÜÏH\ÌL	OÝÝX\Ù[HÜÝ
+
+IOÝ
+8 %Í
+OÝÛ\ÜÏH]][\Ý0è][ÝÝÝÙOÝXO]Ý[OHÛ\Ú^NL\ØÛÛÜ\K[]]Y
+NÛX\Ú[]ÜLÈÛNÛÛX\ÈÛÛÙ[Ý\È
+È\Ý[X]]\ÈÈØ\][0­ÈÙ]ÌÙ]Ù]]]Û\ÜÏHÚ\XØ\Ý[OHY[ÎNÚZYÚL	NÈ]Ý[OHÛY[Z[NÒPH^[ÛÉË[ÛÜÜXÙNÙÛ\Ú^NL\ØÛÛÜ\K[]]Y
+NÝ^][ÙÜN\\Ø\ÙNÛ]\\ÜXÚ[Î\ÛX\Ú[XÝÛNLÈ[°è[\ÙHHÜÚpéðèÛÈ0­ÈTÑÍÙ]]Ý[OH\Ü^N^Ù^Y\XÝ[ÛÛÛ[[ÙØ\LÈ]Ý[OHXÚÙÜÝ[\K\Ý\XÙLNØÜ\\Y]\ÎÜY[ÎLÈ]Ý[OHÛ\Ú^NL\ØÛÛÜ\K[]]Y
+NÛX\Ú[XÝÛNÈÛÛH]pî
+LHÛÝ\ÊOÙ]]Ý[OHÛ\Ú^NMÙÛ]ÙZYÚÈNLK
+H0­È°í[[ÈÈOÙ]]Ý[OHÛ\Ú^NLØÛÛÜ\KXÛÜ[
+NÛX\Ú[]ÜÈ¸¦¨<+®#È][X\YpéðèÛÈ[\ÈHËÌLÙ]Ù]]Ý[OHXÚÙÜÝ[\K\Ý\XÙLNØÜ\\Y]\ÎÜY[ÎLÈ]Ý[OHÛ\Ú^NL\ØÛÛÜ\K[]]Y
+NÛX\Ú[XÝÛNÈÛÛH
+
+MÈÛÝ\ÊOÙ]]Ý[OHÛ\Ú^NMÙÛ]ÙZYÚÈN
+Ë
+NH0­ÈÛH]ÜÏÙ]]Ý[OHÛ\Ú^NLØÛÛÜ\K]X[
+NÛX\Ú[]ÜÈ¸§!HX[\8 %ÜÚpéðèÛÈØ]Y0è][Ù]Ù]]Ý[OHXÚÙÜÝ[\K\Ý\XÙLNØÜ\\Y]\ÎÜY[ÎLÈ]Ý[OHÛ\Ú^NL\ØÛÛÜ\K[]]Y
+NÛX\Ú[XÝÛNÈ\ØÛÈ[Ú\[Ù]]Ý[OHÛ\Ú^NLÜÈÛ][YYHØ[XX[ÕTÑÙH[\XÝ\ØYH
+HH\XpéðèÛÈÈTÑ[\XÝHMHHÛÝKÙ]Ù]Ù]Ù]Ù]Ù]Ù]KKHTÒQHÒTKO]Û\ÜÏHÙXÝ[Û]Û\ÜÏHÙXÝ[Û]]H¼'äâ\ÚYHÝ[ÚX[0åÈ]ÜÈ]X[Ü[Û\ÜÏHYÈ[°è[\ÙH0êXÛXØOÜÜ[Ù]]Û\ÜÏHÚ\XØ\Ø[\ÈYH\ÚYPÚ\ZYÚHNØØ[\ÏÙ]Ù]KKHÐSSTKO]Û\ÜÏHÙXÝ[Û]Û\ÜÏHÙXÝ[Û]]H¼'äáHØ[[0è\[ÈH][ÜÈÜ°ë]XÛÜÈÜ[Û\ÜÏHYÈÙ]8 $ÓÝÜÜ[Ù]]Û\ÜÏH[Y[[H]Û\ÜÏHZ][H]Û\ÜÏH[Y]Û\ÜÏHYÝØ\Ù]]Û\ÜÏH[[HÙ]Ù]]Û\ÜÏHXÛÛ[]Û\ÜÏHY]HNÌKÌÙ]]Û\ÜÏH]]HÒTLH8 %QÑH
+\ÜÙ[XZXHÙ\[^[Ü[°è\XJOÙ]]Û\ÜÏHY\ØÈ\ÝpéðèÛÈ\ÈÝ\ÈÛÝ\ÈHL
+
+K°èÛÈ^\Ù\ÝXØÜpéðèÛËÙ]Ù]Ù]]Û\ÜÏHZ][H]Û\ÜÏH[Y]Û\ÜÏHYÝØ\Ù]]Û\ÜÏH[[HÙ]Ù]]Û\ÜÏHXÛÛ[]Û\ÜÏHY]HKÌKÌÙ]]Û\ÜÏH]]HÒTLH8 %[YÜpéðèÛÈ\ÈÛÝ\ÈHÝXØÜpéðèÛÈ[ÈY\ØYÏÙ]]Û\ÜÏHY\ØÈÛÝ\ÈÝ\È\ÜÛ°ë]Z\È\HYÛØÚXpéðèÛËpéÛÈÙH\ÜÚ[Û\HZ^ËÙ]Ù]Ù]]Û\ÜÏHZ][H]Û\ÜÏH[Y]Û\ÜÏHYÝ
