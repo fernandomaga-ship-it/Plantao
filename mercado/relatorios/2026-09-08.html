@@ -6,7 +6,7 @@
 <title>FK Capital Diário — Edição 13</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;0,700;1,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;600&display=swap">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.4/chart.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <style>
   :root {
     --bg: #0E1524;
@@ -175,7 +175,8 @@
     font-size: 11px;
     color: var(--muted);
   }
-  canvas { display: block; width: 100% !important; }
+  .chart-wrap { position: relative; height: 240px; width: 100%; }
+  canvas { display: block; }
 
   .tiles {
     display: grid;
@@ -637,7 +638,9 @@
           188.400 pts ▲ +1,50%
         </div>
       </div>
-      <canvas id="ibovChart" height="220"></canvas>
+      <div class="chart-wrap">
+        <canvas id="ibovChart" aria-label="Gráfico do Ibovespa de 17 de agosto a 8 de setembro de 2026"></canvas>
+      </div>
     </div>
   </div>
 
@@ -838,37 +841,41 @@ const tick = '#7A8BA8';
 const grid = 'rgba(37,51,84,.55)';
 const font = { family: 'IBM Plex Mono', size: 10 };
 
-new Chart(document.getElementById('ibovChart'), {
-  type: 'line',
-  data: {
-    labels: ['17/08','18/08','19/08','20/08','21/08','25/08','26/08','27/08','28/08','01/09','04/09','08/09'],
-    datasets: [{
-      label: 'Ibovespa',
-      data: [166784,166335,167830,167927,171032,174577,174586,175135,177419,179722,184000,188400],
-      borderColor: '#F5B84B',
-      backgroundColor: 'rgba(245,184,75,.10)',
-      fill: true,
-      tension: 0.35,
-      pointRadius: 3,
-      pointBackgroundColor: '#F5B84B'
-    }]
-  },
-  options: {
-    responsive: true,
-    plugins: {
-      legend: { display: false },
-      tooltip: { callbacks: { label: v => 'IBOV: ' + v.raw.toLocaleString('pt-BR') } }
+const canvas = document.getElementById('ibovChart');
+if (typeof Chart === 'function' && canvas) {
+  new Chart(canvas, {
+    type: 'line',
+    data: {
+      labels: ['17/08','18/08','19/08','20/08','21/08','25/08','26/08','27/08','28/08','01/09','04/09','08/09'],
+      datasets: [{
+        label: 'Ibovespa',
+        data: [166784,166335,167830,167927,171032,174577,174586,175135,177419,179722,184000,188400],
+        borderColor: '#F5B84B',
+        backgroundColor: 'rgba(245,184,75,.10)',
+        fill: true,
+        tension: 0.35,
+        pointRadius: 3,
+        pointBackgroundColor: '#F5B84B'
+      }]
     },
-    scales: {
-      x: { ticks: { color: tick, font }, grid: { color: grid } },
-      y: {
-        ticks: { color: tick, font, callback: v => (v/1000).toFixed(0) + 'k' },
-        grid: { color: grid },
-        min: 164000
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: { callbacks: { label: v => 'IBOV: ' + v.raw.toLocaleString('pt-BR') } }
+      },
+      scales: {
+        x: { ticks: { color: tick, font }, grid: { color: grid } },
+        y: {
+          ticks: { color: tick, font, callback: v => (v/1000).toFixed(0) + 'k' },
+          grid: { color: grid },
+          min: 164000
+        }
       }
     }
-  }
-});
+  });
+}
 </script>
 </body>
 </html>
