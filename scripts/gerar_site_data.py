@@ -9,6 +9,7 @@ Uso:
 """
 
 import argparse
+import html
 import json
 import os
 import re
@@ -53,10 +54,11 @@ CATEGORY_LABELS = {
 }
 
 # ── Extração de texto ─────────────────────────────────────────────────────────
-def clean_text(html: str) -> str:
-    text = re.sub(r"<script[\s\S]*?</script>", " ", html, flags=re.IGNORECASE)
+def clean_text(html_str: str) -> str:
+    text = re.sub(r"<script[\s\S]*?</script>", " ", html_str, flags=re.IGNORECASE)
     text = re.sub(r"<style[\s\S]*?</style>", " ", text, flags=re.IGNORECASE)
     text = re.sub(r"<[^>]+>", " ", text)
+    text = html.unescape(text)
     text = re.sub(r"\s+", " ", text)
     return text.strip()
 

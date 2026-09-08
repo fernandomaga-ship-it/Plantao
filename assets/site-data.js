@@ -2,26 +2,26 @@ window.PLANTAO_DATA = {
   "generatedAt": "2026-09-08",
   "pages": [
     {
-      "title": "UTI BP &mdash; Ronda/Plantão Matutina",
+      "title": "UTI BP — Ronda/Plantão Matutina",
       "path": "uti/2026-09-08.html",
       "href": "uti/2026-09-08.html",
       "folder": "uti",
       "category": "uti",
       "categoryLabel": "UTI",
-      "summary": "UTI BP — Ronda 08/09 UTI BP &mdash; Ronda/Plantão Matutina 08/09/2026 &nbsp;&middot;&nbsp; 07:10 (aprox.) &nbsp;&middot;&nbsp; UTI Multidisciplinar Crítico / instável A",
+      "summary": "UTI BP — Ronda 08/09 UTI BP — Ronda/Plantão Matutina 08/09/2026  ·  07:10 (aprox.)  ·  UTI Multidisciplinar Crítico / instável Atenção / pendência relevante Estável / a",
       "updated": "2026-09-08",
       "shiftDate": "2026-09-08",
       "shiftDateLabel": "08/09/2026"
     },
     {
-      "title": "UTI Mirante â passagem de plantÃ£o",
+      "title": "UTI Mirante — passagem de plantão",
       "path": "uti/2026-09-06.html",
       "href": "uti/2026-09-06.html",
       "folder": "uti",
       "category": "uti",
       "categoryLabel": "UTI",
-      "summary": "UTI Mirante â Passagem de PlantÃ£o UTI Mirante â passagem de plantÃ£o 06/09/2026 &nbsp;Â·&nbsp; 13:17 (aprox.) &nbsp;Â·&nbsp; Enf. Cida CrÃ­tico / instÃ¡vel AtenÃ§Ã",
-      "updated": "2026-09-07",
+      "summary": "UTI Mirante — Passagem de Plantão UTI Mirante — passagem de plantão 06/09/2026  ·  13:17 (aprox.)  ·  Enf. Cida Crítico / instável Atenção / em DVA ou pendência relevan",
+      "updated": "2026-09-08",
       "shiftDate": "2026-09-06",
       "shiftDateLabel": "06/09/2026"
     },
@@ -236,7 +236,7 @@ window.PLANTAO_DATA = {
       "folder": "plantoes/8b/2026-06-04",
       "category": "uti",
       "categoryLabel": "UTI",
-      "summary": "Plantão BP - UTI 8B - 04/06/2026 📋 Plantão BP — UTI 8B Data: 04/06/2026 &nbsp; | &nbsp; Hora: 14:32 &nbsp; | &nbsp; Unidade: UTI 8B — Leitos 2812 a 2822 ⚠️ Visão rápid",
+      "summary": "Plantão BP - UTI 8B - 04/06/2026 📋 Plantão BP — UTI 8B Data: 04/06/2026 | Hora: 14:32 | Unidade: UTI 8B — Leitos 2812 a 2822 ⚠️ Visão rápid",
       "updated": "2026-09-04",
       "shiftDate": "2026-06-04",
       "shiftDateLabel": "04/06/2026"
@@ -284,7 +284,7 @@ window.PLANTAO_DATA = {
       "folder": "plantoes/8b/2026-05-29",
       "category": "uti",
       "categoryLabel": "UTI",
-      "summary": "Plantão BP - UTI 8B - 04/06/2026 📋 Plantão BP — UTI 8B Data: 04/06/2026 &nbsp; | &nbsp; Hora: 14:32 &nbsp; | &nbsp; Unidade: UTI 8B — Leitos 2812 a 2822 ⚠️ Visão rápid",
+      "summary": "Plantão BP - UTI 8B - 04/06/2026 📋 Plantão BP — UTI 8B Data: 04/06/2026 | Hora: 14:32 | Unidade: UTI 8B — Leitos 2812 a 2822 ⚠️ Visão rápid",
       "updated": "2026-09-04",
       "shiftDate": "2026-05-29",
       "shiftDateLabel": "29/05/2026"
@@ -320,7 +320,7 @@ window.PLANTAO_DATA = {
       "folder": "plantoes/8b/2026-05-29",
       "category": "uti",
       "categoryLabel": "UTI",
-      "summary": "UTI BP — Plantão 29/05/2026 UTI BP — Plantão 29/05/2026 Imprimir / PDF 📋 Plantão BP — UTI Cardio / Isolamentos Data: 29/05/2026 &nbsp;|&nbsp; Hora: 11h &nbsp;|&nbsp; T",
+      "summary": "UTI BP — Plantão 29/05/2026 UTI BP — Plantão 29/05/2026 Imprimir / PDF 📋 Plantão BP — UTI Cardio / Isolamentos Data: 29/05/2026 | Hora: 11h | T",
       "updated": "2026-09-04",
       "shiftDate": "2026-05-29",
       "shiftDateLabel": "29/05/2026"
@@ -332,7 +332,7 @@ window.PLANTAO_DATA = {
       "folder": "plantoes/8b/2026-05-29",
       "category": "uti",
       "categoryLabel": "UTI",
-      "summary": "UTI BP — Plantão 29/05/2026 UTI BP — Plantão 29/05/2026 Imprimir / PDF 📋 Plantão BP — UTI Cardio / Isolamentos Data: 29/05/2026 &nbsp;|&nbsp; Hora: 11h &nbsp;|&nbsp; T",
+      "summary": "UTI BP — Plantão 29/05/2026 UTI BP — Plantão 29/05/2026 Imprimir / PDF 📋 Plantão BP — UTI Cardio / Isolamentos Data: 29/05/2026 | Hora: 11h | T",
       "updated": "2026-09-04",
       "shiftDate": "2026-05-29",
       "shiftDateLabel": "29/05/2026"
@@ -344,7 +344,7 @@ window.PLANTAO_DATA = {
       "folder": "plantoes/8b/2026-05-29",
       "category": "uti",
       "categoryLabel": "UTI",
-      "summary": "UTI BP — Plantão 29/05/2026 UTI BP — Plantão 29/05/2026 Imprimir / PDF 📋 Plantão BP — UTI Cardio / Isolamentos Data: 29/05/2026 &nbsp;|&nbsp; Hora: 11h &nbsp;|&nbsp; T",
+      "summary": "UTI BP — Plantão 29/05/2026 UTI BP — Plantão 29/05/2026 Imprimir / PDF 📋 Plantão BP — UTI Cardio / Isolamentos Data: 29/05/2026 | Hora: 11h | T",
       "updated": "2026-09-04",
       "shiftDate": "2026-05-29",
       "shiftDateLabel": "29/05/2026"
@@ -380,7 +380,7 @@ window.PLANTAO_DATA = {
       "folder": "plantoes/8b/2026-05-28",
       "category": "uti",
       "categoryLabel": "UTI",
-      "summary": "Leito 2812 — Maria Cristina Moreira Dias Chiavinato 📋 Plantão BP — UTI 8B Data: 28/05/2026 &nbsp; | &nbsp; Arquivo individual do paciente Leito: 2812 Paciente: Maria C",
+      "summary": "Leito 2812 — Maria Cristina Moreira Dias Chiavinato 📋 Plantão BP — UTI 8B Data: 28/05/2026 | Arquivo individual do paciente Leito: 2812 Paciente: Maria C",
       "updated": "2026-09-04",
       "shiftDate": "2026-05-28",
       "shiftDateLabel": "28/05/2026"
@@ -392,7 +392,7 @@ window.PLANTAO_DATA = {
       "folder": "plantoes/8b/2026-05-28",
       "category": "uti",
       "categoryLabel": "UTI",
-      "summary": "Leito 2813 — Fernando de Camargo Gonzales 📋 Plantão BP — UTI 8B Data: 28/05/2026 &nbsp; | &nbsp; Arquivo individual do paciente Leito: 2813 Paciente: Fernando de Camar",
+      "summary": "Leito 2813 — Fernando de Camargo Gonzales 📋 Plantão BP — UTI 8B Data: 28/05/2026 | Arquivo individual do paciente Leito: 2813 Paciente: Fernando de Camar",
       "updated": "2026-09-04",
       "shiftDate": "2026-05-28",
       "shiftDateLabel": "28/05/2026"
@@ -404,7 +404,7 @@ window.PLANTAO_DATA = {
       "folder": "plantoes/8b/2026-05-28",
       "category": "uti",
       "categoryLabel": "UTI",
-      "summary": "Leito 2814 — Mayara Thayle Oliveira Ramos Brigatte 📋 Plantão BP — UTI 8B Data: 28/05/2026 &nbsp; | &nbsp; Arquivo individual do paciente Leito: 2814 Paciente: Mayara T",
+      "summary": "Leito 2814 — Mayara Thayle Oliveira Ramos Brigatte 📋 Plantão BP — UTI 8B Data: 28/05/2026 | Arquivo individual do paciente Leito: 2814 Paciente: Mayara T",
       "updated": "2026-09-04",
       "shiftDate": "2026-05-28",
       "shiftDateLabel": "28/05/2026"
@@ -416,7 +416,7 @@ window.PLANTAO_DATA = {
       "folder": "plantoes/8b/2026-05-28",
       "category": "uti",
       "categoryLabel": "UTI",
-      "summary": "Leito 2815 — Gilson Pereira Guimarães 📋 Plantão BP — UTI 8B Data: 28/05/2026 &nbsp; | &nbsp; Arquivo individual do paciente Leito: 2815 Paciente: Gilson Pereira Guimar",
+      "summary": "Leito 2815 — Gilson Pereira Guimarães 📋 Plantão BP — UTI 8B Data: 28/05/2026 | Arquivo individual do paciente Leito: 2815 Paciente: Gilson Pereira Guimar",
       "updated": "2026-09-04",
       "shiftDate": "2026-05-28",
       "shiftDateLabel": "28/05/2026"
@@ -428,7 +428,7 @@ window.PLANTAO_DATA = {
       "folder": "plantoes/8b/2026-05-28",
       "category": "uti",
       "categoryLabel": "UTI",
-      "summary": "Leito 2816 — Christina da Silva Santos 📋 Plantão BP — UTI 8B Data: 28/05/2026 &nbsp; | &nbsp; Arquivo individual do paciente Leito: 2816 Paciente: Christina da Silva S",
+      "summary": "Leito 2816 — Christina da Silva Santos 📋 Plantão BP — UTI 8B Data: 28/05/2026 | Arquivo individual do paciente Leito: 2816 Paciente: Christina da Silva S",
       "updated": "2026-09-04",
       "shiftDate": "2026-05-28",
       "shiftDateLabel": "28/05/2026"
@@ -440,7 +440,7 @@ window.PLANTAO_DATA = {
       "folder": "plantoes/8b/2026-05-28",
       "category": "uti",
       "categoryLabel": "UTI",
-      "summary": "Leito 2817 — Neder de Faria Debs 📋 Plantão BP — UTI 8B Data: 28/05/2026 &nbsp; | &nbsp; Arquivo individual do paciente Leito: 2817 Paciente: Neder de Faria Debs Idade:",
+      "summary": "Leito 2817 — Neder de Faria Debs 📋 Plantão BP — UTI 8B Data: 28/05/2026 | Arquivo individual do paciente Leito: 2817 Paciente: Neder de Faria Debs Idade:",
       "updated": "2026-09-04",
       "shiftDate": "2026-05-28",
       "shiftDateLabel": "28/05/2026"
@@ -452,7 +452,7 @@ window.PLANTAO_DATA = {
       "folder": "plantoes/8b/2026-05-28",
       "category": "uti",
       "categoryLabel": "UTI",
-      "summary": "Leito 2818 — Breno Antonio Ambrosio 📋 Plantão BP — UTI 8B Data: 28/05/2026 &nbsp; | &nbsp; Arquivo individual do paciente Leito: 2818 Paciente: Breno Antonio Ambrosio ",
+      "summary": "Leito 2818 — Breno Antonio Ambrosio 📋 Plantão BP — UTI 8B Data: 28/05/2026 | Arquivo individual do paciente Leito: 2818 Paciente: Breno Antonio Ambrosio",
       "updated": "2026-09-04",
       "shiftDate": "2026-05-28",
       "shiftDateLabel": "28/05/2026"
@@ -464,7 +464,7 @@ window.PLANTAO_DATA = {
       "folder": "plantoes/8b/2026-05-28",
       "category": "uti",
       "categoryLabel": "UTI",
-      "summary": "Leito 2820 — Ana Maria de Carvalho 📋 Plantão BP — UTI 8B Data: 28/05/2026 &nbsp; | &nbsp; Arquivo individual do paciente Leito: 2820 Paciente: Ana Maria de Carvalho Id",
+      "summary": "Leito 2820 — Ana Maria de Carvalho 📋 Plantão BP — UTI 8B Data: 28/05/2026 | Arquivo individual do paciente Leito: 2820 Paciente: Ana Maria de Carvalho Id",
       "updated": "2026-09-04",
       "shiftDate": "2026-05-28",
       "shiftDateLabel": "28/05/2026"
@@ -476,7 +476,7 @@ window.PLANTAO_DATA = {
       "folder": "plantoes/8b/2026-05-28",
       "category": "uti",
       "categoryLabel": "UTI",
-      "summary": "Leito 2821 — Erickson dos Santos 📋 Plantão BP — UTI 8B Data: 28/05/2026 &nbsp; | &nbsp; Arquivo individual do paciente Leito: 2821 Paciente: Erickson dos Santos Idade:",
+      "summary": "Leito 2821 — Erickson dos Santos 📋 Plantão BP — UTI 8B Data: 28/05/2026 | Arquivo individual do paciente Leito: 2821 Paciente: Erickson dos Santos Idade:",
       "updated": "2026-09-04",
       "shiftDate": "2026-05-28",
       "shiftDateLabel": "28/05/2026"
@@ -488,7 +488,7 @@ window.PLANTAO_DATA = {
       "folder": "plantoes/8b/2026-05-28",
       "category": "uti",
       "categoryLabel": "UTI",
-      "summary": "Leito 2822 — Adalberto Aparecido Derobio 📋 Plantão BP — UTI 8B Data: 28/05/2026 &nbsp; | &nbsp; Arquivo individual do paciente Leito: 2822 Paciente: Adalberto Aparecid",
+      "summary": "Leito 2822 — Adalberto Aparecido Derobio 📋 Plantão BP — UTI 8B Data: 28/05/2026 | Arquivo individual do paciente Leito: 2822 Paciente: Adalberto Aparecid",
       "updated": "2026-09-04",
       "shiftDate": "2026-05-28",
       "shiftDateLabel": "28/05/2026"
