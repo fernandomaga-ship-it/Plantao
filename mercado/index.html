@@ -398,10 +398,17 @@ async function loadReport(date, manifest) {
     if (entry.ibovChg) {
       chgEl.textContent = (entry.ibovUp ? '▲ ' : '▼ ') + entry.ibovChg.replace('-','').replace('+','');
       chgEl.className = 'stat-chg ' + (entry.ibovUp ? 'up' : 'down');
+    } else {
+      chgEl.textContent = '';
+      chgEl.className = 'stat-chg';
     }
-    if (entry.ibov)  document.getElementById('s-ibov').textContent  = entry.ibov;
-    if (entry.dolar) { document.getElementById('rDolar').textContent = entry.dolar; document.getElementById('s-dolar').textContent = entry.dolar; }
-    if (entry.oil)   { document.getElementById('rOil').textContent   = entry.oil;   document.getElementById('s-oil').textContent   = entry.oil; }
+    document.getElementById('s-ibov').textContent = entry.ibov || '—';
+    const dolar = entry.dolar || '—';
+    document.getElementById('rDolar').textContent = dolar;
+    document.getElementById('s-dolar').textContent = dolar;
+    const oil = entry.oil || '—';
+    document.getElementById('rOil').textContent = oil;
+    document.getElementById('s-oil').textContent = oil;
   }
 
   document.querySelectorAll('.archive-item').forEach(el =>
