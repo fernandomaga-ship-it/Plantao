@@ -47,6 +47,8 @@ jobs:
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           DATE_OVERRIDE: ${{ github.event.inputs.date_override }}
+          # Sonnet por padrão (mais barato). Override no secret CLAUDE_MODEL se quiser.
+          CLAUDE_MODEL: ${{ vars.CLAUDE_MODEL || 'claude-sonnet-4-5' }}
         run: python scripts/generate_daily_market.py
 
       - name: Commit e push do relatório
