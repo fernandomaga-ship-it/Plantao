@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UTI BP — Ronda 08/09</title>
+<style>
+  :root{
+    --ink:#1a2530;
+    --ink-soft:#4b5b68;
+    --line:#dbe2e6;
+    --paper:#f6f8f8;
+    --card:#ffffff;
+    --teal:#0f6e56;
+    --teal-bg:#e1f5ee;
+    --amber:#854f0b;
+    --amber-bg:#faeeda;
+    --red:#791f1f;
+    --red-bg:#fcebeb;
+    --blue:#0c447c;
+    --blue-bg:#e6f1fb;
+    --gray-bg:#f1efe8;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;
+    background:var(--paper);
+    color:var(--ink);
+    -webkit-font-smoothing:antialiased;
+  }
+  header{
+    background:var(--ink);
+    color:#fff;
+    padding:22px 28px 20px;
+    position:sticky;
+    top:0;
+    z-index:10;
+  }
+  header .row{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    flex-wrap:wrap;
+    gap:8px 24px;
+    max-width:1400px;
+    margin:0 auto;
+  }
+  header h1{
+    font-size:19px;
+    font-weight:600;
+    margin:0;
+    letter-spacing:0.2px;
+  }
+  header .meta{
+    font-size:13px;
+    color:#c7d0d6;
+  }
+  header .meta strong{color:#fff;font-weight:600;}
+  .legend{
+    max-width:1400px;
+    margin:14px auto 0;
+    display:flex;
+    gap:16px;
+    flex-wrap:wrap;
+    font-size:12px;
+    color:#c7d0d6;
+  }
+  .legend span{display:flex;align-items:center;gap:6px;}
+  .dot{width:9px;height:9px;border-radius:50%;display:inline-block;}
+  main{
+    max-width:1400px;
+    margin:0 auto;
+    padding:22px 20px 60px;
+  }
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(320px, 1fr));
+    gap:16px;
+  }
+  .card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:10px;
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+  }
+  .card-head{
+    padding:14px 16px 12px;
+    border-bottom:1px solid var(--line);
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:10px;
+  }
+  .bed-tag{
+    font-size:12px;
+    font-weight:600;
+    color:var(--blue);
+    background:var(--blue-bg);
+    padding:2px 9px;
+    border-radius:5px;
+    white-space:nowrap;
+  }
+  .card-head h2{
+    font-size:15px;
+    margin:6px 0 2px;
+    font-weight:600;
+  }
+  .card-head .sub{
+    font-size:12px;
+    color:var(--ink-soft);
+  }
+  .status-pill{
+    font-size:11px;
+    font-weight:600;
+    padding:3px 8px;
+    border-radius:5px;
+    white-space:nowrap;
+  }
+  .st-critico{background:var(--red-bg);color:var(--red);}
+  .st-atencao{background:var(--amber-bg);color:var(--amber);}
+  .st-estavel{background:var(--teal-bg);color:var(--teal);}
+  .flag{
+    margin:0 16px 12px;
+    font-size:12px;
+    padding:8px 10px;
+    border-radius:6px;
+    line-height:1.5;
+  }
+  .flag.red{background:var(--red-bg);color:var(--red);}
+  .flag.amber{background:var(--amber-bg);color:var(--amber);}
+  .body-sec{
+    padding:0 16px 14px;
+    font-size:13px;
+    line-height:1.55;
+  }
+  .body-sec p{margin:0 0 10px;}
+  .label{
+    font-size:11px;
+    color:var(--ink-soft);
+    display:block;
+    margin-bottom:2px;
+  }
+  ul.cond{
+    margin:0;
+    padding-left:16px;
+  }
+  ul.cond li{margin-bottom:4px;}
+  .divider{
+    border:none;
+    border-top:1px solid var(--line);
+    margin:10px 0;
+  }
+  .impressao{
+    background:var(--paper);
+    border-left:3px solid var(--blue);
+    padding:8px 10px;
+    font-size:12.5px;
+    color:var(--ink-soft);
+    border-radius:0 6px 6px 0;
+  }
+  section.pendencias{
+    margin-top:30px;
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:18px 20px;
+  }
+  section.pendencias h2{
+    font-size:16px;
+    margin:0 0 12px;
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  section.pendencias h2::before{
+    content:"";
+    width:8px;height:8px;border-radius:50%;
+    background:var(--red);
+    display:inline-block;
+  }
+  ol.pend-list{margin:0;padding-left:20px;font-size:13.5px;line-height:1.8;}
+  ol.pend-list b{font-weight:600;}
+  footer{
+    text-align:center;
+    font-size:11px;
+    color:var(--ink-soft);
+    padding:20px;
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="row">
+    <h1>UTI BP &mdash; Ronda/Plantão Matutina</h1>
+    <div class="meta">08/09/2026 &nbsp;&middot;&nbsp; <strong>07:10</strong> (aprox.) &nbsp;&middot;&nbsp; UTI <strong>Multidisciplinar</strong></div>
+  </div>
+  <div class="legend">
+    <span><span class="dot" style="background:#e2504a"></span> Crítico / instável</span>
+    <span><span class="dot" style="background:#ef9f27"></span> Atenção / pendência relevante</span>
+    <span><span class="dot" style="background:#1d9e75"></span> Estável / alta prevista</span>
+  </div>
+</header>
+<main>
+  <div class="grid">
+    <div class="card">
+      <div class="card-head"><div><span class="bed-tag">Leito 1611</span><h2>Mônica</h2><div class="sub">UTI Multidisciplinar</div></div><span class="status-pill st-atencao">Atenção</span></div>
+      <div class="body-sec"><span class="label">Condutas / pendências</span><ul class="cond"><li>Reavaliar ATB se culturas negativas</li><li>Dor: manejo multimodal — <b>sem AINEs</b></li><li>Radiografia + avaliação de dreno</li><li>Interconsulta Reumatologia (LES)</li></ul><hr class="divider"><div class="impressao">LES ativo; analgesia sem AINEs; aguardar culturas para decisão de ATB.</div></div>
+    </div>
+    <div class="card">
+      <div class="card-head"><div><span class="bed-tag">Leito 1612</span><h2>Marco Antônio</h2><div class="sub">UTI Multidisciplinar</div></div><span class="status-pill st-atencao">Atenção</span></div>
+      <div class="body-sec"><span class="label">Condutas / pendências</span><ul class="cond"><li>Reposição de albumina pós-paracentese (10 L)</li><li>EDA — Gastroenterologia / Hepatologia</li><li>Avaliar critério de alta UTI</li></ul><hr class="divider"><div class="impressao">Paracentese volumosa; reposição de albumina prioritária; EDA a agendar com Gastro/Hepato.</div></div>
+    </div>
+    <div class="card">
+      <div class="card-head"><div><span class="bed-tag">Leito 1613</span><h2>Maria Helena</h2><div class="sub">UTI Multidisciplinar</div></div><span class="status-pill st-estavel">Alta prevista</span></div>
+      <div class="body-sec"><span class="label">Condutas / pendências</span><ul class="cond"><li>Otimizar tratamento de IC antes da alta</li><li>Considerar RM cardíaca (miocardite / takotsubo) — ambulatorial</li><li>Planejar alta da UTI</li></ul><hr class="divider"><div class="impressao">IC em otimização; RM a considerar ambulatorialmente; alta da UTI em vista.</div></div>
+    </div>
+    <div class="card">
+      <div class="card-head"><div><span class="bed-tag">Leito 1614</span><h2>Carlos</h2><div class="sub">UTI Multidisciplinar</div></div><span class="status-pill st-atencao">Atenção</span></div>
+      <div class="flag amber">&#9888; Decisão pendente &mdash; Dra. Raquel: anticoagulação plena vs. profilática (lesão residual em DA)</div>
+      <div class="body-sec"><span class="label">Condutas / pendências</span><ul class="cond"><li>Ecocardiograma pendente</li><li><b>Definir anticoagulação</b> com Dra. Raquel — plena vs. profilática</li><li>Lesão residual em DA — acompanhamento</li><li>Iniciar estatina</li></ul><hr class="divider"><div class="impressao">Lesão residual em DA; eco para orientar; anticoagulação a definir com responsável.</div></div>
+    </div>
+    <div class="card">
+      <div class="card-head"><div><span class="bed-tag">Leito 1615</span><h2>Pedro</h2><div class="sub">UTI Multidisciplinar</div></div><span class="status-pill st-atencao">Atenção</span></div>
+      <div class="body-sec"><span class="label">Condutas / pendências</span><ul class="cond"><li>Coagulograma + fibrinogênio — avaliar crioprecipitado se necessário</li><li>Progressão de dieta — protocolo ERAS</li><li>Mobilização precoce — protocolo ERAS</li></ul><hr class="divider"><div class="impressao">Protocolo ERAS em curso; coagulograma para rastrear coagulopatia; crioprecipitado conforme resultado.</div></div>
+    </div>
+    <div class="card">
+      <div class="card-head"><div><span class="bed-tag">Leito 1616</span><h2>Cátia</h2><div class="sub">UTI Multidisciplinar</div></div><span class="status-pill st-atencao">Atenção</span></div>
+      <div class="body-sec"><span class="label">Condutas / pendências</span><ul class="cond"><li>Eco seriado — monitorização de derrame pericárdico</li><li>Conciliar imunossupressores</li><li>Alta se estável no eco seriado</li></ul><hr class="divider"><div class="impressao">Derrame pericárdico sob vigilância; alta condicionada à estabilidade no eco.</div></div>
+    </div>
+    <div class="card">
+      <div class="card-head"><div><span class="bed-tag">Leito 1617</span><h2>Givaldo</h2><div class="sub">UTI Multidisciplinar</div></div><span class="status-pill st-atencao">Atenção</span></div>
+      <div class="body-sec"><span class="label">Condutas / pendências</span><ul class="cond"><li>Manter tripla terapia antitrombótica mínima (trombo em VE)</li><li>Eco controle em 4–6 semanas</li><li>Orientação: cessação de tabagismo</li></ul><hr class="divider"><div class="impressao">Trombo em VE; tripla terapia com atenção ao risco hemorrágico; eco de seguimento em 4–6 sem.</div></div>
+    </div>
+    <div class="card">
+      <div class="card-head"><div><span class="bed-tag">Leito 2812</span><h2>José Aldaer</h2><div class="sub">UTI Multidisciplinar</div></div><span class="status-pill st-estavel">Alta prevista</span></div>
+      <div class="body-sec"><span class="label">Condutas / pendências</span><ul class="cond"><li>Endocrinologia — transição insulina EV &rarr; SC</li><li>Culturas em andamento; reavaliar ATB</li><li>Planejar alta</li></ul><hr class="divider"><div class="impressao">Estável; transição EV→SC com Endocrino; aguardar culturas; alta em planejamento.</div></div>
+    </div>
+    <div class="card">
+      <div class="card-head"><div><span class="bed-tag">Leito 2813</span><h2>Donizauro</h2><div class="sub">UTI Multidisciplinar</div></div><span class="status-pill st-atencao">Atenção</span></div>
+      <div class="body-sec"><span class="label">Condutas / pendências</span><ul class="cond"><li>Anatomopatológico (AP) — resultado pendente</li><li>Interconsulta Oncologia</li><li>Protocolo ERAS em curso</li></ul><hr class="divider"><div class="impressao">AP pendente; Oncologia a acionar; ERAS em progresso.</div></div>
+    </div>
+    <div class="card">
+      <div class="card-head"><div><span class="bed-tag">Leito 2814</span><h2>Ana Luíza</h2><div class="sub">UTI Multidisciplinar</div></div><span class="status-pill st-atencao">Atenção</span></div>
+      <div class="body-sec"><span class="label">Condutas / pendências</span><ul class="cond"><li>BSV — controle com lidocaína; monitorização contínua</li><li>Dor: manejo multimodal</li><li>Endocrinologia — avaliação do eixo hipofisário</li><li>Observar <b>&ge; 24 h pós-suspensão de NA</b> antes da alta</li></ul><hr class="divider"><div class="impressao">Pós-NA &ge; 24 h; BSV em controle com lidocaína; eixo hipofisário a avaliar com Endocrino antes da alta.</div></div>
+    </div>
+  </div>
+  <section class="pendencias">
+    <h2>Consolidado de pendências críticas</h2>
+    <ol class="pend-list">
+      <li><b>Leito 1614 (Carlos)</b> &mdash; definir anticoagulação plena vs. profilática com Dra. Raquel; eco pendente; iniciar estatina.</li>
+      <li><b>Leito 2814 (Ana Luíza)</b> &mdash; BSV em controle com lidocaína; &ge; 24 h pós-NA antes da alta; Endocrino (eixo hipofisário).</li>
+      <li><b>Leito 1612 (Marco Antônio)</b> &mdash; reposição albumina pós-paracentese 10 L; agendar EDA com Gastro/Hepato.</li>
+      <li><b>Leito 1615 (Pedro)</b> &mdash; coagulograma + fibrinogênio; avaliar crioprecipitado conforme resultado.</li>
+      <li><b>Leito 1611 (Mônica)</b> &mdash; aguardar culturas para reavaliar ATB; Reumatologia (LES).</li>
+      <li><b>Leito 1616 (Cátia)</b> &mdash; eco seriado (derrame pericárdico); conciliar imunossupressores; alta condicionada.</li>
+      <li><b>Leito 2813 (Donizauro)</b> &mdash; AP pendente; acionar Oncologia.</li>
+      <li><b>Leito 1613 (Maria Helena)</b> &mdash; RM cardíaca (miocardite/takotsubo) a considerar ambulatorialmente; alta em vista.</li>
+    </ol>
+  </section>
+</main>
+<footer>Ronda matutina &mdash; UTI Multidisciplinar · Hospital Beneficência Portuguesa · 08/09/2026 07:10</footer>
+</body>
+</html>

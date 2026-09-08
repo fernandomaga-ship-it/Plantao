@@ -5,6 +5,7 @@ const root = process.cwd();
 const contentRoots = [
   path.join(root, "plantoes"),
   path.join(root, "rotinas"),
+  path.join(root, "uti"),
 ];
 const output = path.join(root, "assets", "site-data.js");
 const ignoredDirectories = new Set(["legacy"]);
@@ -49,6 +50,7 @@ function titleFromPath(filePath) {
 function categoryFor(text) {
   const value = text.toLowerCase();
   if (value.includes("rotinas/")) return "rotinas";
+  if (/(?:^|\/|\s)uti\//.test(value)) return "uti";
   if (value.includes("plantoes/bp") || value.includes("plantoes/8b")) return "uti";
   if (/(uti|intensiv|cti|icu)/.test(value)) return "uti";
   if (/(enfermaria|ward|ala|posto|quarto)/.test(value)) return "enfermaria";
@@ -82,7 +84,12 @@ function toIsoDate(day, month, year) {
 }
 
 function shiftDateFromPath(relativePath) {
-  return relativePath.match(/(?:^|\/)(\d{4}-\d{2}-\d{2})(?:\/|$)/)?.[1] || "";
+  const basename = path.basename(relativePath, path.extname(relativePath));
+  const isoInName = basename.match(/(\d{4}-\d{2}-\d{2})/);
+  if (isoInName) return isoInName[1];
+  const brInName = basename.match(/(\d{2})-(\d{2})-(\d{4})/);
+  if (brInName) return `${brInName[3]}-${brInName[2]}-${brInName[1]}`;
+  return relativePath.match(/(?:^|\/)(\d{4}-\d{2}-\d{2})(?:\/|\.|$)/)?.[1] || "";
 }
 
 function shiftDateFromHtml(html) {

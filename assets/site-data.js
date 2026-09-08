@@ -1,6 +1,30 @@
 window.PLANTAO_DATA = {
-  "generatedAt": "2026-09-04",
+  "generatedAt": "2026-09-08",
   "pages": [
+    {
+      "title": "UTI BP &mdash; Ronda/Plantão Matutina",
+      "path": "uti/2026-09-08.html",
+      "href": "uti/2026-09-08.html",
+      "folder": "uti",
+      "category": "uti",
+      "categoryLabel": "UTI",
+      "summary": "UTI BP — Ronda 08/09 UTI BP &mdash; Ronda/Plantão Matutina 08/09/2026 &nbsp;&middot;&nbsp; 07:10 (aprox.) &nbsp;&middot;&nbsp; UTI Multidisciplinar Crítico / instável A",
+      "updated": "2026-09-08",
+      "shiftDate": "2026-09-08",
+      "shiftDateLabel": "08/09/2026"
+    },
+    {
+      "title": "UTI Mirante â passagem de plantÃ£o",
+      "path": "uti/2026-09-06.html",
+      "href": "uti/2026-09-06.html",
+      "folder": "uti",
+      "category": "uti",
+      "categoryLabel": "UTI",
+      "summary": "UTI Mirante â Passagem de PlantÃ£o UTI Mirante â passagem de plantÃ£o 06/09/2026 &nbsp;Â·&nbsp; 13:17 (aprox.) &nbsp;Â·&nbsp; Enf. Cida CrÃ­tico / instÃ¡vel AtenÃ§Ã",
+      "updated": "2026-09-07",
+      "shiftDate": "2026-09-06",
+      "shiftDateLabel": "06/09/2026"
+    },
     {
       "title": "Dashboard clínico — 04/09/2026",
       "path": "plantoes/bp/2026-09-04/dashboard_plantao_bp_2026-09-04.html",
