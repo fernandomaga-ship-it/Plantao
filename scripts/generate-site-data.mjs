@@ -68,8 +68,28 @@ function categoryLabel(category) {
   }[category] || "Outros";
 }
 
-function cleanText(value) {
+function decodeEntities(value) {
   return value
+    .replace(/&nbsp;/gi, " ")
+    .replace(/&mdash;/gi, "—")
+    .replace(/&ndash;/gi, "–")
+    .replace(/&middot;/gi, "·")
+    .replace(/&rarr;/gi, "→")
+    .replace(/&ge;/gi, "≥")
+    .replace(/&le;/gi, "≤")
+    .replace(/&#x([0-9a-f]+);/gi, (_, hex) => String.fromCodePoint(parseInt(hex, 16)))
+    .replace(/&#(\d+);/g, (_, num) => String.fromCodePoint(Number(num)))
+    .replace(/&quot;/gi, '"')
+    .replace(/&apos;/gi, "'")
+    .replace(/&lt;/gi, "<")
+    .replace(/&gt;/gi, ">")
+    .replace(/&amp;/gi, "&");
+}
+
+function cleanText(value) {
+  // Decode first so encoded tags like &lt;img...&gt; become real tags and are stripped,
+  // instead of being reconstructed after innerHTML interpolation.
+  return decodeEntities(value)
     .replace(/<script[\s\S]*?<\/script>/gi, " ")
     .replace(/<style[\s\S]*?<\/style>/gi, " ")
     .replace(/<[^>]+>/g, " ")

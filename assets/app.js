@@ -121,22 +121,30 @@
       .join("");
   }
 
+  function escapeHtml(value) {
+    return String(value ?? "")
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;");
+  }
+
   function renderCards() {
     const visible = filteredPages();
     cards.innerHTML = visible
       .map((page, index) => `
-        <button class="plantao-card" type="button" data-open-path="${page.path}" data-visible-index="${index}">
+        <button class="plantao-card" type="button" data-open-path="${escapeHtml(page.path)}" data-visible-index="${index}">
           <div class="card-topline">
-            <span class="category-badge">${page.categoryLabel}</span>
-            <span class="date-badge">${page.shiftDateLabel || "Sem data"}</span>
+            <span class="category-badge">${escapeHtml(page.categoryLabel)}</span>
+            <span class="date-badge">${escapeHtml(page.shiftDateLabel || "Sem data")}</span>
           </div>
-          <h3>${page.title}</h3>
-          <p>${page.summary}</p>
+          <h3>${escapeHtml(page.title)}</h3>
+          <p>${escapeHtml(page.summary)}</p>
           <div class="card-meta">
-            <span>Plantão: ${page.shiftDateLabel || "não informado"}</span>
-            <span>Pasta: ${page.folder || "raiz"}</span>
-            <span>Arquivo: ${page.path}</span>
-            <span>Atualizado: ${page.updated || "não informado"}</span>
+            <span>Plantão: ${escapeHtml(page.shiftDateLabel || "não informado")}</span>
+            <span>Pasta: ${escapeHtml(page.folder || "raiz")}</span>
+            <span>Arquivo: ${escapeHtml(page.path)}</span>
+            <span>Atualizado: ${escapeHtml(page.updated || "não informado")}</span>
           </div>
         </button>
       `)
