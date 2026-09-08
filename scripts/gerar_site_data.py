@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Gera assets/site-data.js a partir dos HTMLs em plantoes/ e rotinas/.
+Gera assets/site-data.js a partir dos HTMLs em plantoes/, rotinas/ e uti/.
 Equivalente Python do generate-site-data.mjs (sem precisar de Node.js).
 
 Uso:
@@ -22,6 +22,7 @@ REPO_ROOT = Path(__file__).resolve().parent.parent
 CONTENT_ROOTS = [
     REPO_ROOT / "plantoes",
     REPO_ROOT / "rotinas",
+    REPO_ROOT / "uti",
 ]
 OUTPUT = REPO_ROOT / "assets" / "site-data.js"
 IGNORED_DIRS = {"legacy", ".git", "__pycache__", "node_modules"}
@@ -31,6 +32,8 @@ def category_for(path_str: str, text_snippet: str) -> str:
     v = (path_str + " " + text_snippet).lower()
     if "rotinas/" in v:
         return "rotinas"
+    if re.search(r"(?:^|/| )uti/", v) or v.startswith("uti/"):
+        return "uti"
     if re.search(r"plantoes/(bp|8b|6a|mirante)", v):
         return "uti"
     if re.search(r"(uti|intensiv|cti|icu)", v):
