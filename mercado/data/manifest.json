@@ -35,6 +35,30 @@
       "ibovChg": "+1,45%",
       "dolar": "5,1750",
       "oil": "90.69"
+    },
+    {
+      "date": "2026-09-02",
+      "title": "FK Capital Diário — Edição 11",
+      "ibov": 179722,
+      "ibovUp": true,
+      "ibovChg": "+1,30%",
+      "dolar": "5,153",
+      "oil": "94.65"
+    },
+    {
+      "date": "2026-09-04",
+      "title": "FK Capital Diário — Edição 12",
+      "ibov": 184000,
+      "ibovUp": false,
+      "ibovChg": "-0,61%"
+    },
+    {
+      "date": "2026-09-08",
+      "title": "FK Capital Diário — Edição 13",
+      "ibov": 188400,
+      "ibovUp": true,
+      "ibovChg": "+1,50%",
+      "oil": "99.00"
     }
   ]
 }
