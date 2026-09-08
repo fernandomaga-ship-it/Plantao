@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>FK Capital Diário — Edição 13</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;0,700;1,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;600&display=swap">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.4/chart.umd.min.js"></script>
+<style>
+  :root {
+    --bg: #0E1524;
+    --surface: #161F35;
+    --surface2: #1C2A45;
+    --border: #253354;
+    --amber: #F5B84B;
+    --teal: #3ED6B5;
+    --coral: #F0716C;
+    --blue: #6EA8FE;
+    --violet: #A78BFA;
+    --text: #E8EEF8;
+    --muted: #7A8BA8;
+    --danger-bg: rgba(240,113,108,0.12);
+    --warn-bg: rgba(245,184,75,0.12);
+    --ok-bg: rgba(62,214,181,0.1);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'IBM Plex Sans', system-ui, sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+  a { color: var(--blue); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  .header {
+    background: var(--surface);
+    border-bottom: 2px solid var(--amber);
+    padding: 24px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .logo-group { display: flex; flex-direction: column; gap: 4px; }
+  .logo-line {
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--amber);
+    letter-spacing: -0.5px;
+  }
+  .edition-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .edition-badge span {
+    background: var(--border);
+    padding: 2px 8px;
+    border-radius: 3px;
+    color: var(--amber);
+  }
+  .header-right { text-align: right; }
+  .header-date {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .header-ibov {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--teal);
+    margin-top: 4px;
+  }
+  .header-ibov small {
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--muted);
+  }
+  .back-link {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .container { max-width: 1100px; margin: 0 auto; padding: 28px 24px; }
+  .section { margin-bottom: 36px; }
+
+  .section-title {
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--amber);
+    border-left: 3px solid var(--amber);
+    padding-left: 12px;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .section-title .tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    font-weight: 400;
+    color: var(--muted);
+    background: var(--border);
+    padding: 2px 6px;
+    border-radius: 3px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+  }
+
+  .tldr {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--amber);
+    border-radius: 6px;
+    padding: 18px 24px;
+    margin-bottom: 28px;
+  }
+  .tldr-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--amber);
+    margin-bottom: 12px;
+  }
+  .tldr-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 10px;
+  }
+  .tldr-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 13.5px;
+  }
+  .tldr-item .icon { font-size: 15px; flex-shrink: 0; margin-top: 1px; }
+
+  .chart-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 20px 20px 14px;
+  }
+  .chart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .chart-title {
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: 15px;
+    color: var(--text);
+  }
+  .chart-sub {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+  }
+  canvas { display: block; width: 100% !important; }
+
+  .tiles {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(155px, 1fr));
+    gap: 12px;
+  }
+  .tile {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .tile-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+  .tile-value {
+    font-size: 20px;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+  }
+  .tile-sub {
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 3px;
+  }
+  .up { color: var(--teal); }
+  .down { color: var(--coral); }
+  .neutral { color: var(--blue); }
+  .warn { color: var(--amber); }
+
+  .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+  thead th {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--muted);
+    text-align: left;
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--border);
+    white-space: nowrap;
+  }
+  tbody td {
+    padding: 9px 12px;
+    border-bottom: 1px solid rgba(37,51,84,0.5);
+    vertical-align: middle;
+  }
+  tbody tr:last-child td { border-bottom: none; }
+  tbody tr:hover { background: rgba(255,255,255,0.02); }
+  .ticker {
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: 600;
+    color: var(--amber);
+  }
+
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .badge-buy { background: rgba(62,214,181,0.15); color: var(--teal); }
+  .badge-hold { background: rgba(110,168,254,0.15); color: var(--blue); }
+  .badge-reduce { background: rgba(240,113,108,0.15); color: var(--coral); }
+  .badge-neutral { background: rgba(122,139,168,0.2); color: var(--muted); }
+  .badge-alert { background: rgba(245,184,75,0.15); color: var(--amber); }
+
+  .alert-cards { display: flex; flex-direction: column; gap: 12px; }
+  .alert-card {
+    border-radius: 8px;
+    padding: 16px 18px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .alert-card.danger { background: var(--danger-bg); border: 1px solid rgba(240,113,108,0.25); }
+  .alert-card.warn { background: var(--warn-bg); border: 1px solid rgba(245,184,75,0.25); }
+  .alert-card.ok { background: var(--ok-bg); border: 1px solid rgba(62,214,181,0.2); }
+  .alert-card.info { background: rgba(110,168,254,0.08); border: 1px solid rgba(110,168,254,0.2); }
+  .alert-icon { font-size: 20px; flex-shrink: 0; }
+  .alert-body { flex: 1; min-width: 0; }
+  .alert-title {
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 4px;
+  }
+  .alert-text { font-size: 13px; color: #B0C0D8; line-height: 1.55; }
+  .alert-meta {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    margin-top: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+  }
+
+  .scorecard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 10px;
+  }
+  .scorecard-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+    position: relative;
+  }
+  .scorecard-item::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    border-radius: 8px 8px 0 0;
+  }
+  .scorecard-item.pos::before { background: var(--teal); }
+  .scorecard-item.neg::before { background: var(--coral); }
+  .scorecard-item.neu::before { background: var(--blue); }
+  .scorecard-item.warn::before { background: var(--amber); }
+  .sc-ticker {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--amber);
+  }
+  .sc-return {
+    font-size: 22px;
+    font-weight: 700;
+    margin: 4px 0;
+    font-variant-numeric: tabular-nums;
+  }
+  .sc-note { font-size: 11px; color: var(--muted); }
+
+  .heatmap {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 4px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px;
+  }
+  .heat-cell {
+    padding: 10px 8px;
+    border-radius: 5px;
+    text-align: center;
+  }
+  .heat-label { font-size: 10px; color: var(--muted); font-family: 'IBM Plex Mono', monospace; text-transform: uppercase; }
+  .heat-val { font-size: 13px; font-weight: 700; margin-top: 2px; }
+  .heat-1 { background: rgba(62,214,181,0.05); }
+  .heat-2 { background: rgba(62,214,181,0.12); }
+  .heat-3 { background: rgba(245,184,75,0.12); }
+  .heat-4 { background: rgba(240,113,108,0.12); }
+  .heat-5 { background: rgba(240,113,108,0.2); }
+
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .lead { font-size: 14.5px; color: #B0C0D8; margin-bottom: 12px; max-width: 820px; }
+
+  .timeline { display: flex; flex-direction: column; gap: 0; }
+  .tl-item { display: flex; gap: 14px; align-items: flex-start; }
+  .tl-left { display: flex; flex-direction: column; align-items: center; }
+  .tl-dot {
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    background: var(--amber);
+    flex-shrink: 0;
+    margin-top: 4px;
+  }
+  .tl-dot.red { background: var(--coral); }
+  .tl-dot.teal { background: var(--teal); }
+  .tl-dot.blue { background: var(--blue); }
+  .tl-line { width: 1px; background: var(--border); flex: 1; min-height: 24px; }
+  .tl-content { padding-bottom: 20px; flex: 1; }
+  .tl-date {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    margin-bottom: 3px;
+  }
+  .tl-title { font-size: 13.5px; font-weight: 600; }
+  .tl-desc { font-size: 12.5px; color: #B0C0D8; margin-top: 2px; }
+
+  .footer {
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    padding: 20px 32px;
+    text-align: center;
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+  .footer strong { color: var(--amber); }
+
+  @media (max-width: 700px) {
+    .two-col { grid-template-columns: 1fr; }
+    .heatmap { grid-template-columns: repeat(2, 1fr); }
+    .header { padding: 18px 16px; }
+    .header-right { text-align: left; }
+    .container { padding: 20px 16px; }
+    .logo-line { font-size: 22px; }
+    .header-ibov { font-size: 18px; }
+    .tldr { padding: 14px 16px; }
+    .footer { padding: 16px; }
+    .tile-value { font-size: 18px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="logo-group">
+    <a class="back-link" href="../index.html">← Mercado</a>
+    <div class="logo-line">FK Capital Diário</div>
+    <div class="edition-badge">
+      <span>Edição 13</span> · 08 de setembro de 2026
+    </div>
+  </div>
+  <div class="header-right">
+    <div class="header-date">Terça-feira, 08/09/2026 · Assessoria / Diário</div>
+    <div class="header-ibov">
+      IBOV 188.400 <small>pts</small>
+      <span style="font-size:16px;color:var(--teal);"> ▲ +1,50%</span>
+    </div>
+    <div style="font-size:11px;color:var(--muted);margin-top:4px;">Brent ~US$ 99 · RSI em zona de sobrecompra · ruído eleitoral</div>
+  </div>
+</header>
+
+<div class="container">
+
+  <div class="tldr">
+    <div class="tldr-label">⚡ TL;DR — Os 4 pontos de hoje</div>
+    <div class="tldr-grid">
+      <div class="tldr-item"><span class="icon">💼</span><span>Patrimônio ~<strong>R$ 1,13 mi</strong> (PF R$ 847–870k + PJ R$ 279–290k). Arquivo de maio/26 está velho — precisa de export fresco do TradeMap.</span></div>
+      <div class="tldr-item"><span class="icon">📉</span><span>Meta de renda passiva de <strong>R$ 20k/mês</strong> não cabe no capital. Orgânico realista: <strong>R$ 6,5–9k/mês</strong>.</span></div>
+      <div class="tldr-item"><span class="icon">🏃</span><span>Semana pré-Ironman (20/09): escrever regra do <strong>MSFT34</strong>, iniciar STVM KNCR11/PCIP11 PJ→PF e checar JCP do BBDC4 em 15/09.</span></div>
+      <div class="tldr-item"><span class="icon">🚫</span><span>Não cortar MSFT34 Itaú nesta semana. Não vender AXIA3 cedo. Sem hedge antes dos buckets 1–3. FK/RMC só com o Bruno.</span></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Resumo executivo — patrimônio e alocação <span class="tag">Arquivo maio/26 · desatualizado</span></div>
+    <p class="lead">Os números abaixo vêm do arquivo de maio/26. Servem para ordem de grandeza, não para ordem de corretora. FIIs no arquivo já somam ~R$ 312k — isso conflita com o “R$ 220k” que circula na conversa. Sem export novo do TradeMap, qualquer meta de renda ou rebalanceamento é chute.</p>
+    <div class="tiles">
+      <div class="tile">
+        <div class="tile-label">Pessoa física</div>
+        <div class="tile-value neutral">R$ 847–870k</div>
+        <div class="tile-sub">Conta Grande + Itaú PF</div>
+      </div>
+      <div class="tile">
+        <div class="tile-label">Pessoa jurídica</div>
+        <div class="tile-value warn">R$ 279–290k</div>
+        <div class="tile-sub">F&amp;K Serviços · FIIs pagando IR</div>
+      </div>
+      <div class="tile">
+        <div class="tile-label">Patrimônio consolidado</div>
+        <div class="tile-value up">~R$ 1,13 mi</div>
+        <div class="tile-sub">PF + PJ · ordem de grandeza</div>
+      </div>
+      <div class="tile">
+        <div class="tile-label">Ações BR</div>
+        <div class="tile-value">~60%</div>
+        <div class="tile-sub">Ainda misturado PF/PJ</div>
+      </div>
+      <div class="tile">
+        <div class="tile-label">FIIs</div>
+        <div class="tile-value warn">~28%</div>
+        <div class="tile-sub">~R$ 312k no arquivo · ≠ “R$ 220k”</div>
+      </div>
+      <div class="tile">
+        <div class="tile-label">BDRs</div>
+        <div class="tile-value neutral">~12%</div>
+        <div class="tile-sub">MSFT34 em 3 contas, sem regra</div>
+      </div>
+      <div class="tile">
+        <div class="tile-label">Renda passiva — meta</div>
+        <div class="tile-value down">R$ 20k/mês</div>
+        <div class="tile-sub">Não cabe neste capital</div>
+      </div>
+      <div class="tile">
+        <div class="tile-label">Renda orgânica realista</div>
+        <div class="tile-value warn">R$ 6,5–9k/mês</div>
+        <div class="tile-sub">FIIs + JCP/div. · sem vender estoque</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Três buracos estruturais <span class="tag">Antes de operar</span></div>
+    <div class="alert-cards">
+      <div class="alert-card danger">
+        <div class="alert-icon">🔴</div>
+        <div class="alert-body">
+          <div class="alert-title">FIIs na PJ pagando IR — ~R$ 49k em risco tributário</div>
+          <div class="alert-text">KNCR11 e PCIP11 na F&amp;K Serviços perdem a isenção de PF. É o maior ROI da semana e <strong>não depende de timing de mercado</strong>: começa a STVM PJ→PF. Não esperar o Ironman, não esperar a AGE do PCIP11, não esperar “o preço certo”.</div>
+          <div class="alert-meta">Ação: iniciar STVM · KNCR11 e PCIP11 · PJ → PF</div>
+        </div>
+      </div>
+      <div class="alert-card warn">
+        <div class="alert-icon">⚠️</div>
+        <div class="alert-body">
+          <div class="alert-title">MSFT34 em 3 contas sem regra escrita</div>
+          <div class="alert-text">Há lotes de renda e lotes táticos misturados (XP PM R$ 87,59 · 497 cotas; Itaú PM R$ 109,69 · 91 cotas; mais a terceira conta). Sem papel dizendo o que é buy&amp;hold e o que é tático, qualquer “corte” vira improviso. <strong>Escrever a regra esta semana</strong> — não executar o corte.</div>
+          <div class="alert-meta">Não cortar o lote Itaú nesta semana · earnings ~27/10 · Super-Wednesday 16/09</div>
+        </div>
+      </div>
+      <div class="alert-card info">
+        <div class="alert-icon">📒</div>
+        <div class="alert-body">
+          <div class="alert-title">Banco de prejuízo ~R$ 434k parado</div>
+          <div class="alert-text">Há perda acumulada ociosa da ordem de R$ 434k. Só vira ferramenta depois que os buckets existirem no papel e o export do TradeMap estiver fresco. Usar agora para “otimizar IR” sem mapa de lotes é o caminho para realizar o lote errado.</div>
+          <div class="alert-meta">Usar depois dos buckets 1–3 · não nesta semana</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Esta semana — pré-Ironman 20/09 <span class="tag">Execução, não trade</span></div>
+    <p class="lead">Quatro tarefas cabem antes da prova. Nenhuma exige acertar o pregão. Super-Wednesday (Copom/FOMC) é 16/09 — janela ruim para tático em BDR.</p>
+    <div class="alert-cards">
+      <div class="alert-card ok">
+        <div class="alert-icon">1</div>
+        <div class="alert-body">
+          <div class="alert-title">Escrever a regra do MSFT34 — renda vs. tático</div>
+          <div class="alert-text">Uma página basta: qual lote é renda (não se vende no ruído), qual lote é tático (teto de 15–20% do patrimônio de risco), e em qual conta cada um vive. Sem isso, a posição nas três contas continua sem dono.</div>
+          <div class="alert-meta">Prazo: esta semana · papel, não ordem</div>
+        </div>
+      </div>
+      <div class="alert-card ok">
+        <div class="alert-icon">2</div>
+        <div class="alert-body">
+          <div class="alert-title">Iniciar STVM — KNCR11 e PCIP11 da PJ para a PF</div>
+          <div class="alert-text">Maior retorno da semana. Transferência custodiada, sem vender no secundário. PCIP11 segue com a recomendação da Edição 12: <strong>não exercer</strong> a subscrição a R$ 92,45 com a cota perto de R$ 75. A STVM não muda essa tese — só muda quem paga IR sobre o rendimento.</div>
+          <div class="alert-meta">Sem timing de mercado · consultar contador para a ordem das cotas</div>
+        </div>
+      </div>
+      <div class="alert-card warn">
+        <div class="alert-icon">3</div>
+        <div class="alert-body">
+          <div class="alert-title">Não cortar MSFT34 Itaú nesta semana</div>
+          <div class="alert-text">A Edição 12 falou em avaliar redução do lote Itaú antes de 27/10. Isso continua no calendário — <strong>não nesta semana</strong>. Earnings ~27/10; Super-Wednesday 16/09. Cortar agora é tático sem regra, no pior regime de evento.</div>
+          <div class="alert-meta">Revisar depois de 16/09 · só com a regra escrita</div>
+        </div>
+      </div>
+      <div class="alert-card info">
+        <div class="alert-icon">4</div>
+        <div class="alert-body">
+          <div class="alert-title">Conferir se o JCP do BBDC4 em 15/09 caiu certo</div>
+          <div class="alert-text">Pagamento de JCP do Bradesco em 15/09. Checar crédito na conta certa (PF vs. PJ), valor e retenção. Não é tese — é operação de tesouraria. Se não caiu, abrir chamado na corretora no mesmo dia.</div>
+          <div class="alert-meta">15/09 · BBDC4 · conferir extrato</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Não fazer <span class="tag">Disciplina</span></div>
+    <div class="alert-cards">
+      <div class="alert-card danger">
+        <div class="alert-icon">🚫</div>
+        <div class="alert-body">
+          <div class="alert-title">Não vender AXIA3 agora</div>
+          <div class="alert-text">Zona de realização parcial continua em <strong>R$ 63–68</strong>. Preço ~<strong>R$ 55</strong> — ainda fora da zona. Vender cedo realiza o núcleo da carteira para financiar um problema (renda, caixa, hedge) que se resolve com STVM e com buckets no papel, não com stop emocional.</div>
+          <div class="alert-meta">Alvo intacto · Edições 11 e 12 · preço ~R$ 55</div>
+        </div>
+      </div>
+      <div class="alert-card danger">
+        <div class="alert-icon">⚖️</div>
+        <div class="alert-body">
+          <div class="alert-title">Nenhuma decisão FK / RMC sem o advogado Bruno</div>
+          <div class="alert-text">Estrutura societária, contratos e caixa da F&amp;K ou da RMC não entram no Diário como “trade”. Sem o Bruno, não assina, não transfere controle, não mistura patrimônio de serviço com carteira de investimento.</div>
+          <div class="alert-meta">Jurídico · fora do escopo de pregão</div>
+        </div>
+      </div>
+      <div class="alert-card danger">
+        <div class="alert-icon">🛡️</div>
+        <div class="alert-body">
+          <div class="alert-title">Não montar hedge antes dos buckets 1–3 existirem</div>
+          <div class="alert-text">Hedge de 3–5% só faz sentido depois que renda, tático e caixa estiverem escritos e medidos. Comprar proteção agora, com alocação ainda misturada PF/PJ e sem regra de BDR, é custo extra em cima de um mapa que ainda não existe.</div>
+          <div class="alert-meta">Bucket 4 é opcional · vem por último</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Buckets a documentar <span class="tag">Arquitetura da carteira</span></div>
+    <p class="lead">A alocação atual (~60% ações BR, ~28% FIIs, ~12% BDRs) ainda <strong>não</strong> é um desenho limpo de buy&amp;hold na PJ e híbrido na PF. O trabalho desta semana é escrever os quatro baldes — não rebalancear no mercado.</p>
+    <div class="scorecard-grid">
+      <div class="scorecard-item pos">
+        <div class="sc-ticker">1 · Renda buy&amp;hold</div>
+        <div class="sc-return up">Núcleo</div>
+        <div class="sc-note">FIIs isentos na PF, JCP/div. de bancos e utilities. KNCR11, PCIP11 (após STVM), BBDC4. Não se vende no ruído eleitoral.</div>
+      </div>
+      <div class="scorecard-item warn">
+        <div class="sc-ticker">2 · Tático</div>
+        <div class="sc-return warn">≤ 15–20%</div>
+        <div class="sc-note">Lotes com teto e regra de saída. Candidatos: fatia do MSFT34 Itaú, sobras setoriais. Sem regra escrita, não é tático — é improviso.</div>
+      </div>
+      <div class="scorecard-item neu">
+        <div class="sc-ticker">3 · Caixa / liquidez</div>
+        <div class="sc-return neutral">Reserva</div>
+        <div class="sc-note">Caixa explícito para Ironman, IR, STVM e janela 16/09–27/10. Sem esse balde, toda venda vira “precisa de dinheiro”.</div>
+      </div>
+      <div class="scorecard-item neg">
+        <div class="sc-ticker">4 · Hedge (opcional)</div>
+        <div class="sc-return down">3–5%</div>
+        <div class="sc-note">Só depois dos buckets 1–3 existirem no papel e no extrato. Não esta semana. Não para “proteger” o rali do Ibovespa.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Macro — 08/09/2026 <span class="tag">Petróleo · Ibovespa · EUA</span></div>
+    <div class="tiles" style="margin-bottom:16px">
+      <div class="tile">
+        <div class="tile-label">Ibovespa</div>
+        <div class="tile-value up">188.400</div>
+        <div class="tile-sub">+1,50% no dia · atenção ao RSI</div>
+      </div>
+      <div class="tile">
+        <div class="tile-label">Brent</div>
+        <div class="tile-value warn">~US$ 99–100</div>
+        <div class="tile-sub">Prêmio de risco no Oriente Médio</div>
+      </div>
+      <div class="tile">
+        <div class="tile-label">Futuros EUA</div>
+        <div class="tile-value down">Fracos</div>
+        <div class="tile-sub">Semana de PPI / CPI</div>
+      </div>
+      <div class="tile">
+        <div class="tile-label">Brasil político</div>
+        <div class="tile-value warn">Ruído</div>
+        <div class="tile-sub">1º turno 04/10 · 2º 25/10</div>
+      </div>
+    </div>
+    <p class="lead">Petróleo perto de US$ 99–100 com risco no Oriente Médio. Futuros americanos abrem a semana fracos; o fluxo de inflação (PPI/CPI) define o tom até o Super-Wednesday de 16/09. No Brasil, o Ibovespa busca ~188,4 mil com +1,5% — extensão do rali que a Edição 12 já via como realização saudável em 184k. RSI em zona de sobrecompra: o índice pode continuar, mas a assimetria de curto prazo piorou. Ruído eleitoral sobe; não é motivo para vender o núcleo, é motivo para não abrir tático novo.</p>
+    <div class="chart-card">
+      <div class="chart-header">
+        <div>
+          <div class="chart-title">Ibovespa · 17/08 → 08/09/2026</div>
+          <div class="chart-sub">Pontos conhecidos das Edições 11–13 · não é série diária completa</div>
+        </div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--teal)">
+          188.400 pts ▲ +1,50%
+        </div>
+      </div>
+      <canvas id="ibovChart" height="220"></canvas>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Mapa de risco — 08/09 <span class="tag">O que mudou desde a Edição 12</span></div>
+    <div class="heatmap">
+      <div class="heat-cell heat-4">
+        <div class="heat-label">Risco político</div>
+        <div class="heat-val down">ALTO</div>
+      </div>
+      <div class="heat-cell heat-5">
+        <div class="heat-label">Petróleo / OM</div>
+        <div class="heat-val down">ALTO</div>
+      </div>
+      <div class="heat-cell heat-4">
+        <div class="heat-label">RSI Ibovespa</div>
+        <div class="heat-val down">SOBRECOMPRA</div>
+      </div>
+      <div class="heat-cell heat-3">
+        <div class="heat-label">PPI / CPI EUA</div>
+        <div class="heat-val warn">MÉDIO</div>
+      </div>
+      <div class="heat-cell heat-4">
+        <div class="heat-label">FIIs na PJ</div>
+        <div class="heat-val down">CRÍTICO</div>
+      </div>
+      <div class="heat-cell heat-3">
+        <div class="heat-label">MSFT34 3 contas</div>
+        <div class="heat-val warn">ALTO</div>
+      </div>
+      <div class="heat-cell heat-4">
+        <div class="heat-label">PCIP11 subscr.</div>
+        <div class="heat-val down">NÃO EXERCER</div>
+      </div>
+      <div class="heat-cell heat-2">
+        <div class="heat-label">AXIA3</div>
+        <div class="heat-val" style="color:var(--teal)">FORA DO ALVO</div>
+      </div>
+      <div class="heat-cell heat-3">
+        <div class="heat-label">Arquivo TradeMap</div>
+        <div class="heat-val warn">VELHO</div>
+      </div>
+      <div class="heat-cell heat-2">
+        <div class="heat-label">KNCR11 (tese)</div>
+        <div class="heat-val" style="color:var(--teal)">ESTÁVEL</div>
+      </div>
+      <div class="heat-cell heat-3">
+        <div class="heat-label">Meta R$ 20k/mês</div>
+        <div class="heat-val warn">INCOMPATÍVEL</div>
+      </div>
+      <div class="heat-cell heat-1">
+        <div class="heat-label">STVM (ROI)</div>
+        <div class="heat-val" style="color:var(--teal)">FAZER</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Calendário até o Ironman <span class="tag">08 → 20/09</span></div>
+    <div class="two-col">
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-left"><div class="tl-dot teal"></div><div class="tl-line"></div></div>
+          <div class="tl-content">
+            <div class="tl-date">08/09 · hoje</div>
+            <div class="tl-title">Edição 13 — mapa, não ordem</div>
+            <div class="tl-desc">Escrever regra MSFT34. Pedir STVM. Exportar TradeMap. Não tático.</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
+          <div class="tl-content">
+            <div class="tl-date">15/09 · segunda</div>
+            <div class="tl-title">JCP BBDC4</div>
+            <div class="tl-desc">Conferir crédito, conta e retenção. Chamado no mesmo dia se falhar.</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-left"><div class="tl-dot red"></div><div class="tl-line"></div></div>
+          <div class="tl-content">
+            <div class="tl-date">16/09 · Super-Wednesday</div>
+            <div class="tl-title">Copom / FOMC — não abrir tático</div>
+            <div class="tl-desc">Janela ruim para cortar MSFT34 Itaú. Caixa e buckets importam mais que o ponto do índice.</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-left"><div class="tl-dot blue"></div><div class="tl-line"></div></div>
+          <div class="tl-content">
+            <div class="tl-date">18–21/09</div>
+            <div class="tl-title">PCIP11 — AGE e integração</div>
+            <div class="tl-desc">Não exercer a R$ 92,45. STVM pode seguir em paralelo; subscrição, não.</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-left"><div class="tl-dot teal"></div></div>
+          <div class="tl-content">
+            <div class="tl-date">20/09 · sábado</div>
+            <div class="tl-title">Ironman</div>
+            <div class="tl-desc">Carteira em modo automático. Nada de ordem no celular no dia da prova.</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Depois do Ironman</th>
+                <th>O quê</th>
+                <th>Sinal</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="ticker">27/10</td>
+                <td>MSFT Q1 FY27 earnings — aí sim revisar lote Itaú, com regra pronta</td>
+                <td><span class="badge badge-alert">Calendário</span></td>
+              </tr>
+              <tr>
+                <td class="ticker">04/10</td>
+                <td>1º turno — volatilidade em bancos e energia; núcleo não se vende</td>
+                <td><span class="badge badge-hold">Manter núcleo</span></td>
+              </tr>
+              <tr>
+                <td class="ticker">04/11</td>
+                <td>Resultados AXIA3 — ainda no caminho do alvo R$ 63–68</td>
+                <td><span class="badge badge-buy">Manter</span></td>
+              </tr>
+              <tr>
+                <td class="ticker">TradeMap</td>
+                <td>Export fresco para fechar o conflito R$ 312k vs. R$ 220k de FIIs</td>
+                <td><span class="badge badge-alert">Pendente</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Placar da Edição 12 <span class="tag">O que se mantém</span></div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Tema</th>
+            <th>Edição 12 (04/09)</th>
+            <th>Edição 13 (08/09)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="ticker">Ibovespa</td>
+            <td>184k · −0,61% · fim da série de 11 altas</td>
+            <td class="up">~188,4k · +1,5% · RSI esticado</td>
+          </tr>
+          <tr>
+            <td class="ticker">AXIA3</td>
+            <td>Manter · alvo R$ 63–68 · ~R$ 55,60</td>
+            <td>Mantém · ~R$ 55 · <strong>não vender cedo</strong></td>
+          </tr>
+          <tr>
+            <td class="ticker">MSFT34 Itaú</td>
+            <td>Avaliar redução antes de 27/10</td>
+            <td class="warn">Não cortar nesta semana · escrever regra</td>
+          </tr>
+          <tr>
+            <td class="ticker">PCIP11</td>
+            <td>Não exercer a R$ 92,45</td>
+            <td>Mantém · e tira da PJ via STVM</td>
+          </tr>
+          <tr>
+            <td class="ticker">FIIs PJ→PF</td>
+            <td>Avaliar migração</td>
+            <td class="up">Começar STVM agora — maior ROI</td>
+          </tr>
+          <tr>
+            <td class="ticker">INBR32</td>
+            <td>Migrar INTR / INBR34</td>
+            <td>Continua pendente · não é o gargalo desta semana</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
+
+<footer class="footer">
+  <strong>FK Capital — Assessoria / Diário · Edição 13 · 08/09/2026</strong><br>
+  Documento interno. Números de patrimônio e alocação vêm de arquivo de maio/2026 e podem estar defasados — atualizar com export TradeMap antes de qualquer rebalanceamento.<br>
+  Não é recomendação de investimento a terceiros. Decisões societárias FK/RMC passam pelo advogado Bruno.
+</footer>
+
+<script>
+const tick = '#7A8BA8';
+const grid = 'rgba(37,51,84,.55)';
+const font = { family: 'IBM Plex Mono', size: 10 };
+
+new Chart(document.getElementById('ibovChart'), {
+  type: 'line',
+  data: {
+    labels: ['17/08','18/08','19/08','20/08','21/08','25/08','26/08','27/08','28/08','01/09','04/09','08/09'],
+    datasets: [{
+      label: 'Ibovespa',
+      data: [166784,166335,167830,167927,171032,174577,174586,175135,177419,179722,184000,188400],
+      borderColor: '#F5B84B',
+      backgroundColor: 'rgba(245,184,75,.10)',
+      fill: true,
+      tension: 0.35,
+      pointRadius: 3,
+      pointBackgroundColor: '#F5B84B'
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      legend: { display: false },
+      tooltip: { callbacks: { label: v => 'IBOV: ' + v.raw.toLocaleString('pt-BR') } }
+    },
+    scales: {
+      x: { ticks: { color: tick, font }, grid: { color: grid } },
+      y: {
+        ticks: { color: tick, font, callback: v => (v/1000).toFixed(0) + 'k' },
+        grid: { color: grid },
+        min: 164000
+      }
+    }
+  }
+});
+</script>
+</body>
+</html>
