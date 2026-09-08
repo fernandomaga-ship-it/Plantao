@@ -55,24 +55,26 @@ CATEGORY_LABELS = {
 
 # ── Extração de texto ─────────────────────────────────────────────────────────
 def clean_text(html_str: str) -> str:
-    text = re.sub(r"<script[\s\S]*?</script>", " ", html_str, flags=re.IGNORECASE)
+    # Decode first so encoded tags like &lt;img...&gt; become real tags and are stripped.
+    text = html.unescape(html_str)
+    text = re.sub(r"<script[\s\S]*?</script>", " ", text, flags=re.IGNORECASE)
     text = re.sub(r"<style[\s\S]*?</style>", " ", text, flags=re.IGNORECASE)
     text = re.sub(r"<[^>]+>", " ", text)
-    text = html.unescape(text)
     text = re.sub(r"\s+", " ", text)
     return text.strip()
 
 def extract_title(html: str, fallback: str) -> str:
-    m = re.search(r"<title[^>]*>([\s\S]*?)</title>", html, re.IGNORECASE)
-    if m:
-        t = clean_text(m.group(1)).strip()
-        if t:
-            return t
-    m = re.search(r"<h1[^>]*>([\s\S]*?)</h1>", html, re.IGNORECASE)
-    if m:
-        t = clean_text(m.group(1)).strip()
-        if t:
-            return t
+    """Match generate-site-data.mjs: h1, then h2, then title."""
+    for pattern in (
+        r"<h1[^>]*>([\s\S]*?)</h1>",
+        r"<h2[^>]*>([\s\S]*?)</h2>",
+        r"<title[^>]*>([\s\S]*?)</title>",
+    ):
+        m = re.search(pattern, html, re.IGNORECASE)
+        if m:
+            t = clean_text(m.group(1)).strip()
+            if t:
+                return t
     return fallback
 
 def title_from_path(rel: str) -> str:

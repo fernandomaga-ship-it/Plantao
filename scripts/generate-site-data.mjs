@@ -87,14 +87,14 @@ function decodeEntities(value) {
 }
 
 function cleanText(value) {
-  return decodeEntities(
-    value
-      .replace(/<script[\s\S]*?<\/script>/gi, " ")
-      .replace(/<style[\s\S]*?<\/style>/gi, " ")
-      .replace(/<[^>]+>/g, " ")
-      .replace(/\s+/g, " ")
-      .trim(),
-  );
+  // Decode first so encoded tags like &lt;img...&gt; become real tags and are stripped,
+  // instead of being reconstructed after innerHTML interpolation.
+  return decodeEntities(value)
+    .replace(/<script[\s\S]*?<\/script>/gi, " ")
+    .replace(/<style[\s\S]*?<\/style>/gi, " ")
+    .replace(/<[^>]+>/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
 }
 
 function toIsoDate(day, month, year) {
