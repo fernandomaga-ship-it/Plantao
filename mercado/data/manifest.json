@@ -59,6 +59,15 @@
       "ibovUp": true,
       "ibovChg": "+1,50%",
       "oil": "99.00"
+    },
+    {
+      "date": "2026-09-09",
+      "title": "FK Capital Diário — Edição 14",
+      "ibov": 187367,
+      "ibovUp": true,
+      "ibovChg": "+1,20%",
+      "dolar": "5,089",
+      "oil": "97.92"
     }
   ]
 }
