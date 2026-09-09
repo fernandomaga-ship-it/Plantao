@@ -288,9 +288,17 @@ def generate_report() -> str:
 
 # ── Main ──────────────────────────────────────────────────────────────────────
 def main():
-    # Verifica se já existe (evita duplicar em re-runs)
-    if REPORT_PATH.exists():
-        print(f"Relatório {DATE_STR} já existe. Sobrescrevendo...")
+    # Relatórios manuais (ex.: FK Capital Diário) não devem ser apagados pelo cron.
+    # Defina FORCE_OVERWRITE=1 só quando a intenção for regenerar o HTML do dia.
+    force_overwrite = os.environ.get("FORCE_OVERWRITE", "").strip().lower() in {
+        "1", "true", "yes",
+    }
+    if REPORT_PATH.exists() and not force_overwrite:
+        print(
+            f"Relatório {DATE_STR} já existe em {REPORT_PATH}. "
+            "Pulando geração (FORCE_OVERWRITE=1 para substituir)."
+        )
+        return
 
     # Garante que os diretórios existem
     REPORT_PATH.parent.mkdir(parents=True, exist_ok=True)
