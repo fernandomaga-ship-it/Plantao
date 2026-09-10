@@ -8,10 +8,17 @@ const contentRoots = [
   path.join(root, "uti"),
 ];
 const output = path.join(root, "assets", "site-data.js");
+const jsonOutput = path.join(root, "assets", "site-data.json");
 const ignoredDirectories = new Set(["legacy"]);
 
 async function walk(dir) {
-  const entries = await readdir(dir, { withFileTypes: true });
+  let entries;
+  try {
+    entries = await readdir(dir, { withFileTypes: true });
+  } catch (error) {
+    if (error && error.code === "ENOENT") return [];
+    throw error;
+  }
   const files = [];
 
   for (const entry of entries) {
@@ -51,7 +58,7 @@ function categoryFor(text) {
   const value = text.toLowerCase();
   if (value.includes("rotinas/")) return "rotinas";
   if (/(?:^|\/|\s)uti\//.test(value)) return "uti";
-  if (value.includes("plantoes/bp") || value.includes("plantoes/8b")) return "uti";
+  if (value.includes("plantoes/bp") || value.includes("plantoes/8b") || value.includes("plantoes/6a") || value.includes("plantoes/mirante")) return "uti";
   if (/(uti|intensiv|cti|icu)/.test(value)) return "uti";
   if (/(enfermaria|ward|ala|posto|quarto)/.test(value)) return "enfermaria";
   if (/(centro cir|cirurg|cc|sala)/.test(value)) return "centro-cirurgico";
@@ -149,7 +156,13 @@ function sortPages(left, right) {
 
 async function pageData(file) {
   const relativePath = normalizePath(file);
-  const html = await readFile(file, "utf8");
+  let html;
+  try {
+    html = await readFile(file, "utf8");
+  } catch (error) {
+    console.warn(`Skipping unreadable HTML ${relativePath}: ${error.message}`);
+    return null;
+  }
   const titleMatch = html.match(/<title[^>]*>([\s\S]*?)<\/title>/i);
   const h1Match = html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/i);
   const h2Match = html.match(/<h2[^>]*>([\s\S]*?)<\/h2>/i);
@@ -186,9 +199,13 @@ async function pageData(file) {
 
 const allFiles = await Promise.all(contentRoots.map((r) => walk(r)));
 const files = allFiles.flat().sort((a, b) => a.localeCompare(b, "pt-BR"));
-const pages = (await Promise.all(files.map((file) => pageData(file)))).sort(sortPages);
+const pages = (await Promise.all(files.map((file) => pageData(file))))
+  .filter(Boolean)
+  .sort(sortPages);
 const generatedAt = new Date().toISOString().slice(0, 10);
+const payload = { generatedAt, pages };
 
-const source = `window.PLANTAO_DATA = ${JSON.stringify({ generatedAt, pages }, null, 2)};\n`;
+const source = `window.PLANTAO_DATA = ${JSON.stringify(payload, null, 2)};\n`;
 await writeFile(output, source, "utf8");
-console.log(`Generated ${path.relative(root, output)} with ${pages.length} HTML page(s).`);
+await writeFile(jsonOutput, `${JSON.stringify(payload, null, 2)}\n`, "utf8");
+console.log(`Generated ${path.relative(root, output)} and ${path.relative(root, jsonOutput)} with ${pages.length} HTML page(s).`);

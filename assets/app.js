@@ -1,5 +1,7 @@
 (function () {
-  const data = window.PLANTAO_DATA || { generatedAt: "", pages: [] };
+  let data = window.PLANTAO_DATA && typeof window.PLANTAO_DATA === "object"
+    ? window.PLANTAO_DATA
+    : { generatedAt: "", pages: [] };
   const categories = [
     { id: "all", label: "Todos" },
     { id: "uti", label: "UTI" },
@@ -29,7 +31,7 @@
   const closeViewerButton = document.querySelector("[data-close-viewer]");
   const visitCounter = document.querySelector("#visit-counter");
   const visitCounterNote = document.querySelector("#visit-counter-note");
-  const pages = data.pages || [];
+  let pages = Array.isArray(data.pages) ? data.pages : [];
   const hasDashboard = Boolean(
     cards
       && emptyState
@@ -103,9 +105,16 @@
     const archivedDates = [...new Set(pages.map((page) => page.shiftDate).filter(Boolean))];
     const latestShift = archivedDates.slice().sort((left, right) => right.localeCompare(left, "pt-BR"))[0];
 
-    document.querySelector("#summary-total").textContent = pages.length;
-    document.querySelector("#summary-categories").textContent = new Set(pages.map((page) => page.category)).size;
-    document.querySelector("#summary-updated").textContent = pages.find((page) => page.shiftDate === latestShift)?.shiftDateLabel || data.generatedAt || "Hoje";
+    const summaryTotal = document.querySelector("#summary-total");
+    if (summaryTotal) summaryTotal.textContent = pages.length;
+    const summaryCategories = document.querySelector("#summary-categories");
+    if (summaryCategories) {
+      summaryCategories.textContent = new Set(pages.map((page) => page.category)).size;
+    }
+    const summaryUpdated = document.querySelector("#summary-updated");
+    if (summaryUpdated) {
+      summaryUpdated.textContent = pages.find((page) => page.shiftDate === latestShift)?.shiftDateLabel || data.generatedAt || "Hoje";
+    }
 
     const summaryShifts = document.querySelector("#summary-shifts");
     if (summaryShifts) {
@@ -306,16 +315,57 @@
     }
   }
 
-  if (hasDashboard) {
-    updateCounts();
+  async function ensurePages() {
+    if (pages.length) return;
+
+    const candidates = [];
+    try {
+      candidates.push(new URL("assets/site-data.json", document.baseURI).href);
+    } catch (error) {
+      /* ignore invalid base URI */
+    }
+    candidates.push("./assets/site-data.json", "assets/site-data.json");
+
+    for (const url of [...new Set(candidates)]) {
+      try {
+        const response = await fetch(url, { cache: "no-store" });
+        if (!response.ok) continue;
+        const json = await response.json();
+        const nextPages = Array.isArray(json.pages) ? json.pages : [];
+        if (!nextPages.length) continue;
+        data = json;
+        pages = nextPages;
+        return;
+      } catch (error) {
+        console.warn("Could not load plantão manifest from", url, error);
+      }
+    }
+  }
+
+  function paintDashboard() {
+    if (!hasDashboard) return;
+    try {
+      updateCounts();
+    } catch (error) {
+      console.error("Failed to update dashboard counts:", error);
+    }
     renderChips();
     renderCards();
   }
 
-  loadVisitCounter();
+  async function boot() {
+    if (hasDashboard) {
+      await ensurePages();
+      paintDashboard();
+    }
 
-  const hashMatch = decodeURIComponent(location.hash).match(/paciente=(.+)$/);
-  if (hashMatch && hasDashboard) {
-    openPage(hashMatch[1], false);
+    loadVisitCounter();
+
+    const hashMatch = decodeURIComponent(location.hash).match(/paciente=(.+)$/);
+    if (hashMatch && hasDashboard) {
+      openPage(hashMatch[1], false);
+    }
   }
+
+  boot();
 })();

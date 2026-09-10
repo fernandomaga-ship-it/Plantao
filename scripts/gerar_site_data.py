@@ -26,6 +26,7 @@ CONTENT_ROOTS = [
     REPO_ROOT / "uti",
 ]
 OUTPUT = REPO_ROOT / "assets" / "site-data.js"
+JSON_OUTPUT = REPO_ROOT / "assets" / "site-data.json"
 IGNORED_DIRS = {"legacy", ".git", "__pycache__", "node_modules"}
 
 # ── Categorias ────────────────────────────────────────────────────────────────
@@ -201,6 +202,7 @@ def main():
     generated_at = datetime.now().strftime("%Y-%m-%d")
     payload = {"generatedAt": generated_at, "pages": pages}
     js_source = f"window.PLANTAO_DATA = {json.dumps(payload, ensure_ascii=False, indent=2)};\n"
+    json_source = json.dumps(payload, ensure_ascii=False, indent=2) + "\n"
 
     if args.dry_run:
         print(js_source[:1000], "...")
@@ -208,7 +210,9 @@ def main():
         return
 
     OUTPUT.write_text(js_source, encoding="utf-8")
+    JSON_OUTPUT.write_text(json_source, encoding="utf-8")
     print(f"site-data.js atualizado: {len(pages)} páginas em {OUTPUT}")
+    print(f"site-data.json atualizado: {len(pages)} páginas em {JSON_OUTPUT}")
 
 if __name__ == "__main__":
     main()
