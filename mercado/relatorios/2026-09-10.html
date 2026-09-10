@@ -1,0 +1,405 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FK Capital Diário — Edição 15</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a0e17; --bg2:#0d1320; --panel:#111927; --panel2:#141e30;
+    --line:#232f45; --line-soft:#1a2436;
+    --ink:#e8edf7; --ink-dim:#9fb0c9; --ink-faint:#6b7a94;
+    --gold:#d4af6a; --gold-soft:#8a744a;
+    --green:#4fbf8b; --green-bg:rgba(79,191,139,.10);
+    --red:#e2687a; --red-bg:rgba(226,104,122,.10);
+    --amber:#e0b054; --amber-bg:rgba(224,176,84,.10);
+    --blue:#6ea8e0; --blue-bg:rgba(110,168,224,.10);
+    --mono: 'IBM Plex Mono', ui-monospace, monospace;
+    --sans: 'IBM Plex Sans', system-ui, sans-serif;
+    --serif: 'Fraunces', Georgia, serif;
+  }
+  *{box-sizing:border-box}
+  body.fk-diario{
+    margin:0; background:radial-gradient(1200px 600px at 15% -10%, #101b30 0%, var(--bg) 55%) fixed;
+    color:var(--ink); font-family:var(--sans); line-height:1.55; padding:0 0 64px;
+  }
+  .fk-diario a{color:var(--gold)}
+  .fk-shell{max-width:1080px; margin:0 auto; padding:0 20px}
+
+  /* HEADER */
+  .fk-header{border-bottom:1px solid var(--line); padding:34px 0 26px; background:linear-gradient(180deg, rgba(212,175,106,.05), transparent)}
+  .fk-back{font-family:var(--mono); font-size:12px; color:var(--gold); text-decoration:none; display:inline-block; margin-bottom:10px}
+  .fk-back:hover{text-decoration:underline}
+  .fk-eyebrow{font-family:var(--mono); font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--gold); margin:0 0 10px}
+  .fk-title{font-family:var(--serif); font-weight:600; font-size:clamp(28px,4vw,42px); margin:0 0 8px; letter-spacing:-.01em}
+  .fk-sub{color:var(--ink-dim); font-size:15px; margin:0; max-width:70ch}
+  .fk-meta-row{display:flex; flex-wrap:wrap; gap:10px 18px; margin-top:16px; font-family:var(--mono); font-size:12.5px; color:var(--ink-faint)}
+  .fk-meta-row b{color:var(--ink-dim); font-weight:500}
+
+  /* STALE BANNER */
+  .fk-stale-banner{margin:22px 0; padding:16px 18px; border:1px solid rgba(226,104,122,.4); background:var(--red-bg); border-radius:10px; display:flex; gap:14px}
+  .fk-stale-banner .ic{font-size:20px; line-height:1}
+  .fk-stale-banner h3{margin:0 0 4px; font-size:14.5px; color:#f3aab8; font-family:var(--sans); font-weight:700; letter-spacing:.01em; text-transform:uppercase}
+  .fk-stale-banner p{margin:0; font-size:13.8px; color:var(--ink-dim)}
+
+  /* SECTION */
+  .fk-section{margin:38px 0}
+  .fk-h2{font-family:var(--serif); font-size:21px; font-weight:600; margin:0 0 4px; display:flex; align-items:center; gap:10px}
+  .fk-h2 .n{font-family:var(--mono); font-size:12px; color:var(--gold-soft); border:1px solid var(--line); border-radius:999px; padding:2px 9px}
+  .fk-h2-sub{color:var(--ink-faint); font-size:13px; margin:0 0 18px}
+
+  /* TLDR TILES */
+  .fk-tldr-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:12px}
+  .fk-tile{background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:16px}
+  .fk-tile .k{font-family:var(--mono); font-size:11px; text-transform:uppercase; letter-spacing:.08em; color:var(--ink-faint); margin:0 0 8px}
+  .fk-tile .v{font-family:var(--mono); font-size:22px; font-weight:600; margin:0}
+  .fk-tile .v.up{color:var(--green)} .fk-tile .v.down{color:var(--red)} .fk-tile .v.flat{color:var(--ink)}
+  .fk-tile .d{font-size:12px; color:var(--ink-faint); margin-top:6px}
+  .fk-tile .flag{display:inline-block; margin-top:8px; font-family:var(--mono); font-size:10px; letter-spacing:.05em; padding:2px 7px; border-radius:5px; background:var(--amber-bg); color:var(--amber); text-transform:uppercase}
+
+  /* ALERT CARDS */
+  .fk-alert{border:1px solid var(--line); border-left-width:4px; border-radius:8px; padding:14px 16px; margin:12px 0; background:var(--panel)}
+  .fk-alert.crit{border-left-color:var(--red); }
+  .fk-alert.warn{border-left-color:var(--amber)}
+  .fk-alert.info{border-left-color:var(--blue)}
+  .fk-alert.ok{border-left-color:var(--green)}
+  .fk-alert h4{margin:0 0 6px; font-size:14px; display:flex; align-items:center; gap:8px}
+  .fk-alert .tag{font-family:var(--mono); font-size:10px; text-transform:uppercase; letter-spacing:.06em; padding:1px 7px; border-radius:5px}
+  .fk-alert.crit .tag{background:var(--red-bg); color:var(--red)}
+  .fk-alert.warn .tag{background:var(--amber-bg); color:var(--amber)}
+  .fk-alert.info .tag{background:var(--blue-bg); color:var(--blue)}
+  .fk-alert.ok .tag{background:var(--green-bg); color:var(--green)}
+  .fk-alert p{margin:0; font-size:13.6px; color:var(--ink-dim)}
+  .fk-alert p+p{margin-top:6px}
+
+  /* HEAT TILES (per-asset) */
+  .fk-heat-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:14px}
+  .fk-heat{background:var(--panel2); border:1px solid var(--line); border-radius:12px; padding:18px; position:relative; overflow:hidden}
+  .fk-heat::before{content:""; position:absolute; top:0; left:0; right:0; height:3px}
+  .fk-heat.h-alto::before{background:var(--red)}
+  .fk-heat.h-medio::before{background:var(--amber)}
+  .fk-heat.h-baixo::before{background:var(--green)}
+  .fk-heat-top{display:flex; justify-content:space-between; align-items:flex-start; gap:10px; margin-bottom:10px}
+  .fk-heat-ticker{font-family:var(--mono); font-size:16px; font-weight:600; color:var(--ink)}
+  .fk-heat-name{font-size:12px; color:var(--ink-faint); margin-top:2px}
+  .fk-heat-badge{font-family:var(--mono); font-size:10px; text-transform:uppercase; letter-spacing:.06em; padding:3px 9px; border-radius:999px; white-space:nowrap}
+  .h-alto .fk-heat-badge{background:var(--red-bg); color:var(--red)}
+  .h-medio .fk-heat-badge{background:var(--amber-bg); color:var(--amber)}
+  .h-baixo .fk-heat-badge{background:var(--green-bg); color:var(--green)}
+  .fk-heat p{font-size:13.3px; color:var(--ink-dim); margin:8px 0}
+  .fk-heat .nao{border-top:1px dashed var(--line-soft); margin-top:10px; padding-top:10px}
+  .fk-heat .nao b{color:#f3aab8; font-family:var(--sans); font-size:11.5px; text-transform:uppercase; letter-spacing:.05em; display:block; margin-bottom:4px}
+
+  /* TIMELINE */
+  .fk-timeline{border-left:2px solid var(--line); margin-left:8px; padding-left:22px}
+  .fk-tl-item{position:relative; padding-bottom:20px}
+  .fk-tl-item::before{content:""; position:absolute; left:-28px; top:3px; width:11px; height:11px; border-radius:50%; background:var(--bg2); border:2px solid var(--gold)}
+  .fk-tl-item .date{font-family:var(--mono); font-size:12px; color:var(--gold); margin-bottom:3px}
+  .fk-tl-item h5{margin:0 0 3px; font-size:14px}
+  .fk-tl-item p{margin:0; font-size:13px; color:var(--ink-dim)}
+
+  /* TABLE */
+  table.fk-table{width:100%; border-collapse:collapse; font-size:13px}
+  table.fk-table th{text-align:left; font-family:var(--mono); font-size:11px; text-transform:uppercase; letter-spacing:.05em; color:var(--ink-faint); padding:8px 10px; border-bottom:1px solid var(--line)}
+  table.fk-table td{padding:9px 10px; border-bottom:1px solid var(--line-soft); color:var(--ink-dim)}
+  table.fk-table tr:last-child td{border-bottom:none}
+  .mono{font-family:var(--mono)}
+  .pill{display:inline-block; font-family:var(--mono); font-size:10.5px; padding:2px 8px; border-radius:999px; text-transform:uppercase; letter-spacing:.04em}
+  .pill.fact{background:var(--green-bg); color:var(--green)}
+  .pill.hyp{background:var(--amber-bg); color:var(--amber)}
+  .pill.pend{background:var(--blue-bg); color:var(--blue)}
+
+  .fk-footer{margin-top:50px; padding-top:22px; border-top:1px solid var(--line); font-size:12px; color:var(--ink-faint)}
+  .fk-footer p{margin:0 0 8px}
+  ul.fk-list{margin:8px 0; padding-left:20px} ul.fk-list li{margin:5px 0; font-size:13.6px; color:var(--ink-dim)}
+  strong{color:var(--ink)}
+</style>
+</head>
+<body class="fk-diario">
+<div class="fk-shell">
+
+  <header class="fk-header">
+    <a class="fk-back" href="../index.html">← Mercado</a>
+    <p class="fk-eyebrow">FK Capital · Consultoria de Portfólio · Não é recomendação de compra/venda</p>
+    <h1 class="fk-title">FK Capital Diário — Edição 15</h1>
+    <p class="fk-sub">10 de setembro de 2026 — continuidade da Edição 14 (09/09). Leitura de contexto para apoiar decisão própria de Dr. Fernando Magalhães Coutinho; nenhuma cotação, lote ou posição aqui é inventada — o que não está confirmado está sinalizado como tal.</p>
+    <div class="fk-meta-row">
+      <span><b>Estruturas:</b> PF (Fernando) + PJ (F&amp;K Serviços Médicos)</span>
+      <span><b>Janela:</b> pós-fechamento B3, 10/09/2026 ~08h BRT</span>
+      <span><b>Base de dados de mercado:</b> fechamento/pregão de 09/09/2026</span>
+    </div>
+  </header>
+
+  <div class="fk-stale-banner">
+    <div class="ic">🛑</div>
+    <div>
+      <h3>Arquivo de carteira STALE — não recalcule alocação em cima dele</h3>
+      <p><strong>Carteira_Consolidada_FK_Fernando.xlsx (maio/26) está desatualizado</strong> e não deve ser usado como base de posições, lotes ou preços médios nesta edição. Os números de patrimônio abaixo são <strong>ordem de grandeza</strong>, não saldo apurado hoje. O único bloco de posições tratado como fonte nesta edição é o rascunho STVM do Itaú F&amp;K de 20/08/2026 (<strong>ainda sem assinatura</strong>) — também sinalizado como não-definitivo linha a linha abaixo.</p>
+    </div>
+  </div>
+
+  <!-- TLDR TILES -->
+  <section class="fk-section">
+    <h2 class="fk-h2">TL;DR do dia <span class="n">macro</span></h2>
+    <p class="fk-h2-sub">Painel de contexto, não sinal de operação. Valores rotulados como fechamento de 09/09/2026 (B3 já encerrada no horário desta edição).</p>
+    <div class="fk-tldr-grid">
+      <div class="fk-tile">
+        <p class="k">Ibovespa</p>
+        <p class="v down">185.629 pts</p>
+        <p class="d">−0,93% vs 187.367 pts (fechamento 09/09)</p>
+        <span class="flag">fechamento 09/09</span>
+      </div>
+      <div class="fk-tile">
+        <p class="k">Dólar (USD/BRL)</p>
+        <p class="v up">R$5,112</p>
+        <p class="d">+0,51%; Bloomberg Línea também cita R$5,1091 — faixa estreita</p>
+        <span class="flag">fechamento 09/09</span>
+      </div>
+      <div class="fk-tile">
+        <p class="k">Brent (outubro)</p>
+        <p class="v up">US$101,21</p>
+        <p class="d">+3,36% em 09/09; acima de US$100 pela 1ª vez desde julho</p>
+        <span class="flag">fechamento 09/09</span>
+      </div>
+      <div class="fk-tile">
+        <p class="k">Patrimônio FK (ordem de grandeza)</p>
+        <p class="v flat">~R$1,13 mi</p>
+        <p class="d">PF ~R$847–870 mil · PJ ~R$279–290 mil</p>
+        <span class="flag">não recalculado hoje</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- MACRO -->
+  <section class="fk-section">
+    <h2 class="fk-h2">Contexto de mercado <span class="n">01</span></h2>
+    <p class="fk-h2-sub">O que moveu o pregão de 09/09 e o que está no radar até o Super-Wednesday de 16/09.</p>
+
+    <div class="fk-alert crit">
+      <h4><span class="tag">confirmado</span> Risk-off global e petróleo acima de US$100</h4>
+      <p>Ibovespa fechou em 185.629 pts (−0,93% vs 187.367). Drivers: tensões Oriente Médio / EUA–Irã, ataques houthis a energia saudita, e risk-off nos EUA (Dow/S&amp;P/Nasdaq no vermelho). Brent outubro fechou a US$101,21 (+3,36%) — primeira sessão acima de US$100 desde julho. Fontes: Poder360, BP Money, SpaceMoney, Yahoo ^BVSP.</p>
+    </div>
+    <div class="fk-alert warn">
+      <h4><span class="tag">gatilho</span> Treasury buyback menor que o esperado + ruído fiscal doméstico</h4>
+      <p>Recompra do Tesouro americano veio abaixo do antecipado, reforçando aversão a risco. No Brasil, ruído político/fiscal doméstico acompanhou a sessão — fluxo construtivo da Edição 14 (trade eleitoral) perdeu tração no pregão de 09/09.</p>
+    </div>
+    <div class="fk-alert info">
+      <h4><span class="tag">confirmado</span> Dólar e techs em pressão</h4>
+      <p>Dólar comercial em R$5,112 (+0,51%); Bloomberg Línea cita R$5,1091 — preferência desta edição para tiles/manifest: <strong>R$5,112</strong>. MSFT fechou US$491,65 (−0,47% vs 493,95); NVDA US$223,67 (−0,91% vs 225,73). BBDC4 fechou R$17,79 (−2,36%).</p>
+    </div>
+    <div class="fk-alert ok">
+      <h4><span class="tag">confirmado</span> Fechamento oficial Ibovespa disponível</h4>
+      <p>Diferente da Edição 14 (que usava faixa pré-abertura), esta edição trabalha com ponto único confirmado para o Ibovespa de 09/09: <strong>185.629 pts (−0,93%)</strong>.</p>
+    </div>
+  </section>
+
+  <!-- CARTEIRA -->
+  <section class="fk-section">
+    <h2 class="fk-h2">Carteira consolidada <span class="n">02</span></h2>
+    <p class="fk-h2-sub">Ordem de grandeza apenas — nenhum número abaixo deve ser tratado como saldo apurado.</p>
+    <table class="fk-table">
+      <tr><th>Estrutura</th><th>Ordem de grandeza</th><th>Status</th></tr>
+      <tr><td>PF (pessoa física)</td><td class="mono">~R$847–870 mil</td><td><span class="pill hyp">estimativa</span></td></tr>
+      <tr><td>PJ (F&amp;K Serviços Médicos)</td><td class="mono">~R$279–290 mil</td><td><span class="pill hyp">estimativa</span></td></tr>
+      <tr><td><strong>Total</strong></td><td class="mono"><strong>~R$1,13 milhão</strong></td><td><span class="pill hyp">estimativa</span></td></tr>
+      <tr><td>Ações BR</td><td class="mono">~60%</td><td><span class="pill hyp">estimativa</span></td></tr>
+      <tr><td>FIIs</td><td class="mono">~28%</td><td><span class="pill hyp">estimativa</span></td></tr>
+      <tr><td>BDRs</td><td class="mono">~12%</td><td><span class="pill hyp">estimativa</span></td></tr>
+    </table>
+
+    <h3 style="font-size:15px;margin:24px 0 8px;color:var(--ink)">Livro Itaú F&amp;K — rascunho STVM de 20/08 (sem assinatura)</h3>
+    <table class="fk-table">
+      <tr><th>Ativo</th><th>Qtde</th><th>Status</th></tr>
+      <tr><td class="mono">BEEF3</td><td class="mono">3.800</td><td rowspan="8"><span class="pill pend">não assinado</span></td></tr>
+      <tr><td class="mono">COCA34</td><td class="mono">84</td></tr>
+      <tr><td class="mono">CPLE3</td><td class="mono">711</td></tr>
+      <tr><td class="mono">EQTL3</td><td class="mono">259</td></tr>
+      <tr><td class="mono">MRBF3*</td><td class="mono">494</td></tr>
+      <tr><td class="mono">MSFT34</td><td class="mono">91</td></tr>
+      <tr><td class="mono">NVDC34</td><td class="mono">477</td></tr>
+      <tr><td class="mono">PCIP11</td><td class="mono">115</td></tr>
+      <tr><td><strong>Total</strong></td><td class="mono"><strong>~R$76 mil</strong></td></tr>
+    </table>
+    <p style="font-size:12.3px;color:var(--ink-faint);margin-top:8px">*Grafado "MRBF3" na fonte deste rascunho — provável referência a MRFG3/MBRF3 (pós-fusão Marfrig/BRF); confirmar o ticker exato antes de qualquer STVM ou movimentação. Note-se também que edições anteriores registraram esse mesmo bloco Itaú como <strong>CPLE5</strong>, não CPLE3 — classe de ação diferente (ON vs. PN); é uma divergência entre fontes que precisa ser resolvida, não uma correção automática feita aqui. Não há outros lotes deste livro a inventar — qualquer posição fora desta lista permanece não confirmada.</p>
+  </section>
+
+  <!-- HEAT DOS 8 ATIVOS -->
+  <section class="fk-section">
+    <h2 class="fk-h2">Calor por ativo <span class="n">03</span></h2>
+    <p class="fk-h2-sub">Calor reflete densidade de notícia/risco de evento no fechamento de 09/09, não sinal técnico. RSI/MM200/MACD não recalculados. Foco em "o que NÃO fazer".</p>
+
+    <div class="fk-heat-grid">
+
+      <div class="fk-heat h-medio">
+        <div class="fk-heat-top">
+          <div><div class="fk-heat-ticker">AXIA3</div><div class="fk-heat-name">ex-Eletrobras (Axia Energia)</div></div>
+          <span class="fk-heat-badge">calor médio</span>
+        </div>
+        <p><span class="pill fact">confirmado</span> Migração de ticker/nome concluída (ELET3/ELET5 → AXIA3/AXIA4) e discussão em curso sobre migração ao Novo Mercado da B3 — sem novidade estrutural nesta edição.</p>
+        <p><span class="pill hyp">hipótese anterior</span> Zona de realização parcial R$63–68 seguia como plano de edições passadas — <strong>não recalculada hoje</strong>, não deve ser tratada como nível atual.</p>
+        <div class="nao"><b>O que não fazer</b><p>Não use a faixa R$63–68 de memória de edições antigas como gatilho de venda sem reconferir cotação e fundamentos atuais — governança societária pós-migração pode ter alterado o cenário.</p></div>
+      </div>
+
+      <div class="fk-heat h-alto">
+        <div class="fk-heat-top">
+          <div><div class="fk-heat-ticker">BBDC4</div><div class="fk-heat-name">Bradesco PN</div></div>
+          <span class="fk-heat-badge">calor alto</span>
+        </div>
+        <p><span class="pill fact">confirmado</span> Fechamento 09/09: <strong>R$17,79 (−2,36%)</strong>. JCP BBDC4 de <strong>R$0,644233458/ação</strong> com pagamento em <strong>15/09/2026</strong> segue confirmado (antecipação de R$6,5 bi).</p>
+        <p><span class="pill hyp">hipótese</span> Queda do papel no risk-off de 09/09 não altera o calendário do JCP; motivação da antecipação continua sendo a declarada (investimentos/tecnologia/expansão), sem confirmação pública de motivação regulatória.</p>
+        <div class="nao"><b>O que não fazer</b><p>Não trate o JCP de 15/09 como "dinheiro extra" para realocar sem antes registrar o efeito de IR na renda tributável do mês, e não use a queda de −2,36% como gatilho de compra/venda sem regra escrita prévia.</p></div>
+      </div>
+
+      <div class="fk-heat h-alto">
+        <div class="fk-heat-top">
+          <div><div class="fk-heat-ticker">MSFT34</div><div class="fk-heat-name">Microsoft BDR — 3 contas (Itaú, XP, +1)</div></div>
+          <span class="fk-heat-badge">calor alto</span>
+        </div>
+        <p><span class="pill fact">confirmado</span> MSFT (ADR/ação) fechou US$491,65 (−0,47% vs 493,95) em 09/09 — referência para o BDR, sem inventar cotação local do MSFT34.</p>
+        <p><span class="pill pend">pendência recorrente</span> Regra escrita de redução tática do lote Itaú (custo mais alto) antes do resultado Q1 FY27 (~27/10) segue <strong>sem formalização</strong>.</p>
+        <div class="nao"><b>O que não fazer</b><p>Instrução explícita desta edição: <strong>nenhuma redução tática de BDR antes de existir regra escrita para MSFT34 e antes de 16/09</strong> (Super-Wednesday). Não decida a posição das 3 contas de forma ad hoc no calor do risk-off — é exatamente o padrão que gerou o "buraco" de regra ausente.</p></div>
+      </div>
+
+      <div class="fk-heat h-medio">
+        <div class="fk-heat-top">
+          <div><div class="fk-heat-ticker">NVDC34</div><div class="fk-heat-name">Nvidia BDR</div></div>
+          <span class="fk-heat-badge">calor médio</span>
+        </div>
+        <p><span class="pill fact">confirmado</span> NVDA fechou US$223,67 (−0,91% vs 225,73) em 09/09 — referência para o BDR, sem inventar cotação local do NVDC34.</p>
+        <p><span class="pill pend">sem catalisador novo</span> Sem notícia específica de evento corporativo datada para 09–10/09 além do movimento de preço no risk-off setorial.</p>
+        <div class="nao"><b>O que não fazer</b><p>Não presuma catalisador (bom ou ruim) para NVDC34 só porque o setor de IA acompanhou o risk-off americano — na ausência de notícia corporativa, trate como posição em compasso de espera.</p></div>
+      </div>
+
+      <div class="fk-heat h-alto">
+        <div class="fk-heat-top">
+          <div><div class="fk-heat-ticker">KNCR11</div><div class="fk-heat-name">Kinea Rendimentos — FII CDI</div></div>
+          <span class="fk-heat-badge">calor alto (estrutural)</span>
+        </div>
+        <p><span class="pill fact">confirmado (memória do projeto)</span> Parte da posição KNCR11 está no PJ (F&amp;K), onde os rendimentos são tributados — em PF a mesma distribuição é isenta de IR. Buraco aberto desde a Edição 13, sem execução da migração.</p>
+        <p><span class="pill hyp">hipótese</span> Ciclo de corte de Selic tende a comprimir a renda nominal futura deste FII indexado a CDI — direção qualitativa, sem número recalculado hoje. Super-Wednesday 16/09 eleva a densidade de risco de juros.</p>
+        <div class="nao"><b>O que não fazer</b><p>Não adicione mais capital a KNCR11 dentro do PJ enquanto a migração PJ→PF (STVM) não estiver desenhada — isso só aumenta o estoque de rendimento tributado que depois precisa ser desfeito.</p></div>
+      </div>
+
+      <div class="fk-heat h-medio">
+        <div class="fk-heat-top">
+          <div><div class="fk-heat-ticker">PCIP11</div><div class="fk-heat-name">Patrimonial Cibrasec — FII</div></div>
+          <span class="fk-heat-badge">calor médio (estrutural)</span>
+        </div>
+        <p><span class="pill fact">confirmado (memória do projeto)</span> Mesmo problema estrutural do KNCR11: parcela em PJ paga IR que seria isento em PF. 115 cotas no rascunho STVM Itaú F&amp;K.</p>
+        <p><span class="pill hyp">estimativa antiga, não recalculada</span> Valor justo de ~R$82–84 estimado em framework de edição anterior — não há atualização de preço ou de análise nesta edição.</p>
+        <div class="nao"><b>O que não fazer</b><p>Não use a faixa de R$82–84 como referência de compra hoje sem reconfirmar preço secundário e não exerça direito de subscrição por inércia.</p></div>
+      </div>
+
+      <div class="fk-heat h-baixo">
+        <div class="fk-heat-top">
+          <div><div class="fk-heat-ticker">EQTL3 / CPLE3</div><div class="fk-heat-name">Equatorial Energia / Copel</div></div>
+          <span class="fk-heat-badge">calor baixo–médio</span>
+        </div>
+        <p><span class="pill fact">confirmado</span> CPLE3 aparece no rascunho STVM Itaú (711 ações) e EQTL3 (259) — ver ressalva de ticker (CPLE3 vs. CPLE5) na seção de carteira.</p>
+        <p><span class="pill pend">sem novidade confirmada nesta edição</span> Sem evento corporativo novo datado para 09–10/09 além do contexto setorial de utilities no risk-off.</p>
+        <div class="nao"><b>O que não fazer</b><p>Não decida sobre CPLE3/CPLE5 sem antes resolver qual classe de ação é efetivamente detida — operar antes disso pode inverter a exposição a dividendo/liquidez pretendida.</p></div>
+      </div>
+
+      <div class="fk-heat h-alto">
+        <div class="fk-heat-top">
+          <div><div class="fk-heat-ticker">PETR3 / PETR4</div><div class="fk-heat-name">Petrobras — oil-linked / JCP 21/09</div></div>
+          <span class="fk-heat-badge">calor alto</span>
+        </div>
+        <p><span class="pill fact">confirmado</span> Brent outubro fechou US$101,21 (+3,36%) em 09/09 — petróleo acima de US$100 pela 1ª vez desde julho. Yahoo BZ=F cedo em 10/09 ~US$102,32 (não usado nos tiles). JCP PETR3/PETR4 ~R$0,35049/ação com pagamento em <strong>21/09</strong> (calendário).</p>
+        <p><span class="pill hyp">contexto</span> Petrobras não está no livro Itaú F&amp;K listado nesta edição — cobertura é oil-linked (câmbio/sentimento setorial) + calendário de JCP se houver exposição em outra conta não inventada aqui.</p>
+        <div class="nao"><b>O que não fazer</b><p>Não trate a alta do Brent como justificativa para abrir posição nova em PETR3/PETR4 sem confirmar exposição real e sem reavaliar o risco geopolítico como estrutural (pode reverter tão rápido quanto surgiu).</p></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- RENDA PASSIVA -->
+  <section class="fk-section">
+    <h2 class="fk-h2">Meta de renda passiva — teste de realismo <span class="n">04</span></h2>
+    <div class="fk-alert crit">
+      <h4><span class="tag">correção necessária</span> R$20 mil/mês não é compatível com o capital atual</h4>
+      <p>Com patrimônio total em ordem de grandeza de ~R$1,13 milhão, uma renda passiva de R$20.000/mês implicaria um yield anualizado de ~21%, muito acima do que a alocação atual (ações BR + FIIs + BDRs) sustenta de forma orgânica e recorrente.</p>
+      <p>Renda orgânica estimada, em ordem de grandeza, fica em torno de <strong>~R$6,5–9 mil/mês</strong> — e mesmo essa faixa é sensível ao ciclo de corte da Selic (comprime yield de FIIs CDI como KNCR11) e à tributação de FIIs ainda alocados em PJ.</p>
+    </div>
+    <p style="font-size:13.6px;color:var(--ink-dim)">Isso não é uma crítica ao objetivo em si — é um alerta de dimensionamento: ou a meta é revista para um horizonte de acumulação mais longo, ou o aporte mensal e/ou a alocação precisam mudar de forma explícita para fechar essa lacuna. Fica como pendência de reconciliação com o Dr. Fernando, carregada desde a Edição 13.</p>
+  </section>
+
+  <!-- BURACOS ABERTOS -->
+  <section class="fk-section">
+    <h2 class="fk-h2">Buracos abertos (sem mudança estrutural) <span class="n">05</span></h2>
+    <div class="fk-alert warn"><h4><span class="tag">estrutural</span> FIIs no PJ pagando IR desnecessário</h4><p>KNCR11 e PCIP11 com parcela em PJ tributada; a mesma distribuição em PF é isenta. Migração PJ→PF via STVM segue como prioridade #1 recorrente, sem execução.</p></div>
+    <div class="fk-alert warn"><h4><span class="tag">operacional</span> MSFT34 em 3 contas sem regra escrita</h4><p>Sem critério formal de qual lote reduzir/manter antes do resultado de ~27/10. Ver instrução de disciplina na seção de calendário.</p></div>
+    <div class="fk-alert info"><h4><span class="tag">tributário</span> Banco de prejuízos fiscais de ~R$434 mil parado</h4><p>Ferramenta de gestão tributária ativa em tese, mas sem uso ativo registrado nesta janela — oportunidade de compensação de ganhos futura não está sendo aproveitada.</p></div>
+    <div class="fk-alert info"><h4><span class="tag">governança</span> Buckets PJ (buy-and-hold) vs. PF (híbrida) não formalizados</h4><p>A separação de estratégia por estrutura ainda não está escrita como política — decisões continuam sendo tomadas caso a caso.</p></div>
+  </section>
+
+  <!-- CALENDÁRIO -->
+  <section class="fk-section">
+    <h2 class="fk-h2">Calendário e disciplina da semana <span class="n">06</span></h2>
+    <div class="fk-timeline">
+      <div class="fk-tl-item"><div class="date">15/09 (seg)</div><h5>JCP BBDC4 — pagamento</h5><p>R$0,644233458/ação (BBDC4), antecipação confirmada. Registrar efeito de IR antes de qualquer realocação do valor recebido.</p></div>
+      <div class="fk-tl-item"><div class="date">16/09 (ter)</div><h5>Super-Wednesday: Copom + FOMC (radar Ed14)</h5><p>Tratar como dia de alta densidade de risco para FIIs CDI (KNCR11) e câmbio — agenda mantida como radar planejado da Edição 14, sem nova confirmação inventada nesta edição. Nenhuma decisão tática de BDR antes desta data.</p></div>
+      <div class="fk-tl-item"><div class="date">18–19/09</div><h5>Check-in Ironman 70.3 São Paulo</h5><p>Janela de baixa disponibilidade para gestão ativa — decisões discricionárias devem ser adiadas ou pré-definidas antes desta janela.</p></div>
+      <div class="fk-tl-item"><div class="date">20/09 (dom)</div><h5>Prova: Ironman 70.3 São Paulo</h5><p>Nenhum movimento de carteira deve depender de decisão tomada no dia da prova — reduzir decisões discricionárias nesta semana.</p></div>
+      <div class="fk-tl-item"><div class="date">21/09 (seg)</div><h5>JCP PETR3/PETR4 — pagamento</h5><p>~R$0,35049/ação (calendário). Só relevante se houver exposição confirmada fora do livro Itaú F&amp;K listado aqui.</p></div>
+      <div class="fk-tl-item"><div class="date">contínuo</div><h5>STVM F&amp;K → RMC (Itaú)</h5><p>Ainda em tramitação com Renan/Itaú. Se permanecer sem resposta, escalar via SAC. Nenhum movimento jurídico relativo a FK/RMC sem envolvimento do advogado Bruno.</p></div>
+    </div>
+  </section>
+
+  <!-- FATOS / HIPÓTESES / PENDÊNCIAS -->
+  <section class="fk-section">
+    <h2 class="fk-h2">Fatos, hipóteses e pendências <span class="n">07</span></h2>
+    <table class="fk-table">
+      <tr><th>Item</th><th>Status</th></tr>
+      <tr><td>Ibovespa 185.629 pts (−0,93%) fechamento 09/09</td><td><span class="pill fact">confirmado</span></td></tr>
+      <tr><td>Dólar comercial R$5,112 (+0,51%); faixa c/ Bloomberg R$5,1091</td><td><span class="pill fact">confirmado</span></td></tr>
+      <tr><td>Brent outubro US$101,21 (+3,36%) fechamento 09/09</td><td><span class="pill fact">confirmado</span></td></tr>
+      <tr><td>BBDC4 R$17,79 (−2,36%); JCP R$0,644233458 pagamento 15/09</td><td><span class="pill fact">confirmado</span></td></tr>
+      <tr><td>MSFT US$491,65 (−0,47%); NVDA US$223,67 (−0,91%)</td><td><span class="pill fact">confirmado</span></td></tr>
+      <tr><td>JCP PETR ~R$0,35049 pagamento 21/09</td><td><span class="pill fact">calendário</span></td></tr>
+      <tr><td>Alocação 60/28/12% e patrimônio ~R$1,13 mi</td><td><span class="pill hyp">ordem de grandeza, não recalculada</span></td></tr>
+      <tr><td>Ticker CPLE3 vs. CPLE5 no livro Itaú</td><td><span class="pill pend">divergência entre fontes, a resolver</span></td></tr>
+      <tr><td>"MRBF3" no rascunho STVM</td><td><span class="pill pend">provável erro de digitação para MRFG3/MBRF3</span></td></tr>
+      <tr><td>Copom+FOMC em 16/09</td><td><span class="pill hyp">radar Ed14; sem nova confirmação inventada</span></td></tr>
+      <tr><td>Regra escrita MSFT34 antes de corte tático</td><td><span class="pill pend">ainda sem formalização</span></td></tr>
+    </table>
+  </section>
+
+  <!-- RISCOS -->
+  <section class="fk-section">
+    <h2 class="fk-h2">Riscos e gatilhos <span class="n">08</span></h2>
+    <ul class="fk-list">
+      <li><strong>Risco geopolítico no petróleo:</strong> Brent já cruzou US$100; escalada EUA–Irã / Houthis pode empurrar ainda mais — efeito ambíguo (positivo para oil-linked/câmbio, negativo para inflação global e risk-off).</li>
+      <li><strong>Risco de evento concentrado em 16/09:</strong> Copom e FOMC no mesmo dia (radar Ed14) aumentam a chance de movimento abrupto em ativos sensíveis a juros (KNCR11, PCIP11, e indiretamente BBDC4).</li>
+      <li><strong>Risco de risk-off prolongado:</strong> sessão de 09/09 reverteu o tom construtivo da Edição 14; techs e bancos domésticos (MSFT/NVDA/BBDC4) já sentiram a pressão.</li>
+      <li><strong>Risco de execução:</strong> pendências estruturais (migração de FIIs, regra MSFT34, banco de prejuízos, STVM) seguem sem prazo — o custo de não decidir se acumula edição após edição.</li>
+      <li><strong>Risco de dado stale + Ironman:</strong> qualquer decisão baseada no arquivo de maio/26 ou em faixas antigas, tomada na janela 18–20/09, corre risco extra de premissa desatualizada sob baixa disponibilidade cognitiva.</li>
+    </ul>
+  </section>
+
+  <!-- PRÓXIMOS PASSOS -->
+  <section class="fk-section">
+    <h2 class="fk-h2">Próximos passos práticos <span class="n">09</span></h2>
+    <ul class="fk-list">
+      <li>Registrar o recebimento do JCP BBDC4 de 15/09 e seu efeito de IR antes de decidir realocação.</li>
+      <li>Formalizar por escrito a regra de redução do lote MSFT34 (Itaú) antes de 16/09 — sem isso, nenhuma ação tática deve ser tomada nessa posição.</li>
+      <li>Resolver a divergência CPLE3/CPLE5 antes de qualquer STVM que envolva essa posição.</li>
+      <li>Confirmar o ticker real por trás de "MRBF3" no rascunho Itaú F&amp;K.</li>
+      <li>Escalar via SAC o STVM F&amp;K → RMC junto ao Itaú/Renan se permanecer silêncio.</li>
+      <li>Nenhum movimento jurídico FK/RMC sem o advogado Bruno.</li>
+      <li>Pré-definir (ou adiar) decisões discricionárias antes do check-in Ironman 18–19/09 e da prova em 20/09.</li>
+      <li>Atualizar o arquivo consolidado de carteira (substituir a base de maio/26) assim que houver extrato atual de Itaú e XP.</li>
+    </ul>
+  </section>
+
+  <footer class="fk-footer">
+    <p><strong>Aviso:</strong> este material é um informe de contexto e organização de decisão, produzido a pedido do Dr. Fernando Magalhães Coutinho para uso pessoal. Não constitui recomendação de compra ou venda de ativos, oferta, análise de investimento formal ou aconselhamento financeiro regulado. Números de mercado sem fechamento oficial confirmado estão explicitamente sinalizados como faixa/estimativa. Consulte sempre extratos oficiais das corretoras antes de qualquer decisão.</p>
+    <p>FK Capital Diário — Edição 15 · 10/09/2026 · continuação da Edição 14 (09/09/2026).</p>
+  </footer>
+
+</div>
+</body>
+</html>
