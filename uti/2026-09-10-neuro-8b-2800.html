@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1a2530">
+<title>UTI BP Neuro 8B — Passagem 10/09/2026</title>
+<style>
+  :root{
+    --ink:#1a2530;
+    --ink-soft:#4b5b68;
+    --line:#dbe2e6;
+    --paper:#f6f8f8;
+    --card:#ffffff;
+    --teal:#0f6e56;
+    --teal-bg:#e1f5ee;
+    --amber:#854f0b;
+    --amber-bg:#faeeda;
+    --red:#791f1f;
+    --red-bg:#fcebeb;
+    --blue:#0c447c;
+    --blue-bg:#e6f1fb;
+    --gray-bg:#f1efe8;
+    --header:#1a2530;
+    --header-meta:#c7d0d6;
+  }
+  html[data-theme="dark"]{
+    --ink:#eef8f6;
+    --ink-soft:#9eb4b0;
+    --line:rgba(238,248,246,.12);
+    --paper:#081312;
+    --card:#102321;
+    --teal:#2dd4bf;
+    --teal-bg:rgba(45,212,191,.14);
+    --amber:#fbbf24;
+    --amber-bg:rgba(251,191,36,.14);
+    --red:#fca5a5;
+    --red-bg:rgba(185,28,28,.22);
+    --blue:#7dd3fc;
+    --blue-bg:rgba(125,211,252,.12);
+    --gray-bg:#132c29;
+    --header:#0d1b1a;
+    --header-meta:#9eb4b0;
+  }
+  @media (prefers-color-scheme: dark){
+    html:not([data-theme="light"]){
+      --ink:#eef8f6;
+      --ink-soft:#9eb4b0;
+      --line:rgba(238,248,246,.12);
+      --paper:#081312;
+      --card:#102321;
+      --teal:#2dd4bf;
+      --teal-bg:rgba(45,212,191,.14);
+      --amber:#fbbf24;
+      --amber-bg:rgba(251,191,36,.14);
+      --red:#fca5a5;
+      --red-bg:rgba(185,28,28,.22);
+      --blue:#7dd3fc;
+      --blue-bg:rgba(125,211,252,.12);
+      --gray-bg:#132c29;
+      --header:#0d1b1a;
+      --header-meta:#9eb4b0;
+    }
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;
+    background:var(--paper);
+    color:var(--ink);
+    -webkit-font-smoothing:antialiased;
+  }
+  header{
+    background:var(--header);
+    color:#fff;
+    padding:22px 20px 18px;
+    position:sticky;
+    top:0;
+    z-index:10;
+  }
+  header .row{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    flex-wrap:wrap;
+    gap:8px 24px;
+    max-width:1400px;
+    margin:0 auto;
+  }
+  header h1{
+    font-size:19px;
+    font-weight:600;
+    margin:0;
+    letter-spacing:0.2px;
+  }
+  header .meta{
+    font-size:13px;
+    color:var(--header-meta);
+  }
+  header .meta strong{color:#fff;font-weight:600;}
+  .legend{
+    max-width:1400px;
+    margin:14px auto 0;
+    display:flex;
+    gap:16px;
+    flex-wrap:wrap;
+    font-size:12px;
+    color:var(--header-meta);
+  }
+  .legend span{display:flex;align-items:center;gap:6px;}
+  .dot{width:9px;height:9px;border-radius:50%;display:inline-block;}
+  .bed-nav{
+    max-width:1400px;
+    margin:12px auto 0;
+    display:flex;
+    gap:6px;
+    flex-wrap:wrap;
+  }
+  .bed-nav a{
+    color:#fff;
+    text-decoration:none;
+    font-size:12px;
+    font-weight:600;
+    padding:5px 9px;
+    border-radius:6px;
+    background:rgba(255,255,255,.12);
+    border:1px solid rgba(255,255,255,.16);
+  }
+  .bed-nav a.empty{opacity:.55;font-weight:500;}
+  main{
+    max-width:1400px;
+    margin:0 auto;
+    padding:22px 16px 60px;
+  }
+  .banner{
+    background:var(--teal-bg);
+    color:var(--teal);
+    border:1px solid var(--line);
+    border-left:4px solid var(--teal);
+    border-radius:8px;
+    padding:12px 14px;
+    font-size:13.5px;
+    line-height:1.55;
+    margin-bottom:14px;
+  }
+  .banner.warn{
+    background:var(--amber-bg);
+    color:var(--amber);
+    border-left-color:var(--amber);
+  }
+  .stats{
+    display:grid;
+    grid-template-columns:repeat(4,minmax(0,1fr));
+    gap:10px;
+    margin-bottom:18px;
+  }
+  .stat{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:12px 14px;
+  }
+  .stat b{display:block;font-size:22px;line-height:1.1;}
+  .stat span{font-size:12px;color:var(--ink-soft);}
+  .panel{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:16px 16px 12px;
+    margin-bottom:18px;
+  }
+  .panel h2{
+    font-size:16px;
+    margin:0 0 12px;
+  }
+  .table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+  table.censo, table.crono{
+    width:100%;
+    border-collapse:collapse;
+    font-size:13px;
+    min-width:640px;
+  }
+  table.censo th, table.censo td,
+  table.crono th, table.crono td{
+    text-align:left;
+    padding:8px 9px;
+    border-bottom:1px solid var(--line);
+    vertical-align:top;
+  }
+  table.censo th, table.crono th{
+    font-size:11px;
+    letter-spacing:.04em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    font-weight:650;
+  }
+  table.censo tr.vago td{color:var(--ink-soft);}
+  .note{
+    font-size:12.5px;
+    color:var(--ink-soft);
+    margin:10px 0 0;
+    line-height:1.5;
+  }
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(320px, 1fr));
+    gap:16px;
+  }
+  .card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:10px;
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+    scroll-margin-top:92px;
+  }
+  .card.empty{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    min-height:88px;
+    border-style:dashed;
+    color:var(--ink-soft);
+    font-size:13px;
+  }
+  .card-head{
+    padding:14px 16px 12px;
+    border-bottom:1px solid var(--line);
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:10px;
+  }
+  .bed-tag{
+    font-size:12px;
+    font-weight:600;
+    color:var(--blue);
+    background:var(--blue-bg);
+    padding:2px 9px;
+    border-radius:5px;
+    white-space:nowrap;
+  }
+  .card-head h2{
+    font-size:15px;
+    margin:6px 0 2px;
+    font-weight:600;
+  }
+  .card-head .sub{
+    font-size:12px;
+    color:var(--ink-soft);
+  }
+  .status-pill{
+    font-size:11px;
+    font-weight:600;
+    padding:3px 8px;
+    border-radius:5px;
+    white-space:nowrap;
+  }
+  .st-critico{background:var(--red-bg);color:var(--red);}
+  .st-atencao{background:var(--amber-bg);color:var(--amber);}
+  .st-estavel{background:var(--teal-bg);color:var(--teal);}
+  .flag{
+    margin:0 16px 12px;
+    font-size:12px;
+    padding:8px 10px;
+    border-radius:6px;
+    line-height:1.5;
+  }
+  .flag.red{background:var(--red-bg);color:var(--red);}
+  .flag.amber{background:var(--amber-bg);color:var(--amber);}
+  .body-sec{
+    padding:0 16px 14px;
+    font-size:13px;
+    line-height:1.55;
+  }
+  .body-sec p{margin:0 0 10px;}
+  .label{
+    font-size:11px;
+    color:var(--ink-soft);
+    display:block;
+    margin-bottom:2px;
+  }
+  .kv-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px;
+    margin-bottom:10px;
+  }
+  .kv{
+    background:var(--gray-bg);
+    border-radius:6px;
+    padding:7px 9px;
+  }
+  .kv.alert{background:var(--red-bg);}
+  .kv.alert .label{color:var(--red);}
+  .kv.lab{background:var(--amber-bg);}
+  .kv.lab .label{color:var(--amber);}
+  .kv .val{font-size:13px;font-weight:600;}
+  ul.cond{
+    margin:0;
+    padding-left:16px;
+  }
+  ul.cond li{margin-bottom:4px;}
+  .divider{
+    border:none;
+    border-top:1px solid var(--line);
+    margin:10px 0;
+  }
+  .impressao{
+    background:var(--paper);
+    border-left:3px solid var(--blue);
+    padding:8px 10px;
+    font-size:12.5px;
+    color:var(--ink-soft);
+    border-radius:0 6px 6px 0;
+  }
+  section.pendencias{
+    margin-top:30px;
+    background:var(--card);
+    border:1px solid var(--line);
+    border-left:4px solid var(--red);
+    border-radius:10px;
+    padding:18px 20px;
+  }
+  section.pendencias h2{
+    font-size:16px;
+    margin:0 0 12px;
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  section.pendencias h2::before{
+    content:"";
+    width:8px;height:8px;border-radius:50%;
+    background:var(--red);
+    display:inline-block;
+  }
+  ol.pend-list{margin:0;padding-left:20px;font-size:13.5px;line-height:1.8;}
+  ol.pend-list b{font-weight:600;}
+  footer{
+    text-align:center;
+    font-size:11px;
+    color:var(--ink-soft);
+    padding:20px;
+  }
+  @media (max-width:720px){
+    header{padding:16px 14px 14px;}
+    header h1{font-size:16px;}
+    .stats{grid-template-columns:repeat(2,minmax(0,1fr));}
+    .grid{grid-template-columns:1fr;}
+    .kv-grid{grid-template-columns:1fr 1fr;}
+    table.censo, table.crono{min-width:0;font-size:12px;}
+    table.censo thead, table.crono thead{display:none;}
+    table.censo, table.crono, table.censo tbody, table.crono tbody,
+    table.censo tr, table.crono tr, table.censo td, table.crono td{
+      display:block;width:100%;
+    }
+    table.censo tr, table.crono tr{
+      border:1px solid var(--line);
+      border-radius:8px;
+      margin-bottom:8px;
+      padding:6px 4px;
+      background:var(--paper);
+    }
+    table.censo td, table.crono td{
+      border:none;
+      padding:3px 8px;
+    }
+    table.censo td::before, table.crono td::before{
+      content:attr(data-label);
+      display:block;
+      font-size:10px;
+      text-transform:uppercase;
+      letter-spacing:.04em;
+      color:var(--ink-soft);
+      margin-bottom:1px;
+    }
+  }
+  @media print{
+    header{position:static;}
+    .bed-nav{display:none;}
+    .grid{grid-template-columns:1fr 1fr;}
+    .card{break-inside:avoid;}
+  }
+</style>
+<script>
+  (function () {
+    try {
+      var t = localStorage.getItem("plantao-theme");
+      if (t) document.documentElement.dataset.theme = t;
+    } catch (e) {}
+  })();
+</script>
+</head>
+<body>
+<header>
+  <div class="row">
+    <h1>Passagem de plantão — BP Paulista Neuro 8B (2800)</h1>
+    <div class="meta">10/09/2026 &nbsp;·&nbsp; <strong>noite / 24h</strong> (teste de timing) &nbsp;·&nbsp; Torre II 8º · leitos <strong>2800-12 → 22</strong></div>
+  </div>
+  <div class="legend">
+    <span><span class="dot" style="background:#e2504a"></span> Crítico / instável</span>
+    <span><span class="dot" style="background:#ef9f27"></span> Atenção / pendência relevante</span>
+    <span><span class="dot" style="background:#1d9e75"></span> Estável / alta prevista</span>
+  </div>
+  <nav class="bed-nav" aria-label="Atalho por leito">
+    <a href="#l12">12</a>
+    <a class="empty" href="#l13">13 vago</a>
+    <a href="#l14">14</a>
+    <a href="#l15">15</a>
+    <a class="empty" href="#l16">16 vago</a>
+    <a class="empty" href="#l17">17 vago</a>
+    <a href="#l18">18</a>
+    <a href="#l19">19</a>
+    <a href="#l20">20</a>
+    <a href="#l21">21</a>
+    <a class="empty" href="#l22">22 vago</a>
+  </nav>
+</header>
+<main>
+  <div class="banner">
+    <strong>PACOTE DEFINITIVO DO TESTE (10/09/2026).</strong>
+    Censo completo + dumps clínicos. <strong>Confirmar no Tasy antes de decisões.</strong>
+    Estabelecimento: Unidade Paulista · Perfil: Médico · Setor Tasy: UTI BP Paulista Torre II 8º andar.
+  </div>
+  <div class="banner warn">
+    <strong>Vera (2800-19):</strong> sessão Tasy caiu antes de fechar alertas/evolução integral — labs/gaso retidos; revalidar evolução no plantão. Reabrir Notas clínicas.
+  </div>
+
+  <div class="stats" aria-label="Resumo do censo">
+    <div class="stat"><b>7</b><span>ocupados</span></div>
+    <div class="stat"><b>4</b><span>vagos (13, 16, 17, 22)</span></div>
+    <div class="stat"><b>11</b><span>leitos 2800-12–22</span></div>
+    <div class="stat"><b>~1h22</b><span>pacote parcial (teste)</span></div>
+  </div>
+
+  <section class="panel" aria-labelledby="censo-title">
+    <h2 id="censo-title">Censo (hoje)</h2>
+    <div class="table-wrap">
+      <table class="censo">
+        <thead>
+          <tr>
+            <th>Leito</th>
+            <th>Paciente</th>
+            <th>Idade</th>
+            <th>Médico (lista)</th>
+            <th>Dx lista</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td data-label="Leito">2800-12</td>
+            <td data-label="Paciente">Rosangela Carlos Lucio Ribeiro</td>
+            <td data-label="Idade">57a 8m 21d</td>
+            <td data-label="Médico">Jose Marcos de Gois</td>
+            <td data-label="Dx lista">Doença renal crônica, estágio 5</td>
+            <td data-label="Status">Ocupado — precaução/isolamento + perfil</td>
+          </tr>
+          <tr class="vago">
+            <td data-label="Leito">2800-13</td>
+            <td data-label="Paciente">—</td>
+            <td data-label="Idade">—</td>
+            <td data-label="Médico">—</td>
+            <td data-label="Dx lista">—</td>
+            <td data-label="Status">Vago (não listado)</td>
+          </tr>
+          <tr>
+            <td data-label="Leito">2800-14</td>
+            <td data-label="Paciente">José Nivaldo de Carvalho</td>
+            <td data-label="Idade">69a 2m 2d</td>
+            <td data-label="Médico">Rogerio Camargo Pinheiro Alves</td>
+            <td data-label="Dx lista">Fratura do fêmur</td>
+            <td data-label="Status">Ocupado</td>
+          </tr>
+          <tr>
+            <td data-label="Leito">2800-15</td>
+            <td data-label="Paciente">Angela Maria Pires Custodio</td>
+            <td data-label="Idade">46a 16d</td>
+            <td data-label="Médico">Jose Roberto D Alessandro</td>
+            <td data-label="Dx lista">(em branco na lista)</td>
+            <td data-label="Status">Ocupado</td>
+          </tr>
+          <tr class="vago">
+            <td data-label="Leito">2800-16</td>
+            <td data-label="Paciente">—</td>
+            <td data-label="Idade">—</td>
+            <td data-label="Médico">—</td>
+            <td data-label="Dx lista">—</td>
+            <td data-label="Status">Vago</td>
+          </tr>
+          <tr class="vago">
+            <td data-label="Leito">2800-17</td>
+            <td data-label="Paciente">—</td>
+            <td data-label="Idade">—</td>
+            <td data-label="Médico">—</td>
+            <td data-label="Dx lista">—</td>
+            <td data-label="Status">Vago</td>
+          </tr>
+          <tr>
+            <td data-label="Leito">2800-18</td>
+            <td data-label="Paciente">Fausto Luiz Andreotti</td>
+            <td data-label="Idade">74a 10m 9d</td>
+            <td data-label="Médico">Victor Perez Meireles de Souza</td>
+            <td data-label="Dx lista">R56.8 Outras convulsões NE</td>
+            <td data-label="Status">Ocupado</td>
+          </tr>
+          <tr>
+            <td data-label="Leito">2800-19</td>
+            <td data-label="Paciente">Vera Lucia Arid Faro</td>
+            <td data-label="Idade">67a 6m 15d</td>
+            <td data-label="Médico">Rogerio Camargo Pinheiro Alves</td>
+            <td data-label="Dx lista">(em branco na lista)</td>
+            <td data-label="Status">Ocupado</td>
+          </tr>
+          <tr>
+            <td data-label="Leito">2800-20</td>
+            <td data-label="Paciente">Antonio Ricardo Cruz Siegl</td>
+            <td data-label="Idade">83a 11m 3d</td>
+            <td data-label="Médico">Ytauan Barros Calheiros</td>
+            <td data-label="Dx lista">C18.9 Cólon NE</td>
+            <td data-label="Status">Ocupado</td>
+          </tr>
+          <tr>
+            <td data-label="Leito">2800-21</td>
+            <td data-label="Paciente">Francisco Candeias Saude</td>
+            <td data-label="Idade">91a 3d</td>
+            <td data-label="Médico">Jose Rodrigues Pereira</td>
+            <td data-label="Dx lista">Pneumonia bacteriana NE</td>
+            <td data-label="Status">Ocupado</td>
+          </tr>
+          <tr class="vago">
+            <td data-label="Leito">2800-22</td>
+            <td data-label="Paciente">—</td>
+            <td data-label="Idade">—</td>
+            <td data-label="Médico">—</td>
+            <td data-label="Dx lista">—</td>
+            <td data-label="Status">Vago</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note"><strong>Ocupados:</strong> 7 &nbsp;·&nbsp; <strong>Vagos:</strong> 13, 16, 17, 22</p>
+  </section>
+
+  <section class="panel" aria-labelledby="crono-title">
+    <h2 id="crono-title">Cronômetro (teste)</h2>
+    <div class="table-wrap">
+      <table class="crono">
+        <thead>
+          <tr><th>Marco</th><th>Hora SP (≈)</th><th>Decorrido</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td data-label="Marco">Pedido</td>
+            <td data-label="Hora SP">11:53</td>
+            <td data-label="Decorrido">0</td>
+          </tr>
+          <tr>
+            <td data-label="Marco">Lista dos leitos pronta</td>
+            <td data-label="Hora SP">12:01</td>
+            <td data-label="Decorrido">~8 min</td>
+          </tr>
+          <tr>
+            <td data-label="Marco">Início dig de prontuários</td>
+            <td data-label="Hora SP">12:08</td>
+            <td data-label="Decorrido">+15 min</td>
+          </tr>
+          <tr>
+            <td data-label="Marco">Dig encerrou (resumo)</td>
+            <td data-label="Hora SP">~13:10</td>
+            <td data-label="Decorrido">~1h17 total / ~62 min só charts</td>
+          </tr>
+          <tr>
+            <td data-label="Marco">Pacote parcial entregue</td>
+            <td data-label="Hora SP">~13:15</td>
+            <td data-label="Decorrido">~1h22</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note"><strong>Calibração sugerida:</strong> com 7 pacientes, lista rápida (~8 min) mas charts lentos (&gt;1h). Pré-plantão atual (1–2h) pode ser justo; para material “completo” na chegada, mirar <strong>~2–2,5h antes</strong> ou enxugar o skill (só evolução médica + alertas + labs críticos).</p>
+  </section>
+
+  <div class="grid">
+
+    <div class="card" id="l12">
+      <div class="card-head">
+        <div>
+          <span class="bed-tag">2800-12</span>
+          <h2>Rosangela Carlos Lucio Ribeiro, 57a</h2>
+          <div class="sub">José Marcos de Gois — Cardiologia · AT 19099781 · PR 4998195 · entrada 28/03/2026 02:53:24</div>
+        </div>
+        <span class="status-pill st-critico">Crítico · isolamento</span>
+      </div>
+      <div class="flag red">NDM pan-resistente — precaution de contato. Nega alergias. Feminina, casada; Sul América/Clássico.</div>
+      <div class="body-sec">
+        <p><span class="label">Condições principais</span>DRC 5D em HD, anúrica, PermCath femoral, tromboses venosas centrais; broncopneumonia aspirativa (<em>Pseudomonas</em>/<em>Stenotrophomonas</em>); sepse cutânea / LPP sacral grau IV ± osteomielite (pós-desbridamento); <strong>TQT + VM</strong>; ant. Tx renal, AVC/convulsões, ressecção meningioma c/ mutismo cerebelar.</p>
+        <div class="kv-grid">
+          <div class="kv alert"><span class="label">ATB</span><span class="val">Zerbaxa + teicoplanina desde 04/09</span></div>
+          <div class="kv lab"><span class="label">Fósforo 10/09</span><span class="val">&lt;1 mg/dL</span></div>
+          <div class="kv"><span class="label">K / Mg</span><span class="val">3,8 / 2,3</span></div>
+          <div class="kv"><span class="label">VM (fisio)</span><span class="val">TQT PSV 14 / PEEP 7 / FiO₂ 25%</span></div>
+        </div>
+        <p><span class="label">Evolução médica 10/09 10:43</span>Afebril; UF 1.500 / ganhos 1.640 / BH −666; eupneica TQT/VM; sonolenta; sem DVA; PA ~100/59; edema MMSS. HD ontem sem intercorrência; <strong>manter sem HD hoje</strong>; seguir Hemax + acompanhamento conjunto.</p>
+        <p><span class="label">Fisio 10/09</span>Glasgow 7T (AO à dor, não responsiva); estável sem vasoativo; SpO₂ 88%; roncos + muita secreção — aspiração, higiene brônquica, mobilização passiva.</p>
+        <p><span class="label">Nutrição 10/09</span>TNE via GTT, dieta hipercalórica/hiperproteica 25 mL/h + módulo proteico 30 g/d; boa tolerância; IMC 22,7; risco nutricional elevado; LPP sacral G4; sem progressão meta / sem NPT.</p>
+        <p><span class="label">Outras meds</span>Hemax 20.000 UI 3x/sem; atenolol, Puran, atorvastatina, oxcarbazepina, AAS, pantoprazol, calcitriol/Oscal, etc.</p>
+        <hr class="divider">
+        <span class="label">Pendências</span>
+        <ul class="cond">
+          <li>Precaução NDM</li>
+          <li>Secreção / VM</li>
+          <li>LPP / osteomielite</li>
+          <li>Fósforo</li>
+          <li>Plano HD</li>
+          <li>ATB MDR</li>
+        </ul>
+        <hr class="divider">
+        <div class="impressao">Isolamento por NDM; TQT+VM com secreção; LPP G4; fósforo &lt;1; sem HD hoje.</div>
+      </div>
+    </div>
+
+    <div class="card empty" id="l13">2800-13 — vago (não listado)</div>
+
+    <div class="card" id="l14">
+      <div class="card-head">
+        <div>
+          <span class="bed-tag">2800-14</span>
+          <h2>José Nivaldo de Carvalho, 69a</h2>
+          <div class="sub">Rogerio Camargo Pinheiro Alves — Gastroenterologia · AT 20934503 · PR 5572003 · entrada 30/07/2026 09:05:47</div>
+        </div>
+        <span class="status-pill st-atencao">Atenção</span>
+      </div>
+      <div class="body-sec">
+        <p><span class="label">Diagnósticos</span>Cirrose descompensada; CHC; TC tórax com broncopatia inflamatória; enterite; PO correção fratura transtrocantérica fêmur E; abscesso pálpebra SD drenado 11/08; sinusopatia crônica agudizada (poss. fúngica); paracentese US 17/08 — 2.500 mL citrino. Lista: fratura do fêmur.</p>
+        <div class="kv-grid">
+          <div class="kv"><span class="label">Alertas</span><span class="val">Nega alergias</span></div>
+          <div class="kv alert"><span class="label">ATB / dieta</span><span class="val">Tazocin · dieta zero</span></div>
+          <div class="kv"><span class="label">Profilaxia</span><span class="val">CPI + pantoprazol</span></div>
+          <div class="kv"><span class="label">Meds</span><span class="val">Puran 150 mcg/d, tiamina 300 mg/d, vit D 2.000 UI/d, carvedilol 6,25 mg 2x/d</span></div>
+        </div>
+        <p><span class="label">Evolução</span>HPP HAS/DLP/hipotireoidismo/cirrose alcoólica+CHC; ex-tab/etil, abstinente ~3a.</p>
+        <p><span class="label">Outros</span>Enfermagem comunicou técnica Salete p/ retirada SNG; Dra. Aline ciente; evolução nutricional recente (texto não retido).</p>
+        <hr class="divider">
+        <span class="label">Pendências</span>
+        <ul class="cond">
+          <li>Retirada SNG</li>
+          <li>Seguimento clínico/nutricional conforme tolerância</li>
+        </ul>
+        <hr class="divider">
+        <div class="impressao">Cirrose + CHC; Tazocin e dieta zero; retirada de SNG combinada com Salete / Dra. Aline.</div>
+      </div>
+    </div>
+
+    <div class="card" id="l15">
+      <div class="card-head">
+        <div>
+          <span class="bed-tag">2800-15</span>
+          <h2>Angela Maria Pires Custodio, 46a</h2>
+          <div class="sub">Jose Roberto D’Alessandro — Neurocirurgia · AT 21045608 · PR 6007185 · entrada 05/09/2026 10:02:58</div>
+        </div>
+        <span class="status-pill st-estavel">Alta prevista</span>
+      </div>
+      <div class="flag amber">Alergia confirmada a <strong>camarão</strong> (também consta “nega alergias” — conferir).</div>
+      <div class="body-sec">
+        <p><span class="label">Diagnósticos</span><strong>RNC</strong> a/e — provável <strong>tóxico-metabólica</strong>; HAS. Dx lista em branco.</p>
+        <div class="kv-grid">
+          <div class="kv"><span class="label">ATB</span><span class="val">Sem ATB</span></div>
+          <div class="kv"><span class="label">Dieta</span><span class="val">VO</span></div>
+          <div class="kv"><span class="label">Profilaxia</span><span class="val">Clexane + pantoprazol</span></div>
+          <div class="kv"><span class="label">Meds</span><span class="val">HCTZ 25 mg, pregabalina 75 mg, Trezete 20+10 mg</span></div>
+        </div>
+        <p><span class="label">Evolução diarista</span>RNC tóxico-metabólico; HAS; conduta registrada <strong>“alta da UTI”</strong>.</p>
+        <p><span class="label">Outros</span>Enfermagem — recusou banho; relatou alta para casa; fisio/nutro presentes (texto não retido).</p>
+        <hr class="divider">
+        <span class="label">Pendências</span>
+        <ul class="cond">
+          <li><strong>Atualizar previsão de alta</strong> (obrigatório)</li>
+        </ul>
+        <hr class="divider">
+        <div class="impressao">Conduta de alta da UTI já registrada; atualizar previsão é obrigatório nesta passagem.</div>
+      </div>
+    </div>
+
+    <div class="card empty" id="l16">2800-16 — vago</div>
+    <div class="card empty" id="l17">2800-17 — vago</div>
+
+    <div class="card" id="l18">
+      <div class="card-head">
+        <div>
+          <span class="bed-tag">2800-18</span>
+          <h2>Fausto Luiz Andreotti, 74a</h2>
+          <div class="sub">Victor Perez Meireles de Souza — Neurocirurgia · AT 21054611 · PR 7066393 · entrada 09/09/2026 15:20:36</div>
+        </div>
+        <span class="status-pill st-atencao">Atenção · infecção</span>
+      </div>
+      <div class="body-sec">
+        <p><span class="label">Diagnósticos</span>Escape de crise convulsiva; HAS/DLP; ant. microcirurgia p/ provável meningioma c/ edema cerebral, contusão frontal, HIP frontal E; drenagem hematoma + DVE + PIC. Lista: R56.8 Outras convulsões NE.</p>
+        <div class="kv-grid">
+          <div class="kv"><span class="label">Alertas</span><span class="val">Nega alergias</span></div>
+          <div class="kv lab"><span class="label">Leuco</span><span class="val">21.000 c/ desvio / bastões</span></div>
+          <div class="kv lab"><span class="label">PCT</span><span class="val">Solicitada</span></div>
+          <div class="kv"><span class="label">EEG</span><span class="val">Instalado ~08h, previsto 6h</span></div>
+        </div>
+        <p><span class="label">Meds</span>Zinpass Eze 10+10/d, Naprix 5 mg/d, Vimpat 50 mg 2x/d, indapamida 1,5 mg/d.</p>
+        <p><span class="label">Evolução</span>Vigilância infecciosa; mobilizar; discutir neuro; RX tórax; se PCT ≥ 0,5 → Tazocin + culturas.</p>
+        <hr class="divider">
+        <span class="label">Pendências</span>
+        <ul class="cond">
+          <li>PCT</li>
+          <li>Eventual Tazocin / culturas</li>
+          <li>Neuro</li>
+          <li>RX tórax</li>
+          <li>Mobilização</li>
+          <li>Anamnese administrativa</li>
+        </ul>
+        <hr class="divider">
+        <div class="impressao">Pós-neurocirurgia; leucocitose 21.000; EEG em curso; PCT guia Tazocin + culturas se ≥ 0,5.</div>
+      </div>
+    </div>
+
+    <div class="card" id="l19">
+      <div class="card-head">
+        <div>
+          <span class="bed-tag">2800-19</span>
+          <h2>Vera Lucia Arid Faro, 67a</h2>
+          <div class="sub">Lista: Rogerio Camargo Pinheiro Alves (Gastro) — confirmar no banner · AT 21025928 · PR 4900429 · entrada 29/08/2026 22:23:33</div>
+        </div>
+        <span class="status-pill st-atencao">Dump incompleto</span>
+      </div>
+      <div class="flag amber">Sessão Tasy perdeu disponibilidade antes de confirmar alertas + evolução médica integral nesta passada — <strong>reabrir Notas clínicas no plantão</strong>. Labs/gaso retidos; revalidar evolução.</div>
+      <div class="body-sec">
+        <p><span class="label">Perfil</span>Feminina, 67a (26/02/1959); UTI Torre II 8º / 2800-19. Dx lista em branco.</p>
+        <div class="kv-grid">
+          <div class="kv lab"><span class="label">Hb / Ht</span><span class="val">8,9 / 28,9% (eritr. 3,08 mi)</span></div>
+          <div class="kv lab"><span class="label">Gaso arterial</span><span class="val">pCO₂ 20 · HCO₃⁻ 12 · BE −11,6</span></div>
+          <div class="kv"><span class="label">pO₂</span><span class="val">108</span></div>
+          <div class="kv"><span class="label">CHCM / RDW</span><span class="val">30,8 / 20,9%</span></div>
+        </div>
+        <p><span class="label">Labs recentes</span>Anemia — eritrócitos 3,08 mi/mm³, Hb 8,9, Ht 28,9%, CHCM 30,8, RDW 20,9%; gasometria arterial pCO₂ 20, HCO₃⁻ 12, BE −11,6 (distúrbio metabólico + hiperventilação); pO₂ 108. TP/INR e fibrinogênio sinalizados no grid (valores completos não recuperados).</p>
+        <p><span class="label">Contexto prévio (não substitui leitura de hoje)</span>Alergia ticagrelor vista em demos; notas fisio/médica/nutro existiam — validar ao vivo.</p>
+        <hr class="divider">
+        <span class="label">Pendências</span>
+        <ul class="cond">
+          <li>Reabrir Notas clínicas / alertas no Tasy</li>
+          <li>Confirmar médico assistente no banner</li>
+          <li>Revalidar evolução, labs e gaso no plantão</li>
+        </ul>
+        <hr class="divider">
+        <div class="impressao">Pacote parcial: anemia + acidose metabólica com hiperventilação nos labs retidos; dump clínico incompleto por queda da sessão Tasy.</div>
+      </div>
+    </div>
+
+    <div class="card" id="l20">
+      <div class="card-head">
+        <div>
+          <span class="bed-tag">2800-20</span>
+          <h2>Antonio Ricardo Cruz Siegl, 83a</h2>
+          <div class="sub">Ytauan Barros Calheiros · C18.9 Cólon NE</div>
+        </div>
+        <span class="status-pill st-atencao">Discutir alta</span>
+      </div>
+      <div class="flag red">Alergia à <strong>fenitoína (Hidantal)</strong>.</div>
+      <div class="body-sec">
+        <p><span class="label">HD / quadro</span>Pré-colono por tumor de sigmoide; DAC moderada; episódio confusional agudo em 03/09 (protocolo AVC negativo), possível escape de crise.</p>
+        <hr class="divider">
+        <span class="label">Conduta / pendências</span>
+        <ul class="cond">
+          <li>Discutir <strong>alta da UTI</strong></li>
+          <li>Avaliar TEV farmacológica e AAS</li>
+          <li>Vigilância hematimétrica</li>
+          <li>Mobilização</li>
+          <li>BH neutro</li>
+        </ul>
+        <hr class="divider">
+        <div class="impressao">Tumor de sigmoide em pré-colono; alergia a Hidantal; discutir alta e profilaxia TEV/AAS.</div>
+      </div>
+    </div>
+
+    <div class="card" id="l21">
+      <div class="card-head">
+        <div>
+          <span class="bed-tag">2800-21</span>
+          <h2>Francisco Candeias Saude, 91a</h2>
+          <div class="sub">Jose Rodrigues Pereira · pneumonia bacteriana NE</div>
+        </div>
+        <span class="status-pill st-atencao">Atenção · CNAF</span>
+      </div>
+      <div class="body-sec">
+        <p><span class="label">Alertas / AP</span>Nega alergias; HAS e DLP. Meds: Aerolin, Predsim, AAS, acetilcisteína.</p>
+        <p><span class="label">Quadro</span>DPOC GOLD E em O₂ domiciliar; piora tosse/dispneia/dessaturação, confusão, edema MMII; <strong>TEP recente</strong>. Agora confortável em <strong>CNAF 30 L / 35%</strong>, SatO₂ 98%, em redução de fluxo.</p>
+        <div class="kv-grid">
+          <div class="kv"><span class="label">Suporte</span><span class="val">CNAF 30 L / 35% · Sat 98%</span></div>
+          <div class="kv alert"><span class="label">ATB atual</span><span class="val">Cefazolina + meropenem</span></div>
+          <div class="kv lab"><span class="label">Hb</span><span class="val">4,8 (05/09) → pós-Tx 9,1</span></div>
+          <div class="kv lab"><span class="label">Labs</span><span class="val">K 6,2 (05/09); Cr 2,26 e K 5,6 (08/09); Na 150 / U 147 (09/09); pCO₂ 52</span></div>
+        </div>
+        <p><span class="label">Impressão / conduta</span>Queda hematimétrica + exacerbação DPOC; descalonado teicoplanina → <strong>cefazolina</strong> (S. aureus multissensível) + <strong>meropenem</strong>; ajustar delirium; anticoagulação suspensa; reduzir corticoide; considerar <strong>Cuidados Paliativos</strong>.</p>
+        <hr class="divider">
+        <span class="label">Pendências</span>
+        <ul class="cond">
+          <li>Redução de fluxo CNAF</li>
+          <li>Ajustar delirium</li>
+          <li>Anticoagulação suspensa (TEP recente) — reavaliar</li>
+          <li>Reduzir corticoide</li>
+          <li>Considerar Cuidados Paliativos</li>
+        </ul>
+        <hr class="divider">
+        <div class="impressao">91a, DPOC GOLD E + TEP recente; confortável em CNAF em desmame; discutir paliativos.</div>
+      </div>
+    </div>
+
+    <div class="card empty" id="l22">2800-22 — vago</div>
+
+  </div>
+
+  <section class="pendencias" aria-labelledby="pend-title">
+    <h2 id="pend-title">Pendências em destaque</h2>
+    <ol class="pend-list">
+      <li><b>2800-19 Vera Lucia Arid Faro</b> — sessão Tasy caiu; reabrir Notas clínicas / alertas; revalidar evolução, labs e gaso (Hb 8,9; pCO₂ 20; HCO₃⁻ 12; BE −11,6). Confirmar médico no banner.</li>
+      <li><b>2800-12 Rosangela Carlos Lucio Ribeiro</b> — precaução NDM; secreção/VM (SpO₂ 88% na fisio); LPP G4 / osteomielite; fósforo &lt;1 mg/dL; manter sem HD hoje; ATB MDR (Zerbaxa + teicoplanina).</li>
+      <li><b>2800-15 Angela Maria Pires Custodio</b> — <b>atualizar previsão de alta</b> (obrigatório). Conferir alergia a camarão vs. “nega alergias”.</li>
+      <li><b>2800-18 Fausto Luiz Andreotti</b> — PCT; se ≥ 0,5 → Tazocin + culturas; neuro; RX tórax; mobilização; EEG instalado ~08h (previsto 6h); anamnese administrativa.</li>
+      <li><b>2800-20 Antonio Ricardo Cruz Siegl</b> — alergia à fenitoína (Hidantal); discutir alta da UTI; avaliar TEV farmacológica e AAS; vigilância hematimétrica; mobilização; BH neutro.</li>
+      <li><b>2800-21 Francisco Candeias Saude</b> — CNAF em redução de fluxo; cefazolina + meropenem; delirium; anticoagulação suspensa (TEP recente); reduzir corticoide; considerar Cuidados Paliativos.</li>
+      <li><b>2800-14 José Nivaldo de Carvalho</b> — retirada SNG (técnica Salete / Dra. Aline ciente); seguimento clínico/nutricional conforme tolerância; dieta zero + Tazocin.</li>
+    </ol>
+  </section>
+</main>
+<footer>Gerado por Bp a partir de coleta Tasy somente-leitura (10/09/2026). Pacote parcial para teste de timing + revisão. Confirmar no Tasy antes de decisões. UTI BP Paulista Torre II — 8º andar (8B / neuro 2800 B).</footer>
+</body>
+</html>
