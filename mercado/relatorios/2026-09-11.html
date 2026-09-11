@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FK Capital Diário — Edição 16</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a0e17; --bg2:#0d1320; --panel:#111927; --panel2:#141e30;
+    --line:#232f45; --line-soft:#1a2436;
+    --ink:#e8edf7; --ink-dim:#9fb0c9; --ink-faint:#6b7a94;
+    --gold:#d4af6a; --gold-soft:#8a744a;
+    --green:#4fbf8b; --green-bg:rgba(79,191,139,.10);
+    --red:#e2687a; --red-bg:rgba(226,104,122,.10);
+    --amber:#e0b054; --amber-bg:rgba(224,176,84,.10);
+    --blue:#6ea8e0; --blue-bg:rgba(110,168,224,.10);
+    --mono: 'IBM Plex Mono', ui-monospace, monospace;
+    --sans: 'IBM Plex Sans', system-ui, sans-serif;
+    --serif: 'Fraunces', Georgia, serif;
+  }
+  *{box-sizing:border-box}
+  body.fk-diario{
+    margin:0; background:radial-gradient(1200px 600px at 15% -10%, #101b30 0%, var(--bg) 55%) fixed;
+    color:var(--ink); font-family:var(--sans); line-height:1.55; padding:0 0 64px;
+  }
+  .fk-diario a{color:var(--gold)}
+  .fk-shell{max-width:1080px; margin:0 auto; padding:0 20px}
+
+  /* HEADER */
+  .fk-header{border-bottom:1px solid var(--line); padding:34px 0 26px; background:linear-gradient(180deg, rgba(212,175,106,.05), transparent)}
+  .fk-back{font-family:var(--mono); font-size:12px; color:var(--gold); text-decoration:none; display:inline-block; margin-bottom:10px}
+  .fk-back:hover{text-decoration:underline}
+  .fk-eyebrow{font-family:var(--mono); font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--gold); margin:0 0 10px}
+  .fk-title{font-family:var(--serif); font-weight:600; font-size:clamp(28px,4vw,42px); margin:0 0 8px; letter-spacing:-.01em}
+  .fk-sub{color:var(--ink-dim); font-size:15px; margin:0; max-width:70ch}
+  .fk-meta-row{display:flex; flex-wrap:wrap; gap:10px 18px; margin-top:16px; font-family:var(--mono); font-size:12.5px; color:var(--ink-faint)}
+  .fk-meta-row b{color:var(--ink-dim); font-weight:500}
+
+  /* STALE BANNER */
+  .fk-stale-banner{margin:22px 0; padding:16px 18px; border:1px solid rgba(226,104,122,.4); background:var(--red-bg); border-radius:10px; display:flex; gap:14px}
+  .fk-stale-banner .ic{font-size:20px; line-height:1}
+  .fk-stale-banner h3{margin:0 0 4px; font-size:14.5px; color:#f3aab8; font-family:var(--sans); font-weight:700; letter-spacing:.01em; text-transform:uppercase}
+  .fk-stale-banner p{margin:0; font-size:13.8px; color:var(--ink-dim)}
+
+  /* SECTION */
+  .fk-section{margin:38px 0}
+  .fk-h2{font-family:var(--serif); font-size:21px; font-weight:600; margin:0 0 4px; display:flex; align-items:center; gap:10px}
+  .fk-h2 .n{font-family:var(--mono); font-size:12px; color:var(--gold-soft); border:1px solid var(--line); border-radius:999px; padding:2px 9px}
+  .fk-h2-sub{color:var(--ink-faint); font-size:13px; margin:0 0 18px}
+
+  /* TLDR TILES */
+  .fk-tldr-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:12px}
+  .fk-tile{background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:16px}
+  .fk-tile .k{font-family:var(--mono); font-size:11px; text-transform:uppercase; letter-spacing:.08em; color:var(--ink-faint); margin:0 0 8px}
+  .fk-tile .v{font-family:var(--mono); font-size:22px; font-weight:600; margin:0}
+  .fk-tile .v.up{color:var(--green)} .fk-tile .v.down{color:var(--red)} .fk-tile .v.flat{color:var(--ink)}
+  .fk-tile .d{font-size:12px; color:var(--ink-faint); margin-top:6px}
+  .fk-tile .flag{display:inline-block; margin-top:8px; font-family:var(--mono); font-size:10px; letter-spacing:.05em; padding:2px 7px; border-radius:5px; background:var(--amber-bg); color:var(--amber); text-transform:uppercase}
+
+  /* ALERT CARDS */
+  .fk-alert{border:1px solid var(--line); border-left-width:4px; border-radius:8px; padding:14px 16px; margin:12px 0; background:var(--panel)}
+  .fk-alert.crit{border-left-color:var(--red); }
+  .fk-alert.warn{border-left-color:var(--amber)}
+  .fk-alert.info{border-left-color:var(--blue)}
+  .fk-alert.ok{border-left-color:var(--green)}
+  .fk-alert h4{margin:0 0 6px; font-size:14px; display:flex; align-items:center; gap:8px}
+  .fk-alert .tag{font-family:var(--mono); font-size:10px; text-transform:uppercase; letter-spacing:.06em; padding:1px 7px; border-radius:5px}
+  .fk-alert.crit .tag{background:var(--red-bg); color:var(--red)}
+  .fk-alert.warn .tag{background:var(--amber-bg); color:var(--amber)}
+  .fk-alert.info .tag{background:var(--blue-bg); color:var(--blue)}
+  .fk-alert.ok .tag{background:var(--green-bg); color:var(--green)}
+  .fk-alert p{margin:0; font-size:13.6px; color:var(--ink-dim)}
+  .fk-alert p+p{margin-top:6px}
+
+  /* HEAT TILES (per-asset) */
+  .fk-heat-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:14px}
+  .fk-heat{background:var(--panel2); border:1px solid var(--line); border-radius:12px; padding:18px; position:relative; overflow:hidden}
+  .fk-heat::before{content:""; position:absolute; top:0; left:0; right:0; height:3px}
+  .fk-heat.h-alto::before{background:var(--red)}
+  .fk-heat.h-medio::before{background:var(--amber)}
+  .fk-heat.h-baixo::before{background:var(--green)}
+  .fk-heat-top{display:flex; justify-content:space-between; align-items:flex-start; gap:10px; margin-bottom:10px}
+  .fk-heat-ticker{font-family:var(--mono); font-size:16px; font-weight:600; color:var(--ink)}
+  .fk-heat-name{font-size:12px; color:var(--ink-faint); margin-top:2px}
+  .fk-heat-badge{font-family:var(--mono); font-size:10px; text-transform:uppercase; letter-spacing:.06em; padding:3px 9px; border-radius:999px; white-space:nowrap}
+  .h-alto .fk-heat-badge{background:var(--red-bg); color:var(--red)}
+  .h-medio .fk-heat-badge{background:var(--amber-bg); color:var(--amber)}
+  .h-baixo .fk-heat-badge{background:var(--green-bg); color:var(--green)}
+  .fk-heat p{font-size:13.3px; color:var(--ink-dim); margin:8px 0}
+  .fk-heat .nao{border-top:1px dashed var(--line-soft); margin-top:10px; padding-top:10px}
+  .fk-heat .nao b{color:#f3aab8; font-family:var(--sans); font-size:11.5px; text-transform:uppercase; letter-spacing:.05em; display:block; margin-bottom:4px}
+
+  /* TIMELINE */
+  .fk-timeline{border-left:2px solid var(--line); margin-left:8px; padding-left:22px}
+  .fk-tl-item{position:relative; padding-bottom:20px}
+  .fk-tl-item::before{content:""; position:absolute; left:-28px; top:3px; width:11px; height:11px; border-radius:50%; background:var(--bg2); border:2px solid var(--gold)}
+  .fk-tl-item .date{font-family:var(--mono); font-size:12px; color:var(--gold); margin-bottom:3px}
+  .fk-tl-item h5{margin:0 0 3px; font-size:14px}
+  .fk-tl-item p{margin:0; font-size:13px; color:var(--ink-dim)}
+
+  /* TABLE */
+  table.fk-table{width:100%; border-collapse:collapse; font-size:13px}
+  table.fk-table th{text-align:left; font-family:var(--mono); font-size:11px; text-transform:uppercase; letter-spacing:.05em; color:var(--ink-faint); padding:8px 10px; border-bottom:1px solid var(--line)}
+  table.fk-table td{padding:9px 10px; border-bottom:1px solid var(--line-soft); color:var(--ink-dim)}
+  table.fk-table tr:last-child td{border-bottom:none}
+  .mono{font-family:var(--mono)}
+  .pill{display:inline-block; font-family:var(--mono); font-size:10.5px; padding:2px 8px; border-radius:999px; text-transform:uppercase; letter-spacing:.04em}
+  .pill.fact{background:var(--green-bg); color:var(--green)}
+  .pill.hyp{background:var(--amber-bg); color:var(--amber)}
+  .pill.pend{background:var(--blue-bg); color:var(--blue)}
+
+  .fk-footer{margin-top:50px; padding-top:22px; border-top:1px solid var(--line); font-size:12px; color:var(--ink-faint)}
+  .fk-footer p{margin:0 0 8px}
+  ul.fk-list{margin:8px 0; padding-left:20px} ul.fk-list li{margin:5px 0; font-size:13.6px; color:var(--ink-dim)}
+  strong{color:var(--ink)}
+</style>
+</head>
+<body class="fk-diario">
+<div class="fk-shell">
+
+  <header class="fk-header">
+    <a class="fk-back" href="../index.html">← Mercado</a>
+    <p class="fk-eyebrow">FK Capital · Consultoria de Portfólio · Não é recomendação de compra/venda</p>
+    <h1 class="fk-title">FK Capital Diário — Edição 16</h1>
+    <p class="fk-sub">11 de setembro de 2026 — continuidade da Edição 15 (10/09). Leitura de contexto para apoiar decisão própria de Dr. Fernando Magalhães Coutinho. Fechamento de referência: 10/09. O que não está confirmado está sinalizado como tal; nenhum lote ou posição extra foi inventado nesta edição.</p>
+    <div class="fk-meta-row">
+      <span><b>Estruturas:</b> PF (Fernando) + PJ (F&amp;K Serviços Médicos)</span>
+      <span><b>Janela:</b> 11/09/2026 · sexta-feira</span>
+      <span><b>Base de dados de mercado:</b> fechamento/pregão de 10/09/2026</span>
+    </div>
+  </header>
+
+  <div class="fk-stale-banner">
+    <div class="ic">🛑</div>
+    <div>
+      <h3>Arquivo de carteira STALE — não recalcule alocação em cima dele</h3>
+      <p><strong>Carteira maio/26 permanece desatualizada</strong> e não deve ser usada como base de posições, lotes ou preços médios nesta edição. Ordem de grandeza apenas: PF ~R$847–870 mil · PJ ~R$279–290 mil · total ~R$1,13 milhão. O livro Itaú STVM (~R$76 mil, sem assinatura) segue <strong>[A CONFIRMAR]</strong>.</p>
+    </div>
+  </div>
+
+  <section class="fk-section">
+    <h2 class="fk-h2">TL;DR do dia <span class="n">macro</span></h2>
+    <p class="fk-h2-sub">Painel de contexto, não sinal de operação. Valores rotulados como fechamento de 10/09/2026.</p>
+    <div class="fk-tldr-grid">
+      <div class="fk-tile">
+        <p class="k">Ibovespa</p>
+        <p class="v up">188.268,59 pts</p>
+        <p class="d">+1,42% no fechamento de 10/09</p>
+        <span class="flag">fechamento 10/09</span>
+      </div>
+      <div class="fk-tile">
+        <p class="k">Dólar (USD/BRL)</p>
+        <p class="v down">R$5,103</p>
+        <p class="d">−0,18% (aproximação desta edição)</p>
+        <span class="flag">fechamento 10/09</span>
+      </div>
+      <div class="fk-tile">
+        <p class="k">Brent</p>
+        <p class="v up">US$107,63</p>
+        <p class="d">+6,34%; WTI US$102,48 (+6,69%)</p>
+        <span class="flag">fechamento 10/09</span>
+      </div>
+      <div class="fk-tile">
+        <p class="k">Patrimônio FK (ordem de grandeza)</p>
+        <p class="v flat">~R$1,13 mi</p>
+        <p class="d">PF ~R$847–870 mil · PJ ~R$279–290 mil</p>
+        <span class="flag">não recalculado hoje</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="fk-section">
+    <h2 class="fk-h2">Contexto de mercado <span class="n">01</span></h2>
+    <p class="fk-h2-sub">O que o fechamento de 10/09 entrega para a leitura de 11/09 — sem inventar driver que não esteja nesta edição.</p>
+
+    <div class="fk-alert ok">
+      <h4><span class="tag">confirmado</span> Ibovespa recupera e fecha em alta</h4>
+      <p>Ibovespa em <strong>188.268,59 pts (+1,42%)</strong> no fechamento de 10/09 — reversão de tom versus a sessão de 09/09 (Edição 15: 185.629 pts, −0,93%).</p>
+    </div>
+    <div class="fk-alert info">
+      <h4><span class="tag">confirmado</span> Dólar recua; petróleo dispara</h4>
+      <p>Dólar ~<strong>R$5,103 (−0,18%)</strong>. Brent <strong>US$107,63 (+6,34%)</strong>; WTI <strong>US$102,48 (+6,69%)</strong>. S&amp;P ~<strong>−0,6%</strong>.</p>
+    </div>
+    <div class="fk-alert ok">
+      <h4><span class="tag">confirmado</span> BBDC4 lidera o recorte local desta edição</h4>
+      <p>BBDC4 <strong>R$18,48 (+3,88%)</strong>. PETR4 ~<strong>+1,45%</strong>; VALE3 ~<strong>−1,10%</strong>. Sem inventar cotação absoluta de PETR4/VALE3 além da variação informada.</p>
+    </div>
+    <div class="fk-alert warn">
+      <h4><span class="tag">contexto político</span> AtlasIntel / Bloomberg — empate técnico</h4>
+      <p>AtlasIntel/Bloomberg: Flávio numericamente à frente de Lula, em empate técnico. Leitura de contexto eleitoral, não gatilho de operação.</p>
+    </div>
+  </section>
+
+  <section class="fk-section">
+    <h2 class="fk-h2">Carteira consolidada <span class="n">02</span></h2>
+    <p class="fk-h2-sub">Ordem de grandeza apenas — nenhum número abaixo deve ser tratado como saldo apurado. Lotes individuais do livro Itaú não são re-listados aqui porque o STVM segue sem assinatura e [A CONFIRMAR].</p>
+    <table class="fk-table">
+      <tr><th>Estrutura</th><th>Ordem de grandeza</th><th>Status</th></tr>
+      <tr><td>PF (pessoa física)</td><td class="mono">~R$847–870 mil</td><td><span class="pill hyp">estimativa · maio/26 STALE</span></td></tr>
+      <tr><td>PJ (F&amp;K Serviços Médicos)</td><td class="mono">~R$279–290 mil</td><td><span class="pill hyp">estimativa · maio/26 STALE</span></td></tr>
+      <tr><td><strong>Total</strong></td><td class="mono"><strong>~R$1,13 milhão</strong></td><td><span class="pill hyp">estimativa · maio/26 STALE</span></td></tr>
+      <tr><td>Livro Itaú STVM</td><td class="mono">~R$76 mil</td><td><span class="pill pend">não assinado · A CONFIRMAR</span></td></tr>
+    </table>
+    <div class="fk-alert info">
+      <h4><span class="tag">operacional</span> Protocolo STVM 13525</h4>
+      <p>Protocolo STVM <strong>13525</strong> registrado nesta edição. Livro Itaú permanece ~R$76 mil, unsigned, <strong>[A CONFIRMAR]</strong>. Não há lista de tickers/lotes a tratar como posição confirmada hoje.</p>
+    </div>
+  </section>
+
+  <section class="fk-section">
+    <h2 class="fk-h2">Calor por ativo (recorte desta edição) <span class="n">03</span></h2>
+    <p class="fk-h2-sub">Só entram nomes com número ou instrução explícita nesta edição. RSI/MM/MACD não recalculados. Foco em “o que NÃO fazer”.</p>
+
+    <div class="fk-heat-grid">
+
+      <div class="fk-heat h-alto">
+        <div class="fk-heat-top">
+          <div><div class="fk-heat-ticker">BBDC4</div><div class="fk-heat-name">Bradesco PN</div></div>
+          <span class="fk-heat-badge">calor alto</span>
+        </div>
+        <p><span class="pill fact">confirmado</span> Fechamento 10/09: <strong>R$18,48 (+3,88%)</strong>.</p>
+        <p><span class="pill pend">A CONFIRMAR</span> Conflito de data do JCP BBDC4: <strong>15/09 vs 30/10</strong>. Não tratar nenhuma das duas datas como pagamento efetivo até reconciliação.</p>
+        <div class="nao"><b>O que não fazer</b><p>Não gaste, realoque ou “antecipe” o JCP enquanto a data de pagamento não estiver confirmada. A alta de +3,88% também não é gatilho de compra/venda sem regra escrita prévia.</p></div>
+      </div>
+
+      <div class="fk-heat h-medio">
+        <div class="fk-heat-top">
+          <div><div class="fk-heat-ticker">PETR4</div><div class="fk-heat-name">Petrobras PN — oil-linked</div></div>
+          <span class="fk-heat-badge">calor médio</span>
+        </div>
+        <p><span class="pill fact">confirmado (variação)</span> PETR4 ~<strong>+1,45%</strong> no fechamento de 10/09, no mesmo dia em que Brent/WTI avançam +6,34% / +6,69%. Cotação absoluta do papel não informada nesta edição — não inventada.</p>
+        <div class="nao"><b>O que não fazer</b><p>Não abra posição nova em PETR4 só porque o petróleo subiu; a variação do papel é o único número local disponível aqui.</p></div>
+      </div>
+
+      <div class="fk-heat h-medio">
+        <div class="fk-heat-top">
+          <div><div class="fk-heat-ticker">VALE3</div><div class="fk-heat-name">Vale ON</div></div>
+          <span class="fk-heat-badge">calor médio</span>
+        </div>
+        <p><span class="pill fact">confirmado (variação)</span> VALE3 ~<strong>−1,10%</strong> no fechamento de 10/09. Sem cotação absoluta nesta edição.</p>
+        <div class="nao"><b>O que não fazer</b><p>Não use a queda de ~1,10% como gatilho tático sem posição confirmada e sem regra escrita.</p></div>
+      </div>
+
+      <div class="fk-heat h-alto">
+        <div class="fk-heat-top">
+          <div><div class="fk-heat-ticker">MSFT34</div><div class="fk-heat-name">Microsoft BDR</div></div>
+          <span class="fk-heat-badge">calor alto (disciplina)</span>
+        </div>
+        <p><span class="pill pend">instrução explícita</span> <strong>Sem corte de MSFT34 sem regra escrita.</strong> Nenhuma redução tática nesta janela.</p>
+        <div class="nao"><b>O que não fazer</b><p>Não vender, reduzir ou “rebalancear” MSFT34 ad hoc — a ausência de regra escrita é o bloqueio, não o preço do dia.</p></div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="fk-section">
+    <h2 class="fk-h2">Meta de renda passiva — teste de realismo <span class="n">04</span></h2>
+    <div class="fk-alert crit">
+      <h4><span class="tag">correção necessária</span> R$20 mil/mês não é compatível com o capital atual</h4>
+      <p>Meta de renda de <strong>R$20 mil/mês</strong> permanece irrealista frente ao patrimônio em ordem de grandeza de ~R$1,13 milhão. Renda orgânica estimada: <strong>~R$6,5–9 mil/mês</strong>.</p>
+    </div>
+  </section>
+
+  <section class="fk-section">
+    <h2 class="fk-h2">Buracos abertos e bloqueios <span class="n">05</span></h2>
+    <div class="fk-alert crit"><h4><span class="tag">governança</span> Zero estrutural F&amp;K → RMC sem Bruno</h4><p>Nenhum movimento estrutural F&amp;K → RMC sem o advogado Bruno. Protocolo STVM 13525 não autoriza atalho jurídico.</p></div>
+    <div class="fk-alert warn"><h4><span class="tag">operacional</span> MSFT34 sem regra escrita</h4><p>Sem corte tático enquanto a regra não estiver formalizada por escrito.</p></div>
+    <div class="fk-alert info"><h4><span class="tag">tributário · A CONFIRMAR</span> Banco de prejuízos ~R$434 mil</h4><p>Banco de prejuízos fiscais em torno de <strong>~R$434 mil</strong> segue <strong>[A CONFIRMAR]</strong> — não usar o número como saldo apurado para compensação nesta edição.</p></div>
+    <div class="fk-alert warn"><h4><span class="tag">A CONFIRMAR</span> JCP BBDC4 — 15/09 vs 30/10</h4><p>Conflito de calendário do JCP BBDC4. Confirmar a data oficial antes de qualquer registro de recebimento ou realocação.</p></div>
+  </section>
+
+  <section class="fk-section">
+    <h2 class="fk-h2">Calendário e disciplina da semana <span class="n">06</span></h2>
+    <div class="fk-alert crit">
+      <h4><span class="tag">disciplina</span> Janela 15–22/09 — zero discricionário</h4>
+      <p>Ironman em <strong>20/09</strong>. Entre <strong>15 e 22/09</strong>: nenhuma decisão discricionária de carteira. Só o que já estiver pré-definido por escrito.</p>
+    </div>
+    <div class="fk-timeline">
+      <div class="fk-tl-item"><div class="date">15/09</div><h5>Início da janela zero discricionário + possível JCP BBDC4</h5><p>Data 15/09 entra em conflito com 30/10 para o JCP BBDC4 — [A CONFIRMAR]. Independentemente do JCP, começa a janela 15–22/09 sem movimento discricionário.</p></div>
+      <div class="fk-tl-item"><div class="date">20/09</div><h5>Ironman 70.3 São Paulo</h5><p>Prova. Nenhum movimento de carteira deve depender de decisão tomada neste dia.</p></div>
+      <div class="fk-tl-item"><div class="date">22/09</div><h5>Fim da janela zero discricionário</h5><p>Retomar gestão ativa só depois desta data, e ainda assim sem furar os bloqueios (Bruno / regra MSFT34 / carteira STALE).</p></div>
+      <div class="fk-tl-item"><div class="date">30/10</div><h5>JCP BBDC4 — data alternativa em conflito</h5><p>Segunda data citada para o JCP BBDC4. Reconciliar com a de 15/09 antes de qualquer ação. [A CONFIRMAR]</p></div>
+      <div class="fk-tl-item"><div class="date">contínuo</div><h5>STVM protocolo 13525</h5><p>Tramitação em curso. Zero estrutural F&amp;K → RMC sem Bruno.</p></div>
+    </div>
+  </section>
+
+  <section class="fk-section">
+    <h2 class="fk-h2">Fatos, hipóteses e pendências <span class="n">07</span></h2>
+    <table class="fk-table">
+      <tr><th>Item</th><th>Status</th></tr>
+      <tr><td>Ibovespa 188.268,59 pts (+1,42%) fechamento 10/09</td><td><span class="pill fact">confirmado</span></td></tr>
+      <tr><td>Dólar ~R$5,103 (−0,18%)</td><td><span class="pill fact">confirmado (aprox.)</span></td></tr>
+      <tr><td>Brent US$107,63 (+6,34%); WTI US$102,48 (+6,69%)</td><td><span class="pill fact">confirmado</span></td></tr>
+      <tr><td>BBDC4 R$18,48 (+3,88%)</td><td><span class="pill fact">confirmado</span></td></tr>
+      <tr><td>PETR4 ~+1,45%; VALE3 ~−1,10%; S&amp;P ~−0,6%</td><td><span class="pill fact">confirmado (variação)</span></td></tr>
+      <tr><td>AtlasIntel/Bloomberg: Flávio numericamente à frente de Lula (empate técnico)</td><td><span class="pill fact">contexto</span></td></tr>
+      <tr><td>Patrimônio PF ~847–870k / PJ ~279–290k / total ~1,13 mi</td><td><span class="pill hyp">maio/26 STALE</span></td></tr>
+      <tr><td>Livro Itaú STVM ~R$76 mil unsigned</td><td><span class="pill pend">A CONFIRMAR</span></td></tr>
+      <tr><td>Protocolo STVM 13525</td><td><span class="pill fact">registrado nesta edição</span></td></tr>
+      <tr><td>JCP BBDC4 15/09 vs 30/10</td><td><span class="pill pend">A CONFIRMAR</span></td></tr>
+      <tr><td>Banco de prejuízos ~R$434 mil</td><td><span class="pill pend">A CONFIRMAR</span></td></tr>
+      <tr><td>Meta renda R$20k/mês vs ~6,5–9k orgânicos</td><td><span class="pill hyp">irrealista no capital atual</span></td></tr>
+      <tr><td>Sem corte MSFT34 sem regra escrita</td><td><span class="pill pend">bloqueio vigente</span></td></tr>
+      <tr><td>Zero estrutural F&amp;K → RMC sem Bruno</td><td><span class="pill pend">bloqueio vigente</span></td></tr>
+      <tr><td>Ironman 20/09; janela 15–22/09 zero discricionário</td><td><span class="pill fact">disciplina</span></td></tr>
+    </table>
+  </section>
+
+  <section class="fk-section">
+    <h2 class="fk-h2">Próximos passos práticos <span class="n">08</span></h2>
+    <ul class="fk-list">
+      <li>Reconciliar a data do JCP BBDC4 (15/09 vs 30/10) antes de registrar recebimento ou realocar.</li>
+      <li>Não tomar decisão discricionária entre 15 e 22/09 (Ironman 20/09).</li>
+      <li>Não cortar MSFT34 sem regra escrita.</li>
+      <li>Nenhum movimento estrutural F&amp;K → RMC sem o advogado Bruno; protocolo STVM 13525 não muda isso.</li>
+      <li>Tratar o livro Itaú STVM (~R$76 mil) como unsigned até confirmação — não operar em cima dele.</li>
+      <li>Não usar o banco de prejuízos ~R$434 mil como saldo apurado enquanto estiver [A CONFIRMAR].</li>
+      <li>Atualizar o arquivo consolidado de carteira (substituir a base de maio/26) assim que houver extrato atual.</li>
+    </ul>
+  </section>
+
+  <footer class="fk-footer">
+    <p><strong>Aviso:</strong> este material é um informe de contexto e organização de decisão, produzido a pedido do Dr. Fernando Magalhães Coutinho para uso pessoal. Não constitui recomendação de compra ou venda de ativos, oferta, análise de investimento formal ou aconselhamento financeiro regulado. Números de mercado sem fechamento oficial confirmado estão explicitamente sinalizados. Consulte sempre extratos oficiais das corretoras antes de qualquer decisão.</p>
+    <p>FK Capital Diário — Edição 16 · 11/09/2026 · continuação da Edição 15 (10/09/2026) · fechamento de referência 10/09/2026.</p>
+  </footer>
+
+</div>
+</body>
+</html>
