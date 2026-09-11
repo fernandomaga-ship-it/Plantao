@@ -239,6 +239,31 @@ def extract_meta(html: str) -> dict:
                 meta[k] = v.lower() == "true" if k == "ibov_up" else v
     return meta
 
+# Modelo padrão: Sonnet (bem mais barato que Opus). Override via CLAUDE_MODEL.
+DEFAULT_MODEL = "claude-sonnet-4-5"
+WEB_SEARCH_TOOL = {
+    "type": "web_search_20250305",
+    "name": "web_search",
+    "max_uses": 15,
+}
+
+
+def _friendly_api_error(exc: Exception) -> None:
+    """Imprime orientação clara para erros comuns da Anthropic API."""
+    msg = str(exc)
+    if "credit balance is too low" in msg.lower():
+        print(
+            "ERRO: créditos da Anthropic API esgotados.\n"
+            "  1. Abra https://console.anthropic.com/settings/billing\n"
+            "  2. Adicione créditos ou ative um plano\n"
+            "  3. Confirme o secret ANTHROPIC_API_KEY no repositório\n"
+            "  4. Re-execute o workflow 'Relatório Diário de Mercado'",
+            file=sys.stderr,
+        )
+    else:
+        print(f"ERRO na Anthropic API: {exc}", file=sys.stderr)
+
+
 # ── Geração via Claude API ────────────────────────────────────────────────────
 def generate_report() -> str:
     api_key = os.environ.get("ANTHROPIC_API_KEY")
@@ -246,42 +271,46 @@ def generate_report() -> str:
         print("ERRO: ANTHROPIC_API_KEY não definida.", file=sys.stderr)
         sys.exit(1)
 
+    model = os.environ.get("CLAUDE_MODEL", DEFAULT_MODEL).strip() or DEFAULT_MODEL
     client = anthropic.Anthropic(api_key=api_key)
-    print(f"Gerando relatório para {DATE_BR}...")
+    print(f"Gerando relatório para {DATE_BR} (modelo: {model})...")
 
     messages = [{"role": "user", "content": PROMPT}]
     collected_text = []
+    max_continuations = 8
 
-    # Loop agentico para suportar tool_use do web_search
-    while True:
-        response = client.messages.create(
-            model="claude-opus-4-7",
-            max_tokens=8000,
-            tools=[{
-                "type": "web_search_20250305",
-                "name": "web_search",
-                "max_uses": 25,
-            }],
-            messages=messages,
-        )
+    # web_search é tool de servidor: Anthropic executa as buscas.
+    # Continuar apenas em pause_turn (limite interno de iterações).
+    try:
+        for _ in range(max_continuations):
+            response = client.messages.create(
+                model=model,
+                max_tokens=8000,
+                tools=[WEB_SEARCH_TOOL],
+                messages=messages,
+            )
 
-        for block in response.content:
-            if block.type == "text":
-                collected_text.append(block.text)
+            for block in response.content:
+                if getattr(block, "type", None) == "text":
+                    collected_text.append(block.text)
 
-        if response.stop_reason == "end_turn":
+            if response.stop_reason == "end_turn":
+                break
+
+            if response.stop_reason == "pause_turn":
+                # Reenviar a resposta pausada como última mensagem (sem user extra).
+                messages.append({"role": "assistant", "content": response.content})
+                print("  Continuando busca (pause_turn)...")
+                continue
+
+            # Outros stop_reason (max_tokens, refusal, etc.): usar o que já veio.
+            print(f"  Encerrando com stop_reason={response.stop_reason!r}")
             break
-
-        if response.stop_reason == "tool_use":
-            messages.append({"role": "assistant", "content": response.content})
-            tool_results = [
-                {"type": "tool_result", "tool_use_id": b.id, "content": ""}
-                for b in response.content if b.type == "tool_use"
-            ]
-            if tool_results:
-                messages.append({"role": "user", "content": tool_results})
         else:
-            break
+            print("  Aviso: atingido limite de continuações pause_turn.", file=sys.stderr)
+    except anthropic.APIStatusError as exc:
+        _friendly_api_error(exc)
+        sys.exit(1)
 
     return "\n".join(collected_text)
 

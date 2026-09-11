@@ -19,7 +19,20 @@ Também funciona abrindo `index.html` diretamente no navegador.
 - `scripts/generate-site-data.mjs`: gera automaticamente o manifesto.
 - `plantoes/bp/`: arquivos de plantão por leito/paciente.
 - `.github/workflows/pages.yml`: deploy automático do GitHub Pages no branch `main`.
+- `.github/workflows/daily-market-report.yml`: relatório diário de mercado (dias úteis, 09h BRT) via Anthropic API.
 - `CNAME.example`: base para futuro domínio personalizado.
+
+## Automação de mercado
+
+O workflow **Relatório Diário de Mercado** usa o secret `ANTHROPIC_API_KEY` e o script `scripts/generate_daily_market.py`.
+
+Se o job falhar com *credit balance is too low*:
+
+1. Recarregue créditos em https://console.anthropic.com/settings/billing
+2. Confirme o secret em Settings → Secrets and variables → Actions
+3. Rode Actions → Relatório Diário de Mercado → Run workflow
+
+Modelo padrão: `claude-sonnet-4-5` (variável de repositório `CLAUDE_MODEL` para override).
 
 ## Atualizar lista de plantões
 
