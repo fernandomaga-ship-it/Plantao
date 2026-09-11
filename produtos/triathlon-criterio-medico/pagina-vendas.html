@@ -1,0 +1,870 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta
+      name="description"
+      content="Triathlon com Critério Médico — em 12 semanas, construa sua base com progressão segura, recuperação e red flags claros."
+    />
+    <meta name="theme-color" content="#0b3d4a" />
+    <title>Triathlon com Critério Médico | Dr. Fernando Magalhães</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&family=Instrument+Serif:ital@0;1&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --ink: #102229;
+        --ink-soft: #3a545d;
+        --paper: #f3f7f8;
+        --sea: #0b3d4a;
+        --sea-mid: #146377;
+        --foam: #d7eef2;
+        --sand: #e8d7b8;
+        --accent: #c45c26;
+        --accent-deep: #9a3f14;
+        --line: rgba(16, 34, 41, 0.12);
+        --ok: #1f6b4a;
+        --max: 1120px;
+        --radius: 4px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        font-family: "DM Sans", sans-serif;
+        color: var(--ink);
+        background:
+          radial-gradient(1200px 600px at 10% -10%, rgba(20, 99, 119, 0.18), transparent 60%),
+          radial-gradient(900px 500px at 100% 0%, rgba(196, 92, 38, 0.12), transparent 55%),
+          linear-gradient(180deg, #eef5f7 0%, var(--paper) 28%, #e9f1f3 100%);
+        line-height: 1.55;
+      }
+
+      img {
+        max-width: 100%;
+        display: block;
+      }
+
+      a {
+        color: inherit;
+      }
+
+      .wrap {
+        width: min(var(--max), calc(100% - 2rem));
+        margin-inline: auto;
+      }
+
+      .brand {
+        font-family: "Instrument Serif", Georgia, serif;
+        font-weight: 400;
+        letter-spacing: -0.02em;
+      }
+
+      .eyebrow {
+        margin: 0 0 0.6rem;
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--sea-mid);
+      }
+
+      h1,
+      h2,
+      h3 {
+        font-family: "Instrument Serif", Georgia, serif;
+        font-weight: 400;
+        letter-spacing: -0.02em;
+        line-height: 1.12;
+        margin: 0;
+      }
+
+      h1 {
+        font-size: clamp(2.35rem, 5.5vw, 4.4rem);
+      }
+
+      h2 {
+        font-size: clamp(1.85rem, 3.4vw, 2.85rem);
+      }
+
+      h3 {
+        font-size: clamp(1.25rem, 2vw, 1.55rem);
+      }
+
+      p {
+        margin: 0;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.55rem;
+        border: 0;
+        border-radius: var(--radius);
+        padding: 0.95rem 1.35rem;
+        background: var(--accent);
+        color: #fff;
+        font: 700 0.98rem/1 "DM Sans", sans-serif;
+        text-decoration: none;
+        cursor: pointer;
+        transition: transform 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+        box-shadow: 0 10px 24px rgba(196, 92, 38, 0.28);
+      }
+
+      .btn:hover {
+        background: var(--accent-deep);
+        transform: translateY(-2px);
+      }
+
+      .btn-ghost {
+        background: transparent;
+        color: #fff;
+        border: 1px solid rgba(255, 255, 255, 0.45);
+        box-shadow: none;
+      }
+
+      .btn-ghost:hover {
+        background: rgba(255, 255, 255, 0.08);
+      }
+
+      .cta-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        margin-top: 1.5rem;
+      }
+
+      /* NAV */
+      .topnav {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        backdrop-filter: blur(10px);
+        background: rgba(243, 247, 248, 0.78);
+        border-bottom: 1px solid var(--line);
+      }
+
+      .topnav .wrap {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        min-height: 64px;
+        gap: 1rem;
+      }
+
+      .topnav a.logo {
+        text-decoration: none;
+        font-size: 1.15rem;
+        color: var(--sea);
+      }
+
+      .topnav small {
+        display: block;
+        font-family: "DM Sans", sans-serif;
+        font-size: 0.72rem;
+        letter-spacing: 0.04em;
+        color: var(--ink-soft);
+      }
+
+      /* HERO */
+      .hero {
+        position: relative;
+        min-height: min(92vh, 860px);
+        display: grid;
+        align-items: end;
+        color: #f4fafb;
+        overflow: hidden;
+        isolation: isolate;
+      }
+
+      .hero-media {
+        position: absolute;
+        inset: 0;
+        z-index: -2;
+        background:
+          linear-gradient(180deg, rgba(8, 28, 34, 0.25) 0%, rgba(8, 28, 34, 0.72) 55%, rgba(8, 28, 34, 0.9) 100%),
+          url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 800'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop stop-color='%230b3d4a'/%3E%3Cstop offset='.55' stop-color='%23146377'/%3E%3Cstop offset='1' stop-color='%23071f26'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='1200' height='800' fill='url(%23g)'/%3E%3Cpath d='M0 520c80-40 160-40 240 0s160 40 240 0 160-40 240 0 160 40 240 0 160-40 240 0v280H0z' fill='%23091f27' opacity='.45'/%3E%3Cpath d='M0 560c90-36 170-36 250 0s170 36 250 0 170-36 250 0 170 36 250 0 170-36 200 0v240H0z' fill='%23d7eef2' opacity='.08'/%3E%3Ccircle cx='920' cy='160' r='90' fill='%23e8d7b8' opacity='.18'/%3E%3C/svg%3E")
+            center/cover no-repeat;
+        transform: scale(1.04);
+        animation: heroDrift 14s ease-in-out infinite alternate;
+      }
+
+      @keyframes heroDrift {
+        from {
+          transform: scale(1.04) translate3d(0, 0, 0);
+        }
+        to {
+          transform: scale(1.08) translate3d(-1.2%, -1%, 0);
+        }
+      }
+
+      .hero-copy {
+        width: min(var(--max), calc(100% - 2rem));
+        margin: 0 auto;
+        padding: 7rem 0 4.5rem;
+        max-width: 820px;
+        animation: riseIn 0.9s ease both;
+      }
+
+      @keyframes riseIn {
+        from {
+          opacity: 0;
+          transform: translateY(18px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .hero-brand {
+        font-size: clamp(2rem, 4vw, 3rem);
+        margin-bottom: 1rem;
+        color: #fff;
+      }
+
+      .hero p.lead {
+        margin-top: 1rem;
+        font-size: clamp(1.05rem, 2vw, 1.25rem);
+        max-width: 38ch;
+        color: rgba(244, 250, 251, 0.9);
+      }
+
+      .hero .eyebrow {
+        color: var(--sand);
+      }
+
+      /* SECTIONS */
+      section {
+        padding: 5rem 0;
+      }
+
+      .section-head {
+        max-width: 40rem;
+        margin-bottom: 2rem;
+      }
+
+      .section-head p {
+        margin-top: 0.9rem;
+        color: var(--ink-soft);
+        font-size: 1.05rem;
+      }
+
+      .pain {
+        background:
+          linear-gradient(180deg, rgba(11, 61, 74, 0.05), transparent 40%),
+          transparent;
+      }
+
+      .pain-list {
+        list-style: none;
+        padding: 0;
+        margin: 2rem 0 0;
+        display: grid;
+        gap: 1rem;
+      }
+
+      .pain-list li {
+        padding: 1.15rem 0;
+        border-top: 1px solid var(--line);
+        font-size: 1.12rem;
+        color: var(--ink);
+        animation: riseIn 0.7s ease both;
+      }
+
+      .pain-list li:last-child {
+        border-bottom: 1px solid var(--line);
+      }
+
+      .pain-list strong {
+        display: block;
+        font-family: "Instrument Serif", Georgia, serif;
+        font-size: 1.45rem;
+        font-weight: 400;
+        margin-bottom: 0.25rem;
+      }
+
+      .solution {
+        background: linear-gradient(135deg, var(--sea) 0%, #0f5363 55%, #163a44 100%);
+        color: #f2fafb;
+      }
+
+      .solution .eyebrow {
+        color: var(--sand);
+      }
+
+      .solution .section-head p {
+        color: rgba(242, 250, 251, 0.86);
+      }
+
+      .solution-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+        margin-top: 2.5rem;
+      }
+
+      .solution-grid article {
+        padding-top: 1rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.22);
+      }
+
+      .solution-grid h3 {
+        margin-bottom: 0.55rem;
+      }
+
+      .solution-grid p {
+        color: rgba(242, 250, 251, 0.82);
+        font-size: 0.98rem;
+      }
+
+      .stack-item,
+      .proof-item,
+      .price-box,
+      .faq details {
+        border-top: 1px solid var(--line);
+      }
+
+      .stack-list {
+        margin-top: 1.5rem;
+      }
+
+      .stack-item {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 1rem;
+        padding: 1.25rem 0;
+        align-items: start;
+      }
+
+      .stack-item:last-child {
+        border-bottom: 1px solid var(--line);
+      }
+
+      .stack-item h3 {
+        margin-bottom: 0.35rem;
+      }
+
+      .stack-item p {
+        color: var(--ink-soft);
+      }
+
+      .stack-value {
+        font-family: "Instrument Serif", Georgia, serif;
+        font-size: 1.35rem;
+        white-space: nowrap;
+        color: var(--sea);
+      }
+
+      .stack-total {
+        margin-top: 1.25rem;
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        align-items: baseline;
+        font-size: 1.15rem;
+      }
+
+      .stack-total strong {
+        font-family: "Instrument Serif", Georgia, serif;
+        font-size: 1.8rem;
+        font-weight: 400;
+      }
+
+      .proof-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.25rem;
+        margin-top: 2rem;
+      }
+
+      .proof-item {
+        padding: 1.4rem 0 0.4rem;
+      }
+
+      .proof-item p {
+        color: var(--ink-soft);
+        margin-top: 0.7rem;
+      }
+
+      .proof-item cite {
+        display: block;
+        margin-top: 1rem;
+        font-style: normal;
+        font-weight: 700;
+        font-size: 0.92rem;
+      }
+
+      .guarantee {
+        background:
+          linear-gradient(180deg, rgba(232, 215, 184, 0.35), rgba(232, 215, 184, 0.08));
+      }
+
+      .guarantee-copy {
+        max-width: 44rem;
+        font-size: 1.08rem;
+        color: var(--ink-soft);
+      }
+
+      .guarantee-copy strong {
+        color: var(--ink);
+      }
+
+      .pricing {
+        background: #fff;
+        border-block: 1px solid var(--line);
+      }
+
+      .price-box {
+        margin-top: 1.5rem;
+        padding-top: 1.5rem;
+        max-width: 34rem;
+      }
+
+      .anchor {
+        color: var(--ink-soft);
+        text-decoration: line-through;
+        font-size: 1.05rem;
+      }
+
+      .price {
+        font-family: "Instrument Serif", Georgia, serif;
+        font-size: clamp(3rem, 7vw, 4.5rem);
+        line-height: 1;
+        margin: 0.35rem 0 0.6rem;
+      }
+
+      .price span {
+        font-size: 1.1rem;
+        color: var(--ink-soft);
+      }
+
+      .price-note {
+        color: var(--ink-soft);
+        margin-bottom: 1.25rem;
+      }
+
+      .faq details {
+        padding: 1rem 0;
+      }
+
+      .faq summary {
+        cursor: pointer;
+        font-weight: 700;
+        list-style: none;
+      }
+
+      .faq summary::-webkit-details-marker {
+        display: none;
+      }
+
+      .faq details p {
+        margin-top: 0.65rem;
+        color: var(--ink-soft);
+      }
+
+      .final-cta {
+        text-align: center;
+        padding-bottom: 6rem;
+      }
+
+      .final-cta p {
+        margin: 1rem auto 0;
+        max-width: 36rem;
+        color: var(--ink-soft);
+      }
+
+      .final-cta .cta-row {
+        justify-content: center;
+      }
+
+      footer {
+        border-top: 1px solid var(--line);
+        padding: 1.5rem 0 2.5rem;
+        color: var(--ink-soft);
+        font-size: 0.92rem;
+      }
+
+      .legal {
+        margin-top: 2rem;
+        padding-top: 1rem;
+        border-top: 1px solid var(--line);
+        font-size: 0.85rem;
+        color: var(--ink-soft);
+      }
+
+      @media (max-width: 900px) {
+        .solution-grid,
+        .proof-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .stack-item {
+          grid-template-columns: 1fr;
+          gap: 0.35rem;
+        }
+
+        .hero-copy {
+          padding-top: 6rem;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation: none !important;
+          transition: none !important;
+          scroll-behavior: auto !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="topnav">
+      <div class="wrap">
+        <a class="logo brand" href="#topo">
+          Triathlon com Critério Médico
+          <small>Dr. Fernando Magalhães · Medicina Intensiva</small>
+        </a>
+        <a class="btn" href="#comprar">Quero começar</a>
+      </div>
+    </header>
+
+    <main id="topo">
+      <!-- HERO: brand + 1 headline + 1 sentence + CTA + full-bleed visual -->
+      <section class="hero" aria-label="Hero">
+        <div class="hero-media" aria-hidden="true"></div>
+        <div class="hero-copy">
+          <p class="eyebrow">Curso digital · 12 semanas</p>
+          <p class="brand hero-brand">Triathlon com Critério Médico</p>
+          <h1>Em 12 semanas, construa sua base de triathlon sem improvisar e sem se lesionar.</h1>
+          <p class="lead">
+            Progressão, recuperação e red flags claros — criados por um médico intensivista que vive o esporte.
+          </p>
+          <div class="cta-row">
+            <a class="btn" href="#comprar">Quero minha base segura</a>
+            <a class="btn btn-ghost" href="#conteudo">Ver o que está incluso</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- DOR -->
+      <section class="pain" id="dor" aria-labelledby="dor-title">
+        <div class="wrap">
+          <div class="section-head">
+            <p class="eyebrow">O problema</p>
+            <h2 id="dor-title">Você não precisa de mais motivação. Precisa de critério.</h2>
+            <p>
+              Se você se reconhece em qualquer frase abaixo, o problema não é falta de força de vontade —
+              é começar sem um diagnóstico honesto do seu corpo e da sua rotina.
+            </p>
+          </div>
+          <ul class="pain-list">
+            <li>
+              <strong>“Quero começar, mas tenho medo de me lesionar.”</strong>
+              Você já viu gente parar no joelho, no ombro ou no burnout — e não quer ser o próximo.
+            </li>
+            <li>
+              <strong>“Treino no feeling e abandono em poucas semanas.”</strong>
+              Semana 1 intensa. Semana 3 quebrado. Semana 5 sumido. O ciclo se repete.
+            </li>
+            <li>
+              <strong>“Não sei se meu corpo aguenta o plano que eu baixei.”</strong>
+              Planilhas genéricas não perguntam quanto você dorme, trabalha ou recupera.
+            </li>
+            <li>
+              <strong>“Tenho pouco tempo e zero margem para errar.”</strong>
+              Plantão, filhos, empresa, vida real. Cada sessão precisa valer — sem ego.
+            </li>
+          </ul>
+          <div class="cta-row">
+            <a class="btn" href="#comprar">Resolver isso com método</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- SOLUÇÃO -->
+      <section class="solution" id="solucao" aria-labelledby="solucao-title">
+        <div class="wrap">
+          <div class="section-head">
+            <p class="eyebrow">A solução</p>
+            <h2 id="solucao-title">O que faltava: lógica médica aplicada ao triathlon amador.</h2>
+            <p>
+              Não é coaching genérico. Não é “treino de elite encolhido”. É um protocolo de 12 semanas
+              para construir base aeróbica com critérios de avanço, freio e recuperação —
+              do jeito que um médico pensa risco antes de pensar volume.
+            </p>
+          </div>
+          <div class="solution-grid">
+            <article>
+              <h3>Diagnóstico antes do volume</h3>
+              <p>Score de Prontidão na primeira 24h. Você sabe de onde parte antes de subir carga.</p>
+            </article>
+            <article>
+              <h3>Red flags explícitos</h3>
+              <p>Sinais para parar, reduzir ou seguir. Menos achismo. Mais decisão limpa no dia a dia.</p>
+            </article>
+            <article>
+              <h3>Progressão que cabe na vida</h3>
+              <p>Microciclos realistas para agenda apertada — inclusive rotina pesada e noites ruins.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- PARA QUEM -->
+      <section id="para-quem" aria-labelledby="para-quem-title">
+        <div class="wrap">
+          <div class="section-head">
+            <p class="eyebrow">Para quem é</p>
+            <h2 id="para-quem-title">Feito para quem quer começar ou recomeçar com inteligência.</h2>
+            <p>
+              Adultos de 28 a 50 anos, sedentários ou com base parcial em corrida/bike/natação,
+              que querem a primeira prova curta ou um bloco sólido de 12 semanas sem se quebrar.
+            </p>
+          </div>
+          <ul class="pain-list">
+            <li><strong>É para você se…</strong> quer consistência, tem medo saudável de lesão e aceita treinar fácil quando for preciso.</li>
+            <li><strong>Não é para você se…</strong> busca atalho milagroso, treino de elite em 30 dias ou prescrição médica individual à distância.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- STACK / CONTEÚDO -->
+      <section id="conteudo" aria-labelledby="conteudo-title">
+        <div class="wrap">
+          <div class="section-head">
+            <p class="eyebrow">O que você recebe</p>
+            <h2 id="conteudo-title">Stack completo do programa</h2>
+            <p>Cada item existe para tirar você do improviso e te colocar em um ciclo que gera crença rápido.</p>
+          </div>
+
+          <div class="stack-list">
+            <div class="stack-item">
+              <div>
+                <h3>Curso completo em 8 módulos</h3>
+                <p>
+                  Diagnóstico honesto, red flags, base aeróbica, natação, bike, corrida,
+                  recuperação e semana de prova/simulado — com objetivo e entregável em cada etapa.
+                </p>
+              </div>
+              <div class="stack-value">R$ 497</div>
+            </div>
+            <div class="stack-item">
+              <div>
+                <h3>Score de Prontidão + Microciclo Semana 1</h3>
+                <p>Quick win em 24h: número claro, meta crível e primeira sessão agendada.</p>
+              </div>
+              <div class="stack-value">R$ 97</div>
+            </div>
+            <div class="stack-item">
+              <div>
+                <h3>Checklist de Red Flags (versão de bolso)</h3>
+                <p>Para celular ou impressão. Pare / reduza / registre — sem dúvida no momento do treino.</p>
+              </div>
+              <div class="stack-value">R$ 67</div>
+            </div>
+            <div class="stack-item">
+              <div>
+                <h3>Planilha de carga semanal</h3>
+                <p>Controle simples de volume, sensação e adesão para as 12 semanas.</p>
+              </div>
+              <div class="stack-value">R$ 67</div>
+            </div>
+            <div class="stack-item">
+              <div>
+                <h3>Bônus: Pós-plantão / dia pesado</h3>
+                <p>Protocolo curto para treinar (ou não) depois de uma noite destruída — sem culpa e sem lesão.</p>
+              </div>
+              <div class="stack-value">R$ 147</div>
+            </div>
+            <div class="stack-item">
+              <div>
+                <h3>Bônus: Roteiro de conversa com seu médico</h3>
+                <p>Lista educativa do que organizar antes de subir carga. Sem prescrição. Com clareza.</p>
+              </div>
+              <div class="stack-value">R$ 67</div>
+            </div>
+          </div>
+
+          <div class="stack-total">
+            <span>Valor percebido total</span>
+            <strong>R$ 942</strong>
+          </div>
+        </div>
+      </section>
+
+      <!-- PROVA SOCIAL -->
+      <section id="prova" aria-labelledby="prova-title">
+        <div class="wrap">
+          <div class="section-head">
+            <p class="eyebrow">Prova</p>
+            <h2 id="prova-title">Por que confiar neste método</h2>
+            <p>
+              Enquanto a lista de alunos cresce, a prova principal é a combinação rara:
+              medicina intensiva + prática real de triathlon + estrutura de entrega com quick win.
+            </p>
+          </div>
+          <div class="proof-grid">
+            <article class="proof-item">
+              <h3>Autoridade clínica</h3>
+              <p>
+                Dr. Fernando Magalhães, médico intensivista (UTI Cardiologia e Neurologia),
+                com olhar de risco, recuperação e limite fisiológico.
+              </p>
+              <cite>Medicina Intensiva · BP São Paulo</cite>
+            </article>
+            <article class="proof-item">
+              <h3>Vivência no esporte</h3>
+              <p>
+                Não é teoria de quem só assiste prova. É método testado na pele de quem treina
+                natação, bike e corrida em cima de agenda real.
+              </p>
+              <cite>Triatleta · rotina de alta demanda</cite>
+            </article>
+            <article class="proof-item">
+              <h3>Formato que gera crença cedo</h3>
+              <p>
+                No Módulo 1 você já sai com Score, meta de 12 semanas e microciclo —
+                resultado antes do meio do curso.
+              </p>
+              <cite>Quick win em 24 horas</cite>
+            </article>
+          </div>
+          <p class="legal">
+            Espaço reservado para depoimentos reais (nome, foto e resultado) assim que a primeira turma concluir.
+            Até lá, a garantia e o método carregam a decisão.
+          </p>
+        </div>
+      </section>
+
+      <!-- GARANTIA -->
+      <section class="guarantee" id="garantia" aria-labelledby="garantia-title">
+        <div class="wrap">
+          <div class="section-head">
+            <p class="eyebrow">Garantia</p>
+            <h2 id="garantia-title">15 dias para testar o método com segurança.</h2>
+          </div>
+          <div class="guarantee-copy">
+            <p>
+              Entre, faça o <strong>Módulo 1</strong>, calcule seu Score de Prontidão e execute o Microciclo da Semana 1.
+              Se você aplicar isso e sentir que o programa <strong>não te deu clareza objetiva</strong> do seu ponto de partida
+              e do que fazer nos próximos 7 dias, é só enviar um e-mail em até 15 dias e devolvemos 100% do valor.
+            </p>
+            <p style="margin-top: 1rem">
+              Sem discurso de “você não tentou o bastante”. Ou o quick win te dá direção — ou você não paga.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- PREÇO (depois do stack) -->
+      <section class="pricing" id="comprar" aria-labelledby="preco-title">
+        <div class="wrap">
+          <div class="section-head">
+            <p class="eyebrow">Investimento</p>
+            <h2 id="preco-title">Menos que uma assessoria mensal. Mais critério do que uma planilha solta.</h2>
+            <p>
+              Você viu o stack completo. Agora o preço: acesso imediato ao método de 12 semanas,
+              com bônus e garantia.
+            </p>
+          </div>
+
+          <div class="price-box">
+            <p class="anchor">De R$ 942</p>
+            <p class="price">R$ 297 <span>à vista</span></p>
+            <p class="price-note">Ou 3x de R$ 109 · acesso imediato · garantia de 15 dias</p>
+            <a class="btn" href="#checkout">Quero entrar agora</a>
+            <p class="legal" id="checkout">
+              Substitua este botão pelo link de checkout (Hotmart, Kiwify, Stripe, etc.).
+              Até lá, use a página para validar copy e coleta de interesse.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section class="faq" id="faq" aria-labelledby="faq-title">
+        <div class="wrap">
+          <div class="section-head">
+            <p class="eyebrow">Objeções</p>
+            <h2 id="faq-title">Perguntas que costumam travar a decisão</h2>
+          </div>
+
+          <details>
+            <summary>Isso substitui meu médico ou um coach presencial?</summary>
+            <p>
+              Não. É educação e estrutura de treino amador. Não é consulta, não é prescrição e não substitui
+              avaliação individual. Se você tem sintomas ou doença em acompanhamento, fale com seu médico antes.
+            </p>
+          </details>
+          <details>
+            <summary>Sou totalmente sedentário. Serve para mim?</summary>
+            <p>
+              Sim — desde que você aceite começar pela trilha adequada ao Score de Prontidão.
+              O Módulo 1 existe exatamente para não te jogar num plano acima da sua base.
+            </p>
+          </details>
+          <details>
+            <summary>Já corro (ou pedalo). Ainda faz sentido?</summary>
+            <p>
+              Sim, se você quer triathlon com progressão inteligente e critérios de freio.
+              Base parcial ajuda — ego demais atrapalha. O protocolo calibra os dois.
+            </p>
+          </details>
+          <details>
+            <summary>Tenho pouco tempo. Quantas horas por semana?</summary>
+            <p>
+              A entrada funciona com cerca de 3–5 horas/semana na fase inicial, ajustada ao seu Score.
+              Consistência vence volume heroico.
+            </p>
+          </details>
+          <details>
+            <summary>E se eu não gostar?</summary>
+            <p>
+              Garantia de 15 dias: aplicou o Módulo 1 e não teve clareza? Devolvemos o valor.
+            </p>
+          </details>
+        </div>
+      </section>
+
+      <!-- CTA FINAL -->
+      <section class="final-cta" aria-labelledby="final-title">
+        <div class="wrap">
+          <p class="eyebrow">Decisão</p>
+          <h2 id="final-title">Pare de improvisar o começo. Comece com diagnóstico.</h2>
+          <p>
+            Em 12 semanas você pode continuar no ciclo medo → overtraining → abandono —
+            ou sair do Módulo 1 com um plano que cabe na sua vida.
+          </p>
+          <div class="cta-row">
+            <a class="btn" href="#comprar">Garantir acesso por R$ 297</a>
+          </div>
+          <p class="legal">
+            Conteúdo educativo. Não substitui consulta médica presencial, diagnóstico ou tratamento.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="wrap">
+        <p class="brand">Triathlon com Critério Médico</p>
+        <p>Dr. Fernando Magalhães · Medicina Intensiva</p>
+      </div>
+    </footer>
+  </body>
+</html>
