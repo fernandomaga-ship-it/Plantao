@@ -1,0 +1,51 @@
+name: 📰 Resumo Diário de Notícias (InfoMoney)
+
+on:
+  schedule:
+    # 06:00 BRT = 09:00 UTC (Brasil não usa horário de verão desde 2019)
+    - cron: '0 9 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: daily-news-summary
+  cancel-in-progress: false
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+jobs:
+  send-news-summary:
+    name: Coletar notícias e enviar e-mail
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repositório
+        uses: actions/checkout@v4
+
+      - name: Configurar Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Instalar dependências
+        run: pip install -r requirements.txt
+
+      - name: Gerar resumo e enviar e-mail
+        env:
+          EMAIL_FROM: ${{ secrets.EMAIL_FROM }}
+          EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+        run: python scripts/resumo_noticias_mundo.py
+
+      - name: Publicar noticias.json como artefato
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: noticias-json
+          path: noticias.json
+          if-no-files-found: ignore
+          retention-days: 7
