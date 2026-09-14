@@ -1,6 +1,18 @@
 window.PLANTAO_DATA = {
-  "generatedAt": "2026-09-10",
+  "generatedAt": "2026-09-14",
   "pages": [
+    {
+      "title": "Dashboard clínico — UTI Cardiológica BP — 12/09/2026",
+      "path": "plantoes/bp/2026-09-12/dashboard_uti_cardio_bp_2026-09-12.html",
+      "href": "plantoes/bp/2026-09-12/dashboard_uti_cardio_bp_2026-09-12.html",
+      "folder": "plantoes/bp/2026-09-12",
+      "category": "uti",
+      "categoryLabel": "UTI",
+      "summary": "UTI BP Paulista — Cardiologia — 12/09/2026 · 10 pacientes · Alertas prioritários: anticoagulação pós-cardioversão, pós-operatório em DVA, trombocitopenia grave e vigilância pós-PCI.",
+      "updated": "2026-09-14",
+      "shiftDate": "2026-09-12",
+      "shiftDateLabel": "12/09/2026"
+    },
     {
       "title": "Passagem de plantão — BP Paulista Neuro 8B (2800)",
       "path": "uti/2026-09-10-neuro-8b-2800.html",
