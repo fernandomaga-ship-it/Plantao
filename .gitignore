@@ -1,5 +1,6 @@
 .DS_Store
 *.zip
+noticias.json
 output/
 tmp/
 site-rmc/
