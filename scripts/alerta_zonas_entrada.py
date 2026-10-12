@@ -2,8 +2,8 @@
 """Alerta automático de zonas de entrada + monitor do resultado eleitoral.
 
 1. Zonas: compara o último preço de cada ativo com a zona [inferior, superior]
-   de config/zonas_entrada.json e envia resumo no Telegram quando algum ativo
-   entra na zona (preço <= superior) ou rompe a zona inferior.
+   de config/zonas_entrada.json e envia resumo no Telegram: 🟢 na zona,
+   🔴 abaixo da zona, ⛔ stop atingido, ⚠️ zona provavelmente desatualizada.
 2. Eleição: no 1º pregão após `eleicao.data_resultado`, mede o gap de EWZ
    (pré-mercado em NY, proxy do Ibovespa futuro), ^BVSP e BRL=X contra o
    fechamento anterior e alerta 🚨 quando |variação| >= `limite_pct`.
@@ -25,6 +25,7 @@ import requests
 import yfinance as yf
 
 TZ = ZoneInfo("America/Sao_Paulo")
+DESATUALIZADA = 0.15  # preço >15% abaixo do inferior: zona provavelmente em outra base de preço
 CONFIG = json.loads((Path(__file__).resolve().parent.parent / "config" / "zonas_entrada.json").read_text())
 
 
@@ -47,7 +48,7 @@ def dia_pos_eleicao() -> date:
 
 def checar_zonas() -> list[str]:
     linhas = []
-    for ticker, (inf, sup) in CONFIG["zonas"].items():
+    for ticker, (inf, sup, *stop) in CONFIG["zonas"].items():
         try:
             hist = yf.Ticker(simbolo(ticker)).history(period="5d")["Close"].dropna()
         except Exception as e:  # noqa: BLE001 — um ativo falhando não derruba os demais
@@ -57,7 +58,12 @@ def checar_zonas() -> list[str]:
             linhas.append(f"⚠️ {ticker}: sem cotação")
             continue
         atual, anterior = float(hist.iloc[-1]), float(hist.iloc[-2])
-        if atual < inf:
+        if atual < inf * (1 - DESATUALIZADA):
+            linhas.append(f"⚠️ {ticker} {atual:,.2f} — {(1 - atual / inf) * 100:.0f}% abaixo da zona "
+                          f"[{inf:,.2f}–{sup:,.2f}]: revisar zona (split/bonificação?)")
+        elif stop and atual <= stop[0]:
+            linhas.append(f"⛔ {ticker} {atual:,.2f} — STOP atingido ({stop[0]:,.2f})")
+        elif atual < inf:
             cruzou = " (cruzou hoje)" if anterior >= inf else ""
             linhas.append(f"🔴 {ticker} {atual:,.2f} — ABAIXO da zona ({inf:,.2f}){cruzou}")
         elif atual <= sup:

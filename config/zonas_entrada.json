@@ -1,16 +1,16 @@
 {
-  "_comentario": "Zonas [inferior, superior]. VALORES PROVISÓRIOS (6–12% abaixo do fechamento de 09/10/2026) — substitua pelas suas zonas. Ações B3 sem sufixo (.SA é adicionado); índices com ^.",
+  "_comentario": "Zonas [inferior, superior, stop] do relatório FK Capital Equity Research (12/10/2026). ^BVSP: zona provisória, sem stop. Ações B3 sem sufixo (.SA é adicionado); índices com ^. Preço >15% abaixo do inferior = zona provavelmente desatualizada (split/bonificação) → alerta ⚠️ revisar, não stop.",
   "zonas": {
-    "EQTL3": [44.66, 47.7],
-    "BBSE3": [35.92, 38.37],
-    "EGIE3": [27.92, 29.83],
-    "SBSP3": [29.57, 31.58],
-    "ITUB4": [44.41, 47.44],
-    "WEGE3": [45.29, 48.38],
-    "VALE3": [59.75, 63.83],
-    "PRIO3": [56.72, 60.58],
-    "PSSA3": [46.78, 49.97],
-    "VBBR3": [32.45, 34.67],
+    "EQTL3": [28, 33, 26],
+    "BBSE3": [30, 35, 28],
+    "ITUB4": [31, 35, 30],
+    "EGIE3": [39, 45, 37],
+    "SBSP3": [66, 73, 62],
+    "WEGE3": [46, 52, 43],
+    "VALE3": [52, 58, 48],
+    "PRIO3": [35, 40, 32],
+    "PSSA3": [37, 42, 34],
+    "VBBR3": [17, 20, 15],
     "^BVSP": [184000, 196000]
   },
   "eleicao": {
