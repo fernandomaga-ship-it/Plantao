@@ -1,0 +1,10 @@
+{
+  "_comentario": "Zonas de entrada [inferior, superior] em R$. Ajuste conforme sua estratégia. Ticker B3 sem sufixo (.SA é adicionado automaticamente).",
+  "VALE3":  [72.00, 78.00],
+  "BBDC4":  [16.50, 17.80],
+  "AXIA3":  [49.00, 53.00],
+  "B3SA3":  [15.50, 16.50],
+  "MBRF3":  [16.00, 18.00],
+  "MSFT34": [90.00, 98.00],
+  "KNCR11": [100.00, 104.00]
+}

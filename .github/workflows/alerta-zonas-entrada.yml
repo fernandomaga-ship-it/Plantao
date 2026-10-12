@@ -1,0 +1,40 @@
+name: 🎯 Alerta de Zonas de Entrada
+
+on:
+  schedule:
+    # 07:00 BRT = 10:00 UTC, dias úteis
+    - cron: '0 10 * * 1-5'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: alerta-zonas-entrada
+  cancel-in-progress: false
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+jobs:
+  alerta:
+    name: Checar zonas e notificar no Telegram
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repositório
+        uses: actions/checkout@v4
+
+      - name: Configurar Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Instalar dependências
+        run: pip install yfinance requests
+
+      - name: Verificar zonas e enviar alerta
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: python scripts/alerta_zonas_entrada.py
