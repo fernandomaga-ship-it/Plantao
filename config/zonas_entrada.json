@@ -1,10 +1,22 @@
 {
-  "_comentario": "Zonas de entrada [inferior, superior] em R$. Ajuste conforme sua estratégia. Ticker B3 sem sufixo (.SA é adicionado automaticamente).",
-  "VALE3":  [72.00, 78.00],
-  "BBDC4":  [16.50, 17.80],
-  "AXIA3":  [49.00, 53.00],
-  "B3SA3":  [15.50, 16.50],
-  "MBRF3":  [16.00, 18.00],
-  "MSFT34": [90.00, 98.00],
-  "KNCR11": [100.00, 104.00]
+  "_comentario": "Zonas [inferior, superior]. VALORES PROVISÓRIOS (6–12% abaixo do fechamento de 09/10/2026) — substitua pelas suas zonas. Ações B3 sem sufixo (.SA é adicionado); índices com ^.",
+  "zonas": {
+    "EQTL3": [44.66, 47.7],
+    "BBSE3": [35.92, 38.37],
+    "EGIE3": [27.92, 29.83],
+    "SBSP3": [29.57, 31.58],
+    "ITUB4": [44.41, 47.44],
+    "WEGE3": [45.29, 48.38],
+    "VALE3": [59.75, 63.83],
+    "PRIO3": [56.72, 60.58],
+    "PSSA3": [46.78, 49.97],
+    "VBBR3": [32.45, 34.67],
+    "^BVSP": [184000, 196000]
+  },
+  "eleicao": {
+    "_comentario": "No 1º pregão após data_resultado, mede o gap vs. fechamento anterior. EWZ (ETF Brasil em NY, pré-mercado desde 05:00 BRT) é o proxy do Ibovespa futuro, que não existe no yfinance.",
+    "data_resultado": "2026-10-25",
+    "limite_pct": 3.0,
+    "ativos": ["EWZ", "^BVSP", "BRL=X"]
+  }
 }

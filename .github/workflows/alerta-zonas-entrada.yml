@@ -1,10 +1,19 @@
-name: 🎯 Alerta de Zonas de Entrada
+name: 🎯 Alerta de Zonas de Entrada + Eleição
 
 on:
   schedule:
-    # 07:00 BRT = 10:00 UTC, dias úteis
+    # 07:00 BRT = 10:00 UTC, dias úteis (zonas; no dia seguinte ao 2º turno inclui o gap pós-eleição)
     - cron: '0 10 * * 1-5'
+    # 26/10/2026 (1º pregão após o 2º turno): abertura 10:30 BRT e fechamento 17:30 BRT
+    - cron: '30 13 26 10 *'
+    - cron: '30 20 26 10 *'
   workflow_dispatch:
+    inputs:
+      modo:
+        description: 'zonas (padrão) ou eleicao'
+        default: 'zonas'
+        type: choice
+        options: [zonas, eleicao]
 
 permissions:
   contents: read
@@ -18,7 +27,7 @@ env:
 
 jobs:
   alerta:
-    name: Checar zonas e notificar no Telegram
+    name: Checar zonas/eleição e notificar no Telegram
     runs-on: ubuntu-latest
 
     steps:
@@ -33,8 +42,14 @@ jobs:
       - name: Instalar dependências
         run: pip install yfinance requests
 
-      - name: Verificar zonas e enviar alerta
+      - name: Verificar e enviar alerta
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-        run: python scripts/alerta_zonas_entrada.py
+          MODO: ${{ (inputs.modo == 'eleicao' || startsWith(github.event.schedule, '30 ')) && 'eleicao' || 'zonas' }}
+        run: |
+          if [ "$MODO" = "eleicao" ]; then
+            python scripts/alerta_zonas_entrada.py --eleicao
+          else
+            python scripts/alerta_zonas_entrada.py
+          fi
