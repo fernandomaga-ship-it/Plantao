@@ -1,9 +1,7 @@
 name: 📊 Relatório Diário de Mercado
 
 on:
-  schedule:
-    # 09:00 BRT = 12:00 UTC (Brasil não usa horário de verão desde 2019)
-    - cron: '0 12 * * 1-5'
+  # schedule desativado: publicava relatórios pessoais em repositório público
   workflow_dispatch:
     inputs:
       date_override:
