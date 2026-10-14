@@ -1,0 +1,22 @@
+{
+  "_comentario": "Zonas [inferior, superior, stop] do relatório FK Capital Equity Research (12/10/2026). ^BVSP: zona provisória, sem stop. Ações B3 sem sufixo (.SA é adicionado); índices com ^. Preço >15% abaixo do inferior = zona provavelmente desatualizada (split/bonificação) → alerta ⚠️ revisar, não stop.",
+  "zonas": {
+    "EQTL3": [28, 33, 26],
+    "BBSE3": [30, 35, 28],
+    "ITUB4": [31, 35, 30],
+    "EGIE3": [39, 45, 37],
+    "SBSP3": [66, 73, 62],
+    "WEGE3": [46, 52, 43],
+    "VALE3": [52, 58, 48],
+    "PRIO3": [35, 40, 32],
+    "PSSA3": [37, 42, 34],
+    "VBBR3": [17, 20, 15],
+    "^BVSP": [184000, 196000]
+  },
+  "eleicao": {
+    "_comentario": "No 1º pregão após data_resultado, mede o gap vs. fechamento anterior. EWZ (ETF Brasil em NY, pré-mercado desde 05:00 BRT) é o proxy do Ibovespa futuro, que não existe no yfinance.",
+    "data_resultado": "2026-10-25",
+    "limite_pct": 3.0,
+    "ativos": ["EWZ", "^BVSP", "BRL=X"]
+  }
+}
